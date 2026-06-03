@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="每日 Paper：一个适合部署在 GitHub Pages 上的研究论文阅读面板。"
+    />
+    <title>每日 Paper</title>
+    <link rel="preload" href="assets/research-desk.jpg" as="image" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar" aria-label="站点导航">
+        <a class="brand" href="./" aria-label="每日 Paper 首页">
+          <span class="brand-mark">DP</span>
+          <span>
+            <strong>每日 Paper</strong>
+            <small>Research Radar</small>
+          </span>
+        </a>
+
+        <div class="topbar-actions">
+          <button class="icon-button" id="themeToggle" type="button" aria-label="切换主题" title="切换主题">
+            <i data-lucide="moon"></i>
+          </button>
+          <a class="publish-link" href="https://github.com/new" target="_blank" rel="noreferrer">
+            <i data-lucide="github"></i>
+            <span>发布</span>
+          </a>
+        </div>
+      </header>
+
+      <main>
+        <section class="masthead" aria-labelledby="page-title">
+          <div class="masthead-copy">
+            <p class="eyebrow" id="todayLabel">Today</p>
+            <h1 id="page-title">把每天值得读的论文收进一个清爽页面</h1>
+            <p class="lede">
+              自动抓取、快速筛选、收藏待读。适合放在
+              <span class="mono">username.github.io</span>，每天早上打开看一眼。
+            </p>
+            <dl class="metric-row" aria-label="今日摘要">
+              <div>
+                <dt>收录</dt>
+                <dd id="paperCount">0</dd>
+              </div>
+              <div>
+                <dt>领域</dt>
+                <dd id="areaCount">0</dd>
+              </div>
+              <div>
+                <dt>更新</dt>
+                <dd id="updatedAt">-</dd>
+              </div>
+            </dl>
+          </div>
+          <figure class="masthead-media">
+            <img src="assets/research-desk.jpg" alt="整洁书桌上的研究论文、平板图表和笔记本" />
+          </figure>
+        </section>
+
+        <section class="control-strip" aria-label="筛选论文">
+          <div class="search-box">
+            <i data-lucide="search"></i>
+            <input id="searchInput" type="search" autocomplete="off" placeholder="搜索标题、作者、摘要或标签" />
+          </div>
+
+          <div class="filter-row">
+            <div class="segment-group" id="areaFilters" role="list" aria-label="领域筛选"></div>
+
+            <div class="sort-tools">
+              <label class="select-field">
+                <span>排序</span>
+                <select id="sortSelect">
+                  <option value="fresh">最新优先</option>
+                  <option value="signal">信号最高</option>
+                  <option value="short">短摘要</option>
+                </select>
+              </label>
+
+              <button class="quiet-button" id="bookmarkFilter" type="button" aria-pressed="false">
+                <i data-lucide="bookmark"></i>
+                <span>收藏</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-grid" aria-label="论文列表">
+          <aside class="digest-panel" aria-label="阅读摘要">
+            <div class="panel-header">
+              <span>Digest</span>
+              <i data-lucide="sparkles"></i>
+            </div>
+            <ol id="digestList"></ol>
+          </aside>
+
+          <div>
+            <div class="list-heading">
+              <h2 id="resultsTitle">今日论文</h2>
+              <span id="resultCount">0 results</span>
+            </div>
+            <div class="paper-list" id="paperList"></div>
+            <div class="empty-state" id="emptyState" hidden>
+              <i data-lucide="search-x"></i>
+              <h2>没有匹配的论文</h2>
+              <p>换个关键词或领域试试。</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <span>Daily Paper for GitHub Pages</span>
+        <a href="data/papers.json">papers.json</a>
+      </footer>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

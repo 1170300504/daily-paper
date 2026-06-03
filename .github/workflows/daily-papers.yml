@@ -1,0 +1,31 @@
+name: Daily Papers
+
+on:
+  workflow_dispatch:
+  schedule:
+    # GitHub cron runs in UTC. This is 06:10 in Asia/Shanghai.
+    - cron: "10 22 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-papers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch papers
+        run: python scripts/fetch_papers.py --limit 24 --per-topic 12
+
+      - name: Commit updates
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update daily papers"
+          file_pattern: data/papers.json
