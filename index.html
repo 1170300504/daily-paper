@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="每日 Paper：一个适合部署在 GitHub Pages 上的研究论文阅读面板。"
+      content="论文每日一读：聚焦推荐算法与 LLM 推理优化的研究论文阅读面板。"
     />
-    <title>每日 Paper</title>
+    <title>论文每日一读</title>
     <link rel="preload" href="assets/research-desk.jpg" as="image" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="site-shell">
       <header class="topbar" aria-label="站点导航">
-        <a class="brand" href="./" aria-label="每日 Paper 首页">
-          <span class="brand-mark">DP</span>
+        <a class="brand" href="./" aria-label="论文每日一读首页">
+          <span class="brand-mark">读</span>
           <span>
-            <strong>每日 Paper</strong>
-            <small>Research Radar</small>
+            <strong>论文每日一读</strong>
+            <small>RecSys & Inference Radar</small>
           </span>
         </a>
 
@@ -26,9 +26,9 @@
           <button class="icon-button" id="themeToggle" type="button" aria-label="切换主题" title="切换主题">
             <i data-lucide="moon"></i>
           </button>
-          <a class="publish-link" href="https://github.com/new" target="_blank" rel="noreferrer">
+          <a class="publish-link" href="https://github.com/1170300504/daily-paper" target="_blank" rel="noreferrer">
             <i data-lucide="github"></i>
-            <span>发布</span>
+            <span>仓库</span>
           </a>
         </div>
       </header>
@@ -37,10 +37,10 @@
         <section class="masthead" aria-labelledby="page-title">
           <div class="masthead-copy">
             <p class="eyebrow" id="todayLabel">Today</p>
-            <h1 id="page-title">把每天值得读的论文收进一个清爽页面</h1>
+            <h1 id="page-title">论文每日一读</h1>
             <p class="lede">
-              自动抓取、快速筛选、收藏待读。适合放在
-              <span class="mono">username.github.io</span>，每天早上打开看一眼。
+              聚焦推荐算法，其次追踪 LLM 推理优化。每天自动抓取、快速筛选、收藏待读，
+              也能回看历史日期里的论文列表。
             </p>
             <dl class="metric-row" aria-label="今日摘要">
               <div>
@@ -55,6 +55,10 @@
                 <dt>更新</dt>
                 <dd id="updatedAt">-</dd>
               </div>
+              <div>
+                <dt>历史</dt>
+                <dd id="historyCount">0</dd>
+              </div>
             </dl>
           </div>
           <figure class="masthead-media">
@@ -63,6 +67,14 @@
         </section>
 
         <section class="control-strip" aria-label="筛选论文">
+          <div class="history-bar" aria-label="历史日期">
+            <label class="history-select">
+              <span>历史记录</span>
+              <select id="historySelect"></select>
+            </label>
+            <div class="history-quick" id="historyQuick" aria-label="最近日期"></div>
+          </div>
+
           <div class="search-box">
             <i data-lucide="search"></i>
             <input id="searchInput" type="search" autocomplete="off" placeholder="搜索标题、作者、摘要或标签" />
@@ -75,6 +87,7 @@
               <label class="select-field">
                 <span>排序</span>
                 <select id="sortSelect">
+                  <option value="priority">推荐优先</option>
                   <option value="fresh">最新优先</option>
                   <option value="signal">信号最高</option>
                   <option value="short">短摘要</option>
@@ -114,8 +127,8 @@
       </main>
 
       <footer class="site-footer">
-        <span>Daily Paper for GitHub Pages</span>
-        <a href="data/papers.json">papers.json</a>
+        <span>论文每日一读 · 1170300504/daily-paper</span>
+        <a href="data/history.json">history.json</a>
       </footer>
     </div>
 

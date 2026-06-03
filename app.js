@@ -1,13 +1,18 @@
+const ALL_AREAS = "全部";
+
 const state = {
+  history: [],
+  selectedDate: "",
   papers: [],
-  selectedArea: "All",
+  selectedArea: ALL_AREAS,
   query: "",
-  sort: "fresh",
+  sort: "priority",
   bookmarksOnly: false,
   bookmarks: new Set(JSON.parse(localStorage.getItem("daily-paper-bookmarks") || "[]")),
 };
 
-const areaNames = ["All", "LLM", "Vision", "Robotics", "Systems", "Theory"];
+const areaNames = [ALL_AREAS, "推荐算法", "LLM 推理优化", "LLM", "多模态", "系统", "其他"];
+const areaPriority = new Map(areaNames.map((area, index) => [area, index]));
 const formatDate = new Intl.DateTimeFormat("zh-CN", {
   month: "short",
   day: "numeric",
@@ -23,6 +28,9 @@ const els = {
   paperCount: document.querySelector("#paperCount"),
   areaCount: document.querySelector("#areaCount"),
   updatedAt: document.querySelector("#updatedAt"),
+  historyCount: document.querySelector("#historyCount"),
+  historySelect: document.querySelector("#historySelect"),
+  historyQuick: document.querySelector("#historyQuick"),
   searchInput: document.querySelector("#searchInput"),
   areaFilters: document.querySelector("#areaFilters"),
   sortSelect: document.querySelector("#sortSelect"),
@@ -41,20 +49,43 @@ async function boot() {
   bindEvents();
 
   try {
-    const response = await fetch("data/papers.json", { cache: "no-store" });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const payload = await response.json();
-    state.papers = normalizePapers(payload.papers || []);
-    renderStats(payload);
+    const payload = await loadHistoryPayload();
+    state.history = normalizeHistory(payload);
+    setActiveDate(state.history[0]?.date || "");
+    renderHistoryControls();
+    renderStats();
     render();
   } catch (error) {
     els.paperList.innerHTML = "";
     els.emptyState.hidden = false;
-    els.emptyState.querySelector("h2").textContent = "papers.json 加载失败";
+    els.emptyState.querySelector("h2").textContent = "历史数据加载失败";
     els.emptyState.querySelector("p").textContent = error.message;
   }
 
   refreshIcons();
+}
+
+async function loadHistoryPayload() {
+  const historyResponse = await fetch("data/history.json", { cache: "no-store" });
+  if (historyResponse.ok) {
+    return historyResponse.json();
+  }
+
+  const latestResponse = await fetch("data/papers.json", { cache: "no-store" });
+  if (!latestResponse.ok) throw new Error(`HTTP ${latestResponse.status}`);
+  const latest = await latestResponse.json();
+  return {
+    generatedAt: latest.generatedAt,
+    source: latest.source,
+    history: [
+      {
+        date: dateKey(latest.generatedAt || new Date().toISOString()),
+        generatedAt: latest.generatedAt,
+        source: latest.source,
+        papers: latest.papers || [],
+      },
+    ],
+  };
 }
 
 function bindEvents() {
@@ -65,6 +96,30 @@ function bindEvents() {
 
   els.sortSelect.addEventListener("change", (event) => {
     state.sort = event.target.value;
+    render();
+  });
+
+  els.historySelect.addEventListener("change", (event) => {
+    setActiveDate(event.target.value);
+    renderHistoryControls();
+    renderStats();
+    render();
+  });
+
+  els.historyQuick.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-date]");
+    if (!button) return;
+    setActiveDate(button.dataset.date);
+    renderHistoryControls();
+    renderStats();
+    render();
+  });
+
+  els.areaFilters.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-area]");
+    if (!button) return;
+    state.selectedArea = button.dataset.area;
+    renderAreaFilters();
     render();
   });
 
@@ -96,6 +151,36 @@ function bindEvents() {
   });
 }
 
+function setActiveDate(date) {
+  const entry = state.history.find((item) => item.date === date) || state.history[0];
+  if (!entry) return;
+  state.selectedDate = entry.date;
+  state.papers = normalizePapers(entry.papers || []);
+}
+
+function renderHistoryControls() {
+  els.historySelect.innerHTML = state.history
+    .map(
+      (entry) => `
+        <option value="${escapeAttribute(entry.date)}" ${entry.date === state.selectedDate ? "selected" : ""}>
+          ${escapeHtml(entry.label || formatHistoryDate(entry.date))} · ${entry.papers.length} 篇
+        </option>
+      `,
+    )
+    .join("");
+
+  els.historyQuick.innerHTML = state.history
+    .slice(0, 5)
+    .map(
+      (entry) => `
+        <button class="date-button" type="button" aria-pressed="${entry.date === state.selectedDate}" data-date="${escapeAttribute(entry.date)}">
+          ${escapeHtml(shortHistoryDate(entry.date))}
+        </button>
+      `,
+    )
+    .join("");
+}
+
 function renderAreaFilters() {
   els.areaFilters.innerHTML = areaNames
     .map(
@@ -106,24 +191,18 @@ function renderAreaFilters() {
       `,
     )
     .join("");
-
-  els.areaFilters.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-area]");
-    if (!button) return;
-    state.selectedArea = button.dataset.area;
-    renderAreaFilters();
-    render();
-  });
 }
 
-function renderStats(payload) {
+function renderStats() {
+  const entry = currentEntry();
   const areas = new Set(state.papers.map((paper) => paper.area).filter(Boolean));
-  const generatedAt = payload.generatedAt ? new Date(payload.generatedAt) : new Date();
+  const generatedAt = entry?.generatedAt ? new Date(entry.generatedAt) : new Date(state.selectedDate);
 
-  els.todayLabel.textContent = `${formatFullDate.format(new Date())} / arXiv radar`;
+  els.todayLabel.textContent = `${formatHistoryDate(state.selectedDate)} / 推荐算法优先`;
   els.paperCount.textContent = String(state.papers.length);
   els.areaCount.textContent = String(areas.size);
   els.updatedAt.textContent = formatDate.format(generatedAt);
+  els.historyCount.textContent = `${state.history.length} 天`;
 }
 
 function render() {
@@ -139,7 +218,7 @@ function render() {
 function getFilteredPapers() {
   const query = state.query;
   const filtered = state.papers.filter((paper) => {
-    const matchesArea = state.selectedArea === "All" || paper.area === state.selectedArea;
+    const matchesArea = state.selectedArea === ALL_AREAS || paper.area === state.selectedArea;
     const matchesBookmarks = !state.bookmarksOnly || state.bookmarks.has(paper.id);
     const haystack = [
       paper.title,
@@ -157,8 +236,14 @@ function getFilteredPapers() {
   return filtered.sort((a, b) => {
     if (state.sort === "signal") return b.signal - a.signal;
     if (state.sort === "short") return a.summary.length - b.summary.length;
-    return new Date(b.publishedAt) - new Date(a.publishedAt);
+    if (state.sort === "fresh") return new Date(b.publishedAt) - new Date(a.publishedAt);
+    return priorityScore(b) - priorityScore(a) || new Date(b.publishedAt) - new Date(a.publishedAt);
   });
+}
+
+function priorityScore(paper) {
+  const priority = areaPriority.get(paper.area) ?? 99;
+  return 200 - priority * 20 + paper.signal;
 }
 
 function renderDigest(papers) {
@@ -192,7 +277,7 @@ function renderPaperCard(paper) {
           ${escapeHtml(paper.title)}
         </a>
       </h3>
-      <p class="paper-summary">${escapeHtml(trimText(paper.summary, 280))}</p>
+      <p class="paper-summary">${escapeHtml(trimText(paper.summary, 300))}</p>
       <div class="paper-meta">
         <span>${iconMarkup("calendar-days")} ${escapeHtml(formatFullDate.format(new Date(paper.publishedAt)))}</span>
         <span>${iconMarkup("users")} ${escapeHtml(authorText)}</span>
@@ -214,14 +299,31 @@ function renderPaperCard(paper) {
   `;
 }
 
+function normalizeHistory(payload) {
+  const history = Array.isArray(payload.history) ? payload.history : [];
+  return history
+    .map((entry, index) => {
+      const date = entry.date || dateKey(entry.generatedAt || payload.generatedAt || new Date().toISOString());
+      return {
+        date,
+        label: entry.label || "",
+        generatedAt: entry.generatedAt || payload.generatedAt || `${date}T00:00:00+08:00`,
+        source: entry.source || payload.source || "seed",
+        papers: Array.isArray(entry.papers) ? entry.papers : [],
+        index,
+      };
+    })
+    .sort((a, b) => b.date.localeCompare(a.date) || a.index - b.index);
+}
+
 function normalizePapers(papers) {
   return papers.map((paper, index) => ({
-    id: paper.id || `paper-${index}`,
+    id: paper.id || `paper-${state.selectedDate}-${index}`,
     title: paper.title || "Untitled paper",
     summary: paper.summary || "",
     authors: Array.isArray(paper.authors) ? paper.authors : [],
     tags: Array.isArray(paper.tags) ? paper.tags : [],
-    area: paper.area || "Theory",
+    area: normalizeArea(paper.area),
     source: paper.source || "arXiv",
     signal: Number(paper.signal || 70),
     url: paper.url || "#",
@@ -231,8 +333,47 @@ function normalizePapers(papers) {
   }));
 }
 
+function normalizeArea(area) {
+  const aliases = {
+    RecSys: "推荐算法",
+    Recommendation: "推荐算法",
+    Recommender: "推荐算法",
+    Systems: "LLM 推理优化",
+    "Inference": "LLM 推理优化",
+    Vision: "多模态",
+    Robotics: "多模态",
+    Theory: "其他",
+  };
+  return aliases[area] || area || "其他";
+}
+
 function areaTitle() {
-  return state.selectedArea === "All" ? "今日论文" : `${state.selectedArea} 论文`;
+  if (state.bookmarksOnly) return "收藏论文";
+  if (state.selectedArea === ALL_AREAS) return `${shortHistoryDate(state.selectedDate)} 论文`;
+  return `${state.selectedArea} 论文`;
+}
+
+function currentEntry() {
+  return state.history.find((entry) => entry.date === state.selectedDate);
+}
+
+function dateKey(value) {
+  if (/^\d{4}-\d{2}-\d{2}/.test(String(value))) {
+    return String(value).slice(0, 10);
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return new Date().toISOString().slice(0, 10);
+  return date.toISOString().slice(0, 10);
+}
+
+function formatHistoryDate(date) {
+  if (!date) return formatFullDate.format(new Date());
+  return formatFullDate.format(new Date(`${date}T00:00:00+08:00`));
+}
+
+function shortHistoryDate(date) {
+  if (!date) return "今天";
+  return formatDate.format(new Date(`${date}T00:00:00+08:00`));
 }
 
 function trimText(text, max) {
