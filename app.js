@@ -198,7 +198,7 @@ function renderStats() {
   const areas = new Set(state.papers.map((paper) => paper.area).filter(Boolean));
   const generatedAt = entry?.generatedAt ? new Date(entry.generatedAt) : new Date(state.selectedDate);
 
-  els.todayLabel.textContent = `${formatHistoryDate(state.selectedDate)} / 推荐算法优先`;
+  els.todayLabel.textContent = `${formatHistoryDate(state.selectedDate)} / 阅读清单`;
   els.paperCount.textContent = String(state.papers.length);
   els.areaCount.textContent = String(areas.size);
   els.updatedAt.textContent = formatDate.format(generatedAt);

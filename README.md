@@ -1,6 +1,6 @@
 # 论文每日一读
 
-一个可以直接部署到 GitHub Pages 的静态论文阅读面板。当前重点是推荐算法，其次是 LLM 推理优化。页面优先读取 `data/history.json`，支持按日期回看历史论文、搜索、领域筛选、排序和本地收藏；`.github/workflows/daily-papers.yml` 会每天运行 `scripts/fetch_papers.py` 更新 arXiv 数据并追加历史记录。
+一个可以直接部署到 GitHub Pages 的静态论文阅读面板。页面优先读取 `data/history.json`，支持按日期回看历史论文、搜索、领域筛选、排序和本地收藏。
 
 ## 本地预览
 
@@ -24,7 +24,7 @@ python3 -m http.server 4173
 
 ## 历史记录
 
-`data/history.json` 保存每天的论文列表。页面顶部的“历史记录”下拉框和日期按钮会读取这个文件；每日 Action 跑完后会替换当天记录并保留最近 90 天。
+`data/history.json` 保存按日期归档的论文列表。页面顶部的“历史记录”下拉框和日期按钮会读取这个文件。GitHub Action 现在只支持手动运行；手动运行后会替换当天记录并保留最近 90 天。
 
 ## 文件结构
 
@@ -34,6 +34,7 @@ python3 -m http.server 4173
 ├── styles.css
 ├── app.js
 ├── assets/
+│   ├── study-buddies.png
 │   ├── research-desk.jpg
 │   └── research-desk.png
 ├── data/
