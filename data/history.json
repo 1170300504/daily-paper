@@ -1,7 +1,43 @@
 {
-  "generatedAt": "2026-06-04T11:17:15.789816+08:00",
+  "generatedAt": "2026-06-05T07:00:22.909978+08:00",
   "source": "curated industry radar",
   "history": [
+    {
+      "date": "2026-06-05",
+      "generatedAt": "2026-06-05T07:00:22.909978+08:00",
+      "source": "curated industry radar",
+      "papers": [
+        {
+          "id": "arxiv-2401.09670",
+          "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving",
+          "authors": [
+            "Yinmin Zhong",
+            "Shengyu Liu",
+            "Junda Chen",
+            "Jiaming Hu",
+            "Yibo Zhu",
+            "Xuanzhe Liu",
+            "Xin Jin",
+            "Hao Zhang"
+          ],
+          "summary": "Separates prefill and decode onto different GPU groups and optimizes placement under latency SLOs, improving goodput for LLM serving workloads with different prompt and output lengths.",
+          "reason": "LLM 推理经典轮换：prefill/decode disaggregation 是 2024 以后推理系统很重要的工程方向。",
+          "area": "LLM 推理优化",
+          "tags": [
+            "classic",
+            "prefill-decode",
+            "serving",
+            "goodput",
+            "latency-slo"
+          ],
+          "signal": 92,
+          "source": "arXiv/OSDI",
+          "publishedAt": "2024-01-17T18:59:53Z",
+          "url": "https://arxiv.org/abs/2401.09670",
+          "pdfUrl": "https://arxiv.org/pdf/2401.09670"
+        }
+      ]
+    },
     {
       "date": "2026-06-04",
       "generatedAt": "2026-06-04T11:17:15.789816+08:00",
