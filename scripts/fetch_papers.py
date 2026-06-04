@@ -27,6 +27,8 @@ LOCAL_TZ = ZoneInfo("Asia/Shanghai")
 REQUEST_PAUSE_SECONDS = 8
 MAX_RECENT_DAYS = 90
 FRESH_DAYS = 30
+DEFAULT_REPEAT_WINDOW_DAYS = 14
+CLASSIC_PAPERS_PER_DAY = 2
 
 TOPICS = {
     "推荐算法": '(cat:cs.IR OR cat:cs.LG OR cat:cs.AI) AND (ti:recommendation OR ti:recommender OR ti:ranking OR ti:reranking OR abs:recommendation OR abs:recommender OR abs:ranking OR abs:reranking OR abs:advertising OR abs:"generative recommendation" OR abs:"semantic id" OR abs:"industrial recommendation" OR abs:"click-through")',
@@ -221,6 +223,81 @@ CURATED_PAPERS = [
         "pdf_url": "https://arxiv.org/pdf/2205.14135",
     },
     {
+        "mode": "classic",
+        "id": "arxiv-2211.17192",
+        "title": "Fast Inference from Transformers via Speculative Decoding",
+        "authors": ["Yaniv Leviathan", "Matan Kalman", "Yossi Matias"],
+        "summary": "Uses a small draft model to propose tokens and a larger model to verify them, reducing autoregressive decoding latency while preserving the target model distribution under the algorithm assumptions.",
+        "reason": "LLM 推理经典轮换：speculative decoding 是解码加速的核心路线，适合和 Medusa、EAGLE、lookahead decoding 对照。",
+        "area": "LLM 推理优化",
+        "tags": ["classic", "speculative-decoding", "draft-model", "latency", "serving"],
+        "signal": 96,
+        "source": "Google/arXiv",
+        "published_at": "2022-11-30T17:15:06Z",
+        "url": "https://arxiv.org/abs/2211.17192",
+        "pdf_url": "https://arxiv.org/pdf/2211.17192",
+    },
+    {
+        "mode": "classic",
+        "id": "arxiv-2305.13245",
+        "title": "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints",
+        "authors": ["Joshua Ainslie", "James Lee-Thorp", "Michiel de Jong", "Yury Zemlyanskiy", "Federico Lebron"],
+        "summary": "Studies grouped-query attention as a practical middle ground between multi-head attention quality and multi-query attention inference efficiency, reducing KV cache pressure in decoder-only models.",
+        "reason": "LLM 推理经典轮换：GQA/MQA 是理解现代 decoder KV cache 和吞吐取舍的结构入口。",
+        "area": "LLM 推理优化",
+        "tags": ["classic", "gqa", "mqa", "kv-cache", "attention"],
+        "signal": 95,
+        "source": "Google/arXiv",
+        "published_at": "2023-05-22T19:00:42Z",
+        "url": "https://arxiv.org/abs/2305.13245",
+        "pdf_url": "https://arxiv.org/pdf/2305.13245",
+    },
+    {
+        "mode": "classic",
+        "id": "arxiv-1911.02150",
+        "title": "Fast Transformer Decoding: One Write-Head is All You Need",
+        "authors": ["Noam Shazeer"],
+        "summary": "Introduces multi-query attention, sharing keys and values across attention heads to reduce memory bandwidth during incremental transformer decoding.",
+        "reason": "LLM 推理经典轮换：MQA 是后续 GQA、KV cache 压缩和高吞吐 decoder 设计的早期关键论文。",
+        "area": "LLM 推理优化",
+        "tags": ["classic", "mqa", "kv-cache", "decode", "memory-bandwidth"],
+        "signal": 94,
+        "source": "Google/arXiv",
+        "published_at": "2019-11-06T18:57:21Z",
+        "url": "https://arxiv.org/abs/1911.02150",
+        "pdf_url": "https://arxiv.org/pdf/1911.02150",
+    },
+    {
+        "mode": "classic",
+        "id": "arxiv-2208.07339",
+        "title": "LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale",
+        "authors": ["Tim Dettmers", "Mike Lewis", "Younes Belkada", "Luke Zettlemoyer"],
+        "summary": "Introduces a mixed-precision int8 inference procedure that handles emergent outlier features and enables large transformer inference with substantially lower memory use.",
+        "reason": "LLM 推理经典轮换：低比特推理的基础论文之一，适合和 SmoothQuant、AWQ、GPTQ 放在一起比较。",
+        "area": "LLM 推理优化",
+        "tags": ["classic", "quantization", "int8", "memory", "inference"],
+        "signal": 93,
+        "source": "Meta/Hugging Face/arXiv",
+        "published_at": "2022-08-15T17:59:08Z",
+        "url": "https://arxiv.org/abs/2208.07339",
+        "pdf_url": "https://arxiv.org/pdf/2208.07339",
+    },
+    {
+        "mode": "classic",
+        "id": "arxiv-2401.09670",
+        "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving",
+        "authors": ["Yinmin Zhong", "Shengyu Liu", "Junda Chen", "Jiaming Hu", "Yibo Zhu", "Xuanzhe Liu", "Xin Jin", "Hao Zhang"],
+        "summary": "Separates prefill and decode onto different GPU groups and optimizes placement under latency SLOs, improving goodput for LLM serving workloads with different prompt and output lengths.",
+        "reason": "LLM 推理经典轮换：prefill/decode disaggregation 是 2024 以后推理系统很重要的工程方向。",
+        "area": "LLM 推理优化",
+        "tags": ["classic", "prefill-decode", "serving", "goodput", "latency-slo"],
+        "signal": 92,
+        "source": "arXiv/OSDI",
+        "published_at": "2024-01-17T18:59:53Z",
+        "url": "https://arxiv.org/abs/2401.09670",
+        "pdf_url": "https://arxiv.org/pdf/2401.09670",
+    },
+    {
         "mode": "recent",
         "id": "arxiv-2605.29639",
         "title": "RTP-LLM: High-Performance Alibaba LLM Inference Engine",
@@ -277,13 +354,16 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=OUTPUT)
     parser.add_argument("--history-output", type=Path, default=HISTORY_OUTPUT)
     parser.add_argument("--history-days", type=int, default=90)
+    parser.add_argument("--repeat-window-days", type=int, default=DEFAULT_REPEAT_WINDOW_DAYS)
     parser.add_argument("--skip-fetch", action="store_true", help="Use curated seed papers without calling arXiv")
     args = parser.parse_args()
 
     now = datetime.now(LOCAL_TZ)
     now_utc = now.astimezone(timezone.utc)
+    today = now.date().isoformat()
+    seen_ids = load_seen_ids(args.history_output, today, args.repeat_window_days)
     papers: dict[str, Paper] = {}
-    for paper in curated_papers(now_utc):
+    for paper in curated_papers(now_utc, seen_ids):
         merge_paper(papers, paper)
 
     fetched_count = 0
@@ -291,7 +371,8 @@ def main() -> int:
         fetched = fetch_all(per_topic=args.per_topic, now_utc=now_utc)
         fetched_count = len(fetched)
         for paper in fetched.values():
-            merge_paper(papers, paper)
+            if paper.id not in seen_ids:
+                merge_paper(papers, paper)
 
     if not papers:
         print("No papers fetched; keeping existing data untouched.", file=sys.stderr)
@@ -306,21 +387,56 @@ def main() -> int:
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    update_history(args.history_output, payload, now.date().isoformat(), args.history_days)
+    update_history(args.history_output, payload, today, args.history_days)
     print(f"Wrote {min(len(ranked), args.limit)} papers to {args.output}")
     return 0
 
 
-def curated_papers(now_utc: datetime) -> list[Paper]:
-    papers = []
+def curated_papers(now_utc: datetime, seen_ids: set[str]) -> list[Paper]:
+    recent_papers = []
+    classic_papers = []
     for spec in CURATED_PAPERS:
         mode = spec["mode"]
         published = str(spec["published_at"])
         if mode == "recent" and not is_within_days(published, MAX_RECENT_DAYS, now_utc):
             continue
+        if str(spec["id"]) in seen_ids:
+            continue
         payload = {key: value for key, value in spec.items() if key != "mode"}
-        papers.append(Paper(**payload))
-    return papers
+        paper = Paper(**payload)
+        if mode == "classic":
+            classic_papers.append(paper)
+        else:
+            recent_papers.append(paper)
+    return recent_papers + classic_papers[:CLASSIC_PAPERS_PER_DAY]
+
+
+def load_seen_ids(path: Path, today: str, repeat_window_days: int) -> set[str]:
+    if repeat_window_days <= 0 or not path.exists():
+        return set()
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return set()
+
+    seen: set[str] = set()
+    today_date = datetime.fromisoformat(today).date()
+    for entry in payload.get("history", []):
+        entry_date_text = entry.get("date", "")
+        if not entry_date_text or entry_date_text == today:
+            continue
+        try:
+            entry_date = datetime.fromisoformat(entry_date_text).date()
+        except ValueError:
+            continue
+        age_days_value = (today_date - entry_date).days
+        if age_days_value < 0 or age_days_value > repeat_window_days:
+            continue
+        for paper in entry.get("papers", []):
+            paper_id = paper.get("id")
+            if paper_id:
+                seen.add(str(paper_id))
+    return seen
 
 
 def merge_paper(papers: dict[str, Paper], paper: Paper) -> None:

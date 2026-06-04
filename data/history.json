@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-06-04T11:05:40.166361+08:00",
+  "generatedAt": "2026-06-04T11:17:15.789816+08:00",
   "source": "curated industry radar",
   "history": [
     {
       "date": "2026-06-04",
-      "generatedAt": "2026-06-04T11:05:40.166361+08:00",
+      "generatedAt": "2026-06-04T11:17:15.789816+08:00",
       "source": "curated industry radar",
       "papers": [
         {
@@ -35,36 +35,6 @@
           "pdfUrl": "https://arxiv.org/pdf/2606.03866"
         },
         {
-          "id": "arxiv-2309.06180",
-          "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
-          "authors": [
-            "Woosuk Kwon",
-            "Zhuohan Li",
-            "Siyuan Zhuang",
-            "Ying Sheng",
-            "Lianmin Zheng",
-            "Cody Hao Yu",
-            "Joseph E. Gonzalez",
-            "Hao Zhang",
-            "Ion Stoica"
-          ],
-          "summary": "Introduces PagedAttention and vLLM, treating KV cache management like virtual memory so LLM serving can batch more requests with lower memory waste and higher throughput.",
-          "reason": "LLM 推理两篇经典之一：PagedAttention/vLLM 基本成了现代 serving 系统理解 KV cache、continuous batching 的入口。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "classic",
-            "vllm",
-            "pagedattention",
-            "kv-cache",
-            "serving"
-          ],
-          "signal": 98,
-          "source": "Berkeley/vLLM/arXiv",
-          "publishedAt": "2023-09-12T12:50:04Z",
-          "url": "https://arxiv.org/abs/2309.06180",
-          "pdfUrl": "https://arxiv.org/pdf/2309.06180"
-        },
-        {
           "id": "arxiv-2604.04976",
           "title": "Tencent Advertising Algorithm Challenge 2025: All-Modality Generative Recommendation",
           "authors": [
@@ -92,32 +62,6 @@
           "publishedAt": "2026-04-04T17:05:15Z",
           "url": "https://arxiv.org/abs/2604.04976",
           "pdfUrl": "https://arxiv.org/pdf/2604.04976"
-        },
-        {
-          "id": "arxiv-2205.14135",
-          "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
-          "authors": [
-            "Tri Dao",
-            "Daniel Y. Fu",
-            "Stefano Ermon",
-            "Atri Rudra",
-            "Christopher Re"
-          ],
-          "summary": "Reorders exact attention computation around GPU memory hierarchy, using tiling to reduce HBM/SRAM traffic and unlock faster long-sequence transformer training and inference.",
-          "reason": "LLM 推理两篇经典之一：kernel/显存 IO/attention 吞吐的底层心智模型，读推理优化绕不开。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "classic",
-            "flashattention",
-            "attention-kernel",
-            "memory-io",
-            "throughput"
-          ],
-          "signal": 97,
-          "source": "arXiv",
-          "publishedAt": "2022-05-27T17:53:09Z",
-          "url": "https://arxiv.org/abs/2205.14135",
-          "pdfUrl": "https://arxiv.org/pdf/2205.14135"
         },
         {
           "id": "arxiv-2605.29639",
@@ -208,6 +152,53 @@
           "publishedAt": "2026-04-03T03:26:36Z",
           "url": "https://arxiv.org/abs/2604.02684",
           "pdfUrl": "https://arxiv.org/pdf/2604.02684"
+        },
+        {
+          "id": "arxiv-1911.02150",
+          "title": "Fast Transformer Decoding: One Write-Head is All You Need",
+          "authors": [
+            "Noam Shazeer"
+          ],
+          "summary": "Introduces multi-query attention, sharing keys and values across attention heads to reduce memory bandwidth during incremental transformer decoding.",
+          "reason": "LLM 推理经典轮换：MQA 是后续 GQA、KV cache 压缩和高吞吐 decoder 设计的早期关键论文。",
+          "area": "LLM 推理优化",
+          "tags": [
+            "classic",
+            "mqa",
+            "kv-cache",
+            "decode",
+            "memory-bandwidth"
+          ],
+          "signal": 94,
+          "source": "Google/arXiv",
+          "publishedAt": "2019-11-06T18:57:21Z",
+          "url": "https://arxiv.org/abs/1911.02150",
+          "pdfUrl": "https://arxiv.org/pdf/1911.02150"
+        },
+        {
+          "id": "arxiv-2208.07339",
+          "title": "LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale",
+          "authors": [
+            "Tim Dettmers",
+            "Mike Lewis",
+            "Younes Belkada",
+            "Luke Zettlemoyer"
+          ],
+          "summary": "Introduces a mixed-precision int8 inference procedure that handles emergent outlier features and enables large transformer inference with substantially lower memory use.",
+          "reason": "LLM 推理经典轮换：低比特推理的基础论文之一，适合和 SmoothQuant、AWQ、GPTQ 放在一起比较。",
+          "area": "LLM 推理优化",
+          "tags": [
+            "classic",
+            "quantization",
+            "int8",
+            "memory",
+            "inference"
+          ],
+          "signal": 93,
+          "source": "Meta/Hugging Face/arXiv",
+          "publishedAt": "2022-08-15T17:59:08Z",
+          "url": "https://arxiv.org/abs/2208.07339",
+          "pdfUrl": "https://arxiv.org/pdf/2208.07339"
         },
         {
           "id": "arxiv-2604.17459",

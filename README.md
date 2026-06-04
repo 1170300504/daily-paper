@@ -23,8 +23,9 @@ python3 -m http.server 4173
 编辑 `scripts/fetch_papers.py` 里的 `TOPICS`、`KEYWORDS`、`INDUSTRY_ALIASES` 和 `CURATED_PAPERS`。当前策略是：
 
 - 推荐算法只保留最近 90 天的论文，最近 30 天加权更高，并且必须命中互联网大厂或明确工业部署信号。
-- LLM 推理优化保留两篇经典锚点，同时用最近 90 天、优先 30 天内的工业技术报告/推理系统论文补充。
+- LLM 推理优化每天从经典池里轮换两篇，同时用最近 90 天、优先 30 天内的工业技术报告/推理系统论文补充。
 - `CURATED_PAPERS` 用来固定当天明确想读的高价值论文；`mode: "recent"` 会在超过 90 天后自动过期，`mode: "classic"` 不受时间限制。
+- 脚本会读取 `data/history.json`，默认 14 天内推过的论文不会重复推荐；可用 `--repeat-window-days` 调整。
 
 页面端的按钮在 `app.js` 的 `areaNames`，如果新增领域，两边名字保持一致即可。
 
