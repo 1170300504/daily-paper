@@ -1,6 +1,8 @@
 name: Daily Papers
 
 on:
+  schedule:
+    - cron: "0 22 * * *"
   workflow_dispatch:
 
 permissions:
@@ -19,7 +21,7 @@ jobs:
           python-version: "3.11"
 
       - name: Fetch papers
-        run: python scripts/fetch_papers.py --limit 24 --per-topic 12
+        run: python scripts/fetch_papers.py --limit 10 --per-topic 16
 
       - name: Commit updates
         uses: stefanzweifel/git-auto-commit-action@v5
