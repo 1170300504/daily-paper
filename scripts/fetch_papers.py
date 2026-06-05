@@ -12,6 +12,7 @@ import time
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -29,6 +30,7 @@ MAX_RECENT_DAYS = 90
 FRESH_DAYS = 30
 DEFAULT_REPEAT_WINDOW_DAYS = 14
 CLASSIC_PAPERS_PER_DAY = 2
+MIN_LLM_PAPERS = 4
 
 TOPICS = {
     "推荐算法": '(cat:cs.IR OR cat:cs.LG OR cat:cs.AI) AND (ti:recommendation OR ti:recommender OR ti:ranking OR ti:reranking OR abs:recommendation OR abs:recommender OR abs:ranking OR abs:reranking OR abs:advertising OR abs:"generative recommendation" OR abs:"semantic id" OR abs:"industrial recommendation" OR abs:"click-through")',
@@ -41,22 +43,28 @@ KEYWORDS = {
     "batching": 8,
     "click-through": 9,
     "conversion": 7,
+    "copy-on-write": 9,
     "dataset": 5,
+    "deadline": 7,
     "deployed": 12,
     "efficient": 6,
+    "energy": 7,
     "generative recommendation": 12,
     "inference": 7,
     "industrial": 10,
     "kv cache": 11,
     "latency": 8,
     "llm": 5,
+    "lora": 7,
     "multi-business": 8,
+    "multi-lora": 9,
     "multimodal": 6,
     "online a/b": 10,
     "pagedattention": 12,
     "pareto": 6,
     "prefill": 8,
     "production": 12,
+    "qos": 7,
     "quantization": 9,
     "ranking": 9,
     "recommendation": 10,
@@ -65,6 +73,7 @@ KEYWORDS = {
     "retrieval": 5,
     "semantic id": 10,
     "serving": 10,
+    "slo": 7,
     "speculative": 9,
     "throughput": 8,
 }
@@ -76,17 +85,21 @@ AREA_BOOST = {
 
 INDUSTRY_ALIASES = {
     "Alibaba": ("alibaba", "taobao", "tmall", "qwen", "rtp-llm"),
-    "Amazon": ("amazon",),
+    "Amazon": ("amazon", "aws"),
+    "Anthropic": ("anthropic", "claude"),
     "Apple": ("apple",),
     "Baidu": ("baidu",),
     "ByteDance": ("bytedance", "douyin", "tiktok"),
-    "Google": ("google", "youtube"),
+    "DeepMind": ("deepmind",),
+    "Google": ("google", "youtube", "gemini", "tpu"),
+    "Huawei": ("huawei", "ascend", "cloudmatrix"),
     "Kuaishou": ("kuaishou", "kwai"),
     "Meituan": ("meituan",),
-    "Meta": ("meta", "facebook", "instagram"),
-    "Microsoft": ("microsoft", "bing", "azure"),
+    "Meta": ("meta", "facebook", "instagram", "llama"),
+    "Microsoft": ("microsoft", "bing", "azure", "msr"),
     "Netflix": ("netflix",),
-    "NVIDIA": ("nvidia", "tensorrt"),
+    "NVIDIA": ("nvidia", "tensorrt", "cuda", "h100", "b200"),
+    "OpenAI": ("openai", "chatgpt"),
     "Pinterest": ("pinterest",),
     "Spotify": ("spotify",),
     "Tencent": ("tencent", "wechat", "qq"),
@@ -101,10 +114,14 @@ LLM_INFRA_SIGNALS = (
     "flashattention",
     "speculative decoding",
     "kv cache",
+    "multi-lora",
+    "qos",
     "prefill-decode",
     "production",
     "deployed",
     "open-source",
+    "power-aware",
+    "copy-on-write",
 )
 
 CURATED_PAPERS = [
@@ -312,6 +329,117 @@ CURATED_PAPERS = [
         "url": "https://arxiv.org/abs/2605.29639",
         "pdf_url": "https://arxiv.org/pdf/2605.29639",
     },
+    {
+        "mode": "recent",
+        "id": "arxiv-2605.21427",
+        "title": "PALS: Power-Aware LLM Serving for Mixture-of-Experts Models",
+        "authors": ["Can Hankendi", "Rana Shahout", "Minlan Yu", "Ayse K. Coskun"],
+        "summary": "Presents a power-aware runtime for LLM serving that treats GPU power caps as a controllable resource and jointly tunes them with batch size. It integrates with vLLM and evaluates dense and MoE models on multi-GPU systems.",
+        "reason": "近 30 天 LLM 推理系统：MoE serving、GPU 功耗控制、vLLM 集成和 QoS 违约率都直接对应 2026 年 AI 基建成本问题。",
+        "area": "LLM 推理优化",
+        "tags": ["new-note", "moe", "power-aware", "vllm", "qos"],
+        "signal": 98,
+        "source": "arXiv/vLLM",
+        "published_at": "2026-05-20T17:19:20Z",
+        "url": "https://arxiv.org/abs/2605.21427",
+        "pdf_url": "https://arxiv.org/pdf/2605.21427",
+    },
+    {
+        "mode": "recent",
+        "id": "usenix-nsdi26-droidspeak",
+        "title": "DroidSpeak: KV Cache Sharing Across Fine-tuned Model Variants",
+        "authors": [
+            "Yuhan Liu",
+            "Yuyang Huang",
+            "Jiayi Yao",
+            "Shaoting Feng",
+            "Zhuohan Gu",
+            "Kuntai Du",
+            "Hanchen Li",
+            "Yihua Cheng",
+            "Junchen Jiang",
+            "Shan Lu",
+            "Madan Musuvathi",
+            "Esha Choukse",
+        ],
+        "summary": "Studies KV cache sharing across fine-tuned model variants in multi-LLM serving. DroidSpeak selectively recomputes sensitive layers and reuses the remaining KV cache to cut redundant prefill work.",
+        "reason": "2026 NSDI / Microsoft 参与的推理系统：多模型协作、KV cache 共享、fine-tuned variants 和 agentic workflow 都是大厂线上服务会遇到的问题。",
+        "area": "LLM 推理优化",
+        "tags": ["new-note", "microsoft", "kv-cache", "multi-llm", "prefill"],
+        "signal": 97,
+        "source": "Microsoft/USENIX NSDI",
+        "published_at": "2026-05-01T00:00:00Z",
+        "url": "https://www.usenix.org/conference/nsdi26/presentation/liu-yuhan",
+        "pdf_url": "https://www.usenix.org/system/files/nsdi26-liu-yuhan.pdf",
+    },
+    {
+        "mode": "recent",
+        "id": "msr-qoserve-2026",
+        "title": "QoServe: Breaking the Silos of LLM Inference Serving",
+        "authors": [
+            "Kanishk Goel",
+            "Jayashree Mohan",
+            "Nipun Kwatra",
+            "Ravi Shreyas Anupindi",
+            "Ramachandran Ramjee",
+        ],
+        "summary": "Introduces a QoS-driven LLM inference serving system for co-scheduling diverse latency classes on shared GPU infrastructure. It uses fine-grained QoS classification, dynamic chunking and hybrid prioritization to improve utilization under overload.",
+        "reason": "2026 ASPLOS / Microsoft Research：把 interactive 与 batch 推理从资源孤岛里合并调度，适合看大厂 AI 服务的 SLO、goodput 和过载降级。",
+        "area": "LLM 推理优化",
+        "tags": ["new-note", "microsoft", "qos", "slo", "scheduling"],
+        "signal": 96,
+        "source": "Microsoft Research/ASPLOS",
+        "published_at": "2026-03-22T00:00:00Z",
+        "url": "https://www.microsoft.com/en-us/research/publication/niyama-breaking-the-silos-of-llm-inference-serving/",
+        "pdf_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2025/10/QoServe_CC_final_v2.pdf",
+    },
+    {
+        "mode": "recent",
+        "max_age_days": 120,
+        "id": "arxiv-2603.05800",
+        "title": "StreamWise: Serving Multi-Modal Generation in Real-Time at Scale",
+        "authors": ["Haoran Qiu", "Gohar Irfan Chaudhry", "Chaojie Zhang", "Íñigo Goiri", "Esha Choukse", "Rodrigo Fonseca", "Ricardo Bianchini"],
+        "summary": "Studies real-time multi-modal generation serving at scale, coordinating LLMs, text-to-speech, image, audio and video generation under latency, cost and quality constraints with adaptive scheduling and heterogeneous hardware.",
+        "reason": "2026 Microsoft/Azure Research 推理服务系统：从纯 LLM 扩到多模态生成链路，重点是 SLO、异构资源调度、成本和实时流式体验。",
+        "area": "LLM 推理优化",
+        "tags": ["new-note", "microsoft", "multimodal", "slo", "scheduling"],
+        "signal": 94,
+        "source": "Microsoft/arXiv",
+        "published_at": "2026-03-06T01:22:16Z",
+        "url": "https://arxiv.org/abs/2603.05800",
+        "pdf_url": "https://arxiv.org/pdf/2603.05800",
+    },
+    {
+        "mode": "recent",
+        "id": "arxiv-2604.06370",
+        "title": "ForkKV: Scaling Multi-LoRA Agent Serving via Copy-on-Write Disaggregated KV Cache",
+        "authors": ["Shao Wang", "Rui Ren", "Lin Gui"],
+        "summary": "Uses an OS-like fork and copy-on-write memory model for multi-LoRA agent serving, splitting KV cache into a shared base component and lightweight agent-specific parts with a custom ResidualAttention kernel.",
+        "reason": "近 90 天 LLM 推理系统：多 LoRA agent serving、KV cache 分离、copy-on-write 和定制 kernel，适合和 DroidSpeak 对照看。",
+        "area": "LLM 推理优化",
+        "tags": ["new-note", "multi-lora", "kv-cache", "copy-on-write", "agentic"],
+        "signal": 95,
+        "source": "arXiv",
+        "published_at": "2026-04-07T18:52:25Z",
+        "url": "https://arxiv.org/abs/2604.06370",
+        "pdf_url": "https://arxiv.org/pdf/2604.06370",
+    },
+    {
+        "mode": "recent",
+        "max_age_days": 120,
+        "id": "arxiv-2602.21140",
+        "title": "ReviveMoE: Fast Recovery for Hardware Failures in Large-Scale MoE LLM Inference Deployments",
+        "authors": ["Haley Li", "Xinglu Wang", "Cong Feng", "Chunxu Zuo", "Yanan Wang", "Hei Lo", "Yufei Cui", "Bingji Wang", "Duo Cui", "Shuming Jing", "Yizhou Shan", "Ying Xiong", "Jiannan Wang", "Yong Zhang", "Zhenan Fan"],
+        "summary": "Targets failure recovery for large-scale MoE inference deployments, avoiding full serving-instance restarts when hardware failures occur. The system is integrated with Huawei Cloud's MaaS stack and xDeepServe platform.",
+        "reason": "2026 Huawei Cloud 大规模 MoE 推理部署：关注硬件故障恢复、MaaS 稳定性和 xDeepServe 生产栈，属于线上服务可靠性方向。",
+        "area": "LLM 推理优化",
+        "tags": ["new-note", "huawei", "moe", "reliability", "serving"],
+        "signal": 93,
+        "source": "Huawei/arXiv",
+        "published_at": "2026-02-24T17:39:41Z",
+        "url": "https://arxiv.org/abs/2602.21140",
+        "pdf_url": "https://arxiv.org/pdf/2602.21140",
+    },
 ]
 
 
@@ -378,17 +506,17 @@ def main() -> int:
         print("No papers fetched; keeping existing data untouched.", file=sys.stderr)
         return 0
 
-    ranked = sorted(papers.values(), key=lambda paper: (paper.signal, paper.published_at), reverse=True)
+    ranked = rank_with_llm_floor(papers.values(), args.limit)
     source = "curated industry radar + arXiv API" if fetched_count else "curated industry radar"
     payload = {
         "generatedAt": now.isoformat(),
         "source": source,
-        "papers": [paper.to_json() for paper in ranked[: args.limit]],
+        "papers": [paper.to_json() for paper in ranked],
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     update_history(args.history_output, payload, today, args.history_days)
-    print(f"Wrote {min(len(ranked), args.limit)} papers to {args.output}")
+    print(f"Wrote {len(ranked)} papers to {args.output}")
     return 0
 
 
@@ -398,11 +526,12 @@ def curated_papers(now_utc: datetime, seen_ids: set[str]) -> list[Paper]:
     for spec in CURATED_PAPERS:
         mode = spec["mode"]
         published = str(spec["published_at"])
-        if mode == "recent" and not is_within_days(published, MAX_RECENT_DAYS, now_utc):
+        max_recent_days = int(spec.get("max_age_days", MAX_RECENT_DAYS))
+        if mode == "recent" and not is_within_days(published, max_recent_days, now_utc):
             continue
         if str(spec["id"]) in seen_ids:
             continue
-        payload = {key: value for key, value in spec.items() if key != "mode"}
+        payload = {key: value for key, value in spec.items() if key not in ("mode", "max_age_days")}
         paper = Paper(**payload)
         if mode == "classic":
             classic_papers.append(paper)
@@ -443,6 +572,32 @@ def merge_paper(papers: dict[str, Paper], paper: Paper) -> None:
     current = papers.get(paper.id)
     if current is None or (paper.signal, paper.published_at) > (current.signal, current.published_at):
         papers[paper.id] = paper
+
+
+def rank_with_llm_floor(candidates: Iterable[Paper], limit: int) -> list[Paper]:
+    ranked = sorted(candidates, key=lambda paper: (paper.signal, paper.published_at), reverse=True)
+    if limit <= 0:
+        return []
+
+    llm_floor = min(MIN_LLM_PAPERS, limit)
+    selected: list[Paper] = []
+    used: set[str] = set()
+    llm_count = 0
+
+    for paper in ranked:
+        if paper.area == "LLM 推理优化" and llm_count < llm_floor:
+            selected.append(paper)
+            used.add(paper.id)
+            llm_count += 1
+
+    for paper in ranked:
+        if len(selected) >= limit:
+            break
+        if paper.id not in used:
+            selected.append(paper)
+            used.add(paper.id)
+
+    return sorted(selected, key=lambda paper: (paper.signal, paper.published_at), reverse=True)[:limit]
 
 
 def fetch_all(per_topic: int, now_utc: datetime) -> dict[str, Paper]:

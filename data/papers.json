@@ -1,7 +1,179 @@
 {
-  "generatedAt": "2026-06-05T07:00:22.909978+08:00",
+  "generatedAt": "2026-06-05T16:31:15.949334+08:00",
   "source": "curated industry radar",
   "papers": [
+    {
+      "id": "arxiv-2605.21427",
+      "title": "PALS: Power-Aware LLM Serving for Mixture-of-Experts Models",
+      "authors": [
+        "Can Hankendi",
+        "Rana Shahout",
+        "Minlan Yu",
+        "Ayse K. Coskun"
+      ],
+      "summary": "Presents a power-aware runtime for LLM serving that treats GPU power caps as a controllable resource and jointly tunes them with batch size. It integrates with vLLM and evaluates dense and MoE models on multi-GPU systems.",
+      "reason": "近 30 天 LLM 推理系统：MoE serving、GPU 功耗控制、vLLM 集成和 QoS 违约率都直接对应 2026 年 AI 基建成本问题。",
+      "area": "LLM 推理优化",
+      "tags": [
+        "new-note",
+        "moe",
+        "power-aware",
+        "vllm",
+        "qos"
+      ],
+      "signal": 98,
+      "source": "arXiv/vLLM",
+      "publishedAt": "2026-05-20T17:19:20Z",
+      "url": "https://arxiv.org/abs/2605.21427",
+      "pdfUrl": "https://arxiv.org/pdf/2605.21427"
+    },
+    {
+      "id": "usenix-nsdi26-droidspeak",
+      "title": "DroidSpeak: KV Cache Sharing Across Fine-tuned Model Variants",
+      "authors": [
+        "Yuhan Liu",
+        "Yuyang Huang",
+        "Jiayi Yao",
+        "Shaoting Feng",
+        "Zhuohan Gu",
+        "Kuntai Du",
+        "Hanchen Li",
+        "Yihua Cheng",
+        "Junchen Jiang",
+        "Shan Lu",
+        "Madan Musuvathi",
+        "Esha Choukse"
+      ],
+      "summary": "Studies KV cache sharing across fine-tuned model variants in multi-LLM serving. DroidSpeak selectively recomputes sensitive layers and reuses the remaining KV cache to cut redundant prefill work.",
+      "reason": "2026 NSDI / Microsoft 参与的推理系统：多模型协作、KV cache 共享、fine-tuned variants 和 agentic workflow 都是大厂线上服务会遇到的问题。",
+      "area": "LLM 推理优化",
+      "tags": [
+        "new-note",
+        "microsoft",
+        "kv-cache",
+        "multi-llm",
+        "prefill"
+      ],
+      "signal": 97,
+      "source": "Microsoft/USENIX NSDI",
+      "publishedAt": "2026-05-01T00:00:00Z",
+      "url": "https://www.usenix.org/conference/nsdi26/presentation/liu-yuhan",
+      "pdfUrl": "https://www.usenix.org/system/files/nsdi26-liu-yuhan.pdf"
+    },
+    {
+      "id": "msr-qoserve-2026",
+      "title": "QoServe: Breaking the Silos of LLM Inference Serving",
+      "authors": [
+        "Kanishk Goel",
+        "Jayashree Mohan",
+        "Nipun Kwatra",
+        "Ravi Shreyas Anupindi",
+        "Ramachandran Ramjee"
+      ],
+      "summary": "Introduces a QoS-driven LLM inference serving system for co-scheduling diverse latency classes on shared GPU infrastructure. It uses fine-grained QoS classification, dynamic chunking and hybrid prioritization to improve utilization under overload.",
+      "reason": "2026 ASPLOS / Microsoft Research：把 interactive 与 batch 推理从资源孤岛里合并调度，适合看大厂 AI 服务的 SLO、goodput 和过载降级。",
+      "area": "LLM 推理优化",
+      "tags": [
+        "new-note",
+        "microsoft",
+        "qos",
+        "slo",
+        "scheduling"
+      ],
+      "signal": 96,
+      "source": "Microsoft Research/ASPLOS",
+      "publishedAt": "2026-03-22T00:00:00Z",
+      "url": "https://www.microsoft.com/en-us/research/publication/niyama-breaking-the-silos-of-llm-inference-serving/",
+      "pdfUrl": "https://www.microsoft.com/en-us/research/wp-content/uploads/2025/10/QoServe_CC_final_v2.pdf"
+    },
+    {
+      "id": "arxiv-2604.06370",
+      "title": "ForkKV: Scaling Multi-LoRA Agent Serving via Copy-on-Write Disaggregated KV Cache",
+      "authors": [
+        "Shao Wang",
+        "Rui Ren",
+        "Lin Gui"
+      ],
+      "summary": "Uses an OS-like fork and copy-on-write memory model for multi-LoRA agent serving, splitting KV cache into a shared base component and lightweight agent-specific parts with a custom ResidualAttention kernel.",
+      "reason": "近 90 天 LLM 推理系统：多 LoRA agent serving、KV cache 分离、copy-on-write 和定制 kernel，适合和 DroidSpeak 对照看。",
+      "area": "LLM 推理优化",
+      "tags": [
+        "new-note",
+        "multi-lora",
+        "kv-cache",
+        "copy-on-write",
+        "agentic"
+      ],
+      "signal": 95,
+      "source": "arXiv",
+      "publishedAt": "2026-04-07T18:52:25Z",
+      "url": "https://arxiv.org/abs/2604.06370",
+      "pdfUrl": "https://arxiv.org/pdf/2604.06370"
+    },
+    {
+      "id": "arxiv-2603.05800",
+      "title": "StreamWise: Serving Multi-Modal Generation in Real-Time at Scale",
+      "authors": [
+        "Haoran Qiu",
+        "Gohar Irfan Chaudhry",
+        "Chaojie Zhang",
+        "Íñigo Goiri",
+        "Esha Choukse",
+        "Rodrigo Fonseca",
+        "Ricardo Bianchini"
+      ],
+      "summary": "Studies real-time multi-modal generation serving at scale, coordinating LLMs, text-to-speech, image, audio and video generation under latency, cost and quality constraints with adaptive scheduling and heterogeneous hardware.",
+      "reason": "2026 Microsoft/Azure Research 推理服务系统：从纯 LLM 扩到多模态生成链路，重点是 SLO、异构资源调度、成本和实时流式体验。",
+      "area": "LLM 推理优化",
+      "tags": [
+        "new-note",
+        "microsoft",
+        "multimodal",
+        "slo",
+        "scheduling"
+      ],
+      "signal": 94,
+      "source": "Microsoft/arXiv",
+      "publishedAt": "2026-03-06T01:22:16Z",
+      "url": "https://arxiv.org/abs/2603.05800",
+      "pdfUrl": "https://arxiv.org/pdf/2603.05800"
+    },
+    {
+      "id": "arxiv-2602.21140",
+      "title": "ReviveMoE: Fast Recovery for Hardware Failures in Large-Scale MoE LLM Inference Deployments",
+      "authors": [
+        "Haley Li",
+        "Xinglu Wang",
+        "Cong Feng",
+        "Chunxu Zuo",
+        "Yanan Wang",
+        "Hei Lo",
+        "Yufei Cui",
+        "Bingji Wang",
+        "Duo Cui",
+        "Shuming Jing",
+        "Yizhou Shan",
+        "Ying Xiong",
+        "Jiannan Wang",
+        "Yong Zhang",
+        "Zhenan Fan"
+      ],
+      "summary": "Targets failure recovery for large-scale MoE inference deployments, avoiding full serving-instance restarts when hardware failures occur. The system is integrated with Huawei Cloud's MaaS stack and xDeepServe platform.",
+      "reason": "2026 Huawei Cloud 大规模 MoE 推理部署：关注硬件故障恢复、MaaS 稳定性和 xDeepServe 生产栈，属于线上服务可靠性方向。",
+      "area": "LLM 推理优化",
+      "tags": [
+        "new-note",
+        "huawei",
+        "moe",
+        "reliability",
+        "serving"
+      ],
+      "signal": 93,
+      "source": "Huawei/arXiv",
+      "publishedAt": "2026-02-24T17:39:41Z",
+      "url": "https://arxiv.org/abs/2602.21140",
+      "pdfUrl": "https://arxiv.org/pdf/2602.21140"
+    },
     {
       "id": "arxiv-2401.09670",
       "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving",
