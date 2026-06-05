@@ -40,6 +40,7 @@ const els = {
   resultCount: document.querySelector("#resultCount"),
   paperList: document.querySelector("#paperList"),
   emptyState: document.querySelector("#emptyState"),
+  commentsThread: document.querySelector("#commentsThread"),
   themeToggle: document.querySelector("#themeToggle"),
 };
 
@@ -55,6 +56,7 @@ async function boot() {
     renderHistoryControls();
     renderStats();
     render();
+    loadComments();
   } catch (error) {
     els.paperList.innerHTML = "";
     els.emptyState.hidden = false;
@@ -135,6 +137,7 @@ function bindEvents() {
     document.documentElement.dataset.theme = next;
     localStorage.setItem("daily-paper-theme", next);
     els.themeToggle.innerHTML = iconMarkup(next === "dark" ? "sun" : "moon");
+    updateCommentsTheme();
     refreshIcons();
   });
 
@@ -298,6 +301,31 @@ function renderPaperCard(paper) {
       </div>
     </article>
   `;
+}
+
+function loadComments() {
+  if (!els.commentsThread || els.commentsThread.dataset.loaded === "true") return;
+  els.commentsThread.dataset.loaded = "true";
+
+  const script = document.createElement("script");
+  script.src = "https://utteranc.es/client.js";
+  script.async = true;
+  script.crossOrigin = "anonymous";
+  script.setAttribute("repo", "1170300504/daily-paper");
+  script.setAttribute("issue-term", "pathname");
+  script.setAttribute("label", "comments");
+  script.setAttribute("theme", commentsTheme());
+  els.commentsThread.append(script);
+}
+
+function updateCommentsTheme() {
+  const frame = document.querySelector(".utterances-frame");
+  if (!frame?.contentWindow) return;
+  frame.contentWindow.postMessage({ type: "set-theme", theme: commentsTheme() }, "https://utteranc.es");
+}
+
+function commentsTheme() {
+  return document.documentElement.dataset.theme === "dark" ? "github-dark" : "github-light";
 }
 
 function normalizeHistory(payload) {

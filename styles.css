@@ -648,6 +648,57 @@ h1 {
   color: var(--coral);
 }
 
+.comments-section {
+  margin-top: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 18px;
+}
+
+.comments-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.comments-heading h2 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.comments-source {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.comments-source:hover {
+  border-color: color-mix(in srgb, var(--teal) 45%, var(--line));
+  color: var(--teal);
+}
+
+.comments-thread {
+  min-height: 180px;
+}
+
+.comments-thread .utterances {
+  max-width: 100%;
+}
+
 .site-footer {
   display: flex;
   align-items: center;
@@ -729,6 +780,7 @@ i[data-lucide] {
   .history-bar,
   .sort-tools,
   .paper-footer,
+  .comments-heading,
   .site-footer {
     align-items: stretch;
     flex-direction: column;

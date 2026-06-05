@@ -18,6 +18,10 @@ python3 -m http.server 4173
 4. 到 `Settings -> Actions -> General -> Workflow permissions`，选择 `Read and write permissions`，这样每日脚本才能提交更新后的 `data/papers.json`。
 5. Action 会在北京时间每天 06:00 自动跑；第一次也可以到 `Actions -> Daily Papers -> Run workflow` 手动跑一次。
 
+## GitHub 评论
+
+页面底部的评论区使用 [utterances](https://utteranc.es/) 和 GitHub Issues。到 `https://github.com/apps/utterances` 安装 app，并授权 `1170300504/daily-paper` 仓库后，访问者就可以用 GitHub 登录评论。
+
 ## 调整关注领域
 
 编辑 `scripts/fetch_papers.py` 里的 `TOPICS`、`KEYWORDS`、`INDUSTRY_ALIASES` 和 `CURATED_PAPERS`。当前策略是：
