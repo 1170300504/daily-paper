@@ -66,12 +66,13 @@ async function boot() {
 }
 
 async function loadHistoryPayload() {
-  const historyResponse = await fetch("data/history.json", { cache: "no-store" });
+  const cacheBust = Date.now();
+  const historyResponse = await fetch(`data/history.json?v=${cacheBust}`, { cache: "no-store" });
   if (historyResponse.ok) {
     return historyResponse.json();
   }
 
-  const latestResponse = await fetch("data/papers.json", { cache: "no-store" });
+  const latestResponse = await fetch(`data/papers.json?v=${cacheBust}`, { cache: "no-store" });
   if (!latestResponse.ok) throw new Error(`HTTP ${latestResponse.status}`);
   const latest = await latestResponse.json();
   return {
