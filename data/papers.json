@@ -1,7 +1,36 @@
 {
-  "generatedAt": "2026-06-05T16:31:15.949334+08:00",
+  "generatedAt": "2026-06-05T16:55:33.864073+08:00",
   "source": "curated industry radar",
   "papers": [
+    {
+      "id": "arxiv-2506.13695",
+      "title": "OneRec Technical Report",
+      "authors": [
+        "Guorui Zhou",
+        "Jiaxin Deng",
+        "Jinghao Zhang",
+        "Kuo Cai",
+        "Lejian Ren",
+        "Qiang Luo",
+        "Qianqian Wang",
+        "Qigen Hu"
+      ],
+      "summary": "Presents Kuaishou's production-scale end-to-end generative recommendation system, replacing cascaded recall/rank stages with a unified generative architecture, scaling recommendation FLOPs and improving MFU, communication cost and app-level engagement.",
+      "reason": "快手推荐算法大模型主线：OneRec 已在快手/快手极速版部署到 25% QPS，论文给了端到端生成式推荐、Scaling Law、MFU、OPEX 和 App Stay Time 的完整工业口径。",
+      "area": "推荐算法",
+      "tags": [
+        "kuaishou",
+        "onerec",
+        "generative-recommendation",
+        "scaling-law",
+        "production"
+      ],
+      "signal": 100,
+      "source": "Kuaishou/arXiv",
+      "publishedAt": "2025-06-16T16:58:55Z",
+      "url": "https://arxiv.org/abs/2506.13695",
+      "pdfUrl": "https://arxiv.org/pdf/2506.13695"
+    },
     {
       "id": "arxiv-2605.21427",
       "title": "PALS: Power-Aware LLM Serving for Mixture-of-Experts Models",
