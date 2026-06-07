@@ -1,7 +1,36 @@
 {
-  "generatedAt": "2026-06-06T06:57:52.230555+08:00",
+  "generatedAt": "2026-06-08T06:53:28.297331+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-06-08",
+      "generatedAt": "2026-06-08T06:53:28.297331+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2606.06295v1",
+          "title": "Reactive Flux Matching: Mechanism Discovery and Adaptive Sampling of Rare Events",
+          "authors": [
+            "Rishal Aggarwal",
+            "David Ryan Koes",
+            "Nicholas M. Boffi",
+            "Eric Vanden-Eijnden"
+          ],
+          "summary": "Path sampling methods generate ensembles of reactive trajectories connecting metastable states, but extracting mechanistic insight from these data remains nontrivial. We introduce Flux Matching, a framework that learns two complementary objects directly from reactive trajectory data: a current velocity $u(z)$, whose streamlines trace the dominant reaction pathways, and a scalar potential $h(z)$, obtained from a weighted Helmholtz-Hodge decomposition of the reactive current, that serves as a data-driven reaction coordinate. Both minimize quadratic functionals over the reactive path ensemble, analogous to the flow matching loss in generative modeling, and require no knowledge of the underlying dynamics or stationary distribution. Unlike committor-based methods, $u$ and $h$ remain well-defined under projection onto non-Markovian collective variables, and their level sets in turn provide adaptive interfaces for improved sampling with enhanced sampling methods. Flux Matching is validated through the generation of current velocity trajectories and rate constant calculations on molecular systems.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG。Path sampling methods generate ensembles of reactive trajectories connecting metastable states, but extracting mechanistic insight...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG"
+          ],
+          "signal": 90,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-06-04T15:31:50Z",
+          "url": "https://arxiv.org/abs/2606.06295v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.06295v1"
+        }
+      ]
+    },
     {
       "date": "2026-06-06",
       "generatedAt": "2026-06-06T06:57:52.230555+08:00",
