@@ -14,7 +14,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from collections.abc import Iterable
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, time as datetime_time, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -30,7 +30,7 @@ MAX_RECENT_DAYS = 90
 FRESH_DAYS = 30
 DEFAULT_REPEAT_WINDOW_DAYS = 14
 CLASSIC_PAPERS_PER_DAY = 2
-MIN_LLM_PAPERS = 4
+BALANCED_AREAS = ("推荐算法", "LLM 推理优化")
 
 TOPICS = {
     "推荐算法": '(cat:cs.IR OR cat:cs.LG OR cat:cs.AI) AND (ti:recommendation OR ti:recommender OR ti:ranking OR ti:reranking OR abs:recommendation OR abs:recommender OR abs:ranking OR abs:reranking OR abs:advertising OR abs:"generative recommendation" OR abs:"semantic id" OR abs:"industrial recommendation" OR abs:"click-through")',
@@ -95,7 +95,7 @@ INDUSTRY_ALIASES = {
     "Huawei": ("huawei", "ascend", "cloudmatrix"),
     "Kuaishou": ("kuaishou", "kwai"),
     "Meituan": ("meituan",),
-    "Meta": ("meta", "facebook", "instagram", "llama"),
+    "Meta": ("facebook", "instagram", "llama"),
     "Microsoft": ("microsoft", "bing", "azure", "msr"),
     "Netflix": ("netflix",),
     "NVIDIA": ("nvidia", "tensorrt", "cuda", "h100", "b200"),
@@ -117,11 +117,72 @@ LLM_INFRA_SIGNALS = (
     "multi-lora",
     "qos",
     "prefill-decode",
+    "serving",
+    "latency",
+    "throughput",
+    "inference engine",
     "production",
     "deployed",
     "open-source",
     "power-aware",
     "copy-on-write",
+)
+
+LLM_CLASSIFIER_SIGNALS = (
+    "vllm",
+    "sglang",
+    "tensorrt",
+    "pagedattention",
+    "flashattention",
+    "speculative decoding",
+    "kv cache",
+    "multi-lora",
+    "qos",
+    "prefill",
+    "decode",
+    "inference engine",
+    "serving",
+    "compression",
+    "quantization",
+    "low-rank",
+    "batching",
+    "scheduling",
+    "power-aware",
+    "copy-on-write",
+)
+
+LLM_TARGET_SIGNALS = (
+    "llm",
+    "large language model",
+    "large language models",
+    "language model",
+    "language models",
+    "moe",
+    "lora",
+    "kv cache",
+    "vllm",
+    "sglang",
+)
+
+RECOMMENDATION_SIGNALS = (
+    "recommender system",
+    "recommender systems",
+    "recommendation system",
+    "recommendation systems",
+    "generative recommendation",
+    "sequential recommendation",
+    "collaborative filtering",
+    "click-through rate",
+    "ctr prediction",
+    "advertising",
+    "item retrieval",
+    "generative retrieval",
+    "semantic id",
+    "semantic ids",
+    "user interaction",
+    "user behavior",
+    "candidate generation",
+    "personalized recommendation",
 )
 
 CURATED_PAPERS = [
@@ -550,20 +611,24 @@ class Paper:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=10, help="Maximum papers to write")
-    parser.add_argument("--per-topic", type=int, default=16, help="arXiv results per topic query")
+    parser.add_argument("--per-topic", type=int, default=80, help="arXiv results per topic query")
     parser.add_argument("--output", type=Path, default=OUTPUT)
     parser.add_argument("--history-output", type=Path, default=HISTORY_OUTPUT)
     parser.add_argument("--history-days", type=int, default=90)
     parser.add_argument("--repeat-window-days", type=int, default=DEFAULT_REPEAT_WINDOW_DAYS)
     parser.add_argument("--skip-fetch", action="store_true", help="Use curated seed papers without calling arXiv")
+    parser.add_argument("--date", help="Local date to generate, in YYYY-MM-DD format")
     args = parser.parse_args()
 
-    now = datetime.now(LOCAL_TZ)
+    try:
+        now = generation_time(args.date)
+    except ValueError as exc:
+        parser.error(str(exc))
     now_utc = now.astimezone(timezone.utc)
     today = now.date().isoformat()
-    seen_ids = load_seen_ids(args.history_output, today, args.repeat_window_days)
+    seen_id_ages = load_seen_id_ages(args.history_output, today, args.repeat_window_days)
     papers: dict[str, Paper] = {}
-    for paper in curated_papers(now_utc, seen_ids):
+    for paper in curated_papers(now_utc):
         merge_paper(papers, paper)
 
     fetched_count = 0
@@ -571,14 +636,13 @@ def main() -> int:
         fetched = fetch_all(per_topic=args.per_topic, now_utc=now_utc)
         fetched_count = len(fetched)
         for paper in fetched.values():
-            if paper.id not in seen_ids:
-                merge_paper(papers, paper)
+            merge_paper(papers, paper)
 
     if not papers:
         print("No papers fetched; keeping existing data untouched.", file=sys.stderr)
         return 0
 
-    ranked = rank_with_llm_floor(papers.values(), args.limit)
+    ranked = rank_balanced_areas(papers.values(), args.limit, seen_id_ages, args.repeat_window_days)
     source = "curated industry radar + arXiv API" if fetched_count else "curated industry radar"
     payload = {
         "generatedAt": now.isoformat(),
@@ -592,7 +656,14 @@ def main() -> int:
     return 0
 
 
-def curated_papers(now_utc: datetime, seen_ids: set[str]) -> list[Paper]:
+def generation_time(date_text: str | None) -> datetime:
+    if not date_text:
+        return datetime.now(LOCAL_TZ)
+    date = datetime.strptime(date_text, "%Y-%m-%d").date()
+    return datetime.combine(date, datetime_time(hour=6), LOCAL_TZ)
+
+
+def curated_papers(now_utc: datetime) -> list[Paper]:
     recent_papers = []
     classic_papers = []
     for spec in CURATED_PAPERS:
@@ -600,8 +671,6 @@ def curated_papers(now_utc: datetime, seen_ids: set[str]) -> list[Paper]:
         published = str(spec["published_at"])
         max_recent_days = int(spec.get("max_age_days", MAX_RECENT_DAYS))
         if mode == "recent" and not is_within_days(published, max_recent_days, now_utc):
-            continue
-        if str(spec["id"]) in seen_ids:
             continue
         payload = {key: value for key, value in spec.items() if key not in ("mode", "max_age_days")}
         paper = Paper(**payload)
@@ -612,15 +681,15 @@ def curated_papers(now_utc: datetime, seen_ids: set[str]) -> list[Paper]:
     return recent_papers + classic_papers[:CLASSIC_PAPERS_PER_DAY]
 
 
-def load_seen_ids(path: Path, today: str, repeat_window_days: int) -> set[str]:
+def load_seen_id_ages(path: Path, today: str, repeat_window_days: int) -> dict[str, int]:
     if repeat_window_days <= 0 or not path.exists():
-        return set()
+        return {}
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError:
-        return set()
+        return {}
 
-    seen: set[str] = set()
+    seen: dict[str, int] = {}
     today_date = datetime.fromisoformat(today).date()
     for entry in payload.get("history", []):
         entry_date_text = entry.get("date", "")
@@ -636,7 +705,8 @@ def load_seen_ids(path: Path, today: str, repeat_window_days: int) -> set[str]:
         for paper in entry.get("papers", []):
             paper_id = paper.get("id")
             if paper_id:
-                seen.add(str(paper_id))
+                paper_id = str(paper_id)
+                seen[paper_id] = min(seen.get(paper_id, age_days_value), age_days_value)
     return seen
 
 
@@ -646,23 +716,44 @@ def merge_paper(papers: dict[str, Paper], paper: Paper) -> None:
         papers[paper.id] = paper
 
 
-def rank_with_llm_floor(candidates: Iterable[Paper], limit: int) -> list[Paper]:
+def rank_balanced_areas(
+    candidates: Iterable[Paper],
+    limit: int,
+    seen_id_ages: dict[str, int],
+    repeat_window_days: int,
+) -> list[Paper]:
     ranked = sorted(candidates, key=lambda paper: (paper.signal, paper.published_at), reverse=True)
+    selection_ranked = sorted(
+        ranked,
+        key=lambda paper: (
+            paper.id not in seen_id_ages,
+            seen_id_ages.get(paper.id, repeat_window_days + 1),
+            paper.signal,
+            paper.published_at,
+        ),
+        reverse=True,
+    )
     if limit <= 0:
         return []
 
-    llm_floor = min(MIN_LLM_PAPERS, limit)
     selected: list[Paper] = []
     used: set[str] = set()
-    llm_count = 0
+    base_target = limit // len(BALANCED_AREAS)
+    extra_slots = limit % len(BALANCED_AREAS)
 
-    for paper in ranked:
-        if paper.area == "LLM 推理优化" and llm_count < llm_floor:
+    for area_index, area in enumerate(BALANCED_AREAS):
+        target = base_target + (1 if area_index < extra_slots else 0)
+        area_count = 0
+        for paper in selection_ranked:
+            if paper.area != area or paper.id in used:
+                continue
             selected.append(paper)
             used.add(paper.id)
-            llm_count += 1
+            area_count += 1
+            if area_count >= target:
+                break
 
-    for paper in ranked:
+    for paper in selection_ranked:
         if len(selected) >= limit:
             break
         if paper.id not in used:
@@ -716,7 +807,7 @@ def parse_feed(feed: bytes, area: str, now_utc: datetime) -> list[Paper]:
 
         authors = [compact(author.findtext("atom:name", default="", namespaces=NS)) for author in entry.findall("atom:author", NS)]
         industry_sources = detect_industry(title, summary, authors)
-        if area == "推荐算法" and not industry_sources:
+        if area == "推荐算法" and (not industry_sources or not has_recommendation_signal(title, summary)):
             continue
         if area == "LLM 推理优化" and not has_llm_infra_signal(title, summary, industry_sources):
             continue
@@ -760,16 +851,26 @@ def detect_industry(title: str, summary: str, authors: list[str]) -> list[str]:
     haystack = f"{title} {summary} {' '.join(authors)}".lower()
     matches = []
     for company, aliases in INDUSTRY_ALIASES.items():
-        if any(alias in haystack for alias in aliases):
+        if any(has_alias(haystack, alias) for alias in aliases):
             matches.append(company)
     return matches
 
 
+def has_alias(haystack: str, alias: str) -> bool:
+    escaped = re.escape(alias.lower())
+    return re.search(rf"(?<![a-z0-9]){escaped}(?![a-z0-9])", haystack) is not None
+
+
 def has_llm_infra_signal(title: str, summary: str, industry_sources: list[str]) -> bool:
-    if industry_sources:
-        return True
     haystack = f"{title} {summary}".lower()
-    return any(signal in haystack for signal in LLM_INFRA_SIGNALS)
+    has_target = any(signal in haystack for signal in LLM_TARGET_SIGNALS)
+    has_infra = any(signal in haystack for signal in LLM_CLASSIFIER_SIGNALS)
+    return has_target and has_infra
+
+
+def has_recommendation_signal(title: str, summary: str) -> bool:
+    haystack = f"{title} {summary}".lower()
+    return any(signal in haystack for signal in RECOMMENDATION_SIGNALS)
 
 
 def extract_tags(entry: ET.Element, title: str, summary: str, industry_sources: list[str]) -> list[str]:
@@ -853,7 +954,9 @@ def age_days(value: str, now_utc: datetime) -> int | None:
     published_at = parse_datetime(value)
     if published_at is None:
         return None
-    return max((now_utc - published_at).days, 0)
+    if published_at > now_utc:
+        return None
+    return (now_utc - published_at).days
 
 
 def is_within_days(value: str, max_days: int, now_utc: datetime) -> bool:
