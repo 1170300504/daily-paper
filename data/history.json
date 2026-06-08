@@ -1,7 +1,293 @@
 {
-  "generatedAt": "2026-06-08T06:00:00+08:00",
+  "generatedAt": "2026-06-09T07:07:15.645593+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-06-09",
+      "generatedAt": "2026-06-09T07:07:15.645593+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2606.06260",
+          "title": "OneReason Technical Report",
+          "authors": [
+            "OneRec Team",
+            "Biao Yang",
+            "Boyang Ding",
+            "Chenglong Chu",
+            "Dunju Zang",
+            "Fei Pan",
+            "Han Li",
+            "Hao Jiang"
+          ],
+          "summary": "Extends the OneRec family toward reasoning-style generative recommendation. It argues that recommendation reasoning needs itemic-token perception and cognition over user behavior sequences, then introduces OneReason with perception-focused pre-training, three-level cognition-enhanced CoT SFT and specialize-then-unify RL.",
+          "reason": "快手 OneRec 系列最新推荐推理方向：2026-06-04 新稿，把生成式推荐从 scaling 推到 reasoning，重点看 item token 语义感知、用户兴趣认知、CoT 格式和 RL 训练配方。",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "onereason",
+            "generative-recommendation",
+            "reasoning",
+            "cot",
+            "rl"
+          ],
+          "signal": 100,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-06-04T15:04:34Z",
+          "url": "https://arxiv.org/abs/2606.06260",
+          "pdfUrl": "https://arxiv.org/pdf/2606.06260"
+        },
+        {
+          "id": "arxiv-2606.07317v1",
+          "title": "Gated Bidirectional Linear Attention for Generative Retrieval",
+          "authors": [
+            "Artem Matveev",
+            "Vladislav Tytskiy",
+            "Sergei Makeev",
+            "Sergei Liamaev"
+          ],
+          "summary": "In recommender systems, generative retrieval typically uses an encoder-decoder setup: an encoder processes a user interaction history, and an autoregressive decoder then generates recommended items. In large-scale streaming services, active users accumulate very long histories over time. As histories grow, the encoder becomes a major latency bottleneck because softmax attention scales quadratically with sequence length. In our experiments, using bidirectional attention in the encoder substantially improves quality. However, most sub-quadratic attention methods focus on causal attention. We propose Gated Bidirectional Linear Attention (GBLA), a linear-time bidirectional attention layer that extends kernelized linear attention with three lightweight components: local causal mixing (Conv1D), sequence-level key gating for soft forgetting, and a gated RMSNorm output. On a large-scale Yandex Music dataset, a hybrid encoder that interleaves self-attention (SA) and GBLA in a 1:2 ratio (one SA block followed by two GBLA blocks) matches bidirectional self-attention quality. On H100 GPUs, GBLA reaches up to an $8.2\\times$ single-layer speedup at a history length of 32768, compared to FlashAttention-v3. Finally, we show that the same hybrid design generalizes beyond our proprietary setting, consistently preserving self-attention retrieval quality on public Amazon benchmarks.",
+          "reason": "近 30 天；公司信号：Amazon, NVIDIA；推荐/排序/广告方向；关键词：amazon, nvidia, cs.IR。In recommender systems, generative retrieval typically uses an encoder-decoder setup: an encoder processes a user interaction hist...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "nvidia",
+            "cs.IR",
+            "dataset",
+            "latency",
+            "recommender",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "Amazon/NVIDIA/arXiv",
+          "publishedAt": "2026-06-05T14:37:02Z",
+          "url": "https://arxiv.org/abs/2606.07317v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.07317v1"
+        },
+        {
+          "id": "arxiv-2606.03866",
+          "title": "Taiji: Pareto Optimal Policy Optimization with Semantics-IDs Trade-off for Industrial LLM-Enhanced Recommendation",
+          "authors": [
+            "Yuecheng Li",
+            "Zeyu Song",
+            "Jing Yao",
+            "Chi Lu",
+            "Peng Jiang",
+            "Kun Gai"
+          ],
+          "summary": "Presents Taiji, an industrial LLM-as-Enhancer recommender framework that aligns LLM semantic rewards with collaborative ID preference rewards through Pareto Optimal Policy Optimization. It reports offline and online A/B validation and deployment on Kuaishou advertising traffic.",
+          "reason": "近 30 天工业推荐主线：Kuaishou 广告平台、LLM4Rec、Semantic IDs、RL 对齐和线上 A/B 都在一篇里。",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "llm4rec",
+            "semantic-id",
+            "rl-alignment",
+            "online-ab"
+          ],
+          "signal": 99,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-06-02T16:39:06Z",
+          "url": "https://arxiv.org/abs/2606.03866",
+          "pdfUrl": "https://arxiv.org/pdf/2606.03866"
+        },
+        {
+          "id": "arxiv-2605.21427",
+          "title": "PALS: Power-Aware LLM Serving for Mixture-of-Experts Models",
+          "authors": [
+            "Can Hankendi",
+            "Rana Shahout",
+            "Minlan Yu",
+            "Ayse K. Coskun"
+          ],
+          "summary": "Presents a power-aware runtime for LLM serving that treats GPU power caps as a controllable resource and jointly tunes them with batch size. It integrates with vLLM and evaluates dense and MoE models on multi-GPU systems.",
+          "reason": "近 30 天 LLM 推理系统：MoE serving、GPU 功耗控制、vLLM 集成和 QoS 违约率都直接对应 2026 年 AI 基建成本问题。",
+          "area": "LLM 推理优化",
+          "tags": [
+            "new-note",
+            "moe",
+            "power-aware",
+            "vllm",
+            "qos"
+          ],
+          "signal": 98,
+          "source": "arXiv/vLLM",
+          "publishedAt": "2026-05-20T17:19:20Z",
+          "url": "https://arxiv.org/abs/2605.21427",
+          "pdfUrl": "https://arxiv.org/pdf/2605.21427"
+        },
+        {
+          "id": "arxiv-2309.06180",
+          "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+          "authors": [
+            "Woosuk Kwon",
+            "Zhuohan Li",
+            "Siyuan Zhuang",
+            "Ying Sheng",
+            "Lianmin Zheng",
+            "Cody Hao Yu",
+            "Joseph E. Gonzalez",
+            "Hao Zhang",
+            "Ion Stoica"
+          ],
+          "summary": "Introduces PagedAttention and vLLM, treating KV cache management like virtual memory so LLM serving can batch more requests with lower memory waste and higher throughput.",
+          "reason": "LLM 推理两篇经典之一：PagedAttention/vLLM 基本成了现代 serving 系统理解 KV cache、continuous batching 的入口。",
+          "area": "LLM 推理优化",
+          "tags": [
+            "classic",
+            "vllm",
+            "pagedattention",
+            "kv-cache",
+            "serving"
+          ],
+          "signal": 98,
+          "source": "Berkeley/vLLM/arXiv",
+          "publishedAt": "2023-09-12T12:50:04Z",
+          "url": "https://arxiv.org/abs/2309.06180",
+          "pdfUrl": "https://arxiv.org/pdf/2309.06180"
+        },
+        {
+          "id": "arxiv-2605.09040",
+          "title": "UxSID: Semantic-Aware User Interests Modeling for Ultra-Long Sequence",
+          "authors": [
+            "Hongwei Zhang",
+            "Qiqiang Zhong",
+            "Jiangxia Cao",
+            "Yiyang Lv",
+            "Huanjie Wang",
+            "Liwei Guan",
+            "Jing Yao",
+            "Yiyu Wang"
+          ],
+          "summary": "Proposes semantic-group shared interest memory for ultra-long user sequence modeling. UxSID uses Semantic IDs and dual-level attention to balance target-aware preference modeling with constant-time online inference, reporting state-of-the-art results and a 0.337% revenue lift in large-scale advertising A/B tests.",
+          "reason": "快手广告超长序列建模方向：Semantic ID 不只用于生成式推荐，也能作为 target 语义路由键做共享兴趣 memory；有线上 revenue lift，和 OneReason 的 perception/cognition 主线能互相补。",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "semantic-id",
+            "ultra-long-sequence",
+            "advertising",
+            "online-ab",
+            "revenue"
+          ],
+          "signal": 97,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-05-18T07:00:17Z",
+          "url": "https://arxiv.org/abs/2605.09040",
+          "pdfUrl": "https://arxiv.org/pdf/2605.09040"
+        },
+        {
+          "id": "arxiv-2604.04976",
+          "title": "Tencent Advertising Algorithm Challenge 2025: All-Modality Generative Recommendation",
+          "authors": [
+            "Junwei Pan",
+            "Wei Xue",
+            "Chao Zhou",
+            "Xing Zhou",
+            "Lunan Fan",
+            "Yanbo Wang",
+            "Haijie Gu",
+            "Jie Jiang"
+          ],
+          "summary": "Introduces TencentGR-1M and TencentGR-10M, two de-identified Tencent Ads datasets for all-modality generative recommendation with exposure, click and conversion signals, plus task definitions, baselines and competition findings.",
+          "reason": "近 90 天大厂推荐数据集方向：工业广告、生成式推荐、全模态特征、点击和转化目标都很贴近线上系统。",
+          "area": "推荐算法",
+          "tags": [
+            "tencent",
+            "ads",
+            "generative-recommendation",
+            "dataset",
+            "conversion"
+          ],
+          "signal": 97,
+          "source": "Tencent/arXiv",
+          "publishedAt": "2026-04-04T17:05:15Z",
+          "url": "https://arxiv.org/abs/2604.04976",
+          "pdfUrl": "https://arxiv.org/pdf/2604.04976"
+        },
+        {
+          "id": "arxiv-2205.14135",
+          "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+          "authors": [
+            "Tri Dao",
+            "Daniel Y. Fu",
+            "Stefano Ermon",
+            "Atri Rudra",
+            "Christopher Re"
+          ],
+          "summary": "Reorders exact attention computation around GPU memory hierarchy, using tiling to reduce HBM/SRAM traffic and unlock faster long-sequence transformer training and inference.",
+          "reason": "LLM 推理两篇经典之一：kernel/显存 IO/attention 吞吐的底层心智模型，读推理优化绕不开。",
+          "area": "LLM 推理优化",
+          "tags": [
+            "classic",
+            "flashattention",
+            "attention-kernel",
+            "memory-io",
+            "throughput"
+          ],
+          "signal": 97,
+          "source": "arXiv",
+          "publishedAt": "2022-05-27T17:53:09Z",
+          "url": "https://arxiv.org/abs/2205.14135",
+          "pdfUrl": "https://arxiv.org/pdf/2205.14135"
+        },
+        {
+          "id": "arxiv-2605.29639",
+          "title": "RTP-LLM: High-Performance Alibaba LLM Inference Engine",
+          "authors": [
+            "Boyu Tan",
+            "Jiarui Guo",
+            "Zongwei Lv",
+            "Hanbo Sun",
+            "Tong Yang",
+            "Kan Liu",
+            "Xinfei Shi",
+            "Zetao Hu",
+            "Yaxin Yu",
+            "Chi Zhang"
+          ],
+          "summary": "Technical report for Alibaba's production LLM inference engine, covering model loading, prefill-decode disaggregation, hierarchical KV cache reuse, speculative decoding, quantization and multimodal inference.",
+          "reason": "新的业界笔记/技术报告：5 月底阿里生产推理引擎，直接对标 vLLM/SGLang，适合把经典推理论文落到工业系统。",
+          "area": "LLM 推理优化",
+          "tags": [
+            "new-note",
+            "alibaba",
+            "inference-engine",
+            "kv-cache",
+            "speculative-decoding"
+          ],
+          "signal": 96,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-05-28T09:07:06Z",
+          "url": "https://arxiv.org/abs/2605.29639",
+          "pdfUrl": "https://arxiv.org/pdf/2605.29639"
+        },
+        {
+          "id": "arxiv-2606.07205v1",
+          "title": "Towards Tight Bounds for Streaming Attention",
+          "authors": [
+            "Justin Y. Chen",
+            "Ying Feng",
+            "Piotr Indyk",
+            "Michael Kapralov",
+            "Ekaterina Kochetkova",
+            "Boris Prokhorov"
+          ],
+          "summary": "The attention mechanism is a cornerstone of modern transformer architectures. However, its expressive power comes at the cost of quadratic runtime and linear space usage. In particular, the classical transformer architecture explicitly stores all previously seen input elements (tokens) in order to generate the next one. The problem of implementing a transformer in limited space, known as KV cache compression, has received much interest over the past few years, spurring the development of powerful heuristics. Recent works of Haris et al, COLT'25 and Kochetkova et al, NeurIPS'25, formalized KV cache compression as the streaming attention approximation problem, providing both upper bounds (based on discrepancy theory) and information theoretic lower bounds. However, those papers left open a significant gap between the upper and lower bounds. For example, the space usage of their algorithms increases with the precision parameter, but the lower bound does not get stronger. In this work, we revisit the streaming attention approximation problem and provide nearly tight bounds on its space complexity. On the algorithmic side, we achieve the result through a surprisingly tight interplay between three distinct methods for kernel density estimation: discrepancy-based coreset constructions (e.g., Charikar-Kapralov-Waingarten'24), the polynomial method (e.g., Greengard-Rokhlin'87, Alman-Song'23), and space partitioning (e.g., Andoni-Laarhoven-Razenshteyn-Waingarten'17, Charikar-Kapralov-Nouri-Siminelakis'20). On the lower bound side, our main technical contribution is a new technique for using the INDEX problem with a large amount of side information that we hope will prove useful in other high dimensional geometric estimation problems.",
+          "reason": "近 30 天；关键词：cs.DS, kv-cache。The attention mechanism is a cornerstone of modern transformer architectures. However, its expressive power comes at the cost of q...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DS",
+            "kv-cache"
+          ],
+          "signal": 83,
+          "source": "arXiv",
+          "publishedAt": "2026-06-05T12:15:33Z",
+          "url": "https://arxiv.org/abs/2606.07205v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.07205v1"
+        }
+      ]
+    },
     {
       "date": "2026-06-08",
       "generatedAt": "2026-06-08T06:00:00+08:00",
