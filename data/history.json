@@ -1,7 +1,288 @@
 {
-  "generatedAt": "2026-06-17T07:17:06.405950+08:00",
+  "generatedAt": "2026-06-18T07:16:14.050014+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-06-18",
+      "generatedAt": "2026-06-18T07:16:14.050014+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2606.06260",
+          "title": "OneReason Technical Report",
+          "authors": [
+            "OneRec Team",
+            "Biao Yang",
+            "Boyang Ding",
+            "Chenglong Chu",
+            "Dunju Zang",
+            "Fei Pan",
+            "Han Li",
+            "Hao Jiang"
+          ],
+          "summary": "Extends the OneRec family toward reasoning-style generative recommendation. It argues that recommendation reasoning needs itemic-token perception and cognition over user behavior sequences, then introduces OneReason with perception-focused pre-training, three-level cognition-enhanced CoT SFT and specialize-then-unify RL.",
+          "reason": "快手 OneRec 系列最新推荐推理方向：2026-06-04 新稿，把生成式推荐从 scaling 推到 reasoning，重点看 item token 语义感知、用户兴趣认知、CoT 格式和 RL 训练配方。",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "onereason",
+            "generative-recommendation",
+            "reasoning",
+            "cot",
+            "rl"
+          ],
+          "signal": 100,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-06-04T15:04:34Z",
+          "url": "https://arxiv.org/abs/2606.06260",
+          "pdfUrl": "https://arxiv.org/pdf/2606.06260"
+        },
+        {
+          "id": "arxiv-2606.18096v1",
+          "title": "S4oP: Operator-level Pruning of Structured State Space Models for Resource-Constrained Devices",
+          "authors": [
+            "Marco Deano",
+            "Filippo Ziche",
+            "Nicola Bombieri"
+          ],
+          "summary": "Structured State Space Models (SSMs), including the S4 and S4D architectures, have recently emerged as powerful alternatives to attention-based models for capturing long-range dependencies in sequential data. Despite their strong empirical performance, deploying these models in time- and resource-constrained settings remains challenging due to their computational and memory demands. In this paper, we propose a novel incremental, operator-level pruning approach for S4- and S4D-based models that significantly reduces inference cost while preserving predictive performance. To the best of our knowledge, this is the first work to systematically investigate structured operator pruning for SSMs. Our method progressively prunes model operators by interleaving structured masking with fine-tuning, while jointly monitoring accuracy and inference latency. We implement this approach within a unified training and evaluation framework that enables systematic exploration of efficiency-accuracy trade-offs. Experiments across multiple benchmark datasets show that pruning up to 70% of the model operators preserves the performance of the original models in most cases, while substantially reducing inference latency. These results demonstrate that structured operator pruning is an effective and previously unexplored strategy for improving the efficiency of SSMs and facilitate their deployment in practical, resource-constrained scenarios.",
+          "reason": "近 30 天；关键词：cs.LG, dataset, inference。Structured State Space Models (SSMs), including the S4 and S4D architectures, have recently emerged as powerful alternatives to at...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "dataset",
+            "inference",
+            "latency",
+            "lora",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-16T15:59:10Z",
+          "url": "https://arxiv.org/abs/2606.18096v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.18096v1"
+        },
+        {
+          "id": "arxiv-2606.18042v1",
+          "title": "Latency Prediction for LLM Inference on NPU Systems",
+          "authors": [
+            "Juhyun Park",
+            "Seungwoo Jeong",
+            "Jingyu Lee",
+            "Kyungyong Lee"
+          ],
+          "summary": "Deploying Large Language Models (LLMs) requires exploring a large configuration space spanning parallelization strategies, batching techniques, and scheduling policies. Exhaustive measurement across this space is impractical, making latency prediction essential for system optimization. While NPUs have emerged as accelerators designed for LLM inference, no prediction methodology has been established for them. Specifically, applying prior work to LLM inference latency prediction on NPUs faces three challenges: undisclosed microarchitecture of commercial NPUs, unpredictable compiler optimizations, and latency non-linearity induced by bucketing. We present LENS, a latency estimator that predicts NPU inference latency without information on the microarchitecture or compiler, and captures the non-linear latency induced by bucketing. LENS profiles each bucket with two end-to-end (E2E) measurements and composes the results to predict latency for arbitrary input-output length combinations. We validate LENS across NPUs from multiple vendors, several LLMs, and diverse workloads, achieving a mean prediction error of 2.15\\%. We further compare LENS against two methodologically related baselines, confirming the validity of its approach.",
+          "reason": "近 30 天；关键词：cs.DC, batching, inference。Deploying Large Language Models (LLMs) requires exploring a large configuration space spanning parallelization strategies, batchin...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "batching",
+            "inference",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-16T15:18:53Z",
+          "url": "https://arxiv.org/abs/2606.18042v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.18042v1"
+        },
+        {
+          "id": "arxiv-2606.17949v1",
+          "title": "RouteBalance: Fused Model Routing and Load Balancing for Heterogeneous LLM Serving",
+          "authors": [
+            "Wei Da",
+            "Evangelia Kalyvianaki"
+          ],
+          "summary": "Heterogeneous LLM serving stacks split scheduling into two layers that optimize in isolation: model routers pick a model from quality and cost signals while ignoring instance load, and serving load balancers optimize queues while ignoring quality. We present RouteBalance, a serving-aware scheduling layer that fuses both into a single online assignment over concrete model instances, jointly trading off quality, latency, and cost. A batched in-process predictor stack and dead-reckoned instance state keep the joint decision cheap on the request hot path ($\\approx$32 ms at 12 req/s). On a 13-instance, 28-GPU heterogeneous cluster serving four model sizes, a single deployed RouteBalance stack traces the upper region of the three-way quality-cost-throughput frontier. Sweeping one weight vector reaches both the highest routing-decision quality (DeepEval $0.419$, $+0.013$ over the strongest baseline, $95\\%$ CI $[{+}0.005,{+}0.022]$; the ordering holds when a second judge re-scores the actually served text) and, at its cost-priority corner, per-request cost that ties the cheapest baseline. With router engineering equalized against concurrent-scoring baseline variants we build, its balanced preset serves at $2.8$ s and $30$ req/s, leading $2.6$ to $4.1\\times$ ahead of enhanced BEST-Route at high load. (Deploying those routers as published, one serial scoring call per request, makes them collapse $23\\times$ under load, a deployment-architecture effect we isolate separately, not the routing result.) A four-arm isolation shows the benefit follows from pricing latency at model-selection time; the learned predictors contribute calibration and SLO headroom rather than the headline frontier. Code: https://github.com/AKafakA/route-balance",
+          "reason": "近 30 天；关键词：cs.DC, deployed, latency。Heterogeneous LLM serving stacks split scheduling into two layers that optimize in isolation: model routers pick a model from qual...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "deployed",
+            "latency",
+            "llm",
+            "serving",
+            "slo",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-16T14:02:34Z",
+          "url": "https://arxiv.org/abs/2606.17949v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.17949v1"
+        },
+        {
+          "id": "arxiv-2606.17707v1",
+          "title": "Do Generative Recommenders Deepen the Information Cocoon? A Closed-Loop Simulation with LLM-powered User Simulators",
+          "authors": [
+            "Jiyuan Yang",
+            "Gengxin Sun",
+            "Mengqi Zhang",
+            "Lingjie Wang",
+            "Yuanzi Li",
+            "Hongxi Cui",
+            "Xin Xin",
+            "Pengjie Ren"
+          ],
+          "summary": "Recommender systems alleviate information overload, yet repeated feedback between recommendations and user interactions can reinforce existing preferences and narrow users' exposure, forming information cocoons. While this phenomenon has been widely studied in traditional sequential recommendation, its impact on generative recommendation remains unclear. By replacing atomic item IDs with Semantic ID (SID) sequences, generative recommenders introduce a different recommendation mechanism whose role in information cocoon formation is not yet understood. To investigate whether generative recommenders deepen information cocoons, we propose \\textsc{RecLoop}, a closed-loop simulation framework with LLM-driven user agents. We compare two generative recommenders and two traditional sequential baselines on two Amazon datasets across multiple feedback cycles. In addition to standard exposure-level metrics, we introduce \\emph{Code-Space Structural Cocoon}, a model-level metric that measures concentration in the generated SID space. Experimental results show that generative recommenders are generally less prone to exposure-level cocoon formation than traditional baselines, preserving broader exposure diversity and slowing cross-user homogenization. However, feedback loops can still induce concentration within the generated SID space. We further find that cocoon severity depends strongly on tokenization strategy and model scale: collaborative-signal tokenization produces stronger cocoon effects than semantic tokenization, whereas larger models maintain greater code-space diversity and better retain access to niche content. These findings suggest that information cocoons in generative recommendation are shaped not only by recommendation behavior, but also by item tokenization and model capacity. Our code is available at https://github.com/Dregen-Yor/RecLoop.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Recommender systems alleviate information overload, yet repeated feedback between recommendations and user interactions can reinfo...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "dataset",
+            "generative-recommendation",
+            "llm",
+            "recommendation",
+            "recommender"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-06-16T09:17:46Z",
+          "url": "https://arxiv.org/abs/2606.17707v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.17707v1"
+        },
+        {
+          "id": "arxiv-2205.14135",
+          "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+          "authors": [
+            "Tri Dao",
+            "Daniel Y. Fu",
+            "Stefano Ermon",
+            "Atri Rudra",
+            "Christopher Re"
+          ],
+          "summary": "Reorders exact attention computation around GPU memory hierarchy, using tiling to reduce HBM/SRAM traffic and unlock faster long-sequence transformer training and inference.",
+          "reason": "LLM 推理两篇经典之一：kernel/显存 IO/attention 吞吐的底层心智模型，读推理优化绕不开。",
+          "area": "LLM 推理优化",
+          "tags": [
+            "classic",
+            "flashattention",
+            "attention-kernel",
+            "memory-io",
+            "throughput"
+          ],
+          "signal": 97,
+          "source": "arXiv",
+          "publishedAt": "2022-05-27T17:53:09Z",
+          "url": "https://arxiv.org/abs/2205.14135",
+          "pdfUrl": "https://arxiv.org/pdf/2205.14135"
+        },
+        {
+          "id": "arxiv-2604.05314",
+          "title": "Next-Scale Generative Reranking: A Tree-based Generative Rerank Method at Meituan",
+          "authors": [
+            "Shuli Wang",
+            "Changhao Li",
+            "Ke Fan",
+            "Senjie Kou",
+            "Junwei Yin",
+            "Chi Wang",
+            "Yinhua Zhu",
+            "Haitao Wang",
+            "Xingxing Wang"
+          ],
+          "summary": "Proposes NSGR, a tree-based generative reranking framework that expands recommendation lists from coarse to fine and uses a multi-scale evaluator to guide generation. The method is reported as deployed on Meituan food delivery.",
+          "reason": "近 90 天工业重排方向：Meituan 线上部署，聚焦多阶段推荐里的 generative reranking 和全局/局部列表建模。",
+          "area": "推荐算法",
+          "tags": [
+            "meituan",
+            "reranking",
+            "generative-recommendation",
+            "production"
+          ],
+          "signal": 96,
+          "source": "Meituan/arXiv",
+          "publishedAt": "2026-04-07T01:35:20Z",
+          "url": "https://arxiv.org/abs/2604.05314",
+          "pdfUrl": "https://arxiv.org/pdf/2604.05314"
+        },
+        {
+          "id": "arxiv-2604.02684",
+          "title": "MBGR: Multi-Business Prediction for Generative Recommendation at Meituan",
+          "authors": [
+            "Changhao Li",
+            "Junwei Yin",
+            "Zhilin Zeng",
+            "Senjie Kou",
+            "Shuli Wang",
+            "Wenshuai Chen",
+            "Yinhua Zhu",
+            "Haitao Wang",
+            "Xingxing Wang"
+          ],
+          "summary": "Builds a multi-business generative recommendation framework with business-aware semantic IDs, business-specific prediction and dynamic label routing. It reports offline and online validation on Meituan food delivery.",
+          "reason": "近 90 天工业生成式推荐：重点是多业务场景、Semantic ID 空间隔离和生产验证。",
+          "area": "推荐算法",
+          "tags": [
+            "meituan",
+            "multi-business",
+            "semantic-id",
+            "generative-recommendation",
+            "online-ab"
+          ],
+          "signal": 95,
+          "source": "Meituan/arXiv",
+          "publishedAt": "2026-04-03T03:26:36Z",
+          "url": "https://arxiv.org/abs/2604.02684",
+          "pdfUrl": "https://arxiv.org/pdf/2604.02684"
+        },
+        {
+          "id": "arxiv-2604.17459",
+          "title": "Transparent and Controllable Recommendation Filtering via Multimodal Multi-Agent Collaboration",
+          "authors": [
+            "Chi Zhang",
+            "Zhipeng Xu",
+            "Jiahao Liu",
+            "Dongsheng Li",
+            "Hansu Gu",
+            "Peng Zhang",
+            "Ning Gu",
+            "Tun Lu"
+          ],
+          "summary": "Introduces a controllable recommendation filtering framework combining end-to-cloud collaboration, multimodal perception, multi-agent adjudication and editable preference graphs to reduce over-filtering in personalized feeds.",
+          "reason": "近 90 天 Microsoft Research 推荐治理方向：不是单纯 CTR，而是个性化 feed 的可控过滤、透明度和多模态安全边界。",
+          "area": "推荐算法",
+          "tags": [
+            "microsoft",
+            "controllable-recommendation",
+            "multimodal",
+            "agent",
+            "feed"
+          ],
+          "signal": 92,
+          "source": "Microsoft Research/arXiv",
+          "publishedAt": "2026-04-19T14:19:28Z",
+          "url": "https://arxiv.org/abs/2604.17459",
+          "pdfUrl": "https://arxiv.org/pdf/2604.17459"
+        },
+        {
+          "id": "arxiv-2606.18246v1",
+          "title": "Variable-Width Transformers",
+          "authors": [
+            "Zhaofeng Wu",
+            "Oliver Sieberling",
+            "Shawn Tan",
+            "Rameswar Panda",
+            "Yury Polyanskiy",
+            "Yoon Kim"
+          ],
+          "summary": "Scaling model size, specifically depth and width, has driven significant progress in transformer-based language models. However, most architectures maintain a constant width across all layers, allocating a fixed parameter and computation budget evenly despite different layers potentially playing distinct computational roles. In this work, we empirically investigate nonuniform capacity allocation across network depth by proposing a $\\times$-shaped > <former architecture. This design maintains wider early and late layers while narrowing the middle layers, utilizing a parameter-free residual resizing mechanism. Across decoder-only language models ranging from 200M to 2B parameters (dense) and 3B parameters (MoE), our > <former consistently outperforms parameter-matched uniform baselines on language modeling loss. By reducing the average layer width, this architecture also requires fewer overall FLOPs (22% reduction under fitted loss-matched scaling curves) and smaller KV cache memory and I/O cost (15% reduction). In analysis, we show that this bottleneck structure results in qualitatively different representations in residual streams. Overall, our results demonstrate that nonuniform width allocation can result in more resource-optimal scaling of language models.",
+          "reason": "近 30 天；关键词：cs.CL, kv-cache。Scaling model size, specifically depth and width, has driven significant progress in transformer-based language models. However, m...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "kv-cache"
+          ],
+          "signal": 83,
+          "source": "arXiv",
+          "publishedAt": "2026-06-16T17:59:03Z",
+          "url": "https://arxiv.org/abs/2606.18246v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.18246v1"
+        }
+      ]
+    },
     {
       "date": "2026-06-17",
       "generatedAt": "2026-06-17T07:17:06.405950+08:00",
