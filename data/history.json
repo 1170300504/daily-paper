@@ -1,7 +1,287 @@
 {
-  "generatedAt": "2026-06-19T07:27:59.335779+08:00",
+  "generatedAt": "2026-06-20T06:42:40.851154+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-06-20",
+      "generatedAt": "2026-06-20T06:42:40.851154+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2606.06260",
+          "title": "OneReason Technical Report",
+          "authors": [
+            "OneRec Team",
+            "Biao Yang",
+            "Boyang Ding",
+            "Chenglong Chu",
+            "Dunju Zang",
+            "Fei Pan",
+            "Han Li",
+            "Hao Jiang"
+          ],
+          "summary": "Extends the OneRec family toward reasoning-style generative recommendation. It argues that recommendation reasoning needs itemic-token perception and cognition over user behavior sequences, then introduces OneReason with perception-focused pre-training, three-level cognition-enhanced CoT SFT and specialize-then-unify RL.",
+          "reason": "快手 OneRec 系列最新推荐推理方向：2026-06-04 新稿，把生成式推荐从 scaling 推到 reasoning，重点看 item token 语义感知、用户兴趣认知、CoT 格式和 RL 训练配方。",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "onereason",
+            "generative-recommendation",
+            "reasoning",
+            "cot",
+            "rl"
+          ],
+          "signal": 100,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-06-04T15:04:34Z",
+          "url": "https://arxiv.org/abs/2606.06260",
+          "pdfUrl": "https://arxiv.org/pdf/2606.06260"
+        },
+        {
+          "id": "arxiv-2606.20537v1",
+          "title": "Execution-State Capsules: Graph-Bound Execution-State Checkpoint and Restore for Low-Latency, Small-Batch, On-Device Physical-AI Serving",
+          "authors": [
+            "Liang Su"
+          ],
+          "summary": "Mainstream LLM serving systems reuse prefix work mainly through paged or radix key-value (KV) caches. This is highly effective for high-throughput, high-concurrency serving, but it manages only one positional fragment of execution state: the KV cache. We study the opposite regime: low-latency, small-batch, on-device physical-AI serving, where interactive LLM agents, speech systems, and robot policies repeatedly branch, reset, interrupt, and re-enter under tight responsiveness budgets. We introduce execution-state capsules, a graph-bound checkpoint and restore mechanism for the complete restorable state at a committed boundary. FlashRT is a white-box, backend-facing kernel runtime whose evaluated NVIDIA CUDA backend runs captured graph plans over contiguous static buffers with no block-table indirection. Because the live state is a closed set of named buffers, a capsule can snapshot, restore, fork, or roll back the whole execution boundary, including KV, recurrent state, convolution state, MTP state, and metadata. This moves reuse from token-addressed KV fragments to graph-bound execution-state boundaries. On an RTX 5090, capsule restore is byte-exact at the stored-state level and token-identical under greedy decode. A KV-only ablation diverges, showing that recurrent state is load-bearing. GPU-resident snapshot and restore are sub-millisecond, and TTFT speedup over cold prefill grows from 3.9x at 2k tokens to 27x at 16k tokens. On Jetson AGX Thor and DGX Spark, the same correctness and structural properties hold. Capsules are not a replacement for high-throughput KV-cache serving; they define a complementary latency-first serving point for explicit execution-state reuse.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, kv-cache。Mainstream LLM serving systems reuse prefix work mainly through paged or radix key-value (KV) caches. This is highly effective for...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.LG",
+            "kv-cache",
+            "latency",
+            "llm",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-06-18T17:49:36Z",
+          "url": "https://arxiv.org/abs/2606.20537v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.20537v1"
+        },
+        {
+          "id": "arxiv-2606.20474v1",
+          "title": "UltraQuant: 4-bit KV Caching for Context-Heavy Agents",
+          "authors": [
+            "Inesh Chakrabarti",
+            "David Limpus",
+            "Aditi Ghai Rana",
+            "Bowen Bao",
+            "Spandan Tiwari",
+            "Thiago Crepaldi",
+            "Ashish Sirasao"
+          ],
+          "summary": "Context-heavy agents place unusual pressure on the key-value (KV) cache: long prefixes are reused across many short turns, while concurrency determines whether the serving system can keep GPUs utilized. We study 4-bit KV-cache compression for this setting, using TurboQuant-style rotation and codebook quantization as a quality anchor and vLLM FP8 KV caching as the deployment anchor. We report three contributions. First, we frame 4-bit KV caching around multi-round agent workloads where task quality, cache residency, and serving throughput must be measured jointly. Second, we describe the practical design choices needed to make the 4-bit path robust, including asymmetric K/V treatment, Walsh-Hadamard rotation, QJL removal, and block-scale variants. Third, we present serving optimizations on AMD GPUs, including optimized decode-attention kernels and UltraQuant, an FP4 approximation path that uses FP8 queries, FP4 KV tensors, UE8M0 group scales, and native scaled-MFMA support on CDNA4. On a long-context, multi-turn agentic workload, UltraQuant cuts P50 time-to-first-token by 3.47x in the cache-pressured late rounds (2.3x across all rounds) and raises output throughput by 1.63x over the FP8 KV baseline.",
+          "reason": "近 30 天；关键词：cs.LG, llm, quantization。Context-heavy agents place unusual pressure on the key-value (KV) cache: long prefixes are reused across many short turns, while c...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "llm",
+            "quantization",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-18T16:54:07Z",
+          "url": "https://arxiv.org/abs/2606.20474v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.20474v1"
+        },
+        {
+          "id": "arxiv-2606.19993v1",
+          "title": "Activation- and Influence-Aware Ranks (AIR): Function-Preserving SVD Compression for LLMs",
+          "authors": [
+            "Nico Harder",
+            "Daniel Becking",
+            "Karsten Mueller",
+            "Wojciech Samek"
+          ],
+          "summary": "We present Activation- and Influence-Aware Ranks (AIR), an SVD-based LLM compression framework that guides each weight matrix's low-rank approximation with a backward-signal influence metric. Starting from the activation-aware optimum of SVD-LLM(W), AIR runs a single closed-form alternating least squares (ALS) sweep that integrates influence element-wise under a monotone-descent guarantee. AIR is layer-local and composes orthogonally with end-to-end methods: alone it exceeds ACIP, and AIR+LoRA outperforms it further. AIR improves perplexity over SVD-LLM(W) by >18% at <=60% parameter retention, matches its quality with ~90% less calibration data, and turns parameter savings into FLOP, peak-memory, and per-token latency gains.",
+          "reason": "近 30 天；关键词：cs.LG, latency, llm。We present Activation- and Influence-Aware Ranks (AIR), an SVD-based LLM compression framework that guides each weight matrix's lo...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "latency",
+            "llm",
+            "lora",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-18T09:31:31Z",
+          "url": "https://arxiv.org/abs/2606.19993v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.19993v1"
+        },
+        {
+          "id": "arxiv-2606.19989v1",
+          "title": "Online Dynamic Batching with Formal Guarantees for LLM Training",
+          "authors": [
+            "Dian Li",
+            "Zekun Wang",
+            "Yaoru Wang",
+            "Jiahong Yan"
+          ],
+          "summary": "Modern LLM training breaks a core assumption behind offline batch samplers: the true training cost of a sample is only observable after preprocessing, augmentation, templating, tokenization, and multimodal visual-token expansion. Unless one pays for a preprocessing- and augmentation-dependent length cache, batch construction is therefore blind to the quantity that determines padding, memory use, and GPU saturation. We introduce Online Dynamic Batching (ODB), a DataLoader-side drop-in system that moves batch formation to this point of accurate observability while preserving DDP step alignment. We formalize this synchronization requirement as the Distributed Group Alignment Problem and prove deadlock-free bounded termination with default join-mode identity coverage and opt-in non-join sample-quota closure. ODB requires no model, optimizer, or attention-kernel changes and is released as online-dynamic-batching with lightweight trainer adapters. Across public 2B/8B Qwen3-VL runs on UltraChat/LLaVA/ShareGPT4o, ODB improves literal emitted-sample throughput vs. fixed-batch Standard by 1.58-2.51x on single-node Full FT/LoRA and 1.71-3.78x on two-node Full FT, with Standard-comparable quality; production MM-Mix reaches 4.43x. Against GMT/BMT offline token-budget oracles, ODB is within 15% on UltraChat/LLaVA and faster on high-CV ShareGPT4o: 2.24-2.39x single-node Full FT/LoRA and 3.06-3.69x two-node Full FT. Together, ODB occupies the online/drop-in regime for high-heterogeneity LLM fine-tuning: large throughput gains at Standard-comparable quality, formal DGAP guarantees, and no length-cache precompute or kernel rewrites.",
+          "reason": "近 30 天；关键词：cs.DC, alignment, batching。Modern LLM training breaks a core assumption behind offline batch samplers: the true training cost of a sample is only observable...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "alignment",
+            "batching",
+            "llm",
+            "lora",
+            "multimodal",
+            "production"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-18T09:29:28Z",
+          "url": "https://arxiv.org/abs/2606.19989v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.19989v1"
+        },
+        {
+          "id": "arxiv-2606.03866",
+          "title": "Taiji: Pareto Optimal Policy Optimization with Semantics-IDs Trade-off for Industrial LLM-Enhanced Recommendation",
+          "authors": [
+            "Yuecheng Li",
+            "Zeyu Song",
+            "Jing Yao",
+            "Chi Lu",
+            "Peng Jiang",
+            "Kun Gai"
+          ],
+          "summary": "Presents Taiji, an industrial LLM-as-Enhancer recommender framework that aligns LLM semantic rewards with collaborative ID preference rewards through Pareto Optimal Policy Optimization. It reports offline and online A/B validation and deployment on Kuaishou advertising traffic.",
+          "reason": "近 30 天工业推荐主线：Kuaishou 广告平台、LLM4Rec、Semantic IDs、RL 对齐和线上 A/B 都在一篇里。",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "llm4rec",
+            "semantic-id",
+            "rl-alignment",
+            "online-ab"
+          ],
+          "signal": 99,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-06-02T16:39:06Z",
+          "url": "https://arxiv.org/abs/2606.03866",
+          "pdfUrl": "https://arxiv.org/pdf/2606.03866"
+        },
+        {
+          "id": "arxiv-2604.05314",
+          "title": "Next-Scale Generative Reranking: A Tree-based Generative Rerank Method at Meituan",
+          "authors": [
+            "Shuli Wang",
+            "Changhao Li",
+            "Ke Fan",
+            "Senjie Kou",
+            "Junwei Yin",
+            "Chi Wang",
+            "Yinhua Zhu",
+            "Haitao Wang",
+            "Xingxing Wang"
+          ],
+          "summary": "Proposes NSGR, a tree-based generative reranking framework that expands recommendation lists from coarse to fine and uses a multi-scale evaluator to guide generation. The method is reported as deployed on Meituan food delivery.",
+          "reason": "近 90 天工业重排方向：Meituan 线上部署，聚焦多阶段推荐里的 generative reranking 和全局/局部列表建模。",
+          "area": "推荐算法",
+          "tags": [
+            "meituan",
+            "reranking",
+            "generative-recommendation",
+            "production"
+          ],
+          "signal": 96,
+          "source": "Meituan/arXiv",
+          "publishedAt": "2026-04-07T01:35:20Z",
+          "url": "https://arxiv.org/abs/2604.05314",
+          "pdfUrl": "https://arxiv.org/pdf/2604.05314"
+        },
+        {
+          "id": "arxiv-2604.06370",
+          "title": "ForkKV: Scaling Multi-LoRA Agent Serving via Copy-on-Write Disaggregated KV Cache",
+          "authors": [
+            "Shao Wang",
+            "Rui Ren",
+            "Lin Gui"
+          ],
+          "summary": "Uses an OS-like fork and copy-on-write memory model for multi-LoRA agent serving, splitting KV cache into a shared base component and lightweight agent-specific parts with a custom ResidualAttention kernel.",
+          "reason": "近 90 天 LLM 推理系统：多 LoRA agent serving、KV cache 分离、copy-on-write 和定制 kernel，适合和 DroidSpeak 对照看。",
+          "area": "LLM 推理优化",
+          "tags": [
+            "new-note",
+            "multi-lora",
+            "kv-cache",
+            "copy-on-write",
+            "agentic"
+          ],
+          "signal": 95,
+          "source": "arXiv",
+          "publishedAt": "2026-04-07T18:52:25Z",
+          "url": "https://arxiv.org/abs/2604.06370",
+          "pdfUrl": "https://arxiv.org/pdf/2604.06370"
+        },
+        {
+          "id": "arxiv-2604.02684",
+          "title": "MBGR: Multi-Business Prediction for Generative Recommendation at Meituan",
+          "authors": [
+            "Changhao Li",
+            "Junwei Yin",
+            "Zhilin Zeng",
+            "Senjie Kou",
+            "Shuli Wang",
+            "Wenshuai Chen",
+            "Yinhua Zhu",
+            "Haitao Wang",
+            "Xingxing Wang"
+          ],
+          "summary": "Builds a multi-business generative recommendation framework with business-aware semantic IDs, business-specific prediction and dynamic label routing. It reports offline and online validation on Meituan food delivery.",
+          "reason": "近 90 天工业生成式推荐：重点是多业务场景、Semantic ID 空间隔离和生产验证。",
+          "area": "推荐算法",
+          "tags": [
+            "meituan",
+            "multi-business",
+            "semantic-id",
+            "generative-recommendation",
+            "online-ab"
+          ],
+          "signal": 95,
+          "source": "Meituan/arXiv",
+          "publishedAt": "2026-04-03T03:26:36Z",
+          "url": "https://arxiv.org/abs/2604.02684",
+          "pdfUrl": "https://arxiv.org/pdf/2604.02684"
+        },
+        {
+          "id": "arxiv-2604.17459",
+          "title": "Transparent and Controllable Recommendation Filtering via Multimodal Multi-Agent Collaboration",
+          "authors": [
+            "Chi Zhang",
+            "Zhipeng Xu",
+            "Jiahao Liu",
+            "Dongsheng Li",
+            "Hansu Gu",
+            "Peng Zhang",
+            "Ning Gu",
+            "Tun Lu"
+          ],
+          "summary": "Introduces a controllable recommendation filtering framework combining end-to-cloud collaboration, multimodal perception, multi-agent adjudication and editable preference graphs to reduce over-filtering in personalized feeds.",
+          "reason": "近 90 天 Microsoft Research 推荐治理方向：不是单纯 CTR，而是个性化 feed 的可控过滤、透明度和多模态安全边界。",
+          "area": "推荐算法",
+          "tags": [
+            "microsoft",
+            "controllable-recommendation",
+            "multimodal",
+            "agent",
+            "feed"
+          ],
+          "signal": 92,
+          "source": "Microsoft Research/arXiv",
+          "publishedAt": "2026-04-19T14:19:28Z",
+          "url": "https://arxiv.org/abs/2604.17459",
+          "pdfUrl": "https://arxiv.org/pdf/2604.17459"
+        }
+      ]
+    },
     {
       "date": "2026-06-19",
       "generatedAt": "2026-06-19T07:27:59.335779+08:00",
