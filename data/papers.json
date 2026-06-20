@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T06:42:40.851154+08:00",
+  "generatedAt": "2026-06-21T06:57:33.750865+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
@@ -33,110 +33,6 @@
       "pdfUrl": "https://arxiv.org/pdf/2606.06260"
     },
     {
-      "id": "arxiv-2606.20537v1",
-      "title": "Execution-State Capsules: Graph-Bound Execution-State Checkpoint and Restore for Low-Latency, Small-Batch, On-Device Physical-AI Serving",
-      "authors": [
-        "Liang Su"
-      ],
-      "summary": "Mainstream LLM serving systems reuse prefix work mainly through paged or radix key-value (KV) caches. This is highly effective for high-throughput, high-concurrency serving, but it manages only one positional fragment of execution state: the KV cache. We study the opposite regime: low-latency, small-batch, on-device physical-AI serving, where interactive LLM agents, speech systems, and robot policies repeatedly branch, reset, interrupt, and re-enter under tight responsiveness budgets. We introduce execution-state capsules, a graph-bound checkpoint and restore mechanism for the complete restorable state at a committed boundary. FlashRT is a white-box, backend-facing kernel runtime whose evaluated NVIDIA CUDA backend runs captured graph plans over contiguous static buffers with no block-table indirection. Because the live state is a closed set of named buffers, a capsule can snapshot, restore, fork, or roll back the whole execution boundary, including KV, recurrent state, convolution state, MTP state, and metadata. This moves reuse from token-addressed KV fragments to graph-bound execution-state boundaries. On an RTX 5090, capsule restore is byte-exact at the stored-state level and token-identical under greedy decode. A KV-only ablation diverges, showing that recurrent state is load-bearing. GPU-resident snapshot and restore are sub-millisecond, and TTFT speedup over cold prefill grows from 3.9x at 2k tokens to 27x at 16k tokens. On Jetson AGX Thor and DGX Spark, the same correctness and structural properties hold. Capsules are not a replacement for high-throughput KV-cache serving; they define a complementary latency-first serving point for explicit execution-state reuse.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, kv-cache。Mainstream LLM serving systems reuse prefix work mainly through paged or radix key-value (KV) caches. This is highly effective for...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
-        "cs.LG",
-        "kv-cache",
-        "latency",
-        "llm",
-        "prefill",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-06-18T17:49:36Z",
-      "url": "https://arxiv.org/abs/2606.20537v1",
-      "pdfUrl": "https://arxiv.org/pdf/2606.20537v1"
-    },
-    {
-      "id": "arxiv-2606.20474v1",
-      "title": "UltraQuant: 4-bit KV Caching for Context-Heavy Agents",
-      "authors": [
-        "Inesh Chakrabarti",
-        "David Limpus",
-        "Aditi Ghai Rana",
-        "Bowen Bao",
-        "Spandan Tiwari",
-        "Thiago Crepaldi",
-        "Ashish Sirasao"
-      ],
-      "summary": "Context-heavy agents place unusual pressure on the key-value (KV) cache: long prefixes are reused across many short turns, while concurrency determines whether the serving system can keep GPUs utilized. We study 4-bit KV-cache compression for this setting, using TurboQuant-style rotation and codebook quantization as a quality anchor and vLLM FP8 KV caching as the deployment anchor. We report three contributions. First, we frame 4-bit KV caching around multi-round agent workloads where task quality, cache residency, and serving throughput must be measured jointly. Second, we describe the practical design choices needed to make the 4-bit path robust, including asymmetric K/V treatment, Walsh-Hadamard rotation, QJL removal, and block-scale variants. Third, we present serving optimizations on AMD GPUs, including optimized decode-attention kernels and UltraQuant, an FP4 approximation path that uses FP8 queries, FP4 KV tensors, UE8M0 group scales, and native scaled-MFMA support on CDNA4. On a long-context, multi-turn agentic workload, UltraQuant cuts P50 time-to-first-token by 3.47x in the cache-pressured late rounds (2.3x across all rounds) and raises output throughput by 1.63x over the FP8 KV baseline.",
-      "reason": "近 30 天；关键词：cs.LG, llm, quantization。Context-heavy agents place unusual pressure on the key-value (KV) cache: long prefixes are reused across many short turns, while c...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "llm",
-        "quantization",
-        "serving",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-06-18T16:54:07Z",
-      "url": "https://arxiv.org/abs/2606.20474v1",
-      "pdfUrl": "https://arxiv.org/pdf/2606.20474v1"
-    },
-    {
-      "id": "arxiv-2606.19993v1",
-      "title": "Activation- and Influence-Aware Ranks (AIR): Function-Preserving SVD Compression for LLMs",
-      "authors": [
-        "Nico Harder",
-        "Daniel Becking",
-        "Karsten Mueller",
-        "Wojciech Samek"
-      ],
-      "summary": "We present Activation- and Influence-Aware Ranks (AIR), an SVD-based LLM compression framework that guides each weight matrix's low-rank approximation with a backward-signal influence metric. Starting from the activation-aware optimum of SVD-LLM(W), AIR runs a single closed-form alternating least squares (ALS) sweep that integrates influence element-wise under a monotone-descent guarantee. AIR is layer-local and composes orthogonally with end-to-end methods: alone it exceeds ACIP, and AIR+LoRA outperforms it further. AIR improves perplexity over SVD-LLM(W) by >18% at <=60% parameter retention, matches its quality with ~90% less calibration data, and turns parameter savings into FLOP, peak-memory, and per-token latency gains.",
-      "reason": "近 30 天；关键词：cs.LG, latency, llm。We present Activation- and Influence-Aware Ranks (AIR), an SVD-based LLM compression framework that guides each weight matrix's lo...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "latency",
-        "llm",
-        "lora",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-06-18T09:31:31Z",
-      "url": "https://arxiv.org/abs/2606.19993v1",
-      "pdfUrl": "https://arxiv.org/pdf/2606.19993v1"
-    },
-    {
-      "id": "arxiv-2606.19989v1",
-      "title": "Online Dynamic Batching with Formal Guarantees for LLM Training",
-      "authors": [
-        "Dian Li",
-        "Zekun Wang",
-        "Yaoru Wang",
-        "Jiahong Yan"
-      ],
-      "summary": "Modern LLM training breaks a core assumption behind offline batch samplers: the true training cost of a sample is only observable after preprocessing, augmentation, templating, tokenization, and multimodal visual-token expansion. Unless one pays for a preprocessing- and augmentation-dependent length cache, batch construction is therefore blind to the quantity that determines padding, memory use, and GPU saturation. We introduce Online Dynamic Batching (ODB), a DataLoader-side drop-in system that moves batch formation to this point of accurate observability while preserving DDP step alignment. We formalize this synchronization requirement as the Distributed Group Alignment Problem and prove deadlock-free bounded termination with default join-mode identity coverage and opt-in non-join sample-quota closure. ODB requires no model, optimizer, or attention-kernel changes and is released as online-dynamic-batching with lightweight trainer adapters. Across public 2B/8B Qwen3-VL runs on UltraChat/LLaVA/ShareGPT4o, ODB improves literal emitted-sample throughput vs. fixed-batch Standard by 1.58-2.51x on single-node Full FT/LoRA and 1.71-3.78x on two-node Full FT, with Standard-comparable quality; production MM-Mix reaches 4.43x. Against GMT/BMT offline token-budget oracles, ODB is within 15% on UltraChat/LLaVA and faster on high-CV ShareGPT4o: 2.24-2.39x single-node Full FT/LoRA and 3.06-3.69x two-node Full FT. Together, ODB occupies the online/drop-in regime for high-heterogeneity LLM fine-tuning: large throughput gains at Standard-comparable quality, formal DGAP guarantees, and no length-cache precompute or kernel rewrites.",
-      "reason": "近 30 天；关键词：cs.DC, alignment, batching。Modern LLM training breaks a core assumption behind offline batch samplers: the true training cost of a sample is only observable...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "alignment",
-        "batching",
-        "llm",
-        "lora",
-        "multimodal",
-        "production"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-06-18T09:29:28Z",
-      "url": "https://arxiv.org/abs/2606.19989v1",
-      "pdfUrl": "https://arxiv.org/pdf/2606.19989v1"
-    },
-    {
       "id": "arxiv-2606.03866",
       "title": "Taiji: Pareto Optimal Policy Optimization with Semantics-IDs Trade-off for Industrial LLM-Enhanced Recommendation",
       "authors": [
@@ -164,116 +60,245 @@
       "pdfUrl": "https://arxiv.org/pdf/2606.03866"
     },
     {
-      "id": "arxiv-2604.05314",
-      "title": "Next-Scale Generative Reranking: A Tree-based Generative Rerank Method at Meituan",
+      "id": "arxiv-2605.25514",
+      "title": "From Item-Only to Query-Item: Query-Conditioned Generative Search with QGS in Quark",
       "authors": [
-        "Shuli Wang",
-        "Changhao Li",
-        "Ke Fan",
-        "Senjie Kou",
-        "Junwei Yin",
-        "Chi Wang",
-        "Yinhua Zhu",
-        "Haitao Wang",
-        "Xingxing Wang"
+        "Yanglong Song",
+        "Zihao Yang",
+        "Shuo Meng",
+        "Rujun Guo",
+        "Jin Zhang",
+        "Bin Wang",
+        "Shaoyu Liu",
+        "Xiaozhao Wang"
       ],
-      "summary": "Proposes NSGR, a tree-based generative reranking framework that expands recommendation lists from coarse to fine and uses a multi-scale evaluator to guide generation. The method is reported as deployed on Meituan food delivery.",
-      "reason": "近 90 天工业重排方向：Meituan 线上部署，聚焦多阶段推荐里的 generative reranking 和全局/局部列表建模。",
+      "summary": "Introduces Query-Conditioned Generative Search for Quark Search, encoding each interaction as a query-item pair and training a query-conditioned next-item objective. It adds Linear HSTU and HFG-Attention to keep long-history modeling and sparse ranking features practical for online search ranking.",
+      "reason": "阿里夸克搜索排序的新工业样本：把生成式推荐从 item-only 推到 query-item 条件建模，线上 A/B 有 CTR、Click-Search Ratio 和 PV Duration 提升，适合和 OneReason 一起看 generative ranking 的落地形态。",
       "area": "推荐算法",
       "tags": [
-        "meituan",
-        "reranking",
-        "generative-recommendation",
-        "production"
+        "alibaba",
+        "quark",
+        "generative-search",
+        "query-conditioned",
+        "linear-hstu",
+        "online-ab"
       ],
-      "signal": 96,
-      "source": "Meituan/arXiv",
-      "publishedAt": "2026-04-07T01:35:20Z",
-      "url": "https://arxiv.org/abs/2604.05314",
-      "pdfUrl": "https://arxiv.org/pdf/2604.05314"
+      "signal": 98,
+      "source": "Alibaba/Quark/arXiv",
+      "publishedAt": "2026-05-25T07:18:51Z",
+      "url": "https://arxiv.org/abs/2605.25514",
+      "pdfUrl": "https://arxiv.org/pdf/2605.25514"
     },
     {
-      "id": "arxiv-2604.06370",
-      "title": "ForkKV: Scaling Multi-LoRA Agent Serving via Copy-on-Write Disaggregated KV Cache",
+      "id": "arxiv-2605.21427",
+      "title": "PALS: Power-Aware LLM Serving for Mixture-of-Experts Models",
       "authors": [
-        "Shao Wang",
-        "Rui Ren",
-        "Lin Gui"
+        "Can Hankendi",
+        "Rana Shahout",
+        "Minlan Yu",
+        "Ayse K. Coskun"
       ],
-      "summary": "Uses an OS-like fork and copy-on-write memory model for multi-LoRA agent serving, splitting KV cache into a shared base component and lightweight agent-specific parts with a custom ResidualAttention kernel.",
-      "reason": "近 90 天 LLM 推理系统：多 LoRA agent serving、KV cache 分离、copy-on-write 和定制 kernel，适合和 DroidSpeak 对照看。",
+      "summary": "Presents a power-aware runtime for LLM serving that treats GPU power caps as a controllable resource and jointly tunes them with batch size. It integrates with vLLM and evaluates dense and MoE models on multi-GPU systems.",
+      "reason": "近 30 天 LLM 推理系统：MoE serving、GPU 功耗控制、vLLM 集成和 QoS 违约率都直接对应 2026 年 AI 基建成本问题。",
       "area": "LLM 推理优化",
       "tags": [
         "new-note",
-        "multi-lora",
+        "moe",
+        "power-aware",
+        "vllm",
+        "qos"
+      ],
+      "signal": 98,
+      "source": "arXiv/vLLM",
+      "publishedAt": "2026-05-20T17:19:20Z",
+      "url": "https://arxiv.org/abs/2605.21427",
+      "pdfUrl": "https://arxiv.org/pdf/2605.21427"
+    },
+    {
+      "id": "arxiv-2309.06180",
+      "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+      "authors": [
+        "Woosuk Kwon",
+        "Zhuohan Li",
+        "Siyuan Zhuang",
+        "Ying Sheng",
+        "Lianmin Zheng",
+        "Cody Hao Yu",
+        "Joseph E. Gonzalez",
+        "Hao Zhang",
+        "Ion Stoica"
+      ],
+      "summary": "Introduces PagedAttention and vLLM, treating KV cache management like virtual memory so LLM serving can batch more requests with lower memory waste and higher throughput.",
+      "reason": "LLM 推理两篇经典之一：PagedAttention/vLLM 基本成了现代 serving 系统理解 KV cache、continuous batching 的入口。",
+      "area": "LLM 推理优化",
+      "tags": [
+        "classic",
+        "vllm",
+        "pagedattention",
         "kv-cache",
-        "copy-on-write",
-        "agentic"
+        "serving"
       ],
-      "signal": 95,
-      "source": "arXiv",
-      "publishedAt": "2026-04-07T18:52:25Z",
-      "url": "https://arxiv.org/abs/2604.06370",
-      "pdfUrl": "https://arxiv.org/pdf/2604.06370"
+      "signal": 98,
+      "source": "Berkeley/vLLM/arXiv",
+      "publishedAt": "2023-09-12T12:50:04Z",
+      "url": "https://arxiv.org/abs/2309.06180",
+      "pdfUrl": "https://arxiv.org/pdf/2309.06180"
     },
     {
-      "id": "arxiv-2604.02684",
-      "title": "MBGR: Multi-Business Prediction for Generative Recommendation at Meituan",
+      "id": "arxiv-2605.09040",
+      "title": "UxSID: Semantic-Aware User Interests Modeling for Ultra-Long Sequence",
       "authors": [
-        "Changhao Li",
-        "Junwei Yin",
-        "Zhilin Zeng",
-        "Senjie Kou",
-        "Shuli Wang",
-        "Wenshuai Chen",
-        "Yinhua Zhu",
-        "Haitao Wang",
-        "Xingxing Wang"
+        "Hongwei Zhang",
+        "Qiqiang Zhong",
+        "Jiangxia Cao",
+        "Yiyang Lv",
+        "Huanjie Wang",
+        "Liwei Guan",
+        "Jing Yao",
+        "Yiyu Wang"
       ],
-      "summary": "Builds a multi-business generative recommendation framework with business-aware semantic IDs, business-specific prediction and dynamic label routing. It reports offline and online validation on Meituan food delivery.",
-      "reason": "近 90 天工业生成式推荐：重点是多业务场景、Semantic ID 空间隔离和生产验证。",
+      "summary": "Proposes semantic-group shared interest memory for ultra-long user sequence modeling. UxSID uses Semantic IDs and dual-level attention to balance target-aware preference modeling with constant-time online inference, reporting state-of-the-art results and a 0.337% revenue lift in large-scale advertising A/B tests.",
+      "reason": "快手广告超长序列建模方向：Semantic ID 不只用于生成式推荐，也能作为 target 语义路由键做共享兴趣 memory；有线上 revenue lift，和 OneReason 的 perception/cognition 主线能互相补。",
       "area": "推荐算法",
       "tags": [
-        "meituan",
-        "multi-business",
+        "kuaishou",
         "semantic-id",
-        "generative-recommendation",
-        "online-ab"
+        "ultra-long-sequence",
+        "advertising",
+        "online-ab",
+        "revenue"
       ],
-      "signal": 95,
-      "source": "Meituan/arXiv",
-      "publishedAt": "2026-04-03T03:26:36Z",
-      "url": "https://arxiv.org/abs/2604.02684",
-      "pdfUrl": "https://arxiv.org/pdf/2604.02684"
+      "signal": 97,
+      "source": "Kuaishou/arXiv",
+      "publishedAt": "2026-05-18T07:00:17Z",
+      "url": "https://arxiv.org/abs/2605.09040",
+      "pdfUrl": "https://arxiv.org/pdf/2605.09040"
     },
     {
-      "id": "arxiv-2604.17459",
-      "title": "Transparent and Controllable Recommendation Filtering via Multimodal Multi-Agent Collaboration",
+      "id": "usenix-nsdi26-droidspeak",
+      "title": "DroidSpeak: KV Cache Sharing Across Fine-tuned Model Variants",
       "authors": [
-        "Chi Zhang",
-        "Zhipeng Xu",
-        "Jiahao Liu",
-        "Dongsheng Li",
-        "Hansu Gu",
-        "Peng Zhang",
-        "Ning Gu",
-        "Tun Lu"
+        "Yuhan Liu",
+        "Yuyang Huang",
+        "Jiayi Yao",
+        "Shaoting Feng",
+        "Zhuohan Gu",
+        "Kuntai Du",
+        "Hanchen Li",
+        "Yihua Cheng",
+        "Junchen Jiang",
+        "Shan Lu",
+        "Madan Musuvathi",
+        "Esha Choukse"
       ],
-      "summary": "Introduces a controllable recommendation filtering framework combining end-to-cloud collaboration, multimodal perception, multi-agent adjudication and editable preference graphs to reduce over-filtering in personalized feeds.",
-      "reason": "近 90 天 Microsoft Research 推荐治理方向：不是单纯 CTR，而是个性化 feed 的可控过滤、透明度和多模态安全边界。",
+      "summary": "Studies KV cache sharing across fine-tuned model variants in multi-LLM serving. DroidSpeak selectively recomputes sensitive layers and reuses the remaining KV cache to cut redundant prefill work.",
+      "reason": "2026 NSDI / Microsoft 参与的推理系统：多模型协作、KV cache 共享、fine-tuned variants 和 agentic workflow 都是大厂线上服务会遇到的问题。",
+      "area": "LLM 推理优化",
+      "tags": [
+        "new-note",
+        "microsoft",
+        "kv-cache",
+        "multi-llm",
+        "prefill"
+      ],
+      "signal": 97,
+      "source": "Microsoft/USENIX NSDI",
+      "publishedAt": "2026-05-01T00:00:00Z",
+      "url": "https://www.usenix.org/conference/nsdi26/presentation/liu-yuhan",
+      "pdfUrl": "https://www.usenix.org/system/files/nsdi26-liu-yuhan.pdf"
+    },
+    {
+      "id": "arxiv-2604.04976",
+      "title": "Tencent Advertising Algorithm Challenge 2025: All-Modality Generative Recommendation",
+      "authors": [
+        "Junwei Pan",
+        "Wei Xue",
+        "Chao Zhou",
+        "Xing Zhou",
+        "Lunan Fan",
+        "Yanbo Wang",
+        "Haijie Gu",
+        "Jie Jiang"
+      ],
+      "summary": "Introduces TencentGR-1M and TencentGR-10M, two de-identified Tencent Ads datasets for all-modality generative recommendation with exposure, click and conversion signals, plus task definitions, baselines and competition findings.",
+      "reason": "近 90 天大厂推荐数据集方向：工业广告、生成式推荐、全模态特征、点击和转化目标都很贴近线上系统。",
       "area": "推荐算法",
       "tags": [
-        "microsoft",
-        "controllable-recommendation",
-        "multimodal",
-        "agent",
-        "feed"
+        "tencent",
+        "ads",
+        "generative-recommendation",
+        "dataset",
+        "conversion"
       ],
-      "signal": 92,
-      "source": "Microsoft Research/arXiv",
-      "publishedAt": "2026-04-19T14:19:28Z",
-      "url": "https://arxiv.org/abs/2604.17459",
-      "pdfUrl": "https://arxiv.org/pdf/2604.17459"
+      "signal": 97,
+      "source": "Tencent/arXiv",
+      "publishedAt": "2026-04-04T17:05:15Z",
+      "url": "https://arxiv.org/abs/2604.04976",
+      "pdfUrl": "https://arxiv.org/pdf/2604.04976"
+    },
+    {
+      "id": "arxiv-2603.05800",
+      "title": "StreamWise: Serving Multi-Modal Generation in Real-Time at Scale",
+      "authors": [
+        "Haoran Qiu",
+        "Gohar Irfan Chaudhry",
+        "Chaojie Zhang",
+        "Íñigo Goiri",
+        "Esha Choukse",
+        "Rodrigo Fonseca",
+        "Ricardo Bianchini"
+      ],
+      "summary": "Studies real-time multi-modal generation serving at scale, coordinating LLMs, text-to-speech, image, audio and video generation under latency, cost and quality constraints with adaptive scheduling and heterogeneous hardware.",
+      "reason": "2026 Microsoft/Azure Research 推理服务系统：从纯 LLM 扩到多模态生成链路，重点是 SLO、异构资源调度、成本和实时流式体验。",
+      "area": "LLM 推理优化",
+      "tags": [
+        "new-note",
+        "microsoft",
+        "multimodal",
+        "slo",
+        "scheduling"
+      ],
+      "signal": 94,
+      "source": "Microsoft/arXiv",
+      "publishedAt": "2026-03-06T01:22:16Z",
+      "url": "https://arxiv.org/abs/2603.05800",
+      "pdfUrl": "https://arxiv.org/pdf/2603.05800"
+    },
+    {
+      "id": "arxiv-2602.21140",
+      "title": "ReviveMoE: Fast Recovery for Hardware Failures in Large-Scale MoE LLM Inference Deployments",
+      "authors": [
+        "Haley Li",
+        "Xinglu Wang",
+        "Cong Feng",
+        "Chunxu Zuo",
+        "Yanan Wang",
+        "Hei Lo",
+        "Yufei Cui",
+        "Bingji Wang",
+        "Duo Cui",
+        "Shuming Jing",
+        "Yizhou Shan",
+        "Ying Xiong",
+        "Jiannan Wang",
+        "Yong Zhang",
+        "Zhenan Fan"
+      ],
+      "summary": "Targets failure recovery for large-scale MoE inference deployments, avoiding full serving-instance restarts when hardware failures occur. The system is integrated with Huawei Cloud's MaaS stack and xDeepServe platform.",
+      "reason": "2026 Huawei Cloud 大规模 MoE 推理部署：关注硬件故障恢复、MaaS 稳定性和 xDeepServe 生产栈，属于线上服务可靠性方向。",
+      "area": "LLM 推理优化",
+      "tags": [
+        "new-note",
+        "huawei",
+        "moe",
+        "reliability",
+        "serving"
+      ],
+      "signal": 93,
+      "source": "Huawei/arXiv",
+      "publishedAt": "2026-02-24T17:39:41Z",
+      "url": "https://arxiv.org/abs/2602.21140",
+      "pdfUrl": "https://arxiv.org/pdf/2602.21140"
     }
   ]
 }
