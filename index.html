@@ -5,139 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="论文每日一读：一个记录论文阅读、筛选和历史回看的研究面板。"
+      content="CSAPP Codebook：以概念、代码与实验线索重读《深入理解计算机系统》。"
     />
-    <title>论文每日一读</title>
-    <link rel="preload" href="assets/study-buddies.png" as="image" />
+    <title>CSAPP Codebook · 深入理解计算机系统</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="noise" aria-hidden="true"></div>
     <div class="site-shell">
       <header class="topbar" aria-label="站点导航">
-        <a class="brand" href="./" aria-label="论文每日一读首页">
-          <span class="brand-mark">读</span>
-          <span>
-            <strong>论文每日一读</strong>
-            <small>RecSys & Inference Radar</small>
+        <a class="brand" href="#top" aria-label="CSAPP Codebook 首页">
+          <span class="brand-mark" aria-hidden="true">&gt;_</span>
+          <span class="brand-copy">
+            <strong>CSAPP Codebook</strong>
+            <small>深入理解计算机系统 · 学习笔记</small>
           </span>
         </a>
 
         <div class="topbar-actions">
+          <a class="progress-pill" href="#chapters" aria-label="查看学习进度">
+            <span class="progress-ring"><span id="progressNumber">0</span></span>
+            <span><b id="progressText">0 / 12</b><small>chapters read</small></span>
+          </a>
           <button class="icon-button" id="themeToggle" type="button" aria-label="切换主题" title="切换主题">
             <i data-lucide="moon"></i>
           </button>
         </div>
       </header>
 
-      <main>
+      <main id="top">
         <section class="masthead" aria-labelledby="page-title">
           <div class="masthead-copy">
-            <p class="eyebrow" id="todayLabel">Today</p>
-            <h1 id="page-title">论文每日一读</h1>
+            <p class="eyebrow"><span></span> A field guide to systems</p>
+            <h1 id="page-title">把系统的抽象，<em>一层层</em>拆开。</h1>
             <p class="lede">
-              记录想读和读过的论文，支持搜索、筛选、收藏待读，也能回看历史日期里的论文列表。
+              一份围绕《深入理解计算机系统》的非官方 codebook：用自己的话梳理概念，用短代码钉住直觉，再留下一条可以亲手验证的实验线索。
             </p>
-            <dl class="metric-row" aria-label="今日摘要">
-              <div>
-                <dt>收录</dt>
-                <dd id="paperCount">0</dd>
-              </div>
-              <div>
-                <dt>领域</dt>
-                <dd id="areaCount">0</dd>
-              </div>
-              <div>
-                <dt>更新</dt>
-                <dd id="updatedAt">-</dd>
-              </div>
-              <div>
-                <dt>历史</dt>
-                <dd id="historyCount">0</dd>
-              </div>
+            <div class="hero-actions">
+              <a class="primary-link" href="#chapters">开始漫游 <i data-lucide="arrow-down-right"></i></a>
+              <a class="secondary-link" href="#how-to-use">怎么使用这份笔记 <i data-lucide="arrow-up-right"></i></a>
+            </div>
+            <dl class="metric-row" aria-label="内容概览">
+              <div><dt>chapters</dt><dd>12</dd></div>
+              <div><dt>关键词</dt><dd>64</dd></div>
+              <div><dt>代码切片</dt><dd>12</dd></div>
             </dl>
           </div>
-          <figure class="masthead-media">
-            <img src="assets/study-buddies.png" alt="两只可爱小狗在电脑前一起学习和做笔记" />
-          </figure>
+
+          <div class="terminal-figure" aria-label="程序从源代码到输出的路径示意">
+            <div class="terminal-topline">
+              <span><i></i><i></i><i></i></span>
+              <code>system / map</code>
+              <span>⌘K</span>
+            </div>
+            <div class="terminal-body">
+              <p class="terminal-comment">// from source to a running process</p>
+              <p><span class="token-key">int</span> <span class="token-fn">main</span>(<span class="token-key">void</span>) {</p>
+              <p class="indent"><span class="token-key">return</span> <span class="token-num">42</span>;</p>
+              <p>}</p>
+              <div class="pipeline" aria-hidden="true">
+                <span>source</span><b>→</b><span>compiler</span><b>→</b><span>linker</span><b>→</b><span>process</span>
+              </div>
+              <p class="terminal-output"><span>▸</span> every layer leaves a trace.</p>
+            </div>
+          </div>
         </section>
 
-        <section class="control-strip" aria-label="筛选论文">
-          <div class="history-bar" aria-label="历史日期">
-            <label class="history-select">
-              <span>历史记录</span>
-              <select id="historySelect"></select>
+        <section class="principle-strip" id="how-to-use" aria-label="使用说明">
+          <p><span>READ</span> 先建立模型，再补细节</p>
+          <p><span>TRACE</span> 每个抽象都追到它的边界</p>
+          <p><span>TRY</span> 把代码改坏，观察系统如何回应</p>
+        </section>
+
+        <section class="study-layout" id="chapters" aria-label="CSAPP 章节笔记">
+          <aside class="chapter-sidebar" aria-label="章节目录">
+            <div class="sidebar-heading">
+              <div>
+                <p class="section-kicker">The book, remapped</p>
+                <h2>章节索引</h2>
+              </div>
+              <span id="chapterVisibleCount">12</span>
+            </div>
+
+            <label class="search-box">
+              <i data-lucide="search"></i>
+              <input id="searchInput" type="search" autocomplete="off" placeholder="搜索概念或章节" />
             </label>
-            <div class="history-quick" id="historyQuick" aria-label="最近日期"></div>
-          </div>
 
-          <div class="search-box">
-            <i data-lucide="search"></i>
-            <input id="searchInput" type="search" autocomplete="off" placeholder="搜索标题、作者、摘要或标签" />
-          </div>
-
-          <div class="filter-row">
-            <div class="segment-group" id="areaFilters" role="list" aria-label="领域筛选"></div>
-
-            <div class="sort-tools">
-              <label class="select-field">
-                <span>排序</span>
-                <select id="sortSelect">
-                  <option value="priority">推荐优先</option>
-                  <option value="fresh">最新优先</option>
-                  <option value="signal">信号最高</option>
-                  <option value="short">短摘要</option>
-                </select>
-              </label>
-
-              <button class="quiet-button" id="bookmarkFilter" type="button" aria-pressed="false">
-                <i data-lucide="bookmark"></i>
-                <span>收藏</span>
-              </button>
+            <div class="filter-group" role="group" aria-label="阅读状态筛选">
+              <button type="button" class="filter-button" data-filter="all" aria-pressed="true">全部</button>
+              <button type="button" class="filter-button" data-filter="unread" aria-pressed="false">未读</button>
+              <button type="button" class="filter-button" data-filter="read" aria-pressed="false">已读</button>
             </div>
-          </div>
-        </section>
 
-        <section class="content-grid" aria-label="论文列表">
-          <aside class="digest-panel" aria-label="阅读摘要">
-            <div class="panel-header">
-              <span>Digest</span>
-              <i data-lucide="sparkles"></i>
-            </div>
-            <ol id="digestList"></ol>
+            <nav class="chapter-nav" id="chapterNav" aria-label="章节"></nav>
+            <p class="sidebar-hint"><i data-lucide="command"></i> 试试用 <kbd>[</kbd> <kbd>]</kbd> 在章节间跳转</p>
           </aside>
 
-          <div>
-            <div class="list-heading">
-              <h2 id="resultsTitle">今日论文</h2>
-              <span id="resultCount">0 results</span>
+          <article class="chapter-reader" id="chapterReader" aria-live="polite">
+            <div class="reader-placeholder">
+              <i data-lucide="loader-circle"></i>
+              正在展开系统地图…
             </div>
-            <div class="paper-list" id="paperList"></div>
-            <div class="empty-state" id="emptyState" hidden>
-              <i data-lucide="search-x"></i>
-              <h2>没有匹配的论文</h2>
-              <p>换个关键词或领域试试。</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="comments-section" aria-labelledby="comments-title">
-          <div class="comments-heading">
-            <div>
-              <p class="eyebrow">GitHub</p>
-              <h2 id="comments-title">评论</h2>
-            </div>
-            <a class="comments-source" href="https://github.com/1170300504/daily-paper/issues" target="_blank" rel="noreferrer">
-              <i data-lucide="github"></i>
-              <span>Issues</span>
-            </a>
-          </div>
-          <div class="comments-thread" id="commentsThread"></div>
+          </article>
         </section>
       </main>
 
       <footer class="site-footer">
-        <span>论文每日一读 · 1170300504/daily-paper</span>
-        <a href="data/history.json">history.json</a>
+        <span>CSAPP Codebook · 独立学习笔记，不替代原书</span>
+        <a href="#top">回到顶部 <i data-lucide="arrow-up"></i></a>
       </footer>
     </div>
 
