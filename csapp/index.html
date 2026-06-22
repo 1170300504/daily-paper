@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="CSAPP Codebook：以概念、代码与实验线索重读《深入理解计算机系统》。"
+    />
+    <title>CSAPP Codebook · 深入理解计算机系统</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="site-shell">
+      <header class="topbar" aria-label="站点导航">
+        <a class="brand" href="#top" aria-label="CSAPP Codebook 首页">
+          <span class="brand-mark" aria-hidden="true">&gt;_</span>
+          <span class="brand-copy">
+            <strong>CSAPP Codebook</strong>
+            <small>深入理解计算机系统 · 学习笔记</small>
+          </span>
+        </a>
+
+        <div class="topbar-actions">
+          <a class="paper-link" href="../">论文每日一读 <i data-lucide="arrow-up-right"></i></a>
+          <a class="progress-pill" href="#chapters" aria-label="查看学习进度">
+            <span class="progress-ring"><span id="progressNumber">0</span></span>
+            <span><b id="progressText">0 / 12</b><small>chapters read</small></span>
+          </a>
+          <button class="icon-button" id="themeToggle" type="button" aria-label="切换主题" title="切换主题">
+            <i data-lucide="moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="masthead" aria-labelledby="page-title">
+          <div class="masthead-copy">
+            <p class="eyebrow"><span></span> A field guide to systems</p>
+            <h1 id="page-title">把系统的抽象，<em>一层层</em>拆开。</h1>
+            <p class="lede">
+              一份围绕《深入理解计算机系统》的非官方 codebook：用自己的话梳理概念，用短代码钉住直觉，再留下一条可以亲手验证的实验线索。
+            </p>
+            <div class="hero-actions">
+              <a class="primary-link" href="#chapters">开始漫游 <i data-lucide="arrow-down-right"></i></a>
+              <a class="secondary-link" href="#how-to-use">怎么使用这份笔记 <i data-lucide="arrow-up-right"></i></a>
+            </div>
+            <dl class="metric-row" aria-label="内容概览">
+              <div><dt>chapters</dt><dd>12</dd></div>
+              <div><dt>关键词</dt><dd>64</dd></div>
+              <div><dt>代码切片</dt><dd>12</dd></div>
+            </dl>
+          </div>
+
+          <div class="terminal-figure" aria-label="程序从源代码到输出的路径示意">
+            <div class="terminal-topline">
+              <span><i></i><i></i><i></i></span>
+              <code>system / map</code>
+              <span>⌘K</span>
+            </div>
+            <div class="terminal-body">
+              <p class="terminal-comment">// from source to a running process</p>
+              <p><span class="token-key">int</span> <span class="token-fn">main</span>(<span class="token-key">void</span>) {</p>
+              <p class="indent"><span class="token-key">return</span> <span class="token-num">42</span>;</p>
+              <p>}</p>
+              <div class="pipeline" aria-hidden="true">
+                <span>source</span><b>→</b><span>compiler</span><b>→</b><span>linker</span><b>→</b><span>process</span>
+              </div>
+              <p class="terminal-output"><span>▸</span> every layer leaves a trace.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="principle-strip" id="how-to-use" aria-label="使用说明">
+          <p><span>READ</span> 先建立模型，再补细节</p>
+          <p><span>TRACE</span> 每个抽象都追到它的边界</p>
+          <p><span>TRY</span> 把代码改坏，观察系统如何回应</p>
+        </section>
+
+        <section class="study-layout" id="chapters" aria-label="CSAPP 章节笔记">
+          <aside class="chapter-sidebar" aria-label="章节目录">
+            <div class="sidebar-heading">
+              <div>
+                <p class="section-kicker">The book, remapped</p>
+                <h2>章节索引</h2>
+              </div>
+              <span id="chapterVisibleCount">12</span>
+            </div>
+
+            <label class="search-box">
+              <i data-lucide="search"></i>
+              <input id="searchInput" type="search" autocomplete="off" placeholder="搜索概念或章节" />
+            </label>
+
+            <div class="filter-group" role="group" aria-label="阅读状态筛选">
+              <button type="button" class="filter-button" data-filter="all" aria-pressed="true">全部</button>
+              <button type="button" class="filter-button" data-filter="unread" aria-pressed="false">未读</button>
+              <button type="button" class="filter-button" data-filter="read" aria-pressed="false">已读</button>
+            </div>
+
+            <nav class="chapter-nav" id="chapterNav" aria-label="章节"></nav>
+            <p class="sidebar-hint"><i data-lucide="command"></i> 试试用 <kbd>[</kbd> <kbd>]</kbd> 在章节间跳转</p>
+          </aside>
+
+          <article class="chapter-reader" id="chapterReader" aria-live="polite">
+            <div class="reader-placeholder">
+              <i data-lucide="loader-circle"></i>
+              正在展开系统地图…
+            </div>
+          </article>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <span>CSAPP Codebook · 独立学习笔记，不替代原书</span>
+        <a href="#top">回到顶部 <i data-lucide="arrow-up"></i></a>
+      </footer>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,14 +1,8 @@
-# CSAPP Codebook
+# 论文每日一读
 
-一个可直接部署到 GitHub Pages 的静态学习网站，用原创的概念梳理、代码切片和实验提示，辅助阅读《深入理解计算机系统》（CS:APP）。它不是原书的替代品，也不复刻书中内容。
+一个可以直接部署到 GitHub Pages 的静态论文阅读面板。页面优先读取 `data/history.json`，支持按日期回看历史论文、搜索、领域筛选、排序和本地收藏。
 
-## 包含什么
-
-- 12 个章节的系统地图：信息表示、汇编、缓存、链接、虚拟内存、网络与并发等。
-- 每章的四个概念抓手、三步执行路径、一个短代码片段与三个复习提示。
-- 搜索章节和关键词；按已读／未读筛选。
-- 本地保存阅读进度、上次打开的章节和明暗主题。
-- 宽屏的固定章节导航和移动端的横向章节索引。
+同一站点还包含独立的 [CSAPP Codebook](csapp/)；论文面板仍保留在根目录。
 
 ## 本地预览
 
@@ -16,21 +10,58 @@
 python3 -m http.server 4173
 ```
 
-然后打开 `http://localhost:4173`。
+然后打开 `http://localhost:4173`；CSAPP Codebook 在 `http://localhost:4173/csapp/`。
 
-## 发布到 GitHub Pages
+## 发布到 username.github.io
 
-1. 将此目录推送到 GitHub 仓库。
-2. 在仓库的 `Settings → Pages` 中选择 `Deploy from a branch`。
-3. 选择发布分支和 `/root` 目录即可。
+1. 在 GitHub 新建仓库，仓库名使用 `<你的用户名>.github.io`。
+2. 把这个目录里的文件推到仓库 `main` 分支。
+3. 到仓库 `Settings -> Pages`，选择 `Deploy from a branch`，分支选 `main`，目录选 `/root`。
+4. 到 `Settings -> Actions -> General -> Workflow permissions`，选择 `Read and write permissions`，这样每日脚本才能提交更新后的 `data/papers.json`。
+5. Action 会在北京时间每天 06:00 自动跑；第一次也可以到 `Actions -> Daily Papers -> Run workflow` 手动跑一次。
+
+## GitHub 评论
+
+页面底部的评论区使用 [utterances](https://utteranc.es/) 和 GitHub Issues。到 `https://github.com/apps/utterances` 安装 app，并授权 `1170300504/daily-paper` 仓库后，访问者就可以用 GitHub 登录评论。
+
+## 调整关注领域
+
+编辑 `scripts/fetch_papers.py` 里的 `TOPICS`、`KEYWORDS`、`INDUSTRY_ALIASES` 和 `CURATED_PAPERS`。当前策略是：
+
+- 推荐算法只保留最近 90 天的论文，最近 30 天加权更高，并且必须命中互联网大厂或明确工业部署信号。
+- 每天优先让推荐算法和 LLM 推理优化数量接近；默认 10 篇时各 5 篇，候选不足的一侧会由另一侧补齐。
+- LLM 推理优化会从经典池轮换两篇，同时补最近 90 天、优先 30 天内的推理系统论文；AI/互联网大厂和强基建信号（Microsoft/Azure、NVIDIA、Google/DeepMind、Meta、Alibaba、Huawei 等）会额外加权。
+- `CURATED_PAPERS` 用来固定当天明确想读的高价值论文；`mode: "recent"` 默认超过 90 天后自动过期，少数高信号 LLM 基建论文可单独设置 `max_age_days`，`mode: "classic"` 不受时间限制。
+- 脚本会读取 `data/history.json`，默认优先避开 14 天内推过的论文；如果某一类候选不足，会把近期推过的论文作为兜底来维持配比。可用 `--repeat-window-days` 调整。
+- 漏跑日期可以补档，例如 `python3 scripts/fetch_papers.py --date 2026-06-07 --limit 10`。
+
+页面端的按钮在 `app.js` 的 `areaNames`，如果新增领域，两边名字保持一致即可。
+
+## 历史记录
+
+`data/history.json` 保存按日期归档的论文列表。页面顶部的“历史记录”下拉框和日期按钮会读取这个文件。每日脚本会替换当天记录并保留最近 90 天；如果 arXiv 临时限流，可以本地用 `python scripts/fetch_papers.py --skip-fetch --limit 8` 只写入 curated 清单。
 
 ## 文件结构
 
 ```text
 .
-├── index.html     # 页面骨架
-├── styles.css     # 自适应视觉样式
-└── app.js         # 章节内容与交互逻辑
+├── index.html
+├── styles.css
+├── app.js
+├── csapp/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+├── assets/
+│   ├── study-buddies.png
+│   ├── research-desk.jpg
+│   └── research-desk.png
+├── data/
+│   ├── history.json
+│   └── papers.json
+├── scripts/
+│   └── fetch_papers.py
+└── .github/
+    └── workflows/
+        └── daily-papers.yml
 ```
-
-要修改内容，直接编辑 `app.js` 顶部的 `CHAPTERS` 数组；每章依次包含标题、标签、概念卡、路径、代码和复习卡片。
