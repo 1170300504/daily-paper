@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="CS224n NLP Lab：以模型、公式、可视化和训练实验重读自然语言处理。" />
+    <title>CS224n NLP Lab · 经典教材导读</title>
+    <link rel="preload" href="../assets/cs224n-transformer-hero.png" as="image" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grid-noise" aria-hidden="true"></div>
+    <div class="site-shell">
+      <header class="topbar" aria-label="站点导航">
+        <a class="brand" href="#top" aria-label="CS224n NLP Lab 首页">
+          <span class="brand-mark">N</span>
+          <span><strong>CS224n NLP Lab</strong><small>NATURAL LANGUAGE PROCESSING · FIELD NOTES</small></span>
+        </a>
+        <div class="topbar-actions">
+          <nav class="site-switcher" aria-label="内容导航">
+            <a class="site-switcher-link" href="../">论文</a>
+            <a class="site-switcher-link" href="../textbooks/">经典教材导读</a>
+          </nav>
+          <a class="progress-chip" href="#modules" aria-label="查看学习进度"><span id="progressCount">0</span><b id="progressText">0 / 12</b></a>
+          <button class="theme-button" id="themeToggle" type="button" aria-label="切换主题"><i data-lucide="moon"></i></button>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span> From tokens to meaning</p>
+            <h1 id="page-title">语言不是字符流，<em>而是一套可学习的关系。</em></h1>
+            <p class="lede">把 CS224n 常见的“会背概念”改成“能解释训练信号”的学习路线：每一页都连接模型假设、核心公式、实现骨架、结构图与实验判断。</p>
+            <div class="hero-metrics" aria-label="内容概览"><div><b>12</b><span>深读单元</span></div><div><b>08</b><span>模型图谱</span></div><div><b>24</b><span>实验问题</span></div></div>
+          </div>
+          <figure class="hero-art"><img src="../assets/cs224n-transformer-hero.png" alt="由 token、注意力弧线和多层神经网络组成的自然语言处理结构示意" /><figcaption>one sequence, many contextual views</figcaption></figure>
+        </section>
+
+        <section class="learning-contract" aria-label="学习方法"><div><span>01</span><p><b>MODEL</b> 先说明输入、输出与假设</p></div><div><span>02</span><p><b>SIGNAL</b> 再追踪损失如何塑造表示</p></div><div><span>03</span><p><b>PROBE</b> 最后用小实验拆穿直觉</p></div></section>
+
+        <section class="study-layout" id="modules" aria-label="CS224n 学习单元">
+          <aside class="module-sidebar" aria-label="学习单元目录">
+            <div class="sidebar-heading"><div><p>THE COURSE MAP</p><h2>语言模型图谱</h2></div><span id="visibleCount">12</span></div>
+            <label class="search-box"><i data-lucide="search"></i><input id="searchInput" type="search" placeholder="搜索模块、概念或方法" autocomplete="off" /></label>
+            <div class="filter-row" role="group" aria-label="阅读状态筛选"><button type="button" data-filter="all" aria-pressed="true">全部</button><button type="button" data-filter="unread" aria-pressed="false">未读</button><button type="button" data-filter="read" aria-pressed="false">已读</button></div>
+            <nav id="moduleNav" class="module-nav" aria-label="CS224n 模块"></nav>
+            <p class="key-hint"><i data-lucide="command"></i> 用 <kbd>[</kbd> <kbd>]</kbd> 切换单元</p>
+          </aside>
+          <article id="reader" class="reader" aria-live="polite"></article>
+        </section>
+      </main>
+
+      <footer><span>CS224n NLP Lab · 独立学习笔记，不替代课程或教材</span><a href="../textbooks/">回到经典教材导读 <i data-lucide="arrow-up-right"></i></a></footer>
+    </div>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

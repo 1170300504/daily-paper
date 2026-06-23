@@ -2,7 +2,7 @@
 
 一个可以直接部署到 GitHub Pages 的静态论文阅读面板。页面优先读取 `data/history.json`，支持按日期回看历史论文、搜索、领域筛选、排序和本地收藏。
 
-导航一级只分为“论文”和“经典教材导读”：论文面板保留在根目录；[经典教材导读](textbooks/) 收录 [CSAPP Codebook](csapp/) 与 [算法导读](algorithms/)。
+导航一级只分为“论文”和“经典教材导读”：论文面板保留在根目录；[经典教材导读](textbooks/) 收录 [CSAPP Codebook](csapp/)、[算法导读](algorithms/) 与 [CS224n NLP Lab](cs224n/)。
 
 ## 本地预览
 
@@ -53,6 +53,10 @@ python3 -m http.server 4173
 │   ├── styles.css
 │   └── app.js
 ├── algorithms/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+├── cs224n/
 │   ├── index.html
 │   ├── styles.css
 │   └── app.js
