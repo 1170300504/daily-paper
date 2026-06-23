@@ -1,7 +1,291 @@
 {
-  "generatedAt": "2026-06-23T07:11:08.422865+08:00",
+  "generatedAt": "2026-06-24T06:58:41.041894+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-06-24",
+      "generatedAt": "2026-06-24T06:58:41.041894+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2606.06260",
+          "title": "OneReason Technical Report",
+          "authors": [
+            "OneRec Team",
+            "Biao Yang",
+            "Boyang Ding",
+            "Chenglong Chu",
+            "Dunju Zang",
+            "Fei Pan",
+            "Han Li",
+            "Hao Jiang"
+          ],
+          "summary": "Extends the OneRec family toward reasoning-style generative recommendation. It argues that recommendation reasoning needs itemic-token perception and cognition over user behavior sequences, then introduces OneReason with perception-focused pre-training, three-level cognition-enhanced CoT SFT and specialize-then-unify RL.",
+          "reason": "快手 OneRec 系列最新推荐推理方向：2026-06-04 新稿，把生成式推荐从 scaling 推到 reasoning，重点看 item token 语义感知、用户兴趣认知、CoT 格式和 RL 训练配方。",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "onereason",
+            "generative-recommendation",
+            "reasoning",
+            "cot",
+            "rl"
+          ],
+          "signal": 100,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-06-04T15:04:34Z",
+          "url": "https://arxiv.org/abs/2606.06260",
+          "pdfUrl": "https://arxiv.org/pdf/2606.06260"
+        },
+        {
+          "id": "arxiv-2606.23671v1",
+          "title": "Can LLMs Reliably Self-Report Adversarial Prefills, and How?",
+          "authors": [
+            "Quang Minh Nguyen",
+            "Uzair Ahmed",
+            "Taegyoon Kim"
+          ],
+          "summary": "Prior work shows that large language models (LLMs) exhibit introspective capability on benign tasks. We extend the question to safety contexts and examine how reliably a model can recognize that its own prior response was elicited by an adversarial prefill attack. Across ten open-weight instruction-tuned LLMs (3B to 70B) and four safety benchmarks, no model reliably recognizes its own compromised outputs, with models claiming intent on prefilled responses at an average rate of $27.3\\%$. Introspective signal stems largely from safety- and refusal-related reasoning. Orthogonalizing models' weights against the refusal direction collapses the gap between claiming rates on prefilled and natural outputs to near zero, though the direction is not its unique mediator. The signal is also probe-dependent: framing the question as internal intention versus external tampering elicits qualitatively different responses on the same models. We test three LoRA finetuning methods (SFT, GRPO, DPO) on eight models from 3B to 27B; all three widen the intention-probe gap on every model from 8B to 27B, with method ranking varying by model. The intervention does not transfer to the tampering probe and counterintuitively raises attack success rate under adversarial prefill on most models, amounting to a partial mitigation. These findings outline mechanisms underpinning the observed introspective signals in safety contexts and highlight risks in the reliability of LLM self-reports.",
+          "reason": "近 30 天；关键词：cs.CL, llm, lora。Prior work shows that large language models (LLMs) exhibit introspective capability on benign tasks. We extend the question to saf...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm",
+            "lora",
+            "prefill",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-22T17:56:30Z",
+          "url": "https://arxiv.org/abs/2606.23671v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.23671v1"
+        },
+        {
+          "id": "arxiv-2606.23581v1",
+          "title": "Kamera: Unified Position-Invariant Multimodal KV Cache for Training-Free Reuse",
+          "authors": [
+            "Bole Ma",
+            "Jan Eitzinger",
+            "Harald Koestler",
+            "Gerhard Wellein"
+          ],
+          "summary": "Multimodal agents repeatedly re-examine the same video frames, UI screenshots, and rendered artifacts as their context window slides and reasoning iterates, yet every look-back re-encodes from scratch, because prefix caches serve reuse only at a fixed leading position. We show this recompute is avoidable, and identify exactly what naive KV reuse loses: the cross-chunk conditioning a chunk absorbs from its neighbours. This loss is asymmetric. The direct readout of a cached chunk is recovered exactly and for free by the standard state-merge. What remains is a diffuse, low-rank residue concentrated in deep layers, invisible to single-hop retrieval but precisely what multi-hop reasoning binds on. Blind reuse therefore leaves single-hop recall intact while halving multi-hop accuracy; this is the failure mode prior position-independent caches, designed for single-context or single-image reuse, do not address. We repair it with a small, training-free low-rank conditioning patch stored alongside each position-free chunk. Reuse reduces to one operator across MLA, GQA, and MHA: exact RoPE re-rotation to any target position, plus the patch that restores cross-chunk binding. This makes three window operations cheap: reorder (one patch serves every ordering of a cached set), sliding-window survival (surviving chunks relocate via rotation only, zero re-encode), and recall (an evicted chunk is rehydrated by its patch, never re-encoded). A rank-m patch recovers full task accuracy on cross-chunk-binding benchmarks, MM-NIAH across two attention families and two-page doc-QA, at a fraction of the KV footprint, and reconstructs re-prefill KV to within bf16 rounding in a production SGLang kernel across six backbones. The conditioning signal is strongest in redundant vision and video streams, making our solution most impactful where multimodal agents spend their recompute budget.",
+          "reason": "近 30 天；关键词：cs.DC, kv-cache, multimodal。Multimodal agents repeatedly re-examine the same video frames, UI screenshots, and rendered artifacts as their context window slid...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "kv-cache",
+            "multimodal",
+            "prefill",
+            "production",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-22T16:47:00Z",
+          "url": "https://arxiv.org/abs/2606.23581v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.23581v1"
+        },
+        {
+          "id": "arxiv-2606.23521v1",
+          "title": "Concordia: JIT-Compiled Persistent-Kernel Checkpointing for Fault-Tolerant LLM Inference",
+          "authors": [
+            "Yuhang Gan",
+            "Yiwei Yang",
+            "Yuyi Li",
+            "Xiangyu Gao",
+            "Yichen Wang",
+            "Rain Jiang",
+            "Xiaoning Ding",
+            "Andi Quinn",
+            "Chen Qian"
+          ],
+          "summary": "Long-running LLM agents keep valuable state resident on GPUs: KV caches, request schedulers, communication state, and sometimes online adapters. Losing this state after a GPU or communicator failure can discard minutes to hours of work, yet existing recovery mechanisms either restart the whole serving stack or require application-specific checkpoint logic inside every attention and runtime component. This paper argues that fault tolerance for such workloads needs a GPU-resident execution context: checkpoint hooks must run at device synchronization points, observe binary kernels that frameworks and libraries actually execute, and recover without putting the host CPU on the critical path. We present Concordia, a runtime that uses a device-resident persistent kernel as the substrate for fault-tolerant LLM inference. Concordia interposes on GPU module loading and supports PTX- and SASS-level instrumentation, allowing checkpoint and pause hooks to be inserted below framework code and library boundaries. For each registered LLM state region, Concordia JIT-compiles a specialized delta-checkpoint handler -- for example, a KV-block scanner, adapter-page scanner, or recovery applier -- and hot-swaps it into the persistent kernel's operator table. The persistent kernel consumes a lock-free ring buffer of compute, checkpoint, append-log, and recovery tasks, so the same always-on executor triggers dirty-page detection, stages deltas, and appends committed records to a CPU-visible log in CXL memory or host DRAM.",
+          "reason": "近 30 天；关键词：cs.DC, inference, kv-cache。Long-running LLM agents keep valuable state resident on GPUs: KV caches, request schedulers, communication state, and sometimes on...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "inference",
+            "kv-cache",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-22T16:06:11Z",
+          "url": "https://arxiv.org/abs/2606.23521v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.23521v1"
+        },
+        {
+          "id": "arxiv-2606.23419v1",
+          "title": "GRINQH: Graded Input-based Quantization Hierarchy for Efficient LLM Generation",
+          "authors": [
+            "Jette Oberländer",
+            "Jan Finkbeiner",
+            "Catherine M. Schöfmann",
+            "Emre Neftci"
+          ],
+          "summary": "Autoregressive decoding with LLMs is primarily bottlenecked by GPU memory bandwidth, especially in edge-computing settings. While quantization is essential for mitigating this bottleneck, most existing methods treat inference as a uniform process and fail to account for the asymmetry between the compute-bound prefill stage and the memory-bound decoding stage. We propose GRINQH (GRaded INput-based Quantization Hierarchy), a weight-only post-training quantization framework that accelerates decoding by unifying quantization and sparsification. GRINQH leverages activation magnitudes as a proxy for computational importance to dynamically assign weight channels to different precision levels, enabling flexible average bit widths during decoding. Evaluated on Llama3 and Qwen3 models, GRINQH outperforms state-of-the-art fixed- and mixed-precision baselines at comparable 3- and 4-bit settings, even enabling effective 2-bit generation. We experimentally verify theoretical speedups by leveraging a hierarchical nested memory layout for multi-precision storage in a custom GPU kernel. Ultimately, GRINQH establishes a new state-of-the-art Pareto frontier for LLM generation, enabling a dynamic trade-off between generation quality and inference speed.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Autoregressive decoding with LLMs is primarily bottlenecked by GPU memory bandwidth, especially in edge-computing settings. While...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "inference",
+            "llm",
+            "pareto",
+            "prefill",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-22T14:42:34Z",
+          "url": "https://arxiv.org/abs/2606.23419v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.23419v1"
+        },
+        {
+          "id": "arxiv-2606.23406v1",
+          "title": "HyperQuant: A Rate-Distortion-Optimal Quantization Pipeline for Large Language and Diffusion Models",
+          "authors": [
+            "Yuval Domb",
+            "Hadar Sackstein",
+            "Tomer Solberg"
+          ],
+          "summary": "We present HyperQuant (Hadamard, optimallY Packing, Entropy Rice-coding), a unified post-training quantization pipeline for the weights and the KV cache of large language and diffusion transformers. Across a suite of self-contained experiments (Table 1), HyperQuant outperforms the recent HIGGS scheme at every operating point from 3 to 5 bits per scalar (bps) on weights, and beats both TurboQuant and OCTOPUS on KV quantization down to 1.7 bps. Beyond the LLM setting, HyperQuant quantizes the 19B-parameter LTX-2 DiT video model with no observable per-frame artifacts. End-to-end on an H100 at 4 bps, HyperQuant compresses the linear weights ~3.9x and the KV cache ~3.79x at near-lossless quality. HyperQuant combines four known ideas into a single construction: (i) a per-tile Randomized Hadamard Transform that makes the per-coordinate distribution of weights and activations approximately Gaussian; (ii) quantization to a low-dimensional optimal lattice (E8, D4, A2, or Z); (iii) lossless bit-stripping and near-entropy-optimal variable-length Rice coding of the lattice indices; and (iv) bias-correction methods for the KV cache that keep the reconstruction unbiased under inner products, preserving attention semantics. We further integrate the pipeline with 8-bit and 4-bit Tensor-Core MMA paths (fp8-e4m3, int8, nvfp4, mxfp4), and find that int8 beats fp8 on the post-RHT lattice output. Project page: https://moonmath.ai/hyperquant/",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, kv-cache。We present HyperQuant (Hadamard, optimallY Packing, Entropy Rice-coding), a unified post-training quantization pipeline for the we...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.LG",
+            "kv-cache",
+            "llm",
+            "quantization",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-06-22T14:30:47Z",
+          "url": "https://arxiv.org/abs/2606.23406v1",
+          "pdfUrl": "https://arxiv.org/pdf/2606.23406v1"
+        },
+        {
+          "id": "arxiv-2606.03866",
+          "title": "Taiji: Pareto Optimal Policy Optimization with Semantics-IDs Trade-off for Industrial LLM-Enhanced Recommendation",
+          "authors": [
+            "Yuecheng Li",
+            "Zeyu Song",
+            "Jing Yao",
+            "Chi Lu",
+            "Peng Jiang",
+            "Kun Gai"
+          ],
+          "summary": "Presents Taiji, an industrial LLM-as-Enhancer recommender framework that aligns LLM semantic rewards with collaborative ID preference rewards through Pareto Optimal Policy Optimization. It reports offline and online A/B validation and deployment on Kuaishou advertising traffic.",
+          "reason": "近 30 天工业推荐主线：Kuaishou 广告平台、LLM4Rec、Semantic IDs、RL 对齐和线上 A/B 都在一篇里。",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "llm4rec",
+            "semantic-id",
+            "rl-alignment",
+            "online-ab"
+          ],
+          "signal": 99,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-06-02T16:39:06Z",
+          "url": "https://arxiv.org/abs/2606.03866",
+          "pdfUrl": "https://arxiv.org/pdf/2606.03866"
+        },
+        {
+          "id": "arxiv-2604.05314",
+          "title": "Next-Scale Generative Reranking: A Tree-based Generative Rerank Method at Meituan",
+          "authors": [
+            "Shuli Wang",
+            "Changhao Li",
+            "Ke Fan",
+            "Senjie Kou",
+            "Junwei Yin",
+            "Chi Wang",
+            "Yinhua Zhu",
+            "Haitao Wang",
+            "Xingxing Wang"
+          ],
+          "summary": "Proposes NSGR, a tree-based generative reranking framework that expands recommendation lists from coarse to fine and uses a multi-scale evaluator to guide generation. The method is reported as deployed on Meituan food delivery.",
+          "reason": "近 90 天工业重排方向：Meituan 线上部署，聚焦多阶段推荐里的 generative reranking 和全局/局部列表建模。",
+          "area": "推荐算法",
+          "tags": [
+            "meituan",
+            "reranking",
+            "generative-recommendation",
+            "production"
+          ],
+          "signal": 96,
+          "source": "Meituan/arXiv",
+          "publishedAt": "2026-04-07T01:35:20Z",
+          "url": "https://arxiv.org/abs/2604.05314",
+          "pdfUrl": "https://arxiv.org/pdf/2604.05314"
+        },
+        {
+          "id": "arxiv-2604.02684",
+          "title": "MBGR: Multi-Business Prediction for Generative Recommendation at Meituan",
+          "authors": [
+            "Changhao Li",
+            "Junwei Yin",
+            "Zhilin Zeng",
+            "Senjie Kou",
+            "Shuli Wang",
+            "Wenshuai Chen",
+            "Yinhua Zhu",
+            "Haitao Wang",
+            "Xingxing Wang"
+          ],
+          "summary": "Builds a multi-business generative recommendation framework with business-aware semantic IDs, business-specific prediction and dynamic label routing. It reports offline and online validation on Meituan food delivery.",
+          "reason": "近 90 天工业生成式推荐：重点是多业务场景、Semantic ID 空间隔离和生产验证。",
+          "area": "推荐算法",
+          "tags": [
+            "meituan",
+            "multi-business",
+            "semantic-id",
+            "generative-recommendation",
+            "online-ab"
+          ],
+          "signal": 95,
+          "source": "Meituan/arXiv",
+          "publishedAt": "2026-04-03T03:26:36Z",
+          "url": "https://arxiv.org/abs/2604.02684",
+          "pdfUrl": "https://arxiv.org/pdf/2604.02684"
+        },
+        {
+          "id": "arxiv-2604.17459",
+          "title": "Transparent and Controllable Recommendation Filtering via Multimodal Multi-Agent Collaboration",
+          "authors": [
+            "Chi Zhang",
+            "Zhipeng Xu",
+            "Jiahao Liu",
+            "Dongsheng Li",
+            "Hansu Gu",
+            "Peng Zhang",
+            "Ning Gu",
+            "Tun Lu"
+          ],
+          "summary": "Introduces a controllable recommendation filtering framework combining end-to-cloud collaboration, multimodal perception, multi-agent adjudication and editable preference graphs to reduce over-filtering in personalized feeds.",
+          "reason": "近 90 天 Microsoft Research 推荐治理方向：不是单纯 CTR，而是个性化 feed 的可控过滤、透明度和多模态安全边界。",
+          "area": "推荐算法",
+          "tags": [
+            "microsoft",
+            "controllable-recommendation",
+            "multimodal",
+            "agent",
+            "feed"
+          ],
+          "signal": 92,
+          "source": "Microsoft Research/arXiv",
+          "publishedAt": "2026-04-19T14:19:28Z",
+          "url": "https://arxiv.org/abs/2604.17459",
+          "pdfUrl": "https://arxiv.org/pdf/2604.17459"
+        }
+      ]
+    },
     {
       "date": "2026-06-23",
       "generatedAt": "2026-06-23T07:11:08.422865+08:00",
