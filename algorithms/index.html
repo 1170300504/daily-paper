@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="算法导读：以问题、证明、伪代码和实验线索重读《算法导论》。" />
+    <title>算法导读 · 经典教材导读</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="site-shell">
+      <header class="topbar" aria-label="站点导航">
+        <a class="brand" href="#top" aria-label="算法导读首页">
+          <span class="brand-mark">Σ</span>
+          <span><strong>算法导读</strong><small>INTRODUCTION TO ALGORITHMS · NOTES</small></span>
+        </a>
+        <div class="topbar-actions">
+          <nav class="site-switcher" aria-label="内容导航">
+            <a class="site-switcher-link" href="../">论文</a>
+            <a class="site-switcher-link" href="../textbooks/">经典教材导读</a>
+          </nav>
+          <a class="progress-chip" href="#routes" aria-label="查看学习进度"><span id="progressCount">0</span><b id="progressText">0 / 13</b></a>
+          <button class="theme-button" id="themeToggle" type="button" aria-label="切换主题"><i data-lucide="moon"></i></button>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="masthead" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow">A guide for thinking in algorithms</p>
+            <h1 id="page-title">不只问它<br /><em>能不能算出来。</em></h1>
+            <p class="lede">还要问：它为什么正确？增长得有多快？有没有更聪明的结构可利用？这份导读把算法的证明与实现，放回同一张路线图里。</p>
+          </div>
+          <figure class="proof-note" aria-label="算法证明的三个问题">
+            <p>// a useful algorithm has three stories</p>
+            <div><span>01</span><b>specification</b><small>它要解决什么问题？</small></div>
+            <div><span>02</span><b>invariant</b><small>为什么每一步没有走偏？</small></div>
+            <div><span>03</span><b>complexity</b><small>规模变大后代价如何增长？</small></div>
+          </figure>
+        </section>
+
+        <section class="method-strip" aria-label="阅读方法"><span>MODEL</span><p>先定义问题</p><span>PROVE</span><p>再抓住不变量</p><span>MEASURE</span><p>最后讨论代价</p></section>
+
+        <section class="study-layout" id="routes" aria-label="算法学习路线">
+          <aside class="route-sidebar" aria-label="学习单元目录">
+            <div class="sidebar-heading"><div><p>THE ROUTES</p><h2>算法地图</h2></div><span id="visibleCount">13</span></div>
+            <label class="search-box"><i data-lucide="search"></i><input id="searchInput" type="search" placeholder="搜索主题、方法或关键词" autocomplete="off" /></label>
+            <div class="filter-row" role="group" aria-label="阅读状态筛选"><button type="button" data-filter="all" aria-pressed="true">全部</button><button type="button" data-filter="unread" aria-pressed="false">未读</button><button type="button" data-filter="read" aria-pressed="false">已读</button></div>
+            <nav id="routeNav" class="route-nav" aria-label="算法主题"></nav>
+          </aside>
+          <article id="reader" class="reader" aria-live="polite"></article>
+        </section>
+      </main>
+
+      <footer><span>算法导读 · 独立学习笔记，不替代原书</span><a href="../textbooks/">回到经典教材导读 <i data-lucide="arrow-up-right"></i></a></footer>
+    </div>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

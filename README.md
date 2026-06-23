@@ -2,7 +2,7 @@
 
 一个可以直接部署到 GitHub Pages 的静态论文阅读面板。页面优先读取 `data/history.json`，支持按日期回看历史论文、搜索、领域筛选、排序和本地收藏。
 
-同一站点还包含独立的 [CSAPP Codebook](csapp/)；论文面板仍保留在根目录。
+导航一级只分为“论文”和“经典教材导读”：论文面板保留在根目录；[经典教材导读](textbooks/) 收录 [CSAPP Codebook](csapp/) 与 [算法导读](algorithms/)。
 
 ## 本地预览
 
@@ -10,7 +10,7 @@
 python3 -m http.server 4173
 ```
 
-然后打开 `http://localhost:4173`；CSAPP Codebook 在 `http://localhost:4173/csapp/`。
+然后打开 `http://localhost:4173`；经典教材导读在 `http://localhost:4173/textbooks/`。
 
 ## 发布到 username.github.io
 
@@ -52,6 +52,13 @@ python3 -m http.server 4173
 │   ├── index.html
 │   ├── styles.css
 │   └── app.js
+├── algorithms/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+├── textbooks/
+│   ├── index.html
+│   └── styles.css
 ├── assets/
 │   ├── study-buddies.png
 │   ├── research-desk.jpg
