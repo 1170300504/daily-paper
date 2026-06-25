@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="CS336 LM Forge：从 tokenizer、Transformer、训练系统、scaling 到评估对齐，重走 Language Modeling from Scratch。"
+    />
+    <title>CS336 LM Forge · 经典教材导读</title>
+    <link rel="preload" href="../assets/cs336-hero.png?v=20260625-cs336" as="image" />
+    <link rel="stylesheet" href="styles.css?v=20260625-cs336" />
+  </head>
+  <body>
+    <div class="grid-glow" aria-hidden="true"></div>
+    <div class="site-shell">
+      <header class="topbar" aria-label="站点导航">
+        <a class="brand" href="#top" aria-label="CS336 LM Forge 首页">
+          <span class="brand-mark">λ</span>
+          <span><strong>CS336 LM Forge</strong><small>LANGUAGE MODELING FROM SCRATCH</small></span>
+        </a>
+        <div class="topbar-actions">
+          <nav class="site-switcher" aria-label="内容导航">
+            <a class="site-switcher-link" href="../">论文</a>
+            <a class="site-switcher-link" href="../textbooks/">经典教材导读</a>
+          </nav>
+          <a class="progress-chip" href="#modules" aria-label="查看学习进度">
+            <span id="progressCount">0</span><b id="progressText">0 / 10</b>
+          </a>
+          <button class="theme-button" id="themeToggle" type="button" aria-label="切换主题">
+            <i data-lucide="moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span> Build the whole stack</p>
+            <h1 id="page-title">不是调用模型，<em>而是把模型造出来。</em></h1>
+            <p class="lede">
+              这份 CS336 导读把 “Language Modeling from Scratch” 拆成一条可执行路线：
+              从原始数据和 tokenizer 开始，写出 Transformer，训得动、训得快、训得明白，最后再认真评估它。
+            </p>
+            <div class="hero-actions">
+              <a class="primary-link" href="#modules">进入工程路线 <i data-lucide="arrow-down-right"></i></a>
+              <a class="secondary-link" href="https://cs336.stanford.edu/" target="_blank" rel="noreferrer">
+                Stanford CS336 官方页 <i data-lucide="arrow-up-right"></i>
+              </a>
+            </div>
+            <dl class="hero-metrics" aria-label="内容概览">
+              <div><dt>modules</dt><dd>10</dd></div>
+              <div><dt>GPT 图</dt><dd>11</dd></div>
+              <div><dt>切片</dt><dd>10</dd></div>
+            </dl>
+          </div>
+          <figure class="hero-art">
+            <img
+              src="../assets/cs336-hero.png?v=20260625-cs336"
+              alt="从网页数据到 tokenizer、Transformer、GPU 训练、scaling、推理服务与评估的语言模型系统流水线"
+              fetchpriority="high"
+            />
+            <figcaption>data → model → systems → evaluation</figcaption>
+          </figure>
+        </section>
+
+        <section class="contract-strip" aria-label="学习约定">
+          <div><span>SPEC</span><p>先写清输入、输出、资源预算</p></div>
+          <div><span>BUILD</span><p>用小模型验证每个组件</p></div>
+          <div><span>MEASURE</span><p>每次优化都留下证据</p></div>
+          <div><span>FAIL</span><p>把失败样本变成回归测试</p></div>
+        </section>
+
+        <section class="study-layout" id="modules" aria-label="CS336 学习单元">
+          <aside class="module-sidebar" aria-label="学习单元目录">
+            <div class="sidebar-heading">
+              <div>
+                <p>THE BUILD MAP</p>
+                <h2>从零造模路线</h2>
+              </div>
+              <span id="visibleCount">10</span>
+            </div>
+            <label class="search-box">
+              <i data-lucide="search"></i>
+              <input id="searchInput" type="search" placeholder="搜索 tokenizer、GPU、scaling…" autocomplete="off" />
+            </label>
+            <div class="filter-row" role="group" aria-label="阅读状态筛选">
+              <button type="button" data-filter="all" aria-pressed="true">全部</button>
+              <button type="button" data-filter="unread" aria-pressed="false">未读</button>
+              <button type="button" data-filter="read" aria-pressed="false">已读</button>
+            </div>
+            <nav id="moduleNav" class="module-nav" aria-label="CS336 模块"></nav>
+            <p class="key-hint"><i data-lucide="command"></i> 用 <kbd>[</kbd> <kbd>]</kbd> 切换单元</p>
+          </aside>
+
+          <article id="reader" class="reader" aria-live="polite"></article>
+        </section>
+      </main>
+
+      <footer>
+        <span>CS336 LM Forge · 独立学习笔记，不替代 Stanford CS336 官方课程</span>
+        <a href="../textbooks/">回到经典教材导读 <i data-lucide="arrow-up-right"></i></a>
+      </footer>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="app.js?v=20260625-cs336"></script>
+  </body>
+</html>
