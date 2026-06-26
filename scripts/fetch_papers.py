@@ -28,7 +28,7 @@ LOCAL_TZ = ZoneInfo("Asia/Shanghai")
 REQUEST_PAUSE_SECONDS = 8
 MAX_RECENT_DAYS = 90
 FRESH_DAYS = 30
-DEFAULT_REPEAT_WINDOW_DAYS = 14
+DEFAULT_REPEAT_WINDOW_DAYS = 90
 CLASSIC_PAPERS_PER_DAY = 2
 BALANCED_AREAS = ("推荐算法", "LLM 推理优化")
 
@@ -616,6 +616,11 @@ def main() -> int:
     parser.add_argument("--history-output", type=Path, default=HISTORY_OUTPUT)
     parser.add_argument("--history-days", type=int, default=90)
     parser.add_argument("--repeat-window-days", type=int, default=DEFAULT_REPEAT_WINDOW_DAYS)
+    parser.add_argument(
+        "--allow-history-repeats",
+        action="store_true",
+        help="Fill empty slots with papers already shown inside the repeat window",
+    )
     parser.add_argument("--skip-fetch", action="store_true", help="Use curated seed papers without calling arXiv")
     parser.add_argument("--date", help="Local date to generate, in YYYY-MM-DD format")
     args = parser.parse_args()
@@ -628,7 +633,7 @@ def main() -> int:
     today = now.date().isoformat()
     seen_id_ages = load_seen_id_ages(args.history_output, today, args.repeat_window_days)
     papers: dict[str, Paper] = {}
-    for paper in curated_papers(now_utc):
+    for paper in curated_papers(now_utc, seen_id_ages, args.allow_history_repeats):
         merge_paper(papers, paper)
 
     fetched_count = 0
@@ -642,7 +647,13 @@ def main() -> int:
         print("No papers fetched; keeping existing data untouched.", file=sys.stderr)
         return 0
 
-    ranked = rank_balanced_areas(papers.values(), args.limit, seen_id_ages, args.repeat_window_days)
+    ranked = rank_balanced_areas(
+        papers.values(),
+        args.limit,
+        seen_id_ages,
+        args.repeat_window_days,
+        args.allow_history_repeats,
+    )
     source = "curated industry radar + arXiv API" if fetched_count else "curated industry radar"
     payload = {
         "generatedAt": now.isoformat(),
@@ -663,9 +674,14 @@ def generation_time(date_text: str | None) -> datetime:
     return datetime.combine(date, datetime_time(hour=6), LOCAL_TZ)
 
 
-def curated_papers(now_utc: datetime) -> list[Paper]:
+def curated_papers(
+    now_utc: datetime,
+    seen_id_ages: dict[str, int] | None = None,
+    allow_seen_repeats: bool = False,
+) -> list[Paper]:
     recent_papers = []
     classic_papers = []
+    seen_ids = seen_id_ages or {}
     for spec in CURATED_PAPERS:
         mode = spec["mode"]
         published = str(spec["published_at"])
@@ -678,7 +694,13 @@ def curated_papers(now_utc: datetime) -> list[Paper]:
             classic_papers.append(paper)
         else:
             recent_papers.append(paper)
-    return recent_papers + classic_papers[:CLASSIC_PAPERS_PER_DAY]
+
+    classic_pool = (
+        classic_papers
+        if allow_seen_repeats
+        else [paper for paper in classic_papers if paper_identity(paper.id) not in seen_ids]
+    )
+    return recent_papers + classic_pool[:CLASSIC_PAPERS_PER_DAY]
 
 
 def load_seen_id_ages(path: Path, today: str, repeat_window_days: int) -> dict[str, int]:
@@ -705,15 +727,16 @@ def load_seen_id_ages(path: Path, today: str, repeat_window_days: int) -> dict[s
         for paper in entry.get("papers", []):
             paper_id = paper.get("id")
             if paper_id:
-                paper_id = str(paper_id)
+                paper_id = paper_identity(str(paper_id))
                 seen[paper_id] = min(seen.get(paper_id, age_days_value), age_days_value)
     return seen
 
 
 def merge_paper(papers: dict[str, Paper], paper: Paper) -> None:
-    current = papers.get(paper.id)
+    key = paper_identity(paper.id)
+    current = papers.get(key)
     if current is None or (paper.signal, paper.published_at) > (current.signal, current.published_at):
-        papers[paper.id] = paper
+        papers[key] = paper
 
 
 def rank_balanced_areas(
@@ -721,18 +744,22 @@ def rank_balanced_areas(
     limit: int,
     seen_id_ages: dict[str, int],
     repeat_window_days: int,
+    allow_seen_repeats: bool = False,
 ) -> list[Paper]:
     ranked = sorted(candidates, key=lambda paper: (paper.signal, paper.published_at), reverse=True)
     selection_ranked = sorted(
         ranked,
         key=lambda paper: (
-            paper.id not in seen_id_ages,
-            seen_id_ages.get(paper.id, repeat_window_days + 1),
+            paper_identity(paper.id) not in seen_id_ages,
+            seen_id_ages.get(paper_identity(paper.id), repeat_window_days + 1),
             paper.signal,
             paper.published_at,
         ),
         reverse=True,
     )
+    if not allow_seen_repeats:
+        selection_ranked = [paper for paper in selection_ranked if paper_identity(paper.id) not in seen_id_ages]
+
     if limit <= 0:
         return []
 
@@ -745,10 +772,11 @@ def rank_balanced_areas(
         target = base_target + (1 if area_index < extra_slots else 0)
         area_count = 0
         for paper in selection_ranked:
-            if paper.area != area or paper.id in used:
+            key = paper_identity(paper.id)
+            if paper.area != area or key in used:
                 continue
             selected.append(paper)
-            used.add(paper.id)
+            used.add(key)
             area_count += 1
             if area_count >= target:
                 break
@@ -756,9 +784,10 @@ def rank_balanced_areas(
     for paper in selection_ranked:
         if len(selected) >= limit:
             break
-        if paper.id not in used:
+        key = paper_identity(paper.id)
+        if key not in used:
             selected.append(paper)
-            used.add(paper.id)
+            used.add(key)
 
     return sorted(selected, key=lambda paper: (paper.signal, paper.published_at), reverse=True)[:limit]
 
@@ -798,7 +827,7 @@ def parse_feed(feed: bytes, area: str, now_utc: datetime) -> list[Paper]:
     root = ET.fromstring(feed)
     papers = []
     for entry in root.findall("atom:entry", NS):
-        arxiv_id = clean_arxiv_id(text(entry, "atom:id"))
+        arxiv_id = canonical_arxiv_id(clean_arxiv_id(text(entry, "atom:id")))
         title = compact(text(entry, "atom:title"))
         summary = compact(text(entry, "atom:summary"))
         published = text(entry, "atom:published")
@@ -841,6 +870,17 @@ def text(entry: ET.Element, selector: str) -> str:
 
 def clean_arxiv_id(url: str) -> str:
     return url.rstrip("/").split("/")[-1]
+
+
+def canonical_arxiv_id(arxiv_id: str) -> str:
+    return re.sub(r"v\d+$", "", arxiv_id.strip(), flags=re.IGNORECASE)
+
+
+def paper_identity(paper_id: str) -> str:
+    value = paper_id.strip().lower()
+    if value.startswith("arxiv-"):
+        return f"arxiv-{canonical_arxiv_id(value.removeprefix('arxiv-'))}"
+    return value
 
 
 def compact(value: str) -> str:

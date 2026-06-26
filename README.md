@@ -32,7 +32,8 @@ python3 -m http.server 4173
 - 每天优先让推荐算法和 LLM 推理优化数量接近；默认 10 篇时各 5 篇，候选不足的一侧会由另一侧补齐。
 - LLM 推理优化会从经典池轮换两篇，同时补最近 90 天、优先 30 天内的推理系统论文；AI/互联网大厂和强基建信号（Microsoft/Azure、NVIDIA、Google/DeepMind、Meta、Alibaba、Huawei 等）会额外加权。
 - `CURATED_PAPERS` 用来固定当天明确想读的高价值论文；`mode: "recent"` 默认超过 90 天后自动过期，少数高信号 LLM 基建论文可单独设置 `max_age_days`，`mode: "classic"` 不受时间限制。
-- 脚本会读取 `data/history.json`，默认优先避开 14 天内推过的论文；如果某一类候选不足，会把近期推过的论文作为兜底来维持配比。可用 `--repeat-window-days` 调整。
+- 脚本会读取 `data/history.json`，默认严格避开最近 90 天内推过的论文；如果新候选不足，会少出几篇，不再用旧论文兜底。可用 `--repeat-window-days` 调整窗口，或加 `--allow-history-repeats` 恢复兜底。
+- arXiv 论文 ID 会统一去掉版本后缀，比如 `2606.06260v1` 和 `2606.06260` 会被当成同一篇，避免同一论文换版本后重复出现。
 - 漏跑日期可以补档，例如 `python3 scripts/fetch_papers.py --date 2026-06-07 --limit 10`。
 
 页面端的按钮在 `app.js` 的 `areaNames`，如果新增领域，两边名字保持一致即可。

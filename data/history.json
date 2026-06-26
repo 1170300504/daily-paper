@@ -1,278 +1,288 @@
 {
-  "generatedAt": "2026-06-26T07:06:57.088498+08:00",
+  "generatedAt": "2026-06-26T06:00:00+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
     {
       "date": "2026-06-26",
-      "generatedAt": "2026-06-26T07:06:57.088498+08:00",
+      "generatedAt": "2026-06-26T06:00:00+08:00",
       "source": "curated industry radar + arXiv API",
       "papers": [
         {
-          "id": "arxiv-2606.06260",
-          "title": "OneReason Technical Report",
+          "id": "arxiv-2606.27347",
+          "title": "Mapping Political-Elite Networks in Europe with a Multilingual Joint Entity-Relation Extraction Pipeline",
           "authors": [
-            "OneRec Team",
-            "Biao Yang",
-            "Boyang Ding",
-            "Chenglong Chu",
-            "Dunju Zang",
-            "Fei Pan",
-            "Han Li",
-            "Hao Jiang"
+            "Kirill Solovev",
+            "Jana Lasser"
           ],
-          "summary": "Extends the OneRec family toward reasoning-style generative recommendation. It argues that recommendation reasoning needs itemic-token perception and cognition over user behavior sequences, then introduces OneReason with perception-focused pre-training, three-level cognition-enhanced CoT SFT and specialize-then-unify RL.",
-          "reason": "快手 OneRec 系列最新推荐推理方向：2026-06-04 新稿，把生成式推荐从 scaling 推到 reasoning，重点看 item token 语义感知、用户兴趣认知、CoT 格式和 RL 训练配方。",
+          "summary": "Whether political elites organise into rent-seeking coalitions that capture public resources or civic networks that sustain governance is a central question in comparative politics. Yet observing these complex, informal, and adversarial ties at scale has historically required intensive manual coding, while automated text-as-data methods have largely been limited to simple co-occurrence. Recent large language model (LLM) approaches offer a path forward but often rely on proprietary APIs, lack cross-lingual capability, and struggle with scalable entity resolution. We present a modular, fully open-weight pipeline for multilingual joint entity-relation extraction that builds signed, temporal knowledge graphs from massive unstructured news corpora. It combines span-based named-entity recognition (NER) with a three-stage linking cascade mapping mentions to language-independent Wikidata identifiers; a high-throughput, ontology-constrained mixture-of-experts model then uses guided decoding to extract directed, signed relationships grounded in a domain ontology. A full-coverage spot-check against a 3491-relation gold standard shows high textual correctness (68.2% strict to 93.7% lenient). Two large-scale case studies validate the pipeline against the public record. In Austria, it reconstructs a political party's complete lifecycle, dating internal fractures and tracking personnel into successor factions and court convictions. In a Polish corpus, it uncovers the overlapping economic and governance networks of state-enterprise patronage, alongside the structurally balanced, signed conflict network of the polarized Civic Platform (Platforma Obywatelska, PO)--Law and Justice (Prawo i Sprawiedliwość, PiS) duopoly. By bridging raw multilingual text and structured relational data, our framework provides a robust, replicable foundation for cross-national empirical computational social science.",
+          "reason": "近 30 天；关键词：cs.CL, llm, serving。Whether political elites organise into rent-seeking coalitions that capture public resources or civic networks that sustain govern...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-25T17:51:59Z",
+          "url": "https://arxiv.org/abs/2606.27347",
+          "pdfUrl": "https://arxiv.org/pdf/2606.27347v1"
+        },
+        {
+          "id": "arxiv-2606.27275",
+          "title": "How Surprising Is Historical Italian to Language Models? Tokenization Tax, Comprehension Tax, and a Simple Mitigation",
+          "authors": [
+            "Maria Levchenko"
+          ],
+          "summary": "Large language models (LLMs) are increasingly critical to digital library workflows, yet their ability to process historical language remains poorly understood. Historical difficulty is typically treated as a monolithic barrier, conflating orthographic variation, linguistic distance, and pretraining exposure. In this paper, we propose a diagnostic framework that decomposes this difficulty into four distinct dimensions: tokenization cost, predictive uncertainty (surprisal), semantic robustness, and context sensitivity. We evaluate this framework on three datasets spanning three centuries: (1) a newly curated corpus of 17th-century Italian texts (1610-1689) digitized from original page images; (2) canonical 19th-century Italian \"I Promessi Sposi\" serving as a high-exposure control; and (3) 18th-century Russian civil print books as a contrastive orthographic stress test. Our results reveal a distinct dissociation between encoding cost and comprehension. While Russian and early modern Italian incur comparable tokenization penalties (25-30% inflation), their predictive difficulty diverges sharply. 17th-century Italian is on average 2.4 times more surprising than its modern equivalent - with academic prose reaching 3.2 times - whereas Russian shows only a modest increase. But predictive uncertainty does not imply representational degradation: embedding similarity remains robust (> 0.85) across all datasets, confirming that models can represent historical meaning even when generation is unstable. Finally, we demonstrate that a minimal temporal context prompt reduces historical surprisal by approximately 60%, offering a simple, model-agnostic mitigation. These findings suggest that while historical text imposes a consistent encoding tax, digital libraries can safely deploy LLMs for semantic retrieval tasks, provided that generative applications are carefully adapted.",
+          "reason": "近 30 天；关键词：cs.CL, dataset, llm。Large language models (LLMs) are increasingly critical to digital library workflows, yet their ability to process historical langu...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "dataset",
+            "llm",
+            "retrieval",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-25T16:52:21Z",
+          "url": "https://arxiv.org/abs/2606.27275",
+          "pdfUrl": "https://arxiv.org/pdf/2606.27275v1"
+        },
+        {
+          "id": "arxiv-2606.27274",
+          "title": "BetXplain: An Explanation-Annotated Dataset for Detecting Manipulative Betting Advertisements on Social Media",
+          "authors": [
+            "MSVPJ Sathvik",
+            "Parmitha Vangapadu",
+            "Nishit Rane",
+            "Sathwik Narkedimilli",
+            "Mark Lee",
+            "Akrati Saxena"
+          ],
+          "summary": "The promotion of betting applications on social media platforms has increased significantly in recent years. Many of these advertisements use persuasive techniques that may mislead users, encourage risky behavior, and potentially influence users' mental well-being. However, research on the automated detection of manipulative and deceptive betting advertisements remains limited due to the lack of publicly available annotated datasets. In this work, we introduce a new dataset of betting-related advertisements collected from two widely used social media platforms, Instagram and Reddit. The advertisements were manually annotated for manipulative and deceptive advertising practices. In addition to classification labels, the dataset includes human-provided explanations that describe the reasoning behind each annotation, enabling research into explainable approaches to detecting manipulative advertising. Furthermore, we analyze the strategies commonly used in betting advertisements and examine how these persuasive tactics may impact users' mental health. The proposed framework can also enable practical applications such as browser plugins that warn users about manipulative betting advertisements and automated web crawlers that help regulatory authorities monitor and detect such promotions online.",
+          "reason": "近 30 天；公司信号：Meta；推荐/排序/广告方向；关键词：meta, cs.LG, advertising。The promotion of betting applications on social media platforms has increased significantly in recent years. Many of these adverti...",
+          "area": "推荐算法",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "advertising",
+            "dataset"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-06-25T16:51:53Z",
+          "url": "https://arxiv.org/abs/2606.27274",
+          "pdfUrl": "https://arxiv.org/pdf/2606.27274v1"
+        },
+        {
+          "id": "arxiv-2606.27058",
+          "title": "UniFormer: Efficient and Unified Model-Centric Scaling for Industrial Recommendation",
+          "authors": [
+            "Bo Chen",
+            "Jinlong Jiao",
+            "Tijian Hu",
+            "Ruihao Zhang",
+            "Yanzhi Liu",
+            "Chenghou Jin",
+            "Qinglin Jia",
+            "Baixuan He",
+            "Hechang Pan",
+            "Yiwu Liu",
+            "Jian Liang",
+            "Chaoyi Ma",
+            "Ruiming Tang",
+            "Han Li",
+            "Kun Gai"
+          ],
+          "summary": "Recently, substantial progress has been made in industrial recommendation through component-centric model scaling, where individual components such as behavior modeling, feature interaction, or task modeling are independently scaled to improve model capacity. Although recent methods such as HyFormer and OneTrans further explore cross-module co-scaling by jointly modeling behavior and interaction, their designs are still confined to the feature space and lack a unified model-centric scaling framework over the overall modeling space. In this paper, we propose UniFormer, an efficient and unified model-centric scaling framework for industrial recommender systems. To improve efficiency, UniFormer decomposes the overall modeling space into feature and task spaces, which are modeled by stacked Feature-space Interaction Modules and Task-space Interaction Modules, respectively. Moreover, UniFormer introduces semantic-based tokenization scheme to enable user-item decoupling, thereby achieving request-level inference acceleration. To prevent preference collapse, UniFormer employs multi-sequence cross-attention to separately capture heterogeneous behavior patterns, followed by the self-attention to enhance interaction modeling. Besides, dedicated multi-view FFNs are introduced to support flexible and scalable parameter scaling across different modeling components. Extensive online A/B testing in two production scenarios, Kuaishou and Kuaishou Lite, shows that UniFormer consistently improves user engagement and interaction metrics, achieving gains of +0.101%/+0.260% in App Stay Time and +0.729%/+1.113% in Watch Time, respectively.",
+          "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, efficient。Recently, substantial progress has been made in industrial recommendation through component-centric model scaling, where individua...",
           "area": "推荐算法",
           "tags": [
             "kuaishou",
-            "onereason",
-            "generative-recommendation",
-            "reasoning",
-            "cot",
-            "rl"
-          ],
-          "signal": 100,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-04T15:04:34Z",
-          "url": "https://arxiv.org/abs/2606.06260",
-          "pdfUrl": "https://arxiv.org/pdf/2606.06260"
-        },
-        {
-          "id": "arxiv-2606.26079v1",
-          "title": "Same Evidence, Different Answer: Auditing Order Sensitivity in Multimodal Large Language Models",
-          "authors": [
-            "Akshay Paruchuri",
-            "Sanmi Koyejo",
-            "Ehsan Adeli"
-          ],
-          "summary": "Standard benchmarks for multimodal large language models (MLLMs) score each item on one canonical ordering and miss whether order-irrelevant shuffling changes the answer, a baseline reliability property called for by emerging AI evaluation guidelines. We introduce Facet-Probe, a five-facet audit (option, evidence-chunk, document-rank, image-set, and mixed-modality ordering) of 18 frontier and open-weight MLLMs. A Bayesian item-response model separates ordering noise from per-facet bias, and a same-ordering control estimates the decoder-stochastic floor for observed flips. We find that none of the 18 MLLMs we audit are order-invariant: screened per-facet panel-mean flip rates span 24-50%. A Gemini same-ordering control at temperature 0 estimates a substantial ordering excess over a same-input decoder-noise floor in verified cells. Capability predicts but does not eliminate flips; the best model still flips on 13.4% of trials. In our Gemini mitigation tests, training-free prompt changes are modality-conditional and do not transfer from text to visual reasoning. These results suggest that prompt-level mitigation alone is unlikely to provide general order robustness, motivating future work on training-time and architectural approaches. We propose cross-ordering flip rate as a standard reporting axis for MLLMs.",
-          "reason": "近 30 天；公司信号：Google；关键词：google, cs.CL, llm。Standard benchmarks for multimodal large language models (MLLMs) score each item on one canonical ordering and miss whether order-...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "google",
-            "cs.CL",
-            "llm",
-            "multimodal"
-          ],
-          "signal": 99,
-          "source": "Google/arXiv",
-          "publishedAt": "2026-06-24T17:53:26Z",
-          "url": "https://arxiv.org/abs/2606.26079v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.26079v1"
-        },
-        {
-          "id": "arxiv-2606.25782v1",
-          "title": "Do Encoders Suffice? A Systematic Comparison of Encoder and Decoder Safety Judges for LLM Adversarial Evaluation",
-          "authors": [
-            "Han Jeon",
-            "Shiv Medler",
-            "Joseph Voyles",
-            "Matt Wood"
-          ],
-          "summary": "With the widespread adoption of large language models (LLMs) in chatbots and everyday applications, companies increasingly need guardrails that are effective while remaining low-cost and low-latency. Safety evaluation of LLM outputs has generally relied on LLM-based judges, which can be effective but are often slow and expensive to deploy at scale. In this paper, we evaluate whether fine-tuned modern encoder classifiers from the ModernBERT family, including ModernBERT and Ettin, can reliably identify harmful LLM outputs in user-model conversations without substantial performance loss relative to LLM-based judges. We benchmark these encoder classifiers against rule-based prefix matching, fine-tuned LLM classifiers, and LLM judges using a range of judge-prompting strategies across open-source adversarial datasets. The LLM judges include evaluation methodologies from StrongReject, ShieldGemma, JailbreakBench, AILuminate, SorryBench, and a Claude-as-a-judge setup, as well as fine-tuned safety classifiers such as LlamaGuard 3 and LlamaGuard 4. The encoder classifiers are fine-tuned on judge-labeled data using a majority-voting label strategy and are then evaluated on a gold-standard holdout dataset to assess their performance relative to LLM judges. We report absolute performance using F1 score, false negative rate, and precision-recall metrics. We also break down results by attack technique, including single-turn prompting, decomposition, escalation, and context manipulation, to identify where encoder classifiers align with or diverge from LLM-based judges. Our findings provide guidance on when encoder classifiers can serve as cost- and latency-efficient alternatives to LLM-based safety evaluation.",
-          "reason": "近 30 天；公司信号：Anthropic；关键词：anthropic, cs.CL, dataset。With the widespread adoption of large language models (LLMs) in chatbots and everyday applications, companies increasingly need gu...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "anthropic",
-            "cs.CL",
-            "dataset",
+            "cs.IR",
             "efficient",
-            "latency",
-            "llm",
-            "slo"
+            "inference",
+            "industrial",
+            "online-a/b",
+            "production"
           ],
           "signal": 99,
-          "source": "Anthropic/arXiv",
-          "publishedAt": "2026-06-24T13:00:25Z",
-          "url": "https://arxiv.org/abs/2606.25782v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.25782v1"
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-06-25T14:03:28Z",
+          "url": "https://arxiv.org/abs/2606.27058",
+          "pdfUrl": "https://arxiv.org/pdf/2606.27058v1"
         },
         {
-          "id": "arxiv-2606.25605v1",
-          "title": "Constraint Tax in Open-Weight LLMs: An Empirical Study of Tool Calling Suppression Under Structured Output Constraints",
+          "id": "arxiv-2606.26875",
+          "title": "Information-Aware KV Cache Compression for Long Reasoning",
           "authors": [
-            "Fangzheng Li",
-            "Aimin Zhang",
-            "Chen Lv"
+            "Jushi Kai",
+            "Zhuiri Xiao",
+            "Alexandra Birch",
+            "Zhouhan Lin"
           ],
-          "summary": "Tool Calling and Structured Output are two core capabilities of modern Agent systems, yet their interaction under joint deployment conditions remains insufficiently understood. This paper reports a reproducible phenomenon observed in a production Agent system: when Tool Calling and JSON Schema constraints are simultaneously enabled, multiple open-weight models cease invoking tools despite maintaining high schema compliance. We refer to this behavior as Tool Suppression. Through controlled experiments across multiple model families and deployment settings, we consistently reproduce Tool Suppression under joint constraints, while tool execution and schema compliance remain functional when evaluated independently. Further analysis reveals that JSON Schema constraints are compiled into grammar-based token masks, causing tool-call tokens to become unreachable during decoding. This provides an implementation-level explanation for the observed behavior. To interpret the phenomenon, we formulate the Constraint Priority Inversion (CPI) hypothesis, which suggests that schema satisfaction may dominate action-selection behavior under multiple simultaneous constraints. We present CPI as a behavioral hypothesis consistent with the observed evidence rather than a verified internal mechanism. To mitigate the problem, we propose Transparent Two-Pass Execution, an inference-time strategy that decouples tool execution from schema-constrained response generation. Experimental results show that this approach restores tool invocation while preserving structured output guarantees without requiring model retraining. These findings suggest that evaluating tool use and structured output separately may overlook important reliability issues in production Agent systems. Code, data, and docs will be released at https://github.com/Fzsama/Constrain-Tax-26-06.git.",
-          "reason": "近 30 天；关键词：cs.CL, inference, llm。Tool Calling and Structured Output are two core capabilities of modern Agent systems, yet their interaction under joint deployment...",
+          "summary": "Reasoning capability has advanced rapidly in large language models (LLMs), leading to an increasing size of key-value (KV) cache in both prefilling and decoding stages. Existing KV cache compression methods mainly rely on attention weights to estimate token importance. While attention effectively captures contextual relevance, it overlooks complementary information-theoretic signals related to predictive uncertainty and token informativeness. In this paper, we revisit token importance from a forward-looking perspective and introduce \\textit{Forward Influence}, a metric that measures how compressed tokens affect future contexts. Our analysis reveals that tokens selected by attention scores mainly influence nearby contexts, whereas tokens associated with high predictive uncertainty exhibit substantially stronger influence on distant future contexts. Based on the observation, we propose \\textbf{InfoKV}, an entropy-aware KV cache compression framework that incorporates information-theoretic signals. It combines token-level predictive uncertainty with layer-wise representation evolution and integrates the resulting entropy scores with attention scores during reasoning. Experiments on long-context reasoning benchmarks with Llama-3.1, Llama-3.2, and DeepSeek-R1 demonstrate that InfoKV consistently outperforms existing attention-based KV compression methods in both long prefilling and decoding scenarios.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, kv-cache。Reasoning capability has advanced rapidly in large language models (LLMs), leading to an increasing size of key-value (KV) cache i...",
           "area": "LLM 推理优化",
           "tags": [
+            "meta",
             "cs.CL",
+            "kv-cache",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-06-25T11:03:37Z",
+          "url": "https://arxiv.org/abs/2606.26875",
+          "pdfUrl": "https://arxiv.org/pdf/2606.26875v1"
+        },
+        {
+          "id": "arxiv-2606.26861",
+          "title": "Cascaded Multi-Granularity Pruning for On-Device LLM Inference in Industrial IoT",
+          "authors": [
+            "Jinghan Wang",
+            "Yanjun Chen",
+            "Wei Zhang",
+            "Xiaotong Huang",
+            "Tianchen Liu",
+            "Gaoliang Peng"
+          ],
+          "summary": "Deploying large language models (LLMs) on Industrial Internet of Things (IIoT) edge devices demands extreme compression, yet existing structured pruning methods collapse at high compression ratios due to one-shot importance estimation, and their cross-architecture behavior remains unpredictable. This article presents a cascaded multi-granularity pruning framework that removes layers, attention heads, and feed-forward channels in coarse-to-fine order, with lightweight low-rank recovery between stages to re-estimate component importance. An information-theoretic analysis motivates this ordering, and the Structural Independence Assumption (SIA) is formalized as a checkable condition predicting whether per-component pruning criteria are reliable for a given architecture: Multi-Head Attention (MHA)+GELU designs satisfy the SIA, whereas Grouped Query Attention (GQA)+SwiGLU designs violate it. On bearing fault diagnosis spanning 88M to 6.25B-parameter models, the framework extends achievable compression to 13.8 times on MHA+GELU architectures with 83.82% accuracy (+3.70 percentage points (pp) over the strongest baseline), while exposing a ~74pp accuracy collapse on GQA+SwiGLU architectures that violate the SIA. Deployed on an industrial slewing bearing fault diagnosis platform with NVIDIA DGX Spark, compressed models reduce inference latency by up to 67.2% and peak memory by 62.5%, demonstrating viability for IIoT edge inference.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, deployed。Deploying large language models (LLMs) on Industrial Internet of Things (IIoT) edge devices demands extreme compression, yet exist...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.CL",
+            "deployed",
             "inference",
+            "industrial",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-06-25T10:44:48Z",
+          "url": "https://arxiv.org/abs/2606.26861",
+          "pdfUrl": "https://arxiv.org/pdf/2606.26861v1"
+        },
+        {
+          "id": "arxiv-2606.26690",
+          "title": "Attributed, But Not Incremental: Cannibalization-Corrected Attribution for Large-Scale Advertising",
+          "authors": [
+            "Donghui Li",
+            "Bowen Yuan",
+            "Zili Yang",
+            "Qinxin Chen",
+            "Lijing Song"
+          ],
+          "summary": "In large-scale paid acquisition and growth advertising systems, production attribution outputs are widely used for daily budget allocation and channel diagnosis. However, paid-attributed conversions such as daily new users (DNU) may systematically overstate true incremental growth when paid channels overlap with organic demand, brand-driven traffic, or other acquisition channels. This attribution-cannibalization mismatch can distort incremental ROI measurement and budget decisions at scale. We propose an experiment-calibrated attribution correction framework that uses incrementality experiments as causal anchors to convert sparse lift measurements into daily correction estimates. To make the corrected signal actionable at production granularity, we further allocate calibrated cannibalization volume across business hierarchies under structural consistency constraints. Offline forward-in-time validation against channel-level incrementality experiment readouts shows that the proposed framework substantially reduces calibration error relative to raw attribution and fine-grained ML baselines. Deployed across multiple global TikTok markets, the system supported budget and traffic strategy adjustments that were followed by an approximately 15-percentage-point reduction in the measured cannibalization rate.",
+          "reason": "近 30 天；公司信号：ByteDance；推荐/排序/广告方向；关键词：bytedance, cs.IR, advertising。In large-scale paid acquisition and growth advertising systems, production attribution outputs are widely used for daily budget al...",
+          "area": "推荐算法",
+          "tags": [
+            "bytedance",
+            "cs.IR",
+            "advertising",
+            "conversion",
+            "deployed",
+            "production"
+          ],
+          "signal": 99,
+          "source": "ByteDance/arXiv",
+          "publishedAt": "2026-06-25T07:21:37Z",
+          "url": "https://arxiv.org/abs/2606.26690",
+          "pdfUrl": "https://arxiv.org/pdf/2606.26690v1"
+        },
+        {
+          "id": "arxiv-2606.26666",
+          "title": "PersistentKV: Page-Aware Decode Scheduling for Long-Context LLM Serving on Commodity GPUs",
+          "authors": [
+            "Muhammad Ahmed"
+          ],
+          "summary": "Autoregressive large language model (LLM) serving is increasingly limited by key-value (KV) cache movement rather than dense matrix multiplication. Modern paged-attention systems reduce KV-cache fragmentation and mature kernels such as FlashInfer provide highly optimized native-paged decode attention. However, the best single-kernel implementation is not always the best serving schedule: low-active long-context decode can under-utilize commodity GPUs, while mixed sequence lengths introduce a tension between many exact-length launches and coarse padded batches. We present PersistentKV, a native block-table decode attention engine and page-aware scheduling study for grouped-query attention (GQA). PersistentKV maps work by KV-head group, is designed to reuse K,V tiles across grouped query heads, supports native page tables, and adds a compact workqueue schedule that executes only non-empty row-KV-head-sequence-split tasks. On an RTX 3060 with FP16, page size 16, Hq=32, Hkv=8, d=128, and identical correctness tolerance against FlashInfer, a calibrated adaptive policy selects FlashInfer for small active batches, PersistentKV sequence splitting for B1 long-context steps, and PersistentKV workqueue scheduling for B8 long-context steps. With thresholds and split counts fixed on calibration traces, one held-out trace seed improves synchronized wall throughput by 1.063-1.265x on B8 bimodal, uniform, and Zipf-like workloads and by 1.399x on a B1 bucketed trace. On the B4 bimodal boundary case, the policy avoids the PersistentKV regression by selecting FlashInfer. These results identify a concrete systems niche for adaptive page-aware decode scheduling and show that work assignment, not only attention math, is a decisive serving-system variable.",
+          "reason": "近 30 天；关键词：cs.LG, llm, serving。Autoregressive large language model (LLM) serving is increasingly limited by key-value (KV) cache movement rather than dense matri...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "llm",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-25T06:56:43Z",
+          "url": "https://arxiv.org/abs/2606.26666",
+          "pdfUrl": "https://arxiv.org/pdf/2606.26666v1"
+        },
+        {
+          "id": "arxiv-2606.26607",
+          "title": "Moebius: Serving Mixture-of-Expert Models with Seamless Runtime Parallelism Switch",
+          "authors": [
+            "Shaoyu Wang",
+            "Yizhuo Liang",
+            "Jaeyong Song",
+            "Chong Li",
+            "Seo Jin Park"
+          ],
+          "summary": "Mixture-of-Experts (MoE) architectures scale large language models (LLMs) to hundreds of billions of parameters. Serving a single MoE model requires multiple GPUs operating in parallel, typically through tensor parallelism (TP) or expert parallelism (EP). The optimal choice depends on the number of in-flight requests: TP is faster at low concurrency, whereas EP wins at high concurrency. Production workloads cross this boundary continually: online serving sees bursty arrivals that subside into quiet periods, and reinforcement-learning rollouts begin as a high-concurrency burst that decays into a long tail of stragglers. Pinning either layout therefore forfeits performance when the workload crosses to the other side. We present Moebius, a serving system that switches between EP and TP at runtime without restarting the engine or dropping in-flight requests. Our key insight is that EP and TP are two layouts of one model, not two models: they compute the same function over byte-identical expert weights and KV cache, so a switch changes only which rank owns each slice. Moving those owner-changed slices is the sole irreducible cost, and modern high-bandwidth GPU interconnects make it fast enough to do between decode steps without draining in-flight requests. Moebius preserves each parallelism's runtime resident, and reshards the single copy of expert weights and KV cache at fixed addresses with fused GPU-to-GPU transfer kernels. On 8x H200 GPUs serving Qwen3-235B-A22B, Moebius matches the better static parallelism at every operating point, and beats it on RL rollouts by 1.16-1.25x across steps. Each switch completes in 215-434 ms, and Moebius holds both layouts resident with only 2.4% memory overhead.",
+          "reason": "近 30 天；关键词：cs.DC, kv-cache, llm。Mixture-of-Experts (MoE) architectures scale large language models (LLMs) to hundreds of billions of parameters. Serving a single...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "kv-cache",
             "llm",
             "production",
             "serving"
           ],
           "signal": 99,
           "source": "arXiv",
-          "publishedAt": "2026-06-24T09:14:18Z",
-          "url": "https://arxiv.org/abs/2606.25605v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.25605v1"
+          "publishedAt": "2026-06-25T05:10:20Z",
+          "url": "https://arxiv.org/abs/2606.26607",
+          "pdfUrl": "https://arxiv.org/pdf/2606.26607v1"
         },
         {
-          "id": "arxiv-2606.25519v1",
-          "title": "Quantization Inflates Reasoning: Token Inflation as a Hidden Cost of Low-Bit Reasoning Models",
+          "id": "arxiv-2606.25147",
+          "title": "TokenMinds: Pretrained User Tokens and Embeddings for User Understanding in Large Recommender Systems",
           "authors": [
-            "Xinyu Lian",
-            "Walid Krichene",
-            "Beichen Huang",
-            "Masahiro Tanaka",
-            "Olatunji Ruwase",
-            "Li Zhang",
-            "Minjia Zhang"
+            "Qingyun Liu",
+            "Bo Yan",
+            "Yang Liu",
+            "Yuji Roh",
+            "Ekansh Sharma",
+            "Likang Yin",
+            "Emma Olowo",
+            "Min-hsuan Tsai",
+            "Yuxuan Li",
+            "Diego Uribe",
+            "Saksham Aggarwal",
+            "Siqi Wu",
+            "Yuan Hao",
+            "Vikas Kedigehalli",
+            "Lukasz Heldt",
+            "Lichan Hong",
+            "Li Wei",
+            "Xinyang Yi"
           ],
-          "summary": "Quantization is widely used to reduce the inference cost of large language models, but its effect on reasoning models is not fully captured by final-answer accuracy or per-token latency. We show that low-bit post-training quantization can introduce a hidden test-time compute cost: quantized reasoning models often generate longer chains of thought even when they still answer correctly. Across mathematical reasoning, code generation, scientific question answering, and agentic tool-use benchmarks, we find that INT4/INT3 quantization can preserve accuracy but increase reasoning-token usage, offsetting the expected per-token speedup. To measure this effect, we introduce the CoT Token Inflation Ratio, which compares reasoning length between quantized and full-precision models averaged across all evaluation benchmarks. We further show that token inflation is accompanied by behavioral changes in the reasoning trace, including more intermediate steps and greater semantic repetition. These changes translate into measurable end-to-end real-world serving penalties. Finally, we evaluate mitigation strategies and find that prompting and decoding-time sampling offer inconsistent accuracy-length trade-offs, while quantization-aware training shows more promise in reducing both accuracy degradation and token inflation. Our results suggest that reasoning-token usage should be reported alongside accuracy when evaluating quantized reasoning models.",
-          "reason": "近 30 天；关键词：cs.AI, inference, latency。Quantization is widely used to reduce the inference cost of large language models, but its effect on reasoning models is not fully...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.AI",
-            "inference",
-            "latency",
-            "quantization",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-06-24T07:54:55Z",
-          "url": "https://arxiv.org/abs/2606.25519v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.25519v1"
-        },
-        {
-          "id": "arxiv-2606.03866",
-          "title": "Taiji: Pareto Optimal Policy Optimization with Semantics-IDs Trade-off for Industrial LLM-Enhanced Recommendation",
-          "authors": [
-            "Yuecheng Li",
-            "Zeyu Song",
-            "Jing Yao",
-            "Chi Lu",
-            "Peng Jiang",
-            "Kun Gai"
-          ],
-          "summary": "Presents Taiji, an industrial LLM-as-Enhancer recommender framework that aligns LLM semantic rewards with collaborative ID preference rewards through Pareto Optimal Policy Optimization. It reports offline and online A/B validation and deployment on Kuaishou advertising traffic.",
-          "reason": "近 30 天工业推荐主线：Kuaishou 广告平台、LLM4Rec、Semantic IDs、RL 对齐和线上 A/B 都在一篇里。",
+          "summary": "User modeling in industrial recommender systems typically produces dense embeddings, which suffer from representational constraints inherent to fixed-dimensional vectors. An emerging alternative for discrete user representation -- using LLMs to generate text-based user tokens -- captures topical co-occurrences rather than deep sequential behavior dynamics and produces outputs that are difficult to ground to item attributes. Meanwhile, Semantic ID (SID) based item tokenization has proven effective for improving generalization in generative recommendation, yet discrete SID-based representations for users remain largely unexplored. We propose TokenMinds, an industrial-scale system that extends the PLUM framework from item retrieval to user modeling, generating both discrete SID-based user tokens and dense user embeddings via an encoder-decoder architecture adapted from pre-trained LLMs. This dual-output design provides the complementary benefits of discrete, semantically grounded user representations while maintaining compatibility with existing downstream models that rely on dense embeddings. Additionally, the shared SID vocabulary naturally extends to cross-scenario modeling: by unifying long-form and short-form video behaviors into a single model, we substantially reduce training and serving costs. We validate TokenMinds through extensive offline experiments and live launches on multiple YouTube surfaces, served on full user traffic (billions of users) via an asynchronous infrastructure that decouples representation generation from downstream scoring. Focusing on ranking as the primary downstream use case, our results confirm the practical viability of SID-based user tokens at industrial scale and demonstrate that tokens and dense embeddings provide complementary value across different production ranking systems.",
+          "reason": "近 30 天；公司信号：Google；推荐/排序/广告方向；关键词：google, cs.IR, generative-recommendation。User modeling in industrial recommender systems typically produces dense embeddings, which suffer from representational constraint...",
           "area": "推荐算法",
           "tags": [
-            "kuaishou",
-            "llm4rec",
-            "semantic-id",
-            "rl-alignment",
-            "online-ab"
-          ],
-          "signal": 99,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-02T16:39:06Z",
-          "url": "https://arxiv.org/abs/2606.03866",
-          "pdfUrl": "https://arxiv.org/pdf/2606.03866"
-        },
-        {
-          "id": "arxiv-2604.05314",
-          "title": "Next-Scale Generative Reranking: A Tree-based Generative Rerank Method at Meituan",
-          "authors": [
-            "Shuli Wang",
-            "Changhao Li",
-            "Ke Fan",
-            "Senjie Kou",
-            "Junwei Yin",
-            "Chi Wang",
-            "Yinhua Zhu",
-            "Haitao Wang",
-            "Xingxing Wang"
-          ],
-          "summary": "Proposes NSGR, a tree-based generative reranking framework that expands recommendation lists from coarse to fine and uses a multi-scale evaluator to guide generation. The method is reported as deployed on Meituan food delivery.",
-          "reason": "近 90 天工业重排方向：Meituan 线上部署，聚焦多阶段推荐里的 generative reranking 和全局/局部列表建模。",
-          "area": "推荐算法",
-          "tags": [
-            "meituan",
-            "reranking",
+            "google",
+            "cs.IR",
             "generative-recommendation",
-            "production"
-          ],
-          "signal": 96,
-          "source": "Meituan/arXiv",
-          "publishedAt": "2026-04-07T01:35:20Z",
-          "url": "https://arxiv.org/abs/2604.05314",
-          "pdfUrl": "https://arxiv.org/pdf/2604.05314"
-        },
-        {
-          "id": "arxiv-2604.02684",
-          "title": "MBGR: Multi-Business Prediction for Generative Recommendation at Meituan",
-          "authors": [
-            "Changhao Li",
-            "Junwei Yin",
-            "Zhilin Zeng",
-            "Senjie Kou",
-            "Shuli Wang",
-            "Wenshuai Chen",
-            "Yinhua Zhu",
-            "Haitao Wang",
-            "Xingxing Wang"
-          ],
-          "summary": "Builds a multi-business generative recommendation framework with business-aware semantic IDs, business-specific prediction and dynamic label routing. It reports offline and online validation on Meituan food delivery.",
-          "reason": "近 90 天工业生成式推荐：重点是多业务场景、Semantic ID 空间隔离和生产验证。",
-          "area": "推荐算法",
-          "tags": [
-            "meituan",
-            "multi-business",
-            "semantic-id",
-            "generative-recommendation",
-            "online-ab"
-          ],
-          "signal": 95,
-          "source": "Meituan/arXiv",
-          "publishedAt": "2026-04-03T03:26:36Z",
-          "url": "https://arxiv.org/abs/2604.02684",
-          "pdfUrl": "https://arxiv.org/pdf/2604.02684"
-        },
-        {
-          "id": "arxiv-2604.17459",
-          "title": "Transparent and Controllable Recommendation Filtering via Multimodal Multi-Agent Collaboration",
-          "authors": [
-            "Chi Zhang",
-            "Zhipeng Xu",
-            "Jiahao Liu",
-            "Dongsheng Li",
-            "Hansu Gu",
-            "Peng Zhang",
-            "Ning Gu",
-            "Tun Lu"
-          ],
-          "summary": "Introduces a controllable recommendation filtering framework combining end-to-cloud collaboration, multimodal perception, multi-agent adjudication and editable preference graphs to reduce over-filtering in personalized feeds.",
-          "reason": "近 90 天 Microsoft Research 推荐治理方向：不是单纯 CTR，而是个性化 feed 的可控过滤、透明度和多模态安全边界。",
-          "area": "推荐算法",
-          "tags": [
-            "microsoft",
-            "controllable-recommendation",
-            "multimodal",
-            "agent",
-            "feed"
-          ],
-          "signal": 92,
-          "source": "Microsoft Research/arXiv",
-          "publishedAt": "2026-04-19T14:19:28Z",
-          "url": "https://arxiv.org/abs/2604.17459",
-          "pdfUrl": "https://arxiv.org/pdf/2604.17459"
-        },
-        {
-          "id": "arxiv-2606.25987v1",
-          "title": "Weave of Formal Thought",
-          "authors": [
-            "Alexandre Bouayad"
-          ],
-          "summary": "Large language models (LLMs) attain remarkable surface fluency on code, yet they neither formally guarantee the syntactic validity of their output nor leverage the hierarchical structure defining the target language. While existing constrained-decoding frameworks address the former, they operate under rigid assumptions that preclude critical lexical mechanisms -- including context-sensitive lexing, maximal-munch tokenization, and keyword extraction -- and only approximate vocabulary masking, sacrificing completeness. For the latter, code LLMs typically inject grammatical structure via predetermined policies rather than learning which structural information to expose. In this work, we introduce Weave of Formal Thought (WoFT), a paradigm uniting rigorous syntactic validation with learned structural representations. First, we present a formal engine and constrained decoder that is sound and complete with respect to the full Tree-sitter specification. By augmenting generalized LR (GLR) parsing with a speculative-lexing construction that maintains concurrent lexer-state hypotheses synchronized with a GLR graph-structured stack, our decoder admits every subword token extending to a valid program prefix and rejects all others. Second, we present a latent-variable fine-tuning method training the language model to interleave non-terminal grammar symbols directly into generation. Utilizing the reweighted wake-sleep (RWS) algorithm to optimize the importance-weighted evidence lower bound (IW-ELBO) of the surface text, the model learns to selectively retain formal derivations as an adaptive structural scratchpad. For Python, fine-tuning StarCoder2-3B with our RWS objective reduces per-token cross-entropy by 14.3% relative to a text-only SFT baseline, demonstrating that discretionary latent syntax recovers critical structural information that flat autoregressive training discards.",
-          "reason": "近 30 天；关键词：cs.CL, llm, speculative。Large language models (LLMs) attain remarkable surface fluency on code, yet they neither formally guarantee the syntactic validity...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
+            "industrial",
             "llm",
-            "speculative"
+            "production",
+            "ranking"
           ],
-          "signal": 88,
-          "source": "arXiv",
-          "publishedAt": "2026-06-24T15:58:11Z",
-          "url": "https://arxiv.org/abs/2606.25987v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.25987v1"
+          "signal": 99,
+          "source": "Google/arXiv",
+          "publishedAt": "2026-06-23T20:20:37Z",
+          "url": "https://arxiv.org/abs/2606.25147",
+          "pdfUrl": "https://arxiv.org/pdf/2606.25147v1"
         }
       ]
     },
