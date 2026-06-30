@@ -1,264 +1,276 @@
 {
-  "generatedAt": "2026-06-30T06:45:18.854527+08:00",
+  "generatedAt": "2026-07-01T07:02:43.635347+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2606.28274",
-      "title": "Parameter Efficient Hybrid Transformer (PEHT) for Network Traffic Prediction via Dynamic Urban Congestion Integration",
+      "id": "arxiv-2606.30560",
+      "title": "TraceLab: Characterizing Coding Agent Workloads for LLM Serving",
       "authors": [
-        "Abdolazim Rezaei",
-        "Mehdi Sookhak",
-        "Mahboobeh Haghparast"
+        "Kan Zhu",
+        "Mathew Jacob",
+        "Chenxi Ma",
+        "Yi Pan",
+        "Stephanie Wang",
+        "Arvind Krishnamurthy",
+        "Baris Kasikci"
       ],
-      "summary": "Accurate network traffic prediction is a critical element for efficient resource allocation in dynamic urban cellular networks. However, prediction remains challenging because network demand is influenced by complex mobility patterns, congestion dynamics, and heterogeneous user behavior. This paper introduces the Parameter-Efficient Hybrid Transformer (PEHT), a network traffic prediction framework that integrates urban mobility and congestion information into a Transformer-based architecture. PEHT separates primary network communication features from secondary urban mobility features and incorporates Low-Rank Adaptation (LoRA) into the Transformer encoder to reduce the number of trainable parameters while maintaining high predictive accuracy. A multimodal fusion strategy then injects external mobility and congestion features into the decoder to improve traffic forecasting. Experiments on the Telecom Italia Milan dataset and multiple synthetic congestion scenarios show that PEHT outperforms state-of-the-art baselines in terms of RMSE, MAE, and $R^2$. The implementation is available in the GitHub repository.",
-      "reason": "近 30 天；关键词：cs.LG, dataset, efficient。Accurate network traffic prediction is a critical element for efficient resource allocation in dynamic urban cellular networks. Ho...",
+      "summary": "Coding agents are rapidly becoming a major application of agentic LLMs, but serving them efficiently remains challenging. Progress on this challenge requires understanding real workload patterns, yet the data needed for such analysis is largely absent. Existing public traces and benchmarks do not capture real, day-to-day coding-agent usage across multiple agents and model families for serving-system analysis. To help fill this gap, we collect and release a trace of roughly 4,300 coding-agent sessions, containing about 350,000 LLM steps and 430,000 tool calls from our own day-to-day use of Claude Code and Codex. Our analysis shows that coding-agent workloads feature long autonomous loops, long contexts with short outputs, diverse and heavily-tailed tool calls, and high but imperfect prefix cache hit rates. These findings point to concrete opportunities for optimizing serving, including lower-overhead tool calling, append-length-aware prefill, semantic-aware tool-latency prediction, and improved KV-cache management around human-paced gaps. We release the dataset, trace collection pipeline, and analysis code at https://github.com/uw-syfi/TraceLab.git; the project website is https://tracelab.cs.washington.edu.",
+      "reason": "近 30 天；公司信号：Anthropic；关键词：anthropic, cs.LG, dataset。Coding agents are rapidly becoming a major application of agentic LLMs, but serving them efficiently remains challenging. Progress...",
       "area": "LLM 推理优化",
       "tags": [
+        "anthropic",
         "cs.LG",
         "dataset",
         "efficient",
-        "lora",
-        "multimodal"
+        "latency",
+        "llm",
+        "prefill"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-06-26T17:17:17Z",
-      "url": "https://arxiv.org/abs/2606.28274",
-      "pdfUrl": "https://arxiv.org/pdf/2606.28274v1"
+      "source": "Anthropic/arXiv",
+      "publishedAt": "2026-06-29T16:59:05Z",
+      "url": "https://arxiv.org/abs/2606.30560",
+      "pdfUrl": "https://arxiv.org/pdf/2606.30560v1"
     },
     {
-      "id": "arxiv-2606.27917",
-      "title": "Graph Dimensionality Reduction for Contextual Bandits: Structure-Specific Regret Bounds under Approximate Smoothness and Noisy Eigenspaces",
+      "id": "arxiv-2606.30553",
+      "title": "COSM: A Cooperative Scheduling Framework for Concurrent PIM and CPU Execution on Mobile Devices",
       "authors": [
-        "Joyanta Jyoti Mondal",
-        "Ibne Farabi Shihab",
-        "Anuj Sharma"
+        "Yilong Zhao",
+        "Fangxin Liu",
+        "Onur Mutlu",
+        "Mingyu Gao",
+        "Jian Liu",
+        "Haibing Guan",
+        "Li Jiang"
       ],
-      "summary": "Contextual bandits with graph-structured arms arise in recommendation, citation retrieval, and social advertising, where arms connected on a graph tend to share reward signal. Standard dimensionality reduction ignores this structure, inflating exploration cost by a factor of $d/k$. We propose GraphDR-LinUCB, which projects arm features onto the graph's low-frequency spectral subspace and runs linear UCB in the resulting $k$-dimensional space. We prove the first $\\wtO(k\\sqrt{T})$ regret bound for spectral-projection-based contextual bandits, reducing dimension dependence from $d$ to $k$; a perturbation argument extends this to noisy graphs, with an explicit penalty for reward-smoothness mismatch and graph-estimation error. Our central theoretical finding is that the high-frequency reward component need not incur a worst-case linear-in-$T$ penalty: its actual cost depends on its realized impact along the played path, not on its total energy. A simple spectral comparison between subspaces ($Γ_k$) predicts which reducer wins on a given dataset, correctly calling five of six real-dataset outcomes without any fitted threshold. Across a synthetic benchmark and six real datasets (MovieLens, Amazon, LastFM, ogbn-arxiv, MIND), GraphDR-LinUCB reduces cumulative regret by $15\\times$ over full-dimensional LinUCB and outperforms competing graph-aware methods on five of six; the single failure is precisely where the graph's spectral subspace is misaligned with the reward.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.LG, advertising。Contextual bandits with graph-structured arms arise in recommendation, citation retrieval, and social advertising, where arms conn...",
-      "area": "推荐算法",
+      "summary": "The development of on-device large language models (LLMs) is driven by the need for privacy and fast response times. Energy-intensive data transfer on mobile devices makes Processing-in-Memory (PIM) an effective solution. Due to stringent DRAM cost constraints, limited physical footprint on circuit boards, and the interaction between applications and LLMs, it is imperative for the CPU and PIM to operate concurrently within a shared memory space. However, challenges such as bank conflicts and bus congestion can arise, potentially diminishing the performance and energy benefits of PIM. To address this challenge, we introduce COSM, a cooperative scheduling framework designed to facilitate the concurrent operation of PIM and CPU tasks on mobile platforms. Our key innovations include: 1) a low-interference PIM control interface that generates the maximum number of PIM commands without disrupting CPU memory accesses; 2) an idleness-aware scheduling method that integrates PIM commands into available idle time windows within the CPU's access sequence. COSM not only hides PIM execution latency from the CPU, but also overlaps PIM execution with data transfer. Experiments on concurrent execution of LLMs and mobile workloads, including mobile applications and compute-intensive kernels, demonstrate that COSM improves PIM throughput by up to 2.8x compared to the baseline scheduling method with less than 2.0% CPU performance loss.",
+      "reason": "近 30 天；关键词：cs.AR, energy, latency。The development of on-device large language models (LLMs) is driven by the need for privacy and fast response times. Energy-intens...",
+      "area": "LLM 推理优化",
       "tags": [
-        "amazon",
-        "cs.LG",
-        "advertising",
-        "dataset",
+        "cs.AR",
         "energy",
-        "lora",
-        "recommendation"
-      ],
-      "signal": 99,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-06-26T10:07:10Z",
-      "url": "https://arxiv.org/abs/2606.27917",
-      "pdfUrl": "https://arxiv.org/pdf/2606.27917v1"
-    },
-    {
-      "id": "arxiv-2606.27866",
-      "title": "FlexMoE: One-for-All Nested Intra-Expert Pruning for MoE Language Models",
-      "authors": [
-        "Fan Mo",
-        "Yuxuan Han",
-        "Geng Zhang",
-        "Wangbo Zhao",
-        "Yang You"
-      ],
-      "summary": "Mixture-of-Experts (MoE) language models scale model ability with sparsely activated experts, making this architecture a standard recipe for modern large models. However, sparse activation does not remove the deployment burden of storing and serving all experts, and the available deployment budget can vary substantially across devices, users, and workloads. Existing MoE compression methods are still largely fixed-budget, typically optimizing one compressed endpoint at each chosen target budget. We study a different setting: converting a large pretrained MoE LLM into a nested family of deployable subnetworks across budgets. Our method first ranks expert FFN channels by their importance, then lets each expert learn a discrete action to prune its channels. By gradually increasing cost pressure, a single action-training run exports a series of action masks from high to low budgets, each of which identifies a reliable smaller subnetwork nested in the ranked base model. Moreover, we use a single recovery fine-tune at a mid pruning budget (40%) to recover degraded model quality and transfer the recovered model to other unseen budgets. Overall, our framework surpasses recent MoE compression baselines. Specifically, on Qwen2-57B-A14B, our method retains ~99.8% of base performance while pruning 50% of routed expert parameters even without fine-tuning. For deployment, our pruned subnetworks deliver real memory reduction and throughput gains, and further support realtime online budget switching with kernel-level co-design.",
-      "reason": "近 30 天；关键词：cs.LG, llm, serving。Mixture-of-Experts (MoE) language models scale model ability with sparsely activated experts, making this architecture a standard...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
+        "latency",
         "llm",
-        "serving",
         "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-06-26T09:08:03Z",
-      "url": "https://arxiv.org/abs/2606.27866",
-      "pdfUrl": "https://arxiv.org/pdf/2606.27866v1"
+      "publishedAt": "2026-06-29T16:49:17Z",
+      "url": "https://arxiv.org/abs/2606.30553",
+      "pdfUrl": "https://arxiv.org/pdf/2606.30553v1"
     },
     {
-      "id": "arxiv-2606.27732",
-      "title": "Bifocal Diffusion Language Models: Asymmetric Bidirectional Context for Parallel Generation",
+      "id": "arxiv-2606.30391",
+      "title": "Energy-Aware Scheduling for Serverless LLM Serving on Shared GPUs",
       "authors": [
-        "Yuhang Chen",
-        "Xianfeng Wu",
-        "Jinhao Duan",
-        "Mingfu Liang",
-        "Xiaohan Wei",
-        "Yunchen Pu",
-        "Fei Tian",
-        "Chonglin Sun",
-        "Parish Aggarwal",
-        "Frank Shyu",
-        "Luke Simon",
-        "Sandeep Pandey",
-        "Xi Liu",
-        "Tianlong Chen"
+        "Tianyu Wang",
+        "Gourav Rattihalli",
+        "Aditya Dhakal",
+        "Longfei Shangguan",
+        "Dejan Milojicic"
       ],
-      "summary": "Discrete diffusion language models (dLLMs) recover masked tokens in parallel, offering significant speedups over autoregressive (AR) generation. However, such promising frameworks face a fundamental architectural design dilemma: \\ding{182} Adopting bidirectional attention achieves strong generation quality by allowing each position to access the full context, but is inherently incompatible with KV caching, limiting inference throughput in batch-serving scenarios; \\ding{183} Conversely, causal attention enables efficient cached inference but loses all right-side context, substantially degrading generation quality. This paper introduces Bifocal dLLMs, a new paradigm that resolves this dilemma through \\emph{asymmetric bidirectional context}. Analogous to bifocal lenses, we instantiate the paradigm as \\textbf{R2LM} (Right-to-Left Mamba), which combines two complementary mechanisms: $a$) standard causal attention providing precise left-context with full KV cache compatibility, while $b$) a lightweight reverse Mamba SSM sidecar supplying compressed right-side context without breaking cacheability. Comprehensive experiments on continued pretraining of Qwen3-1.7B with 60B tokens demonstrate that R2LM achieves $2.4\\times$ to $12.9\\times$ higher throughput than bidirectional dLLMs and $1.9\\times$ to $2.9\\times$ speedup over AR baselines in batch serving through parallel decoding with KV caching, while exceeding the causal baseline on most benchmarks and surpassing the bidirectional dLLM on average.",
-      "reason": "近 30 天；关键词：cs.IR, efficient, inference。Discrete diffusion language models (dLLMs) recover masked tokens in parallel, offering significant speedups over autoregressive (A...",
+      "summary": "As LLM inference becomes a major cloud workload, its growing energy footprint makes cluster-wide energy optimization increasingly important. Serverless LLM serving helps platforms absorb traffic volatility by elastically sharing GPU resources across models, but this sharing also makes energy optimization difficult. Multiple co-resident models run under one device-wide operating point, while their resource demands and latency slack change across execution phases and load conditions. As a result, minimizing energy requires coordinated scheduling across request placement, runtime resource adaptation, and workload consolidation. We present Festina, a profiling-guided, power-aware control plane to minimize cluster-wide energy for serverless LLM serving. Unlike common global-local schedulers that focus on throughput or tail latency, Festina makes energy-first decisions by jointly coordinating request placement, SM partitioning, and GPU operating points under TTFT/TBT SLOs. In our system, a lightweight global scheduler performs fast, SLO-safe, energy-aware placement using constant-time lookups from offline profiles and GPU state summaries. On each GPU, a phase-aware local scheduler continuously adapts task batching and compute resources to minimize power consumption. Festina further performs energy-aware workload consolidation to reduce GPUs' static power consumption via SLO-aware migration. Comparison with four SOTA LLM serving systems and one DVFS-augmented system demonstrates that Festina reduces energy consumption by up to 56% while maintaining parity in SLO attainment (within a 2% margin)",
+      "reason": "近 30 天；关键词：cs.DC, batching, energy。As LLM inference becomes a major cloud workload, its growing energy footprint makes cluster-wide energy optimization increasingly...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.IR",
-        "efficient",
+        "cs.DC",
+        "batching",
+        "energy",
         "inference",
-        "kv-cache",
+        "latency",
         "llm",
-        "serving",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-06-26T05:26:11Z",
-      "url": "https://arxiv.org/abs/2606.27732",
-      "pdfUrl": "https://arxiv.org/pdf/2606.27732v1"
-    },
-    {
-      "id": "arxiv-2606.27550",
-      "title": "EntMTP: Accelerating LLM Inference with Entropy Guided Multi Token Prediction",
-      "authors": [
-        "Carrie Chen"
-      ],
-      "summary": "Multi-token prediction has been shown to increase data density during training, improve downstream text-generation quality, and serves as the defacto approach for self-speculative decoding. Existing foundation and open source models that use MTP heads commit to a static tree-based attention topology throughout the entire generation sequence, meaning the speculation depth, and thus the compute required during verification, stays constant regardless of the context. This is fundamentally misaligned with the entropy patterns of natural language where low-entropy regions often support reliable multi-step drafting, while high-entropy regions require more conservative speculation. To address this, we propose Entropy-guided Multi-Token Prediction (EntMTP), a training-free scheduler that toggles between tree-based attention topologies from a set of task-specific pareto-optimal trees conditioned on a running estimate of local generation entropy. By matching speculation depth to context predictability, EntMTP maximizes expected accepted-token throughput across the full distribution of generated text without sacrificing generation quality. When evaluated across Humaneval, ShareGPT, GSM8k, and Litbench benchmarks, EntMTP consistently achieves a 1.15x speedup against Hydra and peak speedup of 1.36x against Medusa baselines respectively.",
-      "reason": "近 30 天；关键词：cs.CL, inference, llm。Multi-token prediction has been shown to increase data density during training, improve downstream text-generation quality, and se...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "inference",
-        "llm",
-        "pareto",
-        "speculative",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-06-25T20:54:27Z",
-      "url": "https://arxiv.org/abs/2606.27550",
-      "pdfUrl": "https://arxiv.org/pdf/2606.27550v1"
-    },
-    {
-      "id": "arxiv-2606.27457",
-      "title": "Cluster, Route, Escalate: Cascaded Framework for Cost-Aware LLM Serving",
-      "authors": [
-        "Yasmin Moslem",
-        "Magdalena Kacmajor",
-        "Vasudevan Nedumpozhimana",
-        "Ammar Abbas",
-        "Solmaz Panahi",
-        "David Lynch",
-        "Zhuangzhuang Nie",
-        "Alexandros Agapitos",
-        "Aleksandar Milenovic",
-        "Hongmeng Song",
-        "Yucheng Shi",
-        "Yue Pan",
-        "Patricia Buffini",
-        "John D. Kelleher"
-      ],
-      "summary": "Efficient deployment of large language models (LLMs) in production forces a trade-off between accuracy and cost. Operators often default to a single model that is either expensive for easy queries or insufficient for hard ones. To address this challenge, we propose a two-stage cascaded solution. Stage 1 clusters incoming queries and assigns each cluster to its most cost-effective model. The cost budget for this routing process is set by an interpretable hyperparameter, tuned offline. Stage 2 adds a quality estimation (QE) cascade; when an output from Stage 1 is judged low-quality, the query is escalated to a stronger model. This ensures only hard or low-confidence cases reach the expensive models. On the test datasets, the cascaded system retains 97-99% of the strongest model's accuracy while reducing Time Per Output Token (TPOT). It requires only task-correctness labels and adapts to changes in the model pool without manual reconfiguration.",
-      "reason": "近 30 天；关键词：cs.PF, dataset, efficient。Efficient deployment of large language models (LLMs) in production forces a trade-off between accuracy and cost. Operators often d...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.PF",
-        "dataset",
-        "efficient",
-        "llm",
-        "production",
         "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-06-25T18:29:24Z",
-      "url": "https://arxiv.org/abs/2606.27457",
-      "pdfUrl": "https://arxiv.org/pdf/2606.27457v1"
+      "publishedAt": "2026-06-29T14:44:24Z",
+      "url": "https://arxiv.org/abs/2606.30391",
+      "pdfUrl": "https://arxiv.org/pdf/2606.30391v1"
     },
     {
-      "id": "arxiv-2606.27446",
-      "title": "Causal Connections: Leveraging Multilingual Fine-Tuning for Financial QA@FinCausal 2026",
+      "id": "arxiv-2606.30389",
+      "title": "Predict, Reuse, and Repair: Accelerating Dynamic Sparse Attention for Long-Context LLM Decoding",
       "authors": [
-        "Akash Kumar Gautam",
-        "Serhii Hamotskyi",
-        "Christian Hänig"
+        "Tianyu Wang",
+        "Gourav Rattihalli",
+        "Aditya Dhakal",
+        "Junbo Li",
+        "Zhiwei Ren",
+        "Dejan Milojicic",
+        "Longfei Shangguan"
       ],
-      "summary": "This paper describes team HSA_CORAL's submission to the FinCausal 2026 shared task on extracting cause-effect relations from financial narratives via extractive question answering in English and Spanish. We compare three modeling families: (i) encoder-only token tagging with multilingual BERT, (ii) encoder-decoder generation with multilingual BART, and (iii) decoder-only LLMs (Llama 3.1 and GPT variants) using prompt refinement, few-shot demonstrations, and supervised fine-tuning. Across settings, prompting and few-shot examples yield competitive performance, while supervised fine-tuning provides the largest gains. Our best system, GPT-4.1 Mini fine-tuned on combined English and Spanish training data, achieves a tied highest score on the English subtask (score 4.8140) and ranks third on Spanish (score 4.7753) under the shared task's LLM-as-a-judge metric. Overall, the results highlight the value of task-specific adaptation and multilingual fine-tuning for cross-lingual transfer in financial causality QA.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, llm。This paper describes team HSA_CORAL's submission to the FinCausal 2026 shared task on extracting cause-effect relations from finan...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "cs.CL",
-        "llm"
-      ],
-      "signal": 97,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-06-25T18:17:04Z",
-      "url": "https://arxiv.org/abs/2606.27446",
-      "pdfUrl": "https://arxiv.org/pdf/2606.27446v1"
-    },
-    {
-      "id": "arxiv-2606.27681",
-      "title": "Textual Belief States for World Models: Identifiable Representation Learning Under Strict Mediation",
-      "authors": [
-        "Xiang Gao",
-        "Kaiwen Dong",
-        "Yuguang Yao",
-        "Padmaja Jonnalagedda",
-        "Kamalika Das"
-      ],
-      "summary": "World models in partially observed environments rely on latent representations that summarize interaction history, but in many modern LLM-based architectures predictive performance fails to reflect representation quality due to history bypass, rendering the latent state unidentifiable. Strict latent state mediation, requiring predictions to depend only on the latent state and action, is a classical principle that resolves this, but enforcing it in text-based settings is an open challenge: textual latent states are discrete and non-differentiable, precluding variational training, and expressive LLM decoders readily ignore the bottleneck. We show how to make strict mediation work in the text domain. We formalize why it is necessary, showing that strict mediation makes representation quality empirically testable while history-leaky architectures break this connection. We then introduce textual latent states, which are discrete, interpretable, and variable-length, and factorized GRPO (fGRPO), a tree-structured reinforcement learning method that enforces strict mediation during training. Experiments on TextWorld and ScienceWorld show preserved one-step prediction accuracy alongside up to 57\\% gains in representation quality and 98\\% improvements in rollout performance, increasing with task complexity and horizon.",
-      "reason": "近 30 天；关键词：cs.LG, llm。World models in partially observed environments rely on latent representations that summarize interaction history, but in many mod...",
+      "summary": "Dynamic sparse attention (DSA) accelerates long-context LLM decoding by attending to only the top-K KV blocks relevant to each query, but it introduces a serialized selection-to-attention dependency that emerges as a new latency bottleneck. We present PRR, a speculate-reuse-repair runtime that exploits temporal locality in DSA selections to predict likely blocks, speculate the attention over them while selection is in flight, and incrementally repair missed blocks once the true selected set is known. PRR uses a lightweight EMA-based predictor, a profiling-guided speculation budget that keeps speculative work off the critical path, and a FlashAttention-based repair kernel that folds missed blocks into the partial attention state using online-softmax statistics. Across long-context benchmarks and representative DSA methods, PRR reduces per-token decoding latency by up to 40% while preserving downstream task accuracy. Github: https://github.com/Tianyu9748/Incremental_FlashAttention",
+      "reason": "近 30 天；关键词：cs.LG, latency, llm。Dynamic sparse attention (DSA) accelerates long-context LLM decoding by attending to only the top-K KV blocks relevant to each que...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
-        "llm"
+        "latency",
+        "llm",
+        "serving",
+        "speculative"
       ],
-      "signal": 77,
+      "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-06-26T03:26:02Z",
-      "url": "https://arxiv.org/abs/2606.27681",
-      "pdfUrl": "https://arxiv.org/pdf/2606.27681v1"
+      "publishedAt": "2026-06-29T14:43:25Z",
+      "url": "https://arxiv.org/abs/2606.30389",
+      "pdfUrl": "https://arxiv.org/pdf/2606.30389v1"
     },
     {
-      "id": "arxiv-2606.28057",
-      "title": "MultiHashFormer: Hash-based Generative Language Models",
+      "id": "arxiv-2606.30265",
+      "title": "When Is a Draft Accepted? A Theory of Acceptance in Speculative Decoding",
       "authors": [
-        "Huiyin Xue",
-        "Atsuki Yamaguchi",
-        "Nikolaos Aletras"
+        "Aaryam Sharma"
       ],
-      "summary": "Language models (LMs) represent tokens using embedding matrices that scale linearly with the vocabulary size. To constrain the parameter footprint, prior work proposes hashing many tokens into a single vector within encoder-only models. While this offers parameter efficiency, many-to-one collisions prevent its use in causal LMs. In this paper, we propose MultiHashFormer, a new framework that allows hash-based autoregression. Each token is represented as a unique hash signature, a short sequence of discrete hash IDs, generated by multiple independent hash functions. A Hash Encoder compresses this signature into a single latent vector for processing by a Transformer decoder. Then, a Hash Decoder generates the hash signature of the next token, which is then mapped back to text. We evaluate our approach at the 100M, 1B and 3B parameter scales, demonstrating that MultiHashFormer consistently outperforms standard Transformer LMs across multiple benchmarks. Furthermore, we show that our model handles multilingual vocabulary expansion with a constant parameter footprint without any modifications.",
-      "reason": "近 30 天；关键词：cs.CL。Language models (LMs) represent tokens using embedding matrices that scale linearly with the vocabulary size. To constrain the par...",
+      "summary": "Speculative decoding accelerates language model inference by using a fast drafter to propose candidate tokens that are then verified by a larger target model. Existing theory largely studies the stochastic, distribution-preserving setting, where the goal is to exactly sample from the target distribution. In contrast, many practical systems use greedy decoding, relaxed acceptance rules, or tree-based candidate sets, where success is governed by local ranking and threshold events rather than exact distributional equality. We develop a theory for these regimes. We identify that many common acceptance criteria have rejection regions that can be characterized as lower level sets of the target distribution. For these, we characterize the exact KL divergence required for rejection yielding exact certificates and sharp margin-based bounds for strict greedy decoding, additive and multiplicative relaxed acceptance, top-(m) relaxed criteria, and entropy-thresholded acceptance. We then extend the framework to greedy tree decoding, deriving exact and margin-only certificates for when the target greedy token remains covered by the drafter's top-(m) candidates. Finally, we evaluate the resulting certificates on Qwen3 models, showing that relaxed and tree-based criteria substantially enlarge the region of certified acceptance, especially on decoding steps with low target model distribution margin. These results complement existing distribution-preserving analyses of speculative decoding by characterizing the deterministic local acceptance events common in practical inference systems.",
+      "reason": "近 30 天；关键词：cs.LG, inference, ranking。Speculative decoding accelerates language model inference by using a fast drafter to propose candidate tokens that are then verifi...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL"
+        "cs.LG",
+        "inference",
+        "ranking",
+        "serving",
+        "speculative"
       ],
-      "signal": 70,
+      "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-06-26T13:03:29Z",
-      "url": "https://arxiv.org/abs/2606.28057",
-      "pdfUrl": "https://arxiv.org/pdf/2606.28057v1"
+      "publishedAt": "2026-06-29T13:14:51Z",
+      "url": "https://arxiv.org/abs/2606.30265",
+      "pdfUrl": "https://arxiv.org/pdf/2606.30265v1"
     },
     {
-      "id": "arxiv-2606.27617",
-      "title": "Masked Language Flow Models",
+      "id": "arxiv-2606.29986",
+      "title": "HBM Is Not All You Need: Efficient Disaggregated LLM Serving across Memory-heterogeneous Accelerators",
       "authors": [
-        "Iskander Azangulov",
-        "Kianoosh Ashouritaklimi",
-        "Leo Zhang",
-        "Simon Vary",
-        "Patrick Rebeschini"
+        "Zhixiang Wei",
+        "Yun Wang",
+        "James Yen",
+        "Mingyuan Xia",
+        "Zhengwei Qi"
       ],
-      "summary": "Masked Diffusion Models (MDMs) promise fast, parallel language generation, but their reverse transition factorises across token positions -- an approximation that breaks down in the few-step sampling regime where parallel generation ought to provide the greatest efficiency gains. Flow Language Models (FLMs) sidestep this limitation by learning a continuous flow that transports noise toward clean sequences represented in Euclidean space, inducing a flow map that can be distilled for single-step generation. However, this makes complex tasks requiring multi-step reasoning problematic for FLMs, as FLMs are forced to decode every token during generation. To address this, we introduce Masked Language Flow Models (MLFMs), which incorporate masking into FLMs using a continuous stochastic interpolant to bridge partially masked and clean sequences. This design enables conditional generation via continuous flows and allows pretrained MDMs to be converted into MLFMs through a simple, lightweight adaptation. Leveraging this flexibility, we propose a novel sampler that alternates continuous denoising with the discrete unmasking of confident tokens to better support multi-step reasoning. We evaluate our approach on GSM8K and MT-Bench and find, for the first time, that flow-based language models can be scaled to solve downstream reasoning and instruction-following tasks.",
-      "reason": "近 30 天；关键词：cs.CL。Masked Diffusion Models (MDMs) promise fast, parallel language generation, but their reverse transition factorises across token po...",
+      "summary": "LLM inference comprises a compute-bound prefill phase and a memory-bound decode phase, and recent systems disaggregate them onto separate hardware. Yet today's datacenter GPUs rely on costly HBM whose bandwidth sits almost entirely idle during prefill. LLM serving across memory-heterogeneous accelerators (MemHA) pairs GDDR-based accelerators for prefill with HBM-based GPUs for decode, promising lower cost without sacrificing performance. Pushed to its most economical form, MemHA serving is inherently cross-vendor, since the best-suited chip for each phase may come from a different vendor. This breaks two assumptions that single-vendor disaggregation takes for granted -- a KV format both ends consume natively, and a shared software stack. We present \\textbf{HMA-Serve}, a MemHA-centric disaggregated serving system pairing GDDR-based accelerators for prefill with HBM-based GPUs for decode efficiently. HMA-Serve achieves this through (1) phase-wise quantization, applying vendor-native low precision for high-throughput prefill while keeping decode in high-precision BF16, (2) a compute-transfer pipeline that overlaps each layer's KV cache transfer with later-layer prefill to reduce time-to-first-token (TTFT), and (3) deferred dequantization, shipping raw quantized bytes and reconstructing them lazily on the decode GPU to reduce network bandwidth and HBM usage. Across four Qwen3 models (4B--32B) and three production traces, HMA-Serve delivers up to $3.2\\times$ higher goodput than state-of-the-art memory-homogeneous methods and $4.8\\times$ higher goodput-per-dollar, with no measurable loss on generation-quality benchmarks.",
+      "reason": "近 30 天；关键词：cs.AR, efficient, inference。LLM inference comprises a compute-bound prefill phase and a memory-bound decode phase, and recent systems disaggregate them onto s...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL"
+        "cs.AR",
+        "efficient",
+        "inference",
+        "kv-cache",
+        "llm",
+        "prefill",
+        "production"
       ],
-      "signal": 70,
+      "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-06-26T00:16:40Z",
-      "url": "https://arxiv.org/abs/2606.27617",
-      "pdfUrl": "https://arxiv.org/pdf/2606.27617v1"
+      "publishedAt": "2026-06-29T09:00:38Z",
+      "url": "https://arxiv.org/abs/2606.29986",
+      "pdfUrl": "https://arxiv.org/pdf/2606.29986v1"
+    },
+    {
+      "id": "arxiv-2606.29946",
+      "title": "POEM: Partial-Order Enhanced Real-Time Sequential Modeling for Recommendation",
+      "authors": [
+        "Linxiao Che",
+        "Yijia Sun",
+        "Siyuan Lou",
+        "Shanshan Huang",
+        "Qiang Luo",
+        "Ruiming Tang",
+        "Han Li",
+        "Kun Gai"
+      ],
+      "summary": "Real-time recommendation systems suffer from the dynamic drift of user interests and varying contextual conditions. Conventional sequential recommendation models only exploit static historical click sequences, which fail to capture instant preference changes and overlook structured signals hidden within the multi-stage ranking pipeline of industrial recommendation systems. To tackle these limitations, we propose POEM (Partial-Order Enhanced Modeling), a new real-time sequential modeling framework built upon intrinsic partial-order relations from the recommendation cascade. POEM takes real-time multi-task ranking scores (including predicted CTR and predicted watch duration) generated by upstream ranking modules as supervision to construct dynamic partial-order sequences, supporting fine-grained real-time interest modeling and consistent optimization between system ranking targets and user behavioral patterns. We summarize our core contributions as three aspects: (1) a partial-order guided sequence construction paradigm, which enriches vanilla chronological sequences via dynamic grouping and sampling conditioned on real-time ranking scores to reassess user interests per request; (2) a multi-objective score fusion module that unifies heterogeneous ranking signals into a compact quintuple representation with normalized rank-aware weighting; (3) a hierarchical sample learning strategy, which adopts system-favored high-ranked items and user positive feedback (e.g., long-duration watched videos) as positive instances, paired with graph-mined hard negatives and a margin-based pairwise loss for robust training. Fully deployed on Kuaishou online traffic, POEM achieves significant online gains: average per-user watch time lifts by 0.249% on the KS Single Page and 0.213% on the KS Lite Page.",
+      "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, deployed。Real-time recommendation systems suffer from the dynamic drift of user interests and varying contextual conditions. Conventional s...",
+      "area": "推荐算法",
+      "tags": [
+        "kuaishou",
+        "cs.IR",
+        "deployed",
+        "industrial",
+        "ranking",
+        "recommendation"
+      ],
+      "signal": 99,
+      "source": "Kuaishou/arXiv",
+      "publishedAt": "2026-06-29T08:23:04Z",
+      "url": "https://arxiv.org/abs/2606.29946",
+      "pdfUrl": "https://arxiv.org/pdf/2606.29946v1"
+    },
+    {
+      "id": "arxiv-2606.29733",
+      "title": "How Far Do On-Prem Open LLMs Get on Text-to-SQL? A Cross-Family Size x Technique Frontier on BIRD",
+      "authors": [
+        "Vladimir Beskorovainyi"
+      ],
+      "summary": "Organizations that cannot send data to a cloud API increasingly ask: how good is Text-to-SQL if the model must run on-premises on open weights, and which popular accuracy \"recipes\" are worth their compute? We answer with an honest, fully reproducible benchmark on the BIRD development split (n=1534, Execution Accuracy), evaluating three open model families across two generations -- Qwen2.5-Coder (7B/14B/32B), CodeLlama-Instruct (7B/13B/34B), and Llama-3.x (8B, 70B) -- under one matched protocol, ablating a model-agnostic recipe (schema linking, self-correction, self-consistency) component by component, with every difference tested by the paired McNemar test. Four findings stand out. (i) Generation matters more than raw size, and the recipe is family-robust: Qwen2.5-Coder dominates the older CodeLlama at matched size (39.1 vs 20.9 at 7B), but a modern non-Qwen model (Llama-3.3-70B, 49.2 on a matched serving) is competitive, so CodeLlama's weakness reflects its 2023 generation, not \"non-Qwen = weak\". (ii) Self-correction is a robust, near-free win, significant on all three families where there is room to improve. (iii) Schema linking does not help, and a stronger linker does not rescue it: a retrieval/embedding linker with 96.5% gold-table recall is statistically indistinguishable from no linking, ruling out the \"weak lexical strawman\" objection across three families. (iv) Self-consistency is poor value (+0.13 pp for ~5x tokens, not significant). We report real per-stage cost ($/1k queries) and release all code, predictions, and summaries; archived code and data: https://doi.org/10.5281/zenodo.20952794",
+      "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.CL。Organizations that cannot send data to a cloud API increasingly ask: how good is Text-to-SQL if the model must run on-premises on...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "alibaba",
+        "meta",
+        "cs.CL",
+        "llm",
+        "retrieval",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "Alibaba/Meta/arXiv",
+      "publishedAt": "2026-06-29T03:15:38Z",
+      "url": "https://arxiv.org/abs/2606.29733",
+      "pdfUrl": "https://arxiv.org/pdf/2606.29733v1"
+    },
+    {
+      "id": "arxiv-2606.29495",
+      "title": "Cognitive World Models for Process-Level Social Influence Evaluation",
+      "authors": [
+        "Minghui Ma",
+        "Bin Guo",
+        "Han Wang",
+        "Mengqi Chen",
+        "Jingqi Liu",
+        "Yan Liu",
+        "Zhiwen Yu"
+      ],
+      "summary": "Social influence dialogue changes user behavior by altering internal cognitive states. The central evaluation question is whether the user's beliefs, desires, intentions, and emotions measurably change over the course of conversation, a process-oriented criterion that neither surface-level text metrics (BLEU/ROUGE) nor single-score LLM judgments can capture. We propose the \\textbf{Cog}nitive \\textbf{W}orld \\textbf{M}odel \\textbf{(CogWM)}, an LLM-based user model that reframes multi-turn dialogue evaluation from ``what did the user say'' to ``how did the user's internal cognitive state evolves.'' CogWM jointly predicts BDI/E cognitive states and user utterances and serves as both a user simulator and an evaluation platform, using a three-tier evaluation framework that covers turn-level fidelity, trajectory-level state dynamics, and task-level composite scoring. Trained via our \\textbf{S}ummarize-\\textbf{a}nd-\\textbf{A}llocate \\textbf{(SaA)} annotation pipeline on 150,454 user-turn samples across four social influence scenarios, CogWM achieves 77.6\\% emotion accuracy (2.1$\\times$ over GPT-5.5). In 3600 multi-agent discrimination trials, it distinguishes six commercial agents by their cognitive influence, with Llama-4-Scout ranking first (CTS +0.233). CogWM moves social influence dialogue evaluation from terminal judgment to process tracking. We have released our code\\footnote{\\scriptsize Code: https://github.com/lucianma05-create/CogWM} and models\\footnote{Model: https://www.modelscope.cn/models/LucianMa/CogWM-14B}.",
+      "reason": "近 30 天；公司信号：Meta；推荐/排序/广告方向；关键词：meta, cs.AI, llm。Social influence dialogue changes user behavior by altering internal cognitive states. The central evaluation question is whether...",
+      "area": "推荐算法",
+      "tags": [
+        "meta",
+        "cs.AI",
+        "llm",
+        "ranking"
+      ],
+      "signal": 99,
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-06-28T16:49:43Z",
+      "url": "https://arxiv.org/abs/2606.29495",
+      "pdfUrl": "https://arxiv.org/pdf/2606.29495v1"
+    },
+    {
+      "id": "arxiv-2606.29341",
+      "title": "Monosemanticity in Recommender Systems",
+      "authors": [
+        "Yagel Alfasi",
+        "Eden Rzezak",
+        "Eadan Schechter"
+      ],
+      "summary": "Latent factor models such as matrix factorization are widely used in recommender systems, yet the learned embedding dimensions typically lack explicit semantic interpretation. This opacity limits transparency, explainability, and principled intervention in recommendation behavior. While sparse autoencoders (SAEs) have recently been used to extract monosemantic features from dense neural representations, standard SAEs suffer from scaling pathologies including feature splitting, feature absorption, and feature composition, which degrade interpretability as dictionary size increases. In this work, we investigate whether hierarchical sparse representations can reveal interpretable structure in collaborative filtering embeddings. We train a large-scale matrix factorization recommender system on the Amazon Fashion dataset and apply a Matryoshka Sparse Autoencoder (MSAE) to the learned embeddings. We analyze the resulting latent features through metadata alignment and LLM-generated labeling to assess semantic coherence and disentanglement. Finally, we show an intervention on a subset of gender associated latent neurons that emerged from the analysis. Our findings suggest that collaborative filtering embeddings contain recoverable hierarchical structure, and that Matryoshka training provides a principled mechanism for exposing interpretable latent factors in interaction-driven recommendation models.",
+      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, alignment。Latent factor models such as matrix factorization are widely used in recommender systems, yet the learned embedding dimensions typ...",
+      "area": "推荐算法",
+      "tags": [
+        "amazon",
+        "cs.IR",
+        "alignment",
+        "dataset",
+        "llm",
+        "recommendation",
+        "recommender"
+      ],
+      "signal": 99,
+      "source": "Amazon/arXiv",
+      "publishedAt": "2026-06-28T11:16:12Z",
+      "url": "https://arxiv.org/abs/2606.29341",
+      "pdfUrl": "https://arxiv.org/pdf/2606.29341v1"
     }
   ]
 }
