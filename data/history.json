@@ -1,7 +1,13 @@
 {
-  "generatedAt": "2026-07-01T07:02:43.635347+08:00",
-  "source": "curated industry radar + arXiv API",
+  "generatedAt": "2026-07-02T07:01:41.437271+08:00",
+  "source": "curated industry radar",
   "history": [
+    {
+      "date": "2026-07-02",
+      "generatedAt": "2026-07-02T07:01:41.437271+08:00",
+      "source": "curated industry radar",
+      "papers": []
+    },
     {
       "date": "2026-07-01",
       "generatedAt": "2026-07-01T07:02:43.635347+08:00",
