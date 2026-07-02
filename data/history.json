@@ -1,7 +1,319 @@
 {
-  "generatedAt": "2026-07-02T07:01:41.437271+08:00",
-  "source": "curated industry radar",
+  "generatedAt": "2026-07-03T06:56:12.447728+08:00",
+  "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-07-03",
+      "generatedAt": "2026-07-03T06:56:12.447728+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2607.01088",
+          "title": "ROSA: A Robotics Foundation Model Serving System for Robot Factories",
+          "authors": [
+            "Wenqi Jiang",
+            "Jason Clemons",
+            "Rowland O'Flaherty",
+            "Hugo Hadfield",
+            "Alperen Degirmenci",
+            "Shuran Song",
+            "Yashraj Narang",
+            "Christos Kozyrakis"
+          ],
+          "summary": "Robotics foundation models (RFMs) are making general-purpose robots increasingly practical for factory deployments. While RFM serving systems are central to this vision, existing systems are largely shaped by a single-robot, single-model assumption: inference is treated as an edge-computing problem handled by an on-robot or dedicated nearby GPU, and the serving objective is to minimize the latency of a single action model. In this paper, we propose ROSA, an RFM serving system for robot factories designed around three key principles. First, ROSA adopts shared GPU-pool serving, allowing a fleet of robots to access powerful server-class GPUs over the network in order to improve inference performance, battery duration, and GPU utilization. Second, ROSA provides a robotics-aware programming abstraction and system design that supports multi-model pipelines, per-task performance requirements, and failure handling. Third, ROSA uses factory-objective-driven scheduling to maximize SLO-qualified factory productivity rather than minimizing individual request latency. We implement ROSA on top of Ray Serve for distributed orchestration, with vLLM, PyTorch, and JAX as model-serving backends, and evaluate it on both real robots and synthetic large-scale workloads. The results show that ROSA improves factory productivity by up to 12.06x over conventional dedicated serving systems.",
+          "reason": "近 30 天；关键词：cs.RO, inference, latency。Robotics foundation models (RFMs) are making general-purpose robots increasingly practical for factory deployments. While RFM serv...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.RO",
+            "inference",
+            "latency",
+            "llm",
+            "serving",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-01T15:45:08Z",
+          "url": "https://arxiv.org/abs/2607.01088",
+          "pdfUrl": "https://arxiv.org/pdf/2607.01088v1"
+        },
+        {
+          "id": "arxiv-2607.01065",
+          "title": "GSRQ: Gain-Shape Residual Quantization for Sub-1-bit KV Cache",
+          "authors": [
+            "Soosung Kim",
+            "Minjae Park",
+            "Eui-Young Chung",
+            "Jaeyong Chung"
+          ],
+          "summary": "The deployment of Large Language Models (LLMs) with extended context windows is increasingly constrained by the linear growth of Key-Value (KV) cache memory. Vector Quantization (VQ), particularly Residual Quantization (RQ), is a promising approach for pushing KV cache storage toward the sub-1-bit regime by progressively encoding residuals with small codebooks. However, most VQ methods still rely on standard $\\ell_2$ $K$-means as the core codebook-learning primitive. We identify a subtle high-dimensional issue of this primitive: Euclidean centroid averaging can induce centroid shrinkage, which weakens the angular alignment term in the $\\ell_2$ distortion and makes directional preservation harder. To address this issue, we propose Gain-Shape $K$-means (GSKM), a drop-in replacement for $K$-means that improves directional fidelity while matching, and in some regimes improving, $\\ell_2$ distortion. We then build Gain-Shape Residual Quantization (GSRQ) by incorporating a weighted extension of GSKM into an RQ pipeline. On LLaMA-3-8B, GSRQ substantially improves over strong KV cache quantization baselines across bit rates. At 1-bit, it improves the average accuracy across LongBench tasks from 11.34 to 33.54, a gain of 22.20 percentage points over VQLLM.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, alignment。The deployment of Large Language Models (LLMs) with extended context windows is increasingly constrained by the linear growth of K...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "alignment",
+            "kv-cache",
+            "llm",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-07-01T15:25:21Z",
+          "url": "https://arxiv.org/abs/2607.01065",
+          "pdfUrl": "https://arxiv.org/pdf/2607.01065v1"
+        },
+        {
+          "id": "arxiv-2607.01040",
+          "title": "As It Was: Aligning LLM Search Evaluation with Historical User Preferences",
+          "authors": [
+            "Ali Vardasbi",
+            "Gustavo Penha",
+            "Enrico Palumbo",
+            "Claudia Hauff",
+            "Hugues Bouchard",
+            "Mounia Lalmas"
+          ],
+          "summary": "Large-scale search systems evolve faster than human quality assurance can scale, especially for long-tail intents and multilingual queries. LLM-as-a-judge approaches provide a scalable alternative for evaluating the relevance of search engine result pages (SERPs), but judgments based solely on semantic similarity or world knowledge can drift from actual user preferences, particularly for ambiguous queries. We introduce a behavior-grounded LLM judge that augments each SERP item with a lightweight and auditable behavioral prior in the form of a Query-Relevance-Impressions (QRI) card. Each card summarizes how users have historically interacted with similar queries and results, providing compact empirical evidence that the judge can cite to resolve ambiguity and make more consistent relevance judgments while still relying on semantic reasoning. In a large-scale music search evaluation at Spotify, using relevance estimates derived from historical user interactions across 6,000 recomposed SERPs, the behavior-grounded judge achieves stronger alignment with user preferences, improving Spearman rank correlation by approximately 5% overall and yielding a 91% relative improvement on disagreement cases. On a multilingual human-judged dataset spanning five languages, grounding further increases correlation with human relevance judgments by 15%. Importantly, when evaluated against outcomes from a live A/B test, the grounded judge shows consistently higher alignment with the observed winning model. While absolute alignment remains moderate, these findings demonstrate that lightweight behavioral grounding can improve the reliability and practical usefulness of LLM-based evaluation in real-world search systems.",
+          "reason": "近 30 天；公司信号：Spotify；推荐/排序/广告方向；关键词：spotify, cs.IR, alignment。Large-scale search systems evolve faster than human quality assurance can scale, especially for long-tail intents and multilingual...",
+          "area": "推荐算法",
+          "tags": [
+            "spotify",
+            "cs.IR",
+            "alignment",
+            "dataset",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "Spotify/arXiv",
+          "publishedAt": "2026-07-01T15:05:10Z",
+          "url": "https://arxiv.org/abs/2607.01040",
+          "pdfUrl": "https://arxiv.org/pdf/2607.01040v1"
+        },
+        {
+          "id": "arxiv-2607.00760",
+          "title": "MosaicKV: Serving Long-Context LLM with Dynamic Two-D KV Cache Compression",
+          "authors": [
+            "Sheng Qiang",
+            "Ruiwei Chen",
+            "Yinpeng Wu",
+            "Jinyu Gu",
+            "Zhichao Hua",
+            "Yubin Xia",
+            "Binyu Zang",
+            "Haibo Chen"
+          ],
+          "summary": "Long-context LLM services now sustain prompts with hundreds of thousands to millions of tokens, making the key-value (KV) cache a first-order serving cost. Because the cache grows linearly with context length, it can exhaust GPU memory, force smaller batches, and reduce serving throughput. Prior KV cache compression techniques typically target only the sequence dimension or only the channel dimension, which leaves limited headroom as context windows scale. Compressing both dimensions promises higher memory reduction, but applying the two forms of compression directly leads to significant accuracy loss. This paper introduces MosaicKV, a dynamic two-D (dimensional) KV cache compression system for extremely long-context serving. MosaicKV uses dynamic two-D compression to address the accuracy challenge, exploiting the non-uniform importance distribution of elements within the KV cache. Instead of applying one compression pattern globally, MosaicKV identifies important elements for each KV vector and selects compression strategies at the granularity of KV cache segments. To address the performance challenge, where fine-grained sparsity and compression management overhead can offset the gains from compression, MosaicKV introduces compressed KV cache management. This mechanism uses underutilized GPU and CPU resources to maintain compressed KV caches and accelerate attention computation. Evaluation on an H800 GPU with multiple LLMs shows that MosaicKV delivers up to 16x attention speedup, 4.8x lower decode latency, and 7.3x higher throughput than the uncompressed baseline. At the same time, it reduces memory usage by 3x and incurs only 1.76% average accuracy loss on LongBench and RULER.",
+          "reason": "近 30 天；关键词：cs.LG, kv-cache, latency。Long-context LLM services now sustain prompts with hundreds of thousands to millions of tokens, making the key-value (KV) cache a...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "kv-cache",
+            "latency",
+            "llm",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-01T10:44:57Z",
+          "url": "https://arxiv.org/abs/2607.00760",
+          "pdfUrl": "https://arxiv.org/pdf/2607.00760v1"
+        },
+        {
+          "id": "arxiv-2607.00501",
+          "title": "BaseRT: Best-in-Class LLM Inference on Apple Silicon via Native Metal",
+          "authors": [
+            "Prabod Rathnayaka",
+            "Fabian Waschkowski",
+            "Lukas Wesemann"
+          ],
+          "summary": "We present BaseRT, a native Metal inference runtime for large language models (LLMs) on Apple Silicon, and report the highest inference throughput on this hardware to date. Existing runtimes, including llama.cpp and MLX-based frameworks, incur overhead from abstractions not designed for Metal's execution model or Apple Silicon's unified memory topology. By building natively on Metal with chip-specific kernel fusion, unified memory-aware optimisation, and custom dispatch logic, BaseRT recovers performance that framework-based approaches leave on the table. BaseRT supports a wide range of model families across eight quantisation formats (Q2 to FP16) on all Apple M-series devices. In this paper, we evaluate the Qwen3, Llama 3.2, and Gemma 4 families at Q4 and Q8 quantisation on M3 and M4 Pro devices. BaseRT achieves up to 1.56x higher decode throughput than llama.cpp and up to 1.35x higher than MLX, with substantially larger margins on prefill for mixture-of-experts models, delivering consistent best-in-class throughput from sub-1B to 30B parameter models. These results establish Apple Silicon as a more capable inference platform than previously reported, with direct implications for the emerging edge inference paradigm: as privacy requirements, latency constraints, and cloud cost pressures drive inference toward on-device deployment, performance-optimised local runtimes are a critical enabling layer for this transition. BaseRT is publicly available at https://github.com/basecompute/baseRT",
+          "reason": "近 30 天；公司信号：Apple, Meta；关键词：apple, meta, cs.CL。We present BaseRT, a native Metal inference runtime for large language models (LLMs) on Apple Silicon, and report the highest infe...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "apple",
+            "meta",
+            "cs.CL",
+            "inference",
+            "latency",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "Apple/Meta/arXiv",
+          "publishedAt": "2026-07-01T06:37:11Z",
+          "url": "https://arxiv.org/abs/2607.00501",
+          "pdfUrl": "https://arxiv.org/pdf/2607.00501v1"
+        },
+        {
+          "id": "arxiv-2607.00466",
+          "title": "ELDR: Expert-Locality-Aware Decode Routing for PD-Disaggregated MoE Serving",
+          "authors": [
+            "Sangjin Choi",
+            "Sukmin Cho",
+            "Yifan Xiong",
+            "Ziyue Yang",
+            "Youngjin Kwon",
+            "Peng Cheng"
+          ],
+          "summary": "In prefill-decode (PD) disaggregated LLM serving, each request is assigned to a decode worker after prefill. Existing decode routers balance only load; for mixture-of-experts (MoE) models this is incomplete: equally loaded workers can differ in latency, since each decode step loads the weights of every distinct expert its batch activates. We present ELDR, an expert-locality-aware decode router for PD-disaggregated MoE serving. From a request's prefill expert activations, ELDR builds an expert signature predicting the experts it will activate during generation. Offline, balanced K-means partitions signature space across decode workers; online, locality-band routing sends each request to the least-loaded worker among those best matching its signature. A signature cache, co-indexed with the KV cache at KV-block granularity, keeps signatures exact under prefix caching. Implemented in vLLM and evaluated on deployments of up to 40 GPUs, ELDR reduces median TPOT by 5.9-13.9% over the strongest of four load-balancing baselines across three MoE models and two workloads, with model outputs unchanged.",
+          "reason": "近 30 天；关键词：cs.DC, kv-cache, latency。In prefill-decode (PD) disaggregated LLM serving, each request is assigned to a decode worker after prefill. Existing decode route...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "kv-cache",
+            "latency",
+            "llm",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-01T05:34:38Z",
+          "url": "https://arxiv.org/abs/2607.00466",
+          "pdfUrl": "https://arxiv.org/pdf/2607.00466v1"
+        },
+        {
+          "id": "arxiv-2607.00151",
+          "title": "SmoothAgent: Efficient Long-Horizon LLM-Based Agent Serving with Lookahead Context Engineering",
+          "authors": [
+            "Zaifeng Pan",
+            "Qianxu Wang",
+            "Zhengding Hu",
+            "Chang Chen",
+            "Yue Guan",
+            "Yanbo Zhou",
+            "Steven Swanson",
+            "Yufei Ding"
+          ],
+          "summary": "LLM-based agents execute multi-turn workflows with continuously growing contexts, where LLM calls are interleaved with tool invocations and environment feedback. To maintain model quality, modern agent frameworks rely on context engineering strategies such as offloading, reduction, and isolation to control the context length. However, these strategies introduce significant context transformation overhead: each transformation invalidates existing KV caches and triggers re-prefill, leading to increased time-to-first-token (TTFT). In this paper, we identify that context transformations are segment-decomposable, where the transformation of a prefix is independent of future tokens. This property enables transformations to be executed ahead of time. Based on this insight, we propose a lookahead programming model that allows agent frameworks to express context transformations as asynchronous operations without modifying their execution logic. The runtime proactively executes these transformations and prepares transformed KV caches in advance, enabling direct context replacement without blocking. We further design a lookahead-aware scheduler in LLM serving systems to support these asynchronous requests alongside latency-critical workloads with controlled interference. We implement our approach to support representative context engineering strategies and integrate it into existing agent frameworks and LLM serving systems. Experiments show that our approach effectively eliminates transformation overhead and reduces TTFT by up to 11.9x.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, kv-cache。LLM-based agents execute multi-turn workflows with continuously growing contexts, where LLM calls are interleaved with tool invoca...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "kv-cache",
+            "latency",
+            "llm",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-30T20:27:49Z",
+          "url": "https://arxiv.org/abs/2607.00151",
+          "pdfUrl": "https://arxiv.org/pdf/2607.00151v1"
+        },
+        {
+          "id": "arxiv-2606.32025",
+          "title": "Generative Skill Composition for LLM Agents",
+          "authors": [
+            "Xinyu Zhao",
+            "Zhen Tan",
+            "Vaishnav Tadiparthi",
+            "Nakul Agarwal",
+            "Kwonjoon Lee",
+            "Ehsan Moradi Pari",
+            "Hossein Nourkhiz Mahjoub",
+            "Tianlong Chen"
+          ],
+          "summary": "Recent LLM agents benefit from skills for solving complex tasks. Skills encapsulate modular packages of procedural knowledge and instructions for performing specialized tasks, such as setting up a sandboxed environment, running a test suite, or refactoring a function across multiple files. As skill libraries grow and become reusable across tasks and domains, selecting an appropriate skill composition has emerged as a central bottleneck. Existing approaches fall into two categories. One exposes the agent's reasoning to the entire skill collection; the other performs skill retrieval via embeddings or LLM-based rerankers. Both provide useful insights; however, they miss the structural nature of skill composition, which is a joint decision over which skills, how many, and in what order -- three dimensions that cannot be decoupled. We formalize this as structured skill composition: given a task and a skill library, predict an executable skill plan that jointly specifies the activated subset, count, and execution order. We propose SkillComposer, which instantiates structured skill composition as task-conditioned skill sequence prediction. SkillComposer uses a constrained autoregressive decoder over skill identifiers, so subset, count, and order emerge jointly from a single decoding pass, and dependencies between successive skills are captured naturally. We build a training set of task-composition pairs from a real, human-curated skill library. We then evaluate SkillComposer along two axes: composition quality on a held-out test set, and downstream task success on SkillsBench across two production-grade coding agents. On GPT-5.2-Codex, Gemini-3-Pro-Preview, SkillComposer raises the pass rate by +23.1, +18.2pp over the no-skill baseline, surpassing top-3 retrieval and matching the gold-skill retrieval upper bound at lower prompt-token cost.",
+          "reason": "近 30 天；公司信号：Google；关键词：google, cs.CL, llm。Recent LLM agents benefit from skills for solving complex tasks. Skills encapsulate modular packages of procedural knowledge and i...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "google",
+            "cs.CL",
+            "llm",
+            "production",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "Google/arXiv",
+          "publishedAt": "2026-06-30T17:53:09Z",
+          "url": "https://arxiv.org/abs/2606.32025",
+          "pdfUrl": "https://arxiv.org/pdf/2606.32025v1"
+        },
+        {
+          "id": "arxiv-2606.31693",
+          "title": "ShopX: A Foundation Model for Intent-to-Item Fulfillment in Agentic Shopping",
+          "authors": [
+            "Jiacheng Chen",
+            "Tao Zhang",
+            "Manxi Lin",
+            "Dunxian Huang",
+            "Teng Shi",
+            "Honghao Fu",
+            "Mengyan Li",
+            "Xinming Zhang",
+            "Chenchi Zhang",
+            "Xuan Lu",
+            "Xiaoxiong Du",
+            "Haibin Chen",
+            "Shaolin Ye",
+            "Hao Chang",
+            "Xiaoqi Li",
+            "Shuwen Xiao",
+            "Yujin Yuan",
+            "Jingxuan Feng",
+            "Shaopan Xiong",
+            "Huimin Yi",
+            "Ju Huang",
+            "Qiu Shen",
+            "Ying Chen",
+            "Junjun Zheng",
+            "Xiangheng Kong",
+            "Yuning Jiang"
+          ],
+          "summary": "The wave of AI-native applications is moving shopping beyond page- and feed-based browsing toward intent-driven experiences orchestrated by LLM agents. A common design wraps an LLM around existing search and recommendation pipelines, forcing complex intents through low-bandwidth retrieval or ranking interfaces and leaving a gap between language understanding and item-space fulfillment. Generative recommendation gives LLMs a direct item-space interface through semantic IDs (SIDs), but existing models mainly generate candidates for retrieval rather than translate flexible intents into item-space outcomes. We propose ShopX to address this bottleneck by unifying intent understanding, execution planning, and flexible SID-native item-space operations into a single foundation model. We deploy ShopX in agentic shopping workflows through a model-native item-fulfillment framework with a serving harness that defines a model-facing action protocol and exposes support surfaces for context access, catalog grounding, and state management. Within this framework, ShopX plans and composes SID-based item-space operations such as SID beam-search retrieval, listwise ranking, or product bundling. This model-centric design reduces lossy hand-offs between agent orchestration and item-space execution. To build ShopX, we design semantically recoverable, LLM-operable SIDs and a training recipe that equips a general LLM for flexible multi-turn item-space fulfillment while retaining the knowledge and instruction-following abilities needed by a shopping agent. We evaluate the ShopX framework against tool-mediated agentic systems on single- and multi-turn fulfillment tasks derived from anonymized Taobao production logs, showing that model-native fulfillment improves overall framework behavior, especially on complex or ambiguous requests.",
+          "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, generative-recommendation。The wave of AI-native applications is moving shopping beyond page- and feed-based browsing toward intent-driven experiences orches...",
+          "area": "推荐算法",
+          "tags": [
+            "alibaba",
+            "cs.IR",
+            "generative-recommendation",
+            "llm",
+            "production",
+            "ranking",
+            "recommendation"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-06-30T14:05:28Z",
+          "url": "https://arxiv.org/abs/2606.31693",
+          "pdfUrl": "https://arxiv.org/pdf/2606.31693v1"
+        },
+        {
+          "id": "arxiv-2606.31580",
+          "title": "LASER: Load-Aware Serving with Early-Exit for Reasoning LLMs at the Edge",
+          "authors": [
+            "Zhiqing Tang",
+            "Size Li",
+            "Hanshuai Cui",
+            "Zilan Huang",
+            "Jianxiong Guo",
+            "Tian Wang",
+            "Yuan Wu",
+            "Weijia Jia"
+          ],
+          "summary": "Large reasoning models (LRMs) such as DeepSeek-R1 have achieved strong performance through extended chain-of-thought (CoT) generation. However, deploying them on edge devices raises a conflict between long CoT sequences and constrained resources. Recent confidence-based early exit methods reduce CoT length for individual requests, yet they apply fixed thresholds from a single-request perspective, ignoring multi-request concurrency and load fluctuation in edge serving. To bridge this gap, we propose \\underline{L}oad-\\underline{A}ware \\underline{S}erving with \\underline{E}arly-exit for \\underline{R}easoning (LASER). LASER couples two complementary designs: (1) a load-aware adaptive exit threshold that adjusts the confidence bar based on real-time system load within an empirically validated robust range, and (2) a difficulty- and load-aware reasoning budget pre-allocation that assigns compute resources by request difficulty and system capacity. We formulate the problem as a joint optimization of reasoning quality and service latency. Experiments on two reasoning models, four benchmarks, and diverse load conditions show that LASER reduces average latency by 17--38\\% and improves service-level objective (SLO) satisfaction by 3--6\\% over fixed-threshold baselines, at an average accuracy cost of only 1\\%.",
+          "reason": "近 30 天；关键词：cs.DC, latency, llm。Large reasoning models (LRMs) such as DeepSeek-R1 have achieved strong performance through extended chain-of-thought (CoT) generat...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "latency",
+            "llm",
+            "serving",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-06-30T12:35:48Z",
+          "url": "https://arxiv.org/abs/2606.31580",
+          "pdfUrl": "https://arxiv.org/pdf/2606.31580v1"
+        }
+      ]
+    },
     {
       "date": "2026-07-02",
       "generatedAt": "2026-07-02T07:01:41.437271+08:00",
