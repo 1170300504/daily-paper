@@ -1,311 +1,270 @@
 {
-  "generatedAt": "2026-07-03T06:56:12.447728+08:00",
+  "generatedAt": "2026-07-04T06:54:15.126768+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2607.01088",
-      "title": "ROSA: A Robotics Foundation Model Serving System for Robot Factories",
+      "id": "arxiv-2607.02043",
+      "title": "Towards Load-Aware Prefill Deflection for Disaggregated LLM Serving",
       "authors": [
-        "Wenqi Jiang",
-        "Jason Clemons",
-        "Rowland O'Flaherty",
-        "Hugo Hadfield",
-        "Alperen Degirmenci",
-        "Shuran Song",
-        "Yashraj Narang",
-        "Christos Kozyrakis"
+        "Shrikara Arun",
+        "Anjaly Parayil",
+        "Srikant Bharadwaj",
+        "Renee St. Amant",
+        "Victor Rühle"
       ],
-      "summary": "Robotics foundation models (RFMs) are making general-purpose robots increasingly practical for factory deployments. While RFM serving systems are central to this vision, existing systems are largely shaped by a single-robot, single-model assumption: inference is treated as an edge-computing problem handled by an on-robot or dedicated nearby GPU, and the serving objective is to minimize the latency of a single action model. In this paper, we propose ROSA, an RFM serving system for robot factories designed around three key principles. First, ROSA adopts shared GPU-pool serving, allowing a fleet of robots to access powerful server-class GPUs over the network in order to improve inference performance, battery duration, and GPU utilization. Second, ROSA provides a robotics-aware programming abstraction and system design that supports multi-model pipelines, per-task performance requirements, and failure handling. Third, ROSA uses factory-objective-driven scheduling to maximize SLO-qualified factory productivity rather than minimizing individual request latency. We implement ROSA on top of Ray Serve for distributed orchestration, with vLLM, PyTorch, and JAX as model-serving backends, and evaluate it on both real robots and synthetic large-scale workloads. The results show that ROSA improves factory productivity by up to 12.06x over conventional dedicated serving systems.",
-      "reason": "近 30 天；关键词：cs.RO, inference, latency。Robotics foundation models (RFMs) are making general-purpose robots increasingly practical for factory deployments. While RFM serv...",
+      "summary": "Disaggregated LLM serving runs prefill and decode on separate GPU pools to keep the two phases from interfering. In practice, this creates a new asymmetry: under bursty, heavy-tailed workloads prefill nodes saturate while decode nodes have compute underutilized, and on a production-style A100 cluster with 2 prefill and 2 decode nodes (2P2D), we find that prefill execution accounts for only 2-23% of P95 Time-to-First-Token (TTFT). Queuing and inter-node GPU-GPU KV-cache transfer account for the rest. We present a proactive prefill-deflecting scheduler that lets decode nodes serve prefill phase of requests as chunked-prefill steps interleaved with their in-flight decode batches. For each queued request, we estimate the TTFT it would see on the prefill node, and on every decode node, search for the largest chunk schedule that keeps in-flight decodes within their Time-Between-Tokens (TBT) SLO and deflect when the decode path helps tail latency. Because the prefill phase of deflected requests runs in place on the decode node, the inter-node KV transfer is eliminated. Implemented on vLLM and evaluated on production-style traces with DeepSeek-V2-Lite, our approach reduces P95 TTFT by upto 81% and raises SLO attainment by upto 79% over state-of-the-art disaggregated schedulers, at sub-millisecond per-request routing cost.",
+      "reason": "近 30 天；关键词：cs.DC, latency, llm。Disaggregated LLM serving runs prefill and decode on separate GPU pools to keep the two phases from interfering. In practice, this...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.RO",
-        "inference",
+        "cs.DC",
         "latency",
         "llm",
+        "prefill",
+        "production",
         "serving",
         "slo"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-07-01T15:45:08Z",
-      "url": "https://arxiv.org/abs/2607.01088",
-      "pdfUrl": "https://arxiv.org/pdf/2607.01088v1"
+      "publishedAt": "2026-07-02T11:10:05Z",
+      "url": "https://arxiv.org/abs/2607.02043",
+      "pdfUrl": "https://arxiv.org/pdf/2607.02043v1"
     },
     {
-      "id": "arxiv-2607.01065",
-      "title": "GSRQ: Gain-Shape Residual Quantization for Sub-1-bit KV Cache",
+      "id": "arxiv-2607.01831",
+      "title": "Lynx: Progressive Speculative Quantization for accelerating KV Transfer in Long-Context Inference",
       "authors": [
-        "Soosung Kim",
-        "Minjae Park",
-        "Eui-Young Chung",
-        "Jaeyong Chung"
+        "Wenchen Han",
+        "Gingfung Matthew Yeung",
+        "Marco Barletta",
+        "William Toner",
+        "Amory Hoste",
+        "Adam Barker"
       ],
-      "summary": "The deployment of Large Language Models (LLMs) with extended context windows is increasingly constrained by the linear growth of Key-Value (KV) cache memory. Vector Quantization (VQ), particularly Residual Quantization (RQ), is a promising approach for pushing KV cache storage toward the sub-1-bit regime by progressively encoding residuals with small codebooks. However, most VQ methods still rely on standard $\\ell_2$ $K$-means as the core codebook-learning primitive. We identify a subtle high-dimensional issue of this primitive: Euclidean centroid averaging can induce centroid shrinkage, which weakens the angular alignment term in the $\\ell_2$ distortion and makes directional preservation harder. To address this issue, we propose Gain-Shape $K$-means (GSKM), a drop-in replacement for $K$-means that improves directional fidelity while matching, and in some regimes improving, $\\ell_2$ distortion. We then build Gain-Shape Residual Quantization (GSRQ) by incorporating a weighted extension of GSKM into an RQ pipeline. On LLaMA-3-8B, GSRQ substantially improves over strong KV cache quantization baselines across bit rates. At 1-bit, it improves the average accuracy across LongBench tasks from 11.34 to 33.54, a gain of 22.20 percentage points over VQLLM.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, alignment。The deployment of Large Language Models (LLMs) with extended context windows is increasingly constrained by the linear growth of K...",
+      "summary": "Long-context inference is increasingly common in large language model (LLM) serving, driven by retrieval-augmented generation and agentic systems. In disaggregated inference, these workloads require transferring large Key-Value (KV) caches across the network, where decoding cannot begin until the transfer completes. Recent KV quantization techniques reduce data volume and alleviate this bottleneck, but existing schemes fail to achieve both low network-exposed latency and high inference accuracy. We challenge the assumption that the KV cache is an indivisible unit that must be fully received before use. We leverage the observation that different bits in the KV cache contribute unequally to attention computation and inference precision: the most significant bits capture the coarse structure of attention and the least significant bits refine precision. This property enables partial use of the KV cache during decoding. We present Lynx, a system that enables progressive, split-stream KV transfer by partitioning the KV cache into a high-priority Anchor stream carrying the most significant bits and a low-priority Residual stream carrying remaining precision. Decoding begins upon receipt of the Anchor stream and proceeds speculatively while the Residual stream is transferred concurrently, followed by verification that ensures equivalence to higher-precision decoding. Across multiple models and serving workloads, Lynx achieves Time-to-First-Token (TTFT) comparable to aggressive 4-bit KV quantization, while matching the accuracy of high-precision (BF16) inference, improving TTFT over standard 8-bit KV quantization by up to $1.43\\times$ and improving accuracy over state-of-the-art by up to $5.1\\%$.",
+      "reason": "近 30 天；关键词：cs.DC, inference, kv-cache。Long-context inference is increasingly common in large language model (LLM) serving, driven by retrieval-augmented generation and...",
       "area": "LLM 推理优化",
       "tags": [
-        "meta",
-        "cs.LG",
-        "alignment",
-        "kv-cache",
-        "llm",
-        "quantization"
-      ],
-      "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-07-01T15:25:21Z",
-      "url": "https://arxiv.org/abs/2607.01065",
-      "pdfUrl": "https://arxiv.org/pdf/2607.01065v1"
-    },
-    {
-      "id": "arxiv-2607.01040",
-      "title": "As It Was: Aligning LLM Search Evaluation with Historical User Preferences",
-      "authors": [
-        "Ali Vardasbi",
-        "Gustavo Penha",
-        "Enrico Palumbo",
-        "Claudia Hauff",
-        "Hugues Bouchard",
-        "Mounia Lalmas"
-      ],
-      "summary": "Large-scale search systems evolve faster than human quality assurance can scale, especially for long-tail intents and multilingual queries. LLM-as-a-judge approaches provide a scalable alternative for evaluating the relevance of search engine result pages (SERPs), but judgments based solely on semantic similarity or world knowledge can drift from actual user preferences, particularly for ambiguous queries. We introduce a behavior-grounded LLM judge that augments each SERP item with a lightweight and auditable behavioral prior in the form of a Query-Relevance-Impressions (QRI) card. Each card summarizes how users have historically interacted with similar queries and results, providing compact empirical evidence that the judge can cite to resolve ambiguity and make more consistent relevance judgments while still relying on semantic reasoning. In a large-scale music search evaluation at Spotify, using relevance estimates derived from historical user interactions across 6,000 recomposed SERPs, the behavior-grounded judge achieves stronger alignment with user preferences, improving Spearman rank correlation by approximately 5% overall and yielding a 91% relative improvement on disagreement cases. On a multilingual human-judged dataset spanning five languages, grounding further increases correlation with human relevance judgments by 15%. Importantly, when evaluated against outcomes from a live A/B test, the grounded judge shows consistently higher alignment with the observed winning model. While absolute alignment remains moderate, these findings demonstrate that lightweight behavioral grounding can improve the reliability and practical usefulness of LLM-based evaluation in real-world search systems.",
-      "reason": "近 30 天；公司信号：Spotify；推荐/排序/广告方向；关键词：spotify, cs.IR, alignment。Large-scale search systems evolve faster than human quality assurance can scale, especially for long-tail intents and multilingual...",
-      "area": "推荐算法",
-      "tags": [
-        "spotify",
-        "cs.IR",
-        "alignment",
-        "dataset",
-        "llm"
-      ],
-      "signal": 99,
-      "source": "Spotify/arXiv",
-      "publishedAt": "2026-07-01T15:05:10Z",
-      "url": "https://arxiv.org/abs/2607.01040",
-      "pdfUrl": "https://arxiv.org/pdf/2607.01040v1"
-    },
-    {
-      "id": "arxiv-2607.00760",
-      "title": "MosaicKV: Serving Long-Context LLM with Dynamic Two-D KV Cache Compression",
-      "authors": [
-        "Sheng Qiang",
-        "Ruiwei Chen",
-        "Yinpeng Wu",
-        "Jinyu Gu",
-        "Zhichao Hua",
-        "Yubin Xia",
-        "Binyu Zang",
-        "Haibo Chen"
-      ],
-      "summary": "Long-context LLM services now sustain prompts with hundreds of thousands to millions of tokens, making the key-value (KV) cache a first-order serving cost. Because the cache grows linearly with context length, it can exhaust GPU memory, force smaller batches, and reduce serving throughput. Prior KV cache compression techniques typically target only the sequence dimension or only the channel dimension, which leaves limited headroom as context windows scale. Compressing both dimensions promises higher memory reduction, but applying the two forms of compression directly leads to significant accuracy loss. This paper introduces MosaicKV, a dynamic two-D (dimensional) KV cache compression system for extremely long-context serving. MosaicKV uses dynamic two-D compression to address the accuracy challenge, exploiting the non-uniform importance distribution of elements within the KV cache. Instead of applying one compression pattern globally, MosaicKV identifies important elements for each KV vector and selects compression strategies at the granularity of KV cache segments. To address the performance challenge, where fine-grained sparsity and compression management overhead can offset the gains from compression, MosaicKV introduces compressed KV cache management. This mechanism uses underutilized GPU and CPU resources to maintain compressed KV caches and accelerate attention computation. Evaluation on an H800 GPU with multiple LLMs shows that MosaicKV delivers up to 16x attention speedup, 4.8x lower decode latency, and 7.3x higher throughput than the uncompressed baseline. At the same time, it reduces memory usage by 3x and incurs only 1.76% average accuracy loss on LongBench and RULER.",
-      "reason": "近 30 天；关键词：cs.LG, kv-cache, latency。Long-context LLM services now sustain prompts with hundreds of thousands to millions of tokens, making the key-value (KV) cache a...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
+        "cs.DC",
+        "inference",
         "kv-cache",
         "latency",
         "llm",
+        "quantization",
+        "retrieval"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-02T07:52:43Z",
+      "url": "https://arxiv.org/abs/2607.01831",
+      "pdfUrl": "https://arxiv.org/pdf/2607.01831v1"
+    },
+    {
+      "id": "arxiv-2607.01792",
+      "title": "PARTREP: Learning What to Repeat for Decoder-only LLMs",
+      "authors": [
+        "Andikawati P Widjaja",
+        "Yongjun Kim",
+        "Hyounghun Kim",
+        "Jaeho Lee"
+      ],
+      "summary": "While decoder-only LLMs excel at a vast array of natural language tasks, it suffers from an asymmetric information flow induced by causal attention: later tokens are richer in contextual grounding than earlier ones. A simple and effective remedy is prompt repetition -- just appending a second copy of prompt before generation can redistribute grounding across positions and improve reasoning performance. However, full repetition of the original prompt doubles the KV cache footprint and quadruples attention cost during prefill, making it impractical for long-context settings. We propose PartRep, a selective augmentation method that appends only the most informative tokens -- rather than the entire prompt. We use token-wise negative log-likelihood (NLL) as a selection signal, motivated by the hypothesis that less predictable tokens are less recoverable from surrounding context and therefore benefit more from late-position repetition. To avoid the heavy cost of a full forward pass for scoring, we train a lightweight gate that predicts high-NLL tokens from early-layer hidden states, enabling token selection during mid-prefill via early exit. Across eight benchmarks (including MMLU, GSM8K, and RULER) and three model families (Qwen2.5, Llama3.2, Gemma4), PartRep retains most of the gains of full repetition while using only 59.4\\% of its KV cache and 79.0\\% of its prefill FLOPs.",
+      "reason": "近 30 天；关键词：cs.CL, kv-cache, llm。While decoder-only LLMs excel at a vast array of natural language tasks, it suffers from an asymmetric information flow induced by...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "kv-cache",
+        "llm",
+        "prefill"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-02T07:07:28Z",
+      "url": "https://arxiv.org/abs/2607.01792",
+      "pdfUrl": "https://arxiv.org/pdf/2607.01792v1"
+    },
+    {
+      "id": "arxiv-2607.01581",
+      "title": "Beyond Skepticism: Evaluating LLMs Pedagogical Intent Reasoning with the Adaptive Pedagogical Vigilance Framework",
+      "authors": [
+        "Minghao Chen",
+        "Ruihan Zhou",
+        "Jiayi Tang",
+        "Zihan Xu",
+        "Bowen Huang",
+        "Yuxin Liu"
+      ],
+      "summary": "The capacity of Large Language Models (LLMs) to reason about pedagogical intent within instructional communication remains underexplored, particularly in educational domains such as translation pedagogy. To address this, we propose the \\textbf{Adaptive Pedagogical Vigilance (APV)} framework, a novel computational formalism that reframes communicative vigilance as an adaptive mechanism for optimizing learning through intent inference. APV formalizes the problem via a Bayesian Pedagogical Intent Inference Engine (PIIE), which models how instructors select content to maximize pedagogical utility and how vigilant learners should inversely reason about latent instructional configurations -- encompassing genre, stance, and incentives. We evaluate APV through a three-tier hierarchy: distinguishing instructional genre, reasoning about structured pedagogical setups, and generalizing to authentic educational discourse. Experiments on leading LLMs (e.g., GPT-4o, Claude 3.5) show that APV substantially improves model vigilance. It achieves the strongest discrimination between pedagogical and exposure-based content, correlates highly with human judgments ($r=0.958$), and maintains robust performance on naturalistic data where baseline methods degrade. This work establishes a unified framework for assessing and enhancing LLMs' understanding of pedagogical motives, advancing the development of more reliable AI-assisted learning systems.",
+      "reason": "近 30 天；公司信号：Anthropic；关键词：anthropic, cs.CL, inference。The capacity of Large Language Models (LLMs) to reason about pedagogical intent within instructional communication remains underex...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "anthropic",
+        "cs.CL",
+        "inference",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "Anthropic/arXiv",
+      "publishedAt": "2026-07-02T01:26:09Z",
+      "url": "https://arxiv.org/abs/2607.01581",
+      "pdfUrl": "https://arxiv.org/pdf/2607.01581v1"
+    },
+    {
+      "id": "arxiv-2607.01579",
+      "title": "OmniPilot: An Uncertainty-Aware LLM Inference Advisor for Heterogeneous GPU Clusters",
+      "authors": [
+        "D. Balamurugan",
+        "Thomas W. Bush"
+      ],
+      "summary": "Serving large language models (LLMs) on a shared, heterogeneous GPU cluster requires users and operators to select the GPU type, tensor-parallel degree, and precision before committing valuable node-hours. Making these choices is challenging because effective throughput, launch-success rates, and cluster demand and utilization continuously fluctuate. Furthermore, static configuration recipes miss critical interactions: quantization effects depend heavily on the model family, key-value cache pressure creates size-by-precision trade-offs, and failure rates vary by more than twofold across different tensor-parallel degrees. Additionally, cluster resources are frequently constrained by unpredictable hardware failures. To address these challenges, we present \\textbf{OmniPilot}, a launch advisor that predicts serving costs for feasible configurations and abstains when requests fall outside its measured support envelope. OmniPilot pairs a conformally calibrated quantile cost model (spanning eight serving targets) with an out-of-distribution (OOD) abstention layer. It ranks configurations using an economic utility metric calibrated to an operator's revealed preferences. In evaluations across 460 benchmark runs on A100, H100, and H200 hardware across four precisions, OmniPilot predicts aggregate throughput with a 6.2\\% mean absolute percentage error (MAPE) and a log-space $R^2=0.92$. The advisor achieves 95\\% top-1 accuracy with a mean utility regret of just 0.003. When tested on an OOD holdout of unsupported cells, prediction error climbs to 24-46\\% and conformal intervals cover 0 of 5 points; however, the abstention layer successfully flags all five as low-confidence. Over time, these OOD scenarios will be integrated into the training dataset to continuously expand the advisor's support envelope.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, dataset。Serving large language models (LLMs) on a shared, heterogeneous GPU cluster requires users and operators to select the GPU type, t...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.DC",
+        "dataset",
+        "inference",
+        "llm",
+        "quantization",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-07-02T01:23:02Z",
+      "url": "https://arxiv.org/abs/2607.01579",
+      "pdfUrl": "https://arxiv.org/pdf/2607.01579v1"
+    },
+    {
+      "id": "arxiv-2607.01520",
+      "title": "The risk of KV cache compression",
+      "authors": [
+        "Lukas Haverbeck",
+        "Carmen Amo Alonso",
+        "Andres Felipe Posada-Moreno",
+        "Sebastian Trimpe",
+        "Marco Pavone"
+      ],
+      "summary": "Transformer inference on long sequences is expensive because softmax attention repeatedly reads from a large KV cache. The prevalent approach to this bottleneck is KV cache compression, which replaces the full cache with a compact summary. Despite its practical importance, the design of such summaries is largely driven by empirical experimentation. On the theoretical side, existing results show that KV cache compression can be impossible in the worst case, but offer little systematic guidance for designing algorithms in regimes where accurate compression is possible. We bridge this gap by characterizing the minimax risk of KV cache compression in terms of the intrinsic compressibility of a cache, revealing when and how accurate compression is possible. These results yield novel design principles for KV cache compression under causal masking that map efficiently to prefill and autoregressive decoding while achieving minimax-optimal risk. We instantiate these principles in a practical algorithm and report promising performance on LongBench in targeted experiments. Overall, our results provide a principled avenue for practical KV cache compression with theoretical guarantees.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Transformer inference on long sequences is expensive because softmax attention repeatedly reads from a large KV cache. The prevale...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "efficient",
+        "inference",
+        "kv-cache",
+        "prefill"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-01T22:36:21Z",
+      "url": "https://arxiv.org/abs/2607.01520",
+      "pdfUrl": "https://arxiv.org/pdf/2607.01520v1"
+    },
+    {
+      "id": "arxiv-2607.01299",
+      "title": "HYPIC: Accelerating Hybrid-Attention LLM Serving with Position-Independent Caching",
+      "authors": [
+        "Yifei Liu",
+        "Juntong Wu",
+        "Yang Liu",
+        "Junhao Hu",
+        "Minghao Li",
+        "Xiaoxu Chen",
+        "Weihang Chen"
+      ],
+      "summary": "In retrieval augmented generation (RAG) and agentic LLM serving, prompts are assembled from independent segments into long contexts, making the prefill stage dominate the per-request computation cost. To this cost, two directions have emerged in parallel: position-independent caching (PIC) admits KV reuse for non-contiguous segments shared across different requests, while hybrid-attention models reduce computation complexity by replacing most full-attention layers with linear attention. However, they cannot coexist: applying PIC to hybrid-attention models breaks down because per-token KV-cache reuse primitives do not transfer to the per-request recurrent state. In this work, we present Hypic, the first serving system for hybrid-attention LLMs with position-independent caching. For linear-attention layers, we identify the segment-cumulative transition operator as the missing algebraic primitive, and cache it alongside each segment's zero-start end-state, enabling near-exact and constant-time state composition of independently cached segments. For the remaining full-attention layers, existing PIC methods also fail as linear layers do not expose the per-token hidden states for selective recomputation. We show that the most significant attention deviation concentrates at segment boundaries, so recomputing only a small seam window at each boundary suffices to restore cross-segment lookback. Finally, Hypic exploits segment-level self-containment to parallelize cache-miss prefill across instances, turning long cold requests -- a major tail-latency contributor under both prefix caching and prior PIC -- into an accelerable workload. Evaluated across four hybrid-attention models and five workloads, Hypic reduces time-to-first-token (TTFT) by 2.45x on average and improves peak throughput by up to 2.0x over existing systems, while staying within 3.3 points of full-recompute accuracy.",
+      "reason": "近 30 天；关键词：cs.DC, latency, llm。In retrieval augmented generation (RAG) and agentic LLM serving, prompts are assembled from independent segments into long context...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "latency",
+        "llm",
+        "prefill",
+        "retrieval",
         "serving",
         "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-07-01T10:44:57Z",
-      "url": "https://arxiv.org/abs/2607.00760",
-      "pdfUrl": "https://arxiv.org/pdf/2607.00760v1"
+      "publishedAt": "2026-07-01T14:03:56Z",
+      "url": "https://arxiv.org/abs/2607.01299",
+      "pdfUrl": "https://arxiv.org/pdf/2607.01299v1"
     },
     {
-      "id": "arxiv-2607.00501",
-      "title": "BaseRT: Best-in-Class LLM Inference on Apple Silicon via Native Metal",
+      "id": "arxiv-2607.00208",
+      "title": "SLIM-RL: Risk-Budgeted Random-Masking RL for Diffusion LLMs Without Trajectory Slicing",
       "authors": [
-        "Prabod Rathnayaka",
-        "Fabian Waschkowski",
-        "Lukas Wesemann"
+        "Ruikang Zhao",
+        "Zhenting Wang",
+        "Han Gao",
+        "Ligong Han"
       ],
-      "summary": "We present BaseRT, a native Metal inference runtime for large language models (LLMs) on Apple Silicon, and report the highest inference throughput on this hardware to date. Existing runtimes, including llama.cpp and MLX-based frameworks, incur overhead from abstractions not designed for Metal's execution model or Apple Silicon's unified memory topology. By building natively on Metal with chip-specific kernel fusion, unified memory-aware optimisation, and custom dispatch logic, BaseRT recovers performance that framework-based approaches leave on the table. BaseRT supports a wide range of model families across eight quantisation formats (Q2 to FP16) on all Apple M-series devices. In this paper, we evaluate the Qwen3, Llama 3.2, and Gemma 4 families at Q4 and Q8 quantisation on M3 and M4 Pro devices. BaseRT achieves up to 1.56x higher decode throughput than llama.cpp and up to 1.35x higher than MLX, with substantially larger margins on prefill for mixture-of-experts models, delivering consistent best-in-class throughput from sub-1B to 30B parameter models. These results establish Apple Silicon as a more capable inference platform than previously reported, with direct implications for the emerging edge inference paradigm: as privacy requirements, latency constraints, and cloud cost pressures drive inference toward on-device deployment, performance-optimised local runtimes are a critical enabling layer for this transition. BaseRT is publicly available at https://github.com/basecompute/baseRT",
-      "reason": "近 30 天；公司信号：Apple, Meta；关键词：apple, meta, cs.CL。We present BaseRT, a native Metal inference runtime for large language models (LLMs) on Apple Silicon, and report the highest infe...",
+      "summary": "Reinforcement learning for diffusion large language models (dLLMs) has largely moved to trajectory-aware methods. The current state of the art, TraceRL, holds that random masking is mismatched with the model's inference trajectory, and it reconstructs that trajectory during training by slicing each rollout into up to K/s trajectory-aligned training samples, a cost that grows with the block size K. We show that this mismatch can be mitigated without reconstructing the trajectory. Our method, SLIM-RL, bounds the commit risk of each rollout step with a tau-budget decoder, reducing aggregate commit risk in the training data. During optimization, SLIM-RL trains on these risk-controlled rollouts with a trace-free random-masking objective that adapts variance-reduction tools, combining sequence-level importance sampling, deterministic quadrature over masking levels under a mean-preserving, monotonically decreasing per-block mask schedule that we introduce. On SDAR-4B, SLIM-RL matches TraceRL's best MATH500 accuracy on only 0.46x its training samples at block size 16, improving over TraceRL by 6.32% on MATH500 and 11.05% on GSM8K under matched dynamic sampling. At block size 4, the 4B SLIM-RL surpasses the larger LLaDA-8B and Dream-7B dLLMs on math, exceeding LLaDA-8B by 10.76% on MATH500 while staying below the autoregressive Qwen2.5-7B. On code, it improves over TraceRL by 4.20% on MBPP and 3.65% on HumanEval. The tau-budget decoder transfers training-free across LLaDA, Dream, and SDAR. The source code is available at https://github.com/laolaorkkkkk/SLIM-RL .",
+      "reason": "近 30 天；关键词：cs.CL, inference, llm。Reinforcement learning for diffusion large language models (dLLMs) has largely moved to trajectory-aware methods. The current stat...",
       "area": "LLM 推理优化",
       "tags": [
-        "apple",
-        "meta",
         "cs.CL",
         "inference",
-        "latency",
         "llm",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "Apple/Meta/arXiv",
-      "publishedAt": "2026-07-01T06:37:11Z",
-      "url": "https://arxiv.org/abs/2607.00501",
-      "pdfUrl": "https://arxiv.org/pdf/2607.00501v1"
-    },
-    {
-      "id": "arxiv-2607.00466",
-      "title": "ELDR: Expert-Locality-Aware Decode Routing for PD-Disaggregated MoE Serving",
-      "authors": [
-        "Sangjin Choi",
-        "Sukmin Cho",
-        "Yifan Xiong",
-        "Ziyue Yang",
-        "Youngjin Kwon",
-        "Peng Cheng"
-      ],
-      "summary": "In prefill-decode (PD) disaggregated LLM serving, each request is assigned to a decode worker after prefill. Existing decode routers balance only load; for mixture-of-experts (MoE) models this is incomplete: equally loaded workers can differ in latency, since each decode step loads the weights of every distinct expert its batch activates. We present ELDR, an expert-locality-aware decode router for PD-disaggregated MoE serving. From a request's prefill expert activations, ELDR builds an expert signature predicting the experts it will activate during generation. Offline, balanced K-means partitions signature space across decode workers; online, locality-band routing sends each request to the least-loaded worker among those best matching its signature. A signature cache, co-indexed with the KV cache at KV-block granularity, keeps signatures exact under prefix caching. Implemented in vLLM and evaluated on deployments of up to 40 GPUs, ELDR reduces median TPOT by 5.9-13.9% over the strongest of four load-balancing baselines across three MoE models and two workloads, with model outputs unchanged.",
-      "reason": "近 30 天；关键词：cs.DC, kv-cache, latency。In prefill-decode (PD) disaggregated LLM serving, each request is assigned to a decode worker after prefill. Existing decode route...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "kv-cache",
-        "latency",
-        "llm",
-        "prefill",
         "serving"
       ],
-      "signal": 99,
+      "signal": 98,
       "source": "arXiv",
-      "publishedAt": "2026-07-01T05:34:38Z",
-      "url": "https://arxiv.org/abs/2607.00466",
-      "pdfUrl": "https://arxiv.org/pdf/2607.00466v1"
+      "publishedAt": "2026-06-30T21:38:46Z",
+      "url": "https://arxiv.org/abs/2607.00208",
+      "pdfUrl": "https://arxiv.org/pdf/2607.00208v1"
     },
     {
-      "id": "arxiv-2607.00151",
-      "title": "SmoothAgent: Efficient Long-Horizon LLM-Based Agent Serving with Lookahead Context Engineering",
+      "id": "arxiv-2607.01775",
+      "title": "Set Diffusion: Interpolating Token Orderings Between Autoregression and Diffusion for Fast and Flexible Decoding",
       "authors": [
-        "Zaifeng Pan",
-        "Qianxu Wang",
-        "Zhengding Hu",
-        "Chang Chen",
-        "Yue Guan",
-        "Yanbo Zhou",
-        "Steven Swanson",
-        "Yufei Ding"
+        "Marianne Arriola",
+        "Volodymyr Kuleshov"
       ],
-      "summary": "LLM-based agents execute multi-turn workflows with continuously growing contexts, where LLM calls are interleaved with tool invocations and environment feedback. To maintain model quality, modern agent frameworks rely on context engineering strategies such as offloading, reduction, and isolation to control the context length. However, these strategies introduce significant context transformation overhead: each transformation invalidates existing KV caches and triggers re-prefill, leading to increased time-to-first-token (TTFT). In this paper, we identify that context transformations are segment-decomposable, where the transformation of a prefix is independent of future tokens. This property enables transformations to be executed ahead of time. Based on this insight, we propose a lookahead programming model that allows agent frameworks to express context transformations as asynchronous operations without modifying their execution logic. The runtime proactively executes these transformations and prepares transformed KV caches in advance, enabling direct context replacement without blocking. We further design a lookahead-aware scheduler in LLM serving systems to support these asynchronous requests alongside latency-critical workloads with controlled interference. We implement our approach to support representative context engineering strategies and integrate it into existing agent frameworks and LLM serving systems. Experiments show that our approach effectively eliminates transformation overhead and reduces TTFT by up to 11.9x.",
-      "reason": "近 30 天；关键词：cs.DC, efficient, kv-cache。LLM-based agents execute multi-turn workflows with continuously growing contexts, where LLM calls are interleaved with tool invoca...",
+      "summary": "Discrete diffusion models have steadily improved in quality relative to autoregressive (AR) models. However, these models are normally constrained to fixed-length generation and do not support key-value (KV) caching. Block diffusion partially bridges diffusion and AR by generating token blocks left-to-right, but its fixed-size sequential blocks limit decoding flexibility and parallelism. Here, we present a new class of language models, set diffusion, comprised of (i) a likelihood parameterization that factorizes over flexible-position, flexible-length token sets and (ii) a set-causal diffusion architecture that supports KV cache updates after every inference step. By factorizing over token sets instead of fixed-size blocks, tokens can be decoded in arbitrarily-ordered sets, including sliding-window sets, enabling faster inference and support for any-order decoding. Set diffusion achieves better speed-quality tradeoffs on mathematical reasoning, summarization, and unconditional generation compared to prior diffusion language models while offering stronger infilling performance than block diffusion. We provide the code, along with the model weights and blog post on the project page: https://m-arriola.com/setdlms/",
+      "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。Discrete diffusion models have steadily improved in quality relative to autoregressive (AR) models. However, these models are norm...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.DC",
-        "efficient",
-        "kv-cache",
-        "latency",
-        "llm",
-        "prefill",
+        "cs.LG",
+        "inference",
+        "kv-cache"
+      ],
+      "signal": 92,
+      "source": "arXiv",
+      "publishedAt": "2026-07-02T06:45:43Z",
+      "url": "https://arxiv.org/abs/2607.01775",
+      "pdfUrl": "https://arxiv.org/pdf/2607.01775v1"
+    },
+    {
+      "id": "arxiv-2607.02089",
+      "title": "ESC: Emotional Self-Correction for Reliable Vision-Language Models",
+      "authors": [
+        "Tien-Huy Nguyen",
+        "Minh-Nhat Nguyen",
+        "Nguyen Nhat Huy",
+        "Hung Viet Nguyen",
+        "Huy Nguyen Minh Nhat",
+        "Thanh-Huy Nguyen",
+        "Cuong Tuan Nguyen",
+        "Hoang M. Le",
+        "Dat Nguyen",
+        "Phat Kim Huynh",
+        "Min Xu",
+        "Ulas Bagci"
+      ],
+      "summary": "Vision-language models (VLMs) have achieved strong performance across diverse multimodal tasks, yet they remain vulnerable to unreliable reasoning. Existing self-correction methods mitigate these issues but typically rely on post-training or carefully engineered feedback, incurring high computational cost. In this work, we revisit this challenge through the lens of emotional cues, asking whether they can activate latent self-correction behaviors in VLMs without additional training. \\textbf{We find that emotional signals serve as an effective trigger for self-correction, encouraging more cautious and reflective reasoning}. Motivated by this finding, we propose \\escabstract (\\textbf{\\underline{E}}motional \\textbf{\\underline{S}}elf-\\textbf{\\underline{C}}orrection), a training-free self-correction framework. ESC introduces an external verifier that detects potentially incorrect initial responses and injects emotional feedback to encourage model to reflect, and produce a better revised response without additional training. Extensive experiments across safety, hallucination, vision-centric perception, and multimodal reasoning benchmarks show that ESC consistently improves reliability while preserving overall model utility. These results suggest that emotion can function not only as an ability to be recognized, but also as a practical control signal for scalable self-correction in VLMs. \\textbf{We therefore believe that ESC provides a strong foundation for a new reliable human-like, emotion-integrated research direction.} Our project is publicly available at \\textcolor{red}{https://genai4e.github.io/ESC/}.",
+      "reason": "近 30 天；关键词：cs.CV, multimodal, serving。Vision-language models (VLMs) have achieved strong performance across diverse multimodal tasks, yet they remain vulnerable to unre...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CV",
+        "multimodal",
         "serving"
       ],
-      "signal": 99,
+      "signal": 90,
       "source": "arXiv",
-      "publishedAt": "2026-06-30T20:27:49Z",
-      "url": "https://arxiv.org/abs/2607.00151",
-      "pdfUrl": "https://arxiv.org/pdf/2607.00151v1"
-    },
-    {
-      "id": "arxiv-2606.32025",
-      "title": "Generative Skill Composition for LLM Agents",
-      "authors": [
-        "Xinyu Zhao",
-        "Zhen Tan",
-        "Vaishnav Tadiparthi",
-        "Nakul Agarwal",
-        "Kwonjoon Lee",
-        "Ehsan Moradi Pari",
-        "Hossein Nourkhiz Mahjoub",
-        "Tianlong Chen"
-      ],
-      "summary": "Recent LLM agents benefit from skills for solving complex tasks. Skills encapsulate modular packages of procedural knowledge and instructions for performing specialized tasks, such as setting up a sandboxed environment, running a test suite, or refactoring a function across multiple files. As skill libraries grow and become reusable across tasks and domains, selecting an appropriate skill composition has emerged as a central bottleneck. Existing approaches fall into two categories. One exposes the agent's reasoning to the entire skill collection; the other performs skill retrieval via embeddings or LLM-based rerankers. Both provide useful insights; however, they miss the structural nature of skill composition, which is a joint decision over which skills, how many, and in what order -- three dimensions that cannot be decoupled. We formalize this as structured skill composition: given a task and a skill library, predict an executable skill plan that jointly specifies the activated subset, count, and execution order. We propose SkillComposer, which instantiates structured skill composition as task-conditioned skill sequence prediction. SkillComposer uses a constrained autoregressive decoder over skill identifiers, so subset, count, and order emerge jointly from a single decoding pass, and dependencies between successive skills are captured naturally. We build a training set of task-composition pairs from a real, human-curated skill library. We then evaluate SkillComposer along two axes: composition quality on a held-out test set, and downstream task success on SkillsBench across two production-grade coding agents. On GPT-5.2-Codex, Gemini-3-Pro-Preview, SkillComposer raises the pass rate by +23.1, +18.2pp over the no-skill baseline, surpassing top-3 retrieval and matching the gold-skill retrieval upper bound at lower prompt-token cost.",
-      "reason": "近 30 天；公司信号：Google；关键词：google, cs.CL, llm。Recent LLM agents benefit from skills for solving complex tasks. Skills encapsulate modular packages of procedural knowledge and i...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "google",
-        "cs.CL",
-        "llm",
-        "production",
-        "retrieval"
-      ],
-      "signal": 99,
-      "source": "Google/arXiv",
-      "publishedAt": "2026-06-30T17:53:09Z",
-      "url": "https://arxiv.org/abs/2606.32025",
-      "pdfUrl": "https://arxiv.org/pdf/2606.32025v1"
-    },
-    {
-      "id": "arxiv-2606.31693",
-      "title": "ShopX: A Foundation Model for Intent-to-Item Fulfillment in Agentic Shopping",
-      "authors": [
-        "Jiacheng Chen",
-        "Tao Zhang",
-        "Manxi Lin",
-        "Dunxian Huang",
-        "Teng Shi",
-        "Honghao Fu",
-        "Mengyan Li",
-        "Xinming Zhang",
-        "Chenchi Zhang",
-        "Xuan Lu",
-        "Xiaoxiong Du",
-        "Haibin Chen",
-        "Shaolin Ye",
-        "Hao Chang",
-        "Xiaoqi Li",
-        "Shuwen Xiao",
-        "Yujin Yuan",
-        "Jingxuan Feng",
-        "Shaopan Xiong",
-        "Huimin Yi",
-        "Ju Huang",
-        "Qiu Shen",
-        "Ying Chen",
-        "Junjun Zheng",
-        "Xiangheng Kong",
-        "Yuning Jiang"
-      ],
-      "summary": "The wave of AI-native applications is moving shopping beyond page- and feed-based browsing toward intent-driven experiences orchestrated by LLM agents. A common design wraps an LLM around existing search and recommendation pipelines, forcing complex intents through low-bandwidth retrieval or ranking interfaces and leaving a gap between language understanding and item-space fulfillment. Generative recommendation gives LLMs a direct item-space interface through semantic IDs (SIDs), but existing models mainly generate candidates for retrieval rather than translate flexible intents into item-space outcomes. We propose ShopX to address this bottleneck by unifying intent understanding, execution planning, and flexible SID-native item-space operations into a single foundation model. We deploy ShopX in agentic shopping workflows through a model-native item-fulfillment framework with a serving harness that defines a model-facing action protocol and exposes support surfaces for context access, catalog grounding, and state management. Within this framework, ShopX plans and composes SID-based item-space operations such as SID beam-search retrieval, listwise ranking, or product bundling. This model-centric design reduces lossy hand-offs between agent orchestration and item-space execution. To build ShopX, we design semantically recoverable, LLM-operable SIDs and a training recipe that equips a general LLM for flexible multi-turn item-space fulfillment while retaining the knowledge and instruction-following abilities needed by a shopping agent. We evaluate the ShopX framework against tool-mediated agentic systems on single- and multi-turn fulfillment tasks derived from anonymized Taobao production logs, showing that model-native fulfillment improves overall framework behavior, especially on complex or ambiguous requests.",
-      "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, generative-recommendation。The wave of AI-native applications is moving shopping beyond page- and feed-based browsing toward intent-driven experiences orches...",
-      "area": "推荐算法",
-      "tags": [
-        "alibaba",
-        "cs.IR",
-        "generative-recommendation",
-        "llm",
-        "production",
-        "ranking",
-        "recommendation"
-      ],
-      "signal": 99,
-      "source": "Alibaba/arXiv",
-      "publishedAt": "2026-06-30T14:05:28Z",
-      "url": "https://arxiv.org/abs/2606.31693",
-      "pdfUrl": "https://arxiv.org/pdf/2606.31693v1"
-    },
-    {
-      "id": "arxiv-2606.31580",
-      "title": "LASER: Load-Aware Serving with Early-Exit for Reasoning LLMs at the Edge",
-      "authors": [
-        "Zhiqing Tang",
-        "Size Li",
-        "Hanshuai Cui",
-        "Zilan Huang",
-        "Jianxiong Guo",
-        "Tian Wang",
-        "Yuan Wu",
-        "Weijia Jia"
-      ],
-      "summary": "Large reasoning models (LRMs) such as DeepSeek-R1 have achieved strong performance through extended chain-of-thought (CoT) generation. However, deploying them on edge devices raises a conflict between long CoT sequences and constrained resources. Recent confidence-based early exit methods reduce CoT length for individual requests, yet they apply fixed thresholds from a single-request perspective, ignoring multi-request concurrency and load fluctuation in edge serving. To bridge this gap, we propose \\underline{L}oad-\\underline{A}ware \\underline{S}erving with \\underline{E}arly-exit for \\underline{R}easoning (LASER). LASER couples two complementary designs: (1) a load-aware adaptive exit threshold that adjusts the confidence bar based on real-time system load within an empirically validated robust range, and (2) a difficulty- and load-aware reasoning budget pre-allocation that assigns compute resources by request difficulty and system capacity. We formulate the problem as a joint optimization of reasoning quality and service latency. Experiments on two reasoning models, four benchmarks, and diverse load conditions show that LASER reduces average latency by 17--38\\% and improves service-level objective (SLO) satisfaction by 3--6\\% over fixed-threshold baselines, at an average accuracy cost of only 1\\%.",
-      "reason": "近 30 天；关键词：cs.DC, latency, llm。Large reasoning models (LRMs) such as DeepSeek-R1 have achieved strong performance through extended chain-of-thought (CoT) generat...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "latency",
-        "llm",
-        "serving",
-        "slo"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-06-30T12:35:48Z",
-      "url": "https://arxiv.org/abs/2606.31580",
-      "pdfUrl": "https://arxiv.org/pdf/2606.31580v1"
+      "publishedAt": "2026-07-01T14:25:43Z",
+      "url": "https://arxiv.org/abs/2607.02089",
+      "pdfUrl": "https://arxiv.org/pdf/2607.02089v1"
     }
   ]
 }
