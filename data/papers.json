@@ -1,5 +1,327 @@
 {
-  "generatedAt": "2026-07-07T06:56:43.922590+08:00",
+  "generatedAt": "2026-07-08T06:50:33.466254+08:00",
   "source": "curated industry radar + arXiv API",
-  "papers": []
+  "papers": [
+    {
+      "id": "arxiv-2607.05196",
+      "title": "Unified Audio Intelligence Without Regressing on Text Intelligence",
+      "authors": [
+        "Zhifeng Kong",
+        "Sang-gil Lee",
+        "Jaehyeon Kim",
+        "Boxin Wang",
+        "Zihan Liu",
+        "Sungwon Kim",
+        "Yang Chen",
+        "Arushi Goel",
+        "Rajarshi Roy",
+        "Wenliang Dai",
+        "Zhuolin Yang",
+        "Yangyi Chen",
+        "Dongfu Jiang",
+        "Sreyan Ghosh",
+        "Tuomas Rintamaki",
+        "Andrew Tao",
+        "Jonathan Raiman",
+        "Mohammad Shoeybi",
+        "Bryan Catanzaro",
+        "Wei Ping"
+      ],
+      "summary": "Audio intelligence involves understanding, reasoning about, and generating both audio and speech. In this work, we introduce Nemotron-Labs-Audex-30B-A3B (Audex), a unified audio-text LLM built on Nemotron-Cascade-2-30B-A3B, a strong text-only MoE LLM. Audex adopts a simple unified design with a single Transformer decoder: audio inputs are encoded and projected into the text embedding space, while text tokens and quantized audio output tokens are treated uniformly during generation. This architecture enables strong audio-text fusion, seamless multimodal generation, and compatibility with standard LLM training and inference infrastructure. For training, we meticulously curate audio-text datasets comprising 157.4B audio tokens and 320.5B text tokens. We apply multi-stage supervised training on these datasets, followed by text-only Cascade RL and multi-domain on-policy distillation. Audex delivers state-of-the-art audio understanding, speech recognition and translation, text-to-speech, audio generation, and speech-to-speech generation, while preserving very compelling reasoning, alignment, knowledge, long-context, and agentic capabilities of its text-only LLM backbone with marginal or no regression. We release the model checkpoints to facilitate open research.",
+      "reason": "近 30 天；关键词：cs.CL, alignment, dataset。Audio intelligence involves understanding, reasoning about, and generating both audio and speech. In this work, we introduce Nemot...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "alignment",
+        "dataset",
+        "inference",
+        "llm",
+        "multimodal",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-06T15:11:57Z",
+      "url": "https://arxiv.org/abs/2607.05196",
+      "pdfUrl": "https://arxiv.org/pdf/2607.05196v1"
+    },
+    {
+      "id": "arxiv-2607.05147",
+      "title": "DSpark: Confidence-Scheduled Speculative Decoding with Semi-Autoregressive Generation",
+      "authors": [
+        "Xin Cheng",
+        "Xingkai Yu",
+        "Chenze Shao",
+        "Jiashi Li",
+        "Yunfan Xiong",
+        "Yi Qian",
+        "Jiaqi Zhu",
+        "Shirong Ma",
+        "Xiaokang Zhang",
+        "Jiasheng Ye",
+        "Qinyu Chen",
+        "Chengqi Deng",
+        "Jiping Yu",
+        "Damai Dai",
+        "Zhengyan Zhang",
+        "Yixuan Wei",
+        "Yixuan Tan",
+        "Wenkai Yang",
+        "Runxin Xu",
+        "Yu Wu",
+        "Zhean Xu",
+        "Xuanyu Wang",
+        "Muyang Chen",
+        "Rui Tian",
+        "Xiao Bi",
+        "Zhewen Hao",
+        "Shaoyuan Chen",
+        "Huanqi Cao",
+        "Wentao Zhang",
+        "Anyi Xu",
+        "Huishuai Zhang",
+        "Dongyan Zhao",
+        "Wenfeng Liang"
+      ],
+      "summary": "Speculative decoding accelerates Large Language Model (LLM) inference by decoupling draft generation from target verification. While recent parallel drafters efficiently propose long token sequences in a single forward pass, they suffer from rapid acceptance decay due to a lack of inter-token dependencies. Furthermore, indiscriminately verifying these extended blocks wastes critical batch capacity on tokens with high rejection risks, severely degrading throughput in high-concurrency serving systems. We introduce DSpark, a speculative decoding framework that unifies high-throughput parallel generation with adaptive, load-aware verification. To maintain draft quality, DSpark utilizes a semi-autoregressive architecture, coupling a parallel backbone with a lightweight sequential module, to introduce intra-block dependency modeling and mitigate suffix decay. To optimize system efficiency, DSpark employs confidence-scheduled verification, dynamically tailoring the verification length for each request based on estimated prefix survival probabilities and engine-specific throughput profiles. On offline benchmarks across diverse domains, DSpark substantially improves the accepted length over state-of-the-art autoregressive and parallel drafters. When deployed within the DeepSeek-V4 serving system under live user traffic, DSpark successfully mitigates verification waste. Compared to the established production baseline (MTP-1), DSpark accelerates per-user generation speeds by 60 to 85 percent at matched throughput levels. More importantly, by preventing severe throughput degradation under strict interactivity constraints, it enables performance tiers that were previously unattainable, shifting the Pareto frontier of our serving system.",
+      "reason": "近 30 天；关键词：cs.AI, deployed, efficient。Speculative decoding accelerates Large Language Model (LLM) inference by decoupling draft generation from target verification. Whi...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.AI",
+        "deployed",
+        "efficient",
+        "inference",
+        "llm",
+        "pareto",
+        "production"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-06T14:28:06Z",
+      "url": "https://arxiv.org/abs/2607.05147",
+      "pdfUrl": "https://arxiv.org/pdf/2607.05147v1"
+    },
+    {
+      "id": "arxiv-2607.05116",
+      "title": "Communication-Aware Placement and Pruning for Efficient Mixture-of-Experts Inference",
+      "authors": [
+        "Xiao Shi",
+        "Yingying Sun",
+        "Jiangsu Du",
+        "Zhiguang Chen",
+        "Yutong Lu"
+      ],
+      "summary": "As MoE models scale to hundreds of experts, placement and pruning decisions increasingly dictate communication volume, affecting the performance of distributed inference across GPUs and nodes. We propose CAP (Communication-Aware Assignment and Pruning), a framework that considers computation, communication and accuracy together for efficient MoE inference through expert placement and pruning. It consists of three components: (1) Co-activation driven expert placement, which groups frequently co-activated experts to reduce inter-device and inter-node communication; (2) Communicationcomputation trade-off adjustment, which generates placements with different computational load and communication volume; and (3) Communication-aware expert pruning, which selectively removes routing destinations to reduce communication with limited accuracy degradation. By combining these components, CAP selects an efficient operating strategy for different hardware configurations. Across our single-node and multi-node experiments, it achieves 1.23x - 1.86 x throughput improvement over DeepSeek EPLB and sequential placement in vLLM, and preserves better model accuracy at the same target speedup under lossy acceleration.",
+      "reason": "近 30 天；关键词：cs.DC, efficient, inference。As MoE models scale to hundreds of experts, placement and pruning decisions increasingly dictate communication volume, affecting t...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "efficient",
+        "inference",
+        "llm",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-06T14:06:25Z",
+      "url": "https://arxiv.org/abs/2607.05116",
+      "pdfUrl": "https://arxiv.org/pdf/2607.05116v1"
+    },
+    {
+      "id": "arxiv-2607.04668",
+      "title": "Elastic Gang: Per-Token Membership Change for a Hard-Barriered LLM Inference Gang Co-Scheduled with OS Processes",
+      "authors": [
+        "Daeyeon Son"
+      ],
+      "summary": "On-device LLM decoding is a hard-barriered CPU-SIMD computation that wants every core for milliseconds per token, while the rest of the OS wants those same cores continuously. A barriered gang cannot simply be dropped into a preemptive scheduler: an unannounced departure deadlocks a barrier, and an unannounced arrival silently corrupts logits. I present the elastic gang of Anima OS, a bare-metal x86-64 Rust kernel in which the inference gang is a first-class schedulable entity whose core membership may change between any two tokens. The core mechanism is an ACK-latched epoch protocol that never waits on a named core: a seqlock-style generation-tagged latch composed with RCU/epoch-style membership consent, so each token's participant set is the intersection of the cores the gang requested and the cores that acked the current epoch. An un-acked core is outside this token and joins at most one token later. Displaced general processes migrate and keep running; cores return to them the moment a generation ends. On a real AMD Zen 5 machine (8C/16T), inference output is bit-exact under verified per-token membership change on both a 135M and a 7B model, the property that makes elasticity safe in a kernel whose safety gate reads logits. Against fair static core partitions, elastic membership Pareto-dominates: at intermediate inference duty cycles it delivers 1.75x (25%), 1.52x (50%), and 1.28x (75%) the general throughput of a static 8-core split at equal or better inference throughput, recovers all eight stranded cores when inference is idle, and converges to the split at saturation. Returning a lent core costs 0.22 us (p50); acquiring a busy, tenant-occupied core costs one scheduling quantum (~16 ms): a running tenant is never preempted mid-slice. Decode throughput saturates at gang width 8, so ceding cores past the knee is nearly free: elasticity auto-sizes the gang online.",
+      "reason": "近 30 天；关键词：cs.OS, inference, llm。On-device LLM decoding is a hard-barriered CPU-SIMD computation that wants every core for milliseconds per token, while the rest o...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.OS",
+        "inference",
+        "llm",
+        "pareto",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-06T04:50:32Z",
+      "url": "https://arxiv.org/abs/2607.04668",
+      "pdfUrl": "https://arxiv.org/pdf/2607.04668v1"
+    },
+    {
+      "id": "arxiv-2607.04302",
+      "title": "HiFA4: Training-Free 4-bit FlashAttention on Ascend HIF4 NPUs for LLM Inference",
+      "authors": [
+        "Hui Dong",
+        "Yanzhao Li",
+        "Jie Gao",
+        "Chunlu Li",
+        "Zhiyuan Zhang",
+        "Yupeng Sun",
+        "Zhenyuan Chen",
+        "Zhiqiang Zou"
+      ],
+      "summary": "We present HiFA4, a post-training operator-level design that executes both QK^T and PV in FlashAttention as 4-bit HIF4 Cube GEMMs for LLM inference on Ascend NPUs, while maintaining the online softmax state in FP16. To our knowledge, HiFA4 is the first Ascend-HIF4-targeted design of this kind evaluated on standard NLP benchmarks. HiFA4 combines two mechanisms. Smooth-QK applies a calibration-static per-channel equivalent rescaling to Q and K after RoPE, transferring quantization difficulty from K to Q without per-tile online reduction at inference. P-Reordering accumulates the softmax normalizer from the same quantized attention weights P_hat used in the PV GEMM, rather than from a higher-precision reconstruction. We show that this inconsistent formulation introduces a coherent output-scaling error, and validate the effect on a Qwen3-8B Layer-0 MMLU trace, where all 3.6M measured attention tiles exhibit net probability-mass loss with median epsilon_bar = -0.064. P-Reordering also allows the normalizer to be fused into the PV Cube GEMM. Across five LLMs, HiFA4 reduces quantization-induced decision drift. On Qwen3-8B, it recovers 37.5% of the accuracy gap introduced by direct HIF4 quantization, narrows the sample-weighted accuracy loss from 1.12 pp to 0.70 pp, reduces BF16-inconsistent MMLU predictions from 16.3% to 8.2%, and cuts MMLU accuracy regressions by 57% (1071 to 465). On Gemma2-9B, mild smoothing keeps HiFA4 within 0.7 pp of BF16 while reducing MMLU regressions by 27%. On LLaMA3.1-8B, Mistral-7B, and Phi-4B, where Smooth-QK is disabled, P-Reordering with the adopted Q-Mean auxiliary still reduces full-set MMLU regressions by 41-52%. A preliminary instruction-scheduling analysis projects a 35.4% critical-path latency reduction relative to BF16 by fusing the softmax normalizer into the PV Cube GEMM; on-hardware validation is left to future work.",
+      "reason": "近 30 天；公司信号：Huawei；关键词：huawei, cs.LG, inference。We present HiFA4, a post-training operator-level design that executes both QK^T and PV in FlashAttention as 4-bit HIF4 Cube GEMMs...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "huawei",
+        "cs.LG",
+        "inference",
+        "latency",
+        "llm",
+        "quantization"
+      ],
+      "signal": 99,
+      "source": "Huawei/arXiv",
+      "publishedAt": "2026-07-05T13:39:52Z",
+      "url": "https://arxiv.org/abs/2607.04302",
+      "pdfUrl": "https://arxiv.org/pdf/2607.04302v1"
+    },
+    {
+      "id": "arxiv-2607.04281",
+      "title": "Risk-Constrained Freshness-Aware Semantic Caching for Open-Web Retrieval-Augmented LLMs",
+      "authors": [
+        "Muhammad Mansoor",
+        "Tahir Ahmad",
+        "Yeo-Chan Yoon"
+      ],
+      "summary": "Semantic caching reduces the latency and cost of retrieval-augmented generation (RAG) by serving cached answers to semantically similar queries, but most existing methods do not model the time-varying freshness of open-web evidence. We present FreshCache, a three-tier semantic cache that treats cache reuse as a risk-constrained temporal inference problem: before approving a cache hit, FreshCache estimates the probability that the cached result is stale using a fitted exponential decay model enhanced by a learned MLP, and approves reuse only when that probability falls below a per-tier error budget across answers (epsilon = 0.10), URL lists (epsilon = 0.20), and page content (epsilon = 0.35). This allows the system to degrade gracefully as entries age rather than forcing a binary choice between a stale hit and a full pipeline execution. We introduce FreshCache-Bench, a benchmark of 8,072 base queries across five freshness classes with ground truth staleness labels drawn from real web snapshots at 1, 12, 24 hours, and 7 days after a baseline crawl, expanded to 31,201 queries via paraphrase generation. At the 24-hour evaluation window, FreshCache_MLP achieves 97% search API savings at 0.1% hash-based stale error, and an LLM-judge evaluation on 396 confirmed change pairs shows that only 34.3% of detected content changes actually affect answer correctness, placing true answer-affecting stale error at approximately 0.034%. The rule-based FreshCache achieves 98% search savings at 3.3% stale error under a temporal holdout calibration, outperforming SemanticTTL (14.9% stale, 72% saved), vCache (7.2% stale, 47% saved), and SCALM (5.2% stale, 96% saved). Ablations show the temporal risk gate accounts for an 11.6 point reduction in stale error over similarity-only reuse, and the learned MLP reduces stale error a further 3.2 points over the rule-based model.",
+      "reason": "近 30 天；关键词：cs.CL, inference, latency。Semantic caching reduces the latency and cost of retrieval-augmented generation (RAG) by serving cached answers to semantically si...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "inference",
+        "latency",
+        "llm",
+        "retrieval",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-05T12:47:36Z",
+      "url": "https://arxiv.org/abs/2607.04281",
+      "pdfUrl": "https://arxiv.org/pdf/2607.04281v1"
+    },
+    {
+      "id": "arxiv-2607.04270",
+      "title": "LBR: Towards Mitigating Length Bias in Large Language Models for Recommendation",
+      "authors": [
+        "Hongchen Li",
+        "Bohao Wang",
+        "Jingbang Chen",
+        "Weiqin Yang",
+        "Hang Pan",
+        "Bingde Hu",
+        "Can Wang",
+        "Jiawei Chen"
+      ],
+      "summary": "Large language models (LLMs) have recently emerged as powerful backbones for recommender systems by reformulating recommendation as a token-level generation task. Despite their promise, we identify a pervasive yet underexplored issue: $\\textit{Length Bias}$. Because items are represented by textual descriptions of varying lengths, LLM-based recommenders can be systematically biased in two ways. On the input side, longer item descriptions occupy more tokens in the context and thus receive disproportionately large aggregate attention mass during user preference modeling. On the output side, decoding based on summed autoregressive log-likelihood score inherently disfavors long items. Worse still, conventional length normalization can introduce an additional bias and even degrade recommendation performance. To address this problem, we propose $\\textbf{LBR}$ ($\\textbf{L}$ength $\\textbf{B}$ias $\\textbf{R}$eduction), a lightweight and model-agnostic framework for mitigating length bias in LLM-based recommendation. LBR mitigates input-side bias via Length-Aware Attention Calibration, which incorporates a length-dependent offset into attention logits to neutralize attention skew. For the output side, LBR introduces Effective Information Length Normalization, replacing naive token count with an information-theoretic length surrogate derived from the branching structure of the prefix tree. Extensive experiments on three real-world Amazon datasets and two representative LLM-based recommenders demonstrate that LBR substantially alleviates length bias while consistently improving recommendation accuracy and fairness, with negligible additional training and inference overhead (with an average NDCG@5 gain of 16.82%). The code is available at https://github.com/Void-JackLee/LBR.",
+      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Large language models (LLMs) have recently emerged as powerful backbones for recommender systems by reformulating recommendation a...",
+      "area": "推荐算法",
+      "tags": [
+        "amazon",
+        "cs.IR",
+        "dataset",
+        "inference",
+        "llm",
+        "recommendation",
+        "recommender"
+      ],
+      "signal": 99,
+      "source": "Amazon/arXiv",
+      "publishedAt": "2026-07-05T12:31:11Z",
+      "url": "https://arxiv.org/abs/2607.04270",
+      "pdfUrl": "https://arxiv.org/pdf/2607.04270v1"
+    },
+    {
+      "id": "arxiv-2607.04244",
+      "title": "Quantize the Target, Quantize the Drafter: Efficient Inference with Qwen3.5-4B",
+      "authors": [
+        "Jaeyeon Kim",
+        "Jewon Lee",
+        "Bo-Kyeong Kim"
+      ],
+      "summary": "This report describes our approach to the Efficient Qwen Competition, where the goal is to enable low-latency serving of Qwen3.5-4B on a resource-constrained NVIDIA A10G GPU. Our system combines a quantized target model with speculative decoding. To recover accuracy, we apply quantization-aware distillation to the target model while retaining the original quantization grid. To speed up decoding, a block-diffusion drafter specialized for the quantized target model is trained using a two-stage procedure: first learning from the high-precision target and then adapting to the low-precision target. Because the drafter is invoked at every speculative decoding step, we further reduce its overhead with quantization and sliding-window attention, preserving draft-token acceptance while improving long-context decoding latency. As a result, our submission achieves a 6.978$\\times$ average speedup over the baseline while satisfying the required quality thresholds, ranking 3rd overall. We hope these results provide useful insights for practical LLM inference. The code and resources are available at https://github.com/nota-github/adaptfm-quant-dflash",
+      "reason": "近 30 天；公司信号：Alibaba, NVIDIA；关键词：alibaba, nvidia, cs.LG。This report describes our approach to the Efficient Qwen Competition, where the goal is to enable low-latency serving of Qwen3.5-4...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "alibaba",
+        "nvidia",
+        "cs.LG",
+        "efficient",
+        "inference",
+        "latency",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "Alibaba/NVIDIA/arXiv",
+      "publishedAt": "2026-07-05T11:44:45Z",
+      "url": "https://arxiv.org/abs/2607.04244",
+      "pdfUrl": "https://arxiv.org/pdf/2607.04244v1"
+    },
+    {
+      "id": "arxiv-2607.03918",
+      "title": "Beyond Item Order: Temporal Gap Tokenization for Generative Recommendation with Semantic IDs",
+      "authors": [
+        "Chengkai Huang",
+        "Tianqi Gao",
+        "Hongtao Huang",
+        "Quan Z. Sheng",
+        "Lina Yao"
+      ],
+      "summary": "Semantic-ID-based generative recommendation has recently emerged as a scalable paradigm for sequential recommendation, where each item is represented by a compact sequence of discrete codes and next-item prediction is formulated as code generation. Existing methods, however, typically construct user histories as sequences of static item identifiers, leaving the elapsed time between consecutive interactions outside the generative input. This temporal blindness is problematic because inter-interaction gaps provide useful cues about interest continuity and preference drift. In this paper, we propose ChronoSID, a lightweight temporal augmentation framework for semantic-ID-based generative recommendation. ChronoSID injects temporal signals into the standard three-stage semantic-ID pipeline from two complementary perspectives. First, we introduce Time-Aware Field-Aware Masked Auto-Encoding (TA-FAMAE), which regularizes item representation learning with an auxiliary time-gap prediction objective. Second, we discretize historical interaction intervals into fixed log-scale gap tokens and interleave them with semantic ID tuples as the encoder input of the sequence-to sequence generator. This design preserves the compact SID generation paradigm while enabling the model to capture time-aware transition patterns. Experiments on Amazon review benchmarks show that ChronoSID consistently improves over ReSID and other competitive generative recommendation baselines. Ablation studies further verify the contribution of both temporal components, and diagnostic analyses show clearer gains under long-gap scenarios where user interests are more likely to drift.",
+      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, generative-recommendation。Semantic-ID-based generative recommendation has recently emerged as a scalable paradigm for sequential recommendation, where each...",
+      "area": "推荐算法",
+      "tags": [
+        "amazon",
+        "cs.IR",
+        "generative-recommendation",
+        "recommendation",
+        "semantic-id"
+      ],
+      "signal": 99,
+      "source": "Amazon/arXiv",
+      "publishedAt": "2026-07-04T15:22:30Z",
+      "url": "https://arxiv.org/abs/2607.03918",
+      "pdfUrl": "https://arxiv.org/pdf/2607.03918v1"
+    },
+    {
+      "id": "arxiv-2607.03362",
+      "title": "HGenPush: A Heterogeneous Generative Recommendation Architecture for Industrial Push Notification Systems",
+      "authors": [
+        "Xiao Liang",
+        "Jiali Feng",
+        "Xin Feng",
+        "Yiqing Wang",
+        "Baolin Ye",
+        "Siyao Feng",
+        "Zhihui Deng",
+        "Cunyi Zhang",
+        "Huajin Sun",
+        "Xuanping Li",
+        "Kaiqiao Zhan",
+        "Yanan Niu",
+        "Kun Gai"
+      ],
+      "summary": "With the explosive growth of content platforms, recommendation systems need to better satisfy user demands to enhance user satisfaction and retention. Taking short-video platforms as an example, users not only seek high-quality content but also trusted authors. Although generative recommendation systems have achieved breakthroughs in recent years, existing methods primarily generate single-type recommendation content and typically employ the inefficient autoregressive paradigm to generate semantic IDs. In this paper, we propose an end-to-end heterogeneous generative recommendation architecture called HGenPush. First, we design a hybrid user behavior understanding module that integrates multi-scenario and multi-perspective behaviors to capture precise user interest. Then, we design a dual-branch heterogeneous generative recommendation module that integrates video recommendation and author recommendation within a unified framework. In addition, to improve generation efficiency, we design a lightweight multi-token prediction method that discards the autoregressive paradigm. Finally, we design a user consumption preference alignment module, which leverages user feedback as reward signals to guide the model toward generating higher-quality content, thereby enhancing user experience and engagement. Through these designs, HGenPush simultaneously fulfills users' demands for high-quality content and trusted authors. We have deployed HGenPush on the push notification system of Kuaishou, a large-scale short-video platform, achieving a significant 0.181% increase in daily active users.",
+      "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, alignment。With the explosive growth of content platforms, recommendation systems need to better satisfy user demands to enhance user satisfa...",
+      "area": "推荐算法",
+      "tags": [
+        "kuaishou",
+        "cs.IR",
+        "alignment",
+        "deployed",
+        "efficient",
+        "generative-recommendation",
+        "industrial"
+      ],
+      "signal": 99,
+      "source": "Kuaishou/arXiv",
+      "publishedAt": "2026-07-03T14:18:19Z",
+      "url": "https://arxiv.org/abs/2607.03362",
+      "pdfUrl": "https://arxiv.org/pdf/2607.03362v1"
+    }
+  ]
 }
