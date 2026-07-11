@@ -1,7 +1,145 @@
 {
-  "generatedAt": "2026-07-11T06:50:20.192381+08:00",
+  "generatedAt": "2026-07-12T06:36:40.532519+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-07-12",
+      "generatedAt": "2026-07-12T06:36:40.532519+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2607.07779",
+          "title": "From Solvers to Research: Large Language Model-Driven Formal Mathematics at the Research Frontier",
+          "authors": [
+            "Eric Jiang",
+            "Xiao Liang",
+            "Yikai Zhang",
+            "Yingjia Wan",
+            "Mengting Li",
+            "Haikang Deng",
+            "Alexander K. Taylor",
+            "Justin Baker",
+            "Rushil Raghavan",
+            "Junyi Zhang",
+            "Ying Nian Wu",
+            "Andrea L. Bertozzi",
+            "Kai-Wei Chang",
+            "Raghu Meka",
+            "Matthew Sottile",
+            "Nanyun Peng",
+            "Amit Sahai",
+            "Terence Tao",
+            "Wei Wang"
+          ],
+          "summary": "Recent developments in AI for Mathematics (AI4Math), especially Large Language Model (LLM)-driven theorem provers, has achieved remarkable success in formal proof generation for well-defined mathematical problems through Interactive Theorem Proving (ITP) languages. However, current systems remain fundamentally limited in tackling frontier research mathematics, such as discovering new theorems or resolving open conjectures, which are often open-ended, under-specified, and involve multiple layers of abstraction. We argue that the next leap in AI4Math systems requires a decisive shift from predefined problem-solvers to research agents that can address frontier mathematical challenges with rigorous formal mathematical reasoning. In this position paper, we provide a systematic review of the field, covering datasets, auto-formalization, and proof synthesis. More importantly, we identify core limitations of existing systems in serving as mathematical research agents, examining issues across datasets, relational structure, mathematical exploration, tool ecosystem, and human-AI collaboration, outlining a strategic road-map for the future of AI4Math.",
+          "reason": "近 30 天；关键词：cs.CL, dataset, llm。Recent developments in AI for Mathematics (AI4Math), especially Large Language Model (LLM)-driven theorem provers, has achieved re...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "dataset",
+            "llm",
+            "lora",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-08T17:46:36Z",
+          "url": "https://arxiv.org/abs/2607.07779",
+          "pdfUrl": "https://arxiv.org/pdf/2607.07779v1"
+        },
+        {
+          "id": "arxiv-2607.07740",
+          "title": "Jet-Long: Efficient Long-Context Extension with Dynamic Bifocal RoPE",
+          "authors": [
+            "Haozhan Tang",
+            "Zerui Wang",
+            "Yuxian Gu",
+            "Song Han",
+            "Han Cai"
+          ],
+          "summary": "Modern LLMs are increasingly deployed in long-context applications such as retrieval-augmented generation, repository-level coding, and agentic workflows whose accumulated reasoning and tool traces routinely push the input an order of magnitude past the pretraining window, making zero-shot context extension the dominant deployment path for open-weight checkpoints. Most existing zero-shot methods fix a single rescaling factor up front, so an aggressive factor sacrifices short-context fidelity while a conservative one breaks down at long contexts. We propose Jet-Long, a tuning-free zero-shot method that pairs a local RoPE-faithful window with a long-range window whose rescaling factor adapts dynamically to the current sequence length, recovering the base model exactly at short inputs while extrapolating cleanly at long ones. An inclusion-exclusion attention merge and an on-the-fly RoPE correction rotation make the bifocal construction essentially free at inference; fused into a single CuTe kernel, long-context prefill reaches up to $1.39\\times$ FA2 throughput on H100 (approaching the Hopper-only FA4), and single-batch generation incurs $\\le 4\\%$ overhead at every length. On Qwen3-1.7B/4B/8B up to 128K context, Jet-Long leads RULER by $+4.79$/$+2.18$/$+2.03$~pp over the strongest baseline at 1.7B/4B/8B, achieves the best overall accuracy on HELMET-RAG (a benchmark identified by HELMET as the most efficient predictor of downstream long-context performance) and attains the lowest PG-19 perplexity. Jet-Long also generalizes to hybrid attention architectures such as Jet-Nemotron for further long-context improvement without retraining, and remains hyperparameter-resilient for ease of deployment.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, deployed。Modern LLMs are increasingly deployed in long-context applications such as retrieval-augmented generation, repository-level coding...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.LG",
+            "deployed",
+            "efficient",
+            "inference",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-07-08T06:23:42Z",
+          "url": "https://arxiv.org/abs/2607.07740",
+          "pdfUrl": "https://arxiv.org/pdf/2607.07740v1"
+        },
+        {
+          "id": "arxiv-2607.08017",
+          "title": "Can We Trust LLM's Logic? Quantifying Uncertainty, Coherence, and Robustness via a Graph-Based Framework",
+          "authors": [
+            "Riccardo Revalor",
+            "Jalees Rehman",
+            "Debjit Pal"
+          ],
+          "summary": "Large-Language Models (LLMs) can be prone to flawed and unfaithful reasoning that decoding strategies like Self-Consistency (SC) fail to detect as they evaluate only final-answer agreement while ignoring the logical validity of intermediate steps. This raises three fundamental questions: How can we reliably quantify uncertainty in LLM reasoning? Can semantic, structural, and causal awareness select more faithful reasoning compared to naïve majority voting? and How robust is reasoning topology under adversarial conditions? To address these questions, we introduce GRAPHEVAL, a graph-based reasoning framework that re-frames uncertainty quantification (UQ) as a holistic reasoning fidelity problem. We propose a novel UQ metric, Graph Reasoning Coherence Score (GRCS), that quantifies semantic-structural consensus of the reasoning space and captures pathological mode collapse and confident hallucinations. We find that GRCS is the only metric that is consistently negatively correlated with reasoning faithfulness across both more capable and smaller models. Additionally, we introduce Graph Self-Consistency (GSC), a medoid-based decoding strategy that trades nominal accuracy for reasoning fidelity, exposing the degree to which SC is inflated by unfaithful lucky guesses in smaller models, while preserving or improving accuracy in more capable ones. Finally, through adversarial medoid ablation, we demonstrate that the GSC-selected path acts as a \"load-bearing path\" and forcing models away from it degrades reasoning faithfulness and, in targeted cases, causes drops in accuracy.",
+          "reason": "近 30 天；关键词：cs.CL, llm, serving。Large-Language Models (LLMs) can be prone to flawed and unfaithful reasoning that decoding strategies like Self-Consistency (SC) f...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm",
+            "serving"
+          ],
+          "signal": 89,
+          "source": "arXiv",
+          "publishedAt": "2026-07-09T00:45:26Z",
+          "url": "https://arxiv.org/abs/2607.08017",
+          "pdfUrl": "https://arxiv.org/pdf/2607.08017v1"
+        },
+        {
+          "id": "arxiv-2607.08690",
+          "title": "A Practical Investigation of Training-free Relaxed Speculative Decoding",
+          "authors": [
+            "Guoxuan Xia",
+            "Luka Ribar",
+            "Paul Balanca"
+          ],
+          "summary": "Speculative decoding accelerates sampling from an autoregressive LLM by using a faster auxiliary model to draft tokens which are then verified in parallel by the LLM. Standard speculative decoding is lossless: its rejection and resampling steps exactly preserve the LLM's sampling distribution. Recent work argues that relaxing this strict guarantee can yield further speed-ups, controlled capability-speed trade-offs, or even capability gains. We practically investigate training-free relaxed speculative decoding techniques, unify existing approaches within a shared framework, benchmark them on contemporary settings, and distil takeaways and empirical findings for practitioners. Important takeaways include: relaxation can require considerable capability evaluation unlike lossless speculative decoding, and many relaxed approaches rely on a drafter that is a good language model, making them unsuited for lightweight dedicated multi-token-prediction drafters.",
+          "reason": "近 30 天；关键词：cs.LG, llm, speculative。Speculative decoding accelerates sampling from an autoregressive LLM by using a faster auxiliary model to draft tokens which are t...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "llm",
+            "speculative"
+          ],
+          "signal": 88,
+          "source": "arXiv",
+          "publishedAt": "2026-07-09T16:50:41Z",
+          "url": "https://arxiv.org/abs/2607.08690",
+          "pdfUrl": "https://arxiv.org/pdf/2607.08690v1"
+        },
+        {
+          "id": "arxiv-2607.06145",
+          "title": "Prompting Complexity: Shortest Prompts for Texts and Behaviors in LLMs",
+          "authors": [
+            "Adrian Cosma"
+          ],
+          "summary": "In this paper, we define the quantity of prompting complexity: for a fixed instruction-tuned language model, what is the shortest plausible prompt that makes deterministic decoding produce a target text? It is an LM-relative analogue of resource-bounded Kolmogorov complexity: the prompt is a program, the model interface is the interpreter, and information omitted from the prompt is supplied by the model's weights, training distribution, tokenizer, template, and decoding rule. Unlike classical Kolmogorov complexity, this measure is intentionally non-universal. In the finite-context setting it is computable by enumeration, but there is no model-independent invariance theorem; the same text may be cheap for one model and inaccessible or expensive for another. To keep the search space aligned with prompt engineering, we restrict programs to plausible human-readable texts rather than arbitrary token strings. We extend the exact definition to soft prompting complexity for approximate outputs, yielding a lossy notion of model-relative text compression and a formal target for prompt optimization. We also define prompting distance by comparing shortest generating prompts, and behavioral prompting complexity for reaching any output satisfying a specification. Based on these formulations, we define a research agenda for empirically studying which texts and behaviors are accessible from short plausible prompts under a fixed LM interface.",
+          "reason": "近 30 天；关键词：cs.CL, llm。In this paper, we define the quantity of prompting complexity: for a fixed instruction-tuned language model, what is the shortest...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm"
+          ],
+          "signal": 77,
+          "source": "arXiv",
+          "publishedAt": "2026-07-07T11:12:44Z",
+          "url": "https://arxiv.org/abs/2607.06145",
+          "pdfUrl": "https://arxiv.org/pdf/2607.06145v1"
+        }
+      ]
+    },
     {
       "date": "2026-07-11",
       "generatedAt": "2026-07-11T06:50:20.192381+08:00",
