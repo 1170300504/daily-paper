@@ -1,7 +1,208 @@
 {
-  "generatedAt": "2026-07-13T06:36:55.446960+08:00",
+  "generatedAt": "2026-07-14T06:43:51.147942+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-07-14",
+      "generatedAt": "2026-07-14T06:43:51.147942+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2607.09385",
+          "title": "STEEL: Sparsity-Aware Fused Attention for Energy-Efficient Long-Sequence Inference on AMD's XDNA NPU",
+          "authors": [
+            "Victor J. B. Jung",
+            "Gagandeep Singh",
+            "Joseph Melber",
+            "Kristof Denolf",
+            "Francesco Conti",
+            "Luca Benini"
+          ],
+          "summary": "The growing adoption of large language model-based agents within operating system workflows has increased the importance of energy-efficient inference on laptop-class systems-on-chip (SoCs). While cloud offloading remains common, it introduces reliability and privacy concerns that are particularly problematic for agentic workloads. Recent laptop SoCs, therefore, incorporate neural processing engines (NPUs) optimized for energy efficiency; however, effectively mapping attention mechanisms onto NPUs remains challenging due to architectural diversity and explicit data-movement programming models. In this work, we present STEEL, the first open-source implementation of FlashAttention targeting XDNA-like NPUs. STEEL introduces a dataflow formulation of prefill attention, enabling efficient exploitation of spatial parallelism and on-chip memory. Furthermore, STEEL addresses the load imbalance induced by the causal mask by leveraging a sparsity-aware pipeline placement onto the NPU array, reducing synchronization overhead and improving utilization. We evaluate STEEL on the AMD Ryzen AI 9 HX 370 SoC and compare its performance against optimized CPU and GPU implementations. Experimental results show that STEEL reduces energy consumption by an average of 9.17x and 1.75x relative to CPU and GPU baselines, respectively. On XDNA 1, STEEL achieves an average 9.6x latency reduction over the prior state of the art, and delivers a 22.8x speedup on average compared to a layer-by-layer attention implementation on XDNA 2.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, energy。The growing adoption of large language model-based agents within operating system workflows has increased the importance of energy...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "energy",
+            "inference",
+            "latency",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-10T13:09:47Z",
+          "url": "https://arxiv.org/abs/2607.09385",
+          "pdfUrl": "https://arxiv.org/pdf/2607.09385v1"
+        },
+        {
+          "id": "arxiv-2607.09172",
+          "title": "Attention to Detail: Evaluating Energy, Performance, and Accuracy Trade-offs Across vLLM Configurations",
+          "authors": [
+            "Nada Zine",
+            "Tristan Coignion",
+            "Vincenzo Stoico",
+            "Clément Quinton",
+            "Romain Rouvoy",
+            "Patricia Lago"
+          ],
+          "summary": "Large Language Models are reshaping how software is developed and maintained. They are typically deployed in production using inference engines such as vLLM, which can efficiently serve pre-trained, highly configurable models. While prior work has focused on model architectures and hardware acceleration, the impact of inference engine configuration on energy consumption, performance, and output quality remains poorly understood. In this paper, we present a large-scale controlled study of three selected vLLM configuration options: attention kernel type, prefix caching, and chunked prefill. We evaluate all combinations of these configurations across 5 open-weight LLMs and 5 diverse inference tasks, totaling $9,000$ runs and $93,600$ measures. We analyze energy consumption, latency, and accuracy, and examine both main effects and interaction effects between configuration options and tasks. Our results show that the studied configuration options significantly impact energy and performance, mainly driven by attention type and prefix caching, while chunked prefill has a limited effect under the default vLLM serving configuration and evaluated workloads. These effects are highly model- and workload-dependent, and no configuration is universally optimal. We further show that model choice dominates global trade-offs, while configuration tuning provides local improvements along the Pareto frontier. Unexpectedly, inference options can also affect model accuracy.",
+          "reason": "近 30 天；关键词：cs.SE, deployed, efficient。Large Language Models are reshaping how software is developed and maintained. They are typically deployed in production using infe...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.SE",
+            "deployed",
+            "efficient",
+            "energy",
+            "inference",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-10T08:04:19Z",
+          "url": "https://arxiv.org/abs/2607.09172",
+          "pdfUrl": "https://arxiv.org/pdf/2607.09172v1"
+        },
+        {
+          "id": "arxiv-2607.09052",
+          "title": "COBS: Cumulant Order Block Sparse Attention",
+          "authors": [
+            "Alexander Tian",
+            "Aditya Ghai",
+            "Sanjit Neelam",
+            "Zaal Vasania",
+            "Akshay Mishra"
+          ],
+          "summary": "Block sparse attention is a hardware friendly way to alleviate the key-value (KV) cache read bottleneck in large language models (LLMs). However, it is not prevalent among leading open-weight LLMs, which rely instead on dense attention or fine-grained selection, thereby motivating our analysis. We study DeepSeek's Native Sparse Attention (NSA) as a representative method, whose three-branch design lets us isolate block selection, the most challenging and consequential stage. We formalize selection and reduce it to ranking blocks by a single quantity, the attention mass: the sum of a block's attention scores. We show that if selection retrieves the blocks with the largest attention mass, block sparse attention can match the quality of dense attention. However, computing the exact attention mass requires reading every key, so the problem of block selection ultimately reduces to approximating this mass from a compact summary instead of the full keys. Via a cumulant expansion, we show why existing methods falter: their selection strategies attempt to estimate the attention mass, but are confined to a first-order approximation. Therefore, we propose COBS (Cumulant Order Block Sparse Attention), an attention method that builds on NSA, incorporating a novel selector that stores a compressed second-order statistic per block. On the 32k RULER long-context retrieval benchmark, COBS raises the NSA baseline's mean score from 0.2999 to 0.8195, approaching dense attention at 0.9040 and closing about 86% of the gap, while using only 1.21x the KV cache read traffic of the NSA baseline and 15.15x less read traffic than dense. The same model preserves short-context behavior and attains lower position-wise negative log-likelihood (NLL) than dense attention in our comparison.",
+          "reason": "近 30 天；关键词：cs.LG, kv-cache, llm。Block sparse attention is a hardware friendly way to alleviate the key-value (KV) cache read bottleneck in large language models (...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "kv-cache",
+            "llm",
+            "ranking",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-10T02:48:43Z",
+          "url": "https://arxiv.org/abs/2607.09052",
+          "pdfUrl": "https://arxiv.org/pdf/2607.09052v1"
+        },
+        {
+          "id": "arxiv-2607.08991",
+          "title": "Sensitivity-Aware Thresholding and Token Routing for Activation Sparsification in Large Language Models",
+          "authors": [
+            "Bishmoy Paul",
+            "Youngmin Yi",
+            "Hoeseok Yang"
+          ],
+          "summary": "Efficient inference in Large Language Models (LLMs) requires deciding where computation can be reduced while preserving model quality. We study this problem through multilayer perceptron (MLP) activation sparsification and token-level conditional routing. We first propose Sensitivity-Aware Thresholding for Sparsity (SATS), a threshold calibration method to choose layerwise gate thresholds using a local MLP output sensitivity proxy rather than calibrating thresholds directly from activation percentiles. While SATS retains the existing mechanism of sparsifying MLP activations by thresholding gate activations, it replaces percentile-based calibration with a sensitivity-aware selection rule. We then introduce a lightweight token routing framework that dynamically selects between a base path and a modified path on a per-token basis, rather than applying the modified computation uniformly to all tokens. We evaluate both methods on multiple recent open-weight LLMs. Our results show that SATS improves over the threshold-based sparsification baseline at matched actual sparsity and that token routing yields a more favorable quality-throughput trade-off than static activation modification baselines. Overall, our results suggest that improved threshold calibration and token routing can improve the quality-throughput trade-off in LLMs.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Efficient inference in Large Language Models (LLMs) requires deciding where computation can be reduced while preserving model qual...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "inference",
+            "llm",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-09T23:40:36Z",
+          "url": "https://arxiv.org/abs/2607.08991",
+          "pdfUrl": "https://arxiv.org/pdf/2607.08991v1"
+        },
+        {
+          "id": "arxiv-2607.08973",
+          "title": "SiFAR: Synchronization-Free All-Reduce for Low-Latency LLM Inference",
+          "authors": [
+            "Hritvik Taneja",
+            "Anish Saxena",
+            "Abhishek Revinipati",
+            "Jae Hyung Ju",
+            "Neal C. Crago",
+            "Moinuddin Qureshi"
+          ],
+          "summary": "The rise of reasoning models and agentic systems has made LLM token-generation latency a key bottleneck. Unlike chatbots, whose latency gains saturate at human reading speed, these systems generate intermediate reasoning tokens not consumed by humans. Thus, per-token latency directly determines end-to-end response time. Low-latency inference uses minimal batching, making token generation bandwidth-bound. Tensor Parallelism addresses this by sharding model weights across GPUs and loading them in parallel. However, scaling to more GPUs introduces All-Reduce overheads that grow with GPU count. Removing All-Reduce improves token throughput by 43% for Llama-3.1-8B on 8 H200 GPUs. We propose Synchronization-Free All-Reduce (SiFAR), which reduces synchronization overhead during low-latency inference. Existing oneshot and twoshot algorithms incur overheads from barriers before and after communication. First, we find that the bottom barrier in oneshot enforces a WAW dependency and eliminate it by co-designing communication and model execution to enable dual buffering. However, oneshot scales poorly with GPU count. Twoshot performs better at higher TP degrees but incurs an unavoidable bottom barrier. To overcome this, we leverage in-switch reduction in modern switches. We propose redundant pull, where each GPU reduces the full All-Reduce payload at the switch. This improves oneshot scalability while retaining its no-bottom-barrier advantage. Finally, to reduce top-barrier overhead, we observe that each decode step issues multiple All-Reduce operations, keeping GPUs tightly synchronized after the first. We therefore propose speculative reduction, which initiates data transfer before the top barrier and ensures correctness via lightweight validation. SiFAR reduces All-Reduce latency by up to 52% and improves end-to-end throughput by 18.6% for Llama-3.1-8B and 13.1% for Qwen3.5-397B-17B at TP=8.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.DC, batching。The rise of reasoning models and agentic systems has made LLM token-generation latency a key bottleneck. Unlike chatbots, whose la...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.DC",
+            "batching",
+            "inference",
+            "latency",
+            "llm",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-07-09T22:34:00Z",
+          "url": "https://arxiv.org/abs/2607.08973",
+          "pdfUrl": "https://arxiv.org/pdf/2607.08973v1"
+        },
+        {
+          "id": "arxiv-2607.08930",
+          "title": "BlockServe: Block-Grained Continuous Batching for High-Throughput Diffusion LLM Serving",
+          "authors": [
+            "Yuanjie Zhu",
+            "Liangwei Yang",
+            "Ke Xu",
+            "Weizhi Zhang",
+            "Shanghao Li",
+            "Zihe Song",
+            "Philip S. Yu"
+          ],
+          "summary": "Efficient serving of diffusion large language models (dLLMs) is hindered by convergence heterogeneity: when batching multiple requests, different sequences converge at different rates, causing faster requests to stall behind slower stragglers and introducing compute bubbles and tail latency. We present BlockServe, a continuous batching framework that integrates block-grained scheduling -- immediately evicting completed requests at block boundaries -- with mixed-state execution that extends dual cache and parallel decoding to heterogeneous batches via gather-scatter indexing. Furthermore, a compute-aware admission controller expands effective batch capacity through token-budgeted refill. On Dream and LLaDA across five benchmarks, BlockServe achieves 1.9--10.6$\\times$ throughput over Fast-dLLM with comparable generation quality, establishing block-grained scheduling as a foundation for high-throughput offline dLLM inference.",
+          "reason": "近 30 天；关键词：cs.LG, batching, efficient。Efficient serving of diffusion large language models (dLLMs) is hindered by convergence heterogeneity: when batching multiple requ...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "batching",
+            "efficient",
+            "inference",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-09T20:48:08Z",
+          "url": "https://arxiv.org/abs/2607.08930",
+          "pdfUrl": "https://arxiv.org/pdf/2607.08930v1"
+        },
+        {
+          "id": "arxiv-2607.09207",
+          "title": "Bidirectional Resource Scheduling for Disaggregated and Asynchronous RL Post-Training",
+          "authors": [
+            "Tan Zhiqiang",
+            "Wang Maoxin",
+            "Wang Sijie",
+            "Yin Yiming",
+            "Wang Qiang",
+            "Chu Xiaowen",
+            "Shi Shaohuai"
+          ],
+          "summary": "It is well established that the reasoning capabilities of large language models (LLMs) can be improved by applying reinforcement learning (RL) in a post-training stage. In a standard RL iteration, the current model (the policy) generates experience through rollouts, and the resulting data is then used to update the policy during training. High-performance RL frameworks such as StreamRL and AReaL employ a disaggregated architecture and asynchronous rollouts to better exploit both rollout and training resources, thereby increasing overall system throughput. Nonetheless, across varying RL setups (e.g., hardware configurations, model scales, staleness levels, and hyperparameters) and under changing workloads, it remains common for both rollout and training resources to experience idle periods. In this paper, we present BiDiRL, a hybrid time-space multiplexing architecture for asynchronous, disaggregated RL designed to reduce resource idleness. First, we develop a hot-switch runtime that enables rapid switching between rollout and training resources with negligible overhead. Second, we propose a static, scheduling-aware planner based on time-performance modeling that chooses a hot-switch-friendly resource partition, so that rollout and training durations are roughly balanced at a coarse level. Third, at execution time, we introduce a bidirectional scheduler that further exploits runtime bubbles through fine-grained resource switching, allowing the bottleneck stage to temporarily borrow idle resources from the other pool. Across a wide range of workloads, datasets, and models on two 32-GPU testbeds, BiDiRL increases RL training throughput by up to 1.94x compared with RL systems including veRL, AReaL, and ROLL, without affecting convergence behavior.",
+          "reason": "近 30 天；关键词：cs.DC, dataset, llm。It is well established that the reasoning capabilities of large language models (LLMs) can be improved by applying reinforcement l...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "dataset",
+            "llm",
+            "throughput"
+          ],
+          "signal": 94,
+          "source": "arXiv",
+          "publishedAt": "2026-07-10T08:51:14Z",
+          "url": "https://arxiv.org/abs/2607.09207",
+          "pdfUrl": "https://arxiv.org/pdf/2607.09207v1"
+        }
+      ]
+    },
     {
       "date": "2026-07-13",
       "generatedAt": "2026-07-13T06:36:55.446960+08:00",
