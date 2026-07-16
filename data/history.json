@@ -1,7 +1,275 @@
 {
-  "generatedAt": "2026-07-16T06:47:51.026926+08:00",
+  "generatedAt": "2026-07-17T06:47:41.687218+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-07-17",
+      "generatedAt": "2026-07-17T06:47:41.687218+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2607.13398",
+          "title": "TMallGS: Scaling Unified Feature and Sequence Modeling for Generative E-commerce Search",
+          "authors": [
+            "Zhentao Song",
+            "Yufeng Gao",
+            "Xing Fang",
+            "Jing Wang",
+            "Guangxin Song",
+            "Bokang Wang",
+            "Yipin Dai",
+            "He Guo"
+          ],
+          "summary": "In industrial search and ranking systems, Click-Through Rate (CTR) prediction is shifting from traditional Deep Learning Recommendation Models (DLRM) toward unified, compute-intensive Transformer architectures. This transition is driven by the need to improve Model FLOPs Utilization (MFU) and achieve predictable gains through scaling laws. However, existing approaches such as OneTrans and Climber often adopt an all-in-tokenization strategy when adapting Large Language Model (LLM) architectures, overlooking the heterogeneous nature of ranking features. We propose TmallGS, a scalable ranking architecture for Tmall search. TmallGS includes five key components: (1) Hierarchical Distribution-Calibrated Tokenization, which combines Field-wise Saliency Reweighting (FSR) and Distribution-Calibrated Projection (DCP) to map diverse features into optimized subspaces; (2) a Field-Adaptive Gated Transformer Backbone with per-field QKV projections and noise-adaptive gating for refined semantic interaction; (3) Decoupled FiLM Late Fusion to preserve explicit high-frequency signals; (4) a Context-Aware Bias Net to decouple systemic bias from user intent; and (5) Error-Aware Progressive Training with dynamically weighted losses for robust learning. Extensive offline experiments and online A/B tests on Tmall Search show that TmallGS improves training throughput and achieves substantial gains in UCTCVR and GMV.",
+          "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, click-through。In industrial search and ranking systems, Click-Through Rate (CTR) prediction is shifting from traditional Deep Learning Recommend...",
+          "area": "推荐算法",
+          "tags": [
+            "alibaba",
+            "cs.IR",
+            "click-through",
+            "industrial",
+            "llm",
+            "online-a/b",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-07-15T02:52:22Z",
+          "url": "https://arxiv.org/abs/2607.13398",
+          "pdfUrl": "https://arxiv.org/pdf/2607.13398v1"
+        },
+        {
+          "id": "arxiv-2607.13205",
+          "title": "Adaptive Filtering of the KV Cache: Diagnosing and Correcting Structural-Role Bias in LLM Inference",
+          "authors": [
+            "Soumil Mandal"
+          ],
+          "summary": "Attention-based KV cache eviction (H2O and its descendants) compresses the memory-constrained state of a long-context model by ranking tokens on accumulated attention mass, treated here as signal energy, and keeping the heaviest. On schema-dense input streams such as nested JSON, this score acts as a non-stationary filter that disproportionately retains noise: a non-content sink role (delimiters or whitespace) carries an order of magnitude more energy than any content role, and structural KEY tokens are over-retained at roughly 1.8x the rate of the answer-carrying VALUE tokens, collapsing exact-match accuracy from 88% to 0% at a 5% budget as the signal-to-noise ratio of the retained state degrades. A counterfactual experiment establishes that suppressing KEY tokens is the best deployable filter. Our retraining-free, role-conditional allocation over SnapKV's windowed score, governed by a single tuned hyperparameter, closes 63-98% of the H2O gap at sub-20% budgets and, at higher budgets, modestly matches or exceeds full-cache accuracy -- a small, seed-sensitive denoising effect (borderline significant at B=0.50; not distinguishable from zero at B=0.30 over four seeds). A 15 MB linear role probe supplies these labels at negligible inference cost, though matching parser-level downstream accuracy remains open.",
+          "reason": "近 30 天；关键词：cs.CL, energy, inference。Attention-based KV cache eviction (H2O and its descendants) compresses the memory-constrained state of a long-context model by ran...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "energy",
+            "inference",
+            "kv-cache",
+            "llm",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-14T18:55:20Z",
+          "url": "https://arxiv.org/abs/2607.13205",
+          "pdfUrl": "https://arxiv.org/pdf/2607.13205v1"
+        },
+        {
+          "id": "arxiv-2607.13088",
+          "title": "Securing LLMs in the Wild: Privacy and Security Challenges at the Edge",
+          "authors": [
+            "Ren-Yi Huang",
+            "Mingchen Li",
+            "Dumindu Samaraweera",
+            "Morris Chang"
+          ],
+          "summary": "Large Language Models (LLMs) are rapidly moving from research settings into the wild, deployed on enterprise infrastructure, personal devices, and edge platforms. While cloud deployments offer scalable compute, concerns over data sovereignty, compliance, latency, and third-party dependence are driving organizations toward edge and on-premise LLMs. This shift introduces new security and privacy challenges: limited compute and memory force aggressive optimizations, including quantization, pruning, model partitioning, and parameter-efficient adaptation, each of which can introduce vulnerabilities and reshape the threat landscape. We describe this tension as the Security-Efficiency Paradox, mechanisms that improve efficiency may weaken robustness, expose new attack surfaces, or increase privacy risks. We examine how compression can degrade safety alignment, how partitioned inference enables reconstruction attacks, and how continuous local adaptation may cause privacy leakage and model drift. To analyze these risks, we introduce a deployment-centric taxonomy organized around three architectural constraints: the Memory Wall, the Quadratic Wall, and the Compute Wall. We derive a unified constraint model that quantifies when unsafe optimizations become unavoidable, linking each wall to specific attack surfaces. Building on this model, we propose the Secure Operational Efficiency Score (SOES), a holistic metric balancing task accuracy, jailbreak resistance, and privacy against energy, memory, and latency, enabling practitioners to configure edge LLMs under real-world hardware limits. We further present a practical decision procedure and targeted mitigations for each optimization-induced vulnerability. Together, these contributions provide a co-designed framework for jointly evaluating security, privacy, and efficiency, laying a foundation for securing edge-native intelligent systems.",
+          "reason": "近 30 天；关键词：cs.CR, alignment, deployed。Large Language Models (LLMs) are rapidly moving from research settings into the wild, deployed on enterprise infrastructure, perso...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CR",
+            "alignment",
+            "deployed",
+            "efficient",
+            "energy",
+            "inference",
+            "latency"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-13T16:45:04Z",
+          "url": "https://arxiv.org/abs/2607.13088",
+          "pdfUrl": "https://arxiv.org/pdf/2607.13088v1"
+        },
+        {
+          "id": "arxiv-2607.12336",
+          "title": "Evaluating Health Misinformation in Low-Resource Languages: Integrating Small Language Models with a Culturally-Sensitive Responsible NLP Framework (Bangla as a Case Study)",
+          "authors": [
+            "Farnaz Farid",
+            "Raihan Alam",
+            "Al Al-Areqi",
+            "Farhad Ahamed",
+            "Muhammad Hassan Khan",
+            "Sadia Hossain",
+            "Irena Veljanova",
+            "Anika Tabassum Binte Hossain"
+          ],
+          "summary": "Artificial Intelligence (AI) technologies, while serving as a foundational enabler for modern social media and digital health services, exert a bivalent effect by simultaneously acting as a combatant against and a spread vector for misinformation. A prevalent challenge in mitigating this issue arises in non-English contexts and low socioeconomic classes, where limited data hinders the training of AI models for effective detection. Consequently, culturally and linguistically diverse (CALD) communities struggle to access trustworthy health information through AI-driven tools. Current AI tools underperform due to a lack of training data and are largely unable to consider language nuances and traditions in non-English contexts. This research addresses these gaps by proposing a CALD-friendly AI-based health misinformation detector and providing a dashboard for medical professionals to analyse this misinformation, a critical step toward mitigating a growing concern among CALD populations. To this end, we conduct a series of experiments using a Bangla-translated health misinformation dataset to evaluate the performance of various Small Language Models (SLMs). SLMs are particularly relevant in this context given the frequent underperformance of Large Language Models (LLMs), which often stems from insufficient domain-specific knowledge and the prohibitive costs of resource-intensive fine-tuning. The results demonstrate that Phi-4 is the superior model, achieving an ideal balance between precision and recall in claim extraction. Then, to mitigate the limitations of SLMs, we design and test a novel health misinformation detection framework grounded in Responsible Natural Language Processing (NLP), which incorporates cultural sensitivity, potential for harm, and communication quality, thereby providing a holistic lens for evaluating misinformation in low-resource languages.",
+          "reason": "近 30 天；关键词：cs.CL, dataset, llm。Artificial Intelligence (AI) technologies, while serving as a foundational enabler for modern social media and digital health serv...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "dataset",
+            "llm",
+            "serving"
+          ],
+          "signal": 96,
+          "source": "arXiv",
+          "publishedAt": "2026-07-14T04:34:05Z",
+          "url": "https://arxiv.org/abs/2607.12336",
+          "pdfUrl": "https://arxiv.org/pdf/2607.12336v1"
+        },
+        {
+          "id": "arxiv-2607.11399",
+          "title": "Agentic Routing: The Harness-Native Data Flywheel",
+          "authors": [
+            "Xinchen Liu",
+            "Hang Zhou",
+            "Yingjie Zong",
+            "Yuchuan Tian",
+            "Liuyang Song",
+            "Shuo Zhang",
+            "Yulong Li",
+            "Wei He",
+            "Mengyu Zheng",
+            "Runke Liu",
+            "Siyang Cheng",
+            "Xiang Kuang",
+            "Hailin Hu",
+            "Kai Han",
+            "Yunhe Wang"
+          ],
+          "summary": "Large language model agents are increasingly executed not by a single model call, but by an execution harness that manages observation, context, control, action, state, and verification. At the same time, frontier and open models are becoming structurally specialized: a model that is strong at code editing, long-context recovery, tool use, mathematical reasoning, or low-latency response may not dominate on the other axes. This makes model selection inside an agent a core systems problem rather than a per-query serving trick. Existing routing methods mostly optimize single-turn cost-quality trade-offs and therefore miss the execution state, intermediate failures, and feedback loops that make agents different from chat completion. We propose Harness-Native agentic routing, a step-level routing paradigm that selects either a single best-fit model for cost-effective execution or multiple complementary models for ensemble-style accuracy improvement, conditioned on the full harness state. The key insight is that every routing decision naturally produces a structured data record -- consisting of the query, harness state, model choice or model set, execution trace, outcome, and cost -- whose labels are supplied by the environment rather than by the router itself. These records form a harness-native data flywheel: execution traces train better routers and harness-native models, which improve cost-quality trade-offs and generate more traces under the same budget. We instantiate this idea in OpenSquilla with a four-layer routing stack, an open LightGBM cold-start ranker, and a staged router-model path that turns logged arena records into progressively stronger routing policies. The report studies singleton and multi-model routing on agentic benchmarks including DRACO and PinchBench, and argues that agentic routing is not merely cost control, but a data engine for agent-native training.",
+          "reason": "近 30 天；关键词：cs.CL, latency, serving。Large language model agents are increasingly executed not by a single model call, but by an execution harness that manages observa...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "latency",
+            "serving"
+          ],
+          "signal": 92,
+          "source": "arXiv",
+          "publishedAt": "2026-07-13T11:05:55Z",
+          "url": "https://arxiv.org/abs/2607.11399",
+          "pdfUrl": "https://arxiv.org/pdf/2607.11399v1"
+        },
+        {
+          "id": "arxiv-2607.11751",
+          "title": "When Local Monitors Miss Compositional Harm: Diagnosing Distributed Backdoors in Multi-Agent Systems",
+          "authors": [
+            "Yibo Hu",
+            "Ren Wang"
+          ],
+          "summary": "As multi-agent, tool-using LLM systems are deployed, a common safety net is a runtime monitor that checks each message, tool call, or step on its own. We show this net has a fundamental hole. A distributed backdoor splits a harmful payload across agents, so every local check passes while the assembled object is the attack. The monitor can be right on every step and still miss the attack. The problem is not splitting itself: split fragments can still leak suspicious tokens or provenance edges. The hard case is \\emph{local benignness}. No fragment carries the harm, and what is left looks like ordinary benign traffic. We formalize this as an \\emph{observability boundary}: a monitor catches only what its view can tell apart from benign traffic. We prove that once the fragments look benign in the monitored view, no detector on that view can catch them, however strong it is. Across a controlled testbed, an external benchmark, and end-to-end agent runs, local monitors lose the signal exactly as local evidence disappears, and it returns only when the monitor sees the assembled object. A monitor trained only on benign traffic recovers the attack's code structure across held-out encodings (0.874 mean AUROC). A decoded-view gate, given the encoding family, blocks every tested attack. But seeing more is not enough: full-trace monitors and decoders still fail unless they reach the representation where the payload is exposed. Local safety is not global safety when harm is compositional, and the open problem is finding that representation.",
+          "reason": "近 30 天；关键词：cs.CR, deployed, llm。As multi-agent, tool-using LLM systems are deployed, a common safety net is a runtime monitor that checks each message, tool call,...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CR",
+            "deployed",
+            "llm"
+          ],
+          "signal": 91,
+          "source": "arXiv",
+          "publishedAt": "2026-07-13T16:08:46Z",
+          "url": "https://arxiv.org/abs/2607.11751",
+          "pdfUrl": "https://arxiv.org/pdf/2607.11751v1"
+        },
+        {
+          "id": "arxiv-2607.13921",
+          "title": "Generative Compilation: On-the-Fly Compiler Feedback as AI Generates Code",
+          "authors": [
+            "Niels Mündler-Sasahara",
+            "Hristo Venev",
+            "Dawn Song",
+            "Martin Vechev",
+            "Jingxuan He"
+          ],
+          "summary": "Languages with rich static semantics, such as Rust, provide stronger guarantees for AI-generated code, but their strictness makes generation more difficult. Off-the-shelf compilers can provide useful feedback post-generation, but does not guide intermediate generation steps, such as those during autoregressive LLM decoding. Constrained decoding intervenes earlier by rejecting invalid tokens during sampling, but requires white-box model access and costly reimplementation for semantic constraints.We introduce generative compilation, the first approach to obtaining compiler feedback on partial programs during generation. The core technical device is a sealor: a lightweight, mostly syntax-guided transformation that converts partial programs into complete ones that standard compilers can diagnose. It is designed such that possible-to-complete partial programs are never rejected, while preserving enough code context to catch genuine dead ends early. We construct such a sealor on a core Rust-like calculus and prove that it satisfies these properties, all mechanized in Lean. We extend it to the first partial-program checker for real Rust. We evaluate our method on challenging repository-level Rust coding tasks, across both frontier black-box and open-weight models. We show that generative compilation reduces non-compiling outputs and improves functional correctness, relative to standard post-generation feedback. It does so by detecting a broad range of errors close to their source and early during generation, thereby reducing errors cascades and enabling focused diagnostics. More broadly, generative compilation is a step toward making compilers a first-class citizen of AI-assisted programming active during generation, rather than a separate post-generation check.",
+          "reason": "近 30 天；关键词：cs.PL, llm, serving。Languages with rich static semantics, such as Rust, provide stronger guarantees for AI-generated code, but their strictness makes...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.PL",
+            "llm",
+            "serving"
+          ],
+          "signal": 89,
+          "source": "arXiv",
+          "publishedAt": "2026-07-15T15:00:22Z",
+          "url": "https://arxiv.org/abs/2607.13921",
+          "pdfUrl": "https://arxiv.org/pdf/2607.13921v1"
+        },
+        {
+          "id": "arxiv-2607.13158",
+          "title": "Do LLMs Need Architectural Changes for Simultaneous Speech Translation? A Prefix-to-Prefix Data Driven Approach",
+          "authors": [
+            "Junkun Chen",
+            "Jian Xue",
+            "Ming Tang",
+            "Abdel Heba",
+            "Hoda Gholami",
+            "Ruchao Fan",
+            "Jinyu Li"
+          ],
+          "summary": "Simultaneous speech translation (SimulST) requires incremental translation under strict latency constraints, yet remains challenging for decoder-only LLM systems due to limited context and cross-lingual reordering. Recent approaches often introduce architectural changes or explicit read/write policies to control output timing, which can be brittle in conversational speech where segmentation boundaries are ambiguous. We present a simple data-driven alternative: fixed-length chunks for cumulative streaming decoding with a rewind-based committed prefix, and teacher-labeled prefix-to-prefix (P2P) targets with bounded waiting for fine-tuning, yielding CSSEL-P2P, where CSSEL is our proposed chunked streaming speech encoder LLM. In our in-house conversational speech evaluation, CSSEL-P2P improves streaming quality by +1.54 COMETKiwi over the CSSEL streaming baseline at comparable latency (+0.15s Average Lagging), suggesting effective SimulST without architectural changes via P2P supervision.",
+          "reason": "近 30 天；关键词：cs.CL, latency, llm。Simultaneous speech translation (SimulST) requires incremental translation under strict latency constraints, yet remains challengi...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "latency",
+            "llm"
+          ],
+          "signal": 87,
+          "source": "arXiv",
+          "publishedAt": "2026-07-14T18:07:18Z",
+          "url": "https://arxiv.org/abs/2607.13158",
+          "pdfUrl": "https://arxiv.org/pdf/2607.13158v1"
+        },
+        {
+          "id": "arxiv-2607.13351",
+          "title": "StreamingQEC: Streaming Quantum Error Correction in Tightly Integrated Quantum-Classical Systems via Certified Recurrence",
+          "authors": [
+            "Panayiotis Christou",
+            "Shuwen Kan",
+            "Hao Wang",
+            "Ying Mao"
+          ],
+          "summary": "Fault-tolerant quantum computing requires a continuous hybrid quantum error correction (QEC) pipeline comprising measurement readout, syndrome transport, decoding, feedback, and control. Existing QEC simulators primarily evaluate circuits, noise models, decoders, and protocol-level outcomes. System architects, however, must also understand how these workloads contend for and queue across controller, compute, accelerator, and communication resources during protected logical execution. We introduce StreamingQEC, a system-level simulator that translates fault-tolerant logical workloads into resource-constrained streaming-QEC pipelines. An explicit discrete-event simulation provides the reference execution semantics. An automatic staged-fluid mode enables faster approximate design-space exploration, while a certified recurrence mechanism compresses repeated transitions only when their scheduling state and metric contributions match those of the explicit execution trace. We assemble a decoder-runtime dataset containing 9,998 measurements, of which 8,174 are used to fit performance profiles. Recurrence reproduces the reported explicit-simulation metrics across 35 calibrated-profile configurations, as well as additional workload and cadence validation cases. For a 16-job anchor workload, it preserves 59,743,936 decoding events while achieving a 24.0x host-side speedup, and recurrent simulations scale beyond 1.22 billion events. Across 17 reference configurations, the automatics taged-fluid mode yields a mean makespan error of 2.60% and a worst-case error of 6.45%. Design-space studies reveal transfer-limited resource matching,decoder-driven pipeline stalls, and saturation of dedicated resources under microsecond-scale QEC cycles.",
+          "reason": "近 30 天；关键词：quant-ph, dataset, lora。Fault-tolerant quantum computing requires a continuous hybrid quantum error correction (QEC) pipeline comprising measurement reado...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "quant-ph",
+            "dataset",
+            "lora"
+          ],
+          "signal": 86,
+          "source": "arXiv",
+          "publishedAt": "2026-07-15T00:23:18Z",
+          "url": "https://arxiv.org/abs/2607.13351",
+          "pdfUrl": "https://arxiv.org/pdf/2607.13351v1"
+        },
+        {
+          "id": "arxiv-2607.13395",
+          "title": "Self-Improving is Often Sudden: Enlightenment-style Finetuning for Large-Scale Models",
+          "authors": [
+            "Jing-Xiao Liao",
+            "Tianwei Zhang",
+            "Yu-Hao Jiang",
+            "Feifei Zhang",
+            "Hang-Cheng Dong",
+            "Feng-Lei Fan"
+          ],
+          "summary": "The pursuit of autonomously self-improving models has attracted growing interest in the era of large-scale foundation models. Drawing inspiration from the concept of \"enlightenment\" or \"aha moment\" in human brain, we hypothesize that large models exhibit an analogous enlightenment phenomenon-a latent capacity for sudden capability boost. Then, we propose Enlightenment, a novel training-free post-tuning paradigm for large-scale models. Our approach modifies shortcuts for key modules/layers without weight updates, while existing training-free ones predominantly manipulate attention weights. We introduce two architecture-specific instantiations: i) For large language models, we propose attention head-mixing shortcuts that recalibrate attention weights by linking the initial attention head's output to all other target heads, modulated by an adaptive scaling factor initialization strategy. ii) For vision-language models, we apply a lightweight scalar-modulated factor to residual connections in the decoder layers, regulating information flow. Extensive experiments show that Enlightenment efficiently unlocks the latent potential of pre-trained networks, yielding remarkable performance improvements across diverse benchmarks and models.",
+          "reason": "近 30 天；关键词：cs.LG, efficient。The pursuit of autonomously self-improving models has attracted growing interest in the era of large-scale foundation models. Draw...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient"
+          ],
+          "signal": 78,
+          "source": "arXiv",
+          "publishedAt": "2026-07-15T02:43:34Z",
+          "url": "https://arxiv.org/abs/2607.13395",
+          "pdfUrl": "https://arxiv.org/pdf/2607.13395v1"
+        }
+      ]
+    },
     {
       "date": "2026-07-16",
       "generatedAt": "2026-07-16T06:47:51.026926+08:00",
