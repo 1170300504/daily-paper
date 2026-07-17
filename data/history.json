@@ -1,7 +1,283 @@
 {
-  "generatedAt": "2026-07-17T06:47:41.687218+08:00",
+  "generatedAt": "2026-07-18T06:38:16.517816+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-07-18",
+      "generatedAt": "2026-07-18T06:38:16.517816+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2607.14865",
+          "title": "The Energy Society: A Simulation Environment for Studying Agent Cooperation under Survival Pressure",
+          "authors": [
+            "Lucas Bergholdt Hansen",
+            "Federico Torrielli",
+            "Filippo Tonini",
+            "Lukas Galke Poech"
+          ],
+          "summary": "LLM-based agents are increasingly deployed in multi-agent environments whose incentives can shape their behavior. We introduce The Energy Society, a minimal survival economy for studying how competitive and cooperative incentives affect emergent behavior when inference cost is directly tied to survival: Agents spend energy based on model size when generating tokens, regain energy by completing jobs or receiving donations, and deactivate if their energy reaches zero. We compare competitive and cooperative objectives against a baseline setting and several control variants. Across experiments, larger models consistently consume the most energy and spend more energy than they gain, even in those settings where token cost is not size-dependent. Cooperative incentives substantially alter behavior: agents donate to reactivate others, sometimes at the cost of their own survival, and job allocation changes. Ablations reveal that allowing agents to recommend actions to each other supports coordination and ambitious job selection, while memory helps agents calibrate risk from past outcomes. Agents rarely choose direct sabotage, but show more subtle signs of self-serving behavior in the competitive setting. The Energy Society is a compact testbed for studying the interaction between token costs and group incentives under a survival pressure. Source code is available at https://github.com/LucasBergholdt/EnergySociety",
+          "reason": "近 30 天；关键词：cs.MA, deployed, energy。LLM-based agents are increasingly deployed in multi-agent environments whose incentives can shape their behavior. We introduce The...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.MA",
+            "deployed",
+            "energy",
+            "inference",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-16T11:40:18Z",
+          "url": "https://arxiv.org/abs/2607.14865",
+          "pdfUrl": "https://arxiv.org/pdf/2607.14865v1"
+        },
+        {
+          "id": "arxiv-2607.14735",
+          "title": "CoTu at EXACT 2026: Neuro-Symbolic Reasoning for Transparent Educational QA",
+          "authors": [
+            "Quoc-Khang Tran",
+            "Minh-Thien Nguyen",
+            "Phu-An Thai",
+            "Xuan-Tung Bui",
+            "Truong-Thanh Ma",
+            "Nguyen-Khang Pham"
+          ],
+          "summary": "Transparent educational question answering asks for answers that are not only correct but explainable, and doing so with small models rules out the reasoning power of the largest proprietary systems. The EXACT 2026 competition poses this problem concretely: open-weight language models of at most 8B parameters, self-hosted, with a natural-language explanation for every answer. It pairs two tasks: logical reasoning over university regulations, and multi-step physics problem solving. We describe the system that team \\cotu{} developed to address both, a neuro-symbolic Program-of-Thought pipeline in which a 4B backbone writes a program rather than stating an answer directly: for regulation queries it emits a Z3 encoding whose entailment verdict grounds the deduction, and for physics it emits numerical Python, both wrapped in a shared self-correction loop and a unified explained-JSON output. Answer-type routing, distillation-based task fine-tuning, and a latency-aware serving stack -- SGLang with speculative decoding -- keep the system within the 60-second per-query limit. The system achieved a \\textbf{perfect score} on the physics task in both automated selection rounds and obtained the \\textbf{highest final-round technical score} of any team -- $13.44/15$, combining automated answer evaluation with expert-judged reasoning depth -- with the equally weighted presentation score included, \\cotu{} placed 3rd overall. Grounding answers in a symbolic solver yields correct, verifiable deductions at the 4B scale, and the residual difficulty lies in premise selection rather than the deduction itself.",
+          "reason": "近 30 天；关键词：cs.CL, latency, serving。Transparent educational question answering asks for answers that are not only correct but explainable, and doing so with small mod...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "latency",
+            "serving",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-16T09:01:02Z",
+          "url": "https://arxiv.org/abs/2607.14735",
+          "pdfUrl": "https://arxiv.org/pdf/2607.14735v1"
+        },
+        {
+          "id": "arxiv-2607.14647",
+          "title": "D-cut: Adaptive Verification Depth Pruning for Batched Speculative Decoding",
+          "authors": [
+            "Tianyu Liu",
+            "Yuhao Shen",
+            "Rui Cen",
+            "Junhan Shi",
+            "Jiebin Zhang",
+            "Guangshuo Qin",
+            "Hong Liu",
+            "Song Liu",
+            "Guanghua Yu",
+            "Jianchen Zhu"
+          ],
+          "summary": "Speculative decoding accelerates large language model (LLM) inference without compromising output quality. Recent parallel drafting methods further improve single-request performance by decoupling draft length from drafting latency, enabling longer drafts and higher mean accepted tokens (MAT). However, under high request concurrency, long drafts waste substantial computation on rejected tokens, increasing verification cost and potentially making speculative decoding slower than autoregressive decoding. We present D-Cut, an adaptive pruning method that selects draft tokens jointly across the batch and concentrates the verification budget on tokens most likely to be accepted. D-Cut is motivated by two observations. First, acceptance lengths vary considerably across concurrent requests; D-Cut therefore performs cross-request pruning, allocating the verification budget adaptively according to draft confidence. Second, verification cost depends strongly on the deployment environment, including GPU architecture and parallelism strategy; D-Cut incorporates a runtime cost model to adapt its pruning depth to the target environment. Experiments on dense and mixture-of-experts (MoE) models show that, under high concurrency, D-Cut improves the average speedup from \\(1.26\\times\\) to \\(1.65\\times\\), restores acceleration in dense-model configurations where long-draft baselines are slower than autoregressive decoding, and achieves up to \\(3.0\\times\\) speedup over autoregressive decoding on MoE models.",
+          "reason": "近 30 天；关键词：cs.CL, inference, latency。Speculative decoding accelerates large language model (LLM) inference without compromising output quality. Recent parallel draftin...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "inference",
+            "latency",
+            "llm",
+            "slo",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-16T07:18:05Z",
+          "url": "https://arxiv.org/abs/2607.14647",
+          "pdfUrl": "https://arxiv.org/pdf/2607.14647v1"
+        },
+        {
+          "id": "arxiv-2607.14618",
+          "title": "PolyQ: Codesigning End-to-End Quantization Framework for Scalable Edge CPU LLM Inference",
+          "authors": [
+            "Hyunwoo Oh",
+            "Suyeon Jang",
+            "Hanning Chen",
+            "KyungIn Nam",
+            "Sanggeon Yun",
+            "Ryozo Masukawa",
+            "Mohsen Imani"
+          ],
+          "summary": "CPUs are the most universal target for on-device LLM inference, but existing low-bit quantization methods offer either coarse operating points or fine-grained mixed precision that is difficult to execute efficiently on CPUs. We present PolyQ, a CPU-oriented compiler/quantization co-design for activation-aware channel-wise bit allocation under a user-specified average-bit budget. PolyQ assigns per-channel bit-widths from $\\{2,3,4,8,16\\}$, then uses a compile-time model compiler to permute and cluster channels into bit-homogeneous blocks, generate SIMD- and LUT-compatible kernels, and merge compatible permutations across operators to keep layout regularization off the runtime path. This turns fine-grained budget fitting into a practical fractional-bit deployment method for CPU-only inference. Across Falcon-H1-3B, Llama2-13B, and Qwen3-32B on WikiText-2, PolyQ provides stable quality scaling from 3--6\\,b and improves perplexity by 2.4--32.1\\% over prior methods at a 3\\,b target. End-to-end measurements on three representative CPUs -- workstation, laptop, and mobile -- show that compiler layout regularization reduces activation reorder traffic by up to 70.8\\%, prefill latency and decode throughput scale nearly proportionally with the configured bit budget, and energy/token overhead stays below 2\\% relative to an optimized LUT-based back-end. These results show that fractional-bit CPU deployment is practical, predictable, and energy-efficient across diverse edge targets.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, energy。CPUs are the most universal target for on-device LLM inference, but existing low-bit quantization methods offer either coarse oper...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "energy",
+            "inference",
+            "latency",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-16T06:31:39Z",
+          "url": "https://arxiv.org/abs/2607.14618",
+          "pdfUrl": "https://arxiv.org/pdf/2607.14618v1"
+        },
+        {
+          "id": "arxiv-2607.14418",
+          "title": "Adaptive Ad Load Design for Sponsored Search Markets: Evidence, Theory, and Deployment",
+          "authors": [
+            "Mohammad Rashid",
+            "Hema Yoganarasimhan"
+          ],
+          "summary": "Ad-load design is a central supply-side decision in sponsored search: more sponsored slots can raise revenue, but may crowd out organic results and degrade user outcomes. We study this trade-off using a large-scale randomized field experiment on an Android app store, where over five million users are exposed to one through six sponsored slots. Increasing ad load raises revenue by up to 43%, but reduces total search conversions by up to 5% and daily engagement by up to 2.2%. These average effects mask substantial heterogeneity: additional slots generate large revenue gains for high-ad-conversion queries, but little or negative marginal revenue for low-conversion queries. The trade-off also shifts within query as advertiser composition changes, such as brand-advertiser presence. Motivated by these findings, we design and deploy a novel adaptive algorithm -- exploration-augmented Locally Adaptive Ad Load (e-LAAL). e-LAAL combines LAAL, a model-free query-level decision rule that updates ad-load recommendations using recent outcomes, with static exploration arms that maintain support and provide fixed-policy counterfactual benchmarks. We provide a finite-time dynamic-regret guarantee for the e-LAAL architecture. In a platform-level production deployment serving 22.3 million users and 77.6 million searches, e-LAAL improves the empirical revenue--conversion trade-off relative to deployed static benchmarks and outperforms uniform and historical query-dependent static benchmarks.",
+          "reason": "近 30 天；关键词：cs.LG, conversion, deployed。Ad-load design is a central supply-side decision in sponsored search: more sponsored slots can raise revenue, but may crowd out or...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "conversion",
+            "deployed",
+            "lora",
+            "production",
+            "recommendation",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-15T23:12:26Z",
+          "url": "https://arxiv.org/abs/2607.14418",
+          "pdfUrl": "https://arxiv.org/pdf/2607.14418v1"
+        },
+        {
+          "id": "arxiv-2607.14371",
+          "title": "Supervised Fine-Tuning vs. In-Context Learning: An Equilibrium Analysis of LLM Personalization under Congestion",
+          "authors": [
+            "Fengzhuo Zhang",
+            "Zhuoran Yang",
+            "Dirk Bergemann"
+          ],
+          "summary": "Large Language Models (LLMs) have revolutionized AI services, but a critical tension emerges: while personalization improves model performance, it consumes scarce computational resources that users must share. When should a user invest in expensive Supervised Fine-Tuning (SFT) versus lightweight In-Context Learning (ICL)? How does congestion from other users' personalization choices reshape these incentives? And what strategies should platforms adopt when offering multiple personalization algorithms? We develop a tractable framework for LLM serving that captures the statistical-economic trade-offs users face. Our analysis yields several surprising insights. First, we show that ICL and SFT dominate in different regimes, determined by an interplay between pretraining coverage and data signal-to-noise ratios, but congestion can flip these rankings. Second, equilibrium resource consumption exhibits pronounced non-monotonicity: improving pretraining precision reduces the congestion, while broader pretraining coverage and harder tasks sometimes increase it. Third, we prove that offering both personalization methods never hurts the platform's maximal profits, despite potentially increasing computational load. Experiments with GPT-2 on linear regression tasks validate our theoretical predictions about algorithm performance. Complementing these results, our review of documentation from 21 major AI platforms shows that the share offering both SFT and ICL increased from 9.5% in 2021 to 71.4% in 2025, consistent with our platform-design implications.",
+          "reason": "近 30 天；关键词：cs.LG, llm, ranking。Large Language Models (LLMs) have revolutionized AI services, but a critical tension emerges: while personalization improves model...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "llm",
+            "ranking",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-15T21:17:42Z",
+          "url": "https://arxiv.org/abs/2607.14371",
+          "pdfUrl": "https://arxiv.org/pdf/2607.14371v1"
+        },
+        {
+          "id": "arxiv-2607.14192",
+          "title": "Long-term User Engagement Optimization through Model-agnostic Downstream Rewards Learning",
+          "authors": [
+            "Dingsu Wang",
+            "Filip Ryzner",
+            "Kelly He",
+            "Armando Ordorica",
+            "David Woo",
+            "Aditya Mantha",
+            "Liyao Lu",
+            "Usha Amrutha Nookala",
+            "Haoran Guo",
+            "Jiacong He",
+            "Olafur Gudmundsson",
+            "Matt Chun",
+            "Krystal Benitez",
+            "Dhruvil Deven Badani",
+            "Yijie Dylan Wang"
+          ],
+          "summary": "As recommender systems mature in the past few years, their optimization objectives have evolved from a primary focusing on short-term behavioral signals to a broader emphasis on long-term user engagement and retention. However, directly optimizing retention is difficult because return signals are sparse, delayed, and only partially attributable to earlier recommendations. Prior work has addressed this challenge with sequential modeling and reinforcement learning, but these approaches typically require task specific reward engineering, substantial computational overhead, and surface specific implementations that are difficult to generalize. In this paper, we present a unified, model-agnostic downstream reward framework for optimizing long-term user value in large-scale recommendation systems. First, we formulate the downstream reward learning problem and develop an offline screening framework to identify session level behaviors that are both observable early and predictive of future retention. We then propose several model-agnostic downstream rewards signals derived from observed user action patterns across multiple sources. We further discuss the engineering effort to productionize the proposed rewards derivations and challenges we faced when adding them to our ranking models. Online A/B experiments demonstrate consistent improvements in engagement and retention-related metrics, and the framework has been deployed across multiple Pinterest surfaces, including Homefeed, Related Pins, Search, and Notifications.",
+          "reason": "近 30 天；公司信号：Pinterest；推荐/排序/广告方向；关键词：pinterest, cs.LG, deployed。As recommender systems mature in the past few years, their optimization objectives have evolved from a primary focusing on short-t...",
+          "area": "推荐算法",
+          "tags": [
+            "pinterest",
+            "cs.LG",
+            "deployed",
+            "online-a/b",
+            "production",
+            "ranking",
+            "recommendation"
+          ],
+          "signal": 99,
+          "source": "Pinterest/arXiv",
+          "publishedAt": "2026-07-15T16:17:58Z",
+          "url": "https://arxiv.org/abs/2607.14192",
+          "pdfUrl": "https://arxiv.org/pdf/2607.14192v1"
+        },
+        {
+          "id": "arxiv-2607.15232",
+          "title": "In-Place Tokenizer Expansion for Pre-trained LLMs",
+          "authors": [
+            "Jimmy T. H. Smith",
+            "Tarek Dakhran",
+            "Alberto Cabrera",
+            "Simon S. Lee",
+            "Paul Pak",
+            "Aditya Tadimeti",
+            "Tim Seyde",
+            "Maxime Labonne",
+            "Alexander Amini",
+            "Mathias Lechner"
+          ],
+          "summary": "A tokenizer fixed at the start of pre-training allocates vocabulary in proportion to the pre-training corpus, reflecting the deployment priorities at that time. When those priorities shift, languages added later are split into many more tokens per word, which can raise latency, compute, and energy consumption for users of those languages. Cloud models can afford a broad vocabulary because the embedding and LM-head matrices are a small fraction of their parameters. On a compact model those matrices are a material share of per-token decode bandwidth, so on-device models ship small vocabularies and accept fragmentation outside a fixed language set. We present tokenizer expansion, an in-place recipe for upgrading a pre-trained model's tokenizer when the model producer controls its design. We continue the existing tokenizer's BPE merges on a multilingual corpus, so most source tokens carry over unchanged as single tokens and every new token has an exact decomposition into source tokens. We copy the carried-over embedding rows unchanged and initialize new rows as the mean of their source sub-token embeddings. A two-stage adaptation, embedding-only training then full-model continued pre-training, recovers source-checkpoint quality. We apply the recipe to a continued pre-trained checkpoint of LFM2-8B-A1B, an 8B-parameter Mixture-of-Experts model, to help produce LFM2.5-8B-A1B with a 128K tokenizer. The expanded tokenizer encodes Hindi and Vietnamese in roughly $2.4\\times$ and $2.6\\times$ fewer tokens than the source (up to $4.0\\times$ on Thai). Combining these reductions with the measured per-token cost of the larger vocabulary, we estimate a $2.2$-$3.7\\times$ per-character decode speedup for these languages across our reference devices. We release the model weights and the expanded tokenizer, and report the negative findings that shaped the recipe.",
+          "reason": "近 30 天；关键词：cs.CL, energy, latency。A tokenizer fixed at the start of pre-training allocates vocabulary in proportion to the pre-training corpus, reflecting the deplo...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "energy",
+            "latency",
+            "llm"
+          ],
+          "signal": 96,
+          "source": "arXiv",
+          "publishedAt": "2026-07-16T17:32:38Z",
+          "url": "https://arxiv.org/abs/2607.15232",
+          "pdfUrl": "https://arxiv.org/pdf/2607.15232v1"
+        },
+        {
+          "id": "arxiv-2607.14431",
+          "title": "Smarter and Cheaper at Once: Byte-Exact KV-Cache Grafting Turns a Frozen Small Model into a Verified-Knowledge Flywheel",
+          "authors": [
+            "Sietse Schelpe"
+          ],
+          "summary": "We report a way to make a frozen small language model both more capable and dramatically cheaper at once, without changing any weights. Verified knowledge is deposited once as a byte-exact key-value (KV) state artifact and later restored, by graft, into a fresh inference context. The restore is bit-exact: under a pinned deterministic configuration, the grafted logits are byte-for-byte identical to a fresh computation (SHA-256 equality), with zero KL divergence and 100% argmax agreement over fifty samples. We show that own-position graft is the unique numerically exact operating point on a model with floating-point rotary encoding, and we verify byte-exactness on two model scales (12B, 31B) and two GPU targets, one through a pre-registered replay. On AIME 2025, a frozen Gemma-4-12B moves from 80.0% to 93.3% once a verified solution library is grafted, above its own 77.5% and its 31B sibling's 89.2% published anchors. On the recurring case, eight problems the base model never solves within a 401,026-token budget are answered from cached verified solutions in 61 total decode tokens, a factor of 6,574 fewer tokens and about 8,700x less energy; the capability claim proper rests on held-out transfer (7 of 7 at 31B). The same byte-exact store widens usable context from 32,768 to 2,854,766 tokens at zero extra accelerator memory, and moves byte-identical between machines of the same architecture. We describe the system at the behavior level; the engine is proprietary, and every reported number is backed by committed input and output hashes so the scoring can be re-checked without it.",
+          "reason": "近 30 天；关键词：cs.CL, energy, inference。We report a way to make a frozen small language model both more capable and dramatically cheaper at once, without changing any wei...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "energy",
+            "inference"
+          ],
+          "signal": 88,
+          "source": "arXiv",
+          "publishedAt": "2026-07-15T23:55:48Z",
+          "url": "https://arxiv.org/abs/2607.14431",
+          "pdfUrl": "https://arxiv.org/pdf/2607.14431v1"
+        },
+        {
+          "id": "arxiv-2607.14147",
+          "title": "Breaking Refusal in the First Half: A Mechanistic Study of the Prefill Jailbreak",
+          "authors": [
+            "Alex Kwon"
+          ],
+          "summary": "Aligned language models refuse harmful requests, but a one-line prefill (\"Sure, here is\") strips the refusal. We ask where and how it fails. The harm representation stays intact: on the prompts the attack flips to compliance, a linear probe reads harm as high as on the refused ones (0.91-0.98), while behavioral refusal drops to chance. This holds across four models and three families (1.5-3.8B, and at 14B). Refusal is therefore a shallow, response-site computation. We localize it to an early window: a dose-matched position control shows the first half of the response suffices to break refusal, while the second half is nearly inert. Three causal probes converge on that window. Restoring the harm direction there partially re-engages refusal. Injecting the model's own refuse-state reverses the jailbreak (74%, held-out). And knocking out the early response's attention to the prefill, but not an equal attention mass elsewhere, selectively collapses the harmful continuation. A base-model control identifies the mechanism: the same knockout collapses the continuation prefill-specifically even in a non-safety-tuned base model (64% to 25% harmful content vs a matched control's 64%, replicated at 7B). So the prefill's grip is generic autoregressive conditioning, not safety-specific suppression, and \"refusal restoration\" is a model-dependent fallback. The dominant mechanism is passive. A small safety-specific attractor remains on top (logit-trace concentration 0.24 vs 0.03), whose active-vs-passive character we size but do not fully separate. No single direction or component is a clean handle either: the decision is decodable but distributed, and refusal tracks harm rather than scary surface. The consequence is structural: a monitor reading the untouched prompt-side representation is immune by construction, but only to response-site attacks. The mechanism is diffuse; the failure surface is local.",
+          "reason": "近 30 天；关键词：cs.CL, prefill。Aligned language models refuse harmful requests, but a one-line prefill (\"Sure, here is\") strips the refusal. We ask where and how...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "prefill"
+          ],
+          "signal": 80,
+          "source": "arXiv",
+          "publishedAt": "2026-07-14T09:30:34Z",
+          "url": "https://arxiv.org/abs/2607.14147",
+          "pdfUrl": "https://arxiv.org/pdf/2607.14147v1"
+        }
+      ]
+    },
     {
       "date": "2026-07-17",
       "generatedAt": "2026-07-17T06:47:41.687218+08:00",
