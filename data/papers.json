@@ -1,5 +1,336 @@
 {
-  "generatedAt": "2026-07-20T06:40:42.284669+08:00",
+  "generatedAt": "2026-07-21T06:44:45.026163+08:00",
   "source": "curated industry radar + arXiv API",
-  "papers": []
+  "papers": [
+    {
+      "id": "arxiv-2607.16184",
+      "title": "PagedWeight: Efficient MoE LLM Serving with Dynamic Quality-Aware Weight Quantization",
+      "authors": [
+        "Yuchen Yang",
+        "Yifan Zhao",
+        "Anisha Dasgupta",
+        "Sasa Misailovic"
+      ],
+      "summary": "Mixture-of-Experts (MoE) is a popular class of large language models (LLMs), offering high efficiency and accuracy. However, in KV-cache-intensive serving scenarios, MoEs often exhibit a tension between the GPU memory requirements of the model weights and the growing KV cache. We propose PagedWeight, a novel management method for MoE LLM serving that dynamically quantizes MoE model's weights at runtime and balances expert-weight precision with the KV cache sizes. PagedWeight exposes and effectively navigates the complex tradeoff between the model's task accuracy, memory consumption, and throughput/latency. Across several memory-sensitive MoE serving scenarios, PagedWeight improves the quality-memory tradeoff over several existing quantization baselines. PagedWeight achieves FP16-equivalent accuracy with up to 72.0% GPU memory savings and 1.94$\\times$ throughput improvement, and improves quality over quantization methods by up to 39.3% at a similar memory budget with at most 4.1% throughput loss.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, kv-cache。Mixture-of-Experts (MoE) is a popular class of large language models (LLMs), offering high efficiency and accuracy. However, in KV...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "efficient",
+        "kv-cache",
+        "latency",
+        "llm",
+        "quantization",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-17T17:58:29Z",
+      "url": "https://arxiv.org/abs/2607.16184",
+      "pdfUrl": "https://arxiv.org/pdf/2607.16184v1"
+    },
+    {
+      "id": "arxiv-2607.16100",
+      "title": "Every Microsecond Matters: Achieving Near Speed-of-Light Latency in GPU Collectives",
+      "authors": [
+        "Siyuan Shen",
+        "Anton Korzh",
+        "John Bachan",
+        "Tiancheng Chen",
+        "Arnav Goel",
+        "Ludwig Schneider",
+        "Pouya Kousha",
+        "Zhenhao He",
+        "Sylvain Jeaugey",
+        "Kamil Iskra",
+        "Nishank Chandawala",
+        "Jeff R. Hammond",
+        "Torsten Hoefler"
+      ],
+      "summary": "GPU collective communication is typically optimized for bandwidth, yet many emerging workloads are increasingly limited by latency. Long-context decode-heavy large language model (LLM) inference is a prime example, where serving large models requires multiple GPUs, and many small collectives lie directly on the critical path of token generation. Therefore, even microsecond of overhead can impact performance and cost. In this work, we study how to approach the hardware Speed-of-Light (SoL) lower bound for GPU collectives within a scale-up network. We identify key principles for near-optimal designs, including barrier-free synchronization and efficient use of symmetric memory and multicast. Building on NCCL's device-side API, we develop low-latency interfaces for constructing custom collective kernels and use them to implement new symmetric collectives in NCCL. Microbenchmarks show substantial latency reductions for small and medium messages, reducing overhead to within 7% of the absolute SoL lower bound. When integrated into real applications, these kernels improve inter-token latency and throughput in LLM inference and accelerate cuSOLVERMp, demonstrating benefits for both AI inference and traditional HPC workloads.",
+      "reason": "近 30 天；关键词：cs.DC, efficient, inference。GPU collective communication is typically optimized for bandwidth, yet many emerging workloads are increasingly limited by latency...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "efficient",
+        "inference",
+        "latency",
+        "llm",
+        "serving",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-17T16:36:43Z",
+      "url": "https://arxiv.org/abs/2607.16100",
+      "pdfUrl": "https://arxiv.org/pdf/2607.16100v1"
+    },
+    {
+      "id": "arxiv-2607.15899",
+      "title": "ContinuityBench: A Benchmark and Systems Study of Stateful Failover in Multi-Provider LLM Routing",
+      "authors": [
+        "Vishal Pandey",
+        "Gopal Singh"
+      ],
+      "summary": "In production large language model (LLM) deployments, high API availability guarantees do not equate to conversational continuity. When a primary provider experiences an outage or strict rate-limiting, naive stateless failover mechanisms successfully maintain uptime but silently discard conversation history, severely disrupting the user experience. To rigorously quantify and resolve this failure mode, we introduce two novel metrics: Continuity Preservation Rate (CPR) and Continuity Latency Overhead (CLO). We propose a stateful, multi-provider proxy architecture utilizing a History-Forwarding strategy to seamlessly reconstruct conversational state across heterogeneous LLM endpoints during failover events. Furthermore, we release continuity-bench, https://github.com/Vishal-sys-code/continuity-bench, an open evaluation harness designed to stress-test context preservation under high-concurrency provider failure conditions. Our empirical evaluation ($N=750$ failover events) demonstrates that our stateful proxy achieves a 99.20\\% CPR [95\\% CI: 98.27\\%, 99.63\\%], cleanly transferring deep conversational context to fallback providers, compared to a near-0\\% preservation rate for standard stateless architectures. Finally, we characterize failover latency distributions, identifying the critical necessity of asynchronous exponential backoff with jitter to prevent cascading retry storms against strict-limit fallback APIs. Our results provide a principled foundation for building robust, state-preserving multi-model inference systems.",
+      "reason": "近 30 天；关键词：cs.LG, inference, latency。In production large language model (LLM) deployments, high API availability guarantees do not equate to conversational continuity....",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "latency",
+        "llm",
+        "production",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-17T12:12:38Z",
+      "url": "https://arxiv.org/abs/2607.15899",
+      "pdfUrl": "https://arxiv.org/pdf/2607.15899v1"
+    },
+    {
+      "id": "arxiv-2607.15865",
+      "title": "An MLIR-Based Compilation Method for Large Language Models",
+      "authors": [
+        "Pengchao Hu",
+        "Zhibin Xin",
+        "Yifan Chen",
+        "Yangyang Zhou",
+        "Liang Wang"
+      ],
+      "summary": "Large Language Models (LLMs) have become the dominant workload on modern AI accelerators, yet deploying them on specialized hardware still faces two core challenges: how to import a trained model into a compiler-friendly intermediate representation, and how to efficiently schedule the autoregressive inference loop under limited on-chip memory. This paper presents an MLIR (Multi-Level Intermediate Representation) based compilation method for large language models, illustrated using two dialects of operators, TopOp and TpuOp. TopOp serves as a high-level graph dialect that is independent of both the source framework and the target chip, and is responsible for expressing model semantics; TpuOp serves as the target hardware dialect, carrying chip-related decisions such as quantization, layer groups, and memory layout. A model is first represented as TopOp, then lowered layer by layer to TpuOp, and finally a deployable binary is generated. In addition, each Transformer layer is split into three stages for static compilation: prefill, prefill_kv (prefill with historical key-value cache), and decode, so as to accommodate the different computational characteristics of prompt-parallel processing and per-token generation. The method has been implemented in the TPU-MLIR compiler{https://github.com/sophgo/tpu-mlir} and the LLM-TPU deployment project\\footnote{https://github.com/sophgo/LLM-TPU}, supporting a variety of generative models including the Qwen, Llama, InternVL, and MiniCPM-V series, as well as multiple quantization and deployment forms such as GPTQ, AWQ, and AutoRound.",
+      "reason": "近 30 天；公司信号：Alibaba, Google, Meta；关键词：alibaba, google, meta。Large Language Models (LLMs) have become the dominant workload on modern AI accelerators, yet deploying them on specialized hardwa...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "alibaba",
+        "google",
+        "meta",
+        "cs.CL",
+        "efficient",
+        "inference",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "Alibaba/Google/arXiv",
+      "publishedAt": "2026-07-17T11:24:45Z",
+      "url": "https://arxiv.org/abs/2607.15865",
+      "pdfUrl": "https://arxiv.org/pdf/2607.15865v1"
+    },
+    {
+      "id": "arxiv-2607.15810",
+      "title": "QUADS: Stabilizing NVFP4 Reinforcement Learning for MoE via QUantization-error Alignment across Dual Sides",
+      "authors": [
+        "Zhengyang Zhuge",
+        "Hao Yu",
+        "Xin Wang",
+        "Zheng Li",
+        "Yizhong Cao",
+        "Dayiheng Liu",
+        "Jianwei Zhang"
+      ],
+      "summary": "Rollout generation is a major bottleneck in Reinforcement Learning (RL) for Mixture-of-Experts (MoE) Large Language Models, motivating low-precision rollout acceleration such as FP8. As an emerging low-precision format, NVFP4 combines fine-grained scaling for accuracy preservation with native W4A4 FP4 GEMMs for higher throughput than FP8. However, we find that directly applying NVFP4 to MoE RL rollout is impractical. NVFP4 rollout with BF16 training collapses after roughly 150 steps, accompanied by rapidly growing rollout-trainer log-probability gaps. Through training-inference error analysis and controlled ablations, we identify activation error, rather than weight error, as the dominant source of FP4 RL instability: weights can be synchronized and aligned by a shared quantization-dequantization path, whereas activations are recomputed online and error is amplified by the coarse E2M1 grid. Therefore, to stabilize NVFP4 RL for MoE, we propose QUantization-error Alignment across Dual Sides (QUADS). On the trainer side, we introduce Asymmetric Quantization-Aware Training fake-quantizing weights while keeping activations unquantized for better alignment. On the rollout side, Residual Activation Compensation corrects high-error activation channels while preserving native W4A4 GEMMs. In our MoE RL experiments on several benchmarks, QUADS achieves BF16-level accuracy, improves average pass@1 by 21.49 points over naive NVFP4 RL, and delivers ~16% higher rollout throughput than FP8.",
+      "reason": "近 30 天；关键词：cs.LG, alignment, inference。Rollout generation is a major bottleneck in Reinforcement Learning (RL) for Mixture-of-Experts (MoE) Large Language Models, motiva...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "alignment",
+        "inference",
+        "quantization",
+        "serving",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-17T10:21:27Z",
+      "url": "https://arxiv.org/abs/2607.15810",
+      "pdfUrl": "https://arxiv.org/pdf/2607.15810v1"
+    },
+    {
+      "id": "arxiv-2607.15730",
+      "title": "RECAP: Feedback-Driven Streaming Semantic User Profiles for Short-Video Recommendation",
+      "authors": [
+        "Ziyi Zhao",
+        "Xiaoyou Zhou",
+        "Xiao Lv",
+        "Yangyang Li",
+        "Chubo He",
+        "Zhao Liu",
+        "Jiayao Shen",
+        "Yuqi Liu",
+        "He Li",
+        "Chengyi Zhang",
+        "Jian Liang",
+        "Ming Li",
+        "Chongming Gao",
+        "Fuli Feng",
+        "Ruiming Tang",
+        "Han Li"
+      ],
+      "summary": "Language-based user profiles convert long behavioral histories into explicit semantic representations for recommendation. However, most profile generators are optimized in an open loop: they may summarize past behavior fluently, but are not directly trained to improve future recommendation. We study this problem in real-world short-video recommendation, where user behaviors continuously arrive as streams and profiles must be incrementally updated under limited capacity. This requires maintaining a consistent bounded profile state and constructing profile-targeted semantic feedback from industrial implicit behavior logs. We propose RECAP, an offline closed-loop framework for optimizing streaming structured semantic profiles with historical recommendation feedback. RECAP maintains each profile as a bounded structured memory by combining LLM-based semantic updates with deterministic lifecycle and capacity control. RECAP constructs profile-targeted semantic feedback by filtering label-consistent behavior pairs with an LLM judge and training a dual-tower evaluator whose matching score serves as a GRPO reward. Experiments on Kuaishou short-video data show that RECAP improves uAUC by 0.0084 and Recall@2000 by about 4.9% over the base generator. Further analyses confirm the benefits of feedback construction and policy optimization, and show more grounded refinement and user-level abstraction in profile updates. A seven-day online A/B test further shows a statistically significant 0.139% improvement in average application usage time per user.",
+      "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, industrial。Language-based user profiles convert long behavioral histories into explicit semantic representations for recommendation. However,...",
+      "area": "推荐算法",
+      "tags": [
+        "kuaishou",
+        "cs.IR",
+        "industrial",
+        "llm",
+        "online-a/b",
+        "recommendation"
+      ],
+      "signal": 99,
+      "source": "Kuaishou/arXiv",
+      "publishedAt": "2026-07-17T08:10:37Z",
+      "url": "https://arxiv.org/abs/2607.15730",
+      "pdfUrl": "https://arxiv.org/pdf/2607.15730v1"
+    },
+    {
+      "id": "arxiv-2607.15593",
+      "title": "Scalable LLM Agent Tool Access in the Cloud",
+      "authors": [
+        "Mingxin Li",
+        "Enge Song",
+        "Yueshang Zuo",
+        "Xiaodong Liu",
+        "Rong Wen",
+        "Qiang Fu",
+        "Gianni Antichi",
+        "Jian He",
+        "Jing Tie",
+        "Zhou Shao",
+        "Xiaobo Xue",
+        "Xiong Xiao",
+        "Luyao Zhong",
+        "Shaokai Zhang",
+        "Jiangu Zhao",
+        "Jianyuan Lu",
+        "Shize Zhang",
+        "Xiaoqing Sun",
+        "Changgang Zheng",
+        "Zihao Fan",
+        "Haonan Li",
+        "Tian Pan",
+        "Xiaomin Wu",
+        "Yang Song",
+        "Xing Li",
+        "Biao Lyu",
+        "Meng Li",
+        "Haipeng Dai",
+        "Guihai Chen",
+        "Shunmin Zhu"
+      ],
+      "summary": "LLM agents increasingly rely on tool calling to act on external systems, and the Model Context Protocol (MCP) has quickly become its de facto interface. Operating MCP at cloud scale, however, becomes difficult. On the tool provider side, legacy services are not directly callable through MCP; the rapid protocol development also creates ongoing compatibility cost. On the agent side, the number of accessible tool is limited by the LLM context window and inference overhead; mounting a large tool set increases token usage and inference latency and can reduce task success rate. Moreover, for stateful MCP backends with multiple replicas, preserving session affinity increases client-side complexity. We present a cloud-scale gateway system for MCP service. It breaks the direct-connect model on the data plane and offloads legacy service integration, consolidating incompatible MCP variants, access control, tool recommendation, and session-aware routing to the gateway. Hybrid retrieval sustains 98% Top-15 recall; it scales agent tool access to 3,000+ with high tool selection accuracy, and reduces tool selection time by $8.9\\times$ and token usage by $23.8\\times$, with low per-call overhead, stable under scale-out. Finally, we share the lessons learned from deploying the gateway system in production.",
+      "reason": "近 30 天；关键词：cs.DC, inference, latency。LLM agents increasingly rely on tool calling to act on external systems, and the Model Context Protocol (MCP) has quickly become i...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "inference",
+        "latency",
+        "llm",
+        "production",
+        "recommendation",
+        "retrieval"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-17T03:40:49Z",
+      "url": "https://arxiv.org/abs/2607.15593",
+      "pdfUrl": "https://arxiv.org/pdf/2607.15593v1"
+    },
+    {
+      "id": "arxiv-2607.15591",
+      "title": "RecGPT-V3 Technical Report",
+      "authors": [
+        "Bowen Zheng",
+        "Chao Yi",
+        "Dian Chen",
+        "Gaoyang Guo",
+        "Han Zhu",
+        "Jiakai Tang",
+        "Jian Wu",
+        "Mao Zhang",
+        "Wen Chen",
+        "Yifan Lu",
+        "Yujie Luo",
+        "Yuning Jiang",
+        "Zhujin Gao",
+        "Bo Zheng",
+        "Dixuan Wang",
+        "Hao Fang",
+        "Jiancai Liu",
+        "Jing Yu",
+        "Ke Chen",
+        "Kewei Zhu",
+        "Mingke Xu",
+        "Wenjun Yang",
+        "Xunke Xi",
+        "Zile Zhou"
+      ],
+      "summary": "Large language models (LLMs) are transforming recommender systems from matching co-occurrence patterns in historical behavior toward reasoning about the intent that drives it. RecGPT-V1 pioneered this paradigm on Taobao by centering user understanding, and RecGPT-V2 scaled it via coordinated multi-agent reasoning; both are deployed in production with consistent gains in user experience and commercial outcomes. However, operating RecGPT at scale reveals three challenges: (1) stateless behavior modeling, where each request reprocesses full user history, wasting computation and discarding prior analysis; (2) a tag-to-item information bottleneck, where natural-language tags form a lossy channel between user understanding and item grounding; and (3) inefficient explicit reasoning, whose lengthy chain-of-thought incurs untenable latency and compute overhead. We present RecGPT-V3, a stateful, hybrid-modal recommender that reasons over natural language for open-world knowledge and Semantic IDs (SIDs) for concrete item grounding. A Memory Hub maintains structured, continually evolving user memory that distills long-horizon behavior into condensed units, cutting user-modeling computation by 55.8%. A Hybrid-modal Foundation Model allows the LLM jointly reason over text tags and SIDs, opening a high-bandwidth channel into the item space. Latent Intent Reasoning internalizes verbose rationales into compact learnable latent tokens that remain decodable into readable explanations, lowering output token cost by 200x. Deployed in Taobao's \"Guess What You Like\" feed, RecGPT-V3 achieves consistent gains in large-scale online A/B tests: IPV +1.28%, CTR +1.00%, TC +1.97%, GMV +3.97%, while cutting end-to-end serving resource consumption by 52.4%.",
+      "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, deployed。Large language models (LLMs) are transforming recommender systems from matching co-occurrence patterns in historical behavior towa...",
+      "area": "推荐算法",
+      "tags": [
+        "alibaba",
+        "cs.IR",
+        "deployed",
+        "efficient",
+        "latency",
+        "llm",
+        "online-a/b"
+      ],
+      "signal": 99,
+      "source": "Alibaba/arXiv",
+      "publishedAt": "2026-07-17T03:25:43Z",
+      "url": "https://arxiv.org/abs/2607.15591",
+      "pdfUrl": "https://arxiv.org/pdf/2607.15591v1"
+    },
+    {
+      "id": "arxiv-2607.15552",
+      "title": "From Feasibility to Desirability: Plan, Learn, Adapt (PLA) Framework for Personalized On-Device Itinerary Generation",
+      "authors": [
+        "Himel Dev",
+        "Tanmoy Sen",
+        "Madhusudan Basak",
+        "Bashima Islam"
+      ],
+      "summary": "Generating personalized trip itineraries is a complex planning task and involves a tension between hard combinatorial feasibility and soft latent desirability. Classical optimization enforces constraints but fails to capture subjective traveler preferences. While learning-based approaches model preferences, they cannot guarantee feasibility. Mobile deployment imposes additional resource constraints on both. To address this, we propose Plan, Learn, Adapt (PLA), a three-stage framework for personalized on-device itinerary generation. The Plan stage builds a heterogeneous ensemble of lightweight planners that produces structurally diverse feasible candidates. From pairwise itinerary comparisons, Learn fits a compact Bradley-Terry reward model that captures emergent schedule properties such as pacing, geographic coherence, and day balance, which per-POI signals miss. Finally, Adapt applies feasibility-preserving local refinement within a device-aware compute budget; every intermediate state is feasible by construction. On 2,519 pairwise human comparisons across more than 100 U.S. cities, the reward-guided ensemble achieves a 67.8% win rate, 11.2 percentage points above the best single planner, with 100% feasibility. Three frontier LLMs, GPT-5, Claude Opus 4.5, and Gemini 3 Pro, achieve 0% feasibility under the same constraints. The reward model generalizes across held-out cities, with a 67.6% mean leave-one-city-out accuracy. In production deployment within FlyEnJoy, PLA increased itinerary completion rates by 91%, with 109.9 ms average on-device latency.",
+      "reason": "近 30 天；公司信号：Anthropic, Google；关键词：anthropic, google, cs.LG。Generating personalized trip itineraries is a complex planning task and involves a tension between hard combinatorial feasibility...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "anthropic",
+        "google",
+        "cs.LG",
+        "latency",
+        "llm",
+        "production",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "Anthropic/Google/arXiv",
+      "publishedAt": "2026-07-17T01:52:02Z",
+      "url": "https://arxiv.org/abs/2607.15552",
+      "pdfUrl": "https://arxiv.org/pdf/2607.15552v1"
+    },
+    {
+      "id": "arxiv-2607.15590",
+      "title": "Field-Aware RankMixer with Dual-Stream Bilinear Fusion for the Tencent UNI-REC Challenge",
+      "authors": [
+        "Yufeng Zhang",
+        "Zhengqi Xu",
+        "Jiajun Cui"
+      ],
+      "summary": "This paper presents our solution to the KDD Cup 2026 Tencent UNIREC Challenge. The task requires joint modeling of multi-domain user behavior sequences and non-sequential multi-field features for target-ad pCVR prediction. We develop a Field-Aware RankMixer (FA-RankMixer) with dual-stream bilinear fusion. The model first applies target-aware DIN modules to extract user interests from multiple behavior domains. It also models recent and earlier interests separately for the longest behavior sequence. The model then forms semantic tokens based on feature fields and behavior domains and uses RankMixer blocks for cross-token interaction. A shallow MLP stream complements the deep RankMixer stream, and a group-wise bilinear module fuses their representations. Our final solution ranks ninth on the official leaderboard. Our code is available at https://github.com/PixelCookie-zyf/TAAC-2026-SeRankMixer.",
+      "reason": "近 30 天；公司信号：Tencent；推荐/排序/广告方向；关键词：tencent, cs.LG。This paper presents our solution to the KDD Cup 2026 Tencent UNIREC Challenge. The task requires joint modeling of multi-domain us...",
+      "area": "推荐算法",
+      "tags": [
+        "tencent",
+        "cs.LG"
+      ],
+      "signal": 96,
+      "source": "Tencent/arXiv",
+      "publishedAt": "2026-07-17T03:22:02Z",
+      "url": "https://arxiv.org/abs/2607.15590",
+      "pdfUrl": "https://arxiv.org/pdf/2607.15590v1"
+    }
+  ]
 }
