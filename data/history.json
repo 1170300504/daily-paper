@@ -1,7 +1,316 @@
 {
-  "generatedAt": "2026-07-21T06:44:45.026163+08:00",
+  "generatedAt": "2026-07-22T06:44:19.509688+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-07-22",
+      "generatedAt": "2026-07-22T06:44:19.509688+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2607.18171",
+          "title": "FlashRT: Agent Harness for Guiding Agents to Deploy Real-Time Multimodal Applications",
+          "authors": [
+            "Krish Agarwal",
+            "Zhuoming Chen",
+            "Yanyuan Qin",
+            "Zhenyu Gu",
+            "Atri Rudra",
+            "Beidi Chen"
+          ],
+          "summary": "Real-time multimodal applications, including voice agents and interactive video generation, compose heterogeneous models into pipelines whose efficient deployment requires application-specific decisions about placement, streaming, and intra-model parallelism. Existing serving systems and auto-parallelism compilers commit to limited transformations and fixed workload assumptions, so achieving high performance on a new application requires hand-crafting an efficient implementation. We present FlashRT, an agent harness that guides coding agents to lift simple developer-written reference implementations into optimized multi-GPU deployments that flexibly weigh target metrics like latency and throughput. Using a new chain-of-program paradigm, FlashRT directs a generic coding agent through a multi-pass transformation process where an agent transforms the reference into an intermediate representation (IR) to capture data dependencies and persistent-state scopes, validates this IR via a sequential interpreter, and performs static analyses to identify candidate transformations. Then, the agent iteratively implements, verifies, and benchmarks each candidate under a measurement-gated optimization loop to produce effective deployments that span different hardware budgets. Across various applications, including video world models and multimodal LLMs, FlashRT converts reference implementations into highly efficient deployments, delivering up to ~70x latency reduction and 2.8x throughput improvement on NVIDIA B200 GPUs. On AMD MI355X GPUs, FlashRT matches the peak latency reduction while increasing peak throughput improvement to 3.6x, demonstrating that agent-driven optimization can be more scalable on platforms with less mature expert optimization. In fact, for Qwen3-Omni text-to-audio inference, FlashRT reduces response latency by 65% compared to the expert vLLM-Omni implementation on AMD MI355X.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, efficient。Real-time multimodal applications, including voice agents and interactive video generation, compose heterogeneous models into pipe...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.LG",
+            "efficient",
+            "inference",
+            "latency",
+            "llm",
+            "multimodal"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-07-20T17:12:28Z",
+          "url": "https://arxiv.org/abs/2607.18171",
+          "pdfUrl": "https://arxiv.org/pdf/2607.18171v1"
+        },
+        {
+          "id": "arxiv-2607.18141",
+          "title": "HyMCache: A KV Cache Framework for Multi-Turn LLM Serving with CXL-Hybrid Memory",
+          "authors": [
+            "Hakbeom Jang",
+            "Inho Song",
+            "Sam H. Noh",
+            "Jongryool Kim"
+          ],
+          "summary": "Long-context, multi-turn, and agentic LLM workloads increasingly reuse previously processed context, making KV-cache reuse essential for reducing redundant computation. However, this reuse shifts the bottleneck to the memory tier that stores and serves reusable KV states at cluster scale. GPU HBM and host DRAM are too costly to scale to TB-scale shared context capacity, motivating remote tiers built from lower-cost, higher-capacity media. This paper presents HyMCache, a KV-cache framework that integrates CXL-hybrid memory (CXL-HM) for multi-turn LLM serving. CXL-HM combines a small amount of in-device DRAM with large SSD-backed capacity behind a CXL interface. By exploiting the read-dominant, predictable, and append-only nature of multi-turn KV-cache access, HyMCache rethinks DRAM management within CXL-HM to efficiently support TB-scale SSD-backed KV reuse. It uses request-level prefix prefetching and opportunistic write buffering to stage latency-critical reads in device DRAM, enabling DRAM-scale KV-cache efficiency at SSD-level cost. We evaluate HyMCache on a real CXL-HM prototype under both single-aggregator and PD-disaggregated serving configurations. Under the same DRAM budget, HyMCache outperforms local LMCache by 3.0x in single-node serving and 1.45x in PD-disaggregated serving. Compared with 1 TB distributed-DRAM Mooncake, HyMCache incurs about 30% lower performance but uses 16x less DRAM.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, kv-cache。Long-context, multi-turn, and agentic LLM workloads increasingly reuse previously processed context, making KV-cache reuse essenti...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "kv-cache",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-20T16:35:47Z",
+          "url": "https://arxiv.org/abs/2607.18141",
+          "pdfUrl": "https://arxiv.org/pdf/2607.18141v1"
+        },
+        {
+          "id": "arxiv-2607.18114",
+          "title": "How Does Alignment Tuning Shape Representations of Sycophancy and Related Cue-Induced Biases in LLMs?",
+          "authors": [
+            "Prakhar Gupta",
+            "Terry Jingchen Zhang",
+            "Florent Draye",
+            "Bernhard Schölkopf",
+            "Zhijing Jin"
+          ],
+          "summary": "Modern LLMs are alarmingly susceptible to surprisingly simple immaterial changes of input prompts: a casual hint, an incorrectly labeled few-shot example, or a fake prior assistant turn often flips an originally correct answer. We study where this susceptibility, spanning sycophancy and related cue-induced biases, lives inside the model. Across five model families and seven BCT bias types, we extract a per-bias direction from hidden states and triangulate it through three measures: probing, leave-one-dataset-out transfer, and causal intervention. The susceptibility is largely installed by alignment tuning rather than pretraining: pretrained base models barely cave to these biases, and their activations carry no cue-specific signal beyond question content. Within aligned models, each bias becomes a single coherent direction that we can both decode and steer along, recovering the unbiased answer across every family we test. The biases stay representationally distinct, however: cross-bias entanglement is model-specific rather than a property of the bias category, and even behaviorally similar biases occupy different directions. The same intervention also serves as a modest debiasing tool, recovering a meaningful share of bias-induced errors while preserving most correct answers across all instruct families. Cue-induced bias is therefore best understood not as a single flaw in LLMs but as a family of distinct, causally active directions that alignment tuning installs.",
+          "reason": "近 30 天；关键词：cs.CL, alignment, dataset。Modern LLMs are alarmingly susceptible to surprisingly simple immaterial changes of input prompts: a casual hint, an incorrectly l...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "alignment",
+            "dataset",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-20T16:10:06Z",
+          "url": "https://arxiv.org/abs/2607.18114",
+          "pdfUrl": "https://arxiv.org/pdf/2607.18114v1"
+        },
+        {
+          "id": "arxiv-2607.18082",
+          "title": "Enhancing Rubric-based RL via Self-Distillation",
+          "authors": [
+            "Mingxuan Xia",
+            "Yuhang Yang",
+            "Chao Ye",
+            "Shuai Zhu",
+            "Shenzhi Yang",
+            "Guangcheng Zhu",
+            "Yuhang Zhang",
+            "Cheng Peng",
+            "Haobo Wang",
+            "Siqing Wang"
+          ],
+          "summary": "Rubric-based RL has recently shown promise in improving LLMs on open-ended tasks. A widely recognized limitation of rubric-based RL is limited exploration: criteria that no rollout manages to satisfy (Unexplored Criteria, UC) receive no optimization signal. Recent methods address this by incorporating rubric information as external guidance during rollout, yet they introduce a train-inference mismatch: the policy is optimized on rollouts produced under external guidance while this guidance is absent at inference time, causing error accumulation through autoregressive decoding. Moreover, these exploration-focused approaches overlook a fundamentally different failure mode that we term Suppressed Criteria (SC) -- criteria that are satisfied by some rollouts yet whose learning signals are lost during optimization because scalar reward aggregation assigns them non-positive aggregate advantages. Our analysis reveals that SC are remarkably prevalent: over 57% of samples exhibit this failure mode throughout training, with an average of 1.8 SC per sample. To simultaneously address both UC and SC without introducing training-inference mismatch, we propose Criterion-Distilled Policy Optimization (CriPO), which enhances rubric-based RL via on-policy self-distillation. For UC, CriPO constructs a criterion-injection self-teacher and computes a localized forward-KL loss to inject missing behaviors into the policy. For SC, CriPO employs a counterfactual self-teacher to locate criterion-relevant tokens in negative-advantage rollouts and flips their token-level advantages to positive values, preserving useful patterns that would otherwise be suppressed. Experiments on medicine and science benchmarks demonstrate that CriPO consistently outperforms rubric-based RL, achieving stronger final performance with approximately $2\\times$ fewer optimization steps.",
+          "reason": "近 30 天；关键词：cs.LG, inference, llm。Rubric-based RL has recently shown promise in improving LLMs on open-ended tasks. A widely recognized limitation of rubric-based R...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "llm",
+            "lora",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-20T15:50:02Z",
+          "url": "https://arxiv.org/abs/2607.18082",
+          "pdfUrl": "https://arxiv.org/pdf/2607.18082v1"
+        },
+        {
+          "id": "arxiv-2607.18081",
+          "title": "SelectInfer: Selective Neuron Loading and Computation for On-Device LLMs",
+          "authors": [
+            "Huzaifa Shaaban Kabakibo",
+            "Eric Schniedermeyer",
+            "Artem Burchanow",
+            "Lin Wang"
+          ],
+          "summary": "Large Language Models (LLMs) have demonstrated remarkable capabilities across a range of Natural Language Processing (NLP) tasks, but their high computational and memory demands pose significant challenges for deployment on resource-constrained edge devices. Existing approaches to model compression and optimization often rely on coarse-grained pruning or quantization, which can compromise accuracy or require re-training and fine-tuning. In this work, we introduce SelectInfer, a neuron-level optimization framework that enables efficient LLM inference on edge devices through selective neuron loading and computation. By profiling and identifying both task-specific and general-purpose neurons using an offline LLM profiler, SelectInfer implements two key optimizations: selective loading, which reduces memory footprint by selectively loading a subset of neurons that were identified to be most important during the offline stage, and selective computation, which dynamically computes only the most relevant neurons at runtime. Evaluation across multiple datasets shows that SelectInfer achieves significant reductions in memory footprint and computation while preserving task performance, making it a practical step towards enabling LLM deployment on edge devices",
+          "reason": "近 30 天；关键词：cs.LG, dataset, efficient。Large Language Models (LLMs) have demonstrated remarkable capabilities across a range of Natural Language Processing (NLP) tasks,...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "dataset",
+            "efficient",
+            "inference",
+            "llm",
+            "quantization",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-20T15:48:33Z",
+          "url": "https://arxiv.org/abs/2607.18081",
+          "pdfUrl": "https://arxiv.org/pdf/2607.18081v1"
+        },
+        {
+          "id": "arxiv-2607.18002",
+          "title": "ExpertPlex: A High-Goodput Disaggregated Serving System for MoE LLMs with Adaptive Persistent Kernels",
+          "authors": [
+            "Bingyang Wu",
+            "Chao Jin",
+            "Zili Zhang",
+            "Xinming Wei",
+            "Yinmin Zhong",
+            "Ruidong Zhu",
+            "Chengxu Yang",
+            "Xin Jin",
+            "Yuliang Liu"
+          ],
+          "summary": "LLMs scale Mixture-of-Experts (MoE) parameters for superior intelligence, but massive weights and dynamic computation impede efficient serving. Existing instance-level prefill-decode disaggregation isolates the phases on separate full-model replicas. As MoE weights grow, each instance may span tens to hundreds of GPUs, making resource allocation increasingly coarse. Configured prefill-to-decode ratios thus often mismatch demand, overprovisioning one phase while overloading the other. Prefill-decode colocation avoids this duplication, but existing Green Context solutions partition each GPU by phase and fix phase resources during a kernel. They cannot track resource changes across operations or layerwise variation in routed expert load, causing head-of-line blocking or idle reserved resources. Partitioning every GPU also leaves each phase with fewer local resources, forces wider parallelism and more communication, and lets prefill and decode traffic interfere on the shared network. We present ExpertPlex, which shares massive MoE experts across phases while disaggregating lightweight attention modules. Expert sharing eliminates over 95\\% duplicate model weights and multiplexes dynamically sparse computation, while attention disaggregation reduces attention communication cost. ExpertPlex further uses (1) adaptive persistent kernels to schedule dynamic expert computation at tile granularity for efficient, isolated execution; (2) attention-initiated MoE communication to avoid network interference and enable cross-phase communication-computation overlap; and (3) a tile-to-cluster model to optimize these mechanisms for maximum goodput. Experiments serving MiniMax-M2.7 and GLM-5.1-FP8 show that ExpertPlex improves goodput by up to 2.01$\\times$ over instance-level prefill-decode disaggregation and 1.66$\\times$ over prefill-decode colocation.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, llm。LLMs scale Mixture-of-Experts (MoE) parameters for superior intelligence, but massive weights and dynamic computation impede effic...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "llm",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-20T14:34:43Z",
+          "url": "https://arxiv.org/abs/2607.18002",
+          "pdfUrl": "https://arxiv.org/pdf/2607.18002v1"
+        },
+        {
+          "id": "arxiv-2607.17910",
+          "title": "Chemical filters for ultra-high-throughput materials screening and generation",
+          "authors": [
+            "Kinga O. Mastej",
+            "Panyalak Detrattanawichai",
+            "Hyunsoo Park",
+            "Anthony Onwuli",
+            "Masahiro Negishi",
+            "Aron Walsh"
+          ],
+          "summary": "Generative artificial intelligence is rapidly transforming materials design by enabling de novo exploration of immense chemical spaces. Yet a large proportion of AI-generated compositions remain implausible, violating established chemical principles, which limits the reliability and interpretability of generative materials design. Here, we introduce a chemical validity operator that recasts heuristic chemical rules as a configurable algorithmic prior for evaluating and guiding generative materials discovery. Built on the open-source SMACT package, a data-informed oxidation-state model exposes tunable thresholds, allowing users to interpolate continuously between permissive and conservative chemical constraints, while supporting both exploratory and conservative materials-design workflows. Benchmarking six state-of-the-art generative models for inorganic crystals shows that most reproduce stoichiometry but under-represent realistic oxidation-state combinations, and that filtering removes compositions reliant on rarely observed oxidation states while preserving low-energy compounds near the convex hull. Beyond screening, the same operator can also serve as a reinforcement-learning reward, steering a latent diffusion model towards chemically grounded compositions. By encoding chemical heuristics and observations, this work establishes a foundation for oxidation-state-aware generative models.",
+          "reason": "近 30 天；关键词：cond-mat.mtrl-sci, energy, lora。Generative artificial intelligence is rapidly transforming materials design by enabling de novo exploration of immense chemical sp...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cond-mat.mtrl-sci",
+            "energy",
+            "lora",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-20T13:06:54Z",
+          "url": "https://arxiv.org/abs/2607.17910",
+          "pdfUrl": "https://arxiv.org/pdf/2607.17910v1"
+        },
+        {
+          "id": "arxiv-2607.17733",
+          "title": "MXSens: Sensitivity-Aware Mixed-Precision Quantization for Efficient LLM Inference",
+          "authors": [
+            "Simla Burcu Harma",
+            "Danila Mishin",
+            "Zhengyuan Su",
+            "Ayan Chakraborty",
+            "Elizaveta Kostenok",
+            "Dongho Ha",
+            "Babak Falsafi",
+            "Martin Jaggi",
+            "Yunho Oh",
+            "Amir Yazdanbakhsh"
+          ],
+          "summary": "4-bit quantization enables efficient LLM inference, but suffers from significant accuracy degradation due to outliers. Prior work addresses this problem via data rotation or mixed-precision integer quantization, but often relies on software-managed scaling and frequent dequantization, incurring substantial overhead. Microscaling formats, such as MXINT, eliminate these inefficiencies by encoding scales in hardware, yet remain incompatible with rotation-based methods. Our analysis reveals that outliers vary in severity, from rare extremes to frequent mild deviations, and that quantization sensitivity is unevenly distributed across layers and columns. These insights motivate a fine-grained, sensitivity-guided approach. We introduce MXSens, a training-free method that assigns mixed mantissa bitwidths (4/6/8) based on column- and layer-wise sensitivity, naturally leveraging the block-wise structure of MXINT. MXSens outperforms state-of-the-art quantization methods across a range of models and tasks. Under the W4A4KV4 setting, MXSens achieves perplexities of 3.77 and 7.63 on LLaMA-2-70B and LLaMA-3-8B, respectively, substantially improving over existing baselines on WikiText-2. Our work establishes a new balance between accuracy and resource efficiency for LLM quantization.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, efficient。4-bit quantization enables efficient LLM inference, but suffers from significant accuracy degradation due to outliers. Prior work...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "efficient",
+            "inference",
+            "llm",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-07-20T09:23:10Z",
+          "url": "https://arxiv.org/abs/2607.17733",
+          "pdfUrl": "https://arxiv.org/pdf/2607.17733v1"
+        },
+        {
+          "id": "arxiv-2607.17719",
+          "title": "SR-Agent: An Experience-Driven Agentic Framework for Post-Ranking Strategies Refinement in E-Commerce Recommendation",
+          "authors": [
+            "Hanchen Yang",
+            "Kaiwen Yang",
+            "Junpeng Zhuang",
+            "Yang He",
+            "Keting Cen",
+            "Bochao Liu",
+            "Zhongbo Sun",
+            "An Liu",
+            "Zhongteng Han",
+            "Chenyi Lei"
+          ],
+          "summary": "User experience is a first-class objective in industrial e-commerce recommender systems (RS). Post-ranking strategies, which govern diversity, similarity, and exposure over a ranked list, are widely deployed in industrial RS for their simplicity and low serving cost. However, as the online recommendation environment evolves continuously, these statically configured strategies gradually become stale, degrading the user experience. Refining them typically relies on manual inspection, diagnosis, and updates, a process that is slow, costly, and hard to reuse. Although recent LLM-based agents (e.g., RecUserSim, SimUSER, and Self-EvolveRec) offer promising directions, none of them close the full loop of automated, self-evolving strategy refinement. To bridge this gap, we introduce SR-Agent, a Strategy Refinement agentic framework that, to the best of our knowledge, is the first deployed for refining post-ranking strategies in industrial RS. SR-Agent unifies three components: (i) a UserSim agent that applies staged inspection skills to surface user-perceived bad cases; (ii) an Analysis agent that consolidates recurring bad cases into structured, reusable diagnoses; and (iii) a constrained Strategy Refinement Harness that maps diagnoses to typed and bounded actions, gated by a four-stage reward pipeline with reversible rollback. Deployed on the Kuaishou e-commerce platform, SR-Agent continuously runs this refinement loop and, in a one-month online A/B test, increases order volume by 0.71%, browsing depth by 0.34%, and clicked-category diversity by 0.48%, while markedly shortening the refinement cycle and lowering operational cost.",
+          "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.AI, deployed。User experience is a first-class objective in industrial e-commerce recommender systems (RS). Post-ranking strategies, which gover...",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "cs.AI",
+            "deployed",
+            "industrial",
+            "llm",
+            "online-a/b",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-07-20T09:12:46Z",
+          "url": "https://arxiv.org/abs/2607.17719",
+          "pdfUrl": "https://arxiv.org/pdf/2607.17719v1"
+        },
+        {
+          "id": "arxiv-2607.17499",
+          "title": "Pailitao-MMSearch: Building Native E-Commerce Multimodal Search Foundation",
+          "authors": [
+            "Xiaohan Ye",
+            "Xu Chen",
+            "Zihan Gong",
+            "Jian Ding",
+            "Lianyu Du",
+            "Baicheng Chen",
+            "Yunmeng Shu",
+            "Jingqian Zhao",
+            "Zhixiang Zhao",
+            "Shuaiqi Jia",
+            "Chong Ma",
+            "Shuwen Xiao",
+            "Xiangheng Kong",
+            "Yuan Gao",
+            "Jun Song",
+            "Jinsong Lan",
+            "Xiaoyong Zhu",
+            "Bo Zheng"
+          ],
+          "summary": "The evolution of e-commerce has fundamentally transformed how users search for products, shifting from simple text-based keyword queries to complex multimodal interactions that seamlessly combine product images, natural language descriptions, and mixed-intent instructions. However, existing approaches face a critical dilemma: single-modal specialist models, deployed independently for text retrieval, visual search, and voice recognition, operate in isolation and cannot handle cross-modal queries, while general-purpose vision-language models lack the domain-specific knowledge necessary for fine-grained product understanding, user behavior modeling, and commercial intent reasoning. In this work, we present Pailitao-MMSearch, one native e-commerce multimodal search foundation model designed to bridge this gap. Our approach introduces three key innovations: (1)HybSID (Hybrid Semantic ID);(2)a two-stage continual pre-training strategy; and (3)a hybrid reasoning post-training pipeline. Built upon Qwen and deployed on Taobao's Pailitao multimodal search platform, Pailitao-MMSearch achieves substantial improvements in online A/B testing, including up to +13.61\\% in Gross Merchandise Volume (GMV) and +8.21\\% in transaction volume compared to traditional multi-modal search pipeline, demonstrating the effectiveness of our native e-commerce multimodal search large language models.",
+          "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.AI, deployed。The evolution of e-commerce has fundamentally transformed how users search for products, shifting from simple text-based keyword q...",
+          "area": "推荐算法",
+          "tags": [
+            "alibaba",
+            "cs.AI",
+            "deployed",
+            "multimodal",
+            "online-a/b",
+            "retrieval",
+            "semantic-id"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-07-20T03:06:25Z",
+          "url": "https://arxiv.org/abs/2607.17499",
+          "pdfUrl": "https://arxiv.org/pdf/2607.17499v1"
+        }
+      ]
+    },
     {
       "date": "2026-07-21",
       "generatedAt": "2026-07-21T06:44:45.026163+08:00",
