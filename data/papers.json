@@ -1,264 +1,270 @@
 {
-  "generatedAt": "2026-07-23T06:52:32.378190+08:00",
+  "generatedAt": "2026-07-24T06:45:49.321383+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2607.19223",
-      "title": "AdaFlash: Adaptive Speculative Decoding via On-Policy Distilled Diffusion Drafters",
+      "id": "arxiv-2607.20327",
+      "title": "PyroDash: Cost-Efficient Token-Level Small-Large Language Model Collaborative Inference",
       "authors": [
-        "Yu-Yang Qian",
-        "Hao-Cong Wu",
-        "Chen Chen",
-        "Jiacheng Sun",
-        "Zhenhua Dong",
-        "Peng Zhao",
-        "Zhi-Hua Zhou"
+        "Niqi Lyu",
+        "Pengtao Shi",
+        "Wei Qiu",
+        "Jianlin Zhong",
+        "Sicong Xia",
+        "Jianyao Ma",
+        "Yicheng Ding"
       ],
-      "summary": "Speculative decoding, in which a lightweight draft model first generates a draft sequence that is then verified in parallel by the target model, has become a prevalent paradigm for accelerating large language model inference. Recent work such as DFlash further boosts drafting efficiency by leveraging diffusion drafters, whose parallel denoising mechanism enables draft generation in a single forward pass. In this work, we uncover a central pitfall of diffusion drafters: bidirectional attention is a double-edged sword. On one hand, it endows the model with parallel generation and global contextual modeling capabilities; on the other hand, this inherent global dependency introduces high variance at both the domain-level and the token-level: acceptance rates fluctuate substantially across different domains, and draft token quality also varies heterogeneously at different token positions. To tackle this issue, we propose AdaFlash framework, comprising two components: (i) an on-policy distillation (OPD) algorithm with reverse-KL divergence tailored for diffusion drafters, bringing stable convergence and effectively reducing domain-level variance; and (ii) an adaptive length head that dynamically adjusts the candidate sequence length on the fly, substantially lowering the verification cost of the target model and handling token-level variance. Experiments demonstrate that AdaFlash consistently improves speedup rate during deployment, with especially significant gains in high-concurrency scenarios, achieving up to approximately 66% higher throughput than previous state-of-the-art methods.",
-      "reason": "近 30 天；关键词：cs.LG, inference, speculative。Speculative decoding, in which a lightweight draft model first generates a draft sequence that is then verified in parallel by the...",
+      "summary": "Large language models (LLMs) provide strong reasoning capabilities but are expensive to serve at scale, whereas small language models (SLMs) are cheaper but less reliable on difficult problems. We introduce PyroDash, a cost-aware framework for token-level SLM-LLM collaborative inference. During generation, the SLM decides whether to request assistance by emitting a control token. A Collaborate Engine then sends the query and partial reasoning trace to a frozen LLM for completion through a single handoff. The policy is internalized in the SLM, requiring neither a separate router, LLM retraining, nor access to LLM logits. PyroDash trains the SLM in three stages: control-token embedding learning, offloading-oriented supervised fine-tuning, and cost-aware alignment with Group Relative Policy Optimization. Its reward balances answer accuracy against inference cost normalized by LLM-only inference. Across five mathematical reasoning benchmarks, PyroDash supports different accuracy-cost operating points. With $λ=0.05$, it achieves 64.04 percent average accuracy, 6.36 percentage points above the LLM-only baseline, while reducing cost by 20.4 percent. With $λ=0.6$, it achieves 54.55 percent accuracy with a 1.90 percent LLM token ratio and 0.012 LLM calls per example, reducing total cost from USD 49.36 to USD 1.78. These results show that learned token-level handoffs can reduce LLM use while preserving strong reasoning performance.",
+      "reason": "近 30 天；关键词：cs.CL, alignment, efficient。Large language models (LLMs) provide strong reasoning capabilities but are expensive to serve at scale, whereas small language mod...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.LG",
+        "cs.CL",
+        "alignment",
+        "efficient",
         "inference",
-        "speculative",
-        "throughput"
+        "llm",
+        "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-07-21T15:52:50Z",
-      "url": "https://arxiv.org/abs/2607.19223",
-      "pdfUrl": "https://arxiv.org/pdf/2607.19223v1"
+      "publishedAt": "2026-07-22T16:14:26Z",
+      "url": "https://arxiv.org/abs/2607.20327",
+      "pdfUrl": "https://arxiv.org/pdf/2607.20327v1"
     },
     {
-      "id": "arxiv-2607.19214",
-      "title": "Keeping the Cache Warm Pays: Keepalive Economics for Agentic Workloads",
+      "id": "arxiv-2607.20319",
+      "title": "Black-Box Performance Evaluation of Elastic Block Storage: Contract, Rate-Limiting Model, and Software Exploration",
       "authors": [
-        "Maxim Khailo"
+        "Yingjia Wang",
+        "Ming-Chang Yang"
       ],
-      "summary": "Frontier LLM providers cache a prompt's processed prefix so that a follow-up request sharing it pays ~10% of the input price and skips most of the prefill latency. Agentic workloads systematically destroy this benefit: the agent sends a request, runs a tool or waits for approval for minutes, and by the time the follow-up is sent the cached prefix has been evicted, so the agent pays the full prefill again. A client-side keepalive, replaying the prefix on a timer during the pause, prevents this, and it is individually rational: across Anthropic, OpenAI, Google, and DeepSeek we show that a keepalive holds the prefix warm through gaps where idle baselines are evicted, cutting the post-pause request cost by up to 12.5x. The strategic question is the ping frequency, and it has a clean answer: keepalive cost falls monotonically in the interval, so the economical choice is the largest interval safely under the provider's TTL, about 4 minutes at Anthropic's 5-minute TTL rather than the 30-second convention, and the strategy breaks even against a re-prefill at idle ~tau(w/r - 1) (~46 min for Anthropic, ~36 min for OpenAI and DeepSeek). Because the benefit is real and bounded only by each user's own bill, rational adoption is universal adoption; and since cache residency is priced per read rather than per token-hour, a keepalive-saturated tier gives LRU eviction nothing to rank. We argue this externality will push providers to meter cache residency directly, and one already does. We derive the operator's policy until then.",
-      "reason": "近 30 天；公司信号：Anthropic, Google, OpenAI；关键词：anthropic, google, openai。Frontier LLM providers cache a prompt's processed prefix so that a follow-up request sharing it pays ~10% of the input price and s...",
+      "summary": "Elastic block storage (EBS) with the storage-compute disaggregated architecture is a key component in modern cloud infrastructure. EBS offers users storage resources in the form of elastic solid-state drives (ESSDs). Nonetheless, despite recent efforts that have documented EBS architectures from the provider's perspective, how ESSDs perform differently from local SSDs and how host software should adapt accordingly have not been sufficiently studied. In this paper, we conduct a user-centric, black-box performance characterization of ESSDs from Amazon AWS and Alibaba Cloud. We make three main contributions: (1) an ESSD contract that presents four behavioral observations and five actionable implications for software adaptation, (2) a refined I/O rate-limiting model combining bandwidth-IOPS dual limiting and fine-grained token refilling to suppress latency spikes, and (3) a case study on RocksDB that derives four guidelines on cache management, I/O regulation, storage budget utilization, and compression algorithms. Collectively, we hope these contributions can serve as a practical reference for EBS users to understand and exploit the distinctive performance properties of ESSDs.",
+      "reason": "近 30 天；公司信号：Alibaba, Amazon；关键词：alibaba, amazon, cs.PF。Elastic block storage (EBS) with the storage-compute disaggregated architecture is a key component in modern cloud infrastructure....",
       "area": "LLM 推理优化",
       "tags": [
-        "anthropic",
-        "google",
-        "openai",
-        "cs.DC",
+        "alibaba",
+        "amazon",
+        "cs.PF",
         "latency",
-        "llm",
-        "prefill"
+        "lora"
       ],
       "signal": 99,
-      "source": "Anthropic/Google/arXiv",
-      "publishedAt": "2026-07-21T15:45:47Z",
-      "url": "https://arxiv.org/abs/2607.19214",
-      "pdfUrl": "https://arxiv.org/pdf/2607.19214v1"
+      "source": "Alibaba/Amazon/arXiv",
+      "publishedAt": "2026-07-22T16:04:28Z",
+      "url": "https://arxiv.org/abs/2607.20319",
+      "pdfUrl": "https://arxiv.org/pdf/2607.20319v1"
     },
     {
-      "id": "arxiv-2607.19189",
-      "title": "Spectral Biclustering-Driven Scalability for Post-Hoc Explainability in Recommender Systems",
+      "id": "arxiv-2607.20125",
+      "title": "HeadCast: Casting Attention Heads for Efficient Autoregressive Video Generation",
       "authors": [
-        "Jose L. Salmeron",
-        "Irina Arévalo"
+        "Jinliang Shen",
+        "Lianghao Su",
+        "Zheming Li",
+        "Kang He",
+        "ZiLiang Lai",
+        "Yanbing Jiang",
+        "Chengru Song"
       ],
-      "summary": "Explainability in recommender systems is essential for ensuring transparency, accountability, and trust, yet existing post-hoc methods often encounter severe scalability challenges. Observation-level deletion diagnostics offer a counterfactual way to analyze recommendations by retraining models after removing individual users or items, but their cost grows rapidly with dataset size. To improve the practical tractability of this analysis, this paper introduces a block-deletion diagnostic framework that uses spectral biclustering to group users and items and then removes entire blocks of interactions. This formulation reduces the number of retraining procedures relative to finer-grained deletion strategies and produces explanations at the level of user segments, item groups, and their interactions. The framework is evaluated on two representative recommender paradigms, Singular Value Decomposition and Neural Collaborative Filtering, using the MovieLens and Amazon datasets. The results show that top-ranked recommendations are often more sensitive to specific interaction blocks than lower-ranked ones, with some blocks acting as supporting evidence and others having a detrimental effect on recommendation quality. The analysis also indicates that user segments differ in their sensitivity to block removal, suggesting heterogeneous levels of reliance on localized interaction patterns. These findings provide diagnostic information that is not directly visible through standard recommendation metrics. Overall, the results suggest that block-deletion diagnostics offer a practical and model-agnostic post-hoc analysis framework for recommender systems, while also highlighting that the resulting explanations depend on the chosen block structure.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Explainability in recommender systems is essential for ensuring transparency, accountability, and trust, yet existing post-hoc met...",
+      "summary": "Autoregressive (AR) video diffusion models have become a promising paradigm for long and streaming video synthesis, but the continuously growing Key-Value (KV) cache makes attention the dominant inference cost, especially at high resolution where each frame contributes many tokens. Existing remedies either evict the cache with coarse heuristics that cause inter-frame flickering, or require model re-training. We propose HeadCast, a training-free, plug-and-play acceleration framework built on the observation that a pre-trained AR model's attention heads exhibit stable, heterogeneous behaviors. After a short warm-up, HeadCast performs a one-time classification at the maximum-noise step that sorts every head into one of four archetypes: Sink, Dummy, Spatial, and Global, and restructures the monolithic KV cache into head-specific pathways. Crucially, it retains the Global heads that preserve the long-range temporal consistency aggressive eviction destroys. Because the Spatial pathway operates on a fixed-size grid, its savings grow with resolution: across state-of-the-art AR models, HeadCast accelerates inference by up to 1.62x at 720P and 1.95x at 1080P, while keeping VBench quality on par with full attention and largely flicker-free. Code is available at https://github.com/sjlgaga/HeadCast .",
+      "reason": "近 30 天；关键词：cs.CV, efficient, inference。Autoregressive (AR) video diffusion models have become a promising paradigm for long and streaming video synthesis, but the contin...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CV",
+        "efficient",
+        "inference",
+        "kv-cache"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-22T13:29:35Z",
+      "url": "https://arxiv.org/abs/2607.20125",
+      "pdfUrl": "https://arxiv.org/pdf/2607.20125v1"
+    },
+    {
+      "id": "arxiv-2607.19957",
+      "title": "HijackKV: New Threat in Position-Independent KV Cache Reuse",
+      "authors": [
+        "Yichi Zhang",
+        "Zhiqi Wang",
+        "Huan Zhang",
+        "Yuchen Yang"
+      ],
+      "summary": "Key-Value (KV) cache reduces inference latency in large language models (LLMs). Traditional prefix-based reuse has low cache hit rates across inference requests because it requires exact token and position matches. To improve efficiency, recent system optimizations introduce position-independent KV reuse, allowing KV cache to be reused whenever identical text chunks appear, regardless of their position in the sequence. We show this design introduces a new threat, KV Cache Hijacking. Since KV caches are retrieved by token match but encode the context in which they were originally computed, the KV tied to a benign-looking token chunk may encode an attacker-controlled prefix. When later reused in a victim query, this contaminated KV silently hijacks the model's behavior, even if no attacker-controlled text appears in the input. We introduce HIJACKKV, the first attack framework that systematically exploits this vulnerability, demonstrating its severity and practicality. HIJACKKV optimizes an attacker-controlled prefix, so that the KV computed for a subsequent common benign text encodes the attacker's goal, while the text remains unchanged for future cache hits. HIJACKKV achieves an average 94% success rate in a single attempt, remains effective under realistic constraints including low hit rates (10%) and frequent recomputation (50%), persists over multi-turn interactions, and transfers across models in black-box settings. We further provide design insights for building secure KV reuse systems.",
+      "reason": "近 30 天；关键词：cs.CR, inference, kv-cache。Key-Value (KV) cache reduces inference latency in large language models (LLMs). Traditional prefix-based reuse has low cache hit r...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CR",
+        "inference",
+        "kv-cache",
+        "latency",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-22T09:32:45Z",
+      "url": "https://arxiv.org/abs/2607.19957",
+      "pdfUrl": "https://arxiv.org/pdf/2607.19957v1"
+    },
+    {
+      "id": "arxiv-2607.19802",
+      "title": "Zero-Observation User Reactivation with Gap-Driven Dimensional Gating",
+      "authors": [
+        "Jiandong Ding",
+        "Tianying Liu",
+        "Fuyuan Liu",
+        "Huijie Qin",
+        "Tiandeng Wu"
+      ],
+      "summary": "Sequential recommendation (SR) models capture continuously observed behavior, but a returning user may have no interactions for months or years. We define this setting as Zero-Observation Reactivation: the user has a pre-gap history, while the platform observes no behavioral signals during a macro-gap Delta t. Under a chronologically aligned Gap-Synthesize Protocol on three Amazon datasets (Video Games, CDs & Vinyl, and Movies & TV), Hit@10 decreases monotonically across the evaluated gap buckets and reaches its lowest level beyond one year. The pattern appears across recurrent, unidirectional, and bidirectional SR backbones. We propose DeltaGate, a lightweight output-layer plugin that keeps the backbone frozen and routes each representation dimension between the personalized history and a learned, zero-initialized global prior. The gate is conditioned jointly on Delta t and the personalized representation. In a controlled diagnostic, we hold the personalized representation fixed and vary Delta t to isolate the trained gate's response to the gap input. In the >365d Video Games bucket, DG-SASRec reaches 0.047 Hit@10 versus 0.031 for SASRec, while DG-BERT4Rec reaches 0.046 versus 0.025 for BERT4Rec, with 66K trainable parameters (2--4% overhead). End-to-end retraining attains higher absolute accuracy but changes the backbone embeddings; the frozen plugin preserves zero backbone drift, uses about 40x fewer trainable parameters, and retains observable dimension-wise routing. The source code is available at https://github.com/jdding/DeltaGate.",
+      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Sequential recommendation (SR) models capture continuously observed behavior, but a returning user may have no interactions for mo...",
       "area": "推荐算法",
       "tags": [
         "amazon",
         "cs.IR",
         "dataset",
-        "recommendation",
-        "recommender"
+        "recommendation"
       ],
       "signal": 99,
       "source": "Amazon/arXiv",
-      "publishedAt": "2026-07-21T15:22:12Z",
-      "url": "https://arxiv.org/abs/2607.19189",
-      "pdfUrl": "https://arxiv.org/pdf/2607.19189v1"
+      "publishedAt": "2026-07-22T06:32:34Z",
+      "url": "https://arxiv.org/abs/2607.19802",
+      "pdfUrl": "https://arxiv.org/pdf/2607.19802v1"
     },
     {
-      "id": "arxiv-2607.18867",
-      "title": "HindsightBench: A Black-Box Behavioral Audit Protocol for Parametric Hindsight in Time-Indexed LLM Decision Tasks",
+      "id": "arxiv-2607.19704",
+      "title": "Efficient Clustering with Provable Guardrails for LLM Inference at Scale",
       "authors": [
-        "Haozhe Jia"
+        "Longshaokan Wang",
+        "Wai Tsang Keung",
+        "Punit Ghodasara",
+        "Roman Wang",
+        "Ali Dashti",
+        "Francesc Moreno-Noguer"
       ],
-      "summary": "Large language models leak parametric knowledge of realized outcomes into historical financial decision tasks. Existence is settled; what users lack is a cheap way to audit a given model for it. We present HindsightBench, a black-box behavioral audit protocol that profiles parametric hindsight in any time-indexed LLM decision task at probe-level cost (no backtests, no logprobs, no corpus access). The protocol chains a four-arm date-manipulation matrix (revealed/date-only/masked/transplanted), dual memory probes (date recovery; outcome recall), and six per-model metrics -- trigger strength, transplant effect, post-cutoff placebo, recoverability, behaviorally effective knowledge cutoff, and a recall-accuracy dissociation coefficient -- with explicit gates where identifiability is data-dependent. Applying it to 15 models from seven vendors on a 258-node vintage-correct macro panel yields three headline patterns: (i) the date-trigger reflex tracks training generation, not scale -- absent across the 2024 open-weight generation from 1B to 70B, present in every tested 2026-generation model, and switching on within one vendor lineage (Qwen3 -> Qwen3.6) at fixed MoE architecture and 3B active parameters; (ii) effective cutoffs span 22 months across vendors and precede vendor-reported dates by up to eight months, invalidating calendar-window placebo designs; (iii) audit results are not invariant to serving -- BF16 serving of an FP8-referenced model breaks the trigger estimate's stability while AWQ-INT4 preserves it, and a provider-locked reasoning regime makes one probe non-convergent -- so the protocol ships with operational requirements (pin quantization and thinking regime; disclose parser and sampling policy). We release the panel, frozen preregistrations, per-model audit rows with measured dollar costs, transcripts, and one-command regeneration.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, llm。Large language models leak parametric knowledge of realized outcomes into historical financial decision tasks. Existence is settle...",
+      "summary": "Scaling LLM-based applications to millions of users is bottlenecked by the inference cost and latency of modern foundation models. A natural fix is to cluster the inputs and call the LLM only on cluster representatives, letting other members inherit the output -- but this is only safe if each member is measurably close to its representative. Existing clustering methods do not offer such per-sample quality control at scale: none jointly guarantee a minimal within-cluster similarity, exact matching of categorical attributes, and scalability to tens of millions of samples. We propose a two-stage algorithm that generates initial clusters with Mini-batch K-Means, then greedily selects representatives within each initial cluster -- a step equivalent to the Johnson-Chvatal heuristic for Set Cover over alpha-balls in embedding space. The algorithm enforces the similarity and attribute guardrails exactly by construction, and runs in $O(nd + n^2 d/K)$ time and $O(nd + n^2/K^2)$ memory for $n$ samples, feature dimension $d$, and $K$ initial clusters -- linear in $n$ when $K$ grows proportionally with $n$. We provide benchmarks against common clustering methods on internal and public datasets: our method not only delivers per-sample guardrails but also runs 10-1000x faster and scales to data sizes where most standard methods become intractable. Deployed on 38 million customers for a persona-based recommender, the clustering method cut downstream cost and latency by 50-fold while preserving personalization and unblocked the production launch.",
+      "reason": "近 30 天；关键词：cs.LG, dataset, deployed。Scaling LLM-based applications to millions of users is bottlenecked by the inference cost and latency of modern foundation models....",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
+        "dataset",
+        "deployed",
         "efficient",
+        "inference",
+        "latency",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-22T03:06:57Z",
+      "url": "https://arxiv.org/abs/2607.19704",
+      "pdfUrl": "https://arxiv.org/pdf/2607.19704v1"
+    },
+    {
+      "id": "arxiv-2607.19539",
+      "title": "Fine-grained Computation-Communication Overlap via Tile-level Signaling and Scheduling for Mixture-of-Experts",
+      "authors": [
+        "Minyu Cui",
+        "Anna Wingkvist",
+        "Morgan Ericsson"
+      ],
+      "summary": "Mixture-of-Experts (MoE) architectures increase model capacity without proportionally increasing computation cost and have become a key building block for scaling large language models (LLMs) to trillion-parameter regimes. Efficient deployment of these MoE models relies on distributed execution across multiple GPUs, where each MoE layer involves two all-to-all communications: dispatching tokens to expert ranks and returning the expert outputs to their source ranks. Conventional MoE implementations launch this return all-to-all after expert compute completes, exposing communication latency on the critical path and reducing GPU utilization. We present a fine-grained approach that overlaps expert compute with the second all-to-all via tile-level signaling and scheduling. Our producer-consumer co-design combines: (1) a persistent per-rank computation kernel (producer) that covers all local experts on the rank to eliminate repeated kernel launch overhead and prioritizes remote-critical tiles, and (2) a persistent communication kernel (consumer) on a small dedicated partition of streaming multiprocessors (SMs) that issues segment-granular transfers as tiles become ready. Our co-design avoids intrusive changes to the underlying computation operators or communication primitives, making it practical for improving distributed MoE execution efficiency on multi-GPU systems. On a 4-A100 GPU platform, evaluated on three MoE models against four state-of-the-art MoE systems, our approach achieves up to 2.64x end-to-end speedup and 2.74x MoE-layer speedup. Compared with a conventional non-overlap baseline, our approach consistently improves both operator- and MoE-layer-level performance across varying GEMM shapes, router modes, and a broad range of producer/consumer SM partitions, while preserving correctness.",
+      "reason": "近 30 天；关键词：cs.DC, efficient, latency。Mixture-of-Experts (MoE) architectures increase model capacity without proportionally increasing computation cost and have become...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "efficient",
+        "latency",
+        "llm",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-07-21T19:40:06Z",
+      "url": "https://arxiv.org/abs/2607.19539",
+      "pdfUrl": "https://arxiv.org/pdf/2607.19539v1"
+    },
+    {
+      "id": "arxiv-2607.19510",
+      "title": "Total Variation Distance Estimation in Autoregressive Models",
+      "authors": [
+        "Eric Price",
+        "Kevin Tian",
+        "Zhiyang Xun",
+        "Yusong Zhu"
+      ],
+      "summary": "Modern LLM deployments use a number of implementation choices and inference optimizations (e.g., batching, custom kernels, and quantization) on top of fixed weights, so two engines serving \"the same model\" can produce meaningfully different distributions. We study the problem of estimating the total variation (TV) distance between two length-$n$ autoregressive distributions to additive error $\\varepsilon$, under three access models. (1) Under sample access, we use $\\widetilde{O}(n^2 K/\\varepsilon^2)$ queries, where $K$ is the maximum support of the next-token distribution. This improves upon the $\\widetilde{O}(n^3 m/\\varepsilon^5)$-query estimator of Meel et al. (2025), where $m \\geq K$ is the total size of the token alphabet. (2) Under logit access, we use $O(n/\\varepsilon^2)$ queries, and this is tight. (3) Under noisy logit access, we smoothly interpolate between the above two guarantees: if probability values are given to relative error $σ$, we use $\\widetilde{O}((n+n^2σ^2)/\\varepsilon^2)$ queries. We complement our theoretical results with an empirical evaluation of our algorithms, for example measuring the distance between SGLang and vLLM serving identical weights. Our experiments highlight the robustness and practicality of estimating the total variation distance, which remains estimable where the KL divergence is infinite. Our code is available at https://github.com/XunZhiyang/llm-tv-estimation.",
+      "reason": "近 30 天；关键词：cs.LG, batching, inference。Modern LLM deployments use a number of implementation choices and inference optimizations (e.g., batching, custom kernels, and qua...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "batching",
+        "inference",
         "llm",
         "quantization",
         "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-07-21T08:58:36Z",
-      "url": "https://arxiv.org/abs/2607.18867",
-      "pdfUrl": "https://arxiv.org/pdf/2607.18867v1"
+      "publishedAt": "2026-07-21T18:49:45Z",
+      "url": "https://arxiv.org/abs/2607.19510",
+      "pdfUrl": "https://arxiv.org/pdf/2607.19510v1"
     },
     {
-      "id": "arxiv-2607.18796",
-      "title": "TSGR: Taobao Search Generative Retrieval",
+      "id": "arxiv-2607.19438",
+      "title": "BaseRT: Advancing Best-in-Class LLM Inference with Apple M5 Neural Accelerators",
       "authors": [
-        "Tianyu Zhan",
-        "Gui Ling",
-        "Tong Xiong",
-        "Kunhai Lin",
-        "Yang Wang",
-        "Kaixuan Zhang",
-        "Zhihong Chen",
-        "Yuliang Yan",
-        "Dan Ou",
-        "Shengyu Zhang",
-        "Haihong Tang",
-        "Bo Zheng"
+        "Fabian Waschkowski",
+        "Prabod Rathnayaka",
+        "Lukas Wesemann"
       ],
-      "summary": "Generative retrieval (GR) has demonstrated strong promise for industrial e-commerce search by training a single autoregressive model to directly generate the Semantic IDs (SIDs) of target items. However, existing GR systems are primarily optimized for semantic matching and remain insensitive to item business value: SID construction is value-unaware, and candidates are ranked without access to item side-info. Consequently, high-value items are often missed or deprioritized at the retrieval stage, limiting downstream business impact. This limitation is particularly critical in industrial settings such as Taobao Search, where business objectives are central to system design. To address this, we propose $\\textbf{T}$aobao $\\textbf{S}$earch $\\textbf{G}$enerative $\\textbf{R}$etrieval ($\\textbf{TSGR}$), a unified generative retrieval framework that incorporates value awareness into both item representation and candidate ranking. 1) For item representation, TSGR introduces $\\textbf{Query-aware Parallel SID (QP-SID)}$, which encodes query-conditioned value orderings into the SID construction by building parallel codebooks derived from query-item statistics, so that higher-value and query-relevant items are assigned better token indices. 2) For candidate ranking, we introduce a $\\textbf{Value-aware Ranking Module (VRM)}$ that is built upon and jointly optimized with the GR, enabling a single model to seamlessly serve as both retriever and pre-ranker without a dedicated pre-ranking stage. A progressive training pipeline further aligns the model with semantic relevance, user preferences, and business objectives. Offline experiments show that TSGR achieves an 9.16% improvement in HR@1000, and online A/B tests further validate its effectiveness, yielding gains of +0.43% in IPV, +1.12% in Transaction Count, and +1.64% in GMV.",
-      "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, industrial。Generative retrieval (GR) has demonstrated strong promise for industrial e-commerce search by training a single autoregressive mod...",
-      "area": "推荐算法",
-      "tags": [
-        "alibaba",
-        "cs.IR",
-        "industrial",
-        "online-a/b",
-        "ranking",
-        "retrieval",
-        "semantic-id"
-      ],
-      "signal": 99,
-      "source": "Alibaba/arXiv",
-      "publishedAt": "2026-07-21T07:17:43Z",
-      "url": "https://arxiv.org/abs/2607.18796",
-      "pdfUrl": "https://arxiv.org/pdf/2607.18796v1"
-    },
-    {
-      "id": "arxiv-2607.17715",
-      "title": "C$^2$KV: Compressed and Composable KV Cache Reuse for Efficient LLM Inference",
-      "authors": [
-        "Chuheng Du",
-        "Junyi Chen",
-        "Hanlin Tang",
-        "Kan Liu",
-        "Tao Lan",
-        "Lin Qu",
-        "Chaoyue Niu",
-        "Shengzhong Liu",
-        "Guihai Chen",
-        "Fan Wu"
-      ],
-      "summary": "Long-context inference is central to modern large language model (LLM) applications such as retrieval-augmented generation and multi-document reasoning. To mitigate the growing inference cost, recent work has explored key-value (KV) cache reuse to reduce redundant prefill computation. However, existing reuse methods primarily focus on computation savings and overlook a critical bottleneck in long-context LLM serving: the cost of storing and accessing large KV caches. While KV compression appears to be a natural complement, naively combining compression with non-prefix KV reuse often leads to severe accuracy degradation. In this work, we propose C$^2$KV, a unified framework for non-prefix KV reuse that jointly optimizes KV extraction and inference-time concatenation. C$^2$KV learns a composable and compressed KV cache manifold that is explicitly designed to be position-agnostic. Our approach introduces a lightweight sidecar Extractor with learnable compression tokens and a structured attention flow, enabling modular KV representations that can be flexibly reused and concatenated without modifying the frozen base model. We further employ a compression-concatenation co-training strategy to align extraction-time representations with their downstream reuse behavior. Extensive experiments across multiple long-context benchmarks and model families demonstrate that C$^2$KV significantly reduces KV cache storage and transfer costs, achieving up to 17$\\times$ inference speedup under long contexts, while preserving generation quality.",
-      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Long-context inference is central to modern large language model (LLM) applications such as retrieval-augmented generation and mul...",
+      "summary": "Apple's M5 generation introduces a redesigned GPU architecture in which every core carries a dedicated Neural Accelerator: on-die matrix units exposed through the Metal~4 tensor API. We show that BaseRT, our native Metal inference runtime for large language models on Apple Silicon, exploits these units to push inference throughput on Apple hardware substantially beyond both llama.cpp and MLX. Building on BaseRT's framework-free design, we add a family of hand-written Metal~4 tensor-core kernels (including dense and mixture-of-experts GEMM and flash-attention prefill kernels) that route the compute-bound matrix multiplications of inference through the M5 Neural Accelerators while leaving the memory-bound decode path on our existing specialised kernels. On an Apple M5 Pro, across fifteen model configurations spanning the Qwen3, Qwen3.5/3.6, Llama~3.2, and Gemma~4 families from sub-1B to 35B parameters, BaseRT delivers up to $6.4\\times$ higher prompt-processing throughput than llama.cpp and $3.9\\times$ higher than MLX, with the largest margins on the mixture-of-experts models where matrix multiplication dominates, while maintaining its lead on decode of up to $1.75\\times$ over llama.cpp and $1.33\\times$ over MLX. These results establish a new performance ceiling for on-device LLM inference and show that the M5's tensor cores are the decisive lever for prompt processing on Apple Silicon. BaseRT is publicly available at https://github.com/basecompute/baseRT.",
+      "reason": "近 30 天；公司信号：Apple, Meta；关键词：apple, meta, cs.AR。Apple's M5 generation introduces a redesigned GPU architecture in which every core carries a dedicated Neural Accelerator: on-die...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL",
-        "efficient",
+        "apple",
+        "meta",
+        "cs.AR",
         "inference",
-        "kv-cache",
         "llm",
         "prefill",
-        "retrieval"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-07-20T09:09:23Z",
-      "url": "https://arxiv.org/abs/2607.17715",
-      "pdfUrl": "https://arxiv.org/pdf/2607.17715v1"
-    },
-    {
-      "id": "arxiv-2607.17525",
-      "title": "FailureAtlas: A Taxonomy of Failure Modes in Multi-Provider LLM Serving Infrastructure",
-      "authors": [
-        "Vishal Pandey",
-        "Gopal Singh"
-      ],
-      "summary": "Multi-provider LLM gateways reverse proxies that route, load-balance, and rate-limit requests across foundation-model APIs have become critical production infrastructure. Yet the failure modes specific to this architectural layer remain undocumented, scattered across issue trackers and post-mortems with no unifying framework. We introduce \\fa{}, a two-axis taxonomy that classifies failures by their \\emph{origin layer} (Network/Transport, Streaming/Protocol, State/Session, Model~Behavior, Governance/Cost) and their \\emph{detectability} (Loud vs.\\ Silent). We populate this taxonomy with five verified catalog entries sourced from public bug reports and first-hand stress testing, each accompanied by a mechanistic root-cause analysis. Three entries include standalone reproduction scripts. Our principal finding is that the most operationally severe failures are \\emph{silent}: they return HTTP~200, pass every standard health check, and corrupt application state in ways that require semantic-level observability to detect. Two such silent failures a concurrency race condition causing history loss and a streaming index collision corrupting tool-call payloads were discovered first-hand during \\cb{} evaluation campaigns.",
-      "reason": "近 30 天；关键词：cs.LG, llm, production。Multi-provider LLM gateways reverse proxies that route, load-balance, and rate-limit requests across foundation-model APIs have be...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "llm",
-        "production",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-07-20T03:58:08Z",
-      "url": "https://arxiv.org/abs/2607.17525",
-      "pdfUrl": "https://arxiv.org/pdf/2607.17525v1"
-    },
-    {
-      "id": "arxiv-2607.17486",
-      "title": "SALT: Salience-Aware Lexical Trie for Long-Context Compression",
-      "authors": [
-        "Oteo Mamo",
-        "Hyunjin Yi",
-        "Joydhriti Choudhury",
-        "Shangqian Gao",
-        "Weikuan Yu"
-      ],
-      "summary": "As large language models (LLMs) process increasingly longer prompts, computation and KV-cache memory costs have emerged as major bottlenecks in inference systems. Existing input-level prompt compression methods address this, but rank each sentence by a scalar relevance score, treating the document as an unstructured pool of words and sentences. Under tight budgets, this causes theme collapse, where the dominant theme(s) of a document consumes the budget, discarding less-frequent yet task-relevant themes. Preserving thematic coverage instead requires allocating the budget across recurring themes rather than scoring sentences in isolation. To this end, we propose SALT, a model-agnostic extractive framework that organizes per-sentence keywords into a trie ordered by sentence frequency (SF), a lightweight, reusable proxy for document thematic structure. This trie-based organization smooths memory allocation and prevents dominant themes from monopolizing the budget. Multi-anchor retrieval activates trie nodes labeled by query keywords at any depth, and the trie persists across dialogue turns, supporting multi-turn use without re-encoding the document. By preserving document themes, SALT reduces the prefill computation and memory cost of long-context prompts while remaining composable with KV-cache methods that target decoding-time latency and memory.",
-      "reason": "近 30 天；关键词：cs.PF, inference, latency。As large language models (LLMs) process increasingly longer prompts, computation and KV-cache memory costs have emerged as major b...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.PF",
-        "inference",
-        "latency",
-        "llm",
-        "prefill",
-        "retrieval",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-07-20T02:20:52Z",
-      "url": "https://arxiv.org/abs/2607.17486",
-      "pdfUrl": "https://arxiv.org/pdf/2607.17486v1"
-    },
-    {
-      "id": "arxiv-2607.17427",
-      "title": "Abliteration Is Not a Scalpel: Off-Target Effects of Refusal Removal on Decision Disposition Across Model Families",
-      "authors": [
-        "Aleksander Fafuła"
-      ],
-      "summary": "Abliteration - deleting a model's refusal direction from its weights - is the standard recipe behind popular \"uncensored\" open-weight models. We show the surgery is not clean. As a disposition probe we use 21,600 decisions under uncertainty - weekly up/down calls on 60 Warsaw Stock Exchange equities over 18 weeks, replayed through a frozen pipeline so the decision-layer model is the only variable. The task elicits no refusals at all, so any between-arm delta is pure side effect. Holding provenance constant (official BF16 checkpoints, a single abliteration author, an identical serving stack, one byte-identical frozen prompt), we compare base and abliterated arms of two Mixture-of-Experts families, Gemma-4-26B-A4B-it and Qwen3-30B-A3B-Instruct-2507. Three effects replicate across both families (weeks-clustered bootstrap CIs excluding zero): abliterated models are systematically more optimistic (+12.2 pp Gemma, +7.4 pp Qwen; the confirmed preregistered endpoint), justify themselves at greater length, and use fewer explicit uncertainty words in forced self-critiques (both exploratory). A fourth effect reverses sign: the same operation makes Gemma-abliterated less confident and Qwen-abliterated more (family CIs non-overlapping) - one weight surgery, opposite shifts in expressed confidence. Capability covariates rule out instruction-following degradation as the driver, and no arm shows economic skill: the apparent edge of abliterated arms is regime beta, not alpha. Our provenance audit also caught two independent contamination channels - a mismatched-quantizer pilot pair and a stale community chat template that silently mangled the rendered prompt - suggesting toolchain artifacts are the rule in studies of community-modified checkpoints. Whoever deploys an \"uncensored\" model as an agent is deploying a measurably different decision-maker, not the base model minus refusals.",
-      "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.LG, lora。Abliteration - deleting a model's refusal direction from its weights - is the standard recipe behind popular \"uncensored\" open-wei...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "alibaba",
-        "cs.LG",
-        "lora",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "Alibaba/arXiv",
-      "publishedAt": "2026-07-19T22:27:00Z",
-      "url": "https://arxiv.org/abs/2607.17427",
-      "pdfUrl": "https://arxiv.org/pdf/2607.17427v1"
-    },
-    {
-      "id": "arxiv-2607.17419",
-      "title": "Kernelized Linear Attention: Breaking the Capacity Wall with Symmetric Cones",
-      "authors": [
-        "Ayoub Ghriss",
-        "Sourav Chakraborty"
-      ],
-      "summary": "Linear attention promises constant-time recurrent inference but degrades sharply on associative recall. We formulate attention recall as a spherical-packing problem and introduce Kernelized Linear Attention Activations (KATA), a framework whose feature maps are derived from first principles by certifying nonnegative attention weights through a self-dual homogeneous cone. Building on this observation, we show that rank-one positive semi-definite (PSD) features offer a favorable capacity--interference tradeoff. KATA recovers a parameter-free convex output gate and characterizes associative capacity through the Welch interference floor. For tolerances above this floor, KATA enlarges the state without adding parameters and admits spherical codes with exponentially many keys in the projection dimension. We implement KATA as fused Triton kernels at two operating points: a flash-attention-style forward up to ${\\sim}1.6\\times$ FlashAttention-2 throughput, and an exact $O(T)$ chunked-state form that reaches ${\\sim}11\\times$ FlashAttention-2 forward throughput at $131$k tokens. An associative scan of the first-order feature lowers the inter-chunk recurrence depth to $O(\\log(T/C))$ for chunk size $C$ and averages ${\\sim}2.4\\times$ the throughput of a matched sequential linear-attention baseline. On long-range MQAR and repeated-key overwrite, several KATA variants outperform Gated DeltaNet, with parameter counts and state sizes reported alongside accuracy. Induction preserves near-perfect recall, while kernel benchmarks show that the maps can be implemented efficiently. KATA retains $0.985$ MQAR at a $16\\times$ out-of-distribution length, approaching the softmax with roughly one quarter of the KV-cache entries. Experiments on 340M-parameter LLMs reveal a feature-dependent fluency trade-off and clarify how positional embeddings, delta rules, and decay gates interact with feature geometry.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Linear attention promises constant-time recurrent inference but degrades sharply on associative recall. We formulate attention rec...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "efficient",
-        "inference",
-        "llm",
         "throughput"
       ],
       "signal": 99,
+      "source": "Apple/Meta/arXiv",
+      "publishedAt": "2026-07-21T06:42:18Z",
+      "url": "https://arxiv.org/abs/2607.19438",
+      "pdfUrl": "https://arxiv.org/pdf/2607.19438v1"
+    },
+    {
+      "id": "arxiv-2607.18357",
+      "title": "Decode-Time Grammars: Constrained LLM Generation over a Refinement Order of Grammar Fragments",
+      "authors": [
+        "Shuoming Zhang",
+        "Ruiyuan Xu",
+        "Haofeng Li",
+        "Qiuchu Yu",
+        "Yangyu Zhang",
+        "Chunwei Xia",
+        "Xiaobing Feng",
+        "Chenxi Wang",
+        "Huimin Cui",
+        "Jiacheng Zhao"
+      ],
+      "summary": "Large language models now write a growing share of the world's code, increasingly inside agents and serving systems that compile, execute, or dispatch generated code without line-by-line review. This works well for mainstream languages but remains brittle for low-resource programming surfaces such as domain-specific languages, custom library APIs, and command-line tools. Even under grammar-constrained decoding, a model can still produce references invalid in the current environment: a buffer never declared, a column absent from the schema, a function the library does not provide, or an unsupported CLI option. This paper introduces decode-time grammars: grammar fragments instantiated during generation from a runtime environment Gamma. A region-specific policy selects a fragment for each hole, and a tightening operator replaces open reference positions with Gamma-typed slots whose candidates are exactly the names, fields, APIs, or options available at that point. Newly generated declarations enter Gamma before later regions are decoded, so the constraining grammar can depend on the prefix already generated. This ensures not only grammatical correctness but also semantic correctness, by preventing references to undefined symbols. We formalize grammar fragments as environment-indexed grammars ordered by refinement, prove No-Ghost soundness for Gamma-slotted fragments, show that refinement preserves this support-set guarantee, and characterize the boundary of mask-enforceable properties. We implement the approach in gproj with offline grammar induction and online policy resolution. Across TileLang, SQL, and P4, with models from 0.6B to 236B parameters, gproj eliminates ghost references by construction at moderate overhead over standard constrained decoding.",
+      "reason": "近 30 天；关键词：cs.PL, llm, serving。Large language models now write a growing share of the world's code, increasingly inside agents and serving systems that compile,...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.PL",
+        "llm",
+        "serving",
+        "slo"
+      ],
+      "signal": 98,
       "source": "arXiv",
-      "publishedAt": "2026-07-19T21:46:09Z",
-      "url": "https://arxiv.org/abs/2607.17419",
-      "pdfUrl": "https://arxiv.org/pdf/2607.17419v1"
+      "publishedAt": "2026-07-20T10:15:32Z",
+      "url": "https://arxiv.org/abs/2607.18357",
+      "pdfUrl": "https://arxiv.org/pdf/2607.18357v1"
     }
   ]
 }
