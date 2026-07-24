@@ -1,7 +1,261 @@
 {
-  "generatedAt": "2026-07-24T06:45:49.321383+08:00",
+  "generatedAt": "2026-07-25T06:52:23.497942+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-07-25",
+      "generatedAt": "2026-07-25T06:52:23.497942+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2607.21535",
+          "title": "Windowed-MTP: Removing the Full-Context Draft-KV Tax at Million-Token Context",
+          "authors": [
+            "Alagappan Valliappan"
+          ],
+          "summary": "Speculative decoding accelerates autoregressive generation by having a cheap draft propose tokens that a target verifies in parallel. Frontier models increasingly ship a built-in Multi-Token-Prediction (MTP/NEXTN) draft head under the assumption that the draft is negligibly cheap. At million-token context this breaks: an MTP draft head typically runs full attention over the entire KV cache at every draft step, so its read grows linearly with context and comes to dominate the draft cost -- precisely where speculation is most valuable. The effect compounds with draft length (a deep native draft can turn net-negative, slower than no speculation) and sharpens under hybrid/linear-attention targets, where cheaper verification leaves the draft's full-attention read exposed. We apply a StreamingLLM-style sliding window plus attention sink to the draft's attention only (Windowed-MTP), leaving full-attention verification intact. It is training-free, drop-in, and lossless by construction: the full-attention target still decides every accepted token, so windowing changes only which tokens are proposed, never which are accepted. It bounds the draft's KV working set to a constant, dropping ~99% of KV entries at 1M. Across three architecture families (Qwen GDN-MoE 35B/122B and a Mamba2-hybrid NoPE 120B) at 1M context on a single GPU in SGLang, windowing cuts the per-decode-step cost over the shipping native MTP draft by +28% to +44%, an input-invariant margin that widens with context. Since per-token latency is this cost divided by acceptance length, at matched acceptance end-to-end decode latency improves by the same amount, and more where windowing also lifts acceptance, while preserving the target's verified output distribution. Finally, the unread draft KV -- 7.7-11% of total KV at 1M -- is reclaimed via a compact ring buffer at no acceptance or quality cost.",
+          "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.LG, kv-cache。Speculative decoding accelerates autoregressive generation by having a cheap draft propose tokens that a target verifies in parall...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "alibaba",
+            "cs.LG",
+            "kv-cache",
+            "latency",
+            "llm",
+            "serving",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-07-23T17:21:44Z",
+          "url": "https://arxiv.org/abs/2607.21535",
+          "pdfUrl": "https://arxiv.org/pdf/2607.21535v1"
+        },
+        {
+          "id": "arxiv-2607.21028",
+          "title": "Bridging the Structural Gap: Adapting Autoregressive Generation for Recommendation",
+          "authors": [
+            "Junchao Zeng",
+            "Junzhang Zhu",
+            "Junyang Chen",
+            "Yudong Li",
+            "Wei Liu",
+            "Chengxiang Zhuo",
+            "Zang Li"
+          ],
+          "summary": "Generative Recommendation (GR) has emerged as a new paradigm for sequential recommendation, in which a representative line of work encodes items into hierarchical semantic IDs via residual quantization and predicts the IDs token by token. However, this generative formulation still exhibits structural gaps with respect to the recommendation task: flattening multi-token IDs into a single sequence destroys item-level structure, and the inconsistency between training and inference over a hierarchical codebook gives rise to semantic drift. To bridge these two gaps, we propose BARGE, which employs Item Context-Aware Attention (ICA) to restore item-level structure during encoding, and Hierarchical Path Reranking (HPR) together with Dual-Path Decoding (DPD) to suppress semantic drift from two complementary angles during decoding. Extensive experiments and analytical studies on public benchmarks and a large-scale offline test demonstrate that BARGE achieves superior recommendation performance. An online A/B test on a Tencent platform yields improvements of 0.60% in click-through rate, 1.34% in click unique visitors, and 1.70% in total reading time, confirming the practical value of BARGE in industrial-scale recommendation.",
+          "reason": "近 30 天；公司信号：Tencent；推荐/排序/广告方向；关键词：tencent, cs.IR, click-through。Generative Recommendation (GR) has emerged as a new paradigm for sequential recommendation, in which a representative line of work...",
+          "area": "推荐算法",
+          "tags": [
+            "tencent",
+            "cs.IR",
+            "click-through",
+            "generative-recommendation",
+            "inference",
+            "industrial",
+            "online-a/b"
+          ],
+          "signal": 99,
+          "source": "Tencent/arXiv",
+          "publishedAt": "2026-07-23T08:11:57Z",
+          "url": "https://arxiv.org/abs/2607.21028",
+          "pdfUrl": "https://arxiv.org/pdf/2607.21028v1"
+        },
+        {
+          "id": "arxiv-2607.20791",
+          "title": "Refusal-Gated Decoding: Preserving Refusal Behavior Under High-Temperature Sampling",
+          "authors": [
+            "Phillip Howard",
+            "Xin Su",
+            "Allen Roush",
+            "Manikandan Ravikiran",
+            "Amir Abdullah"
+          ],
+          "summary": "High-temperature sampling is one of the primary mechanisms for increasing diversity in LLMs. Recent advances in truncation-based sampling techniques have helped mitigate drawbacks of high-temperature sampling such as neural text degeneration, thereby enabling greater diversity in LLM outputs without sacrificing coherence. However, increasing the entropy of the token probability distribution via high temperatures has also been shown to weaken model guardrails by reducing the model's refusal response in the presence of harmful prompts. Despite the potential benefits of high-temperature sampling and the importance of maintaining model safety, there is a lack of existing solutions for maintaining the refusal behavior of LLMs under a higher entropy regime. To address this gap, we systematically study how temperature influences refusal behavior in LLMs and propose an efficient sequential decoding approach which preserves a model's greedy decoding refusal response at high temperatures while incurring minimal additional latency. Through extensive experiments, we show that our approach preserves 91-99% of the greedy decoding refusal behavior across three benchmark datasets without compromising the model's high-temperature response for safe prompts. Our work demonstrates how refusal behavior can be maintained in an efficient manner for applications which require high-temperature sampling.",
+          "reason": "近 30 天；关键词：cs.AI, dataset, efficient。High-temperature sampling is one of the primary mechanisms for increasing diversity in LLMs. Recent advances in truncation-based s...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AI",
+            "dataset",
+            "efficient",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-22T23:33:51Z",
+          "url": "https://arxiv.org/abs/2607.20791",
+          "pdfUrl": "https://arxiv.org/pdf/2607.20791v1"
+        },
+        {
+          "id": "arxiv-2607.20723",
+          "title": "Leaky Language Models: Stealing Architecture and Inference Optimizations via Per-Token Timing",
+          "authors": [
+            "Sadegh Majidi",
+            "Niloofar Mireshghallah",
+            "Kazem Taram"
+          ],
+          "summary": "This work presents LeakyLMs, a set of attacks that leak proprietary model, architecture, and deployment information from production language models. LeakyLMs is the first to demonstrate that key model and deployment details can be inferred using only token generation timing, even when interacting through remote APIs. LeakyLMs introduces two core attacks. The first attack targets inference optimizations and deployment strategies. For example, our attack detects whether a provider uses speculative decoding, a widely deployed inference-time optimization, and further identifies the context length of the draft model used in the pipeline. Our measurements show that Google Gemini Flash 2.5 uses speculative decoding with a draft context window of approximately 128K tokens. The second attack recovers key architectural properties, including the number of transformer layers, hidden dimension size, and number of attention heads. To achieve this, LeakyLMs builds a detailed and accurate model of token-generation timing on modern NVIDIA GPUs, characterizing how latency scales with model configuration and hardware parameters. The attack then performs a search over the architecture space using this timing model. In experiments with Llama models, the near-correct architectural configuration appears in the top-10 guesses more than 90% of the time.",
+          "reason": "近 30 天；公司信号：Google, Meta, NVIDIA；关键词：google, meta, nvidia。This work presents LeakyLMs, a set of attacks that leak proprietary model, architecture, and deployment information from productio...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "google",
+            "meta",
+            "nvidia",
+            "cs.CR",
+            "deployed",
+            "inference",
+            "latency"
+          ],
+          "signal": 99,
+          "source": "Google/Meta/arXiv",
+          "publishedAt": "2026-07-22T20:51:28Z",
+          "url": "https://arxiv.org/abs/2607.20723",
+          "pdfUrl": "https://arxiv.org/pdf/2607.20723v1"
+        },
+        {
+          "id": "arxiv-2607.20115",
+          "title": "Understanding the Impact of Linguistic Realization Choices on LLM Stance with Causal Tracing",
+          "authors": [
+            "Langchen Huang",
+            "Sebastian Padó",
+            "Franziska Weeber"
+          ],
+          "summary": "Large language models (LLMs) are known to be sensitive to prompt and input formulations. However, existing studies have focused on lexical realization and largely ignored constructional choice. This paper studies whether linguistic construction can systematically shift LLM decisions and where these shifts can be causally localized inside the model. We use political stance judgment as a meaning-sensitive case study and extend an English political statements dataset, resulting in six controlled linguistic rewrite types that preserve or invert the meaning of a statement. Experiments on four open-weight models show that stance instability affect both meaning-preserving and meaning-inversing rewrites. Because output shifts reveal that rewrites affect stance, but not where in the model, we apply activation patching, where activations from the original statement are substituted into the forward pass for the rewritten statement and measure which components recover the original stance distribution. The results show that mid-to-late decoder layers, especially block outputs at the final prompt position, provide the strongest restoration signal.",
+          "reason": "近 30 天；关键词：cs.CL, dataset, llm。Large language models (LLMs) are known to be sensitive to prompt and input formulations. However, existing studies have focused on...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "dataset",
+            "llm",
+            "serving"
+          ],
+          "signal": 96,
+          "source": "arXiv",
+          "publishedAt": "2026-07-22T13:19:58Z",
+          "url": "https://arxiv.org/abs/2607.20115",
+          "pdfUrl": "https://arxiv.org/pdf/2607.20115v1"
+        },
+        {
+          "id": "arxiv-2607.18957",
+          "title": "InstantInfer: Enabling Fast LLM Cold Start with Communicating Finite Automata",
+          "authors": [
+            "Yitao Yuan",
+            "Yongchao He",
+            "Shaoke Fang",
+            "Wenfei Wu"
+          ],
+          "summary": "Cold starts in large language model (LLM) inference services significantly affect user experience, yet they remain inefficient due to sequential initialization and a massive number of fine-grained I/O requests issued by complex software components. Although refactoring the program can yield advantages such as concurrent execution and I/O merging, this approach is error-prone and carries correctness risks when dealing with massive, heterogeneous components. We propose the Communicating Finite Automata (CFA) abstraction to systematically analyze cross-component optimization opportunities, and design a programming framework to enable CFA-based component program refactoring. This framework preserves the original sequential program structure while enabling safe concurrent component execution. We prove the correctness of the program refactoring. We apply the CFA abstraction and framework to refactor process tree creation, tensor loading, and model switching in vLLM, forming a new cold-start system named InstantInfer. Extensive experiments demonstrate that InstantInfer substantially accelerates LLM cold starts (achieving up to 7.2 times speedup) and exhibits robustness across diverse GPUs, workloads, and scales.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, inference。Cold starts in large language model (LLM) inference services significantly affect user experience, yet they remain inefficient due...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "inference",
+            "llm"
+          ],
+          "signal": 94,
+          "source": "arXiv",
+          "publishedAt": "2026-07-21T10:49:12Z",
+          "url": "https://arxiv.org/abs/2607.18957",
+          "pdfUrl": "https://arxiv.org/pdf/2607.18957v1"
+        },
+        {
+          "id": "arxiv-2607.18631",
+          "title": "Searching for Plans You Can Actually Build: A Realizability-Aware Full-Space Optimizer for MoE Training and Serving",
+          "authors": [
+            "Quan Yuan",
+            "Jie Zhao"
+          ],
+          "summary": "Mixture-of-Experts (MoE) systems split a program's plan space in two: the space a cost model can rank, and the smaller space a real toolchain can actually build. Automatic optimizers rank the first and silently assume the two coincide -- so they can return a plan that is optimal on paper and impossible to emit. We present moefs, a realizability-aware full-space optimizer for MoE training and serving that makes deployment realizability a first-class search constraint. moefs closes a three-tier search over parallelism, schedule, and kernels; it emits both a Megatron training stack and an SGLang serving stack from a single plan; and it prices, rather than forbids, the realization overheads it measures. We evaluate across two hardware generations. On 2x RTX4090, the searched training plan edges the strongest hand-tuned baseline by +0.9% (and clears the 0.98x acceptance bar by +2.9%); on 8x H800, the searched serving plan matches the hand-tuned configuration at a 1.0304 throughput ratio. We hold failures to the same standard: on 8x H800 training, the searched plan is a computable, honest FAIL at 0.9338 of the best hand-tuned throughput, losing on a single schedule flag. All predictions are pre-registered in a frozen, artifact-hashed adjudication file before the H800 runs, and every outcome is reported as-is.",
+          "reason": "近 30 天；关键词：cs.DC, serving, throughput。Mixture-of-Experts (MoE) systems split a program's plan space in two: the space a cost model can rank, and the smaller space a rea...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "serving",
+            "throughput"
+          ],
+          "signal": 92,
+          "source": "arXiv",
+          "publishedAt": "2026-07-21T01:56:08Z",
+          "url": "https://arxiv.org/abs/2607.18631",
+          "pdfUrl": "https://arxiv.org/pdf/2607.18631v1"
+        },
+        {
+          "id": "arxiv-2607.18476",
+          "title": "Structured Output Collapses Answer Diversity Across 44 Language Models",
+          "authors": [
+            "Tapan Parikh"
+          ],
+          "summary": "When a language model must choose one answer from a large space of equally valid options, a format clause -- \"Reply with JSON only\" -- changes which answer it chooses. We re-run the One-Word Census (arXiv:2607.12796): 31 wide-answer-space category prompts asked of 44 models, now with the reply requested in JSON -- no schema enforcement, no constrained decoding, only the request. Convergence deepens sharply: on the unconstrained \"Pick a word\" prompt the modal answer rises from 41% to 64% of the pool and distinct answers fall from 52 to 36; mean answer-choice surprisal drops from 1.80 to 1.58 bits. The tax is progressive: six of 44 models move individually (BH-FDR q=.10), all toward the mode, led by the most distinctive models, while the conformist floor is immobile. It is a sharpener, not a re-indexer -- the plain-chat modal answer survives in 28 of 31 categories. Defaults are register-indexed: a within-run re-sample (n=20) finds JSON shifts 53% of a model's stable chat defaults, mostly back to the crowd, and installs defaults absent from chat (Claude Fable 5 answers \"cerulean\" for colour 0% of the time in chat, 100% in JSON). Full-battery controls reveal a register gradient: compression is significant and specific to the answer-delivery formats models are trained to speak (JSON -0.22 bits, p=.0002; XML -0.19, p=.002), absent for YAML and CSV, and reversed for an arbitrary bracket wrapper (+0.13, p=.009) -- weighing the mechanism toward tool-use post-training. Enforcing the schema at the decoder (response_format) compresses no further than the request (-0.03 bits): the collapse lives in the model's response to the register, not the decoder. Structured output is how software consumes language models, and that surface is served by a measurably more homogeneous model than the chat surface on which models are evaluated, compared, and chosen.",
+          "reason": "近 30 天；公司信号：Anthropic；关键词：anthropic, cs.CL。When a language model must choose one answer from a large space of equally valid options, a format clause -- \"Reply with JSON only...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "anthropic",
+            "cs.CL"
+          ],
+          "signal": 90,
+          "source": "Anthropic/arXiv",
+          "publishedAt": "2026-07-20T19:47:16Z",
+          "url": "https://arxiv.org/abs/2607.18476",
+          "pdfUrl": "https://arxiv.org/pdf/2607.18476v1"
+        },
+        {
+          "id": "arxiv-2607.18722",
+          "title": "Stale but Stable: Staleness-Adaptive Trust Regions for Stabilizing Asynchronous Reinforcement Learning",
+          "authors": [
+            "Junyao Yang",
+            "Yucheng Shi",
+            "Zongxia Li",
+            "Zhongzhi Li",
+            "Ruhan Wang",
+            "Xiangxin Zhou",
+            "Kishan Panaganti",
+            "Haitao Mi",
+            "Leowei Liang"
+          ],
+          "summary": "Asynchronous reinforcement learning improves throughput by decoupling rollout generation from optimization, but staleness is an inevitable byproduct compounded by policy lag, engine delays, and mixture-of-experts routing. From a trust-region perspective, this mismatch is critical: training-inference divergence governs approximation error in finite-horizon bounds, whereas PPO clipping only gates sampled outward updates, acting as a sampled surrogate rather than a full-policy constraint. As a result, high-staleness updates remain weakly controlled in the asynchronous regime where stale rollouts matter most. We introduce the Staleness-Adaptive Trust Region (SAT), which uses the detached sampled log-ratio as a practical staleness proxy, identifies high-mismatch tails within each batch via staleness-based kernel scaling, and contracts only the sign-selected endpoint of the nominal PPO interval. This preserves baseline behavior on ordinary tokens while enforcing more conservative updates on newly intercepted outward bands. We prove local interval containment and pointwise pessimism relative to PPO, showing how the adaptive rule reshapes update geometry under heterogeneous staleness. We evaluate SAT in a decoupled asynchronous RL setup built on Qwen3-30B-A3B-Base, using SGLang as the inference engine and Megatron for training. In this setting, SAT-GSPO w/ R3 achieves the best observed AIME24 avg@8, reaching 35.83 at lag 1 and 34.79 at lag 8, while SAT-GSPO reaches 34.17 at lag 1. Adaptive clipping and routing replay act as complementary stabilizers targeting mismatch tails and routing inconsistency, respectively. Overall, aligning clip intervals with staleness heterogeneity effectively stabilizes asynchronous RL.",
+          "reason": "近 30 天；关键词：cs.LG, inference, throughput。Asynchronous reinforcement learning improves throughput by decoupling rollout generation from optimization, but staleness is an in...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "throughput"
+          ],
+          "signal": 89,
+          "source": "arXiv",
+          "publishedAt": "2026-07-21T05:27:50Z",
+          "url": "https://arxiv.org/abs/2607.18722",
+          "pdfUrl": "https://arxiv.org/pdf/2607.18722v2"
+        },
+        {
+          "id": "arxiv-2607.19932",
+          "title": "Efficient Chain-of-Modality Reasoning via Progressive Compression for Spoken Language Models",
+          "authors": [
+            "Pengchao Feng",
+            "Chao-Hong Tan",
+            "Qian Chen",
+            "Wen Wang",
+            "Xiangang Li",
+            "Xie Chen"
+          ],
+          "summary": "Spoken language models (SLMs) enable natural human-computer interaction, but their reasoning ability still lags behind that of text-based large language models, especially on spoken mathematical question answering tasks. One important reason is that SLMs reason over purely verbalized mathematical expressions, which are harder to interpret than symbolic text. However, directly transferring text-based reasoning to SLMs is nontrivial due to architectural constraints and the additional computational requirements. To address this challenge, we propose Efficient Chain-of-Modality Reasoning (ECoM Reasoning), the first framework to introduce compressed reasoning into SLMs. By compressing the textual component so that it jointly serves as speech guidance and reasoning representation, ECoM Reasoning improves reasoning accuracy while using a smaller token budget than the standard Chain-of-Modality (CoM) architecture, which generates intermediate text before speech. To train this capability, we further propose Progressive Compression, a curriculum-based strategy that gradually trains the model from full-form reasoning to compressed reasoning. Experiments on spoken mathematical question answering benchmarks show that ECoM Reasoning improves accuracy by 21% over standard CoM without explicit reasoning, and by 3% over CoM with full reasoning traces while using only 40% of the text tokens, demonstrating that it enhances SLM reasoning while remaining inference-efficient.",
+          "reason": "近 30 天；关键词：cs.CL, efficient, inference。Spoken language models (SLMs) enable natural human-computer interaction, but their reasoning ability still lags behind that of tex...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "efficient",
+            "inference"
+          ],
+          "signal": 87,
+          "source": "arXiv",
+          "publishedAt": "2026-07-22T09:04:55Z",
+          "url": "https://arxiv.org/abs/2607.19932",
+          "pdfUrl": "https://arxiv.org/pdf/2607.19932v1"
+        }
+      ]
+    },
     {
       "date": "2026-07-24",
       "generatedAt": "2026-07-24T06:45:49.321383+08:00",
