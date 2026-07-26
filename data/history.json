@@ -1,7 +1,82 @@
 {
-  "generatedAt": "2026-07-26T06:43:25.639182+08:00",
-  "source": "curated industry radar",
+  "generatedAt": "2026-07-27T06:49:21.999201+08:00",
+  "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-07-27",
+      "generatedAt": "2026-07-27T06:49:21.999201+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2607.18666",
+          "title": "Fusion Embedding: A Unified Embedding Space for Text, Image, Video, and Audio",
+          "authors": [
+            "Abdul Basit Tonmoy",
+            "Kazi Fardinul Hoque",
+            "Md. Shahrier Islam Arham",
+            "Arman Luthra"
+          ],
+          "summary": "A single embedding space that covers text, images, video, and audio lets one index serve every query a user can pose. Embedding models built on vision-language backbones now lead text/image/video retrieval benchmarks but lack audio entirely, while audio-text retrieval is led by specialist systems that serve no other modality. We present the Fusion Embedding family, which adds audio to a frozen vision-language embedding base whose parameters are never updated: generation 1 (fusion-embedding-1) trains only a 16.4M-parameter connector between a frozen audio tower and the frozen base, and generation 2 (fusion-embedding-2) adds modality-gated deep adapters (44.2M parameters) whose branch never executes on text, image, or video inputs: their outputs are bit-for-bit those of the released base, verified after every training run. Because the base already binds text, images, and video, aligning audio to text alone makes audio-image retrieval emerge, with zero paired audio-visual training data. Alongside the recipe we map its design space with controlled negative results (rewriting training captions with an LLM, substituting a leaderboard-stronger audio tower, and widening the connector each reduce retrieval) and with training-protocol findings that we expect to transfer to any frozen decoder-LM embedding backbone. Both generations train in hours on a single GPU. Weights, code, and the evaluation harness are openly released.",
+          "reason": "近 30 天；关键词：cs.CL, llm, retrieval。A single embedding space that covers text, images, video, and audio lets one index serve every query a user can pose. Embedding mo...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm",
+            "retrieval"
+          ],
+          "signal": 84,
+          "source": "arXiv",
+          "publishedAt": "2026-07-21T03:25:34Z",
+          "url": "https://arxiv.org/abs/2607.18666",
+          "pdfUrl": "https://arxiv.org/pdf/2607.18666v1"
+        },
+        {
+          "id": "arxiv-2607.20832",
+          "title": "Beyond Heavy Log Curation: Perplexity-Based APT Detection via Unsupervised, Context-Augmented Language Models",
+          "authors": [
+            "Shoya Otsu",
+            "Kei Suzuki",
+            "Toshiaki Koike-Akino",
+            "Jing Liu",
+            "Ye Wang"
+          ],
+          "summary": "Advanced Persistent Threats (APTs) remain difficult to detect because only a small fraction of events in large-scale logs are attack-related, and investigation is expensive and hard to scale. Prior machine-learning approaches can reduce analyst workload, but they often rely on heavily curated training data and sophisticated preprocessing pipelines. Building and maintaining such pipelines require substantial domain expertise and engineering cost. Motivated by insights from a study of a strong APT detection baseline, we propose CAPTAIN (Context-Augmented Perplexity-based Threat Activity log detectIoN), a perplexity-based detector that leverages general, pre-trained language models with minimal, domain-agnostic preprocessing, enabling robust scoring of long, minimally processed log entries. CAPTAIN encodes recent history with an encoder model and a Q-Former-style bridge, then injects the compact context tokens into the decoder input so that perplexity reflects temporal context. To improve stability, CAPTAIN additionally applies smoothing filters to the perplexity time series. Across APT-oriented benchmarks, CAPTAIN competes with strong existing baselines and remains robust under substantially less curated inputs, that reduces the development and operational cost of advanced log preprocessing.",
+          "reason": "近 30 天；关键词：cs.LG。Advanced Persistent Threats (APTs) remain difficult to detect because only a small fraction of events in large-scale logs are atta...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG"
+          ],
+          "signal": 70,
+          "source": "arXiv",
+          "publishedAt": "2026-07-23T01:38:25Z",
+          "url": "https://arxiv.org/abs/2607.20832",
+          "pdfUrl": "https://arxiv.org/pdf/2607.20832v1"
+        },
+        {
+          "id": "arxiv-2607.20596",
+          "title": "Are Single-Token Sparse Autoencoder Features Causally Necessary? Layer-Depth and SAE-Family Effects",
+          "authors": [
+            "Seonglae Cho",
+            "Zekun Wu",
+            "Kleyton Da Costa",
+            "Rishi Kalra",
+            "Ilham Wicaksono",
+            "Adriano Koshiyama"
+          ],
+          "summary": "Sparse autoencoder (SAE) features are used to interpret and steer large language models, yet whether a feature's causal role is stable across SAE families remains untested. Single-token features that activate on one vocabulary item provide the diagnostic case where ground truth permits direct comparison. We analyze 3.9M features across six models and three SAE families using zero-ablation at full layer depth. Single-token features cluster 4.7x tighter in decoder space and concentrate in early layers (Layer 0 in GPT2-Small; L0-L4 in Gemma). Ablating them yields Benjamini-Hochberg-significant logit reductions in 178 of 208 full-layer conditions, with depth controlling whether damage cascades downstream or shapes the output directly. Cross-family causal differences exceed within-family scale effects: on the same base model, GemmaScope and BatchTopK features remain causally anchored, while LlamaScope features are locally redundant. The target token's rank recovers to within 2x baseline 96-98% of the time after the same ablation, and a controlled activation-function comparison reverses sign within the same model, leaving training recipe as the residual candidate. Cross-family interpretability claims are therefore sensitive to training methodology, not just activation function or scale.",
+          "reason": "近 30 天；关键词：cs.LG。Sparse autoencoder (SAE) features are used to interpret and steer large language models, yet whether a feature's causal role is st...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG"
+          ],
+          "signal": 70,
+          "source": "arXiv",
+          "publishedAt": "2026-07-22T17:33:16Z",
+          "url": "https://arxiv.org/abs/2607.20596",
+          "pdfUrl": "https://arxiv.org/pdf/2607.20596v1"
+        }
+      ]
+    },
     {
       "date": "2026-07-26",
       "generatedAt": "2026-07-26T06:43:25.639182+08:00",
