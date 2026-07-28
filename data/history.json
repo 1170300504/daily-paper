@@ -1,7 +1,272 @@
 {
-  "generatedAt": "2026-07-28T06:50:38.183016+08:00",
+  "generatedAt": "2026-07-29T06:50:17.282695+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-07-29",
+      "generatedAt": "2026-07-29T06:50:17.282695+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2607.24555",
+          "title": "LOCKS: Page-Local Compact Key Summaries for Efficient Long-Context Decoding",
+          "authors": [
+            "Junsung Hwang"
+          ],
+          "summary": "Serving large language models at long context is bottlenecked by the key-value (KV) cache, which is read in full at every decode step. Attention keys are locally low-rank though globally high-rank: shared low-rank bases discard page-specific directions that a page's own compact basis retains. LOCKS gives every page its own spectral summary (resident, about a tenth the cache's size), reconstructs within-page logits, estimates each page's attention mass by log-sum-exp, and attends only the top pages; selection itself reads no candidate keys or values. Selecting on this summary alone stays within about a point of the full cache on long-document QA (LongBench-v1), tracks the read-every-key oracle on retrieval-dense RULER down to the smallest budgets, and shows its largest margins on long-form reasoning (AIME26, MATH-500), where baseline selectors collapse. At its shipped $2048$-token budget LOCKS matches FullKV aggregate quality at $100$K$+$ context while attending about $2\\%$ of the tokens, and halves per-token decode latency ($2.0\\times$ at $1$M tokens) against dense attention. LOCKS ships as a drop-in plugin for unmodified vLLM, with batched decode running in full CUDA graphs.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, efficient。Serving large language models at long context is bottlenecked by the key-value (KV) cache, which is read in full at every decode s...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.LG",
+            "efficient",
+            "latency",
+            "llm",
+            "retrieval",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-07-27T15:28:52Z",
+          "url": "https://arxiv.org/abs/2607.24555",
+          "pdfUrl": "https://arxiv.org/pdf/2607.24555v1"
+        },
+        {
+          "id": "arxiv-2607.24439",
+          "title": "Unifying Generative Recall and Multi-Objective Ranking in a Single Decoder-Only Sequence",
+          "authors": [
+            "Ruochen Yang",
+            "Shuang Wen",
+            "Pengbo Xu",
+            "Yusheng Huang",
+            "Jiangxia Cao",
+            "Shuang Yang",
+            "Zhaojie Liu",
+            "Jiawei Sheng",
+            "Tingwen Liu"
+          ],
+          "summary": "Modern industrial recommendation systems typically separate recall and ranking into two independent stages. Although this cascade supports corpus-level retrieval and fine-grained multi-objective scoring, it causes objective inconsistency, information loss at the candidate hand-off, and redundant user-side context computation. Meanwhile, the generative recall and ranking scaling share a common Transformer-based modeling philosophy, where architectural consistency creates a natural opportunity for unified integration. However, direct sharing remains challenging since the two tasks require different information visibility and optimization methods. Therefore, we propose \\textbf{UniR$^2$}, a \\textbf{Uni}fied decoder-only Transformer that unifies Generative \\textbf{R}ecall and Multi-Objective \\textbf{R}anking within a single heterogeneous sequence comprising user context, SID trajectory, and item features. Within this sequence, the generated trajectory serves as a representation bridge between recall and ranking, where Dual-Query Prefix-Causal Attention provides task-specific visibility. The two tasks share the base attention weights but retain separate optimization boundaries, with ranking-side LoRA preserving ranking adaptability without disrupting the generative backbone. Extensive offline experiments on large-scale industrial data demonstrate the effectiveness and efficiency of UniR$^2$ for both recall and ranking. Long-term online A/B tests on Kuaishou platform further show consistent positive gains, validating the practicality of unified model in large-scale recommendation systems.",
+          "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, industrial。Modern industrial recommendation systems typically separate recall and ranking into two independent stages. Although this cascade...",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "cs.IR",
+            "industrial",
+            "lora",
+            "online-a/b",
+            "ranking",
+            "recommendation"
+          ],
+          "signal": 99,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-07-27T13:47:38Z",
+          "url": "https://arxiv.org/abs/2607.24439",
+          "pdfUrl": "https://arxiv.org/pdf/2607.24439v1"
+        },
+        {
+          "id": "arxiv-2607.24434",
+          "title": "DraftExpert: Expansion-Aware Self-Speculative Decoding for End-Device MoE Inference",
+          "authors": [
+            "Dengke Han"
+          ],
+          "summary": "Large Mixture-of-Experts (MoE) language models are attractive for end-device deployment because only a small subset of experts is active per token, but their routed expert weights often exceed accelerator memory. We target latency-critical single-user settings where routed experts are staged on demand from CPU memory to a GPU or from Flash to a mobile NPU. In this setting, self-speculative decoding faces a new bottleneck: increasing the draft expert set improves accuracy but triggers extra expert loading, while cheap small-footprint drafts have low acceptance; moreover, verifying a multi-token block activates the union of target experts and is no longer close to one target step. We propose DraftExpert, an expansion-aware self-speculative decoding framework for expert-offloaded MoE inference. DraftExpert trains one lightweight accelerator-resident draft expert per layer by self-distilling residual, logit/token, and router-agreement signals from the frozen target MoE. At inference time, it uses a fixed-footprint shared+top-1+draft-expert drafter together with confidence--expansion truncation and target-expert prefetching, while final tokens are still exactly verified by the target model. On DeepSeek-V2-Lite and Moonlight-16B-A3B across CPU-GPU and Flash-NPU offload, DraftExpert improves decode throughput by 1.45x on average, raises draft acceptance to 84~87%, and achieves 86~88% prefetch hit rates.",
+          "reason": "近 30 天；关键词：cs.LG, inference, latency。Large Mixture-of-Experts (MoE) language models are attractive for end-device deployment because only a small subset of experts is...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "latency",
+            "speculative",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-27T13:44:42Z",
+          "url": "https://arxiv.org/abs/2607.24434",
+          "pdfUrl": "https://arxiv.org/pdf/2607.24434v1"
+        },
+        {
+          "id": "arxiv-2607.24339",
+          "title": "Gubernaut: A Deterministic Homeostatic Controller for Affect-Regulated LLM Agents, Validated Across Independent Model Families",
+          "authors": [
+            "Dushyant Sharma"
+          ],
+          "summary": "Large language model (LLM) agents inherit reactive failure modes: escalation under provocation, sycophantic drift under flattery, perseveration when stuck. These are failures of propensity, not capability; they concern what a model does under sustained pressure, which training-time alignment reduces but does not eliminate at runtime. This research led to the Gubernaut Cognitive Controller (GCC), a model-agnostic runtime control layer in a Nelson--Narens monitoring--control loop: an object level reads and writes text, while a deterministic meta level reads only the numeric telemetry {intensity, valence, repetition} and returns a regulating posture. Because the meta level ingests zero tokens, no injection channel to the controller exists by construction (an architectural property, not yet adversarially tested); the text-exposed arbiter's compliance is measured, not assumed. We evaluate the GCC with a pre-registered, generate-once/judge-many protocol across a 4x4 matrix of four frontier models (GPT-5.5, Claude Opus 4.8, Gemini 3.5 Flash, Grok 4.3), each serving as both a generator and a judge. The regulated arm is calmer in 13 of 16 cells at p<.05 and 15 of 16 by sign; the three sub-threshold cells, including a -0.04 null, all fall on the single near-saturated host. The effect survives a lineage-independent fourth judge family (xAI), strong evidence that it is no artifact of shared judge style. The clearest mechanism is the recovery signature: arousal that integrates under attack and then decays, valence-gated, on de-escalation, replicating across all four families. Transcripts and panels ship with SHA-256 provenance and are re-judgeable; five failure modes are pre-registered. No consciousness claims are made.",
+          "reason": "近 30 天；公司信号：Anthropic, Google；关键词：anthropic, google, cs.AI。Large language model (LLM) agents inherit reactive failure modes: escalation under provocation, sycophantic drift under flattery,...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "anthropic",
+            "google",
+            "cs.AI",
+            "alignment",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Anthropic/Google/arXiv",
+          "publishedAt": "2026-07-27T12:17:21Z",
+          "url": "https://arxiv.org/abs/2607.24339",
+          "pdfUrl": "https://arxiv.org/pdf/2607.24339v1"
+        },
+        {
+          "id": "arxiv-2607.24331",
+          "title": "DynaCalKV: Key-Value Cache Compression via Head Grouping and Adaptive Rank Allocation",
+          "authors": [
+            "Tan T. Nguyen",
+            "Quan V. Dang"
+          ],
+          "summary": "As the inference phase of Large Language Models (LLMs) requires handling long context windows, the Key-Value (KV) cache initially appears to address this challenge but eventually becomes a significant bottleneck as the context window continues to grow. Low-rank compression has recently been studied as an effective approach to reduce KV cache memory while maintaining model performance. However, only a few existing methods treat the Key and Value caches differently, despite their distinct roles. Moreover, these methods typically employ fixed attention-head grouping, which may not fully exploit the structural similarity among attention heads. In this paper, we propose an improved low-rank KV cache compression framework. For the Key cache, we dynamically group attention heads based on Centered Kernel Alignment (CKA) similarity and allocate the rank budget adaptively under a parameter budget. For the Value cache, we adopt the same approach as ReCalKV, refining the low-rank decomposition through offline calibration to improve reconstruction quality. Experimental results on three instruction-tuned LLMs show that our method reduces the number of Key cache parameters while maintaining competitive accuracy. We further observe that the proposed strategy is particularly effective for Multi-Head Attention (MHA) models, whereas it should be applied more conservatively to Grouped-Query Attention (GQA) models, especially in long-context settings.",
+          "reason": "近 30 天；关键词：cs.LG, alignment, inference。As the inference phase of Large Language Models (LLMs) requires handling long context windows, the Key-Value (KV) cache initially...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "alignment",
+            "inference",
+            "kv-cache",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-27T12:08:56Z",
+          "url": "https://arxiv.org/abs/2607.24331",
+          "pdfUrl": "https://arxiv.org/pdf/2607.24331v1"
+        },
+        {
+          "id": "arxiv-2607.24260",
+          "title": "KAP: Bridging the Knowledge Selection-Runtime Consumption Gap in LLM Systems",
+          "authors": [
+            "Shuo Wang",
+            "Fang Xi",
+            "Wenyuan Huang",
+            "Qing Wang",
+            "Junming Su"
+          ],
+          "summary": "Modern LLM systems increasingly rely on knowledge-selection processes that produce high-value structured priors, such as ranked evidence, graph topology, multimodal alignment, and confidence signals. Yet LLM serving remains fundamentally oblivious to this rich structure: once such signals are serialized into a prompt, the backend observes only a flat token sequence, forcing dense and uniform consumption of the full key-value (KV) state during decoding. We term this architectural mismatch the Knowledge Selection-Runtime Consumption (KSRC) gap: richer contexts enlarge the full-prompt KV footprint and decode-time memory traffic, increasing latency and degrading throughput even when reasoning depends on only a small fraction of the context. To bridge the gap, we propose Knowledge Access Planning (KAP), a paradigm-shifting execution abstraction that elevates structured knowledge priors from passive prompt-construction hints into first-class physical execution artifacts. KAP establishes a universal intermediate representation (IR)-the runtime access plan-which compiles structured knowledge signals to govern physical KV access without altering logical prompt semantics, model weights, or training procedures. Through this IR, KAP shifts LLM serving from token-aware context consumption to plan-driven, knowledge-aware runtime consumption. We instantiate KAP with GraphSpec, a compiler-executor realization connecting structured knowledge selection to an LLM serving backend. We derive a phase-boundary model for the positive-speedup regime of plan-guided execution. Across 4K-128K long-context QA workloads, GraphSpec maintains answer quality comparable to full-context decoding while decoupling physical KV consumption from prompt length, reducing proposal-time KV access to 5.5% of source KV state at 128K, and fundamentally shifting the scaling trajectory of long-context generation.",
+          "reason": "近 30 天；关键词：cs.LG, alignment, latency。Modern LLM systems increasingly rely on knowledge-selection processes that produce high-value structured priors, such as ranked ev...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "alignment",
+            "latency",
+            "llm",
+            "multimodal",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-27T10:51:38Z",
+          "url": "https://arxiv.org/abs/2607.24260",
+          "pdfUrl": "https://arxiv.org/pdf/2607.24260v1"
+        },
+        {
+          "id": "arxiv-2607.24092",
+          "title": "ConAlign: Conditional Alignment Framework for Balancing Biased and Unbiased Recommendation",
+          "authors": [
+            "Jingcheng Zhang",
+            "Yihan Wang",
+            "Qi Song",
+            "Liyin Hong"
+          ],
+          "summary": "Industry recommender systems trained on observational data suffer from various biases that create filter bubbles, causing user interests to collapse into narrow categories and severely degrading long-term engagement. While utilizing unbiased uniform data for debiasing has shown promise, existing methods remain impractical for industrial deployment due to limitations such as neglect of factual (biased) recommendation performance and the substantial computational overhead. To overcome these limitations, we propose ConAlign (Conditional Alignment Framework), a conditional debiasing approach for industrial deployment. The key innovation of ConAlign lies in a discrete gating-based conditional alignment mechanism that selectively transfers knowledge from the biased tower to the unbiased tower. Following a selective intervention paradigm rather than universal correction, it seamlessly balances factual accuracy and unbiased preference estimation while supporting real-time streaming adaptation. To the best of our knowledge, ConAlign is the first streaming debiasing recommendation framework successfully deployed in a large-scale industrial recommendation system that utilizes a small fraction of unbiased random traffic for debiasing. Extensive offline experiments on three real-world datasets rigorously validate the effectiveness of our proposed framework. Furthermore, large-scale online A/B testing on Kuaishou demonstrates significant improvements in long-term user engagement and interest diversity, with negligible latency overhead.",
+          "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, alignment。Industry recommender systems trained on observational data suffer from various biases that create filter bubbles, causing user int...",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "cs.IR",
+            "alignment",
+            "dataset",
+            "deployed",
+            "industrial",
+            "latency"
+          ],
+          "signal": 99,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-07-27T07:28:56Z",
+          "url": "https://arxiv.org/abs/2607.24092",
+          "pdfUrl": "https://arxiv.org/pdf/2607.24092v1"
+        },
+        {
+          "id": "arxiv-2607.23986",
+          "title": "MEMOIR: Temporal Behavioral Memory for Recommendation Across the Preference-Drift Spectrum",
+          "authors": [
+            "Younggue Bae"
+          ],
+          "summary": "We propose MEMOIR, a framework that segments user interaction histories into temporal windows, generates semantic behavioral memory for each period using an LLM, and aggregates current state, evolution direction, and predicted future into a single user representation. On the Electronics and Clothing_Shoes_and_Jewelry categories of Amazon Reviews 2023, MEMOIR is statistically tied with UniSRec, the strongest baseline, on aggregate NDCG@10 (0.0643 vs. 0.0641), splitting the four reported metrics 2-2: MEMOIR leads NDCG@10 and MRR, UniSRec leads HR@10 and HR@20. An ablation study finds that no single architectural component - the evolution-preserving contrastive loss, its directional-consistency term, or temporal window segmentation itself - individually explains much of MEMOIR's approximately 18% relative gain over ID-based SASRec; all four ablations land within 2% of the full model on aggregate NDCG@10. Stratifying test performance by a composite preference-drift score instead reveals where the gain concentrates: MEMOIR leads on ranking-quality metrics (NDCG@10, MRR) specifically among users at the high- and low-drift extremes of the distribution, while UniSRec leads the volume-oriented HR@10/HR@20 metrics across all drift strata and edges out MEMOIR on ranking quality in the middle band. We report this drift-stratified pattern, rather than the near-tied aggregate numbers or any single ablated component, as MEMOIR's most substantive and reproducible finding, and surface why it holds as an open question for future work.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, llm。We propose MEMOIR, a framework that segments user interaction histories into temporal windows, generates semantic behavioral memor...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "llm",
+            "ranking",
+            "recommendation",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-07-27T04:27:58Z",
+          "url": "https://arxiv.org/abs/2607.23986",
+          "pdfUrl": "https://arxiv.org/pdf/2607.23986v1"
+        },
+        {
+          "id": "arxiv-2607.23749",
+          "title": "Breaking the Loop: An Empirical Comparison of Strategies for Novelty and Freshness in YouTube Music",
+          "authors": [
+            "Srivaths Ranganathan",
+            "Zihuan Diao",
+            "Bernardo Cunha",
+            "Joshua L. Moore",
+            "Robin Dumas",
+            "Murat Goksedef",
+            "Yanwei Song",
+            "Mukai Lu",
+            "Gergo Varady",
+            "Tracy Pesin"
+          ],
+          "summary": "Continuously trained ranking models in music recommenders fall into feedback loops where previously consumed items dominate recommendations. This suppresses two distinct content classes: new releases (temporal freshness) and unlistened catalog items (novelty). Industry practitioners have a wide menu of interventions available, ranging from serving-time heuristics, training-data reweighting, architectural debiasing, to uncertainty-driven exploration, each of which are well understood in academic settings. But live systems offer challenges with continuously ingested content, interconnected components, and practical limitations that counteract the findings from academic research. We report results from off-policy online A/B tests for six interventions and a combination experiment across four conceptual layers (serving, training, architecture, exploration) on the YouTube Music homepage. All interventions modify the ranking model or the serving layer that consumes its scores; candidate generation and other upstream components are held fixed. We discuss key takeaways from our results: first, serving-time interventions on continuously trained systems are neutralized by the learning loop. Second, architectural debiasing reduces popularity dominance and improves diversity but does not create discovery, while carrying hidden integration costs. Finally, uncertainty-driven exploration interventions with a Spectral-normalized Neural Gaussian Process (SNGP) head produce the largest new-release lift, though they come with a measurable engagement or diversity tradeoff. We close with recommendations on which layer to intervene at, and the hidden costs of each choice.",
+          "reason": "近 30 天；公司信号：Google；推荐/排序/广告方向；关键词：google, cs.IR, lora。Continuously trained ranking models in music recommenders fall into feedback loops where previously consumed items dominate recomm...",
+          "area": "推荐算法",
+          "tags": [
+            "google",
+            "cs.IR",
+            "lora",
+            "online-a/b",
+            "ranking",
+            "recommendation",
+            "recommender"
+          ],
+          "signal": 99,
+          "source": "Google/arXiv",
+          "publishedAt": "2026-07-26T16:50:34Z",
+          "url": "https://arxiv.org/abs/2607.23749",
+          "pdfUrl": "https://arxiv.org/pdf/2607.23749v1"
+        },
+        {
+          "id": "arxiv-2607.23120",
+          "title": "A scalable online machine learning approach for Stock Recommendation",
+          "authors": [
+            "Harsh Nagarkar"
+          ],
+          "summary": "Stock recommendation systems face the dual challenge of adapting to rapidly changing market conditions while maintaining low-latency predictions for end users. Traditional batch-trained models fail to capture concept drift, and monolithic architectures struggle to provide fault tolerance under load. This paper presents a scalable online deep learning-based stock recommendation system built on a distributed microservices architecture using Kubernetes, Docker, and RabbitMQ. The system employs a hybrid leader-follower architecture where a primary model continuously trains on streaming financial data, including EPS, MACD, and price, from the Alpha Vantage API while multiple replica models serve user-facing recommendations in parallel. A multilayer perceptron implemented with TensorFlow Recommenders generates content-based recommendations using explicit user ratings (1-5) and transfer learning. The architecture ensures high availability. The leader persists model weights to Google Cloud Object Storage, allowing replicas to recover seamlessly upon failure, while RabbitMQ provides message durability and replay. Results demonstrate that the system serves stock recommendations in 23 seconds per request and processes up to 500 portfolio addition requests per second per follower. Key limitations include data staleness (up to 150 minutes due to API rate limits) and the absence of a service mesh for inter-cluster security. This work contributes a production-ready reference architecture for online recommender systems that balances consistency, availability, and scalability in a financial domain context",
+          "reason": "近 30 天；公司信号：Google；推荐/排序/广告方向；关键词：google, cs.CE, latency。Stock recommendation systems face the dual challenge of adapting to rapidly changing market conditions while maintaining low-laten...",
+          "area": "推荐算法",
+          "tags": [
+            "google",
+            "cs.CE",
+            "latency",
+            "production",
+            "recommendation",
+            "recommender"
+          ],
+          "signal": 99,
+          "source": "Google/arXiv",
+          "publishedAt": "2026-07-25T09:32:55Z",
+          "url": "https://arxiv.org/abs/2607.23120",
+          "pdfUrl": "https://arxiv.org/pdf/2607.23120v1"
+        }
+      ]
+    },
     {
       "date": "2026-07-28",
       "generatedAt": "2026-07-28T06:50:38.183016+08:00",
