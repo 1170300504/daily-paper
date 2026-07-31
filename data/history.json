@@ -1,7 +1,305 @@
 {
-  "generatedAt": "2026-07-31T06:55:11.023435+08:00",
+  "generatedAt": "2026-08-01T06:50:25.238317+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-08-01",
+      "generatedAt": "2026-08-01T06:50:25.238317+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2607.28627",
+          "title": "ReToken: One Token to Improve Vision-Language Models for Visual Retrieval",
+          "authors": [
+            "Yao Xiao",
+            "Reuben Tan",
+            "Zhen Zhu",
+            "Yuqun Wu",
+            "Jianfeng Gao",
+            "Derek Hoiem"
+          ],
+          "summary": "Long visual context poses a challenge for vision-language models: performance degrades as the number of distractors grows, and processing all tokens at once is computationally infeasible under GPU memory constraints. We present ReToken, a single learnable embedding trained as an explicit retrieval target that selects a sparse set of query-relevant visual tokens from a pre-filled visual KV cache. Trained on only a small image-QA dataset, ReToken yields consistent gains across image and video benchmarks: on Visual Haystacks it improves Qwen3VL-8B by 13.4 points and InternVL3.5 by 12.4 points (>20% relative), and on LVBench it transfers zero-shot to long video for an 8.0-point gain with Qwen3VL-8B. Thanks to its lightweight design, both training and long-video inference fit on a single H100. Code is available at: https://github.com/avaxiao/ReToken",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CV, dataset。Long visual context poses a challenge for vision-language models: performance degrades as the number of distractors grows, and pro...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.CV",
+            "dataset",
+            "inference",
+            "kv-cache",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-07-30T17:59:56Z",
+          "url": "https://arxiv.org/abs/2607.28627",
+          "pdfUrl": "https://arxiv.org/pdf/2607.28627v1"
+        },
+        {
+          "id": "arxiv-2607.28495",
+          "title": "Stage-Replay Divergence Follows the KV Cache: Fixed-Prefix Precision Controls and Bidirectional Cache Transplantation",
+          "authors": [
+            "Alexander Boesgaard Lorup"
+          ],
+          "summary": "Stage-replay diagnostics reconstruct intermediate token prefixes and treat fresh-prefill continuation as continuation from the decoder state that originally reached the prefix. We audit that assumption at a whole reasoning-stage boundary in a Qwen2.5-derived system. A matched 200-item experiment compares retained live cache with one-shot prefill of identical integer tokens and places an exact replica on both sides. In BF16, replicas remain exact while the constructions differ on 166 suffixes and 20 correctness labels; the accuracy difference is only one point (paired 95% CI [-3.5, +5.5]). A fixed-prefix 2x2 holds all 200 token states constant while crossing construction and precision. The BF16 disagreements recur, whereas FP32 produces no decoded disagreement (95% Wilson upper bound 1.88%). A prospective bridge makes token-by-token incremental and retained live caches bit-exact on 12/12 rows; an all-200 saved-ledger audit reproduces every retained trajectory and comparison fingerprint. Bidirectional transplantation of all 48 key/value layers makes every tested divergent continuation follow its cache donor, both on a selected set at the primary checkpoint (24/24) and an outcome-blind replication at a later checkpoint (43/43). Exact-token replay can therefore be repeatable without preserving live-state fidelity. On the tested states, boundary K/V cache is a causally sufficient carrier of the divergent trajectory, while numerical precision moderates its behavioral expression.",
+          "reason": "近 30 天；关键词：cs.LG, kv-cache, prefill。Stage-replay diagnostics reconstruct intermediate token prefixes and treat fresh-prefill continuation as continuation from the dec...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "kv-cache",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-30T16:41:40Z",
+          "url": "https://arxiv.org/abs/2607.28495",
+          "pdfUrl": "https://arxiv.org/pdf/2607.28495v1"
+        },
+        {
+          "id": "arxiv-2607.28418",
+          "title": "WIDE: Boosting Adaptive LLM Inference via Token-level Dynamic Width Pruning",
+          "authors": [
+            "Haozhe Hu",
+            "Hao Wu",
+            "Peiran Yin",
+            "Chao Han",
+            "Yunpu Ma",
+            "Xiaoyu Shen"
+          ],
+          "summary": "Pruning is a promising approach for improving the efficiency of LLMs. Existing static structured pruning methods are hardware-friendly and can deliver practical throughput gains, but their input-agnostic computation allocation often causes substantial accuracy degradation under aggressive sparsity. Recent dynamic sparsity methods improve quality retention by adapting computation to individual inputs, yet they remain largely limited to coarse-grained structural decisions and their practical acceleration under real-world inference scenarios remains challenging. To address these challenges, we present WIDE, the first end-to-end differentiable token-level dynamic width pruning framework designed for both prefill and decode scenarios. WIDE enables fine-grained computation allocation by allowing each token to dynamically select attention-head groups and FFN-channel groups, extending dynamic pruning beyond layer-level decisions to neuron-block-level granularity. Through a two-stage training pipeline, WIDE learns effective token-wise sparse execution patterns and achieves substantially better quality retention than existing approaches. To make such fine-grained dynamic pruning practical, we further propose a pruning--kernel co-design framework that decomposes dynamic sparsity acceleration into mask reordering, hardware-agnostic block-level skipping, and hardware-dependent intra-block skipping, enabling efficient execution across different granularities. At 50% sparsity, WIDE provides 55.1% performance boost when compared to the state-of-the-art dynamic depth pruning under calibration-only settings. Under prefill and decoding inference workloads, WIDE achieves close-to-theoretical kernel-level speedups of up to 1.98x for prefill and 4.95x for decoding, as well as 1.68x and 1.55x end-to-end acceleration. Our code is available at https://github.com/EIT-NLP/LLM-Pruning/tree/main/WIDE.",
+          "reason": "近 30 天；关键词：cs.AI, efficient, inference。Pruning is a promising approach for improving the efficiency of LLMs. Existing static structured pruning methods are hardware-frie...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AI",
+            "efficient",
+            "inference",
+            "llm",
+            "prefill",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-30T16:01:03Z",
+          "url": "https://arxiv.org/abs/2607.28418",
+          "pdfUrl": "https://arxiv.org/pdf/2607.28418v1"
+        },
+        {
+          "id": "arxiv-2607.28263",
+          "title": "Understanding Is Done Early: A Depth Division of Labor in Large Language Models and Its Use for Unbounded-Context Memory",
+          "authors": [
+            "Hanzuo Liu",
+            "Xuan Qi",
+            "Chunyu Liu",
+            "Haotian Zhong",
+            "Yulong Wang",
+            "Rayying",
+            "Key",
+            "Alex Lamb",
+            "Mingyu Gao"
+          ],
+          "summary": "Transformer depth is not used uniformly: lower and middle layers build semantic representations, while upper layers increasingly specialize them for prediction. We turn this division of labor into CoMem (Comprehension Memory), which writes each context chunk only through an intermediate layer, retrieves a fixed number of cached residual states, and recomputes the query-conditioned upper layers over the resulting pack. For a fixed retrieval budget, model-side read compute and memory are independent of stored-context length. We evaluate a continued-trained Qwen3-8B base LM under a unified chat-template-free protocol. The backbone is frozen; the flagship trains only a rank-32 self-distillation LoRA on plain PG19, and we report an adapter-free arm separately. CoMem reaches 97.05 on RULER and 38.27 on LoCoMo versus 34.59 for full-context KV-Direct; the dialogue-memory advantage survives conversation-cluster resampling and an independent judge. Results on additional long-context and long-document tasks expose both the benefits of bounded retrieval and its in-window compression tax. Controlled depth sweeps show that deeper caching lowers per-query recomputation but incurs a fidelity loss that self-distillation substantially repairs. In a separate adapter-free efficiency control on an NVIDIA H20 at 128k, CoMem uses 18.26 GB rather than 89.36 GB and achieves a 7.83x prefill speedup. These results show that long-context memory can be organized along the layer axis, not only the token axis.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, lora。Transformer depth is not used uniformly: lower and middle layers build semantic representations, while upper layers increasingly s...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.CL",
+            "lora",
+            "prefill",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-07-30T14:19:11Z",
+          "url": "https://arxiv.org/abs/2607.28263",
+          "pdfUrl": "https://arxiv.org/pdf/2607.28263v1"
+        },
+        {
+          "id": "arxiv-2607.28150",
+          "title": "SmartGen: Seamless Disaggregated LLM Inference with Selective KV Cache Transfer",
+          "authors": [
+            "Xuchuan Luo",
+            "Jiacheng Shen",
+            "Xin Wang",
+            "Yangfan Zhou"
+          ],
+          "summary": "Disaggregating the prefill and decoding stages of large language model (LLM) inference into two separate sets of nodes is widely adopted in today's LLM serving systems. However, such an architecture poses significant challenges for self-hosted LLM deployments on rented cloud instances, since transferring enormous key-value (KV) caches between disaggregated nodes can easily saturate the limited inter-node network bandwidth. In this paper, we propose to mitigate the network bottleneck by selectively transferring essential KV cache entries across the two stages. There are two challenges to achieve selective KV cache transfer, i.e., accurate KV selection during the prefill stage, and efficient KV fetching during the decoding stage. To address these challenges, we design SmartGen, a KV cache transfer engine that allows seamless disaggregated LLM inference with three data transfer paths. Specifically, we leverage 1) a profile-based proactive transfer path to identify and push essential KV cache entries to the decoding node during the prefill stage, 2) a parallel on-demand transfer path to simultaneously fetch remote and local KV cache entries during the decoding stage, and 3) a speculative transfer path to finally deliver all KV caches to the decoding node. Experimental results show that SmartGen reduces time-to-second-token by up to 4.3x compared with the typical full KV cache transfer approach while offering comparable subsequent decoding performance and accuracy.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, inference。Disaggregating the prefill and decoding stages of large language model (LLM) inference into two separate sets of nodes is widely a...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "inference",
+            "kv-cache",
+            "llm",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-07-30T12:56:05Z",
+          "url": "https://arxiv.org/abs/2607.28150",
+          "pdfUrl": "https://arxiv.org/pdf/2607.28150v1"
+        },
+        {
+          "id": "arxiv-2607.28070",
+          "title": "CCFormer: Efficient Cross-Field Interaction and Hierarchical Sequence Compression for Industrial Recommendation at Tencent",
+          "authors": [
+            "Yunlong Wang",
+            "Huizhe Zhang",
+            "Haonan Hu",
+            "Yudong Li",
+            "Bing Wen",
+            "Jianchao Tu",
+            "Chengxiang Zhuo",
+            "Zang Li"
+          ],
+          "summary": "Recent studies in industrial recommendation systems have demonstrated that sequential recommendation models built upon self-attention can benefit from predictable scaling laws by increasing sequence length and model capacity. However, practical recommender systems impose strict latency and resource constraints, making it challenging to balance computational overhead with fine-grained feature interaction. In this paper, we propose CCFormer, an efficient Transformer backbone that unifies cross-field feature interaction and compressed long-sequence modeling for industrial recommendation. Specifically, CCFormer combines feature-field separated cross attention with long-sequence subspace token mixing to exploit long-term preference signals across heterogeneous feature domains. A hierarchical sequence compression strategy with progressively expanded receptive fields enables efficient long-sequence modeling with reduced information loss. Extensive experiments on two public benchmarks and a large-scale industrial dataset demonstrate that CCFormer consistently outperforms state-of-the-art baselines. Online A/B tests in a video recommendation scenario and an advertising ranking scenario at Tencent further validate its industrial practicality, yielding a 3.57% CTR gain and a 1.71% advertising revenue lift, respectively, while accelerating model training by 2.21x over the strong HSTU baseline. CCFormer has been fully deployed in Tencent's production recommendation system, serving the main traffic of both scenarios.",
+          "reason": "近 30 天；公司信号：Microsoft, Tencent；推荐/排序/广告方向；关键词：microsoft, tencent, cs.IR。Recent studies in industrial recommendation systems have demonstrated that sequential recommendation models built upon self-attent...",
+          "area": "推荐算法",
+          "tags": [
+            "microsoft",
+            "tencent",
+            "cs.IR",
+            "advertising",
+            "dataset",
+            "deployed",
+            "efficient"
+          ],
+          "signal": 99,
+          "source": "Microsoft/Tencent/arXiv",
+          "publishedAt": "2026-07-30T11:45:31Z",
+          "url": "https://arxiv.org/abs/2607.28070",
+          "pdfUrl": "https://arxiv.org/pdf/2607.28070v1"
+        },
+        {
+          "id": "arxiv-2607.27944",
+          "title": "Interpretable Representation via LLM-Driven Generative Disentanglement for Local-Life Service Recommendation",
+          "authors": [
+            "Long Zhang",
+            "Hao Jiang",
+            "Sheng Yu",
+            "Fei Pan",
+            "Peng Jiang",
+            "Kun Gai"
+          ],
+          "summary": "While large language models (LLMs) have advanced ID-based recommendation through Semantic ID (SID) modeling, existing SID generation frameworks largely follow a single-representation-then-quantization paradigm. This design faces two bottlenecks: semantic entanglement mixes heterogeneous attributes, such as geography, brand, and category, causing information loss during quantization, low-quality SIDs, and severe collisions; moreover, black-box representation learning provides neither explicit attribute semantics nor clear geographic or semantic meanings for SID positions. These limitations weaken both retrieval reliability and the ability to diagnose or control SID generation. We propose Interpretable Representation via LLM-Driven Generative Disentanglement for Local-Life Service Recommendation (LGRID). LGRID introduces a generative disentanglement paradigm through an Encode -> Disentangle -> Align -> Quantize pipeline. It first uses joint LLM encoding to preserve cross-attribute geographic-semantic dependencies, rather than encoding fields independently. A Structured Disentangled Block then routes hidden states into attribute-aligned slots for geographic and semantic factors. Synergistic Alignment Learning makes these slots both generatively decodable and discriminative for retrieval, while Dual-Stream Residual Quantization separately discretizes the two streams into compact SIDs with explicit attribute correspondence. This design yields interpretable SIDs with positions grounded in item attributes and local-service semantics. Experiments on Kuaishou and Foursquare show that LGRID consistently outperforms strong SID baselines, achieving up to a 5.44 percent relative AUC gain. It also achieves over 99 percent attribute-decoding accuracy for coarse geographic fields and reduces the full-SID collision rate to 39.9 percent, compared with 97.0 percent for LGSID.",
+          "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, alignment。While large language models (LLMs) have advanced ID-based recommendation through Semantic ID (SID) modeling, existing SID generati...",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "cs.IR",
+            "alignment",
+            "llm",
+            "quantization",
+            "recommendation",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-07-30T09:52:18Z",
+          "url": "https://arxiv.org/abs/2607.27944",
+          "pdfUrl": "https://arxiv.org/pdf/2607.27944v1"
+        },
+        {
+          "id": "arxiv-2607.27647",
+          "title": "LoopMemGR: From Behavior Logs to Evolving Memory for Generative Recommendation",
+          "authors": [
+            "Hui Qian",
+            "Changfa Wu",
+            "Chang Liu",
+            "Binbin Cao",
+            "Jian Wu",
+            "Yuliang Yan",
+            "Han Zhu",
+            "Bo Zheng"
+          ],
+          "summary": "Generative recommendation formulates next-item prediction as conditional autoregressive generation over discrete Semantic IDs, enabling end-to-end recommendation over large-scale item spaces. However, most existing methods follow a history-as-context paradigm that repeatedly reconstructs user preference from behavior history while discarding system-side recommendation decisions after each request. This creates an asymmetric memory: the system remembers what the user has done, but not what it has previously recommended or learned from the resulting feedback. Consequently, useful preference-validation signals, potential negative evidence, and historical exploration information cannot be directly reused across requests. To address these limitations, we propose LoopMemGR, a closed-loop recommendation experience memory framework for generative recommendation. In addition to the conventional behavior log, LoopMemGR maintains a recommendation experience log that records past recommendation--feedback trajectories. It extracts request-relevant evidence through three complementary views: the recency view captures short-term interaction dynamics, the frequency view summarizes recurring recommendation patterns, and the global view distills transferable regularities shared across users. These signals are compressed into a fixed number of experience tokens to condition the generative backbone under a bounded input budget. Extensive experiments on an industrial Taobao dataset demonstrate the effectiveness of closed-loop experience accumulation and multi-view experience extraction.",
+          "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, dataset。Generative recommendation formulates next-item prediction as conditional autoregressive generation over discrete Semantic IDs, ena...",
+          "area": "推荐算法",
+          "tags": [
+            "alibaba",
+            "cs.IR",
+            "dataset",
+            "generative-recommendation",
+            "industrial",
+            "lora",
+            "recommendation"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-07-30T03:59:00Z",
+          "url": "https://arxiv.org/abs/2607.27647",
+          "pdfUrl": "https://arxiv.org/pdf/2607.27647v1"
+        },
+        {
+          "id": "arxiv-2607.27577",
+          "title": "Heterogeneous Ranking in Industrial-Scale Recommender Systems: A Case Study",
+          "authors": [
+            "Di Bai",
+            "Jintao Liu",
+            "Zhenwei Tang",
+            "Peifan Wu",
+            "Nada Al-Thawr",
+            "Luoshu Wang"
+          ],
+          "summary": "Heterogeneous recommendation feeds present complex challenges that extend beyond those found in highly homogeneous environments (e.g., music-only or video-only closed-ecosystem platforms). In Google Discover, a unified feed integrates diverse content sourced from the decentralized open web, including web articles, long-form and short-form videos, user-generated content (UGC), and beyond. Different content types exhibit distinct feature densities and user interaction patterns. Building a unified ranking model that sustains high performance across such heterogeneity, while avoiding negative transfer or majority bias, remains a significant industrial challenge. This paper presents an end-to-end case study on the industrial-scale multi-task ranking of heterogeneous feeds, grounded in real-world deployment. We introduce HA-MoE, a heterogeneity-adaptive multi-gated mixture-of-experts architecture that incorporates explicit heterogeneity context into both gating networks and expert representations. This approach enables effective specialization without significantly increasing operational overhead. To support reliable deployment, we introduce LENS, a lightweight observability framework that provides interpretable diagnostics of expert specialization and tracks this functional heterogeneity across continuous retraining. We evaluate our method using Dual-Level AUC (DL-AUC), a heterogeneity-aware evaluation metric that combines global ranking performance with cross-segment ranking correctness. Offline evaluations on a large-scale industrial dataset demonstrate consistent improvements over baseline models. Furthermore, online A/B testing confirms gains in feed activity and exploration metrics. Together, offline and online results validate the effectiveness of our approach for managing heterogeneity in industrial-scale recommender systems.",
+          "reason": "近 30 天；公司信号：Google；推荐/排序/广告方向；关键词：google, cs.IR, dataset。Heterogeneous recommendation feeds present complex challenges that extend beyond those found in highly homogeneous environments (e...",
+          "area": "推荐算法",
+          "tags": [
+            "google",
+            "cs.IR",
+            "dataset",
+            "industrial",
+            "lora",
+            "online-a/b",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "Google/arXiv",
+          "publishedAt": "2026-07-30T01:41:42Z",
+          "url": "https://arxiv.org/abs/2607.27577",
+          "pdfUrl": "https://arxiv.org/pdf/2607.27577v1"
+        },
+        {
+          "id": "arxiv-2607.27475",
+          "title": "OneShot: Index-in-Ranking with Neural Scoring for Large-Scale Retrieval",
+          "authors": [
+            "Ziwei Li",
+            "Shuyao Li",
+            "Xufeng Cai",
+            "Xue Zou",
+            "Yiming Ma",
+            "Huiting Lu",
+            "Wujie Yan",
+            "Zhichen Zhao",
+            "Yang Lu",
+            "Zhe Wang",
+            "Rui Luo",
+            "Zhengyu Su",
+            "Dan Zhang",
+            "Ji Liu"
+          ],
+          "summary": "In modern recommendation systems, retrieval serves as a primary stage responsible for filtering billions of candidate items down to thousands prior to refined ranking. To make this massive search effective and efficient, the system relies on ranking accuracy and indexing efficiency. However, these two objectives are traditionally misaligned: while the former optimizes for the alignment between ranking predictions and user behavior, the latter optimizes for a structural grouping of item representations which enables fast search among billions of candidates. Thus, despite extensive efforts to scale up interaction modeling for retrieval, they remain fundamentally limited by the structural misalignment between the ranking objectives and the proximity-learned index. In this work, we address this long-standing dichotomy by proposing a new holistic retrieval framework, OneShot. It is an end-to-end, in-model index learning framework that natively aligns index learning with ranking objectives. Using this joint learning as a structural foundation, OneShot pushes the boundaries of retrieval expressiveness by scaling interaction modeling with neural scoring beyond the persistent dot-product bottleneck. OneShot is fully deployed in Instagram's industrial short-video recommendation system, driving significant wins in user daily sessions, engagement, and time-spent. Additionally, OneShot achieves a $20\\%$ recall gain at the operational ranking volume and a 10x efficiency improvement at an equivalent recall level.",
+          "reason": "近 30 天；公司信号：Meta；推荐/排序/广告方向；关键词：meta, cs.IR, alignment。In modern recommendation systems, retrieval serves as a primary stage responsible for filtering billions of candidate items down t...",
+          "area": "推荐算法",
+          "tags": [
+            "meta",
+            "cs.IR",
+            "alignment",
+            "deployed",
+            "efficient",
+            "industrial",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-07-29T21:29:00Z",
+          "url": "https://arxiv.org/abs/2607.27475",
+          "pdfUrl": "https://arxiv.org/pdf/2607.27475v1"
+        }
+      ]
+    },
     {
       "date": "2026-07-31",
       "generatedAt": "2026-07-31T06:55:11.023435+08:00",
