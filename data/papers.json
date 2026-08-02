@@ -1,279 +1,262 @@
 {
-  "generatedAt": "2026-08-02T06:43:21.254890+08:00",
+  "generatedAt": "2026-08-03T06:44:19.589251+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2607.27913",
-      "title": "S-CEReBrO: Breaking the Memory Barrier in Continuous EEG Monitoring",
+      "id": "arxiv-2607.27269",
+      "title": "Beyond KV Reconstruction: Functional Reconstruction for MLA Draft Models in Speculative Decoding",
       "authors": [
-        "Glenn Anta Bucagu",
-        "Thorir Mar Ingolfsson",
-        "Yawei Li",
-        "Luca Benini"
+        "Weiye Shi",
+        "Fanxu Meng",
+        "Muhan Zhang"
       ],
-      "summary": "Foundation models offer a promising paradigm for Electroencephalography (EEG) analysis, leveraging generalizable representations from vast unlabeled datasets. Yet, Transformer-based architectures face a critical bottleneck: global attention mechanisms couple the attention memory state to the signal duration, causing memory overflow during continuous monitoring. To address this, we introduce S-CEReBrO (Streaming CEReBrO), an evolution of the CEReBrO architecture designed for continuous monitoring. Our novel Windowed Alternating Attention mechanism factorizes attention computation into fixed-size spatiotemporal windows, guaranteeing constant KV cache memory as only the active window requires resident attention maps. Empirical scaling analysis confirms that windowed alternating attention can process signals 100X longer than full self-attention and 3X longer than low-rank linear attention. Compared to low-rank linear attention on long contexts, windowed alternating attention requires 55% of the memory while increasing inference throughput by 2.1X. Pre-trained on >25,000 hours of recordings from >12,000 subjects, S-CEReBrO achieves state-of-the-art performance on 7 of 11 downstream tasks, with up to 60% fewer parameters. This work represents a significant step toward the realization of efficient, generalizable, and continuous EEG monitoring. An accompanying code repository is available.",
-      "reason": "近 30 天；关键词：cs.LG, dataset, efficient。Foundation models offer a promising paradigm for Electroencephalography (EEG) analysis, leveraging generalizable representations f...",
+      "summary": "Multi-head latent attention (MLA) is increasingly important for long-context LLM inference because compact latent states replace the growing key-value (KV) cache and reduce decoding memory traffic. Yet most capable open checkpoints use multi-head or grouped-query attention (MHA/GQA), so conversion is needed to obtain MLA's cache efficiency without retraining from scratch. Speculative decoding offers complementary acceleration, but its speedup depends on agreement between draft proposals and target verification. We find that direct MHA/GQA-to-MLA conversion can sharply reduce this agreement: low-rank factorization and RoPE handling introduce attention-function errors that may be tolerable for standalone generation but substantially lower draft-token acceptance. We therefore formulate MLA draft construction as functional reconstruction rather than cache compression. Our end-to-end (E2E) method optimizes each converted MLA attention module to reproduce the post-output-projection response of its original MHA/GQA counterpart on calibration hidden states. This converter-agnostic post-conversion procedure preserves the converted cache and inference graph and requires neither verifier logits nor verifier supervision. We evaluate 192 model-converter-backend-method-task configurations spanning four Llama/Qwen draft-target pairs, TransMLA and MHA2MLA, HF and vLLM, and four 200-prompt tasks. With a 0.5-percentage-point reporting tolerance, Functional Reconstruction materially improves acceptance in 37 of 64 matched task cells, leaves 26 practically unchanged, and materially decreases one. Code and evaluation artifacts are available at https://github.com/swyhahaha/FunctionalMLA.",
+      "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.LG。Multi-head latent attention (MLA) is increasingly important for long-context LLM inference because compact latent states replace t...",
       "area": "LLM 推理优化",
       "tags": [
+        "alibaba",
+        "meta",
         "cs.LG",
-        "dataset",
-        "efficient",
+        "conversion",
         "inference",
-        "kv-cache",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-07-30T09:27:06Z",
-      "url": "https://arxiv.org/abs/2607.27913",
-      "pdfUrl": "https://arxiv.org/pdf/2607.27913v1"
-    },
-    {
-      "id": "arxiv-2607.27790",
-      "title": "Semantic-Aligned Structural Abstraction for Multimodal Sentiment Analysis",
-      "authors": [
-        "Wei Chen",
-        "Junkai Li",
-        "Tongguan Wang",
-        "Hui Liu",
-        "Feiyue Xue",
-        "Chuanxiang Ma",
-        "Ying Sha"
-      ],
-      "summary": "Multimodal Sentiment Analysis (MSA) aims to interpret complex human emotions by integrating natural language with non-verbal modalities. Non-verbal modalities share a structural isomorphism with natural language, as both can be viewed as feature sequences evolving over time. This isomorphism enables the transformation of non-verbal modalities into text-like tokens for unified semantic reasoning. Large Language Models (LLMs), designed to understand and generate sequential data, can thus be utilized to interpret complex affective sequences. However, existing LLM-based methods primarily capture low-level superficial features, failing to model affective semantics arising from structural variations and contextual interactions. To address this limitation, we propose \\textbf{SentiLLM}, a unified framework that leverages \\textit{Semantic-Aligned Structural Abstraction} to distill continuous raw signals into compact, semantically meaningful tokens. Specifically, we introduce a \\textit{Dual-Stream Salience-Context Calibration Mechanism}, which disentangles non-verbal feature sequences into a focus stream and an ambient stream. The focus stream captures salient sentiment shifts (e.g., facial expressions) guided by textual priors, while the ambient stream characterizes stable background states. Through calibrating these dynamic sentiment shifts against background states, SentiLLM effectively projects non-verbal modalities into a unified semantic space, making them naturally understandable for LLMs. Serving as a plug-and-play module, SentiLLM significantly improves discriminative performance with only a small number of trainable parameters. Our method achieves superior performance on four datasets, MOSI, MOSEI, CH-SIMS, and CH-SIMS v2, demonstrating the effectiveness of the structural abstraction paradigm in MSA. Our code is available at: \\href{https://github.com/especiallyW/SentiLLM}.",
-      "reason": "近 30 天；关键词：cs.CL, dataset, llm。Multimodal Sentiment Analysis (MSA) aims to interpret complex human emotions by integrating natural language with non-verbal modal...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "dataset",
         "llm",
-        "multimodal",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-07-30T07:23:27Z",
-      "url": "https://arxiv.org/abs/2607.27790",
-      "pdfUrl": "https://arxiv.org/pdf/2607.27790v1"
-    },
-    {
-      "id": "arxiv-2607.27735",
-      "title": "A Sparse Glimpse of the Whole: Train-Free Self-Speculative Decoding",
-      "authors": [
-        "Yuesong Liu",
-        "Yuan Zeng",
-        "Min Lyu",
-        "Ruilin Liu",
-        "Yu Guo",
-        "Yinlong Xu"
-      ],
-      "summary": "Speculative decoding alleviates the memory-bandwidth bottleneck in large language model inference, but its acceleration is jointly constrained by drafting overhead, token acceptance, and speculation length. We present a unified efficiency analysis showing that extending the speculation horizon can reduce rather than improve speedup when the marginal acceptance probability falls below the relative drafting cost. Guided by this analysis, we introduce SparseSpec-L, a training-free self-speculative decoding framework for long-context inference. SparseSpec-L generates lightweight drafts directly from the target model using a dynamically sparsified and recallable KV cache. It recycles per-head attention statistics produced during full-context verification as a no-extra-forward importance signal, allowing critical historical tokens to be recalled without permanently discarding the dense KV cache. An online entropy-based controller further selects the speculation length according to expected step-wise efficiency. Experiments across multiple long-context tasks and model scales show consistent end-to-end acceleration, with up to speedup over autoregressive decoding while preserving the target model's output distribution.",
-      "reason": "近 30 天；关键词：cs.CL, inference, kv-cache。Speculative decoding alleviates the memory-bandwidth bottleneck in large language model inference, but its acceleration is jointly...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "inference",
-        "kv-cache",
-        "serving",
         "speculative"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-07-30T06:16:56Z",
-      "url": "https://arxiv.org/abs/2607.27735",
-      "pdfUrl": "https://arxiv.org/pdf/2607.27735v1"
+      "source": "Alibaba/Meta/arXiv",
+      "publishedAt": "2026-07-29T10:54:46Z",
+      "url": "https://arxiv.org/abs/2607.27269",
+      "pdfUrl": "https://arxiv.org/pdf/2607.27269v1"
     },
     {
-      "id": "arxiv-2607.27704",
-      "title": "LightRot: A Light-Weighted Rotation Scheme and Architecture for Accurate Low-Bit Large Language Model Inference",
+      "id": "arxiv-2607.26475",
+      "title": "DualDecoder: Accelerate Long Context LLM Inference by Predictive Prefetch",
       "authors": [
-        "Sangjin Kim",
-        "Yuseon Choi",
-        "Jungjun Oh",
-        "Byeongcheol Kim",
-        "Hoi-Jun Yoo"
+        "Zuning Liang",
+        "Zhiyi Yao",
+        "Qi Chen",
+        "Yuedong Xu",
+        "Hao Dai",
+        "Zhiqiang Ding",
+        "Tongkai Yang",
+        "Jinlong Hou",
+        "Yuan Cheng"
       ],
-      "summary": "As large language models (LLMs) continue to demonstrate exceptional capabilities across various domains, the challenge of achieving energy-efficient and accurate inference becomes increasingly critical. This work presents LightRot, a lightweight rotation scheme and dedicated hardware accelerator designed for low-bit LLM inference. The proposed architecture integrates Grouped Local Rotation (GLR) and Outlier Direction Aligning (ODA) algorithms with a hierarchical Fast Hadamard Transform (FHT)-based rotation unit to address key challenges in low-bit quantization, including the energy overhead of rotation operations. The proposed accelerator, implemented in a 28nm CMOS process, achieves a peak energy efficiency of 27.4 TOPS/W for 4-bit inference, surpassing prior state-of-the-art designs. Unlike conventional approaches that rely on higher-precision inference or evaluate on basic language modeling tasks like GPT-2, LightRot is optimized for advanced models such as LLaMA2-13B and LLaMA3-8B. Its performance is further validated on MT-Bench, demonstrating robust applicability to real-world conversational scenarios and redefining benchmarks for chat-based AI systems. By synergizing algorithmic innovations and hardware efficiency, this work sets a new paradigm for scalable, low-bit LLM inference, paving the way for sustainable AI advancements.",
-      "reason": "近 30 天；关键词：cs.AR, efficient, energy。As large language models (LLMs) continue to demonstrate exceptional capabilities across various domains, the challenge of achievin...",
+      "summary": "Long-context inference is becoming a fundamental capability for modern LLM serving, especially driven by emerging agentic applications. Yet it faces a severe memory wall that the KV cache scales proportionally with increasing context length and request concurrency. Existing sparse KV cache methods offload most KV entries to host memory and retrieve only the critical KV entries needed by each decoding step. However, they commonly introduce substantial auxiliary states in GPU memory for KV retrieval management. Our measurements show that these often-overlooked auxiliary states introduce significant memory overhead and become a new bottleneck under high-concurrency workloads. In this paper, we present DualDecoder, a lightweight serving system for long-context LLM inference that enables efficient sparse KV cache retrieval from host memory. Our key insight is that the critical KV entries required for decoding the next token can be accurately predicted from the preceding speculated token. This predictability enables KV retrieval to be proactively prefetched and overlapped with decoding computation, effectively eliminating the GPU memory overhead of auxiliary states. To achieve this prefetching efficiently, DualDecoder leverages a novel dual-token decoding pipeline that accurately identifies critical KV entries with negligible computational overhead, and designs a layer-aware transfer schedule to overlap KV prefetching with model computation and a layer-scoped memory manager to reduce the GPU runtime buffer. Experimental results show that DualDecoder improves decoding throughput by up to 2.62$\\times$ over state-of-the-art systems while preserving decoding latency and model quality.",
+      "reason": "近 30 天；关键词：cs.DC, efficient, inference。Long-context inference is becoming a fundamental capability for modern LLM serving, especially driven by emerging agentic applicat...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.AR",
+        "cs.DC",
         "efficient",
-        "energy",
         "inference",
+        "kv-cache",
+        "latency",
         "llm",
-        "quantization"
+        "retrieval"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-07-30T05:39:58Z",
-      "url": "https://arxiv.org/abs/2607.27704",
-      "pdfUrl": "https://arxiv.org/pdf/2607.27704v1"
+      "publishedAt": "2026-07-29T05:01:42Z",
+      "url": "https://arxiv.org/abs/2607.26475",
+      "pdfUrl": "https://arxiv.org/pdf/2607.26475v1"
     },
     {
-      "id": "arxiv-2607.27694",
-      "title": "GyRot: Leveraging Hidden Synergy between Rotation and Fine-grained Group Quantization for Low-bit LLM Inference",
+      "id": "arxiv-2607.26358",
+      "title": "Post-Training at the Edge of Detectability: A Game-Theoretic Approach to Fine-Tuning",
       "authors": [
-        "Sangjin Kim",
-        "Yuseon Choi",
-        "Byeongcheol Kim",
-        "Jungjun Oh",
-        "Hoi-jun Yoo"
+        "Keegan Harris",
+        "Brian W. Lee",
+        "Ian Waudby-Smith",
+        "Philip Amortila",
+        "Nika Haghtalab",
+        "Michael I. Jordan"
       ],
-      "summary": "Low-bit quantization is essential for efficient LLM inference, and both rotation and fine-grained group quantization have shown individual promise. However, their combination often leads to accuracy degradation or hardware overhead due to a mismatch between the global nature of rotation and the localized behavior of group scaling. We propose GyRot, a quantization framework and hardware accelerator that bridges this gap through algorithm-hardware co-design. GyRot introduces Coarse Rotation, Fine Grouping (CoRFiG) and Harmonic-Aligned Permutation (HAP) to enable cooperative integration of rotation and group quantization, enhancing quantizability while relaxing scaling factor precision. To further reduce hardware cost, we reformulate asymmetric quantization and introduce a zero-point rounding strategy that enables fully integer dequantization. Implemented on an INT4-based tensor PE architecture, GyRot achieves state-of-the-art 4-bit accuracy across LLaMA-family models, while delivering up to 3.4x speedup and 3.6x energy efficiency over baseline LLM accelerators. These results validate GyRot's practical effectiveness for scalable and energy-efficient LLM deployment.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.AR, efficient。Low-bit quantization is essential for efficient LLM inference, and both rotation and fine-grained group quantization have shown in...",
+      "summary": "Reinforcement learning (RL) fine-tuning is widely used in language model training to improve model performance on a target task while limiting drift from a reference policy. A standard way to balance this trade-off is via a KL-regularized RL objective, although this formulation does not by itself provide a principled way to set the regularization coefficient. In practice, the coefficient is typically chosen heuristically or via hyperparameter search, which can lead to unnecessary overhead in training cost or undesirable reward-retention trade-offs. We instead propose a game-theoretic framework that gives this trade-off an explicit statistical interpretation. Specifically, we study a sequential game in which an agent chooses a policy to maximize cumulative reward while a monitor observes policy outputs over time and tests for deviations from the reference policy. Although not originating from the same perspective, we show that the resulting equilibrium policy can nonetheless be expressed as the solution to a KL-regularized RL problem for an optimal regularization parameter that can be viewed as maximizing reward per unit of statistical distinguishability. Drawing on classical results from concave-convex fractional programming, we provide a principled method for learning this equilibrium coefficient via reduction to the KL-regularized RL objective, thus allowing for flexible integration into standard fine-tuning pipelines. In experiments with Qwen3-8B and Llama-3.2-1B, we demonstrate that our methods result in competitive reward-retention trade-offs in a continual learning setting, and illustrate how our framework may be used to audit API providers serving open-source models.",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, efficient。Reinforcement learning (RL) fine-tuning is widely used in language model training to improve model performance on a target task wh...",
       "area": "LLM 推理优化",
       "tags": [
         "meta",
-        "cs.AR",
+        "cs.LG",
         "efficient",
-        "energy",
-        "inference",
-        "llm",
-        "quantization"
+        "serving"
       ],
       "signal": 99,
       "source": "Meta/arXiv",
-      "publishedAt": "2026-07-30T05:26:20Z",
-      "url": "https://arxiv.org/abs/2607.27694",
-      "pdfUrl": "https://arxiv.org/pdf/2607.27694v1"
+      "publishedAt": "2026-07-29T00:19:09Z",
+      "url": "https://arxiv.org/abs/2607.26358",
+      "pdfUrl": "https://arxiv.org/pdf/2607.26358v1"
     },
     {
-      "id": "arxiv-2607.27614",
-      "title": "DualAnchor: Preserving Language Priors and Improving Lexical Fidelity in Gloss-Free Sign Language Translation",
+      "id": "arxiv-2607.26339",
+      "title": "RAGuard: A Layered Defense Framework for Retrieval-Augmented Generation Systems Against Data Poisoning",
       "authors": [
-        "Hongbin Zhang",
-        "Junhao Liu",
-        "Xuefeng Bai",
-        "Youcheng Pan",
-        "Yang Xiang",
-        "Kehai Chen"
+        "Pushkal Kumar",
+        "Tucker Nielson",
+        "Tanish Kolhe",
+        "Shubham Zala",
+        "Vincent Li"
       ],
-      "summary": "Recent advances in large language models (LLMs) have led sign language translation (SLT), the task of converting sign-language videos into spoken-language text, to increasingly adopt LLMs as textual backbones. However, despite their strong language modeling capabilities, existing LLM-based SLT methods often undermine rather than exploit this language prior, producing disfluent translations, a failure we term language-prior degradation. Meanwhile, existing methods typically align videos and text at the sentence level, which does not ensure accurate lexical details and creates a lexical fidelity gap. To address both issues, we propose DualAnchor, a gloss-free LLM-based SLT training framework that couples two complementary anchors for linguistically fluent and visually faithful generation. Token-level Prior Anchoring (TPA) preserves the LLM's language prior by regularizing the multimodal decoder at each decoding step toward the next-token distribution of a frozen LLM conditioned on the same autoregressive prefix. Optimal Transport Alignment (OTA) improves lexical fidelity by formulating visual-textual matching as entropy-regularized partial optimal transport, with Sinkhorn optimization inducing a soft alignment between visual tokens and textual content tokens under a cosine cost. DualAnchor achieves strong overall performance on both PHOENIX-2014T and CSL-Daily. Targeted analyses attribute these gains to the complementary effects of the two anchors: TPA improves fluency, whereas OTA reduces fine-grained lexical errors.",
-      "reason": "近 30 天；关键词：cs.CL, alignment, llm。Recent advances in large language models (LLMs) have led sign language translation (SLT), the task of converting sign-language vid...",
+      "summary": "Retrieval-Augmented Generation (RAG) systems ground large language models (LLMs) in external corpora, but this reliance exposes them to corpus poisoning: maliciously injected passages that manipulate retrieved evidence. We introduce RAGuard, a layered defense against \\emph{factual} corpus-poisoning attacks on RAG pipelines. The first layer adversarially fine-tunes a dense retriever on synthetic poisoned documents (fabricated facts, contradictions, and reasoning traps), teaching it to downrank malicious passages before generation. The second layer, the Zero-Knowledge Inference Patch ZKIP, is a label-free, black-box filter: for each retrieved document, it performs a leave-one-out decode and scores the document by the semantic shift and output-entropy change that its removal induces. ZKIP requires no poison labels, no ground-truth answers, and no access to model internals; it compares the model's own answers under counterfactual contexts. On poisoned Natural Questions at 5--30\\% poison ratios, adversarial retriever training alone reduces but does not eliminate attack success, while ZKIP drives the measured attack success rate to 0.000 in every defended configuration, keeping Recall@5 within 0.03 of the clean-corpus baseline. Supervised analyses on both Natural Questions and BEIR (NFCorpus) confirm that the counterfactual signals ZKIP relies on carry learnable poison structure. The defense costs $k{+}1$ generator passes per query ($6\\times$ for $k{=}5$); we analyze batching and early-stopping approximations that reduce this overhead. We also show that keyword-preserving poisons leave lexical retrievers such as BM25 essentially unaffected, an observation that delineates the boundary of the threat model. Code, datasets, and evaluation harnesses are released for reproducibility.",
+      "reason": "近 30 天；关键词：cs.LG, batching, dataset。Retrieval-Augmented Generation (RAG) systems ground large language models (LLMs) in external corpora, but this reliance exposes th...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL",
-        "alignment",
+        "cs.LG",
+        "batching",
+        "dataset",
+        "inference",
         "llm",
-        "multimodal",
+        "retrieval",
         "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-07-30T03:02:13Z",
-      "url": "https://arxiv.org/abs/2607.27614",
-      "pdfUrl": "https://arxiv.org/pdf/2607.27614v1"
+      "publishedAt": "2026-07-28T23:21:04Z",
+      "url": "https://arxiv.org/abs/2607.26339",
+      "pdfUrl": "https://arxiv.org/pdf/2607.26339v1"
     },
     {
-      "id": "arxiv-2607.27600",
-      "title": "Back from the Future: Key-Value Cache Management by Counter-Causal Surprise",
+      "id": "arxiv-2607.27692",
+      "title": "Recall Before You Rank: Similarity-Guided Top-$K$ Reuse for Efficient Long-Context Attention",
       "authors": [
-        "Stephen Gould",
-        "Anton van den Hengel"
+        "Wenshuai Yao",
+        "Wenyong Zhou",
+        "Hanyong Shao",
+        "Yizhe Chen",
+        "Zhiyuan Ning",
+        "Yuannuo Feng",
+        "Ru Huang",
+        "Kechao Tang"
       ],
-      "summary": "Key-value (KV) cache management through compression and eviction strategies has emerged as an important research direction in recent years. Computational demands of large language models (LLMs) and their multi-modal variants during output generation can be partially alleviated by caching previous key and value calculations needed by subsequent scaled dot-product attention operations. However, this leads to another problem: the size of the resulting KV cache grows linearly with context length and quickly consumes all available GPU memory when either the prompt or the generated output are long. KV cache management periodically prunes entries from the cache thereby reducing its memory footprint while attempting to retain sufficient information for accurate generation. A by-product is faster inference speed. We propose a simple yet effective KV eviction scheme motivated by the insight that past tokens which can be well-predicted from more recent tokens are redundant and their associated keys and values can be removed from the cache. To score entries for eviction we run the model on the tokens in their original order, reusing the key and value representations already stored in the KV cache, and applying a counter-causal attention mask so that each position attends only to its future context. This is in-distribution, tied directly to the actual cache contents, and requires no additional training. To further reduce cost, we additionally propose a fast single-layer approximation that restricts the counter-causal pass to the last transformer layer, achieving a significant speedup per refresh cycle at marginal accuracy cost. We evaluate our strategy on various open-source LLMs and benchmark datasets showing competitive or improved performance over other state-of-the-art methods. Reference code is available at https://github.com/metacognitionai/counter_causal.",
-      "reason": "近 30 天；关键词：cs.LG, dataset, inference。Key-value (KV) cache management through compression and eviction strategies has emerged as an important research direction in rece...",
+      "summary": "Top-$K$ sparse attention reduces the cost of Softmax and value aggregation by attending to only a small subset of key--value (KV) entries. However, identifying this subset still requires scoring the current query against the full KV cache and performing global Top-$K$ selection, leaving selector cost linear in context length and limiting the practical efficiency of sparse attention for long-context decoding. In this paper, we introduce ReTopK, a training-free method that accelerates dynamic Top-$K$ attention by reusing historical retrieval decisions. ReTopK builds on the observation that similar queries often attend to overlapping supports and that partially overlapping supports can still preserve most of the Exact Top-$K$ attention mass. For each attention head, it maintains a bounded cache of historical query--support pairs, retrieves the most similar cached queries for each new query, unions their stored supports with a recent window, and reranks only the resulting compact candidate set using exact current-query scores. A similarity-based fallback invokes full-history Exact Top-$K$ when reuse is unreliable, while periodic exact refreshes limit cache drift. ReTopK retains the complete KV cache and reuses only selected indices, rather than historical scores, attention weights, or outputs. Across 16K--128K contexts, ReTopK achieves the lowest PG19 perplexity and the highest NIAH and LongBench scores among the evaluated approximate methods. At 128K with $K=512$, ReTopK incurs only a 0.50\\% perplexity increase over Exact Top-$K$ while accelerating attention computation by $3.07\\times$.",
+      "reason": "近 30 天；关键词：cs.CL, efficient, kv-cache。Top-$K$ sparse attention reduces the cost of Softmax and value aggregation by attending to only a small subset of key--value (KV)...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.LG",
-        "dataset",
-        "inference",
+        "cs.CL",
+        "efficient",
         "kv-cache",
+        "retrieval"
+      ],
+      "signal": 98,
+      "source": "arXiv",
+      "publishedAt": "2026-07-30T05:25:23Z",
+      "url": "https://arxiv.org/abs/2607.27692",
+      "pdfUrl": "https://arxiv.org/pdf/2607.27692v1"
+    },
+    {
+      "id": "arxiv-2607.26602",
+      "title": "Harnessing Large Language Models for Intelligent Resource Allocation in the Internet of Everything",
+      "authors": [
+        "Haijun Zhang",
+        "Zhuojun Duan",
+        "Zijun Wu",
+        "Xu Ma",
+        "Yuzheng Ren"
+      ],
+      "summary": "The rapid development of the Internet of Everything (IoE) is accelerating the adoption of intelligent applications. However, the massive number of connected devices generates diverse and heterogeneous tasks, which pose increasing challenges for dynamic resource scheduling in IoE environments. Using their superior semantic understanding and reasoning capabilities, Large Artificial Intelligence Models (LAIMs) demonstrate significant potential to handle complex scheduling scenarios and improve resource utilization efficiency. This paper investigates a task-oriented LAIM-driven resource scheduling mechanism, which constructs a multidimensional scheduling decision model by integrating task semantics, network states, and constraint conditions. Furthermore, a task-oriented prompt generation method is designed to establish a deep association between task requirements and network state. In the proposed resource allocation scheme, an external evaluation and feedback module is incorporated to conduct real-time feasibility verification and performance evaluation of scheduling strategies, thus enhancing the robustness and adaptability of scheduling. Simulation results demonstrate that the proposed Large Language Model (LLM)-driven network architecture and resource allocation scheme achieve significant improvements in convergence speed, processing latency, and energy consumption, effectively enhancing IoE task responsiveness and resource utilization.",
+      "reason": "近 30 天；关键词：cs.NI, energy, latency。The rapid development of the Internet of Everything (IoE) is accelerating the adoption of intelligent applications. However, the m...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.NI",
+        "energy",
+        "latency",
         "llm"
       ],
-      "signal": 99,
+      "signal": 96,
       "source": "arXiv",
-      "publishedAt": "2026-07-30T02:42:51Z",
-      "url": "https://arxiv.org/abs/2607.27600",
-      "pdfUrl": "https://arxiv.org/pdf/2607.27600v1"
+      "publishedAt": "2026-07-29T08:26:31Z",
+      "url": "https://arxiv.org/abs/2607.26602",
+      "pdfUrl": "https://arxiv.org/pdf/2607.26602v1"
     },
     {
-      "id": "arxiv-2607.27591",
-      "title": "Prox: Training-Free FFN Activation Sparsity via Approximate Intermediate-Channel Salience in LLMs",
+      "id": "arxiv-2607.27386",
+      "title": "Beyond the Bidirectional Promise: Re-evaluating the Robustness of Diffusion Language Models",
       "authors": [
-        "Jinyi Liu",
-        "Wei Chen",
-        "Pengyu Chen",
-        "Xinyi Yuan",
-        "Minghe Bai",
-        "Guoquan Wu",
-        "Jun Wei"
+        "Saurabh Yadav",
+        "Badri Narayana Patro",
+        "Vijay Srinivas Agneeswaran"
       ],
-      "summary": "Feed-forward networks (FFNs) dominate memory traffic and computation in large language model (LLM) inference, making them a primary target for activation sparsification. However, existing training-free methods suffer substantial model-quality degradation at high sparsity due to limitations in their channel-selection strategies. We observe that the SwiGLU intermediate state provides a highly effective channel-selection signal, but obtaining it requires costly dense computation. To address this, we present \\emph{Prox}, a two-stage training-free framework for sparse SwiGLU FFNs. Prox hinges on the key insight: sparse execution requires only the channel mask induced by the intermediate state, which can be constructed from the magnitude ranking of its entries rather than their exact values. Specifically, Stage 1 uses input sparsity and quantized proxy weights to construct a shared mask; Stage 2 computes the selected channels exactly, enabling sparse execution of all three projections. Across ten LLMs from six model families, Prox outperforms training-free baselines at all sparsity levels, achieves up to a $1.99\\times$ end-to-end decoding speedup at 70\\% FFN sparsity, and is compatible with quantization and sparse attention.",
-      "reason": "近 30 天；关键词：cs.LG, inference, llm。Feed-forward networks (FFNs) dominate memory traffic and computation in large language model (LLM) inference, making them a primar...",
+      "summary": "Diffusion Language Models (DLMs) offer a compelling alternative to autoregressive (AR) generation by enabling bidirectional context and iterative refinement. However, their reliability under natural input noise and adversarial attacks remains under-explored. To address this, we systematically evaluate DLM robustness and calibration against AR baselines, using two parameter-matched pairs (LLaDA-8B vs. LLaMA-3-8B and Dream-7B vs. Qwen2.5-7B) across 32 natural perturbation conditions, adversarial gradient probes, and mechanistic hidden-state analyses. This paired design effectively isolates architecture-intrinsic properties from weight-dependent behaviors. We find a nuanced robustness profile: while highly stochastic DLM loss landscapes naturally resist gradient-based adversarial suffixes, they provide no guaranteed defense against natural noise, proving that everyday robustness is weight-dependent rather than inherently architectural. Furthermore, DLMs exhibit systematic overconfidence, presenting a practical deployment hazard. Most crucially, mechanistic probing reveals that all models perfectly encode input corruption, isolating behavioral fragility entirely to a decoder routing failure. Consistent with this diagnosis, we show that surface-level prompt patching fails to improve over noisy baselines. Ultimately, DLM robustness cannot be patched on; it must be fundamentally integrated into the iterative decoding loop.",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.AI。Diffusion Language Models (DLMs) offer a compelling alternative to autoregressive (AR) generation by enabling bidirectional contex...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "meta",
+        "cs.AI"
+      ],
+      "signal": 90,
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-07-29T18:46:43Z",
+      "url": "https://arxiv.org/abs/2607.27386",
+      "pdfUrl": "https://arxiv.org/pdf/2607.27386v1"
+    },
+    {
+      "id": "arxiv-2607.26627",
+      "title": "Revisiting Lossy Verification in Speculative Decoding: Mechanisms, Trade-offs, and Failure Modes",
+      "authors": [
+        "Tianyu Wang",
+        "Yuxuan Zhou",
+        "Wenbin Wang",
+        "Heng Li",
+        "Zikai Xiao",
+        "Junyuan Shang"
+      ],
+      "summary": "Speculative Decoding (SD) accelerates large language model inference by allowing a lightweight draft model to propose tokens that are subsequently verified in parallel by a larger target model. Recent approaches introduce lossy verification schemes to further improve efficiency by relaxing strict distributional matching. Yet such relaxation silently rewrites the decoding distribution, and the resulting acceleration can come at the cost of unstable, sometimes severely degraded generation quality. In this work, we present a principled analysis of the distributions induced by lossy verification methods. We show that many seemingly distinct approaches differ only superficially and can be classified into two categories: truncation-based verification and collaborative verification. We further construct a diagnostic evaluation framework across curated benchmarks. For truncation-based methods, we identify a fundamental pitfall: performance can degrade significantly compared to the true truncation sampling baseline due to distributional distortion. For collaborative verification, we uncover a key principles: controlling the overshoot of draft probabilities relative to target probabilities is essential to prevent low-quality outputs. Our code is available at https://github.com/ZhouYuxuanYX/Fast-HSD.",
+      "reason": "近 30 天；关键词：cs.CL, inference, speculative。Speculative Decoding (SD) accelerates large language model inference by allowing a lightweight draft model to propose tokens that...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "inference",
+        "speculative"
+      ],
+      "signal": 90,
+      "source": "arXiv",
+      "publishedAt": "2026-07-29T08:54:27Z",
+      "url": "https://arxiv.org/abs/2607.26627",
+      "pdfUrl": "https://arxiv.org/pdf/2607.26627v1"
+    },
+    {
+      "id": "arxiv-2607.28097",
+      "title": "From Expert Reduction to Behavioral Divergence: Tracing Numerical State through Sparse MoE Inference",
+      "authors": [
+        "Tianyang Zhu"
+      ],
+      "summary": "Mathematically equivalent expert-reduction orders can produce observably different sparse-MoE executions. We isolate this effect in native DeepSeek-V4-Flash by freezing local MoE state and varying only aggregation semantics. Four schemes separate operand representation from accumulator precision. At one layer-5 fork, 720 A-mode orders yield 10 continuation basins; 720 B-mode orders form 360 exact structural classes and 11 basins. Under one Chinese prompt, the B classes split into 202 layoffs, 113 hiring, and 45 other continuations. Maximum-L-infinity B-branch selection separates 12, 24, and 36 of 50 prompts by 8, 16, and 32 tokens. Across 192 persistent trajectories per scheme, P32, A, and B change every native-reference route trajectory, while C preserves routes, token sequences, and texts. A separate 192-trajectory C check matches native MoE, post-mHC, next-router, and LM states bitwise. For one controlled B branch, exact post-mHC endpoint reconstruction reproduces the measured downstream trajectory. At the next decode boundary, exact FP64 reconstruction of the branch's full persistent state yields agreement for 301 downstream post-mHC states, 301 persistent-state checkpoints, 301 routes, predictions, and text over seven steps, given the same naturally generated next input. These controls identify post-mHC as an intra-token boundary and full persistent state as a cross-token continuation boundary. Identical tokens need not imply identical autoregressive state: divergence can survive a token boundary and become visible later. These results make expert operand conversion, accumulator precision, and reduction order part of a numerical compatibility contract for sparse-MoE runtimes and hardware backends. They establish controlled causal possibility, not deployment incidence; C's order invariance is limited to evaluated six-term states and schedules.",
+      "reason": "近 30 天；关键词：cs.LG, conversion, inference。Mathematically equivalent expert-reduction orders can produce observably different sparse-MoE executions. We isolate this effect i...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "conversion",
+        "inference"
+      ],
+      "signal": 88,
+      "source": "arXiv",
+      "publishedAt": "2026-07-30T12:07:56Z",
+      "url": "https://arxiv.org/abs/2607.28097",
+      "pdfUrl": "https://arxiv.org/pdf/2607.28097v1"
+    },
+    {
+      "id": "arxiv-2607.26845",
+      "title": "Thinking Under Uncertainty: Evidence Use and Information-Seeking in Language Models",
+      "authors": [
+        "Hua-Dong Xiong",
+        "Xinyuan Yan",
+        "Ji-An Li",
+        "Jingming Xue",
+        "Marcelo G. Mattar",
+        "Robert C. Wilson"
+      ],
+      "summary": "Inference-time thinking improves the performance of large language models, but aggregate outcomes do not reveal whether models use available evidence more effectively or seek information that could improve future decisions. We distinguish these responses by measuring action preference, thinking length, and reported confidence under matched uncertainty. Ten open-weight models completed matched horizon-style two-armed bandit trials in thinking and non-thinking modes. A cognitive model separated value-guided action and uncertainty-independent choice noise from two behavioral signatures of exploration: a UCB-like preference for the less-known arm and Thompson-like choice variability that increases with total uncertainty. On average, thinking strengthened value-guided action and reduced uncertainty-independent choice noise, without producing UCB-like exploration or strengthening Thompson-like exploration. Outside action, the information-imbalanced history condition, which also displayed more observations than the matched balanced condition, was associated with greater thinking length. Reported confidence became more sensitive to decision difficulty and more strongly associated with chosen task evidence. We interpret these thinking-length and reported-confidence patterns as consistent with metacognitive control and metacognitive monitoring, respectively, without establishing either process. Decoder sweeps, especially temperature, altered choice noise and thinking length but did not reproduce the joint cross-output pattern. In this controlled decision setting, thinking improved how models acted on current evidence, while neither measured signature supported a shift toward a more information-seeking policy.",
+      "reason": "近 30 天；关键词：cs.LG, inference, lora。Inference-time thinking improves the performance of large language models, but aggregate outcomes do not reveal whether models use...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
         "inference",
-        "llm",
-        "quantization",
-        "ranking"
+        "lora"
       ],
-      "signal": 99,
+      "signal": 88,
       "source": "arXiv",
-      "publishedAt": "2026-07-30T02:20:01Z",
-      "url": "https://arxiv.org/abs/2607.27591",
-      "pdfUrl": "https://arxiv.org/pdf/2607.27591v1"
-    },
-    {
-      "id": "arxiv-2607.27581",
-      "title": "MUGEN: A Unified Framework for Efficient Motion Understanding and Generation",
-      "authors": [
-        "Zhankai Ye",
-        "Yukai Jin",
-        "Bingyang Wei",
-        "Bofan Li",
-        "Yusen Wu",
-        "Fangyi Li",
-        "Shangqian Gao",
-        "Xin Liu"
-      ],
-      "summary": "Grounding human motion in language, and language in motion, is a central step toward physical AI systems that can understand, generate, and communicate human behavior. Unified motion--language systems first coupled the two directions through a shared discrete motion codebook, but quantization limits generation quality. The strongest generators buy quality back at growing cost: stacked residual codebooks enlarge the representation; masked decoding stages, long autoregressive rollouts, and denoising chains of tens to hundreds of steps stretch inference; even the continuous-latent designs among them reach their latent only through an iterative diffusion head; and none of this decoding machinery serves understanding. We therefore propose MUGEN, a unified motion--language framework that pays neither cost: no codebook, one draw. A single adaptive-length autoencoder compresses any-length motion into a few continuous latent slots, the system's only motion representation: the language model generates them for text-to-motion and reads them back for motion understanding. Depth-routed hidden states let each slot read from the transformer depth it needs, and a calibrated head predicts a joint distribution over the full latent set, so a single draw carries the text-conditional, cross-slot variation a description permits. At a decoding cost of K language-model steps, one draw, and one decoder pass, MUGEN leads language-model baselines on FID on HumanML3D while raising retrieval precision above the real-motion reference under the standard evaluator, achieves the best CIDEr and BLEU@4 scores, and surpasses the discrete-token state of the art on every retrieval and alignment metric on SnapMoGen.",
-      "reason": "近 30 天；关键词：cs.LG, alignment, efficient。Grounding human motion in language, and language in motion, is a central step toward physical AI systems that can understand, gene...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "alignment",
-        "efficient",
-        "inference",
-        "quantization",
-        "retrieval",
-        "slo"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-07-30T01:55:51Z",
-      "url": "https://arxiv.org/abs/2607.27581",
-      "pdfUrl": "https://arxiv.org/pdf/2607.27581v1"
-    },
-    {
-      "id": "arxiv-2607.27265",
-      "title": "PlatformBid: An Auto-Bidding Benchmark from a Unified Advertising Platform's Perspective",
-      "authors": [
-        "Shengtian Yang",
-        "Yewen Li",
-        "Peng Jiang",
-        "Zhiyi Lyu",
-        "Bo An",
-        "Peng Jiang",
-        "Qingpeng Cai",
-        "Lei Feng"
-      ],
-      "summary": "Real-time bidding is central to computational advertising, comprising three elements: Supply Side Platform (SSP) selling ad impressions, Demand Side Platform (DSP) bidding for advertisers, and Ad Exchange conducting auctions between them. Traditional auto-bidding algorithms focus solely on the DSP side, maximizing advertiser conversions by adjusting bids against competitors. However, current big ad platforms, such as social media and e-commerce companies, now integrate SSP, DSP, and Ad Exchange functions internally. From such ad platforms' perspective, the goal of the auto-bidding algorithms is not only to maximize the advertisers' conversions, but also the total revenue of the platform. Given the lack of platform-centric evaluation frameworks and the pressing need to advance auto-bidding research, we propose PlatformBid - the first comprehensive benchmark designed from a unified ad platform's perspective. To accurately reflect the real-world auto-bidding scenarios, we define three representative settings: (1) homogeneous competition with identical algorithms across advertisers, (2) heterogeneous competition with diverse algorithmic strategies, and (3) promotional competition where some advertisers surge budgets for boosting sales during promotional events like Black Friday. We systematically evaluate a broad spectrum of existing auto-bidding methods across these settings, encompassing classical control methods, RL-based methods, and recent generative methods. Besides these methods, we further propose a novel auto-bidding method based on flow-matching, termed BidFlow, which leverages the flow-matching method's expressive policy representation to effectively handle dynamic competitive environments. Online experiments on Kuaishou further show a +0.68\\% improvement in target cost, providing deployment evidence for the offline-online consistency of PlatformBid.",
-      "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.LG, advertising。Real-time bidding is central to computational advertising, comprising three elements: Supply Side Platform (SSP) selling ad impres...",
-      "area": "推荐算法",
-      "tags": [
-        "kuaishou",
-        "cs.LG",
-        "advertising",
-        "conversion"
-      ],
-      "signal": 99,
-      "source": "Kuaishou/arXiv",
-      "publishedAt": "2026-07-29T09:02:32Z",
-      "url": "https://arxiv.org/abs/2607.27265",
-      "pdfUrl": "https://arxiv.org/pdf/2607.27265v1"
+      "publishedAt": "2026-07-29T12:33:12Z",
+      "url": "https://arxiv.org/abs/2607.26845",
+      "pdfUrl": "https://arxiv.org/pdf/2607.26845v1"
     }
   ]
 }
