@@ -2,7 +2,7 @@
 
 一个可以直接部署到 GitHub Pages 的静态学习站。首页论文面板优先读取 `data/history.json`，支持按日期回看、搜索、领域筛选、排序和本地收藏；站内还包含经典教材导读与可在浏览器中运行的 Python/NumPy 刷题场。
 
-一级导航分为“论文”“经典教材导读”和“刷题”：论文面板保留在根目录；[经典教材导读](textbooks/) 收录 [CSAPP Codebook](csapp/)、[算法导读](algorithms/)、[CS224n NLP Lab](cs224n/) 与 [CS336 LM Forge](cs336/)；[AI 实现练习场](practice/) 提供 12 道 AI 系统实现题、四条学习路径、浏览器内判题、本地草稿和进度记录。
+一级导航分为“论文”“经典教材导读”和“刷题”：论文面板保留在根目录；[经典教材导读](textbooks/) 收录 [CSAPP Codebook](csapp/)、[算法导读](algorithms/)、[CS224n NLP Lab](cs224n/) 与 [CS336 LM Forge](cs336/)；[AI 实现练习场](practice/) 提供 36 道 AI 系统实现题、九条学习路径、浏览器内判题、本地草稿和进度记录。
 
 ## 本地预览
 
@@ -66,6 +66,9 @@ python3 -m http.server 4173
 │   ├── styles.css
 │   ├── app.js
 │   ├── problems.js
+│   ├── problems-training.js
+│   ├── problems-transformer.js
+│   ├── problems-vision-graph.js
 │   ├── runner-worker.js
 │   └── LICENSE-pyre-code.txt
 ├── cs224n/
