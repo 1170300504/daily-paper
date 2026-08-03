@@ -496,3 +496,9 @@ footer svg { width: 13px; }
   .reader-nav { margin-top: 34px; }
   footer { flex-direction: column; }
 }
+
+@media (max-width: 700px) {
+  .topbar { flex-wrap: wrap; }
+  .topbar-actions { width: 100%; flex-wrap: nowrap; }
+  .site-switcher { order: 0; flex: 1; flex-basis: auto; justify-content: space-between; }
+}

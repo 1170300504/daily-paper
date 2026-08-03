@@ -1,8 +1,8 @@
 # 论文每日一读
 
-一个可以直接部署到 GitHub Pages 的静态论文阅读面板。页面优先读取 `data/history.json`，支持按日期回看历史论文、搜索、领域筛选、排序和本地收藏。
+一个可以直接部署到 GitHub Pages 的静态学习站。首页论文面板优先读取 `data/history.json`，支持按日期回看、搜索、领域筛选、排序和本地收藏；站内还包含经典教材导读与可在浏览器中运行的 Python/NumPy 刷题场。
 
-导航一级只分为“论文”和“经典教材导读”：论文面板保留在根目录；[经典教材导读](textbooks/) 收录 [CSAPP Codebook](csapp/)、[算法导读](algorithms/) 与 [CS224n NLP Lab](cs224n/)。
+一级导航分为“论文”“经典教材导读”和“刷题”：论文面板保留在根目录；[经典教材导读](textbooks/) 收录 [CSAPP Codebook](csapp/)、[算法导读](algorithms/)、[CS224n NLP Lab](cs224n/) 与 [CS336 LM Forge](cs336/)；[AI 实现练习场](practice/) 提供 12 道 AI 系统实现题、四条学习路径、浏览器内判题、本地草稿和进度记录。
 
 ## 本地预览
 
@@ -10,7 +10,11 @@
 python3 -m http.server 4173
 ```
 
-然后打开 `http://localhost:4173`；经典教材导读在 `http://localhost:4173/textbooks/`。
+然后打开 `http://localhost:4173`；经典教材导读在 `http://localhost:4173/textbooks/`，刷题场在 `http://localhost:4173/practice/`。第一次运行代码时会从 CDN 下载 Pyodide 与 NumPy，后续由浏览器缓存。
+
+## 浏览器刷题
+
+`practice/` 借鉴 [Pyre Code](https://github.com/whwangovo/pyre-code) 的题库、学习路径和分栏工作台形式，并针对纯静态 GitHub Pages 改写为浏览器 NumPy 版。`运行` 执行两条公开样例，`提交` 执行全部测试；代码、进度与最近提交只保存在当前设备。原项目及 TorchCode 的 MIT 许可说明见 `practice/LICENSE-pyre-code.txt`。
 
 ## 发布到 username.github.io
 
@@ -57,6 +61,13 @@ python3 -m http.server 4173
 │   ├── index.html
 │   ├── styles.css
 │   └── app.js
+├── practice/
+│   ├── index.html
+│   ├── styles.css
+│   ├── app.js
+│   ├── problems.js
+│   ├── runner-worker.js
+│   └── LICENSE-pyre-code.txt
 ├── cs224n/
 │   ├── index.html
 │   ├── styles.css

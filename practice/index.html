@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="AI 实现练习场：沿学习路径在浏览器中编写 Python、运行 NumPy 测试并记录进度。"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <title>AI 实现练习场 · 经典教材导读</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#catalogMain">跳到主要内容</a>
+
+    <div id="catalogView" class="catalog-view">
+      <div class="grain" aria-hidden="true"></div>
+      <div class="catalog-shell">
+        <header class="catalog-topbar" aria-label="站点导航">
+          <a class="brand" href="./" aria-label="AI 实现练习场首页">
+            <span class="brand-mark" aria-hidden="true">{ }</span>
+            <span class="brand-copy">
+              <strong>AI 实现练习</strong>
+              <small>PRACTICE · TRACE · IMPROVE</small>
+            </span>
+          </a>
+
+          <div class="topbar-actions">
+            <nav class="site-switcher" aria-label="内容导航">
+              <a class="site-switcher-link" href="../">论文</a>
+              <a class="site-switcher-link" href="../textbooks/">经典教材</a>
+              <a class="site-switcher-link" href="./" aria-current="page">刷题</a>
+            </nav>
+            <a class="topbar-link" href="../algorithms/">
+              <i data-lucide="book-open"></i>
+              <span>算法导读</span>
+            </a>
+            <button
+              class="icon-button"
+              id="themeToggle"
+              data-theme-toggle
+              type="button"
+              aria-label="切换深浅主题"
+              title="切换深浅主题"
+            >
+              <i data-lucide="moon"></i>
+            </button>
+          </div>
+        </header>
+
+        <main id="catalogMain">
+          <section class="catalog-hero" aria-labelledby="catalogTitle">
+            <div class="hero-copy">
+              <p class="eyebrow"><span>01</span> Build the solving muscle</p>
+              <h1 id="catalogTitle">把每道题，变成一条<br /><em>可以复用的思路。</em></h1>
+              <p class="hero-lede">
+                不追求机械打卡。沿着 NumPy 算子、训练组件、Transformer 与推理系统练习，写下能运行的答案，也留下为什么这样做的证据。
+              </p>
+              <div class="hero-actions">
+                <a class="primary-link" href="?problem=relu">
+                  <span>开始第一题</span>
+                  <i data-lucide="arrow-up-right"></i>
+                </a>
+                <a class="text-link" href="#problemCatalog">浏览完整题库 <i data-lucide="arrow-down"></i></a>
+              </div>
+            </div>
+
+            <aside class="hero-note" aria-label="解题循环">
+              <div class="note-windowbar">
+                <span><i></i><i></i><i></i></span>
+                <code>solving-loop.py</code>
+              </div>
+              <ol class="solving-loop">
+                <li><span>01</span><div><strong>Understand</strong><small>明确输入、输出与边界</small></div></li>
+                <li><span>02</span><div><strong>Model</strong><small>把问题映射到熟悉的结构</small></div></li>
+                <li><span>03</span><div><strong>Implement</strong><small>让思路成为可执行的代码</small></div></li>
+                <li><span>04</span><div><strong>Verify</strong><small>用反例和复杂度检验答案</small></div></li>
+              </ol>
+              <p class="note-caption"><span>→</span> Good solutions become reusable patterns.</p>
+            </aside>
+          </section>
+
+          <dl class="practice-stats" aria-label="练习数据">
+            <div>
+              <dt><i data-lucide="library"></i> 题目收录</dt>
+              <dd id="totalProblemsStat">—</dd>
+              <small>curated problems</small>
+            </div>
+            <div>
+              <dt><i data-lucide="circle-check-big"></i> 已完成</dt>
+              <dd id="solvedProblemsStat">—</dd>
+              <small>solved locally</small>
+            </div>
+            <div>
+              <dt><i data-lucide="flame"></i> 连续练习</dt>
+              <dd><span id="streakStat">—</span><b> 天</b></dd>
+              <small>current streak</small>
+            </div>
+            <div>
+              <dt><i data-lucide="route"></i> 学习路径</dt>
+              <dd id="pathCountStat">—</dd>
+              <small>guided tracks</small>
+            </div>
+          </dl>
+
+          <section class="catalog-section" id="problemCatalog" aria-labelledby="catalogHeading">
+            <header class="section-heading">
+              <div>
+                <p class="section-kicker">Problem catalog</p>
+                <h2 id="catalogHeading">今天，练哪一种思考？</h2>
+              </div>
+              <p id="catalogStatus" class="catalog-status" role="status" aria-live="polite">正在读取题库…</p>
+            </header>
+
+            <div class="catalog-controls" aria-label="搜索与筛选题目">
+              <label class="search-field" for="catalogSearch">
+                <i data-lucide="search" aria-hidden="true"></i>
+                <span class="sr-only">搜索题目</span>
+                <input
+                  id="catalogSearch"
+                  type="search"
+                  autocomplete="off"
+                  placeholder="搜索题名、标签或题号"
+                />
+                <kbd>/</kbd>
+              </label>
+
+              <label class="select-field" for="difficultyFilter">
+                <span>难度</span>
+                <select id="difficultyFilter">
+                  <option value="all">全部难度</option>
+                  <option value="easy">简单</option>
+                  <option value="medium">中等</option>
+                  <option value="hard">困难</option>
+                </select>
+                <i data-lucide="chevron-down" aria-hidden="true"></i>
+              </label>
+
+              <label class="select-field" for="categoryFilter">
+                <span>主题</span>
+                <select id="categoryFilter">
+                  <option value="all">全部主题</option>
+                </select>
+                <i data-lucide="chevron-down" aria-hidden="true"></i>
+              </label>
+
+              <button class="clear-button" id="clearFilters" type="button">
+                <i data-lucide="rotate-ccw"></i>
+                <span>清除</span>
+              </button>
+            </div>
+
+            <div class="path-block">
+              <div class="path-label"><span>PATH</span><p>按学习路径</p></div>
+              <div class="path-filters" id="pathFilters" role="group" aria-label="学习路径筛选">
+                <button class="path-chip" type="button" data-path="all" aria-pressed="true">
+                  <i data-lucide="layout-grid"></i><span>全部</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="table-frame">
+              <div id="catalogLoading" class="loading-state" role="status" aria-live="polite">
+                <span class="spinner" aria-hidden="true"></span>
+                <div><strong>正在整理练习册</strong><small>题目和本地进度马上就好。</small></div>
+              </div>
+
+              <div class="problem-table-wrap">
+                <table class="problem-table">
+                  <caption class="sr-only">算法练习题目列表</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col" class="status-column"><span class="sr-only">完成状态</span></th>
+                      <th scope="col">题目</th>
+                      <th scope="col">难度</th>
+                      <th scope="col">分类</th>
+                      <th scope="col">路径</th>
+                      <th scope="col">尝试</th>
+                      <th scope="col"><span class="sr-only">打开题目</span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="problemsTableBody"></tbody>
+                </table>
+              </div>
+
+              <div id="catalogEmpty" class="empty-state" hidden>
+                <span class="empty-icon"><i data-lucide="search-x"></i></span>
+                <h3>没有找到匹配的题目</h3>
+                <p>试试更短的关键词，或清除难度与路径筛选。</p>
+                <button type="button" data-clear-filters>查看全部题目</button>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer class="catalog-footer">
+          <span>AI 实现练习场 · 答案与进度只保存在当前浏览器</span>
+          <nav aria-label="页脚导航">
+            <a href="../algorithms/">算法导读</a>
+            <a href="../textbooks/">经典教材</a>
+            <a href="../">论文每日一读</a>
+            <a href="https://github.com/whwangovo/pyre-code" target="_blank" rel="noreferrer">Pyre Code</a>
+            <a href="LICENSE-pyre-code.txt">开源许可</a>
+          </nav>
+        </footer>
+      </div>
+    </div>
+
+    <div id="workspaceView" class="workspace-view" hidden>
+      <header class="workspace-topbar">
+        <div class="workspace-nav">
+          <a id="workspaceBack" class="workspace-brand" href="./" aria-label="返回题库">
+            <span class="workspace-brand-mark" aria-hidden="true">{ }</span>
+            <span>Practice</span>
+          </a>
+          <span class="topbar-divider" aria-hidden="true"></span>
+          <nav class="breadcrumbs" aria-label="面包屑导航">
+            <a href="./">题库</a>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+            <span id="breadcrumbTitle" aria-current="page">载入题目…</span>
+          </nav>
+        </div>
+
+        <div class="workspace-actions">
+          <div id="workspaceProgress" class="workspace-progress" title="练习进度">
+            <span id="progressText">0 / 0</span>
+            <span class="progress-track" aria-hidden="true"><i id="progressBar"></i></span>
+          </div>
+          <button
+            id="mobilePanelToggle"
+            class="workspace-button mobile-panel-toggle"
+            type="button"
+            aria-pressed="false"
+            aria-label="切换题目与编辑器"
+          >
+            <i data-lucide="panel-right"></i><span>编辑器</span>
+          </button>
+          <button
+            id="problemDrawerToggle"
+            class="workspace-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="problemDrawer"
+          >
+            <i data-lucide="list-tree"></i><span>题目列表</span>
+          </button>
+          <button id="prevProblemButton" class="workspace-icon-button problem-nav-button" type="button" aria-label="上一题" title="上一题">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <button id="nextProblemButton" class="workspace-icon-button problem-nav-button" type="button" aria-label="下一题" title="下一题">
+            <i data-lucide="chevron-right"></i>
+          </button>
+          <button
+            id="workspaceThemeToggle"
+            class="workspace-icon-button"
+            data-theme-toggle
+            type="button"
+            aria-label="切换深浅主题"
+            title="切换深浅主题"
+          >
+            <i data-lucide="moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <div id="workspaceStatus" class="workspace-status" role="status" aria-live="polite"></div>
+
+      <aside id="problemDrawer" class="problem-drawer" aria-label="题目目录" aria-hidden="true">
+        <header class="drawer-header">
+          <div><p>Problem set</p><h2>切换题目</h2></div>
+          <button id="problemDrawerClose" type="button" aria-label="关闭题目目录">
+            <i data-lucide="x"></i>
+          </button>
+        </header>
+        <label class="drawer-search" for="drawerSearch">
+          <i data-lucide="search" aria-hidden="true"></i>
+          <span class="sr-only">在题目目录中搜索</span>
+          <input id="drawerSearch" type="search" autocomplete="off" placeholder="搜索题目" />
+        </label>
+        <nav id="problemDrawerList" class="drawer-list" aria-label="所有练习题"></nav>
+        <div id="drawerEmpty" class="drawer-empty" hidden>
+          <i data-lucide="file-question"></i><span>没有匹配的题目</span>
+        </div>
+      </aside>
+      <button id="drawerBackdrop" class="drawer-backdrop" type="button" tabindex="-1" aria-label="关闭题目目录"></button>
+
+      <main class="workspace-main" id="workspaceMain" data-mobile-pane="problem">
+        <section class="problem-pane" aria-label="题目内容">
+          <div class="pane-tabs" role="tablist" aria-label="题目内容选项">
+            <button
+              id="descriptionTab"
+              class="pane-tab"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="descriptionPanel"
+            >
+              <i data-lucide="file-text"></i><span>题目描述</span>
+            </button>
+            <button
+              id="solutionTab"
+              class="pane-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="solutionPanel"
+              tabindex="-1"
+            >
+              <i data-lucide="lightbulb"></i><span>思路解析</span>
+            </button>
+          </div>
+
+          <div class="problem-scroll">
+            <div id="workspaceLoading" class="workspace-loading" role="status">
+              <span class="spinner" aria-hidden="true"></span>
+              <span>正在打开练习…</span>
+            </div>
+
+            <article id="descriptionPanel" class="problem-article" role="tabpanel" aria-labelledby="descriptionTab">
+              <header class="problem-heading">
+                <div class="problem-number" id="problemNumber">PROBLEM —</div>
+                <h1 id="problemTitle">载入题目…</h1>
+                <div class="problem-meta-row">
+                  <span id="problemDifficulty" class="difficulty-badge" data-difficulty="medium">—</span>
+                  <span id="problemMeta" class="problem-meta">时间限制 — · 空间限制 —</span>
+                </div>
+                <div id="problemTags" class="problem-tags" aria-label="题目标签"></div>
+              </header>
+
+              <section id="problemDescription" class="problem-copy" aria-label="题目说明"></section>
+
+              <section class="problem-section examples-section" aria-labelledby="examplesHeading">
+                <h2 id="examplesHeading"><span>EXAMPLES</span> 示例</h2>
+                <div id="problemExamples" class="example-list"></div>
+              </section>
+
+              <section class="problem-section constraints-section" aria-labelledby="constraintsHeading">
+                <h2 id="constraintsHeading"><span>CONSTRAINTS</span> 约束</h2>
+                <ul id="problemConstraints" class="constraints-list"></ul>
+              </section>
+            </article>
+
+            <article
+              id="solutionPanel"
+              class="problem-article solution-article"
+              role="tabpanel"
+              aria-labelledby="solutionTab"
+              hidden
+            >
+              <div class="solution-notice">
+                <i data-lucide="sparkles"></i>
+                <div><strong>先尝试，再看答案</strong><p>思路不是捷径，它应该帮助你把一次解答变成可迁移的方法。</p></div>
+              </div>
+              <div id="solutionContent" class="solution-content"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="coding-pane" aria-label="代码编辑与测试">
+          <div class="editor-panel">
+            <header class="editor-toolbar">
+              <div class="editor-file">
+                <i data-lucide="file-code-2"></i>
+                <span id="editorFilename">solution.py</span>
+                <i class="unsaved-dot" aria-label="草稿已自动保存在本机" title="草稿已自动保存在本机"></i>
+              </div>
+              <div class="editor-tools">
+                <label class="language-field" for="languageSelect">
+                  <span class="sr-only">编程语言</span>
+                  <select id="languageSelect">
+                    <option value="python">Python 3 · NumPy</option>
+                  </select>
+                  <i data-lucide="chevron-down" aria-hidden="true"></i>
+                </label>
+                <span id="editorStatus" class="editor-status" role="status">就绪</span>
+              </div>
+            </header>
+
+            <div class="editor-wrap" id="editorWrap">
+              <pre id="lineNumbers" class="line-numbers" aria-hidden="true">1</pre>
+              <textarea
+                id="codeEditor"
+                class="code-editor"
+                aria-label="代码编辑器"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+                wrap="off"
+              ></textarea>
+            </div>
+          </div>
+
+          <section class="console-panel" aria-label="测试与运行结果">
+            <div class="console-tabs" role="tablist" aria-label="测试面板">
+              <button
+                id="testsTab"
+                class="console-tab"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="testsPanel"
+              >
+                <i data-lucide="flask-conical"></i><span>测试用例</span>
+              </button>
+              <button
+                id="resultsTab"
+                class="console-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="resultsPanel"
+                tabindex="-1"
+              >
+                <i data-lucide="terminal-square"></i><span>运行结果</span><b id="resultBadge" hidden>0</b>
+              </button>
+              <button
+                id="historyTab"
+                class="console-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="historyPanel"
+                tabindex="-1"
+              >
+                <i data-lucide="history"></i><span>提交记录</span>
+              </button>
+            </div>
+
+            <div class="console-content">
+              <div id="testsPanel" class="console-pane" role="tabpanel" aria-labelledby="testsTab">
+                <div id="testCases" class="test-cases"></div>
+              </div>
+
+              <div id="resultsPanel" class="console-pane" role="tabpanel" aria-labelledby="resultsTab" hidden>
+                <div id="runOutput" class="run-output" role="log" aria-live="polite">
+                  <div class="console-empty">
+                    <i data-lucide="play-circle"></i>
+                    <p>运行代码后，这里会显示每个用例的结果。</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="historyPanel" class="console-pane" role="tabpanel" aria-labelledby="historyTab" hidden>
+                <ol id="submissionHistory" class="submission-history"></ol>
+                <div id="historyEmpty" class="console-empty">
+                  <i data-lucide="clock-3"></i><p>还没有提交记录。</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <footer class="actionbar">
+            <div class="action-hint"><kbd>⌘</kbd><span>+</span><kbd>Enter</kbd><span>运行</span></div>
+            <div class="action-buttons">
+              <button id="resetButton" class="reset-button" type="button">
+                <i data-lucide="rotate-ccw"></i><span>重置</span>
+              </button>
+              <button id="runButton" class="run-button" type="button">
+                <i data-lucide="play"></i><span>运行代码</span>
+              </button>
+              <button id="submitButton" class="submit-button" type="button">
+                <i data-lucide="send"></i><span>提交答案</span>
+              </button>
+            </div>
+          </footer>
+        </section>
+      </main>
+    </div>
+
+    <noscript>
+      <div class="noscript-note">这个练习场需要 JavaScript 才能载入题目并运行代码。</div>
+    </noscript>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="problems.js" defer></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>

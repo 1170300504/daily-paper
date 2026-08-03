@@ -18,6 +18,13 @@
   --max: 1180px;
 }
 
+@media (max-width: 720px) {
+  .topbar { flex-wrap: wrap; }
+  .brand small { display: none; }
+  .topbar-actions { width: 100%; justify-content: space-between; }
+  .site-switcher { flex: 1; justify-content: space-between; }
+}
+
 [data-theme="dark"] {
   color-scheme: dark;
   --bg: #111513;
