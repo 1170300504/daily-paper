@@ -1,303 +1,277 @@
 {
-  "generatedAt": "2026-08-05T06:51:31.251508+08:00",
+  "generatedAt": "2026-08-06T06:48:14.316803+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2608.02602",
-      "title": "AURORA-LM: Autoencoding Unified Representation for Continuous-Latent Diffusion Language Modeling",
+      "id": "arxiv-2608.04010",
+      "title": "ParVL: Parallel Scaling and Expandable Compute Allocation for Multimodal LLMs",
       "authors": [
-        "Jiajun Liang",
-        "Yucheng Liao",
-        "Yukang Cao",
-        "Jiazhe Wei",
-        "Ken Li",
-        "Wende Tan",
-        "Jiankun Zhang",
-        "ZY Cui",
-        "Jingkang Yang",
-        "Liucheng Guo",
-        "Shiqi Yang",
-        "B. Yang",
-        "Caifeng Shan",
-        "Ziwei Liu",
-        "Chenyang Si"
+        "Yang Yang",
+        "Qinyu Zhao",
+        "Mouxiang Chen",
+        "Xiaohui Li",
+        "Lixin Gu",
+        "Wenhai Wang",
+        "Hongjie Zhang",
+        "Wenwei Zhang"
       ],
-      "summary": "Language remains an outlier in generative modeling: while images, video, and audio are increasingly modeled in continuous latent spaces, text generation still relies predominantly on discrete tokens. Existing continuous language models either inherit embedding spaces not designed for joint generation and decoding, or compress autoencoded latents to ease diffusion, sacrificing token-level fidelity. Instead of simplifying the representation to suit the generative model, we preserve a high-capacity, decodable text latent and design the diffusion model to learn its distribution directly. We introduce AURORA-LM, a continuous-latent diffusion language model that separates the construction of a decodable text representation from the modeling of its distribution. A Query-based Encoder-Decoder organizes text into a high-capacity, prefix-aligned latent sequence, and a Block-causal Diffusion Transformer learns its distribution through flow matching, generating blocks left to right while denoising positions within each block in parallel. Because such a latent is harder for diffusion to model, AURORA-LM restricts only the noisy-input pathway while retaining the full clean-latent prediction target, accommodating full-width latents without reducing decoder-facing capacity. We further calibrate the noise-level distribution to the latent width, and introduce self-trajectory consistency to bridge independently sampled training noise and iterative denoising at inference. AURORA-LM achieves the strongest performance among evaluated continuous and diffusion-based language models on OpenWebText free generation and XSum summarization. Scaling to 1B parameters with about 1500 EFLOPs of total compute yields further gains, surpassing a larger publicly released latent-diffusion language model under a matched evaluation protocol. All experiments are conducted on Ascend NPUs.",
-      "reason": "近 30 天；公司信号：Huawei；关键词：huawei, cs.CL, inference。Language remains an outlier in generative modeling: while images, video, and audio are increasingly modeled in continuous latent s...",
+      "summary": "Existing scaling strategies for Multimodal Large Language Models (MLLMs) typically expand either model parameters or sequential inference computation, incurring substantial memory or latency overhead. More importantly, most existing methods fail to alter the rigid, fixed computation allocation between the Vision Transformer and the Large Language Model components, limiting task-specific optimization. To address this, we introduce the Parallel Vision-Language (ParVL) scaling framework for MLLMs, which scales parallel computation by reusing the existing ViT and LLM backbone parameters across multiple vision and language branches. This framework raises a central question: given a fixed backbone parameter budget, how should additional shared-backbone computation be allocated between the vision and language modalities? We instantiate each parallel computational stream with branch-specific prefix parameters over a shared backbone, and train the entire model end-to-end via full-parameter supervised fine-tuning on roughly 13B tokens. We systematically study the computation-allocation trade-off between the ViT encoder and LLM decoder. ParVL improves overall multimodal performance over same-recipe single-branch baselines, and the best evaluated vision--language allocation varies across tasks. Code is available at https://github.com/YangYangGirl/ParVL.",
+      "reason": "近 30 天；关键词：cs.CV, inference, latency。Existing scaling strategies for Multimodal Large Language Models (MLLMs) typically expand either model parameters or sequential in...",
       "area": "LLM 推理优化",
       "tags": [
-        "huawei",
-        "cs.CL",
-        "inference"
-      ],
-      "signal": 99,
-      "source": "Huawei/arXiv",
-      "publishedAt": "2026-08-03T17:59:50Z",
-      "url": "https://arxiv.org/abs/2608.02602",
-      "pdfUrl": "https://arxiv.org/pdf/2608.02602v1"
-    },
-    {
-      "id": "arxiv-2608.02560",
-      "title": "Structured Memory for Edge Language Models: Persistent Context and Corpus Retrieval via O(1) SSM State Injection",
-      "authors": [
-        "Anusha Madan Gopal",
-        "Aras Pirbadian",
-        "Kristofor D. Carlson",
-        "M Anthony Lewis",
-        "Jonathan Tapson"
-      ],
-      "summary": "Retrieval-augmented generation (RAG) imposes a prefill cost proportional to retrieved context length, and -- with Transformer backbones -- a KV-cache that grows with each generated token. State-Space Models (SSMs) avoid the second cost by construction; we eliminate the first, collapsing prefill from $O(L_{context})$ to $O(1)$ per query. We introduce PRECOG (Pre-Computed Context Injection), a retrieval mechanism that exploits a property unique to SSMs: the fixed-size, position-agnostic recurrent hidden state is a complete summary of everything the model has read. PRECOG pre-encodes document corpora offline as SSM hidden states and injects the best-matching state directly at query time, bypassing in-context re-ingestion entirely. The same state-injection mechanism enables SMC (Structured Memory Consolidation): a hierarchical persistent memory with cognitive-domain clustering, an adjustable fidelity-vs-storage dial, and $O(1)$ session initialization, which consolidates short-term episodic states into long-term semantic memory and fuses both with retrieved corpus states at query time. We demonstrate the system on TENNs-LLM, a 1.2B-parameter gated-SSM language model with a 192 KB hidden state. PRECOG matches in-context RAG answer quality, reducing prefill latency from $\\sim$27 s to $<$6 ms on edge hardware -- a $\\sim$4500$\\times$ speedup that crosses the threshold from unusable to interactive. The mechanism is architecturally impossible for Transformer KV-caches, which are position-entangled and grow linearly with context length.",
-      "reason": "近 30 天；关键词：cs.LG, latency, llm。Retrieval-augmented generation (RAG) imposes a prefill cost proportional to retrieved context length, and -- with Transformer back...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
+        "cs.CV",
+        "inference",
         "latency",
         "llm",
-        "prefill",
-        "retrieval"
+        "multimodal"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-03T17:43:36Z",
-      "url": "https://arxiv.org/abs/2608.02560",
-      "pdfUrl": "https://arxiv.org/pdf/2608.02560v1"
+      "publishedAt": "2026-08-04T17:59:58Z",
+      "url": "https://arxiv.org/abs/2608.04010",
+      "pdfUrl": "https://arxiv.org/pdf/2608.04010v1"
     },
     {
-      "id": "arxiv-2608.02515",
-      "title": "LiveMem: Maintaining Memory State Continuity in Long-Running LLM Inference",
+      "id": "arxiv-2608.03899",
+      "title": "ATLAS: Learning to Recommend Across Unseen Domains",
       "authors": [
-        "Zhichen Liu",
-        "Ruihan Sun",
-        "Hengjie Yang",
-        "Zipeng Wu",
-        "Zhaohan Chen",
-        "Xiaofan Zhang",
-        "Yang Xu"
+        "Pervez Shaik",
+        "Prosenjit Biswas",
+        "Abhinav Thorat",
+        "Ravi Kolla",
+        "Niranjan Pedanekar"
       ],
-      "summary": "Long-running assistants and agents consume interaction streams that eventually outgrow the context. Existing context retention, summarization, and retrieval preserve access to selected history, but do not provide a persistent state over the full lifecycle when working context changes. We formulate this missing inference capability as \\emph{state continuity under context turnover}: carrying computation forward through a fixed-capacity memory state whose lifetime is independent of the active context. We introduce an intrinsic memory method, \\textbf{LiveMem}, which augments a pretrained full-attention LLM with a memory state that preserves the historical information over the whole lifecycle while the main attention path retains a bounded KV window. Context turnover and memory state maintaining, memory-oriented post-training, and state-aware serving jointly make this memory state load bearing after its originating tokens are released. Our experiments show that LiveMem achieves leading overall performance among evaluated systems and other intrinsic memory methods. Experiments on LongMemEval show that LiveMem is able to answer the question based on the memory state, even when the supporting evidence has been removed from the current context, and evidence-distance analysis shows that useful information persists beyond the active window. LiveMem thus establishes state continuity as a distinct and complementary abstraction for continual LLM inference.",
-      "reason": "近 30 天；关键词：cs.CL, inference, llm。Long-running assistants and agents consume interaction streams that eventually outgrow the context. Existing context retention, su...",
-      "area": "LLM 推理优化",
+      "summary": "Recommender systems remain domain-bound: a model trained on one interaction environment typically requires retraining or target-domain adaptation before it can operate on a new catalogue. A recommender trained on movies cannot be directly deployed to recommend groceries or video games. Existing approaches mitigate this by transferring restricted forms of recommendation knowledge, adapting to the target domain, or leveraging large language models (LLMs) for transferable representations. We instead ask whether recommendation-specific knowledge learned solely from multiple heterogeneous domains can generalize to entirely unseen domains without target-domain adaptation or language-model pretraining. We introduce ATLAS, a multi-source recommendation domain generalization framework that learns a shared, domain-invariant user-item representation from disjoint source domains, enabling zero-shot recommendation on unseen domains. ATLAS combines a Gromov-Wasserstein alignment that preserves how users relate to one another across domains, an adversarial objective that makes item representations indistinguishable across domains, and residual vector quantization (RVQ) codebooks that compress user and item embeddings into a discrete latent space, capturing hierarchical interaction patterns while suppressing domain-specific variation. Trained on five Amazon domains and applied directly to ten unseen domains, ATLAS outperforms state-of-the-art sequential, graph-based, cross-domain, quantization-based, and LLM-based baselines on most unseen domains, with an average relative gain in HitRate of 24%. Ablations and representation analyses validate each component, and we identify a pronounced source-domain diversity effect: increasing source heterogeneity substantially improves zero-shot transfer. ATLAS establishes recommendation domain generalization as a promising paradigm for zero-shot recommendation.",
+      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, alignment。Recommender systems remain domain-bound: a model trained on one interaction environment typically requires retraining or target-do...",
+      "area": "推荐算法",
       "tags": [
-        "cs.CL",
-        "inference",
-        "llm",
-        "retrieval",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-03T17:12:05Z",
-      "url": "https://arxiv.org/abs/2608.02515",
-      "pdfUrl": "https://arxiv.org/pdf/2608.02515v1"
-    },
-    {
-      "id": "arxiv-2608.02446",
-      "title": "Advancing Relevance Measurement with Vision-Language Models for Web-Scale Search",
-      "authors": [
-        "Han Wang",
-        "Alex Whitworth",
-        "Pak Ming Cheung",
-        "Zhenjie Zhang",
-        "Krishna Kamath",
-        "Xi Chen",
-        "Roberto Konow",
-        "Kurchi Subhra Hazra"
-      ],
-      "summary": "Relevance evaluation plays a crucial role in personalized search systems, serving as a guardrail alongside user engagement metrics to ensure that search results align with user queries and intent. While human annotation is the traditional method for relevance evaluation, its high cost and long turnaround time limit its scalability. In this work, we present a VLM-based automated relevance evaluation pipeline deployed within Pinterest Search for online A/B experiments. We rigorously validate the alignment between VLM-generated judgments and human annotations, demonstrating that VLMs can provide reliable relevance measurement for experiments while greatly improving the evaluation efficiency. Leveraging VLM-based labeling further unlocks opportunities to expand the query set, optimize sampling design, and efficiently assess a wider range of search experiences at scale. This approach leads to higher-quality relevance metrics and significantly reduces the Minimum Detectable Effects (MDEs) in online experiment measurements.",
-      "reason": "近 30 天；公司信号：Pinterest；关键词：pinterest, cs.IR, alignment。Relevance evaluation plays a crucial role in personalized search systems, serving as a guardrail alongside user engagement metrics...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "pinterest",
+        "amazon",
         "cs.IR",
         "alignment",
         "deployed",
-        "efficient",
-        "online-a/b",
+        "llm",
+        "quantization",
+        "recommendation"
+      ],
+      "signal": 99,
+      "source": "Amazon/arXiv",
+      "publishedAt": "2026-08-04T16:29:02Z",
+      "url": "https://arxiv.org/abs/2608.03899",
+      "pdfUrl": "https://arxiv.org/pdf/2608.03899v1"
+    },
+    {
+      "id": "arxiv-2608.03893",
+      "title": "Cross-Model KV Cache Transfer in LLM Families: A Closed-Form Linear Mapping for Prefill Reuse",
+      "authors": [
+        "Taekyung Heo",
+        "Rasoul Shafipour",
+        "Ritchie Zhao",
+        "Maximilian Golub",
+        "Mohammad Mahdi Kamani",
+        "Ritika Borkar",
+        "Makesh Tarun Chandran",
+        "Pantea Zardoshti",
+        "Bita Darvish Rouhani"
+      ],
+      "summary": "Production deployments often swap between different-sized models in a family for cost-quality cascading, mid-conversation switching, and routing, and each swap forces the receiver to repay the prefill from scratch. We propose cross-model KV cache transfer, where the receiver reuses the source's KV cache, skipping prefill. We find that cross-model KV has substantial linear structure across matched-KV pairs, where source and target share KV head count and per-head dimension. On Qwen3 14B->32B, one source layer explains 56% of variance in the target's keys and 32% in values, rising to 79% and 65% with multiple source layers. Building on this, we design a closed-form ridge mapper that operates per head and proceeds in three steps. First, for each target layer we select the top-k most predictive source layers and concatenate their KV as input. Second, we strip RoPE from the keys before mapping, so the fit is position-free and reusable across context lengths. Third, we fit ridge regression on a small calibration set of 500 FineWeb-Edu sequences of 1,024 tokens each. Surprisingly, across six pairs in three families, this linear mapper retains 73-98% of the receiver's standalone-prefill accuracy on four pairs, while two degrade sharply. A nonlinear MLP recovers up to +37 pp HellaSwag retention on the failures. The mapper runs 2.7-25x faster than re-prefill and remains stable across multi-turn handoff, making cross-model KV cache transfer practical.",
+      "reason": "近 30 天；关键词：cs.LG, kv-cache, llm。Production deployments often swap between different-sized models in a family for cost-quality cascading, mid-conversation switchin...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "kv-cache",
+        "llm",
+        "prefill",
+        "production"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-04T16:26:47Z",
+      "url": "https://arxiv.org/abs/2608.03893",
+      "pdfUrl": "https://arxiv.org/pdf/2608.03893v1"
+    },
+    {
+      "id": "arxiv-2608.03854",
+      "title": "Quantization Effects on Biomedical LLM Reliability",
+      "authors": [
+        "Anton Rasmussen",
+        "Hong Qin"
+      ],
+      "summary": "When decoder language models are used as classifiers, predicted class probabilities depend on implementation choices, including the prompt template, verbalizer (label-to-token mapping), and scoring rule, that are rarely treated as experimental variables. We present a controlled evaluation of three Mistral-7B variants (Base, BioMistral, and Instruct) on PubMed RCT sentence classification (n=2000) under FP16, INT8, and INT4 precision using four answer-text prompt templates. Our primary finding is that the probability extraction protocol dominates apparent calibration. Switching from summed to mean token log-likelihood scoring reverses the calibration ranking between models: BioMistral average expected calibration error increases from 0.097 to 0.289, whereas Instruct decreases from 0.237 to 0.096, while accuracy changes by less than 1 percentage point for the specialized models but 4-6 percentage points for the base model. Prompt template choice produces accuracy differences of 7-24 percentage points, comparable to or larger than model-level effects. On one template, BioMistral outperforms Instruct although the overall mean favors Instruct by only 1.3 percentage points. For BioMistral and Instruct, INT8 quantization changes accuracy and F1 by only 1-2 percentage points relative to FP16, whereas the base model shows larger INT8 effects on some templates (up to +4.2 percentage points). INT4 produces heterogeneous but non-catastrophic effects. Temperature scaling reduces expected calibration error under summed scoring for both models but only for that scoring rule. A fine-tuned PubMedBERT reference achieves 82.7% accuracy but uses about 176000 labeled training examples, precluding direct comparison. These results demonstrate that prompt template design and scoring normalization are first-order experimental decisions when evaluating decoder language model calibration.",
+      "reason": "近 30 天；关键词：cs.LG, llm, quantization。When decoder language models are used as classifiers, predicted class probabilities depend on implementation choices, including th...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "llm",
+        "quantization",
+        "ranking"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-04T15:57:21Z",
+      "url": "https://arxiv.org/abs/2608.03854",
+      "pdfUrl": "https://arxiv.org/pdf/2608.03854v1"
+    },
+    {
+      "id": "arxiv-2608.03836",
+      "title": "Resume Means Resume: A Machine-Checked Conformance Contract for Checkpoint, Interrupt, and Resume Semantics in Workflow Persistence Layers",
+      "authors": [
+        "Sajjad Khan"
+      ],
+      "summary": "A framework that persists execution state so a run can be interrupted, survive a crash, and continue must decide what a resume means for effects that already fired. Five widely deployed agent workflow frameworks answer differently, none exposes a machine-checkable contract, and behavior violates even the fragments they state. The RESUME CONTRACT states six properties over the persistence API (prefix continuation, effect exactly-once, fork determinism, checkpoint validity, consume-once, recovery determinism), plus fork-intent and liveness obligations. A TLA+ model checks a reference semantics exhaustively, unchanged at scaled bounds (7.4 million states); a 39-cell fault matrix yields the separating models independence requires, and consume-once splits, its consumption clause independent of all six others. A deterministic, LLM-free harness measures them at pinned releases. LangGraph 1.2.9 durably records a second resume value and never consults it, persists schema-invalid state silently, and re-executes durably recorded work after a real SIGKILL: exactly-once across interrupts, at-least-once across crashes, on one API. CrewAI 1.15.2 re-executes completed effect-bearing methods against its written claim; pydantic-graph 1.x cannot resume after a mid-node crash; no two probed frameworks share a conformance profile. Consume-once holds sequentially and fails under concurrent delivery: k processes resuming one parked interrupt fire the gated effect k times, saturation 1.0 in 36 of 40 cells, and the failure crosses hosts. REMIT, a reference sequencer whose Verus-verified recovery core is line-identical to the shipped executable, repairs the fork and validity cells. The cross-process cell is repaired at the read path, and that repair ships: an opt-in gate claims consumption in the shared store, serving one racer and refusing the rest before any node executes.",
+      "reason": "近 30 天；关键词：cs.LG, deployed, llm。A framework that persists execution state so a run can be interrupted, survive a crash, and continue must decide what a resume mea...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "deployed",
+        "llm",
         "serving"
       ],
       "signal": 99,
-      "source": "Pinterest/arXiv",
-      "publishedAt": "2026-08-03T16:23:49Z",
-      "url": "https://arxiv.org/abs/2608.02446",
-      "pdfUrl": "https://arxiv.org/pdf/2608.02446v1"
+      "source": "arXiv",
+      "publishedAt": "2026-08-04T15:45:31Z",
+      "url": "https://arxiv.org/abs/2608.03836",
+      "pdfUrl": "https://arxiv.org/pdf/2608.03836v1"
     },
     {
-      "id": "arxiv-2608.02244",
-      "title": "Efficiency and Cost Alignment in Batched LLM Serving via Resource-Fair Scheduling",
+      "id": "arxiv-2608.03741",
+      "title": "When Does Disaggregation Pay? Simulating Prefill--Decode--Attention--FFN Specialization for Agentic LLM Inference",
       "authors": [
-        "Dayi Yao",
-        "Zijie Zhou"
+        "Przemyslaw Forys",
+        "Haoran Wu",
+        "Can Xiao",
+        "Jiayi Nie",
+        "Tony Liu",
+        "Rika Antonova",
+        "Timothy Jones",
+        "Robert Mullins",
+        "Wayne Luk",
+        "Aaron Zhao",
+        "George A. Constantinides"
       ],
-      "summary": "This paper studies a resource-allocation inefficiency in batched large language model (LLM) serving: heterogeneous requests that share a decode batch impose max-driven computational costs on one another. Because the wall-clock cost of a batch step is largely governed by the largest active KV-cache footprint, a short request co-batched with a long request can experience latency and GPU-resource consumption disproportionate to its own token workload. We formalize this phenomenon as a resource-fair scheduling problem. We develop a mathematical scheduling model that connects within-batch resource fairness to system throughput. The proposed fairness constraint bounds the disparity in decode progress, equivalently KV-cache footprint, among co-batched requests. Based on this model, we design the Insert-Short-Jobs-with-Limit (ISJL) algorithm, a parameterized hybrid batching policy. We prove that ISJL achieves a global competitive-ratio lower bound of $3/4$. We further examine the profit implications of resource-fair scheduling under the token-metered pricing convention used by commercial LLM APIs. Numerical experiments show that ISJL occupies a favorable middle ground between FCFS, which has large batching externalities, and LJF, which is cost-aligned but sacrifices batching flexibility. Thus, ISJL provides a bi-criterion scheduling policy: it maintains high throughput while aligning max-driven batch cost with token-metered revenue.",
-      "reason": "近 30 天；关键词：cs.DC, alignment, batching。This paper studies a resource-allocation inefficiency in batched large language model (LLM) serving: heterogeneous requests that s...",
+      "summary": "Agentic inference now dominates the LLM inference landscape, requiring LLMs to actively engage in multi-turn interactions with tool-calling capabilities. This introduces a more complex workload for the underlying inference system: serving stages such as prefill and decode exhibit substantially different behaviors and demand distinct compute and memory-bandwidth capabilities. As a result, a single homogeneous GPU system now struggles to support agentic inference, motivating an industry shift toward heterogeneous systems with disaggregated serving capabilities, such as the emerging Vera-Rubin platform with GPUs and Groq LPUs. However, the question of what the optimal hardware should look like for each component in a heterogeneous system remains underexplored. To this end, we propose a novel simulation framework for disaggregated serving, termed \\textbf{HeteroPanacea}, that enables system-level simulation across three dimensions: 1) disaggregated quantization, 2) automated intra- and inter-device parallelization scheduling, and 3) PDAF (prefill-decode-attention-FFN) NPU architectural heterogeneity. By combining these three axes, we provide a cross-stack simulation framework for future heterogeneous agentic serving systems. We confirm the benefit of Prefill Decode disaggregation, simulating increased serving throughput by up to 75\\% compared to traditional serving with current GPUs and demonstrate 4 way Prefill Decode Attention FFN disaggregation is the most consistent for increasing throughput across different models, assuming custom NPUs. We also investigate the relationship between model architecture and gain from disaggregation by running a set of ablation studies.",
+      "reason": "近 30 天；关键词：cs.DC, inference, llm。Agentic inference now dominates the LLM inference landscape, requiring LLMs to actively engage in multi-turn interactions with too...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.DC",
-        "alignment",
-        "batching",
-        "latency",
+        "inference",
         "llm",
+        "prefill",
+        "quantization",
         "serving",
         "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-03T13:55:20Z",
-      "url": "https://arxiv.org/abs/2608.02244",
-      "pdfUrl": "https://arxiv.org/pdf/2608.02244v1"
+      "publishedAt": "2026-08-04T14:35:25Z",
+      "url": "https://arxiv.org/abs/2608.03741",
+      "pdfUrl": "https://arxiv.org/pdf/2608.03741v1"
     },
     {
-      "id": "arxiv-2608.02123",
-      "title": "From Chains to Trees: Parent-Conditioned Drafting for Semi-Autoregressive Speculative Decoding",
+      "id": "arxiv-2608.03579",
+      "title": "Pin Once, Swap Light: Subspace-Aligned Centroid-Residual Training for Efficient Ultra-LoRA Serving",
       "authors": [
-        "Zixian Li",
-        "Tong Li",
-        "Chi Xie",
-        "Xiaohui Song",
-        "Haonan Lu"
+        "Xiang Li",
+        "Pengcheng Wang",
+        "Huazheng Wang",
+        "Saurabh Bagchi"
       ],
-      "summary": "Speculative decoding accelerates LLM inference only when drafted continuations survive target-model verification. Semi-autoregressive drafters such as DSpark predict an entire token block with one backbone forward and refine it with a lightweight Markov head. However, DSpark decodes this block as a single chain, so an early mismatch invalidates the remaining suffix and limits the benefit of large draft blocks. We show that the conditional structure already learned by DSpark can support multiple parent-consistent continuations without retraining or additional backbone passes. We introduce Parent-Conditioned Drafting Tree (PCTree), which uses the pretrained Markov head to score alternative children separately for each concrete parent and allocates a fixed verification budget to the most probable paths. This converts DSpark's linear draft into a tree while preserving its one-pass parallel backbone. Across Qwen3-{4B,8B,14B} and nine benchmarks, at $B{=}7$, measured speedup gains over autoregressive (AR) decoding, relative to matched DSpark, range from $3.1\\%$ to $29.5\\%$. On Qwen3-4B GSM8K at $B{=}16$, PCTree increases mean acceptance length from $9.41$ to $11.16$ and three-run mean AR speedup from $6.14{\\times}$ to $6.60{\\times}$. These show that parent-conditioned branching can turn conditional capacity already present in a semi-autoregressive drafter into end-to-end inference gains through an inference-only change.",
-      "reason": "近 30 天；关键词：cs.CL, inference, llm。Speculative decoding accelerates LLM inference only when drafted continuations survive target-model verification. Semi-autoregress...",
+      "summary": "Modern multi-tenant Low-Rank Adapters (LoRAs) serving systems concurrently host tens to hundreds of LoRA adapters. Though powerful, this introduces a critical system dilemma between serving efficiency and task performance: higher-rank adapters generally achieve better downstream task performance, but their GPU VRAM footprint and Host-to-Device PCIe swapping overhead severely constrain scalability. Conversely, ultra-low-rank adapters ($r \\le 2$) minimize both VRAM footprint and PCIe transfer overhead, but suffer from downstream task performance degradation. To solve this problem, we propose Subspace-Aligned LoRA Training (SALT), a serving efficiency-aware hierarchical fine-tuning framework. Our solution operates in three phases. First, a provider jointly trains high-capacity domain centroids on public data within the domain using a novel alignment regularizer that coheres in-domain task subspaces into a unified basis. Next, users fine-tune ultra-low-rank task residual adapters on private data atop those frozen centroids. Finally, during inference, the provider pins the centroid in GPU VRAM and dynamically swaps in each user's task residual on demand. Across LLMs of varying scales, SALT recovers high-rank accuracy using $r \\le 2$ residuals, achieving up to 18.5% absolute accuracy gains over state-of-the-art compression baselines and reducing per-adapter memory by up to 16x. When integrated into vLLM, SALT improves serving throughput by up to 51% under PCIe bandwidth pressure and 28% under GPU VRAM constraints for Llama-3.2-3B.",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, alignment。Modern multi-tenant Low-Rank Adapters (LoRAs) serving systems concurrently host tens to hundreds of LoRA adapters. Though powerful...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL",
-        "inference",
-        "llm",
-        "serving",
-        "speculative"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-03T12:15:26Z",
-      "url": "https://arxiv.org/abs/2608.02123",
-      "pdfUrl": "https://arxiv.org/pdf/2608.02123v1"
-    },
-    {
-      "id": "arxiv-2608.02032",
-      "title": "DART: Decoded Attention over Recurrent States for Efficient Long-Context Sequence Modeling",
-      "authors": [
-        "Yixiao Qian",
-        "Song Chen",
-        "Pengkai Wang",
-        "Jiaxu Liu",
-        "Shengze Cai",
-        "Chao Xu"
-      ],
-      "summary": "Modern language models are built primarily from Transformers, recurrent models, and their hybrid architectures. Transformers rely on token-level attention memories, while recurrent models such as state space models (SSMs) and linear attention maintain compact recurrent states. These architectures are typically instantiated separately or interleaved at the layer level, leaving open whether a shared memory representation can support both recurrent compression and attention-style retrieval. We study this question through the state space duality (SSD) view of Mamba-2, where the SSM state can be interpreted as a compressed associative key--value (KV) cache. We observe that Mamba-2 decodes token-conditioned values from this state but does not decode token-conditioned keys. Based on this observation, we propose DART (Decoded Attention over Recurrent sTates), which retains the chunk state contributions produced by the Mamba-2 chunked scan as chunk state memories, decodes token-conditioned keys and values from these memories, and performs state-memory attention (SMA) over the resulting KV pairs. The retrieved output is then combined with the native Mamba-2 output through a gated residual connection. DART supports practical training by reusing the Mamba-2 chunked scan and implementing SMA as a FlashAttention-style computation. Our analysis and experiments show that DART substantially reduces the length-dependent inference cache compared with a matched attention baseline (e.g., $75\\%$ savings when the chunk size is $S=256$ and the state size is $N=128$). Compared with Mamba-2, DART substantially improves associative recall and retrieval while preserving general language-modeling quality.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Modern language models are built primarily from Transformers, recurrent models, and their hybrid architectures. Transformers rely...",
-      "area": "LLM 推理优化",
-      "tags": [
+        "meta",
         "cs.LG",
+        "alignment",
         "efficient",
         "inference",
-        "retrieval",
-        "serving"
+        "llm",
+        "lora"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-03T10:30:27Z",
-      "url": "https://arxiv.org/abs/2608.02032",
-      "pdfUrl": "https://arxiv.org/pdf/2608.02032v1"
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-08-04T12:34:35Z",
+      "url": "https://arxiv.org/abs/2608.03579",
+      "pdfUrl": "https://arxiv.org/pdf/2608.03579v1"
     },
     {
-      "id": "arxiv-2608.01949",
-      "title": "A Self-Triggered Agentic Push Recommendation System",
+      "id": "arxiv-2608.03228",
+      "title": "SAKI: Score-Aware Low-Rank Key Indexing for Long-Context KV Retrieval",
       "authors": [
-        "Zhao-Yu Zhang",
-        "Qingying Chen",
-        "Chunyuan Zheng",
-        "Jing Zhou",
-        "Jian Sun",
-        "Siqi Chen",
-        "Leiying Chen",
-        "Chuan Zhou",
-        "Huiyou Jiang",
-        "Xin Tao",
-        "Haoxuan Li",
-        "Zhouchen Lin"
+        "Lin Zhang"
       ],
-      "summary": "Push notification is a critical recommendation scenario on large-scale platforms, allowing the system to proactively reach users outside the application to improve long-term re-engagement. However, designing an optimal push system requires handling a complex action space for the \"whether and when\" delivery problem under strict system resource constraints. Existing solutions typically fall into two passive paradigms: pre-planned frequency methods that allocate delivery times via offline modeling, limiting real-time adaptability; and fixed-interval triggering methods that periodically poll the system, creating a strict dilemma between excessive computational overhead and diminished optimal timing capture. Furthermore, such multi-stage frameworks severely suffer from local optima. To overcome these limitations, in this paper, we propose STEPS, a proactive, Self-Triggered End-to-end Agentic Push Recommendation System, which is already fully deployed at Douyin with over 1 billion users. STEPS reformulates push recommendation as a self-triggered agentic process in which the system decides not only whether to send a push, but also when to invoke itself again, thereby forming a closed loop that balances real-time effectiveness and efficiency. Specifically, STEPS consists of two decision transformer-based agents: a planning agent that schedules the next system invocation using a gated ordinal regression method, and an execution agent that decides whether to send a push based on trajectory rewards. Furthermore, we introduce a lightweight filtering agent to both control computational overhead and act as a crucial safeguard against unreasonable planning behaviors. Online A/B testing demonstrates that STEPS significantly increases user active days by 0.2843% and reduces the push permission disablement rate by 1.9089%, while the filtering agent reduces computational overhead by 79.42%.",
-      "reason": "近 30 天；公司信号：ByteDance；推荐/排序/广告方向；关键词：bytedance, cs.IR, deployed。Push notification is a critical recommendation scenario on large-scale platforms, allowing the system to proactively reach users o...",
+      "summary": "Existing low rank KV cache methods preserve either model weights or key variance, neither of which directly reflects the attention scores used during inference. We derive the expected attention score distortion caused by rank r key compression and show that it yields a covariance weighted low rank objective. Under a margin condition, controlling this distortion also improves top k recall. The optimal rank r solution has a closed form asymmetric factorization obtained from the SVD of the covariance weighted query key operator. This motivates SAKI, a training free KV cache index that directly preserves attention scores rather than key reconstruction quality. Across LLaMA 3.1 8B, Qwen 2.5 7B, Mistral 7B v0.1, and Llama 3.2 3B, SAKI outperforms key PCA at every tested rank. At rank 32, it removes 13 to 30 percent of PCA's remaining top 64 recall error, including improvements from 0.748 to 0.799 on LLaMA 3.1 8B and from 0.786 to 0.850 on Qwen 2.5 7B. It improves 68 to 89 percent of attention heads per model, with the largest gains in deeper layers. Predicted score MSE reductions closely match empirical measurements, with a Pearson correlation of 0.997, while ablation studies confirm that the gains arise from optimizing the attention score objective rather than covariance weighting alone. Analysis of the scoring operator further explains why weight only, invariant subspace, and key reconstruction methods can be suboptimal.",
+      "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.LG。Existing low rank KV cache methods preserve either model weights or key variance, neither of which directly reflects the attention...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "alibaba",
+        "meta",
+        "cs.LG",
+        "inference",
+        "kv-cache",
+        "retrieval"
+      ],
+      "signal": 99,
+      "source": "Alibaba/Meta/arXiv",
+      "publishedAt": "2026-08-04T06:59:29Z",
+      "url": "https://arxiv.org/abs/2608.03228",
+      "pdfUrl": "https://arxiv.org/pdf/2608.03228v1"
+    },
+    {
+      "id": "arxiv-2608.03150",
+      "title": "UniGD: A Unified Generative-Discriminative Framework for Industrial Retrieval",
+      "authors": [
+        "Shujie Ji",
+        "Yawei Kong",
+        "Yilin Zhao",
+        "Li Wang",
+        "Xialong Liu",
+        "Peng Jiang"
+      ],
+      "summary": "Generative retrieval (GR) is a promising paradigm for industrial search advertising, yet its deployment is constrained by strict relevance and latency requirements. Existing systems cascade GR with an independent relevance model, decoupling the generative likelihood objective from query-ad relevance discrimination, which compromises effectiveness and increases serving costs. We propose a Unified Generative-Discriminative framework (UniGD) that integrates retrieval and relevance scoring within a single model. To mitigate gradient interference in joint optimization, UniGD introduces Conflict-Aware Gradient Enhancement (CAGE) to adaptively coordinate the two objectives. UniGD further designs a Codebook-Anchored Representation Module (CAM) that anchors item representations to frozen hierarchical codebooks distilled from a multimodal pretrained model, thereby endowing them with rich and generalizable semantic priors. For heterogeneous short-video, product, and live-stream ads, UniGD proposes Heterogeneous Ad-material Modeling (HAM), which captures cross-type semantic commonality over a shared backbone while preserving type-specific modeling capacity. Online AB tests on Kuaishou search advertising platform show that UniGD raises ad revenue by 5.78%, reduces inference latency by 33%, and improves discriminative relevance estimation. On NQ320K and MS300K, UniGD improves Recall@10 over the strongest reproduced GR baseline by 8.44% and 3.19%, respectively.",
+      "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.AI, advertising。Generative retrieval (GR) is a promising paradigm for industrial search advertising, yet its deployment is constrained by strict r...",
       "area": "推荐算法",
       "tags": [
-        "bytedance",
-        "cs.IR",
-        "deployed",
-        "online-a/b",
-        "recommendation"
+        "kuaishou",
+        "cs.AI",
+        "advertising",
+        "inference",
+        "industrial",
+        "latency",
+        "multimodal"
       ],
       "signal": 99,
-      "source": "ByteDance/arXiv",
-      "publishedAt": "2026-08-03T09:20:53Z",
-      "url": "https://arxiv.org/abs/2608.01949",
-      "pdfUrl": "https://arxiv.org/pdf/2608.01949v1"
+      "source": "Kuaishou/arXiv",
+      "publishedAt": "2026-08-04T05:29:02Z",
+      "url": "https://arxiv.org/abs/2608.03150",
+      "pdfUrl": "https://arxiv.org/pdf/2608.03150v1"
     },
     {
-      "id": "arxiv-2608.01260",
-      "title": "Auditing Semantic Gains in Sequential Recommendation: A Lightweight Recovery Test",
+      "id": "arxiv-2608.03063",
+      "title": "SeqLLM: Augmenting LLMs with Behavioral-Sequence Modeling for High-Stakes Decisions at WeChat Pay",
       "authors": [
-        "Kong Wang",
-        "Zhongke He",
-        "Xiang Chen",
-        "Hongwei Zeng",
-        "Kai Deng",
-        "Long Wang",
-        "Kehua Yang"
+        "Guilin Li",
+        "Jiaxing Zhang",
+        "Matthias Hwai Yong Tan",
+        "Bo Wang",
+        "Weiran Huang"
       ],
-      "summary": "Recent semantic and generative-retrieval recommenders report substantial improvements over ID-only sequential baselines, but it remains unclear whether these gains arise from language-model reasoning, semantic-ID generation, end-to-end semantic architectures, stronger offline item representations, or complementary semantic and collaborative signals. We investigate this attribution ambiguity through LIME-Rec, a lightweight and auditable recovery test. LIME-Rec combines three independent experts: a SASRec sequential expert, an ItemCF co-occurrence expert, and a semantic expert based on frozen BAAI/bge-base-en-v1.5 item embeddings. Their full-catalog scores are normalized per user and combined through auditable score-level fusion followed by bounded history calibration. The fusion gate and calibration head are fitted on validation data only, require no serving-time language-model inference, and keep each expert contribution separately inspectable. On Amazon Beauty, Toys, and Sports, LIME-Rec achieves R@10 scores of 0.0996, 0.1105, and 0.0593, outperforming the strongest comparison baseline by 7.0%-12.0%. Three-expert fusion without history calibration consistently outperforms calibrated SASRec, showing that calibration alone does not explain the recovery. Randomly permuting item-text embeddings across item IDs reduces R@10 by 13.6%-17.5%, indicating that the gains depend on genuine item-text correspondence rather than additional representation capacity. These results suggest that lightweight recovery from offline item representations and transparent fusion should be ruled out before improvements are attributed to serving-time language modeling, semantic-ID generation, or heavier semantic machinery.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, inference。Recent semantic and generative-retrieval recommenders report substantial improvements over ID-only sequential baselines, but it re...",
-      "area": "推荐算法",
+      "summary": "Merchant risk control at large payment platforms screens tens of millions of merchants daily, where false positives harm legitimate merchants and false negatives leave harmful activity undetected. The hardest cases require jointly understanding a merchant's textual profile and long behavioral sequence. Large language models (LLMs) excel at text but cannot natively model such sequences, while adapting them often causes catastrophic forgetting. We present SeqLLM, a framework that adds behavioral-sequence modeling to a pretrained LLM while preserving its language ability. SeqLLM combines three components: a compact discrete vocabulary that represents behavioral events as native tokens; a lightweight projector, trained with a two-stage alignment curriculum, that grounds these tokens in the LLM's semantic space; and prefix-guided capability injection, which acquires sequence-modeling ability through task-prefixed supervised fine-tuning rather than continual pre-training. SeqLLM is deployed at WeChat Pay, screening millions of merchants daily. Against the production DeepSeek-based LLM baseline, it raises screening precision from 92.0% to 97.5%. Its pretrained behavior-token embeddings also improve Precision@Top-0.01% by 26.8 percentage points in a production fraud detector serving billion-scale transaction traffic. Beyond payments, SeqLLM achieves state-of-the-art results on public recommendation benchmarks. On MovieLens and Amazon, it surpasses the strong User-LLM baseline by up to 32% relative Recall@5 while retaining markedly stronger language ability. On RecIF, it improves Pass@32 by 14.2% over the full OneRec-8B pipeline using only one-fifth of its GPU-days.",
+      "reason": "近 30 天；公司信号：Amazon, Tencent；关键词：amazon, tencent, cs.CL。Merchant risk control at large payment platforms screens tens of millions of merchants daily, where false positives harm legitimat...",
+      "area": "LLM 推理优化",
       "tags": [
         "amazon",
-        "cs.IR",
-        "inference",
-        "recommendation",
-        "recommender",
-        "retrieval",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-08-02T14:15:50Z",
-      "url": "https://arxiv.org/abs/2608.01260",
-      "pdfUrl": "https://arxiv.org/pdf/2608.01260v1"
-    },
-    {
-      "id": "arxiv-2608.00938",
-      "title": "GRACE: Generative Recommender Acceleration Engine for Real-Time Ads Retrieval",
-      "authors": [
-        "Zhou Fang",
-        "Yuhang Huang",
-        "Ang Zhang",
-        "Yihan He",
-        "Ruichao Xiao",
-        "Chao Li",
-        "Yavuz Yetim",
-        "Sibyl Yang",
-        "Xiaohan Wei",
-        "Fei Tian",
-        "Liang Wang",
-        "Liyuan Li",
-        "Nathan Yan",
-        "Gaoxiang Liu"
-      ],
-      "summary": "Productionizing generative recommenders for high-volume, real-time ads retrieval creates two serving challenges: eligibility, ensuring that each generated ad is eligible for the request under the advertiser's audience targeting rules, and compute, which requires meeting strict latency and GPU cost requirements while remaining capable of generating thousands of ads per request with wide-beam decoding. This paper presents GRACE, a serving system for ads generative retrieval that addresses both challenges. For eligibility, GRACE introduces Generative Target Matching (GTM), which extends catalog-valid constrained decoding with personalized filtering over Semantic ID (SID) prefixes using bitmask and Bloom filter matchers derived from targeting rules. SID-level GTM improves final ad-level target matching pass rate from 23.55% to 40.42% over constrained decoding alone. For compute-cost and latency, GRACE targets encoder-decoder Transformers, which are more lightweight than LLMs. It redesigns the decoder around the wide-beam, short-sequence regime, covering attention kernels, KV cache, and beam search optimizations. On NVIDIA GH200, compared with the faster of FlashAttention-2 and FlashAttention-3 baselines, GRACE improves cross-attention latency by 68.0 times and self-attention latency by 23.4-25.8 times across decode steps. Together, these changes reduce decoder latency by 11.1 times, keeping ads generative retrieval within latency and compute requirements.",
-      "reason": "近 30 天；公司信号：NVIDIA；推荐/排序/广告方向；关键词：nvidia, cs.IR, kv-cache。Productionizing generative recommenders for high-volume, real-time ads retrieval creates two serving challenges: eligibility, ensu...",
-      "area": "推荐算法",
-      "tags": [
-        "nvidia",
-        "cs.IR",
-        "kv-cache",
-        "latency",
+        "tencent",
+        "cs.CL",
+        "alignment",
+        "deployed",
         "llm",
-        "production",
-        "recommender"
+        "production"
       ],
       "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-08-02T02:30:38Z",
-      "url": "https://arxiv.org/abs/2608.00938",
-      "pdfUrl": "https://arxiv.org/pdf/2608.00938v1"
+      "source": "Amazon/Tencent/arXiv",
+      "publishedAt": "2026-08-04T03:23:12Z",
+      "url": "https://arxiv.org/abs/2608.03063",
+      "pdfUrl": "https://arxiv.org/pdf/2608.03063v1"
     }
   ]
 }
