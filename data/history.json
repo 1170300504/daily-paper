@@ -1,7 +1,302 @@
 {
-  "generatedAt": "2026-08-06T06:48:14.316803+08:00",
+  "generatedAt": "2026-08-07T09:27:15.408390+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-08-07",
+      "generatedAt": "2026-08-07T09:27:15.408390+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2608.06135",
+          "title": "LLM Inference Under Bursty Workload Distribution: Modifying the WAIT Algorithm",
+          "authors": [
+            "Anjali Gangadhar Katageria",
+            "Shobha Rani",
+            "Raghu Nandan Sengupta"
+          ],
+          "summary": "Large Language Models (LLMs) such as ChatGPT and Claude are widely used for information retrieval and problem-solving. Recent work has focused on improving scheduling algorithms to boost throughput while maintaining low latency. However, these approaches often assume Poisson request arrivals with constant rates - an assumption that fails to reflect the inherently bursty and dynamic nature of real-world traffic. We propose a lightweight extension to the state-of-the-art WAIT algorithm [1], which adapts to time-varying arrival rates without prior traffic knowledge. The proposed algorithm performs online estimation of request intensity based on observed interarrival times. Using Markov Modulated Poisson Process (MMPP)-based synthetic workloads with diverse request types, we conduct a simulation-based evaluation demonstrating that the proposed method achieves higher throughput than Sarathi-Serve [2], ORCA [3], and vLLM [4] in the evaluated low arrival-rate shift scenarios while maintaining comparable latency.",
+          "reason": "近 30 天；公司信号：Anthropic, OpenAI；关键词：anthropic, openai, cs.LG。Large Language Models (LLMs) such as ChatGPT and Claude are widely used for information retrieval and problem-solving. Recent work...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "anthropic",
+            "openai",
+            "cs.LG",
+            "inference",
+            "latency",
+            "llm",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "Anthropic/OpenAI/arXiv",
+          "publishedAt": "2026-08-06T15:07:43Z",
+          "url": "https://arxiv.org/abs/2608.06135",
+          "pdfUrl": "https://arxiv.org/pdf/2608.06135v1"
+        },
+        {
+          "id": "arxiv-2608.05732",
+          "title": "CircuitSteer: Geometrically Aligned Multi-Layer Steering via Sparse Autoencoder Circuits",
+          "authors": [
+            "Mehrshad Saadatinia",
+            "Parsa Razmara",
+            "Ardalan Aryashad",
+            "Ali Abbasi",
+            "Seyedarmin Azizi"
+          ],
+          "summary": "Controlling the behavior of large language models (LLMs) remains a critical challenge for AI alignment. Existing steering methods, such as Contrastive Activation Addition (CAA), typically rely on fixed single-layer interventions derived from aggregate activation differences. These methods impose a single intervention across semantically diverse inputs and often fail to sustain consistent behavioral changes across layers, limiting the effectiveness of the steering. In this work, we introduce CircuitSteer, a novel framework that leverages Sparse Autoencoders (SAEs) to identify and manipulate coherent semantic circuits distributed across multiple layers. By constructing a feature flow circuit based on feature co-activation and the geometric alignment of decoder directions, we isolate the specific multi-layer subcircuits responsible for a target behavior. We then synthesize dense steering vectors from these sparse features and apply multi-point interventions to guide the model's internal semantic trajectory. We evaluate CircuitSteer using contrastive examples across a diverse set of tasks, including toxicity, emotion-intensity, sycophancy, and refusal, spanning two model families. Across all models and datasets, CircuitSteer is the only method to consistently produce fluency-preserving interventions; competing methods either sacrifice text quality or lack coverage, failing entirely on complex behaviors like sycophancy and refusal. These results demonstrate that multi-layer circuit steering, enabled by enforcing geometric alignment among selected features, yields strictly more robust and effective behavioral control than static single-point interventions. Code is available at https://github.com/mehrshad-sdtn/CircuitSteer.",
+          "reason": "近 30 天；关键词：cs.LG, alignment, dataset。Controlling the behavior of large language models (LLMs) remains a critical challenge for AI alignment. Existing steering methods,...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "alignment",
+            "dataset",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-06T08:17:50Z",
+          "url": "https://arxiv.org/abs/2608.05732",
+          "pdfUrl": "https://arxiv.org/pdf/2608.05732v1"
+        },
+        {
+          "id": "arxiv-2608.05483",
+          "title": "PLoRA: An NDP-Enhanced Pooled-Memory System for Cost-Efficient Multi-LoRA Serving",
+          "authors": [
+            "Zhongkai Yu",
+            "Ohm Rishabh Venkatachalam",
+            "Zheng Wang",
+            "Yikai Li",
+            "Yichen Lin",
+            "Zihao Yu",
+            "Yuke Wang",
+            "Liu Liu",
+            "Xulong Tang",
+            "Shuyi Pei",
+            "Yangwook Kang",
+            "Yufei Ding"
+          ],
+          "summary": "Multi-LoRA serving is how one base model becomes thousands of specialized variants, one adapter per user, task, or agent, and the deployments can hold 1000-plus adapters. Serving them is hard because the workload inverts what GPUs provide: terabytes of memory against only tens of TFLOPS, and because every published system stages its adapters from CPU DRAM over PCIe, where each access pays a kernel stop and a host-run copy and capacity ends at the motherboard's DIMM slots. Meanwhile, memory-semantic fabrics such as CXL and NVLink are converging on pooled memory that an accelerator addresses with its own loads and stores, and near-data processing (NDP) can place compute beside the pooled data. How to serve multi-LoRA workloads on such hardware remains unexplored. This paper introduces PLoRA, an NDP-enhanced pooled-memory system for cost-efficient multi-LoRA serving. PLoRA keeps adapters and KV cache in the pool and returns only reduced results over the link, through a read-compute interface the GPU drives with its own loads and stores. Above this architecture, a GPU memory management system picks among four LoRA and two attention execution strategies for each adapter and caches the most performance-critical bytes in GPU memory, guided by a link-parameterized cost model. On one H100 serving 1000 adapters, PLoRA attains the lowest decode latency on every model and workload we measure, averaging 6.6x below a real-machine S-LoRA at under 3.4% added device area. The link itself stops mattering: throughput saturates at 32 GB/s on short contexts, a quarter of CXL 3.1, and the verdict survives scale: per-GPU demand falls from 7B to a modeled 1.2T deployment once adapter traffic shards with the tensor parallelism. The design runs unchanged from CXL-class to NVLink-class fabrics, and surplus bandwidth buys pooled capacity rather than speed.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.AR, efficient。Multi-LoRA serving is how one base model becomes thousands of specialized variants, one adapter per user, task, or agent, and the...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.AR",
+            "efficient",
+            "kv-cache",
+            "latency",
+            "lora",
+            "multi-lora"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-08-06T00:19:56Z",
+          "url": "https://arxiv.org/abs/2608.05483",
+          "pdfUrl": "https://arxiv.org/pdf/2608.05483v1"
+        },
+        {
+          "id": "arxiv-2608.05303",
+          "title": "EdgeXpert: An Edge Device for Memory-Efficient LLM Inference with Mixture-of-Experts and Speculative Decoding",
+          "authors": [
+            "Sangwoo Ha",
+            "Hyunwoo Seo",
+            "Yurim Jo",
+            "Youngjin Moon",
+            "Hoi-Jun Yoo"
+          ],
+          "summary": "On-device deployment of Large Language Models (LLMs) has become essential for personalized edge applications. A primary bottleneck is external memory access (EMA) in feed-forward network (FFN) layers. Speculative decoding and mixture-of-experts (MoE) are promising solutions. Speculative decoding reduces the number of decoding stages by generating multiple tokens per stage, and MoE minimizes per-stage cost through sparse expert activation. However, there is an incompatibility when combining these two techniques. We propose EdgeXpert, a software-hardware co-designed LLM accelerator that resolves this incompatibility. In the prefill stage, the prompt-wise expert reuse reformulates routing as prompt-level expert reuse rather than independent per-token expert selection. It identifies important tokens using a lightweight encoder, constructs a shared expert set from them, and routes less important tokens with a reduced expert budget to lower expert EMA. In the decode stage, depth-aware expert coalescing exploits the contextual similarity and mutual exclusivity of same-depth candidate tokens. Rather than loading the union of all required channels, EdgeXpert loads only salient channels and applies computational calibration to recover accuracy without additional memory access. Synthesized in Samsung 28nm technology at 800 MHz, EdgeXpert achieves up to 56.3% latency reduction and 44.1% energy reduction compared to prior works, while maintaining near-baseline accuracy.",
+          "reason": "近 30 天；关键词：cs.AR, efficient, energy。On-device deployment of Large Language Models (LLMs) has become essential for personalized edge applications. A primary bottleneck...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AR",
+            "efficient",
+            "energy",
+            "inference",
+            "latency",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-05T18:03:47Z",
+          "url": "https://arxiv.org/abs/2608.05303",
+          "pdfUrl": "https://arxiv.org/pdf/2608.05303v1"
+        },
+        {
+          "id": "arxiv-2608.04991",
+          "title": "RAC: Reference-Aware Activation Compression for Communication-Efficient Split LLM Inference",
+          "authors": [
+            "Guotao Yang",
+            "Mingxi Zhao",
+            "Haopeng Li",
+            "Zhengchao Wang",
+            "Sheng Chen",
+            "Yitao Hu",
+            "Keqiu Li"
+          ],
+          "summary": "Large language model (LLM) agents repeatedly process long, privacy-sensitive contexts, while cloud-only deployment exposes user data beyond the trusted endpoint and fully local deployment often requires costly hardware. Split inference offers a middle ground by executing the model head, tail, and tools locally and the middle layers in the cloud, but its local-cloud-local path transfers boundary hidden states at every invocation and creates a critical communication bottleneck. We present \\system, a reference-aware codec that retrieves exact-token historical spans for prefill uplinks, reuses the reconstructed uplink state for same-round prefill downlinks, and generates boundary-specific decode references with lightweight causal predictors. RAC applies grouped affine alignment and calibrated residual quantization with optional prefill outliers, while sender-side wire-format reconstruction synchronizes subsequent references and offline calibration accounts for quality and packed representation costs. Across three models and nine evaluated model-link pairs, Raw-to-RAC mean time to first token (TTFT) and time per output token (TPOT) ratios are 1.24-2.72$\\times$ and 1.01-2.79$\\times$, while the 12 non-perplexity task-score changes range from $-0.40$ to $+2.50$ points.",
+          "reason": "近 30 天；关键词：cs.DC, alignment, efficient。Large language model (LLM) agents repeatedly process long, privacy-sensitive contexts, while cloud-only deployment exposes user da...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "alignment",
+            "efficient",
+            "inference",
+            "llm",
+            "prefill",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-05T16:01:23Z",
+          "url": "https://arxiv.org/abs/2608.04991",
+          "pdfUrl": "https://arxiv.org/pdf/2608.04991v1"
+        },
+        {
+          "id": "arxiv-2608.04502",
+          "title": "AFD-Ledger: Deployment Provisioning for Attention--FFN Disaggregation",
+          "authors": [
+            "Chengyu Qiu",
+            "Xiao Fu",
+            "Fengcun Li",
+            "Yulei Qian",
+            "Yuchen Xie",
+            "Xunliang Cai",
+            "Yingdi Shan",
+            "Yongwei Wu",
+            "Mingxing Zhang"
+          ],
+          "summary": "Attention--Feed-Forward Network (FFN) Disaggregation (AFD) is emerging as a promising architecture for serving Mixture-of-Experts (MoE) language models. While existing AFD systems improve the efficiency of disaggregated execution, they leave a deployment question unanswered: under the same model, workload, time-per-output-token (TPOT) service-level objective (SLO), hardware budget, hardware catalog, and runtime capabilities, does AFD provide higher throughput than the best collocated deployment? Answering this question requires jointly optimizing hardware assignment and deployment organization for both architectures, making exhaustive provisioning prohibitively expensive. We present AFD-Ledger, an offline analytical provisioning system that independently provisions AFD and collocated deployments using an analytical execution model and an evaluation-bounded hardware search. Across deployment spaces where exhaustive provisioning is feasible, AFD-Ledger reduces complete deployment evaluations by 68.8%--83.5% while still recovering the globally optimal deployment. On three physical LongCat 2.0 deployments, it preserves the correct architecture decision while predicting AFD-to-collocated throughput within 6.6%--9.6% of measurement. Using this validated framework, we show that homogeneous AFD improves fixed-budget throughput in only a minority of the studied settings, heterogeneous AFD requires deployment-level hardware complementarity rather than heuristic device selection, and role-specific hardware improvements matter primarily when they enable better deployment organizations by crossing deployment capability--price boundaries.",
+          "reason": "近 30 天；关键词：cs.DC, serving, slo。Attention--Feed-Forward Network (FFN) Disaggregation (AFD) is emerging as a promising architecture for serving Mixture-of-Experts...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "serving",
+            "slo",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-05T06:39:57Z",
+          "url": "https://arxiv.org/abs/2608.04502",
+          "pdfUrl": "https://arxiv.org/pdf/2608.04502v1"
+        },
+        {
+          "id": "arxiv-2608.04458",
+          "title": "Architectural Implications of Agentic AI Workflows",
+          "authors": [
+            "Jirong Yang",
+            "Peizhe Liu",
+            "Chaojie Zhang",
+            "Jovan Stojkovic"
+          ],
+          "summary": "Agentic AI is emerging in datacenters, but its architectural implications remain unexplored. We organize agentic workflows in a taxonomy and present its first architectural characterization with a production study at Microsoft Azure and a controlled study of open-source frameworks. We show that agentic execution is fragmented and heterogeneous. Requests expand into a workflow of LLM inferences, tool invocations, and orchestration decisions that repeatedly cross the CPU-GPU boundary. Our taxonomy explains how this fragmentation turns into resource demand. As orchestration and tools run on the host, the CPU sits on the critical path. Execution structure sets the load over time, which stays low with sudden spikes. Model composition sets how evenly the workflow uses the GPUs. Diversity in tasks and tools widens this range even further. These characteristics expose architectural mismatches of conventional uniform servers. Fragmented execution strands CPU and GPU capacity despite bursty demand. Different software roles make homogeneous CPU provisioning inefficient. Finally, multiplexing many agents onto shared cores degrades microarchitectural locality. Guided by our findings, we derive implications for agentic servers and examine them through Agora, our prototype for commodity servers. Agora dynamically harvests idle CPU cores for co-located throughput work, while protecting agentic tail latency against tool spikes. It oversubscribes GPU memory by placing more agents on each GPU, prefetching the next agent's state to hide swap latency. To match the machine to the heterogeneous roles, Agora pools cores by role and applies affinity-aware scheduling to restore locality. It automatically tunes mechanisms to the workload. Agora improves utilization and server throughput while preserving agent tail latency. Our insights also identify key directions for future server architectures for agentic AI.",
+          "reason": "近 30 天；公司信号：Microsoft；关键词：microsoft, cs.AI, efficient。Agentic AI is emerging in datacenters, but its architectural implications remain unexplored. We organize agentic workflows in a ta...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "microsoft",
+            "cs.AI",
+            "efficient",
+            "inference",
+            "latency",
+            "llm",
+            "production"
+          ],
+          "signal": 99,
+          "source": "Microsoft/arXiv",
+          "publishedAt": "2026-08-05T05:31:33Z",
+          "url": "https://arxiv.org/abs/2608.04458",
+          "pdfUrl": "https://arxiv.org/pdf/2608.04458v1"
+        },
+        {
+          "id": "arxiv-2608.04450",
+          "title": "CommBench: Can LLMs Write Correct and Efficient GPU Communication Code?",
+          "authors": [
+            "Shuang Ma",
+            "Yuyi Li",
+            "Yihan Zhang",
+            "Hezhi Xie",
+            "Danyang Chen",
+            "Shuyang Ji",
+            "Ziming Mao",
+            "Cheng Ji",
+            "Ansha Prashanth",
+            "Wenting Yang",
+            "Yiran Wang",
+            "Chihan Cui",
+            "Pei Yu Lin",
+            "Ion Stoica",
+            "Yang Zhou"
+          ],
+          "summary": "Training and serving large language models (LLMs) rely heavily on high-performance GPU communication, yet implementing efficient GPU communication primitives requires deep expertise in GPU architectures, networking hardware, and distributed communication patterns, making them particularly challenging for code generation models. We present CommBench, a comprehensive benchmark for GPU communication programming, consisting of over 100 expert-curated tasks spanning point-to-point communication, collective operations, expert-parallel communication, compute--communication fusion, and communication utility functions, with reference implementations either written by GPU communication experts or distilled from production codebases. We further introduce a cheat-resistant evaluation framework that automatically compiles, executes, and validates generated code on multi-GPU systems, and a unified metric that jointly measures functional correctness and communication performance. Evaluating leading frontier and open-source code generation models on both intra-node NVLink and inter-node RDMA platforms reveals that even the strongest model, GPT-5.5, correctly implements and achieves competitive performance on only 30.7\\% of the benchmark tasks. Our results expose a substantial gap between current LLMs and expert-written GPU communication code, establishing CommBench as a challenging benchmark for advancing AI-assisted systems programming.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, llm。Training and serving large language models (LLMs) rely heavily on high-performance GPU communication, yet implementing efficient G...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "llm",
+            "production",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-05T04:55:21Z",
+          "url": "https://arxiv.org/abs/2608.04450",
+          "pdfUrl": "https://arxiv.org/pdf/2608.04450v1"
+        },
+        {
+          "id": "arxiv-2608.04405",
+          "title": "Training-Free Hashing-Based Attention via Binary Principal Components",
+          "authors": [
+            "Daohai Yu",
+            "Zhanpeng Zeng",
+            "Keyu Chen",
+            "Wenhao Li",
+            "Zhifeng Shen",
+            "Luxi Lin",
+            "Ruizhi Qiao",
+            "Xing Sun",
+            "Rongrong Ji"
+          ],
+          "summary": "Long-context large language models (LLMs) are increasingly deployed in real-world applications, yet self-attention remains a major efficiency bottleneck -- especially during decoding -- due to the necessity of repeatedly processing ever-growing key-value (KV) caches. Existing sparse attention reduce computation by attending to fewer KV pairs, but often suffer from substantial accuracy degradation, require additional training, or rely on expensive hashing. In this work, we present BinaryPC, a training-free, data-aware hashing-based sparse attention for long-context LLMs. BinaryPC constructs compact binary hash codes and corresponding hash function by computing binary principal components of data. Unlike Locality-Sensitive Hashing (LSH) with data-independent random projections or learned non-linear hashing methods, BinaryPC constructs binary codes that explicitly preserve the structural information of data without requiring gradient-based training. Comprehensive experiments across multiple model families and long-context benchmarks show that BinaryPC preserves accuracy relative to full attention while achieving superior performance among sparse and hashing-based baselines. On modern GPUs, BinaryPC improves end-to-end decoding throughput by 3.56$\\times$ over the FlashAttention kernel. Our code is available at https://github.com/yudaohai666/BPC.",
+          "reason": "近 30 天；关键词：cs.LG, deployed, llm。Long-context large language models (LLMs) are increasingly deployed in real-world applications, yet self-attention remains a major...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "deployed",
+            "llm",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-05T03:19:21Z",
+          "url": "https://arxiv.org/abs/2608.04405",
+          "pdfUrl": "https://arxiv.org/pdf/2608.04405v1"
+        },
+        {
+          "id": "arxiv-2608.04160",
+          "title": "Mind the Cap: Output-Budget Regimes Change the Measured Multilingual Reasoning Gap",
+          "authors": [
+            "Ankit Goyal",
+            "Jaideep Ray"
+          ],
+          "summary": "Multilingual evaluations report accuracy at a single output-token cap, but languages need different numbers of tokens to express the same content, so the cap is a hidden experimental variable. We test whether the native-vs-translate gap on MGSM (German, Thai, Swahili) is a token-budget artifact for Qwen3-8B and Llama-3.1-8B-Instruct under four prompting strategies. The measured gap swings by up to 57 points across budgets, length normalization moves it by up to 38.9 points where the cap binds, and at tight caps normalization can reverse which strategy scores higher. We prospectively froze the sweep's three Qwen peaks and its near-zero value at 1024 and evaluated them on 540,000 independently hard-capped decodes: a second frozen family of six Holm-corrected tests rejects every null. The frozen test at $B^*=1024$ still fails to reject because native accuracy has already saturated there; above saturation, the residual difference is a strategy-performance gap, not an identified reasoning deficit. The same truncation channel prices a cost-ordered adaptation ladder: a cross-fitted Thai vocabulary extension closes 0.0 points of the gap at the frozen budget and 4.9 points where 19% of traces still truncate. A third frozen family varies only the announced budget at a fixed enforced cap; announcing 128 rather than 2048 tokens moves Thai native accuracy by 5.1 points, so accuracy is not a function of the enforced cap alone. A correct-emission timing identity computed from one long-cap run matches the three pre-specified MGSM peaks to 0.65 points and, in an exploratory Qwen-only analysis of three further benchmarks, tracks held-out items to 0.92 points, locating the peak exactly in five of seven cells. Treat the output cap as an independent variable and report accuracy across the budget regime, not at a single budget.",
+          "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.CL。Multilingual evaluations report accuracy at a single output-token cap, but languages need different numbers of tokens to express t...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "alibaba",
+            "meta",
+            "cs.CL",
+            "lora"
+          ],
+          "signal": 99,
+          "source": "Alibaba/Meta/arXiv",
+          "publishedAt": "2026-08-04T19:18:41Z",
+          "url": "https://arxiv.org/abs/2608.04160",
+          "pdfUrl": "https://arxiv.org/pdf/2608.04160v1"
+        }
+      ]
+    },
     {
       "date": "2026-08-06",
       "generatedAt": "2026-08-06T06:48:14.316803+08:00",
