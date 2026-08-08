@@ -1,7 +1,237 @@
 {
-  "generatedAt": "2026-08-08T06:26:04.860733+08:00",
+  "generatedAt": "2026-08-09T06:16:52.110027+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-08-09",
+      "generatedAt": "2026-08-09T06:16:52.110027+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2608.03966",
+          "title": "HalluTruthQA-4K: A Fine-Grained Corpus and Annotation Process for Arabic Hallucination Detection and Truth Verification",
+          "authors": [
+            "Salah Eddine Bekhouche",
+            "Abdessalam Bouchekif",
+            "Hichem Telli",
+            "Mohammed-En-Nadhir Zighem",
+            "Abdenour Hadid"
+          ],
+          "summary": "Large language models can generate fluent Arabic answers while introducing factual errors that are difficult to identify and verify. Existing Arabic hallucination resources often assign a binary label to an entire response, indicating whether it is hallucinated or non-hallucinated, but provide limited information about the exact erroneous content, the reason for the error, or the correct factual answer. We present HalluTruthQA-4K, an expanded version of the HalluTruthQA resource containing 4,000 expert-curated Arabic question-answering instances across four knowledge-intensive domains: Islamic knowledge, history, science, and geography. Serving as the official dataset for Track 2 of the HalluScoring 2026 shared task, HalluTruthQA-4K extends our original corpus to 4,000 instances. Each instance pairs an Arabic question with a model-generated response, a verified reference answer, and five plausible distractors. Hallucinated responses are additionally annotated with character-level erroneous spans, human-written explanations, and hierarchical hallucination types. The corpus contains 1,643 hallucinated and 2,357 non-hallucinated responses, with 1,843 annotated erroneous spans. We describe the resource construction and annotation methodology, including question selection, controlled answer generation, candidate construction, expert annotation, independent verification, adjudication, and quality control. We also document the annotation guidelines, taxonomy, data format, inter-annotator agreement, and corpus statistics. HalluTruthQA-4K provides a reusable resource for hallucination detection, span-level error localization, explanation generation, factual verification, and the broader evaluation of factual reliability in Arabic language models.",
+          "reason": "近 30 天；关键词：cs.CL, dataset, serving。Large language models can generate fluent Arabic answers while introducing factual errors that are difficult to identify and verif...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "dataset",
+            "serving"
+          ],
+          "signal": 89,
+          "source": "arXiv",
+          "publishedAt": "2026-08-04T17:33:38Z",
+          "url": "https://arxiv.org/abs/2608.03966",
+          "pdfUrl": "https://arxiv.org/pdf/2608.03966v1"
+        },
+        {
+          "id": "arxiv-2608.06111",
+          "title": "Beyond Sequence Order: Syntax-Informed Positional Embeddings for Transformers",
+          "authors": [
+            "Haris Riaz",
+            "Hyungji Kim",
+            "Mihai Surdeanu"
+          ],
+          "summary": "Positional embeddings (PE) in Transformers encode token distance and order but are largely agnostic to \\textit{syntactic structure}. We introduce \\textbf{S}yntax-\\textbf{i}nformed \\textbf{P}ositional \\textbf{E}mbeddings (\\textbf{SiPE}), which learns a lightweight syntactic prior from dependency parses during pretraining and injects it across all three dominant PE families (absolute, relative, rotary), for both encoders and decoders, leaving self-attention and the rest of the architecture untouched. We isolate \\emph{where} and \\emph{how} the prior should enter the model, and find it depends on the architecture: for autoregressive decoders that use relative PE, the prior is strongest when coupled multiplicatively with the relative-position term of the attention score, outperforming injection into the input embeddings, into self-attention, or into the positional and attention terms jointly---while for encoders it is best added directly to the input embeddings, composing with each encoder's native positional mechanism. We find that models pre-trained with SiPE improve on the SyntaxGym benchmark by up to $10.3\\%$ while simultaneously reducing perplexity by $9.0\\%$ over a base model with no syntactic supervision---a metric nearly every existing syntax-injection method instead degrades. Crucially, these gains extend beyond syntactic generalization: SiPE also improves real-world language understanding, raising scores on the GLUE benchmark by up to $8.2\\%$ over a model trained without it. Unlike existing syntactic language models that marginalize over many parses at inference or discard syntax at runtime, SiPE conditions on a single parse, establishing a new Pareto frontier between syntactic supervision and inference cost.",
+          "reason": "近 30 天；关键词：cs.CL, inference, pareto。Positional embeddings (PE) in Transformers encode token distance and order but are largely agnostic to \\textit{syntactic structure...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "inference",
+            "pareto"
+          ],
+          "signal": 87,
+          "source": "arXiv",
+          "publishedAt": "2026-08-06T14:44:31Z",
+          "url": "https://arxiv.org/abs/2608.06111",
+          "pdfUrl": "https://arxiv.org/pdf/2608.06111v1"
+        },
+        {
+          "id": "arxiv-2608.05872",
+          "title": "MACRO: Markov Chain Routing of Transformer Layers",
+          "authors": [
+            "Paweł Batorski",
+            "Abtin Pourhadi",
+            "Akylgali Aitaza",
+            "Przemysław Spurek",
+            "Paul Swoboda"
+          ],
+          "summary": "Standard Large Language Models (LLMs) execute layers sequentially. Dynamic layer routing, i.e. search for a different execution path through layers involving layer repetitions, skips and other moves, can improve performance. Existing routing approaches often require updating model weights, running expensive search loops per test instance, or demand ground-truth labels during inference. In this work, we propose Markov Chain Routing of Transformer Layers (MACRO), a framework that learns task-specific routes over LLM architectures without modifying underlying parameters. MACRO models layer routing as a context-dependent Markov policy conditioned on layer indices, computation budget phases, directional displacements, and operator context, supporting skip, repeat, and residual hidden-state addition operations. The Markov route distribution is updated via feedback on training data and decoded using a top-k Viterbi algorithm to isolate high-probability candidate programs. We evaluate MACRO across diverse reasoning and knowledge benchmarks on multiple open-weight LLMs. MACRO achieves a +5.0% average accuracy improvement over the unrouted baselines, with largest gains on small models. We outperform the best dynamic routing approach Dr. LLM by +7.2%, while reducing route-search time 9.4x (from 14.8 to 1.6 hours). Our code is publicly available at https://github.com/Batorskq/MACRO.",
+          "reason": "近 30 天；关键词：cs.CL, inference, llm。Standard Large Language Models (LLMs) execute layers sequentially. Dynamic layer routing, i.e. search for a different execution pa...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "inference",
+            "llm"
+          ],
+          "signal": 86,
+          "source": "arXiv",
+          "publishedAt": "2026-08-06T10:51:34Z",
+          "url": "https://arxiv.org/abs/2608.05872",
+          "pdfUrl": "https://arxiv.org/pdf/2608.05872v1"
+        },
+        {
+          "id": "arxiv-2608.04714",
+          "title": "What We Observe as LLM Behavior Can Be a Side-effect of Inference Backend",
+          "authors": [
+            "Shahed Masoudian",
+            "Passant Shafaei",
+            "Monorama Swain",
+            "Markus Schedl"
+          ],
+          "summary": "Benchmark scores are reported as properties of a model, yet the inference framework used to produce them, such as HuggingFace, vLLM, or Ollama, are considered non-influential and their names and versions are almost never disclosed. In this work we investigate how much this choice can influence the model output. In a fully-crossed study (three instruction-tuned models x five inference frameworks x six benchmarks x four generation modes) we investigate how different tools (wrappers/backend) influence benchmark scores and how their score changes is influenced by generation hyper-parameters. We find backend to be a non-negligible factor where even under greedy, sampling-noise-free decoding, changing the backend can significantly alter models performance and this effect is structural and strongly model-dependent. Decomposing the variance according to generation mode reveal that considerable portion of the variability (roughly 39\\%) a practitioner sees out-of-the-box can stem from the backend, while the remaining stems from sampling noise and each framework's default generation parameters, both of which are avoidable by disclosing and matching the generation configuration. These divergences are more pronounced on factual than on social-bias benchmarks. Overall, benchmark numbers are not backend-agnostic therefore, we recommend disclosing the backend, its version, and the full generation configuration, also using deterministic decoding for cross-backend comparison.",
+          "reason": "近 30 天；关键词：cs.SE, inference, llm。Benchmark scores are reported as properties of a model, yet the inference framework used to produce them, such as HuggingFace, vLL...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.SE",
+            "inference",
+            "llm"
+          ],
+          "signal": 86,
+          "source": "arXiv",
+          "publishedAt": "2026-08-05T11:28:43Z",
+          "url": "https://arxiv.org/abs/2608.04714",
+          "pdfUrl": "https://arxiv.org/pdf/2608.04714v1"
+        },
+        {
+          "id": "arxiv-2608.04788",
+          "title": "Agentic Reinforcement Learning with Observation-Calibrated Self-Distillation",
+          "authors": [
+            "Yi Yang",
+            "Cong Qin",
+            "Xiaodan Liu",
+            "Chishui Chen",
+            "Qing Dong",
+            "Yan Zhang",
+            "Cao Liu",
+            "Zhao Yang",
+            "Lu Pan",
+            "Jiaye Lin",
+            "Yi Feng"
+          ],
+          "summary": "Large language model agents are commonly trained through reinforcement learning with sparse trajectory-level rewards, which offer limited guidance on how strongly individual tokens should be updated. On-Policy Self-Distillation (OPSD) addresses this by re-scoring generated tokens under a privileged replay view to obtain dense, token-level supervision. However, we identify a confounding issue: the resulting support may reflect both the privileged information contained in the replay view and score shifts induced by the replay scaffold, making it difficult to attribute the support specifically to that information. This issue is especially pronounced when future environment observations serve as privileged information, since replaying them requires reconstructing an extended scaffold that itself perturbs token scores. To resolve this confounding, we propose Observation-Calibrated Self-Distillation (OCSD), which contrasts two structurally matched replay views, Full and Observation-Ablated, differing only in whether the actual future observation is present, to derive an observation residual that discounts score changes shared by the replay scaffold. OCSD then applies this residual to modulate token-level GRPO updates at high-uncertainty steps, while preserving the trajectory-level update direction. Experiments on ALFWorld, WebShop, and Search-QA across three Qwen3 model scales show that OCSD consistently outperforms strong baselines. Diagnostic analyses further confirm that the calibrated residual aligns better with local environment feedback. Our code is publicly available at https://github.com/yiy1x/OCSD.",
+          "reason": "近 30 天；关键词：cs.LG, serving。Large language model agents are commonly trained through reinforcement learning with sparse trajectory-level rewards, which offer...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "serving"
+          ],
+          "signal": 82,
+          "source": "arXiv",
+          "publishedAt": "2026-08-05T12:52:14Z",
+          "url": "https://arxiv.org/abs/2608.04788",
+          "pdfUrl": "https://arxiv.org/pdf/2608.04788v1"
+        },
+        {
+          "id": "arxiv-2608.05806",
+          "title": "Hierarchical Latent Prediction for Language Models",
+          "authors": [
+            "Chang Shi",
+            "Tim Pearce",
+            "Manan Tomar",
+            "Siddhartha Sen",
+            "John Langford"
+          ],
+          "summary": "While standard Next-Token Prediction (NTP) lays the foundation of language model pre- training, its teacher-forced training paradigm may not be optimal for long-horizon reasoning and planning. Recent works such as Multi-Token Prediction (MTP) and Next-Latent prediction (NextLat) try to mitigate the problem through predicting multiple future tokens and self-supervised prediction in the latent space. However, those auxiliary objectives either have a limited horizon or suffer from compounding error from multi-step rollout. We introduce Hierarchical Latent Prediction (HiLP), which introduces an auxiliary higher-level abstract latent to help reduce the error accumulation effect in latent-space rollouts. Experiments show that HiLP can lead to longer-horizon coherent belief state representation and demonstrate the effectiveness of our method across coding and multi-step reasoning benchmarks, and offers more speculative decoding efficiency.",
+          "reason": "近 30 天；关键词：cs.CL, speculative。While standard Next-Token Prediction (NTP) lays the foundation of language model pre- training, its teacher-forced training paradi...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "speculative"
+          ],
+          "signal": 81,
+          "source": "arXiv",
+          "publishedAt": "2026-08-06T09:41:41Z",
+          "url": "https://arxiv.org/abs/2608.05806",
+          "pdfUrl": "https://arxiv.org/pdf/2608.05806v1"
+        },
+        {
+          "id": "arxiv-2608.04904",
+          "title": "Strengthening Target-Language Features: SAE-Based Steering for Multilingual Inference",
+          "authors": [
+            "Hongsheng Wang",
+            "Philipp Koehn"
+          ],
+          "summary": "Multilingual large language models exhibit substantial performance differences across languages, while existing adaptation methods often require parameter updates and considerable multilingual training data. We propose an inference-time multilingual steering method that uses pretrained sparse autoencoders to identify and strengthen target-language-related features. Using multilingual parallel sentences, we compare SAE activations across languages and select a small number of layer-specific features associated with each target language. These features are decoded into steering signals and injected into the model's hidden states without additional training. Experiments with Gemma-3-12B-it show average accuracy improvements of 10.9 percentage points on XCOPA, 5.3 points on XNLI, and 1.9 points on MGSM.",
+          "reason": "近 30 天；关键词：cs.CL, inference。Multilingual large language models exhibit substantial performance differences across languages, while existing adaptation methods...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "inference"
+          ],
+          "signal": 79,
+          "source": "arXiv",
+          "publishedAt": "2026-08-05T14:32:14Z",
+          "url": "https://arxiv.org/abs/2608.04904",
+          "pdfUrl": "https://arxiv.org/pdf/2608.04904v2"
+        },
+        {
+          "id": "arxiv-2608.04193",
+          "title": "Patients-like-me: A Variational LM--GNN Framework for Explainable Clinical Prediction",
+          "authors": [
+            "Xinyu Wang",
+            "Yixuan Li",
+            "Hanwei Wu",
+            "Qincheng Lu",
+            "Chi-Kuang Yeh",
+            "Xiao-Wen Chang",
+            "Ziyang Song"
+          ],
+          "summary": "Language models (LMs) offer strong textual representations for electronic health records (EHRs), but they encode patient sequences in isolation and provide limited explainability. Graph neural networks (GNNs) complement LMs by incorporating inter-patient relationships and enabling reference-patient attribution, yet they rely on high-quality patient representations. We propose Patients-like-me (PLM), a unified LM--GNN framework that integrates local patient semantics with global cohort structure. To train PLM efficiently, we introduce a Variational Expectation-Maximization algorithm that alternates LM and GNN updates under a supervised variational objective. Extensive experiments on MIMIC-III and MIMIC-IV show that PLM consistently outperforms state-of-the-art methods, with improvements generalizing across encoder-only and decoder-only LM backbones. These gains are achieved with only modest additional computational overhead. PLM also provides reference-patient explanations by retrieving influential similar patients, while edge-masking experiments confirm that the highest-ranked references have the greatest impact on model predictions.",
+          "reason": "近 30 天；关键词：cs.CL, efficient。Language models (LMs) offer strong textual representations for electronic health records (EHRs), but they encode patient sequences...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "efficient"
+          ],
+          "signal": 78,
+          "source": "arXiv",
+          "publishedAt": "2026-08-04T19:51:52Z",
+          "url": "https://arxiv.org/abs/2608.04193",
+          "pdfUrl": "https://arxiv.org/pdf/2608.04193v1"
+        },
+        {
+          "id": "arxiv-2608.03999",
+          "title": "Agogic: Performance-Timed Music Tokens for LLM-Native Text-to-Symbolic-Music Generation",
+          "authors": [
+            "Junhao Chen",
+            "Mingjin Chen",
+            "Jingjia Mao",
+            "Lin Chen",
+            "Saining Zhang",
+            "Minglin Chen",
+            "Ruocheng Wu",
+            "Liaoyuan Fan",
+            "Wenyi Li",
+            "Mingju Gao",
+            "Henghaofan Zhang",
+            "Zhihao Li",
+            "Hao Zhao",
+            "Yufei Wang",
+            "Ruqi Huang"
+          ],
+          "summary": "Text-to-music language models begin with a choice usually made by default: how to tokenize music. Normally entangled with backbone, data, and recipe, its effect has never been measured in isolation. We fix pretrained Qwen3.5 (0.8B-27B), data, budget, and decoding, and swap only the representation across seven tokenizations, anchoring texture metrics to each representation's model-free ceiling. The ordering is clean and surprising: representation, not model size, is the binding variable for distributional fidelity. Scaling the backbone 34x barely moves Frechet Music Distance (FMD), whereas switching representation halves it. PMT, a performance-resolution stream we release (10 ms timing, per-note velocity, multi-track texture; 609 symbols), reaches FMD 159 at 0.8B against 272-286 for beat grids (1.7-1.8x lower, up to 2.8x elsewhere; non-overlapping bootstrap CIs), so a 0.8B performance-resolution model beats a 27B beat grid. It reappears on a 26M from-scratch backbone and a second performance-resolution tokenizer: a property of the class, not one lucky vocabulary. Nor is it a finer-lattice artifact: snapping PMT's onsets to the beat grids' resolution still leaves it 67-129 FMD ahead of both (n=500). The effect is distributional; whether it is audible is a separate question, left open by our probe, with a human study pre-registered. Native caption adherence is weak but separable: a lightweight decode-time constraint doubles instrument-F1 (.28 to .60) and Correct-Key (.16 to .35) at no distributional cost. We release the harness, 25+ checkpoints, two corpora (86.6k aligned across caption/MIDI/ABC/audio; 6.25M captioned, the largest for music), and an imprinting diagnostic: published text-to-MIDI systems reproduce their training distribution near-invariant to the caption (72% vs. 71% chord-time on disjoint domains). The field's next representation claim can now be measured, not asserted.",
+          "reason": "近 30 天；关键词：cs.SD, llm。Text-to-music language models begin with a choice usually made by default: how to tokenize music. Normally entangled with backbone...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.SD",
+            "llm"
+          ],
+          "signal": 77,
+          "source": "arXiv",
+          "publishedAt": "2026-08-04T17:56:49Z",
+          "url": "https://arxiv.org/abs/2608.03999",
+          "pdfUrl": "https://arxiv.org/pdf/2608.03999v1"
+        }
+      ]
+    },
     {
       "date": "2026-08-08",
       "generatedAt": "2026-08-08T06:26:04.860733+08:00",

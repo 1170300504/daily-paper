@@ -1,244 +1,229 @@
 {
-  "generatedAt": "2026-08-08T06:26:04.860733+08:00",
+  "generatedAt": "2026-08-09T06:16:52.110027+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2608.05253",
-      "title": "Beyond Rotations: AuroOFT for Expressive Quantized Orthogonal Fine-Tuning",
+      "id": "arxiv-2608.03966",
+      "title": "HalluTruthQA-4K: A Fine-Grained Corpus and Annotation Process for Arabic Hallucination Detection and Truth Verification",
       "authors": [
-        "Yue Han",
-        "Dianlin Wang"
+        "Salah Eddine Bekhouche",
+        "Abdessalam Bouchekif",
+        "Hichem Telli",
+        "Mohammed-En-Nadhir Zighem",
+        "Abdenour Hadid"
       ],
-      "summary": "Quantized orthogonal fine-tuning (qoft) enables parameter-efficient adaptation of low-bit language models by learning structured activation rotations before frozen quantized weights. However, its task-specific updates remain constrained to linear orthogonal transformations, limiting input-dependent nonlinear corrections. We introduce AuroOFT, which keeps qoft as a stable quantization-compatible branch while attaching a zero-start gated low-rank nonlinear residual to each adapted linear layer. AuroOFT maps activations into an RMS-normalized compact latent space and uses adaptive nonlinear bases with bounded or token-dependent gating. The zero-initialized up projection makes AuroOFT functionally identical to qoft at initialization, while orthogonality remains a branch-level stability property rather than a property of the combined nonlinear layer. Under matched data, optimization, decoding, and parser protocols, AuroOFT improves Macro-6 over matched qoft by 1.30-2.70% on the 1.5B/3B Qwen2.5 settings, exceeds QLoRA by 6.52-10.62%, and saves 32.3-44.7% trainable parameters relative to QLoRA in representative scales. The small exam-style multiple-choice math set is treated only as a protocol-sensitivity diagnostic. Our code is available at the anonymous repository: https://anonymous.4open.science/r/AuroOFT-F3FD.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, lora。Quantized orthogonal fine-tuning (qoft) enables parameter-efficient adaptation of low-bit language models by learning structured a...",
+      "summary": "Large language models can generate fluent Arabic answers while introducing factual errors that are difficult to identify and verify. Existing Arabic hallucination resources often assign a binary label to an entire response, indicating whether it is hallucinated or non-hallucinated, but provide limited information about the exact erroneous content, the reason for the error, or the correct factual answer. We present HalluTruthQA-4K, an expanded version of the HalluTruthQA resource containing 4,000 expert-curated Arabic question-answering instances across four knowledge-intensive domains: Islamic knowledge, history, science, and geography. Serving as the official dataset for Track 2 of the HalluScoring 2026 shared task, HalluTruthQA-4K extends our original corpus to 4,000 instances. Each instance pairs an Arabic question with a model-generated response, a verified reference answer, and five plausible distractors. Hallucinated responses are additionally annotated with character-level erroneous spans, human-written explanations, and hierarchical hallucination types. The corpus contains 1,643 hallucinated and 2,357 non-hallucinated responses, with 1,843 annotated erroneous spans. We describe the resource construction and annotation methodology, including question selection, controlled answer generation, candidate construction, expert annotation, independent verification, adjudication, and quality control. We also document the annotation guidelines, taxonomy, data format, inter-annotator agreement, and corpus statistics. HalluTruthQA-4K provides a reusable resource for hallucination detection, span-level error localization, explanation generation, factual verification, and the broader evaluation of factual reliability in Arabic language models.",
+      "reason": "近 30 天；关键词：cs.CL, dataset, serving。Large language models can generate fluent Arabic answers while introducing factual errors that are difficult to identify and verif...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.LG",
-        "efficient",
-        "lora",
-        "quantization"
-      ],
-      "signal": 98,
-      "source": "arXiv",
-      "publishedAt": "2026-08-05T16:05:13Z",
-      "url": "https://arxiv.org/abs/2608.05253",
-      "pdfUrl": "https://arxiv.org/pdf/2608.05253v1"
-    },
-    {
-      "id": "arxiv-2608.05326",
-      "title": "QEvict: Recoverable Quantized KV Eviction for Attention-Drift-Robust Long-Context Decoding",
-      "authors": [
-        "Ayushman Garg",
-        "Akshita Gupta",
-        "Shaswata Bhattacharya",
-        "Abhishek Gupta",
-        "Sandeep Kumar",
-        "Manoj Kumar"
-      ],
-      "summary": "Autoregressive large language model inference is increasingly constrained by the memory footprint of the Key-Value (KV) cache. A dominant line of work reduces this footprint by evicting tokens that appear unimportant under attention-derived scores. However, such policies make an implicit irreversible decision: once a token is evicted, it cannot become useful again. We show that this assumption is brittle during decoding. Token and window importance drift as generated queries evolve, causing standard eviction policies to permanently discard states that later receive substantial attention under the full-cache model. To characterize this behaviour, we introduce Future Missed Mass and Global LIR, two diagnostics that measure future attention assigned to discarded states and the reactivation of historically inactive regions. We propose QEvict, a three-tier KV-cache management scheme that replaces binary retain-or-delete eviction with recoverable eviction. QEvict maintains high-confidence windows in full precision, stores intermediate windows in a quantized recoverable tier, and deletes only the lowest-confidence windows. During decoding, cumulative attention scores update window importance and when a quantized window becomes important again, it is dequantized and promoted to the full-precision. Under a fixed memory budget, this design preserves broader historical context while retaining exact full precision for the most important regions. Across long-context understanding, retrieval, and reasoning benchmarks, QEvict consistently improves over representative eviction and quantization baselines, reducing missed attention and improving information retention",
-      "reason": "近 30 天；关键词：cs.LG, inference, quantization。Autoregressive large language model inference is increasingly constrained by the memory footprint of the Key-Value (KV) cache. A d...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "inference",
-        "quantization",
-        "retrieval"
-      ],
-      "signal": 97,
-      "source": "arXiv",
-      "publishedAt": "2026-08-05T18:29:47Z",
-      "url": "https://arxiv.org/abs/2608.05326",
-      "pdfUrl": "https://arxiv.org/pdf/2608.05326v1"
-    },
-    {
-      "id": "arxiv-2608.04962",
-      "title": "SpecRoll: Fast-Slow Verifier-Feedback Adaptation for Speculative Reinforcement Learning Rollouts",
-      "authors": [
-        "Nhat Minh Pham",
-        "Duy Tung Doan",
-        "Thi Duyen Ngo",
-        "Vinh Van Nguyen",
-        "Khac-Hoai Nam Bui"
-      ],
-      "summary": "Reinforcement learning (RL) post-training improves the reasoning capabilities of large language models, but autoregressive rollout generation remains a major efficiency bottleneck. Speculative decoding can accelerate generation, yet applying it during RL is difficult because the target policy continually evolves: static proposers become stale, while frequent drafter updates add substantial overhead. We introduce SpecRoll, a speculative rollout engine that preserves the target model's sampling distribution while adapting at two timescales. Lightweight future-token heads generate parallel proposals, while our proposed Reflex module uses delayed verifier feedback to perform bounded, trajectory-local hidden-state corrections without backpropagation. A complementary slow path updates the head parameters only when sustained degradation is detected. SpecRoll combines these mechanisms with concurrency-aware sparse-tree verification and exact target verification, leaving the target rollout distribution and GRPO objective unchanged. Across five models ranging from 1.5B to 14B and three mathematical reasoning datasets, SpecRoll achieves 1.26-2.15x generation speedup and 1.21-2.04x end-to-end speedup over vanilla GRPO. It also outperforms FastGRPO in both generation and end-to-end time across all 15 matched settings, with an average pairwise end-to-end gain of 1.18x. Controlled ablations show that the fast and slow adaptation paths provide complementary benefits. Our source code is available at https://anonymous.4open.science/r/SpecRoll-26062006.",
-      "reason": "近 30 天；关键词：cs.LG, dataset, slo。Reinforcement learning (RL) post-training improves the reasoning capabilities of large language models, but autoregressive rollout...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
+        "cs.CL",
         "dataset",
-        "slo",
+        "serving"
+      ],
+      "signal": 89,
+      "source": "arXiv",
+      "publishedAt": "2026-08-04T17:33:38Z",
+      "url": "https://arxiv.org/abs/2608.03966",
+      "pdfUrl": "https://arxiv.org/pdf/2608.03966v1"
+    },
+    {
+      "id": "arxiv-2608.06111",
+      "title": "Beyond Sequence Order: Syntax-Informed Positional Embeddings for Transformers",
+      "authors": [
+        "Haris Riaz",
+        "Hyungji Kim",
+        "Mihai Surdeanu"
+      ],
+      "summary": "Positional embeddings (PE) in Transformers encode token distance and order but are largely agnostic to \\textit{syntactic structure}. We introduce \\textbf{S}yntax-\\textbf{i}nformed \\textbf{P}ositional \\textbf{E}mbeddings (\\textbf{SiPE}), which learns a lightweight syntactic prior from dependency parses during pretraining and injects it across all three dominant PE families (absolute, relative, rotary), for both encoders and decoders, leaving self-attention and the rest of the architecture untouched. We isolate \\emph{where} and \\emph{how} the prior should enter the model, and find it depends on the architecture: for autoregressive decoders that use relative PE, the prior is strongest when coupled multiplicatively with the relative-position term of the attention score, outperforming injection into the input embeddings, into self-attention, or into the positional and attention terms jointly---while for encoders it is best added directly to the input embeddings, composing with each encoder's native positional mechanism. We find that models pre-trained with SiPE improve on the SyntaxGym benchmark by up to $10.3\\%$ while simultaneously reducing perplexity by $9.0\\%$ over a base model with no syntactic supervision---a metric nearly every existing syntax-injection method instead degrades. Crucially, these gains extend beyond syntactic generalization: SiPE also improves real-world language understanding, raising scores on the GLUE benchmark by up to $8.2\\%$ over a model trained without it. Unlike existing syntactic language models that marginalize over many parses at inference or discard syntax at runtime, SiPE conditions on a single parse, establishing a new Pareto frontier between syntactic supervision and inference cost.",
+      "reason": "近 30 天；关键词：cs.CL, inference, pareto。Positional embeddings (PE) in Transformers encode token distance and order but are largely agnostic to \\textit{syntactic structure...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "inference",
+        "pareto"
+      ],
+      "signal": 87,
+      "source": "arXiv",
+      "publishedAt": "2026-08-06T14:44:31Z",
+      "url": "https://arxiv.org/abs/2608.06111",
+      "pdfUrl": "https://arxiv.org/pdf/2608.06111v1"
+    },
+    {
+      "id": "arxiv-2608.05872",
+      "title": "MACRO: Markov Chain Routing of Transformer Layers",
+      "authors": [
+        "Paweł Batorski",
+        "Abtin Pourhadi",
+        "Akylgali Aitaza",
+        "Przemysław Spurek",
+        "Paul Swoboda"
+      ],
+      "summary": "Standard Large Language Models (LLMs) execute layers sequentially. Dynamic layer routing, i.e. search for a different execution path through layers involving layer repetitions, skips and other moves, can improve performance. Existing routing approaches often require updating model weights, running expensive search loops per test instance, or demand ground-truth labels during inference. In this work, we propose Markov Chain Routing of Transformer Layers (MACRO), a framework that learns task-specific routes over LLM architectures without modifying underlying parameters. MACRO models layer routing as a context-dependent Markov policy conditioned on layer indices, computation budget phases, directional displacements, and operator context, supporting skip, repeat, and residual hidden-state addition operations. The Markov route distribution is updated via feedback on training data and decoded using a top-k Viterbi algorithm to isolate high-probability candidate programs. We evaluate MACRO across diverse reasoning and knowledge benchmarks on multiple open-weight LLMs. MACRO achieves a +5.0% average accuracy improvement over the unrouted baselines, with largest gains on small models. We outperform the best dynamic routing approach Dr. LLM by +7.2%, while reducing route-search time 9.4x (from 14.8 to 1.6 hours). Our code is publicly available at https://github.com/Batorskq/MACRO.",
+      "reason": "近 30 天；关键词：cs.CL, inference, llm。Standard Large Language Models (LLMs) execute layers sequentially. Dynamic layer routing, i.e. search for a different execution pa...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "inference",
+        "llm"
+      ],
+      "signal": 86,
+      "source": "arXiv",
+      "publishedAt": "2026-08-06T10:51:34Z",
+      "url": "https://arxiv.org/abs/2608.05872",
+      "pdfUrl": "https://arxiv.org/pdf/2608.05872v1"
+    },
+    {
+      "id": "arxiv-2608.04714",
+      "title": "What We Observe as LLM Behavior Can Be a Side-effect of Inference Backend",
+      "authors": [
+        "Shahed Masoudian",
+        "Passant Shafaei",
+        "Monorama Swain",
+        "Markus Schedl"
+      ],
+      "summary": "Benchmark scores are reported as properties of a model, yet the inference framework used to produce them, such as HuggingFace, vLLM, or Ollama, are considered non-influential and their names and versions are almost never disclosed. In this work we investigate how much this choice can influence the model output. In a fully-crossed study (three instruction-tuned models x five inference frameworks x six benchmarks x four generation modes) we investigate how different tools (wrappers/backend) influence benchmark scores and how their score changes is influenced by generation hyper-parameters. We find backend to be a non-negligible factor where even under greedy, sampling-noise-free decoding, changing the backend can significantly alter models performance and this effect is structural and strongly model-dependent. Decomposing the variance according to generation mode reveal that considerable portion of the variability (roughly 39\\%) a practitioner sees out-of-the-box can stem from the backend, while the remaining stems from sampling noise and each framework's default generation parameters, both of which are avoidable by disclosing and matching the generation configuration. These divergences are more pronounced on factual than on social-bias benchmarks. Overall, benchmark numbers are not backend-agnostic therefore, we recommend disclosing the backend, its version, and the full generation configuration, also using deterministic decoding for cross-backend comparison.",
+      "reason": "近 30 天；关键词：cs.SE, inference, llm。Benchmark scores are reported as properties of a model, yet the inference framework used to produce them, such as HuggingFace, vLL...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.SE",
+        "inference",
+        "llm"
+      ],
+      "signal": 86,
+      "source": "arXiv",
+      "publishedAt": "2026-08-05T11:28:43Z",
+      "url": "https://arxiv.org/abs/2608.04714",
+      "pdfUrl": "https://arxiv.org/pdf/2608.04714v1"
+    },
+    {
+      "id": "arxiv-2608.04788",
+      "title": "Agentic Reinforcement Learning with Observation-Calibrated Self-Distillation",
+      "authors": [
+        "Yi Yang",
+        "Cong Qin",
+        "Xiaodan Liu",
+        "Chishui Chen",
+        "Qing Dong",
+        "Yan Zhang",
+        "Cao Liu",
+        "Zhao Yang",
+        "Lu Pan",
+        "Jiaye Lin",
+        "Yi Feng"
+      ],
+      "summary": "Large language model agents are commonly trained through reinforcement learning with sparse trajectory-level rewards, which offer limited guidance on how strongly individual tokens should be updated. On-Policy Self-Distillation (OPSD) addresses this by re-scoring generated tokens under a privileged replay view to obtain dense, token-level supervision. However, we identify a confounding issue: the resulting support may reflect both the privileged information contained in the replay view and score shifts induced by the replay scaffold, making it difficult to attribute the support specifically to that information. This issue is especially pronounced when future environment observations serve as privileged information, since replaying them requires reconstructing an extended scaffold that itself perturbs token scores. To resolve this confounding, we propose Observation-Calibrated Self-Distillation (OCSD), which contrasts two structurally matched replay views, Full and Observation-Ablated, differing only in whether the actual future observation is present, to derive an observation residual that discounts score changes shared by the replay scaffold. OCSD then applies this residual to modulate token-level GRPO updates at high-uncertainty steps, while preserving the trajectory-level update direction. Experiments on ALFWorld, WebShop, and Search-QA across three Qwen3 model scales show that OCSD consistently outperforms strong baselines. Diagnostic analyses further confirm that the calibrated residual aligns better with local environment feedback. Our code is publicly available at https://github.com/yiy1x/OCSD.",
+      "reason": "近 30 天；关键词：cs.LG, serving。Large language model agents are commonly trained through reinforcement learning with sparse trajectory-level rewards, which offer...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "serving"
+      ],
+      "signal": 82,
+      "source": "arXiv",
+      "publishedAt": "2026-08-05T12:52:14Z",
+      "url": "https://arxiv.org/abs/2608.04788",
+      "pdfUrl": "https://arxiv.org/pdf/2608.04788v1"
+    },
+    {
+      "id": "arxiv-2608.05806",
+      "title": "Hierarchical Latent Prediction for Language Models",
+      "authors": [
+        "Chang Shi",
+        "Tim Pearce",
+        "Manan Tomar",
+        "Siddhartha Sen",
+        "John Langford"
+      ],
+      "summary": "While standard Next-Token Prediction (NTP) lays the foundation of language model pre- training, its teacher-forced training paradigm may not be optimal for long-horizon reasoning and planning. Recent works such as Multi-Token Prediction (MTP) and Next-Latent prediction (NextLat) try to mitigate the problem through predicting multiple future tokens and self-supervised prediction in the latent space. However, those auxiliary objectives either have a limited horizon or suffer from compounding error from multi-step rollout. We introduce Hierarchical Latent Prediction (HiLP), which introduces an auxiliary higher-level abstract latent to help reduce the error accumulation effect in latent-space rollouts. Experiments show that HiLP can lead to longer-horizon coherent belief state representation and demonstrate the effectiveness of our method across coding and multi-step reasoning benchmarks, and offers more speculative decoding efficiency.",
+      "reason": "近 30 天；关键词：cs.CL, speculative。While standard Next-Token Prediction (NTP) lays the foundation of language model pre- training, its teacher-forced training paradi...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
         "speculative"
       ],
-      "signal": 97,
+      "signal": 81,
       "source": "arXiv",
-      "publishedAt": "2026-08-05T15:32:27Z",
-      "url": "https://arxiv.org/abs/2608.04962",
-      "pdfUrl": "https://arxiv.org/pdf/2608.04962v1"
+      "publishedAt": "2026-08-06T09:41:41Z",
+      "url": "https://arxiv.org/abs/2608.05806",
+      "pdfUrl": "https://arxiv.org/pdf/2608.05806v1"
     },
     {
-      "id": "arxiv-2608.04378",
-      "title": "Helping Music Co-Creation Agents 'Listen' Well: Hierarchical Self-Supervised World Models for Understanding and Generation",
+      "id": "arxiv-2608.04904",
+      "title": "Strengthening Target-Language Features: SAE-Based Steering for Multilingual Inference",
       "authors": [
-        "Scott H. Hawley"
+        "Hongsheng Wang",
+        "Philipp Koehn"
       ],
-      "summary": "Collaborative music agents need internal representations rich enough to support both understanding and generation, yet flexible enough for a workflow where the human retains agency. We present a hierarchical self-supervised ``world model'' for symbolic music: a 2.55M-parameter Swin V2 encoder trained on MIDI piano-roll images with JEPA-style objectives (pitch- and time-shift equivariance, masked embedding prediction, and a distributional regularizer), using no labels and no music-theory vocabulary. Probing the frozen embeddings shows that the level at which a musical property becomes decodable tracks its musical time scale: phrase boundaries are read off the coarsest levels, note density and harmonic detail off the finest. Temporal and phrase structure emerge from the self-supervised objectives alone, while harmonic content must be asked for; a small chord-supervision head raises joint chord recovery from .18 to .54, and key detection, which is never supervised, from .16 to .70. Following the Representation AutoEncoder paradigm, a conditional flow-matching model stands in for a trained decoder, flowing in pixel space from PCA-reduced conditioning: it reproduces a target window at pixel F1 $0.996$, and the same per-level conditioning dropout that controls how far variations stray also enables graphical prompting for masked inpainting with no inpainting-specific sampler. The pipeline runs on CPU producing a suggestion in $2.8$ s, or $0.6$ s on Apple MPS, which we demonstrate in a live interactive demo. In concert with an LLM-based brain, these capabilities supply the core of a collaborative music creation agent in service of, rather than in place of, human agency.",
-      "reason": "近 30 天；公司信号：Apple；关键词：apple, cs.SD, llm。Collaborative music agents need internal representations rich enough to support both understanding and generation, yet flexible en...",
+      "summary": "Multilingual large language models exhibit substantial performance differences across languages, while existing adaptation methods often require parameter updates and considerable multilingual training data. We propose an inference-time multilingual steering method that uses pretrained sparse autoencoders to identify and strengthen target-language-related features. Using multilingual parallel sentences, we compare SAE activations across languages and select a small number of layer-specific features associated with each target language. These features are decoded into steering signals and injected into the model's hidden states without additional training. Experiments with Gemma-3-12B-it show average accuracy improvements of 10.9 percentage points on XCOPA, 5.3 points on XNLI, and 1.9 points on MGSM.",
+      "reason": "近 30 天；关键词：cs.CL, inference。Multilingual large language models exhibit substantial performance differences across languages, while existing adaptation methods...",
       "area": "LLM 推理优化",
       "tags": [
-        "apple",
+        "cs.CL",
+        "inference"
+      ],
+      "signal": 79,
+      "source": "arXiv",
+      "publishedAt": "2026-08-05T14:32:14Z",
+      "url": "https://arxiv.org/abs/2608.04904",
+      "pdfUrl": "https://arxiv.org/pdf/2608.04904v2"
+    },
+    {
+      "id": "arxiv-2608.04193",
+      "title": "Patients-like-me: A Variational LM--GNN Framework for Explainable Clinical Prediction",
+      "authors": [
+        "Xinyu Wang",
+        "Yixuan Li",
+        "Hanwei Wu",
+        "Qincheng Lu",
+        "Chi-Kuang Yeh",
+        "Xiao-Wen Chang",
+        "Ziyang Song"
+      ],
+      "summary": "Language models (LMs) offer strong textual representations for electronic health records (EHRs), but they encode patient sequences in isolation and provide limited explainability. Graph neural networks (GNNs) complement LMs by incorporating inter-patient relationships and enabling reference-patient attribution, yet they rely on high-quality patient representations. We propose Patients-like-me (PLM), a unified LM--GNN framework that integrates local patient semantics with global cohort structure. To train PLM efficiently, we introduce a Variational Expectation-Maximization algorithm that alternates LM and GNN updates under a supervised variational objective. Extensive experiments on MIMIC-III and MIMIC-IV show that PLM consistently outperforms state-of-the-art methods, with improvements generalizing across encoder-only and decoder-only LM backbones. These gains are achieved with only modest additional computational overhead. PLM also provides reference-patient explanations by retrieving influential similar patients, while edge-masking experiments confirm that the highest-ranked references have the greatest impact on model predictions.",
+      "reason": "近 30 天；关键词：cs.CL, efficient。Language models (LMs) offer strong textual representations for electronic health records (EHRs), but they encode patient sequences...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "efficient"
+      ],
+      "signal": 78,
+      "source": "arXiv",
+      "publishedAt": "2026-08-04T19:51:52Z",
+      "url": "https://arxiv.org/abs/2608.04193",
+      "pdfUrl": "https://arxiv.org/pdf/2608.04193v1"
+    },
+    {
+      "id": "arxiv-2608.03999",
+      "title": "Agogic: Performance-Timed Music Tokens for LLM-Native Text-to-Symbolic-Music Generation",
+      "authors": [
+        "Junhao Chen",
+        "Mingjin Chen",
+        "Jingjia Mao",
+        "Lin Chen",
+        "Saining Zhang",
+        "Minglin Chen",
+        "Ruocheng Wu",
+        "Liaoyuan Fan",
+        "Wenyi Li",
+        "Mingju Gao",
+        "Henghaofan Zhang",
+        "Zhihao Li",
+        "Hao Zhao",
+        "Yufei Wang",
+        "Ruqi Huang"
+      ],
+      "summary": "Text-to-music language models begin with a choice usually made by default: how to tokenize music. Normally entangled with backbone, data, and recipe, its effect has never been measured in isolation. We fix pretrained Qwen3.5 (0.8B-27B), data, budget, and decoding, and swap only the representation across seven tokenizations, anchoring texture metrics to each representation's model-free ceiling. The ordering is clean and surprising: representation, not model size, is the binding variable for distributional fidelity. Scaling the backbone 34x barely moves Frechet Music Distance (FMD), whereas switching representation halves it. PMT, a performance-resolution stream we release (10 ms timing, per-note velocity, multi-track texture; 609 symbols), reaches FMD 159 at 0.8B against 272-286 for beat grids (1.7-1.8x lower, up to 2.8x elsewhere; non-overlapping bootstrap CIs), so a 0.8B performance-resolution model beats a 27B beat grid. It reappears on a 26M from-scratch backbone and a second performance-resolution tokenizer: a property of the class, not one lucky vocabulary. Nor is it a finer-lattice artifact: snapping PMT's onsets to the beat grids' resolution still leaves it 67-129 FMD ahead of both (n=500). The effect is distributional; whether it is audible is a separate question, left open by our probe, with a human study pre-registered. Native caption adherence is weak but separable: a lightweight decode-time constraint doubles instrument-F1 (.28 to .60) and Correct-Key (.16 to .35) at no distributional cost. We release the harness, 25+ checkpoints, two corpora (86.6k aligned across caption/MIDI/ABC/audio; 6.25M captioned, the largest for music), and an imprinting diagnostic: published text-to-MIDI systems reproduce their training distribution near-invariant to the caption (72% vs. 71% chord-time on disjoint domains). The field's next representation claim can now be measured, not asserted.",
+      "reason": "近 30 天；关键词：cs.SD, llm。Text-to-music language models begin with a choice usually made by default: how to tokenize music. Normally entangled with backbone...",
+      "area": "LLM 推理优化",
+      "tags": [
         "cs.SD",
         "llm"
       ],
-      "signal": 97,
-      "source": "Apple/arXiv",
-      "publishedAt": "2026-08-05T02:38:20Z",
-      "url": "https://arxiv.org/abs/2608.04378",
-      "pdfUrl": "https://arxiv.org/pdf/2608.04378v1"
-    },
-    {
-      "id": "arxiv-2608.04515",
-      "title": "CARVE: Cross-Slice Anisotropic Reallocation of Visual Evidence for Efficient 3D Medical Volume Understanding",
-      "authors": [
-        "Zhenyu Yi",
-        "Qiang Hu",
-        "Zhenhao Li",
-        "Jiaxuan Zhao",
-        "Yusong Sun",
-        "Lichi Zhang"
-      ],
-      "summary": "Slice-based MLLMs leverage mature 2D encoders by representing 3D volumes as sequences of 2D slices. However, this slice-wise formulation produces thousands of visual tokens that burden the LLM backbone, many of which capture overlapping visual evidence across adjacent slices. To understand how effectively a growing visual token budget improves performance, we perform scaling analyses on two 3D medical VQA benchmarks and find diminishing returns: cost keeps rising while accuracy saturates, and improving in-plane resolution is more effective than adding slices at comparable budgets. The budget should therefore be allocated more selectively rather than simply enlarged, yet most token compression methods are designed for 2D images or videos, where redundancy arises from spatial layout or temporal motion rather than from near-duplicate content along the depth axis. We present CARVE, a training-free framework that compresses visual tokens prior to LLM inference and casts token reduction as budget-constrained 2.5D allocation. CARVE partitions the depth axis into coherent windows and allocates tokens non-uniformly according to normalized cross-slice evidence. Under a shared budget, CARVE builds spatial anchors on representative slices and retrieves locally varying evidence from the full volume, then merges remaining eligible tokens into nearby anchors within each window. Removing roughly 80% of the visual tokens on Hulu-Med-7B, CARVE leads all compression baselines on every AMOS-MM report-generation metric, with 6.2 points higher retention of full-token quality than the strongest baseline, and preserves 98.1% of full-token performance across three VQA benchmarks.",
-      "reason": "近 30 天；关键词：cs.CV, efficient, inference。Slice-based MLLMs leverage mature 2D encoders by representing 3D volumes as sequences of 2D slices. However, this slice-wise formu...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CV",
-        "efficient",
-        "inference",
-        "llm"
-      ],
-      "signal": 94,
+      "signal": 77,
       "source": "arXiv",
-      "publishedAt": "2026-08-05T06:49:49Z",
-      "url": "https://arxiv.org/abs/2608.04515",
-      "pdfUrl": "https://arxiv.org/pdf/2608.04515v1"
-    },
-    {
-      "id": "arxiv-2608.04454",
-      "title": "Beyond Global Routing Aggregation: Phase-Aware Expert Merging for MoE Vision-Language Models",
-      "authors": [
-        "Hongyu Zhang",
-        "Cheng Yan",
-        "Xiang Xia",
-        "Wuyang Zhang"
-      ],
-      "summary": "Mixture-of-experts vision-language models (MoE-VLMs) increase model capacity with sparse expert activation, yet deployment requires storing the full expert pool. Training-free expert merging reduces this burden, and many routing-based methods aggregate routing statistics across all tokens to determine merge compatibility. However, MoE-VLM inference is phase-structured: image-context tokens carry visual content, question tokens specify the query, and answer tokens produce the output, with different counts and routing distributions. Because image-context tokens are far more numerous, global aggregation can overemphasize image-context processing and obscure phase-conditioned expert roles, making experts serving different phases appear interchangeable and degrading model performance. We therefore argue that MoE-VLM expert merging should preserve phase-conditioned expert roles, judging compatibility by how experts serve different phases rather than globally aggregated routing statistics. Based on this view, we propose RoleMerge, a training-free method that constructs each expert's Routing Role Profile (RRP) from phase-normalized routing statistics, capturing its relative phase preference. Guided by expert-phase information loss, RoleMerge merges experts with compatible profiles and their corresponding router entries while preserving answer-decoding expert distinctions. Experiments on three models and multiple benchmarks show that RoleMerge preserves more of the full model's performance than alternative expert-merging methods at matched expert-retention ratios, with relative improvements of up to 9.6 percent in six-task macro-average performance. These results validate phase-conditioned expert roles as a more effective basis than global routing aggregation for MoE-VLM expert merging.",
-      "reason": "近 30 天；关键词：cs.CV, inference, serving。Mixture-of-experts vision-language models (MoE-VLMs) increase model capacity with sparse expert activation, yet deployment require...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CV",
-        "inference",
-        "serving"
-      ],
-      "signal": 91,
-      "source": "arXiv",
-      "publishedAt": "2026-08-05T05:09:20Z",
-      "url": "https://arxiv.org/abs/2608.04454",
-      "pdfUrl": "https://arxiv.org/pdf/2608.04454v1"
-    },
-    {
-      "id": "arxiv-2608.06007",
-      "title": "TensorCast: The Missing Tensor Management Layer in Large Language Model Infrastructure",
-      "authors": [
-        "Yuhan Zhou",
-        "Yuchu Luo",
-        "Hao Nie",
-        "Wangrunze Lv",
-        "Yu Zhou",
-        "Yibo Zhu",
-        "Daxin Jiang",
-        "Chenren Xu"
-      ],
-      "summary": "Modern LLM infrastructure increasingly manages tensors not only as computation data, but also as persistent states shared across distributed components. Existing systems optimize individual tensor management tasks, such as model weight loading, KV cache management, and checkpoint synchronization, by deeply integrating task-specific mechanisms with execution engines, networks, or storage backends. However, this specialization creates isolated silos that hinder the reuse and composition of tensor management strategies across evolving LLM workloads. In this paper, we identify tensor lifecycle management as a missing abstraction layer in LLM infrastructure and propose Tensor-as-a-Service (TaaS), which decouples tensor state management from computation logic. We design and build TensorCast, a distributed tensor management layer that provides first-class tensor abstractions, programmable lifecycle primitives, and a runtime that separates tensor management policies from execution mechanisms. This enables developers to write tensor management programs using TensorCast APIs while transparently leveraging distributed execution and data movement. We integrate TensorCast with vLLM and SGLang and evaluate it across diverse tensor lifecycle workloads, including model weight materialization, weight synchronization, KV cache management, and programmable request routing. Our results show that TensorCast achieves competitive performance with specialized tensor management systems while enabling new cross-component optimization policies. A programmable policy implemented with TensorCast improves median TTFT by up to 93.2% under highly concurrent multi-turn agent workloads.",
-      "reason": "近 30 天；关键词：cs.DC, kv-cache, llm。Modern LLM infrastructure increasingly manages tensors not only as computation data, but also as persistent states shared across d...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "kv-cache",
-        "llm"
-      ],
-      "signal": 90,
-      "source": "arXiv",
-      "publishedAt": "2026-08-06T13:12:45Z",
-      "url": "https://arxiv.org/abs/2608.06007",
-      "pdfUrl": "https://arxiv.org/pdf/2608.06007v1"
-    },
-    {
-      "id": "arxiv-2608.05448",
-      "title": "DBLAST: Dependent Block Drafting for Stochastic Speculative Decoding",
-      "authors": [
-        "Amirmohammad Karimi",
-        "Chao Gao",
-        "Negar Hassanpour"
-      ],
-      "summary": "Speculative decoding accelerates large language models' inference by using a lightweight drafter to propose multiple future tokens and a target model to verify them. While recent block and diffusion-style drafters can predict several positions in a single pass, their training and sampling procedures are typically optimized for greedy decoding or assume that positions in the draft block are conditionally independent. This assumption becomes brittle in non-greedy speculative decoding, where the target distribution is deliberately stochastic and multiple continuations become plausible. We study this mismatch for block diffusion drafters and show that the accepted draft length degrades as the entropy of the target sampling distribution increases. We propose a dependent block drafter based on a low-rank latent mixture over token positions, complemented by an acceptance-oriented training objective that directly targets the expected verified length. Experiments with Qwen3-4B and Qwen3-8B on GSM8K, MT-Bench, HumanEval, and creative-writing benchmarks show that our approach, namely DBLast, consistently improves accepted length over independent block sampling, especially in higher-entropy decoding regimes.",
-      "reason": "近 30 天；关键词：cs.CL, inference, speculative。Speculative decoding accelerates large language models' inference by using a lightweight drafter to propose multiple future tokens...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "inference",
-        "speculative"
-      ],
-      "signal": 90,
-      "source": "arXiv",
-      "publishedAt": "2026-08-05T22:49:54Z",
-      "url": "https://arxiv.org/abs/2608.05448",
-      "pdfUrl": "https://arxiv.org/pdf/2608.05448v1"
-    },
-    {
-      "id": "arxiv-2608.05687",
-      "title": "Answer First, Reason Later: Commitment Order in Diffusion LLMs",
-      "authors": [
-        "Jewon Yeom",
-        "Jaewon Sok",
-        "Seonghyeon Park",
-        "Jeongjae Park",
-        "Hwiyeong Lee",
-        "Taesup Kim"
-      ],
-      "summary": "Masked diffusion language models (dLLMs) can commit tokens in any order -- a freedom marketed as their core advantage over autoregressive decoding. We show that on reasoning tasks this freedom is instead the axis of failure. Logging every commitment during decoding of LLaDA-8B on GSM8K, we find that unconstrained (pure) decoding commits the final answer at 15-24% of the trajectory while half the reasoning region is still masked, and collapses to answer-only outputs on up to 90% of problems as the canvas grows. The cause is not the model's termination beliefs -- EOS \"pressure\" is nearly identical across decoders -- but reachability: whether the sampler may act on those beliefs at distant positions. A 2x2 prompt-decoder design shows that chain-of-thought helps only under ordered commitment (interaction +34.8 percentage points, 95% CI [26.8, 42.8]; without reasoning text the decoders are indistinguishable), an interaction we decompose into a collapse channel and an order channel and replicate on Dream-7B and MATH-500. A single-knob intervention -- frontier-gated commitment -- causally recovers the full gap (0.528 to 0.852) while preserving up to 4x parallel decoding, along a measured frontier whose optimal window flips from w=1 at full refinement to unconstrained at 8 tokens/step. Our results reframe existing window-style samplers, previously motivated by efficiency, as the minimal fix for a reasoning pathology they were never designed to address.",
-      "reason": "近 30 天；关键词：cs.CL, llm, serving。Masked diffusion language models (dLLMs) can commit tokens in any order -- a freedom marketed as their core advantage over autoreg...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "llm",
-        "serving"
-      ],
-      "signal": 89,
-      "source": "arXiv",
-      "publishedAt": "2026-08-06T07:25:04Z",
-      "url": "https://arxiv.org/abs/2608.05687",
-      "pdfUrl": "https://arxiv.org/pdf/2608.05687v1"
-    },
-    {
-      "id": "arxiv-2608.05084",
-      "title": "Learning When to Stop: Prefix-Optimal Dynamic Diffusion Policies for Continuous Control",
-      "authors": [
-        "Rohit Kumar Salla",
-        "Manoj Saravanan",
-        "Simon Stepputtis"
-      ],
-      "summary": "Diffusion policies are a powerful policy class for continuous control, but their iterative denoising process creates a substantial computational bottleneck. Reducing this cost requires adapting the number of denoising steps to the difficulty of each action while preserving task performance. We introduce Prefix-Optimal Generative Policies (POGP), a framework that learns a prefix value function at every intermediate denoising step through a Bellman-style recursion over the denoising chain. The prefix value function serves two purposes: it provides an auxiliary training objective that encourages intermediate outputs to become high-quality actions, and it enables a test-time stopping rule that terminates denoising when additional steps are unlikely to produce meaningful improvement. Across four MuJoCo environments and comparisons with 12 baselines, POGP reduces the required number of denoising iterations by approximately 2.7-fold while retaining near-full task performance. Compared with state-of-the-art dynamic diffusion baselines, prefix training also improves final task performance by approximately 3.5%. These results indicate that supervising intermediate denoising steps is useful not only for adaptive early stopping, but also as an auxiliary objective that improves the learned policy.",
-      "reason": "近 30 天；关键词：cs.LG, llm, serving。Diffusion policies are a powerful policy class for continuous control, but their iterative denoising process creates a substantial...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "llm",
-        "serving"
-      ],
-      "signal": 89,
-      "source": "arXiv",
-      "publishedAt": "2026-08-05T17:24:55Z",
-      "url": "https://arxiv.org/abs/2608.05084",
-      "pdfUrl": "https://arxiv.org/pdf/2608.05084v1"
+      "publishedAt": "2026-08-04T17:56:49Z",
+      "url": "https://arxiv.org/abs/2608.03999",
+      "pdfUrl": "https://arxiv.org/pdf/2608.03999v1"
     }
   ]
 }
