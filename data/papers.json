@@ -1,24 +1,103 @@
 {
-  "generatedAt": "2026-08-13T06:28:56.876405+08:00",
+  "generatedAt": "2026-08-14T06:30:13.646232+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2608.11152",
-      "title": "Scheduling Mixed RL Rollouts Beyond Prefix Locality",
+      "id": "arxiv-2608.12146",
+      "title": "RoutePack: Expert Placement and Attention-Aware Data Packing for MoE Reinforcement Learning",
       "authors": [
-        "Zetao Hong",
-        "Song Yuan",
-        "Yuanhao Ding",
-        "Yibo Zhu",
-        "Daxin Jiang",
-        "Zhibin Wang",
-        "Chen Tian"
+        "Yibo Shen",
+        "Xudong Han",
+        "Xiaowei Zhu",
+        "Gen Li",
+        "Zhenxuan Pan"
       ],
-      "summary": "Modern reinforcement learning (RL) post-training pipelines for large language models (LLMs) increasingly combine rollout workloads across multiple domains and feedback paradigms. Prefix-aware routing improves inference efficiency through cache reuse and load balancing, but it does not control how heterogeneous rollout sessions compete for KV-cache capacity. When reinforcement learning with verifiable rewards (RLVR), reinforcement learning from human feedback (RLHF), and agentic rollouts share an asynchronous inference service, their distinct sequence structures, interaction patterns, and KV-residency times create substantially different serving demands. Rollout scheduling must account for this heterogeneity without distorting the workload mixture specified by the trainer. We present MISA-T, a routing-layer admission policy for mixed rollout serving. MISA-T combines adaptive session admission, workload-aware KV-capacity allocation, and residency-time-aware KV accounting. In rollout-only ablations on Step3.7 and Qwen3.6-35B-A3B, MISA-T improves rollout throughput over a sweep-tuned cache-aware vLLM Router by 53.3% and 43.6%, respectively, while maintaining high prefix-cache hit rates. In a matched 50-iteration Step3.7 experiment, it increases rollout throughput by 35.6% and reduces mean iteration time by 22.8%, while keeping the consumed workload mixture close to the trainer target and achieving comparable task scores.",
-      "reason": "近 30 天；关键词：cs.DC, inference, llm。Modern reinforcement learning (RL) post-training pipelines for large language models (LLMs) increasingly combine rollout workloads...",
+      "summary": "Training Mixture-of-Experts (MoE) models for reinforcement learning (RL) couples two load-balancing problems: sequence composition determines dense attention work in each data-parallel microbatch, while token routing determines sparse expert work on expert-parallel ranks. Optimizing either alone can shift the bottleneck to the other. In MoE RL, rollout-time routing replay exposes every sample's sequence length and layer-wise expert demand before its training step. We present RoutePack, a hierarchical planner that coordinates state-consistent, layer-wise expert rerouting with joint attention- and expert-aware data packing over an optimizer-step window. RoutePack first places experts independently at each MoE layer using aggregate routing demand. It then packs samples into the smallest certified, or best-known feasible, number of token-capped execution rows and optimizes their DP layout with a projected EDP-shard-aware objective. The objective combines a window-normalized linear-quadratic attention proxy with per-layer physical EP-rank peaks and minimizes the accumulated cost of the slowest EDP shard. Parallel population annealing searches fixed-row feasible layouts while preserving sample coverage, capacity, nonempty cells, equal microbatch counts, and communicator topology. State-consistent materialization preserves logical top-k routing and existing MoE kernels without microbatch-level expert replication. Across Ling-3.0-Tiny and Ling-3.0-Flash, expert rerouting improves mean trainer-measured token throughput by 3.80% and 10.50%, while routing-aware packing adds another 4.86% and 3.98%, respectively. Overall, RoutePack improves throughput by 8.85% and 14.89% over the baseline.",
+      "reason": "近 30 天；关键词：cs.DC, serving, slo。Training Mixture-of-Experts (MoE) models for reinforcement learning (RL) couples two load-balancing problems: sequence composition...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.DC",
+        "serving",
+        "slo",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-12T15:07:15Z",
+      "url": "https://arxiv.org/abs/2608.12146",
+      "pdfUrl": "https://arxiv.org/pdf/2608.12146v1"
+    },
+    {
+      "id": "arxiv-2608.12103",
+      "title": "Who Should Own the Expert Cache? Kernel-Managed Tiering for Trillion-Parameter MoE Inference",
+      "authors": [
+        "Yuan Si",
+        "Yufeng Lin",
+        "Daming Li",
+        "Jialu Zhang"
+      ],
+      "summary": "Mixture-of-experts models whose expert pools dwarf DRAM force every serving system to contain a cache, yet existing systems typically implement this cache in user space using expert-granular, frequency-ranked, explicitly pinned tiers. We characterize the alternative already provided by the OS: the page cache as the expert tier. We use router traces from three MoE models spanning 128 to 896 experts per layer, including a production trillion-parameter model with a 1.45 TB expert pool, and replay them natively against the full pool on GH200 nodes with capacity enforced by three independent mechanisms. We find four main results. First, iteration time and device traffic are smooth, reproducible functions of cache capacity, making DRAM a practical sizing knob for trillion-parameter serving. Second, the deep-pressure knee is a reclaim artifact requiring both MGLRU and balloon-style mostly-mlocked memory; cgroup limits and physical-memory configurations show no such amplification, indicating that balloon-based studies can overstate pressured-end device traffic by approximately 2$\\times$. Third, under an enforced equal-memory wall, untuned kernel LRU serves essentially as much demand as a same-domain oracle frequency table (75.3% versus 74.6% at 256 GB), while the oracle's mechanism advantage is only 1.09$\\times$ and disappears off-domain, where LRU remains at 70--71% hit rate. Fourth, router lookahead with 64.7% measured recall provides only a 0.3% benefit as kernel readahead advice and no benefit as synchronous prefetch. End to end, enabling kernel-managed caching improves decode performance by 1.09--1.10$\\times$ with token-identical outputs across nine balanced pairs. The resulting design principle is simple: in this regime, let the kernel own eviction, while model-specific knowledge is best spent on admission and advice.",
+      "reason": "近 30 天；关键词：cs.OS, inference, production。Mixture-of-experts models whose expert pools dwarf DRAM force every serving system to contain a cache, yet existing systems typica...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.OS",
+        "inference",
+        "production",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-12T14:24:09Z",
+      "url": "https://arxiv.org/abs/2608.12103",
+      "pdfUrl": "https://arxiv.org/pdf/2608.12103v1"
+    },
+    {
+      "id": "arxiv-2608.11758",
+      "title": "AWARe: Mitigating Catastrophic Forgetting via Activation-Weighted Adaptive REtention",
+      "authors": [
+        "Juncheng Liao",
+        "Jinfan Lv",
+        "Guoming Wang",
+        "Jupeng Zheng",
+        "Ling Xiao",
+        "Siliang Tang"
+      ],
+      "summary": "Multimodal Large Language Models (MLLMs) exhibit strong generalization and reasoning abilities due to large-scale multimodal pre-training. However, fine-tuning these models on downstream tasks often leads to catastrophic forgetting, where newly learned task-specific knowledge degrades previously acquired capabilities. This issue arises because gradient updates for new tasks overwrite parameters critical to prior knowledge, limiting the practical deployment of MLLMs. To address this challenge, we propose Activation-Weighted Adaptive REtention (AWARe), a fine-tuning method that mitigates catastrophic forgetting by dynamically controlling parameter updates based on activation patterns. AWARe assigns activation-based importance scores to parameters, selectively freezing those essential for preserving prior capabilities while allowing less important parameters to adapt to new tasks. Importantly, AWARe operates without modifying model architectures, ensuring compatibility with existing inference engines. Extensive experiments demonstrate that AWARe effectively preserves upstream capabilities while achieving superior downstream performance compared to existing methods. Code is available at https://github.com/kaln27/AWARe.",
+      "reason": "近 30 天；关键词：cs.CL, inference, llm。Multimodal Large Language Models (MLLMs) exhibit strong generalization and reasoning abilities due to large-scale multimodal pre-t...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "inference",
+        "llm",
+        "multimodal",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-12T07:55:15Z",
+      "url": "https://arxiv.org/abs/2608.11758",
+      "pdfUrl": "https://arxiv.org/pdf/2608.11758v1"
+    },
+    {
+      "id": "arxiv-2608.11742",
+      "title": "Ripple-Pivot Search: Active Parallel Decoding for Diffusion Large Language Models",
+      "authors": [
+        "Yushi Ye",
+        "Xu Chen",
+        "Haoyun Jiang",
+        "Jinsong Lan",
+        "Haihong Tang",
+        "Bo Han",
+        "Ivor Tsang",
+        "Yanfeng Wang",
+        "Bo Zheng",
+        "Jiangchao Yao"
+      ],
+      "summary": "Diffusion Large Language Models (dLLMs) have emerged as a competitive alternative to autoregressive language models, offering the potential for substantially faster inference through parallel decoding. Existing parallel decoding schedulers typically commit positions only after they meet a per-position criterion, overlooking how early commitments may benefit subsequent decoding. We identify a ripple effect in dLLM decoding: proactively committing a mid-entropy pivot position can induce a pronounced reduction in uncertainty across the remaining masked positions. This uncertainty reduction allows subsequent steps to unmask more tokens in parallel, thereby accelerating the overall decoding process. To exploit the ripple effect, we propose Ripple-Pivot Search (RPS), a novel training-free decoding method that seeks mid-entropy positions as promising candidate pivots (where to decode), and determines their token assignment that yields the greatest downstream benefit via lookahead evaluation (what to decode). Across 3 dLLMs and 4 reasoning and code-generation benchmarks, RPS achieves 4-10$\\times$ wall-clock speedup over the standard decoder while preserving generation quality, and improves accuracy over the previous lookahead baseline by up to 5.49% while delivering higher throughput in most settings. When integrated with KV caching, RPS further achieves up to 18$\\times$ wall-clock speedup over the standard decoder.",
+      "reason": "近 30 天；关键词：cs.CL, inference, llm。Diffusion Large Language Models (dLLMs) have emerged as a competitive alternative to autoregressive language models, offering the...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
         "inference",
         "llm",
         "serving",
@@ -26,268 +105,155 @@
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-11T17:10:50Z",
-      "url": "https://arxiv.org/abs/2608.11152",
-      "pdfUrl": "https://arxiv.org/pdf/2608.11152v1"
+      "publishedAt": "2026-08-12T07:32:29Z",
+      "url": "https://arxiv.org/abs/2608.11742",
+      "pdfUrl": "https://arxiv.org/pdf/2608.11742v1"
     },
     {
-      "id": "arxiv-2608.10929",
-      "title": "FedCGR: Federated Cross-Domain Generative Recommendation",
+      "id": "arxiv-2608.11688",
+      "title": "APEX: Adaptive Expert Prefetching for Memory-Efficient Edge MoE Inference",
       "authors": [
-        "Zhuodong Liu",
-        "Hugen Lv",
-        "Xiangyu Li",
-        "Bohan Guo",
-        "Peiyu Hu"
+        "Alish Kanani",
+        "Layan Badawi",
+        "Umit Y. Ogras"
       ],
-      "summary": "Cross-domain recommendation (CDR) transfers preference knowledge across related domains, but federated deployment makes cross-domain alignment difficult because the behavioral anchors that align item spaces, such as overlapping users and shared interaction signals, are often sparse, unavailable, or privacy-sensitive across clients. To address this tension, we revisit federated CDR as generation over a stable semantic item language. By representing items as discrete semantic ID (SID) sequences derived from public item-side metadata, cross-domain item alignment is induced by a shared vocabulary rather than by exchanging private interactions or aligning domain-specific embeddings. Directly federating SID-based generators, however, introduces two design constraints: the SID tokenizer must remain fixed to preserve cross-client token consistency, which creates a semantic-only bottleneck because local collaborative filtering (CF) signals cannot be globally shared or aligned; meanwhile, standard federated averaging can cause negative transfer under domain heterogeneity. To overcome these constraints, we propose FedCGR, a federated generative CDR framework that keeps the item language stable and makes adaptation explicit. FedCGR injects local CF evidence through a reliability-aware semantic interface and trains a prototype-personalized generator that selectively aggregates shared parameters according to domain relatedness while keeping domain-specific quantities local. Experiments on six Amazon cross-domain scenarios show that FedCGR consistently outperforms federated generative baselines and achieves competitive performance against strong sequential and federated CDR methods under both full-ranking and sampled evaluation protocols.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.AI, alignment。Cross-domain recommendation (CDR) transfers preference knowledge across related domains, but federated deployment makes cross-doma...",
-      "area": "推荐算法",
-      "tags": [
-        "amazon",
-        "cs.AI",
-        "alignment",
-        "generative-recommendation",
-        "ranking",
-        "recommendation",
-        "semantic-id"
-      ],
-      "signal": 99,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-08-11T13:58:55Z",
-      "url": "https://arxiv.org/abs/2608.10929",
-      "pdfUrl": "https://arxiv.org/pdf/2608.10929v1"
-    },
-    {
-      "id": "arxiv-2608.10823",
-      "title": "MoE Proxy Models for Low-Cost Failure Reproduction and Diagnosis in LLM RL Post-Training",
-      "authors": [
-        "Yikai Wang",
-        "Chuansai Zhou",
-        "Yuhang Zhou",
-        "Weiqiang Wu",
-        "Cong Wu",
-        "Yue Deng",
-        "Ben Feng",
-        "Mingming Zhu",
-        "Beirong Zhou",
-        "Zhibin Wang",
-        "Sheng Zhong",
-        "Chen Tian",
-        "Wangze Zhang"
-      ],
-      "summary": "Reinforcement learning (RL) post-training of large language models (LLMs) is computationally intensive and involves complex system pipelines with substantial debugging overhead. In practice, factors such as framework adaptation, numerical precision, and operator implementation can cause failures, including gradient overflow and loss divergence. Reproducing such failures directly on large models requires considerable time and computational resources. This paper systematically analyzes failures encountered during large-scale RL training on the Huawei Ascend platform, summarizes representative failure types, and identifies three model-side factors relevant to fault reproduction. Based on these factors, we propose a proxy-model construction method for low-cost fault investigation and auxiliary diagnosis. It employs structure-preserving, clustering-based expert pruning to select representative experts while retaining the model's backbone architecture, routing mechanism, and basic task capabilities. Our experimental results show that the proxy models reduce accelerator requirements by 50%-87.5% and achieve up to a 33.3x reduction in per-step NPU-hour cost, while preserving major training dynamics and reproducing fault responses consistent with the original models. Overall, the proxy models can serve as low-cost surrogates for fault reproduction, targeted validation, and auxiliary diagnosis in RL post-training.",
-      "reason": "近 30 天；公司信号：Huawei；关键词：huawei, cs.LG, llm。Reinforcement learning (RL) post-training of large language models (LLMs) is computationally intensive and involves complex system...",
+      "summary": "Mixture-of-Experts (MoE) models are attractive for edge deployment because they provide high model capacity while activating only a small subset of parameters per token, improving compute efficiency. However, MoE inference at the edge is fundamentally limited by memory. Expert parameters are large and often reside in off-chip memory due to capacity, cost, and power constraints, putting expert loading to the critical path. We present APEX: Adaptive Expert Prefetching, a predictive resource management framework that overlaps expert loading with useful computation. APEX introduces a lightweight prefetch router that predicts candidate experts before the attention block to dynamically fetch additional experts using a learned confidence model. This adaptive strategy achieves over 99% overlap accuracy, significantly outperforming fixed top-k prefetching techniques. APEX supports two execution modes: a correctness-preserving mode that guarantees exact routing semantics, and a stall-free mode that eliminates residual stalls by operating on available experts with negligible impact on application accuracy. Across multiple MoE models, the correctness-preserving mode reduces per-token latency by up to 26% and improves energy-delay product (EDP) by up to 41% over state-of-the-art baselines, while the stall-free mode provides additional efficiency gains with negligible impact on application accuracy. These results establish adaptive, confidence-driven expert prefetching as an effective approach for efficient MoE inference on edge systems.",
+      "reason": "近 30 天；关键词：cs.AR, efficient, energy。Mixture-of-Experts (MoE) models are attractive for edge deployment because they provide high model capacity while activating only...",
       "area": "LLM 推理优化",
       "tags": [
-        "huawei",
+        "cs.AR",
+        "efficient",
+        "energy",
+        "inference",
+        "latency",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-12T05:57:09Z",
+      "url": "https://arxiv.org/abs/2608.11688",
+      "pdfUrl": "https://arxiv.org/pdf/2608.11688v1"
+    },
+    {
+      "id": "arxiv-2608.11361",
+      "title": "Lifecycle-Optimal Tokenization: Vocabulary Size as a Deployment-Regime-Dependent Infrastructure Parameter",
+      "authors": [
+        "Rima Mittal",
+        "Ankit Gubrani",
+        "Satyanarayana Kakollu"
+      ],
+      "summary": "Tokenizer vocabulary size is a foundational design choice in large language model (LLM) infrastructure, yet it is typically fixed at training time based on convention rather than deployment analysis. We show that the cost-optimal vocabulary is not a constant but a function of the serving regime. We formalize total deployment cost as $C_{lifecycle}(V) = C_{train}(V) + λ\\cdot C_{infer}(V, B)$, where $λ$ is inference volume and $B$ is the serving batch size. Through controlled experiments on two GPU families spanning the memory-bound to compute-bound regimes (A10G, ridge $\\approx$ 117 FLOP/byte; A100, ridge $\\approx$ 183 FLOP/byte), we demonstrate: (1) the inference-optimal vocabulary shifts 16x with serving batch, from 32k at $B=1$ to 524k at $B=64+$, driven by amortization of the $V \\times d$ unembedding matrix read; (2) at 1.3-2.3B model scale, quality (bits per byte, BPB) is optimized at $V=65$k, confirming scale-dependent vocabulary preference; (3) the lifecycle-optimal vocabulary diverges from training-optimal by up to 16x for production deployments. Quality is approximately invariant across the optimal range ($<$2% BPB spread), making vocabulary a pure systems optimization with no quality penalty in the measured range. Our results provide actionable capacity planning guidance: on-device deployments ($B=1$) should use $V \\approx 32$k; datacenter serving ($B \\geq 64$, $λ\\geq 10$) should use $V \\approx 131$-262k.",
+      "reason": "近 30 天；关键词：cs.LG, inference, llm。Tokenizer vocabulary size is a foundational design choice in large language model (LLM) infrastructure, yet it is typically fixed...",
+      "area": "LLM 推理优化",
+      "tags": [
         "cs.LG",
+        "inference",
         "llm",
         "production",
         "serving"
       ],
       "signal": 99,
-      "source": "Huawei/arXiv",
-      "publishedAt": "2026-08-11T11:50:48Z",
-      "url": "https://arxiv.org/abs/2608.10823",
-      "pdfUrl": "https://arxiv.org/pdf/2608.10823v1"
-    },
-    {
-      "id": "arxiv-2608.10545",
-      "title": "ImpactHO: Importance-Aware KV Cache Transfer for Multi-User Edge LLM Handover",
-      "authors": [
-        "Minwoo Kim",
-        "Soochang Song",
-        "Namyoon Lee",
-        "Bang Chul Jung",
-        "Yongjune Kim"
-      ],
-      "summary": "Edge LLMs must preserve inference continuity when a user hands over between edge nodes, requiring key-value (KV) cache transfer to the target node. However, simultaneous handovers saturate the backhaul, preventing full cache delivery within the mobility-imposed transfer window. Rather than allocating bandwidth as if all cache entries were equally valuable, we order each user's KV cache by importance and transmit only its most informative fraction, turning token-level sparsity into communication savings. We cast the transfer as a multi-user backhaul allocation problem that maximizes average accuracy across users. Each user's partial-cache accuracy serves as its utility: a sigmoid that fits measurements on the RULER benchmark with $R^2>0.99$ across models and context lengths. Because importance ordering front-loads the high-value entries, the concave region of the accuracy curve spans nearly the entire cache. Our proposed allocator keeps served users within this region, making each per-slot allocation problem convex. The optimum is derived via a closed-form weighted water-filling solution that generalizes information-theoretic water-filling and enables online scheduling. The proposed allocator attains over 93.7% average accuracy in a 500ms transfer window, within 0.5pp of the full-cache ceiling, and reaches 98.2-99.5% of a clairvoyant upper bound.",
-      "reason": "近 30 天；关键词：cs.NI, inference, kv-cache。Edge LLMs must preserve inference continuity when a user hands over between edge nodes, requiring key-value (KV) cache transfer to...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.NI",
-        "inference",
-        "kv-cache",
-        "llm",
-        "slo"
-      ],
-      "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-11T06:37:10Z",
-      "url": "https://arxiv.org/abs/2608.10545",
-      "pdfUrl": "https://arxiv.org/pdf/2608.10545v1"
+      "publishedAt": "2026-08-11T19:12:31Z",
+      "url": "https://arxiv.org/abs/2608.11361",
+      "pdfUrl": "https://arxiv.org/pdf/2608.11361v1"
     },
     {
-      "id": "arxiv-2608.10430",
-      "title": "Actionable Hallucination Detection: Translating Latent Uncertainty into Agentic Critique",
+      "id": "arxiv-2608.10362",
+      "title": "MemSpec: Memory-Aware Runtime for Adaptive Draft Scheduling in Speculative Decoding on Edge Devices",
       "authors": [
-        "Sanidhya Vijayvargiya",
-        "Rahul Lokesh"
+        "Eunjeong Kim",
+        "Yeong Jun Jeon",
+        "Myeonggyun Han"
       ],
-      "summary": "Large Language Models (LLMs) deployed as AI agents frequently exhibit user specification-grounding failures, executing hallucinated, undesired actions to force a resolution rather than expressing uncertainty. Existing detection methods fail to provide actionable, real-time correction as they either do not localize the hallucinations, or incur prohibitive inference latency. We introduce the Latent Critic, a lightweight low-rank adapter (LoRA) that operates concurrently with a frozen base LLM's generation to actively restructure the transformer's residual stream---amplifying latent grounding signals and translating them into localized, natural language feedback within a single sequence. By refining the base model's native uncertainty signals, this manipulation of the latent space enables reliable, granular detection without the overhead of secondary inference loops. Mechanistic analysis via activation patching and layer-wise probing shows that this rank-invariant behavior restructures pre-existing uncertainty geometry into a linearly separable representation that transfers more reliably than base model representations alone. Using tool-calling as an instantiation of granular hallucinations, we validate the detection and downstream improvements enabled by the Latent Critic architecture across Qwen and Llama-based models. Demonstrating superior real-time efficacy, our approach significantly outperforms equivalent-scale fine-tuned external detectors, semantic entropy baselines, and passive internal probes in isolating hallucinations, achieving 0.966 AUROC and >80% accuracy in localization (e.g., ungrounded: date). When deployed in a closed-loop ReAct environment, the Critic acts as a negligible latency guardrail, intercepting hallucinations before execution to prevent undesired actions while simultaneously leveraging this specific localized feedback to enable efficient agent self-correction.",
-      "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.LG。Large Language Models (LLMs) deployed as AI agents frequently exhibit user specification-grounding failures, executing hallucinate...",
+      "summary": "Speculative decoding accelerates autoregressive large language model (LLM) inference by using a lightweight draft model to speculate multiple tokens, reducing expensive target model decoding steps. Its effectiveness depends heavily on draft selection, motivating adaptive methods that exploit variation across inputs and generation stages. On memory-constrained edge devices, however, these methods often fail to improve end-to-end throughput due to the overhead of switching between draft models. We identify a key limitation in this setting: the mismatch between draft selection and draft availability under tight memory budgets. To address this challenge, we present MemSpec, a prediction-guided, memory-aware runtime for adaptive speculative decoding on edge devices. MemSpec decouples draft selection from execution through proactive resident working-set management. A lightweight predictor estimates draft effectiveness from prompt and generation context, while a memory-aware scheduler reduces reactive model loading overhead. Experiments on a Jetson Orin Nano show that MemSpec improves steady-state generation throughput by 40.7% on average over state-of-the-art bandit-based adaptive methods while closely approaching the oracle upper bound.",
+      "reason": "近 30 天；关键词：cs.OS, inference, llm。Speculative decoding accelerates autoregressive large language model (LLM) inference by using a lightweight draft model to specula...",
       "area": "LLM 推理优化",
       "tags": [
-        "alibaba",
-        "meta",
-        "cs.LG",
-        "deployed",
-        "efficient",
+        "cs.OS",
         "inference",
-        "latency"
-      ],
-      "signal": 99,
-      "source": "Alibaba/Meta/arXiv",
-      "publishedAt": "2026-08-11T03:26:16Z",
-      "url": "https://arxiv.org/abs/2608.10430",
-      "pdfUrl": "https://arxiv.org/pdf/2608.10430v1"
-    },
-    {
-      "id": "arxiv-2608.10402",
-      "title": "TideRL: Boosting Agentic RL Goodput with Readiness-Aware Scheduling",
-      "authors": [
-        "Yanyu Ren",
-        "Xizheng Wang",
-        "Xiao Liu",
-        "Bowen Lv",
-        "Hanchen Zhang",
-        "Shudan Zhang",
-        "Hanyu Lai",
-        "Shuai Wang",
-        "Li Chen",
-        "Dan Li",
-        "Jie Tang"
-      ],
-      "summary": "Reinforcement learning (RL) for large language models is moving toward multi-turn agentic workloads, where rollout tasks repeatedly pause for external environments, resume with growing contexts, and finish at highly variable times. In this setting, RL training goodput, measured by training throughput, matters more than raw GPU occupancy: GPU waiting and repeated prefill recomputation are pure overhead. We present TideRL, a readiness-aware elastic RL system with Continuous Task Batching, Resource-Aware Ref-Actor Pipelining, and Elastic Resource Scaling. CTB preserves useful rollout state, $\\textrm{RA}^2\\textrm{P}$ selects between decoupled streaming and colocated aggregation from the ready backlog and arrival interval, and ERS moves ranks between rollout and training using the same readiness signals. Across text-only and multi-modal agentic workloads, TideRL improves RL training goodput by up to 5.6$\\times$ over synchronous baselines and over 33% over asynchronous baselines, while reaching similar task performance. It also improves KV cache hit rate by 1.58$\\times$, reduces per-step training time by up to 44.3%, and cuts total waiting time by up to 77.6%.",
-      "reason": "近 30 天；关键词：cs.LG, batching, kv-cache。Reinforcement learning (RL) for large language models is moving toward multi-turn agentic workloads, where rollout tasks repeatedl...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "batching",
-        "kv-cache",
-        "prefill",
+        "llm",
+        "speculative",
         "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-11T02:49:33Z",
-      "url": "https://arxiv.org/abs/2608.10402",
-      "pdfUrl": "https://arxiv.org/pdf/2608.10402v1"
+      "publishedAt": "2026-08-11T01:41:37Z",
+      "url": "https://arxiv.org/abs/2608.10362",
+      "pdfUrl": "https://arxiv.org/pdf/2608.10362v1"
     },
     {
-      "id": "arxiv-2608.10257",
-      "title": "GenRec: An LLM-Backed Recommendation Ranker at Netflix",
+      "id": "arxiv-2608.10621",
+      "title": "ProbGuard: Calibrated Safety Risk Estimation from LLM Output Distributions",
       "authors": [
-        "Ying Li",
-        "Shradha Sehgal",
-        "Arjun Rao",
-        "Rein Houthooft",
-        "Yaochen Zhu",
-        "Ashish Rastogi"
+        "Xinzhe Huang",
+        "Biwu Yao",
+        "Kedong Xiu",
+        "Mengnan Zhao",
+        "Di Wang",
+        "Puning Zhao",
+        "Tianhang Zheng"
       ],
-      "summary": "Large language models (LLMs) are reshaping recommender systems by enabling richer modeling of users, content, and context directly in natural language. At Netflix, we are exploring this direction through GenRec, an LLM-backed recommendation ranker built on top of an in-house foundational LLM. GenRec follows a two-phase framework: Phase 1 adapts an open-source LLM to Netflix data, developing deep understanding of the catalog and member behavior while balancing capabilities such as content understanding and instruction following. Phase 2 post-trains this foundation model with recommendation-ranking specific data, labels, and reward signals, aiming to align the ranker with business requirements and long-term member satisfaction. This paper focuses on Phase 2 and the transition from a traditional discriminative ranker with thousands of engineered features to an LLM-backed ranker driven by verbalized user histories and context. We describe our design for input verbalization and context engineering, post-training data construction, reward integration, model architecture, and a cost-constrained serving design based on a prefill-only inference approach. We report results from a large-scale A/B test comparing GenRec against the current production ranker model, where we show that a GenRec model trained with substantially fewer Phase-2 labeled training examples and input signals can achieve statistically significant gains in offline and online metrics. We discuss how LLM-backed recommenders could shift the recommendation paradigm: from feature engineering to context engineering, and from bespoke architectures to shared foundation backbones. We also outline practical lessons for serving such systems under real-world resource constraints.",
-      "reason": "近 30 天；公司信号：Netflix；推荐/排序/广告方向；关键词：netflix, cs.IR, inference。Large language models (LLMs) are reshaping recommender systems by enabling richer modeling of users, content, and context directly...",
-      "area": "推荐算法",
+      "summary": "Recent research on Large Language Model (LLM) safety has widely adopted guardrails to identify unsafe LLM outputs. Existing guardrails typically formulate safety assessment as a deterministic classification task, mapping a discrete token sequence to a discrete safety label. However, this paradigm has two limitations: First, safety assessment is inherently an uncertain problem, particularly during the early generation state. Second, relying solely on discrete token sequences discards the rich probabilistic information embedded in the LLM output distribution. To address these limitations, we propose the first completely probabilistic architecture-agnostic guardrail \\textsc{ProbGuard} to leverage the LLM early output distributional signals for estimating and calibrating the safety probability, thereby enabling early stopping of unsafe ongoing outputs. Specifically, given an LLM's generated prefix distribution, we formulate the safety risk as the unsafe probability of its continued generation dynamics and estimate this risk by Monte-Carlo sampling. Through post-training on the distributional signals and calibrated safety risk, \\textsc{ProbGuard} achieves the best calibration performance across all nine model--dataset combination settings, reducing the average Brier score and ECE by 79.6\\% and 71.9\\%, respectively, over the best baseline. \\textsc{ProbGuard} further limits the attack success rate to at most 1\\% across six representative jailbreak attacks after observing the LLM early output distributions from only the first ten decoding steps.",
+      "reason": "近 30 天；关键词：cs.LG, dataset, llm。Recent research on Large Language Model (LLM) safety has widely adopted guardrails to identify unsafe LLM outputs. Existing guardr...",
+      "area": "LLM 推理优化",
       "tags": [
-        "netflix",
-        "cs.IR",
-        "inference",
-        "llm",
-        "prefill",
-        "production",
-        "ranking"
-      ],
-      "signal": 99,
-      "source": "Netflix/arXiv",
-      "publishedAt": "2026-08-10T21:43:14Z",
-      "url": "https://arxiv.org/abs/2608.10257",
-      "pdfUrl": "https://arxiv.org/pdf/2608.10257v1"
-    },
-    {
-      "id": "arxiv-2608.10240",
-      "title": "Sequential Modality Dropout for Robust Multi-Modal Sequential Recommendation",
-      "authors": [
-        "Guanqun Yang",
-        "Wenlong Zhang"
-      ],
-      "summary": "Multi-modal sequential recommenders assume every item carries every modality, but real product catalogs often miss images or text, and a model trained on complete data loses much of its recommendation accuracy when a modality is unavailable at serving time. We propose Sequential Modality Dropout (SMD): during training, each modality stream (image and text) is independently erased with probability p for an entire user interaction history, so the model learns to predict the next item without relying on any single modality. We measure robustness by retention, the fraction of a model's full-modality accuracy (HR@10) that survives when a modality is removed at test time. Across four backbones (MM-SASRec, IISAN, MISSRec, and fMRLRec) on four Amazon domains, SMD raises text retention by 1.0 to 3.2x at essentially no cost to full-modality accuracy; under an extreme 95% per-item missing rate, it retains 61% of HR@10 versus 22% without (a 2.8x improvement). An optional cross-modal reconstruction loss further lifts retention from 90% to 98% on a simple additive backbone under severe text missingness. SMD is a four-line, architecture-agnostic change that makes multi-modal sequential recommenders robust to the missing modalities they actually encounter in deployment.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, recommendation。Multi-modal sequential recommenders assume every item carries every modality, but real product catalogs often miss images or text,...",
-      "area": "推荐算法",
-      "tags": [
-        "amazon",
-        "cs.IR",
-        "recommendation",
-        "recommender",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-08-10T21:18:25Z",
-      "url": "https://arxiv.org/abs/2608.10240",
-      "pdfUrl": "https://arxiv.org/pdf/2608.10240v1"
-    },
-    {
-      "id": "arxiv-2608.10045",
-      "title": "Finding the Signal in the Spam: Jointly Learning Rewards and Worker Reliability from Pairwise Comparisons",
-      "authors": [
-        "Kaustubh Shivshankar Shejole",
-        "Tanish Agarwal",
-        "Arpit Agarwal",
-        "Avishek Ghosh"
-      ],
-      "summary": "The problem of learning from pairwise comparisons has been widely studied across many domains such as recommendation systems, social choice, and more recently, fine-tuning large language models. In this problem, the goal is to learn item rewards based on pairwise comparisons between them. In many scenarios, these comparisons are elicited from crowdworkers using platforms such as Amazon Mechanical Turk, Scale AI, etc. However, crowdworkers are often unreliable due to limited domain knowledge or revenue-maximizing (spamming) behavior. In this work, our goal is to understand whether worker reliability (competency) can be learned jointly with item rewards. To this end, we adopt the Boltzmann-rational model for pairwise comparisons, which extends the Bradley-Terry-Luce model by incorporating worker competencies. We derive an EM-based algorithm for learning under this model by introducing Polya-Gamma latent variables to transform the logistic likelihood into a conditionally Gaussian form, enabling tractable optimization and leading to a simplified $Q$ function in the E-step of the algorithm. This technique allows us to reduce our formulation to a matrix sensing problem, using which we establish theoretical convergence guarantees for our algorithm. We conduct extensive experiments on real-world and synthetic datasets. These experiments demonstrate the advantages of using our algorithm over several baselines and confirm its strong robustness to both spammers and adversarial workers, highlighting its practical effectiveness in realistic crowdsourcing and reward learning settings. The code and data is publicly available at https://github.com/KaustubhShejole/BoRa_EM.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.LG, dataset。The problem of learning from pairwise comparisons has been widely studied across many domains such as recommendation systems, soci...",
-      "area": "推荐算法",
-      "tags": [
-        "amazon",
         "cs.LG",
         "dataset",
-        "recommendation"
+        "llm",
+        "serving"
       ],
-      "signal": 99,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-08-10T13:01:48Z",
-      "url": "https://arxiv.org/abs/2608.10045",
-      "pdfUrl": "https://arxiv.org/pdf/2608.10045v1"
+      "signal": 96,
+      "source": "arXiv",
+      "publishedAt": "2026-08-11T08:08:41Z",
+      "url": "https://arxiv.org/abs/2608.10621",
+      "pdfUrl": "https://arxiv.org/pdf/2608.10621v1"
     },
     {
-      "id": "arxiv-2608.09440",
-      "title": "MetaStrategy: Generative Ranking with Executable LLM Strategies",
+      "id": "arxiv-2608.10657",
+      "title": "Retrieval-Augmented Vision Foundation Models for Robust Leukemia Cell Classification across Multiple Microscopy Datasets",
       "authors": [
-        "Chengyu Lai",
-        "Jiuning Lin",
-        "Zhibo Xiao",
-        "Xiaodong Zhu",
-        "Ruiquan Lan",
-        "Bin Zhang",
-        "Zihong Huang",
-        "Wendong Zhang",
-        "Chuxin Chen",
-        "Yinjiang Cai",
-        "Shuai Zhong",
-        "Lingqing Zhang",
-        "Dimin Wang",
-        "Jialin Zhu",
-        "Han Zhu"
+        "Carlos Zamora",
+        "Hiram Zuniga",
+        "Ulises Orozco-Rosas",
+        "Kenia Picos"
       ],
-      "summary": "Industrial recommender systems rank heterogeneous content under coupled user, business, commercial, and experience objectives. Existing generative ranking methods typically construct item sequences directly, making them difficult to integrate with mature predictive models, operational rules, and field-level guardrails. We present MetaStrategy, a framework that instead generates a structured, executable ranking strategy. Conditioned on request context, a large language model (LLM) policy emits a typed JSON bundle controlling objective weights, content and category preferences, experience constraints, and position policies. A deterministic validator and compiler instantiate an isolated Generator that competes atomically with incumbents under the list-level Evaluator of the Generator-Evaluator (GE) architecture. We train the policy in a production-path replay environment that re-executes logged requests through the current re-ranking stack without user exposure. The method combines selection, relative-rank, and baseline-lift rewards, a self-competitive curriculum that feeds frequent strategies back as competitors, and Evaluator-routed reward-augmented on-policy distillation that transfers complementary 4B-parameter Teachers into a compact 0.8B-parameter Student. We deploy MetaStrategy in Taobao Homepage Guess You Like through diff-triggered nearline generation; LLM inference remains outside synchronous ranking, with no observable increase in response time (RT). In a seven-day user-randomized online A/B test, MetaStrategy wins 27.93% of treatment-side GE calls and significantly improves click page views (click PV) by 2.11%, item-detail page views (IPV) by 3.12%, and transaction amount by 2.83%.",
-      "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, inference。Industrial recommender systems rank heterogeneous content under coupled user, business, commercial, and experience objectives. Exi...",
-      "area": "推荐算法",
+      "summary": "Leukemia cell image classification is challenged by real-world domain shifts from acquisition, staining, illumination, and site protocols, causing single-dataset models to generalize poorly in real clinical scenarios. This work presents a robust framework for leukemia classification across multiple heterogeneous datasets using a two-stage pipeline with a pretrained vision foundation model. Stage 1 performs binary classification (leukemia vs. non-leukemia) and is trained using 122,167 single-cell images. Stage 2 is conditionally applied to Stage 1 positives to perform subtype classification into Acute Lymphoblastic Leukemia (ALL) and Acute Myeloid Leukemia (AML), trained using 69,400 single-cell images. Labels are harmonized across five heterogeneous datasets to enable cross-dataset training, and performance is evaluated on a held-out dataset protocol to assess domain-shift generalization. Within this pipeline, three encoders are benchmarked (DinoBloom, pretrained on single-cell images; BiomedCLIP, pretrained on biomedical data; and CLIP as a general-purpose model) under linear probing, Low-Rank Adaptation (LoRA), and a Retrieval-Augmented Classification (RAC) module that retrieves the top-k most similar cell images to provide cytomorphological grounding. The objective is to quantify how much domain-specific pretraining contributes to performance under domain shift, and whether cost-effective adaptation and retrieval can be a viable alternative to expensive domain-specialized pretraining. The held-out protocol additionally serves as a diagnostic tool, revealing when classification performance is attributable to dataset-specific artifacts rather than to cytomorphological features.",
+      "reason": "近 30 天；关键词：eess.IV, dataset, lora。Leukemia cell image classification is challenged by real-world domain shifts from acquisition, staining, illumination, and site pr...",
+      "area": "LLM 推理优化",
       "tags": [
-        "alibaba",
-        "cs.IR",
-        "inference",
-        "industrial",
-        "llm",
-        "online-a/b",
-        "production"
+        "eess.IV",
+        "dataset",
+        "lora",
+        "retrieval"
       ],
-      "signal": 99,
-      "source": "Alibaba/arXiv",
-      "publishedAt": "2026-08-10T11:16:09Z",
-      "url": "https://arxiv.org/abs/2608.09440",
-      "pdfUrl": "https://arxiv.org/pdf/2608.09440v1"
+      "signal": 93,
+      "source": "arXiv",
+      "publishedAt": "2026-08-11T08:39:16Z",
+      "url": "https://arxiv.org/abs/2608.10657",
+      "pdfUrl": "https://arxiv.org/pdf/2608.10657v1"
+    },
+    {
+      "id": "arxiv-2608.11701",
+      "title": "Consolidator: Learning Persistent Routed Memory Across Context Boundaries",
+      "authors": [
+        "Sungwoo Goo",
+        "Hwi-yeol Yun",
+        "Sangkeun Jung"
+      ],
+      "summary": "Copying short-term memory (STM) into a slower store can preserve state across a context boundary, but persistence alone does not ensure that the retained state influences subsequent memory access. We test this distinction in a Phasor Memory Network (PMNet) using Consolidator, a shared slot-local operator that transforms routed STM before accumulating it into long-term memory (LTM), without replaying the source tokens. After each consolidation, the KV cache and STM are cleared. The retained LTM can still be read and is also fed into the hierarchical router, thereby conditioning which explicit-memory slots subsequent inputs access. We evaluate this mechanism on a two-segment modulo-10 mapping task in which the second segment updates the mapping at the same memory address. Following a second consolidation and reset, a held-out query must recover the updated mapping from LTM. The backbone and memory interface are frozen, leaving only 12.35K Consolidator parameters trainable (0.041\\% of a 29.95M model). Across five paired runs from the same STM-pretraining checkpoint, direct LTM routing raises updated-mapping recall from $44.38\\pm1.94\\%$ to $87.02\\pm1.76\\%$ ($+42.64\\pm1.10$ percentage points), while immediate STM recall remains 89.90\\% in both conditions; both train separate Consolidators and retain the same LTM read paths. Learned consolidation outperforms forced identity accumulation by $21.40\\pm1.91$ percentage points without routing and $68.70\\pm1.76$ with routing. Thus, on this task, consolidated LTM serves as both retrievable content and an access state that shapes subsequent slot selection.",
+      "reason": "近 30 天；关键词：cs.LG, kv-cache, slo。Copying short-term memory (STM) into a slower store can preserve state across a context boundary, but persistence alone does not e...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "kv-cache",
+        "slo"
+      ],
+      "signal": 92,
+      "source": "arXiv",
+      "publishedAt": "2026-08-12T06:26:53Z",
+      "url": "https://arxiv.org/abs/2608.11701",
+      "pdfUrl": "https://arxiv.org/pdf/2608.11701v1"
     }
   ]
 }
