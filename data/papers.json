@@ -1,259 +1,275 @@
 {
-  "generatedAt": "2026-08-14T06:30:13.646232+08:00",
+  "generatedAt": "2026-08-15T06:11:36.253416+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2608.12146",
-      "title": "RoutePack: Expert Placement and Attention-Aware Data Packing for MoE Reinforcement Learning",
+      "id": "arxiv-2608.13524",
+      "title": "DARTree: Speculative Diffusion Decoding with Autoregressive Draft Trees",
       "authors": [
-        "Yibo Shen",
-        "Xudong Han",
-        "Xiaowei Zhu",
-        "Gen Li",
-        "Zhenxuan Pan"
+        "Tianyi Li",
+        "Yaxin Luo",
+        "Xinyi Shang",
+        "Zhiqiang Shen"
       ],
-      "summary": "Training Mixture-of-Experts (MoE) models for reinforcement learning (RL) couples two load-balancing problems: sequence composition determines dense attention work in each data-parallel microbatch, while token routing determines sparse expert work on expert-parallel ranks. Optimizing either alone can shift the bottleneck to the other. In MoE RL, rollout-time routing replay exposes every sample's sequence length and layer-wise expert demand before its training step. We present RoutePack, a hierarchical planner that coordinates state-consistent, layer-wise expert rerouting with joint attention- and expert-aware data packing over an optimizer-step window. RoutePack first places experts independently at each MoE layer using aggregate routing demand. It then packs samples into the smallest certified, or best-known feasible, number of token-capped execution rows and optimizes their DP layout with a projected EDP-shard-aware objective. The objective combines a window-normalized linear-quadratic attention proxy with per-layer physical EP-rank peaks and minimizes the accumulated cost of the slowest EDP shard. Parallel population annealing searches fixed-row feasible layouts while preserving sample coverage, capacity, nonempty cells, equal microbatch counts, and communicator topology. State-consistent materialization preserves logical top-k routing and existing MoE kernels without microbatch-level expert replication. Across Ling-3.0-Tiny and Ling-3.0-Flash, expert rerouting improves mean trainer-measured token throughput by 3.80% and 10.50%, while routing-aware packing adds another 4.86% and 3.98%, respectively. Overall, RoutePack improves throughput by 8.85% and 14.89% over the baseline.",
-      "reason": "近 30 天；关键词：cs.DC, serving, slo。Training Mixture-of-Experts (MoE) models for reinforcement learning (RL) couples two load-balancing problems: sequence composition...",
+      "summary": "Speculative decoding losslessly accelerates autoregressive language models by verifying multiple draft tokens in parallel. Diffusion-based drafters further reduce proposal latency by predicting an entire token block in parallel, but their position-wise distributions are marginal rather than conditioned on tokens selected along each draft path. Existing recurrent correction incorporates causal information along a single draft chain, whereas diffusion-based tree construction broadens candidate coverage without carrying this correction along individual branches. We introduce DARTree, a training-free speculative decoding method that extends a pretrained AR correction head from chains to trees. DARTree first constructs a fixed-width candidate tree by expanding and scoring all nodes at each depth in a single batch, and then only applies best-first pruning to select the verification tree, decoupling AR-head inference from sequential heap operations. Across seven math, code, and chat benchmarks, DARTree achieves the highest average acceptance length and speedup in all four model--temperature configurations, accepting up to 12.97 tokens per verification round, 98.6\\% more than DFlash and 27.9\\% more than Domino in the same setting, and reaching up to 9.73$\\times$ lossless speedup over locally measured autoregressive decoding.",
+      "reason": "近 30 天；关键词：cs.LG, inference, latency。Speculative decoding losslessly accelerates autoregressive language models by verifying multiple draft tokens in parallel. Diffusi...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "latency",
+        "speculative"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-13T17:43:44Z",
+      "url": "https://arxiv.org/abs/2608.13524",
+      "pdfUrl": "https://arxiv.org/pdf/2608.13524v1"
+    },
+    {
+      "id": "arxiv-2608.13499",
+      "title": "OpScale: Operator-level Provisioning and Autoscaling for LLM Serving",
+      "authors": [
+        "Xingqi Cui",
+        "Chieh-Jan Mike Liang",
+        "Ziang Tang",
+        "Jiarong Xing",
+        "Haoran Qiu"
+      ],
+      "summary": "Achieving cost efficiency while meeting strict user-facing SLOs (e.g., time-to-first-token) remains a fundamental challenge for cloud GPU clusters serving large language models (LLMs). Autoscaling is the key mechanism for cluster resource management, yet a basic system design question is open for serving LLMs: what should be the unit of scaling? Existing approaches primarily treat the entire model as a monolithic scaling unit--simple but unable to capture the fine-grained dynamics of inference workloads. As a result, such coarse-grained scaling often leads to either SLO violations under bursty demand or significant GPU under-utilization. Our characterization reveals substantial operator heterogeneity, exposing operator-level elasticity as a viable scaling primitive. We present OpScale, a practical operator-level orchestration framework of profiling, provisioning, placement, and runtime serving. OpScale is designed to tackle the high complexity and the space explosion problem, arising from operating at this finer granularity. Evaluated with production traces on up to 40 A100s and 24 GB200s, OpScale attains SLOs with up to 36.3% fewer GPUs and 28% less power, or achieves 44% higher throughput under fixed cost budgets.",
+      "reason": "近 30 天；关键词：cs.DC, inference, llm。Achieving cost efficiency while meeting strict user-facing SLOs (e.g., time-to-first-token) remains a fundamental challenge for cl...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.DC",
+        "inference",
+        "llm",
+        "production",
         "serving",
         "slo",
         "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-12T15:07:15Z",
-      "url": "https://arxiv.org/abs/2608.12146",
-      "pdfUrl": "https://arxiv.org/pdf/2608.12146v1"
+      "publishedAt": "2026-08-13T17:28:54Z",
+      "url": "https://arxiv.org/abs/2608.13499",
+      "pdfUrl": "https://arxiv.org/pdf/2608.13499v1"
     },
     {
-      "id": "arxiv-2608.12103",
-      "title": "Who Should Own the Expert Cache? Kernel-Managed Tiering for Trillion-Parameter MoE Inference",
+      "id": "arxiv-2608.13263",
+      "title": "vToken: Token-Level Virtualization for Reclaimable KV Caches",
       "authors": [
-        "Yuan Si",
-        "Yufeng Lin",
-        "Daming Li",
-        "Jialu Zhang"
+        "Yuanhang Gao",
+        "Xiangrui Yang",
+        "Yuanfeng Chen",
+        "Hongjia Chen",
+        "Qianru Lv",
+        "Wenfei Wu",
+        "Dongsheng Li"
       ],
-      "summary": "Mixture-of-experts models whose expert pools dwarf DRAM force every serving system to contain a cache, yet existing systems typically implement this cache in user space using expert-granular, frequency-ranked, explicitly pinned tiers. We characterize the alternative already provided by the OS: the page cache as the expert tier. We use router traces from three MoE models spanning 128 to 896 experts per layer, including a production trillion-parameter model with a 1.45 TB expert pool, and replay them natively against the full pool on GH200 nodes with capacity enforced by three independent mechanisms. We find four main results. First, iteration time and device traffic are smooth, reproducible functions of cache capacity, making DRAM a practical sizing knob for trillion-parameter serving. Second, the deep-pressure knee is a reclaim artifact requiring both MGLRU and balloon-style mostly-mlocked memory; cgroup limits and physical-memory configurations show no such amplification, indicating that balloon-based studies can overstate pressured-end device traffic by approximately 2$\\times$. Third, under an enforced equal-memory wall, untuned kernel LRU serves essentially as much demand as a same-domain oracle frequency table (75.3% versus 74.6% at 256 GB), while the oracle's mechanism advantage is only 1.09$\\times$ and disappears off-domain, where LRU remains at 70--71% hit rate. Fourth, router lookahead with 64.7% measured recall provides only a 0.3% benefit as kernel readahead advice and no benefit as synchronous prefetch. End to end, enabling kernel-managed caching improves decode performance by 1.09--1.10$\\times$ with token-identical outputs across nine balanced pairs. The resulting design principle is simple: in this regime, let the kernel own eviction, while model-specific knowledge is best spent on admission and advice.",
-      "reason": "近 30 天；关键词：cs.OS, inference, production。Mixture-of-experts models whose expert pools dwarf DRAM force every serving system to contain a cache, yet existing systems typica...",
+      "summary": "Large language model serving faces a critical memory bottleneck: the KV cache grows with sequence length and batch size. PagedAttention uses fixed-size memory blocks to reduce allocator-level fragmentation, but recent KV eviction algorithms operate at a token granularity finer than block-level management. This mismatch causes intra-block fragmentation, leaving a large fraction of allocated KV memory unreclaimable. We present vToken, a lightweight token-level virtualization layer that decouples logical token liveness from physical block placement. vToken maintains a stable logical token view through token-table indirection and realizes physical reclamation by repacking live tokens asynchronously. The design preserves PagedAttention kernels and CUDA Graph compatibility. We implement vToken in vLLM and evaluate it with H2O, Random, and Scissorhands across models. Compared with a paired Naive-Evict baseline, vToken reduces retained KV blocks per request by 27.2\\%--72.3\\% and improves SLA-constrained throughput by up to 1.37$\\times$. Under a constrained active-KV budget, it extends the maximum feasible concurrency by up to 2$\\times$, while reducing the per-policy integration footprint from 500+ lines to under 50.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.AI, kv-cache。Large language model serving faces a critical memory bottleneck: the KV cache grows with sequence length and batch size. PagedAtte...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.OS",
-        "inference",
-        "production",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-12T14:24:09Z",
-      "url": "https://arxiv.org/abs/2608.12103",
-      "pdfUrl": "https://arxiv.org/pdf/2608.12103v1"
-    },
-    {
-      "id": "arxiv-2608.11758",
-      "title": "AWARe: Mitigating Catastrophic Forgetting via Activation-Weighted Adaptive REtention",
-      "authors": [
-        "Juncheng Liao",
-        "Jinfan Lv",
-        "Guoming Wang",
-        "Jupeng Zheng",
-        "Ling Xiao",
-        "Siliang Tang"
-      ],
-      "summary": "Multimodal Large Language Models (MLLMs) exhibit strong generalization and reasoning abilities due to large-scale multimodal pre-training. However, fine-tuning these models on downstream tasks often leads to catastrophic forgetting, where newly learned task-specific knowledge degrades previously acquired capabilities. This issue arises because gradient updates for new tasks overwrite parameters critical to prior knowledge, limiting the practical deployment of MLLMs. To address this challenge, we propose Activation-Weighted Adaptive REtention (AWARe), a fine-tuning method that mitigates catastrophic forgetting by dynamically controlling parameter updates based on activation patterns. AWARe assigns activation-based importance scores to parameters, selectively freezing those essential for preserving prior capabilities while allowing less important parameters to adapt to new tasks. Importantly, AWARe operates without modifying model architectures, ensuring compatibility with existing inference engines. Extensive experiments demonstrate that AWARe effectively preserves upstream capabilities while achieving superior downstream performance compared to existing methods. Code is available at https://github.com/kaln27/AWARe.",
-      "reason": "近 30 天；关键词：cs.CL, inference, llm。Multimodal Large Language Models (MLLMs) exhibit strong generalization and reasoning abilities due to large-scale multimodal pre-t...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "inference",
+        "nvidia",
+        "cs.AI",
+        "kv-cache",
         "llm",
-        "multimodal",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-12T07:55:15Z",
-      "url": "https://arxiv.org/abs/2608.11758",
-      "pdfUrl": "https://arxiv.org/pdf/2608.11758v1"
-    },
-    {
-      "id": "arxiv-2608.11742",
-      "title": "Ripple-Pivot Search: Active Parallel Decoding for Diffusion Large Language Models",
-      "authors": [
-        "Yushi Ye",
-        "Xu Chen",
-        "Haoyun Jiang",
-        "Jinsong Lan",
-        "Haihong Tang",
-        "Bo Han",
-        "Ivor Tsang",
-        "Yanfeng Wang",
-        "Bo Zheng",
-        "Jiangchao Yao"
-      ],
-      "summary": "Diffusion Large Language Models (dLLMs) have emerged as a competitive alternative to autoregressive language models, offering the potential for substantially faster inference through parallel decoding. Existing parallel decoding schedulers typically commit positions only after they meet a per-position criterion, overlooking how early commitments may benefit subsequent decoding. We identify a ripple effect in dLLM decoding: proactively committing a mid-entropy pivot position can induce a pronounced reduction in uncertainty across the remaining masked positions. This uncertainty reduction allows subsequent steps to unmask more tokens in parallel, thereby accelerating the overall decoding process. To exploit the ripple effect, we propose Ripple-Pivot Search (RPS), a novel training-free decoding method that seeks mid-entropy positions as promising candidate pivots (where to decode), and determines their token assignment that yields the greatest downstream benefit via lookahead evaluation (what to decode). Across 3 dLLMs and 4 reasoning and code-generation benchmarks, RPS achieves 4-10$\\times$ wall-clock speedup over the standard decoder while preserving generation quality, and improves accuracy over the previous lookahead baseline by up to 5.49% while delivering higher throughput in most settings. When integrated with KV caching, RPS further achieves up to 18$\\times$ wall-clock speedup over the standard decoder.",
-      "reason": "近 30 天；关键词：cs.CL, inference, llm。Diffusion Large Language Models (dLLMs) have emerged as a competitive alternative to autoregressive language models, offering the...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "inference",
-        "llm",
+        "pagedattention",
         "serving",
         "throughput"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-12T07:32:29Z",
-      "url": "https://arxiv.org/abs/2608.11742",
-      "pdfUrl": "https://arxiv.org/pdf/2608.11742v1"
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-08-13T14:01:21Z",
+      "url": "https://arxiv.org/abs/2608.13263",
+      "pdfUrl": "https://arxiv.org/pdf/2608.13263v1"
     },
     {
-      "id": "arxiv-2608.11688",
-      "title": "APEX: Adaptive Expert Prefetching for Memory-Efficient Edge MoE Inference",
+      "id": "arxiv-2608.13136",
+      "title": "LigBench: A Unified and Human-Aligned Benchmark for LLM-based Research Idea Generation",
       "authors": [
-        "Alish Kanani",
-        "Layan Badawi",
-        "Umit Y. Ogras"
+        "Chenrun Wang",
+        "Mingxuan Zhu",
+        "Tiancheng Huang",
+        "Wenjie Li",
+        "Yujie Zhang",
+        "Zichen Zhu",
+        "Zhiying Zou",
+        "Kai Yu",
+        "Lu Chen"
       ],
-      "summary": "Mixture-of-Experts (MoE) models are attractive for edge deployment because they provide high model capacity while activating only a small subset of parameters per token, improving compute efficiency. However, MoE inference at the edge is fundamentally limited by memory. Expert parameters are large and often reside in off-chip memory due to capacity, cost, and power constraints, putting expert loading to the critical path. We present APEX: Adaptive Expert Prefetching, a predictive resource management framework that overlaps expert loading with useful computation. APEX introduces a lightweight prefetch router that predicts candidate experts before the attention block to dynamically fetch additional experts using a learned confidence model. This adaptive strategy achieves over 99% overlap accuracy, significantly outperforming fixed top-k prefetching techniques. APEX supports two execution modes: a correctness-preserving mode that guarantees exact routing semantics, and a stall-free mode that eliminates residual stalls by operating on available experts with negligible impact on application accuracy. Across multiple MoE models, the correctness-preserving mode reduces per-token latency by up to 26% and improves energy-delay product (EDP) by up to 41% over state-of-the-art baselines, while the stall-free mode provides additional efficiency gains with negligible impact on application accuracy. These results establish adaptive, confidence-driven expert prefetching as an effective approach for efficient MoE inference on edge systems.",
-      "reason": "近 30 天；关键词：cs.AR, efficient, energy。Mixture-of-Experts (MoE) models are attractive for edge deployment because they provide high model capacity while activating only...",
+      "summary": "With the rapid advancement of large language models (LLMs), research idea generation has attracted increasing attention. Existing approaches enable LLMs to retrieve relevant literature and propose novel ideas for research areas. However, current evaluation practices for idea generation remain fragmented and lack objective standards, often relying on direct LLM scoring, which limits their ability to provide unified and reliable assessments across a coherent distribution of generated ideas. To address this challenge, we propose LigBench, an automated evaluation benchmark that enables fine-grained and reliable evaluation of AI research ideas, consistently applicable across different generation distributions. In addition, we introduce PAIR-IQ, a dataset tailored for training pairwise idea judgment models and serving as an auxiliary reference to support more objective comparative evaluation. Extensive experiments demonstrate that LigBench achieves stable and interpretable evaluations, significantly improving alignment with expert judgments. Furthermore, models trained on PAIR-IQ exhibit enhanced ranking accuracy and robustness, establishing a principled standard for scalable and objective research idea assessment.",
+      "reason": "近 30 天；关键词：cs.CL, alignment, dataset。With the rapid advancement of large language models (LLMs), research idea generation has attracted increasing attention. Existing...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.AR",
-        "efficient",
-        "energy",
-        "inference",
+        "cs.CL",
+        "alignment",
+        "dataset",
+        "llm",
+        "ranking",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-13T12:11:23Z",
+      "url": "https://arxiv.org/abs/2608.13136",
+      "pdfUrl": "https://arxiv.org/pdf/2608.13136v1"
+    },
+    {
+      "id": "arxiv-2608.13057",
+      "title": "TEMPO: Makespan-Aware Expert-Parallel Load Balancing Across Memory- and Compute-Bound Regimes",
+      "authors": [
+        "Jie Li",
+        "Chenxin Jia",
+        "Jinliang Shen",
+        "Cunzhuang Liu",
+        "Ruiyi Ding",
+        "Jianwen Xian",
+        "Kang He",
+        "Chengru Song"
+      ],
+      "summary": "In expert-parallel (EP) MoE serving, every layer synchronizes at the slowest GPU. Dispatchers balance token counts (EPLB, LPLB, UltraEP) or activated-expert counts (METRO), assuming expert time is linear in one. Measurements on two datacenter GPU generations show it is neither: below $\\nstar\\!\\approx\\!156$--$168$ tokens, HBM weight streaming dominates---cost attaches to \\emph{activated replicas}, not tokens; above it, grouped GEMM rounds tokens to 128-tile $M$-tiles, so \\emph{splitting} an expert adds padded compute. A max-affine profile $t=\\max(a+bG,\\,c+βN)$ captures both regimes. Realistic decode batches hold hot experts in the linear regime and cold in the flat \\emph{simultaneously}; recorded batches show proxy dispatches differ by $1.4$--$1.6\\times$ in modeled block time (p95 up to $1.7\\times$), and \\emph{which} proxy wins flips with the regime. We formalize per-batch dispatch as a fixed-charge makespan problem---NP-hard on two fully replicated GPUs, polynomial in degenerate limits---and present \\sys{}, a makespan-aware dispatcher solving it in milliseconds off the critical path; its SGLang integration runs out-of-process and fuses dispatch with count collection into one in-graph kernel. Anchored by an 8-GPU Testbed~A microbenchmark, \\sys{} stays within 1\\% of the best fixed baseline everywhere and wins by up to $15.5\\%$ where regimes mix. End-to-end on Testbed~B, Qwen3-235B (inside the win region) gains $4$--$6\\%$ throughput and cuts p99 latency by ${\\sim}15.6\\%$; DeepSeek-V3 (outside, communication-dominated) shows only mechanism cost. A phase diagram, not a universal win, is the claim: it predicts both outcomes before deployment.",
+      "reason": "近 30 天；关键词：cs.DC, latency, serving。In expert-parallel (EP) MoE serving, every layer synchronizes at the slowest GPU. Dispatchers balance token counts (EPLB, LPLB, Ul...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
         "latency",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-12T05:57:09Z",
-      "url": "https://arxiv.org/abs/2608.11688",
-      "pdfUrl": "https://arxiv.org/pdf/2608.11688v1"
-    },
-    {
-      "id": "arxiv-2608.11361",
-      "title": "Lifecycle-Optimal Tokenization: Vocabulary Size as a Deployment-Regime-Dependent Infrastructure Parameter",
-      "authors": [
-        "Rima Mittal",
-        "Ankit Gubrani",
-        "Satyanarayana Kakollu"
-      ],
-      "summary": "Tokenizer vocabulary size is a foundational design choice in large language model (LLM) infrastructure, yet it is typically fixed at training time based on convention rather than deployment analysis. We show that the cost-optimal vocabulary is not a constant but a function of the serving regime. We formalize total deployment cost as $C_{lifecycle}(V) = C_{train}(V) + λ\\cdot C_{infer}(V, B)$, where $λ$ is inference volume and $B$ is the serving batch size. Through controlled experiments on two GPU families spanning the memory-bound to compute-bound regimes (A10G, ridge $\\approx$ 117 FLOP/byte; A100, ridge $\\approx$ 183 FLOP/byte), we demonstrate: (1) the inference-optimal vocabulary shifts 16x with serving batch, from 32k at $B=1$ to 524k at $B=64+$, driven by amortization of the $V \\times d$ unembedding matrix read; (2) at 1.3-2.3B model scale, quality (bits per byte, BPB) is optimized at $V=65$k, confirming scale-dependent vocabulary preference; (3) the lifecycle-optimal vocabulary diverges from training-optimal by up to 16x for production deployments. Quality is approximately invariant across the optimal range ($<$2% BPB spread), making vocabulary a pure systems optimization with no quality penalty in the measured range. Our results provide actionable capacity planning guidance: on-device deployments ($B=1$) should use $V \\approx 32$k; datacenter serving ($B \\geq 64$, $λ\\geq 10$) should use $V \\approx 131$-262k.",
-      "reason": "近 30 天；关键词：cs.LG, inference, llm。Tokenizer vocabulary size is a foundational design choice in large language model (LLM) infrastructure, yet it is typically fixed...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "inference",
-        "llm",
-        "production",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-11T19:12:31Z",
-      "url": "https://arxiv.org/abs/2608.11361",
-      "pdfUrl": "https://arxiv.org/pdf/2608.11361v1"
-    },
-    {
-      "id": "arxiv-2608.10362",
-      "title": "MemSpec: Memory-Aware Runtime for Adaptive Draft Scheduling in Speculative Decoding on Edge Devices",
-      "authors": [
-        "Eunjeong Kim",
-        "Yeong Jun Jeon",
-        "Myeonggyun Han"
-      ],
-      "summary": "Speculative decoding accelerates autoregressive large language model (LLM) inference by using a lightweight draft model to speculate multiple tokens, reducing expensive target model decoding steps. Its effectiveness depends heavily on draft selection, motivating adaptive methods that exploit variation across inputs and generation stages. On memory-constrained edge devices, however, these methods often fail to improve end-to-end throughput due to the overhead of switching between draft models. We identify a key limitation in this setting: the mismatch between draft selection and draft availability under tight memory budgets. To address this challenge, we present MemSpec, a prediction-guided, memory-aware runtime for adaptive speculative decoding on edge devices. MemSpec decouples draft selection from execution through proactive resident working-set management. A lightweight predictor estimates draft effectiveness from prompt and generation context, while a memory-aware scheduler reduces reactive model loading overhead. Experiments on a Jetson Orin Nano show that MemSpec improves steady-state generation throughput by 40.7% on average over state-of-the-art bandit-based adaptive methods while closely approaching the oracle upper bound.",
-      "reason": "近 30 天；关键词：cs.OS, inference, llm。Speculative decoding accelerates autoregressive large language model (LLM) inference by using a lightweight draft model to specula...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.OS",
-        "inference",
-        "llm",
-        "speculative",
+        "serving",
+        "slo",
         "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-11T01:41:37Z",
-      "url": "https://arxiv.org/abs/2608.10362",
-      "pdfUrl": "https://arxiv.org/pdf/2608.10362v1"
+      "publishedAt": "2026-08-13T10:21:11Z",
+      "url": "https://arxiv.org/abs/2608.13057",
+      "pdfUrl": "https://arxiv.org/pdf/2608.13057v1"
     },
     {
-      "id": "arxiv-2608.10621",
-      "title": "ProbGuard: Calibrated Safety Risk Estimation from LLM Output Distributions",
+      "id": "arxiv-2608.12986",
+      "title": "STAR: Structured Tokenization and Target-Aware Interest Representation for PCVR Prediction",
       "authors": [
-        "Xinzhe Huang",
-        "Biwu Yao",
-        "Kedong Xiu",
-        "Mengnan Zhao",
-        "Di Wang",
-        "Puning Zhao",
-        "Tianhang Zheng"
+        "Yimeng Xu",
+        "Haorui Zhang",
+        "Yingqi Song",
+        "Ying Jiang",
+        "Lan Ma"
       ],
-      "summary": "Recent research on Large Language Model (LLM) safety has widely adopted guardrails to identify unsafe LLM outputs. Existing guardrails typically formulate safety assessment as a deterministic classification task, mapping a discrete token sequence to a discrete safety label. However, this paradigm has two limitations: First, safety assessment is inherently an uncertain problem, particularly during the early generation state. Second, relying solely on discrete token sequences discards the rich probabilistic information embedded in the LLM output distribution. To address these limitations, we propose the first completely probabilistic architecture-agnostic guardrail \\textsc{ProbGuard} to leverage the LLM early output distributional signals for estimating and calibrating the safety probability, thereby enabling early stopping of unsafe ongoing outputs. Specifically, given an LLM's generated prefix distribution, we formulate the safety risk as the unsafe probability of its continued generation dynamics and estimate this risk by Monte-Carlo sampling. Through post-training on the distributional signals and calibrated safety risk, \\textsc{ProbGuard} achieves the best calibration performance across all nine model--dataset combination settings, reducing the average Brier score and ECE by 79.6\\% and 71.9\\%, respectively, over the best baseline. \\textsc{ProbGuard} further limits the attack success rate to at most 1\\% across six representative jailbreak attacks after observing the LLM early output distributions from only the first ten decoding steps.",
-      "reason": "近 30 天；关键词：cs.LG, dataset, llm。Recent research on Large Language Model (LLM) safety has widely adopted guardrails to identify unsafe LLM outputs. Existing guardr...",
+      "summary": "Post-click conversion rate (PCVR) prediction is a core ranking task in industrial recommender systems. Modern ranking models must jointly capture heterogeneous non-sequential features, multi-behavior user sequences, and target-item-aware user interests, while remaining robust to high-cardinality sparse features, missing values, and train-inference inconsistencies. In this paper, we present STAR (Structured Tokenization and Target-Aware Interest Representation), a practical framework for the KDD Cup 2026 Tencent UniRec Challenge. STAR combines structured feature tokenization with target-aware interest representation on top of a HyFormer-style multi-sequence backbone. It introduces high-cardinality signal recovery, explicit user-item interaction tokens, target-aware sequence decoding, and a weighted user-item contrastive auxiliary objective inspired by InfoNCE. We further align the training and inference pipelines by reconstructing feature remapping tables and structural hyperparameters from the saved training configuration. Experiments on the challenge dataset identify the components that most reliably improve ranking AUC, while LogLoss is reported as a calibration diagnostic. The main ablation study shows a large gain from temporal context, with smaller but useful contributions from contrastive alignment, target-aware interest encoding, and high-cardinality sequence feature recovery.",
+      "reason": "近 30 天；公司信号：Tencent；推荐/排序/广告方向；关键词：tencent, cs.IR, alignment。Post-click conversion rate (PCVR) prediction is a core ranking task in industrial recommender systems. Modern ranking models must...",
+      "area": "推荐算法",
+      "tags": [
+        "tencent",
+        "cs.IR",
+        "alignment",
+        "conversion",
+        "dataset",
+        "inference",
+        "industrial"
+      ],
+      "signal": 99,
+      "source": "Tencent/arXiv",
+      "publishedAt": "2026-08-13T09:09:54Z",
+      "url": "https://arxiv.org/abs/2608.12986",
+      "pdfUrl": "https://arxiv.org/pdf/2608.12986v1"
+    },
+    {
+      "id": "arxiv-2608.12915",
+      "title": "InFactPlanner: Planning Sustainable Geo-Distributed LLM Data Centers",
+      "authors": [
+        "Nicoletta Tsiopani",
+        "Moysis Symeonides",
+        "George Pallis",
+        "Marios D. Dikaiakos"
+      ],
+      "summary": "The rapid growth of LLM inference is shifting sustainability concerns from one-time training to continuous serving, where infrastructure decisions shape energy use, carbon emissions, water consumption, and service quality. Yet operators often need to compare deployment alternatives before large-scale infrastructure is built, making direct measurement costly, slow, and sometimes infeasible. We present InFactPlanner, a trace-driven decision-support framework for what-if analysis of sustainable AI data center deployment for LLM inference across single and geo-distributed sites. InFactPlanner combines query traces, hardware-model profiles, candidate site configurations, PUE/WUE parameters, renewable generation models, and time-varying grid carbon intensity to estimate power, energy, carbon emissions, water use, latency, and server utilization. The framework abstracts low-level serving effects into configurable hardware-model profiles, enabling rapid comparison of site selection, capacity placement, hardware, model, renewable integration, and routing choices. We validate the energy accounting pipeline by reproducing reference LLM inference energy estimates with less than 10% deviation, evaluate scalability across multiple data centers and server counts, and demonstrate scenario-driven decision analyses for hardware selection, renewable placement, geographic deployment, and carbon-aware routing. Our results show that sustainability-optimal choices can differ from latency-optimal ones, and that the carbon value of deployment depends strongly on the local grid mix.",
+      "reason": "近 30 天；关键词：cs.DC, energy, inference。The rapid growth of LLM inference is shifting sustainability concerns from one-time training to continuous serving, where infrastr...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.LG",
-        "dataset",
+        "cs.DC",
+        "energy",
+        "inference",
+        "latency",
         "llm",
-        "serving"
-      ],
-      "signal": 96,
-      "source": "arXiv",
-      "publishedAt": "2026-08-11T08:08:41Z",
-      "url": "https://arxiv.org/abs/2608.10621",
-      "pdfUrl": "https://arxiv.org/pdf/2608.10621v1"
-    },
-    {
-      "id": "arxiv-2608.10657",
-      "title": "Retrieval-Augmented Vision Foundation Models for Robust Leukemia Cell Classification across Multiple Microscopy Datasets",
-      "authors": [
-        "Carlos Zamora",
-        "Hiram Zuniga",
-        "Ulises Orozco-Rosas",
-        "Kenia Picos"
-      ],
-      "summary": "Leukemia cell image classification is challenged by real-world domain shifts from acquisition, staining, illumination, and site protocols, causing single-dataset models to generalize poorly in real clinical scenarios. This work presents a robust framework for leukemia classification across multiple heterogeneous datasets using a two-stage pipeline with a pretrained vision foundation model. Stage 1 performs binary classification (leukemia vs. non-leukemia) and is trained using 122,167 single-cell images. Stage 2 is conditionally applied to Stage 1 positives to perform subtype classification into Acute Lymphoblastic Leukemia (ALL) and Acute Myeloid Leukemia (AML), trained using 69,400 single-cell images. Labels are harmonized across five heterogeneous datasets to enable cross-dataset training, and performance is evaluated on a held-out dataset protocol to assess domain-shift generalization. Within this pipeline, three encoders are benchmarked (DinoBloom, pretrained on single-cell images; BiomedCLIP, pretrained on biomedical data; and CLIP as a general-purpose model) under linear probing, Low-Rank Adaptation (LoRA), and a Retrieval-Augmented Classification (RAC) module that retrieves the top-k most similar cell images to provide cytomorphological grounding. The objective is to quantify how much domain-specific pretraining contributes to performance under domain shift, and whether cost-effective adaptation and retrieval can be a viable alternative to expensive domain-specialized pretraining. The held-out protocol additionally serves as a diagnostic tool, revealing when classification performance is attributable to dataset-specific artifacts rather than to cytomorphological features.",
-      "reason": "近 30 天；关键词：eess.IV, dataset, lora。Leukemia cell image classification is challenged by real-world domain shifts from acquisition, staining, illumination, and site pr...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "eess.IV",
-        "dataset",
-        "lora",
-        "retrieval"
-      ],
-      "signal": 93,
-      "source": "arXiv",
-      "publishedAt": "2026-08-11T08:39:16Z",
-      "url": "https://arxiv.org/abs/2608.10657",
-      "pdfUrl": "https://arxiv.org/pdf/2608.10657v1"
-    },
-    {
-      "id": "arxiv-2608.11701",
-      "title": "Consolidator: Learning Persistent Routed Memory Across Context Boundaries",
-      "authors": [
-        "Sungwoo Goo",
-        "Hwi-yeol Yun",
-        "Sangkeun Jung"
-      ],
-      "summary": "Copying short-term memory (STM) into a slower store can preserve state across a context boundary, but persistence alone does not ensure that the retained state influences subsequent memory access. We test this distinction in a Phasor Memory Network (PMNet) using Consolidator, a shared slot-local operator that transforms routed STM before accumulating it into long-term memory (LTM), without replaying the source tokens. After each consolidation, the KV cache and STM are cleared. The retained LTM can still be read and is also fed into the hierarchical router, thereby conditioning which explicit-memory slots subsequent inputs access. We evaluate this mechanism on a two-segment modulo-10 mapping task in which the second segment updates the mapping at the same memory address. Following a second consolidation and reset, a held-out query must recover the updated mapping from LTM. The backbone and memory interface are frozen, leaving only 12.35K Consolidator parameters trainable (0.041\\% of a 29.95M model). Across five paired runs from the same STM-pretraining checkpoint, direct LTM routing raises updated-mapping recall from $44.38\\pm1.94\\%$ to $87.02\\pm1.76\\%$ ($+42.64\\pm1.10$ percentage points), while immediate STM recall remains 89.90\\% in both conditions; both train separate Consolidators and retain the same LTM read paths. Learned consolidation outperforms forced identity accumulation by $21.40\\pm1.91$ percentage points without routing and $68.70\\pm1.76$ with routing. Thus, on this task, consolidated LTM serves as both retrievable content and an access state that shapes subsequent slot selection.",
-      "reason": "近 30 天；关键词：cs.LG, kv-cache, slo。Copying short-term memory (STM) into a slower store can preserve state across a context boundary, but persistence alone does not e...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "kv-cache",
+        "serving",
         "slo"
       ],
-      "signal": 92,
+      "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-12T06:26:53Z",
-      "url": "https://arxiv.org/abs/2608.11701",
-      "pdfUrl": "https://arxiv.org/pdf/2608.11701v1"
+      "publishedAt": "2026-08-13T07:57:22Z",
+      "url": "https://arxiv.org/abs/2608.12915",
+      "pdfUrl": "https://arxiv.org/pdf/2608.12915v1"
+    },
+    {
+      "id": "arxiv-2608.12419",
+      "title": "LoKiFormer: Locality-aware Attention with Decoupled Knowledge Memory for Efficient Large Language Model Pretraining",
+      "authors": [
+        "Qiuwu Chen",
+        "Zimo Liu",
+        "Yuchen Li",
+        "Ying Sun",
+        "Yifan Zhang",
+        "Zhijie Qiu",
+        "Zeng You",
+        "Ryan Dong",
+        "Simeng Ma",
+        "Yaofo Chen",
+        "Mingkui Tan"
+      ],
+      "summary": "Large language models (LLMs) have achieved remarkable breakthroughs across various applications. However, their architectures remain inefficient in pretraining due to two main limitations: (i) self-attention lacks an explicit inductive bias for locality, leading to redundant modeling of sequence-internal local information; (ii) mixture-of-experts (MoE) implicitly couples knowledge storage with computational pathways, hindering flexible access to sequence-external global knowledge. To overcome these limitations, we propose LoKiFormer, a novel LLM architecture that augments the standard decoder with two dedicated modules: 1) Local Fusion Attention (LFA), which incorporates a convolutional fusion to attention, explicitly capturing local patterns and allowing the attention to operate on more informative representations; 2) Knowledge Memory Module (KMM), which introduces a parametric key-value memory that explicitly stores global knowledge in addressable slots, decoupling storage from computation and enabling direct knowledge retrieval. Together, these modules enable LoKiFormer to achieve more efficient and effective integration of information at both levels. Experimental results show that LoKiFormer converges 1.33x faster in pre-training than baseline models, underscoring its superiority over existing LLM architectures.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, llm。Large language models (LLMs) have achieved remarkable breakthroughs across various applications. However, their architectures rema...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "efficient",
+        "llm",
+        "retrieval",
+        "slo"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-12T07:45:11Z",
+      "url": "https://arxiv.org/abs/2608.12419",
+      "pdfUrl": "https://arxiv.org/pdf/2608.12419v1"
+    },
+    {
+      "id": "arxiv-2608.13337",
+      "title": "Where You Measure Decides What You Measure: Position Selection in Ablation-Based SAE Evaluation",
+      "authors": [
+        "Valentin Noël"
+      ],
+      "summary": "Sparse autoencoders are meant to name the things a language model computes, and the usual way to check that a latent matters is to switch it off and see what changes. But a latent fires at many tokens, and the effect has to be measured at one of them. The convention is to measure where the latent fires hardest. That choice is almost never reported, and it is not made by the experimenter: it is made by the dictionary under evaluation. Change the dictionary and the measurement moves to a different token. We show this is not a detail. Take two sparse autoencoders released by Google for the same model and match their latents by decoder similarity: even among the pairs the two dictionaries encode almost identically, they pick different tokens for a large share of them. Two dictionaries compared under the usual protocol are therefore very often compared at different places. To separate the convention from the dictionaries we train six autoencoders from one initialisation, differing only in fitting choices, so that a latent means the same thing in each. Most of the variance such a comparison reads as \"these dictionaries disagree about this latent\" turns out to be the position instead: it falls from 7.6% and 11.9% of variance to near zero once every dictionary is measured at the same token. More evaluation data does not rescue it. Across a sixteenfold range of corpus sizes the dictionaries agree less about where to measure, not more, so the problem grows with scale. The correction is one line of evaluation code. We give the protocol an ablation-based causal number must report to be comparable across papers, and an audit of five published papers against it. In short: a causal number reported without its position describes the token it was taken at as much as the latent it was taken from.",
+      "reason": "近 30 天；公司信号：Google；关键词：google, cs.LG。Sparse autoencoders are meant to name the things a language model computes, and the usual way to check that a latent matters is to...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "google",
+        "cs.LG"
+      ],
+      "signal": 90,
+      "source": "Google/arXiv",
+      "publishedAt": "2026-08-13T15:06:56Z",
+      "url": "https://arxiv.org/abs/2608.13337",
+      "pdfUrl": "https://arxiv.org/pdf/2608.13337v1"
+    },
+    {
+      "id": "arxiv-2608.13167",
+      "title": "TRAPSBench: Vision-Language Models Encode but Fail to Express Epistemic Restraint",
+      "authors": [
+        "Fnu Pramono",
+        "John Cai",
+        "Sourabh Kulkarni"
+      ],
+      "summary": "When visual evidence is occluded or chaotic, models should abstain. In this paper, we show that Vision-Language Models (VLMs) can internally distinguish when abstention is required, but fail to express it anyway. We introduce TRAPSBench, a procedurally generated video benchmark of 1,404 matched physics pairs in which a single targeted change renders the outcome undeterminable from the visual evidence. Furthermore, we introduce Penalized Epistemic Calibration Score (PECS), a new robust metric that requires models to both answer correctly when the outcome is knowable, and abstain when the outcome is not. Across 16 VLMs spanning five families, spontaneous restraint is poor: the best PECS is 0.292. The bottleneck is expression, not perception: linear probes decode answerability from hidden states at up to 0.91 AUROC across physics domains; steering a single-layer void direction causally induces or suppresses abstention. Our results replicate across three open-weight families (Qwen, Gemma, LLaVA). The failure is also more pronounced in visual than textual uncertainty: models detect textual impossibility about 4x more readily than missing visual evidence. Closing this representation--output gap likely requires output-stage interventions.",
+      "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.CV。When visual evidence is occluded or chaotic, models should abstain. In this paper, we show that Vision-Language Models (VLMs) can...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "alibaba",
+        "cs.CV"
+      ],
+      "signal": 90,
+      "source": "Alibaba/arXiv",
+      "publishedAt": "2026-08-13T12:32:13Z",
+      "url": "https://arxiv.org/abs/2608.13167",
+      "pdfUrl": "https://arxiv.org/pdf/2608.13167v1"
     }
   ]
 }
