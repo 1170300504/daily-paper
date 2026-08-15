@@ -1,7 +1,67 @@
 {
-  "generatedAt": "2026-08-15T06:11:36.253416+08:00",
+  "generatedAt": "2026-08-16T06:10:07.516332+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-08-16",
+      "generatedAt": "2026-08-16T06:10:07.516332+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2608.11623",
+          "title": "FM-LLM: A frequency-enhanced mixture-of-experts framework for adapting LLMs to time series forecasting",
+          "authors": [
+            "Rentao Gu",
+            "Yihang Ding",
+            "Junjie Li",
+            "Yi Ding",
+            "Weijing Sang",
+            "Xiaoli Huo",
+            "Xin Qin",
+            "Yuefeng Ji"
+          ],
+          "summary": "Recent advances in Large Language Models (LLMs) have spurred cross-modal solutions for time-series forecasting. However, existing methods rely heavily on textual prompts for modality alignment-introducing nontrivial computational overhead and failing to leverage the rich spectral dynamics inherent in time-series data. To enable prompt-free, frequency-aware adaptation of frozen LLMs, we propose FM-LLM (Frequency-Enhanced Mixture-of-Experts for adapting LLMs to Time Series Forecasting), an autoregressive framework grounded in constrained asymmetric coupling. A Fourier Analysis Network (FAN)-based spectral token aligner injects structured harmonic representations directly into the frozen LLM with numerical compatibility. An asymmetric Mixture-of-Experts (MoE) decoder enforces role separation: shared experts with lightweight FAN layers reconstruct the global periodic backbone, while routed experts-restricted to standard FFNs-specialize in modeling non-periodic residual dynamics. A time-frequency hybrid loss function jointly optimizes temporal accuracy and spectral consistency, mitigating error accumulation during long-horizon autoregressive rollouts. Evaluated across eleven public benchmarks, FM-LLM achieves state-of-the-art performance on 59 out of 78 evaluation metrics. Compared to the strongest autoregressive LLM-based baseline, it delivers average improvements of 5.3% in MSE and 5.6% in MAE, with maximum gains reaching 8.0% for MSE and 8.4% for MAE. FM-LLM also demonstrates robust transferability, maintaining superior performance in 10% few-shot and zero-shot forecasting scenarios.",
+          "reason": "近 30 天；关键词：cs.LG, alignment, llm。Recent advances in Large Language Models (LLMs) have spurred cross-modal solutions for time-series forecasting. However, existing...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "alignment",
+            "llm"
+          ],
+          "signal": 85,
+          "source": "arXiv",
+          "publishedAt": "2026-08-12T04:09:52Z",
+          "url": "https://arxiv.org/abs/2608.11623",
+          "pdfUrl": "https://arxiv.org/pdf/2608.11623v1"
+        },
+        {
+          "id": "arxiv-2608.13538",
+          "title": "SAEVerbalizer: Generating Explanations for Sparse Autoencoder Features via Representation Verbalization",
+          "authors": [
+            "Weihan Meng",
+            "Hongzhu Guo",
+            "Yi Jing",
+            "Dewen Liu",
+            "Zijun Yao",
+            "Xiaozhi Wang",
+            "Lei Hou",
+            "Juanzi Li"
+          ],
+          "summary": "Sparse autoencoders (SAEs) are proposed to extract numerous features from large language model (LLM) representations, yet explaining these features still relies primarily on external observation. This reliance leads to superficial explanations inferred from observed model behavior and computational inefficiency from collecting such behavioral evidence at scale. We introduce SAEVerbalizer, a framework that injects SAE decoder directions into an LLM's representations and fine-tunes the LLM's downstream layers to generate natural-language explanations of the injected features. Once trained, the resulting verbalizer explains SAE features directly from decoder directions, addressing both limitations. Our experiments show that the learned verbalization capability generalizes to unseen features, transfers across separately trained SAE dictionaries, and, with a lightweight adapter, extends to SAE features from different LLMs. Intervention experiments show that injecting multiple directions yields an explanation combining their meanings, while reversing individual directions produces corresponding meaning shifts.",
+          "reason": "近 30 天；关键词：cs.CL, llm。Sparse autoencoders (SAEs) are proposed to extract numerous features from large language model (LLM) representations, yet explaini...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm"
+          ],
+          "signal": 77,
+          "source": "arXiv",
+          "publishedAt": "2026-08-13T17:54:11Z",
+          "url": "https://arxiv.org/abs/2608.13538",
+          "pdfUrl": "https://arxiv.org/pdf/2608.13538v1"
+        }
+      ]
+    },
     {
       "date": "2026-08-15",
       "generatedAt": "2026-08-15T06:11:36.253416+08:00",
