@@ -1,285 +1,282 @@
 {
-  "generatedAt": "2026-08-18T06:12:48.982230+08:00",
+  "generatedAt": "2026-08-19T06:11:06.533188+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2608.14385",
-      "title": "DeaMoE: Efficient MoE Structure for Fast Small-Batch Decoding",
+      "id": "arxiv-2608.16477",
+      "title": "Pallas: A Proactive KV Cache Migration Framework for LLM Inference in AI-RAN",
       "authors": [
-        "Zewen Jin",
-        "Shen Fu",
-        "Zeping Duan",
-        "Shannon Wang",
-        "Weihao Wu",
-        "Chengjie Tang",
-        "Congkun Ai",
-        "Ping Gong",
-        "Zijian Dai",
-        "Youhui Bai",
-        "Cheng Li"
+        "Tianhang Ding",
+        "Jianchun Liu",
+        "Hongli Xu"
       ],
-      "summary": "Mixture-of-Experts (MoE) models have been widely adopted in real-time interactive applications such as coding assistants, real-time audio-video interaction systems. To meet the extremely low response latency requirements of these scenarios, practitioners commonly employ small-batch decoding, under which MoE inference becomes memory-bound and is severely bottlenecked by expert weight loading. However, this bottleneck has received limited attention, and existing solutions such as post-training weight compression or fine-grained expert design during pre-training either degrade model accuracy or introduce additional computation and communication overhead. To tackle this issue, we propose DeaMoE, a decoding-efficient MoE architecture, in which the experts are grouped into several departments, and the experts belonging to the same department share most parameters since they come from the same professional field, and additionally each expert contains a few private parameters to reflect its uniqueness. Moreover, we design customized two-stage routing strategy for DeaMoE to avoid redundant loading, under which DeaMoE greatly improves the efficiency during LLM decoding. Compared with vanilla MoE, DeaMoE reduces per-step loaded weights by up to 50.9% and achieves up to 1.33 end-to-end TPOT speedup for the pre-trained 7B model on A40, and up to 2.00x and 1.97x peak speedup for DeepSeek-V3 on A40 and H100 in microbenchmarks.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, efficient。Mixture-of-Experts (MoE) models have been widely adopted in real-time interactive applications such as coding assistants, real-tim...",
+      "summary": "AI-RAN brings large language model (LLM) serving close to mobile users, but cellular handover can separate an active request from its inference state: the user attaches to a target base station (gNB) while the large and growing key-value (KV) cache remains at the source. Retaining inference at the source preserves service continuity but persistently increases inter-token latency (ITL), whereas recovering the state at the target restores serving locality but requires KV-cache transfer, recomputation, or a combination of both only after handover, directly prolonging service interruption time (SIT). This work presents Pallas, a \\textit{proactive} KV-cache migration framework that prepares the inference state at the predicted target before handover, in parallel with ongoing source-side inference and token delivery. At the preparation trigger, Pallas partitions the token sequence into a stable historical prefix and an evolving suffix. The target reconstructs the prefix through local prefill, while the source streams the KV blocks generated for the suffix. At handover, the target assembles both portions into an up-to-date KV cache and resumes decoding locally, leaving only unfinished preparation to contribute to SIT. An online scheduler selects the \\textit{prefetching window}, which determines how early preparation begins before handover, based on mobility predictions and runtime telemetry. Across three LLMs and $100$--$500~\\mathrm{Mbps}$ inter-gNB links, our vLLM-based prototype reduces average SIT by factors of $2.28$--$89.68$ over target-side recovery approaches and lowers average ITL by $16.0\\%$--$50.0\\%$ compared with source-side forwarding.",
+      "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。AI-RAN brings large language model (LLM) serving close to mobile users, but cellular handover can separate an active request from...",
       "area": "LLM 推理优化",
       "tags": [
-        "nvidia",
         "cs.LG",
-        "efficient",
         "inference",
+        "kv-cache",
         "latency",
-        "llm"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-08-14T15:25:32Z",
-      "url": "https://arxiv.org/abs/2608.14385",
-      "pdfUrl": "https://arxiv.org/pdf/2608.14385v1"
-    },
-    {
-      "id": "arxiv-2608.14377",
-      "title": "A Survey of Large Models in Sports",
-      "authors": [
-        "Yichen Xu",
-        "Jianzhe Ma",
-        "Chuhan Wang",
-        "Zhonghao Cao",
-        "Liangyu Chen",
-        "Wenxuan Wang",
-        "Qin Jin"
-      ],
-      "summary": "Sports have witnessed growing global enthusiasm in recent years, serving as a vital force for physical health, cultural exchange, social connection, and economic growth. The rapid advancement of large models, particularly (multimodal) large language models (M)LLMs, has demonstrated transformative potential to reshape sports understanding, analysis, and interaction across diverse domains. This paper presents a comprehensive survey of large models in sports, including (i) an overview of tasks and applications across different participant groups; (ii) a detailed analysis of sports-related datasets and benchmarks; and (iii) a critical discussion of current challenges and future directions. Our goal is to establish a foundation for advancing research and practical development of large-model-driven sports intelligence. An open-source GitHub repository is maintained at: https://github.com/Road2Redemption/Awesome_Large_Models_In_Sports1.",
-      "reason": "近 30 天；关键词：cs.CL, dataset, llm。Sports have witnessed growing global enthusiasm in recent years, serving as a vital force for physical health, cultural exchange,...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "dataset",
         "llm",
-        "multimodal",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-14T15:17:54Z",
-      "url": "https://arxiv.org/abs/2608.14377",
-      "pdfUrl": "https://arxiv.org/pdf/2608.14377v1"
-    },
-    {
-      "id": "arxiv-2608.14376",
-      "title": "CoRun: Padding is Simple and Efficient for Deterministic LLM Inference",
-      "authors": [
-        "Shiju Zhao",
-        "Jiacheng Yang",
-        "Qihang Chen",
-        "Junhao Hu",
-        "Jiaqi Zheng",
-        "Guihai Chen",
-        "Xusheng Chen"
-      ],
-      "summary": "Despite fixed sampling parameters and random seeds, Large Language Model (LLM) inference exhibits output inconsistency, which undermines downstream tasks such as model evaluation and reinforcement learning. A major source of this nondeterminism is batch-dependent GPU execution: dynamic input shapes change kernel tiling and floating-point reduction orders. Existing systems address this problem with batch-invariant kernels, but these kernels restrict optimized tiling and split reductions, increasing more than 2$\\times$ latency and reducing serving throughput by up to 74 %. This paper observes that although most kernels are not batch-invariant, they are position-invariant. Leveraging this property, we present CoRun, a scheduling-based system that achieves deterministic inference without requiring batch invariance. CoRun employs isolated prefill and fixed-shape batched decode to handle the two stages of LLM inference, respectively, leveraging CUDA graphs for efficient execution and simplified implementation. Experiments on LLMs with diverse architectures, including Qwen and DeepSeek, show that CoRun ensures determinism while improving throughput by 15-324 % over batch-invariant approaches, reducing time-to-first-token by 51.8 % and time-per-output-token by 48.6 % on average.",
-      "reason": "近 30 天；公司信号：Alibaba, NVIDIA；关键词：alibaba, nvidia, cs.OS。Despite fixed sampling parameters and random seeds, Large Language Model (LLM) inference exhibits output inconsistency, which unde...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "alibaba",
-        "nvidia",
-        "cs.OS",
-        "efficient",
-        "inference",
-        "latency",
-        "llm"
-      ],
-      "signal": 99,
-      "source": "Alibaba/NVIDIA/arXiv",
-      "publishedAt": "2026-08-14T15:17:14Z",
-      "url": "https://arxiv.org/abs/2608.14376",
-      "pdfUrl": "https://arxiv.org/pdf/2608.14376v1"
-    },
-    {
-      "id": "arxiv-2608.14205",
-      "title": "FreeBalance: Pre-Routing Online Moe Load Balancing via Residual Workload Prediction",
-      "authors": [
-        "Pengfei Chen",
-        "Yize Wu",
-        "Shouxu Kuang",
-        "Ke Gao",
-        "Ling Li"
-      ],
-      "summary": "Load imbalance poses a major bottleneck to the efficiency of expert parallelism in distributed inference of Mixture-of-Experts (MoE) models. The most heavily loaded rank stalls global execution due to skewed routing distributions, directly increasing latency. While offline expert placement can alleviate persistent imbalance, practical multi-task serving workloads exhibit layer- and batch-dependent routing dynamics, making online load balancing indispensable. Existing approaches rely on routing statistics collected after each MoE router, requiring expert weight load or migration to begin only after routing decisions are available, consequently placing migration overhead on the inference critical path. In this work, we observe that online balancing can instead be largely overlapped with computation before target routing (e.g., attention), if routing distributions can be predicted accurately in advance. Therefore, we propose FreeBalance, a lossless online load-balancing framework that overlaps expert migration with preceding computation stages via residual workload prediction. FreeBalance leverages cross-layer similarities in hidden representations within the residual network to build a lightweight workload predictor. This enables proactive expert migration planning before routing decisions are available, creating substantial overlap between weight transfer and computation-heavy pre-routing stages. Furthermore, a cost model constrains the number of swaps to fully hide the synchronization overhead within the available window. Experiments across models and datasets show that FreeBalance reduces the max-to-mean rank load ratio by 32.8% and end-to-end prefill latency by 13.1%. Specifically, our method hides balancing overhead of an average of 5.1 experts per layer, which would otherwise account for about 8.5% of the critical-path latency.",
-      "reason": "近 30 天；关键词：cs.AI, dataset, inference。Load imbalance poses a major bottleneck to the efficiency of expert parallelism in distributed inference of Mixture-of-Experts (Mo...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.AI",
-        "dataset",
-        "inference",
-        "latency",
         "prefill",
         "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-14T11:30:39Z",
-      "url": "https://arxiv.org/abs/2608.14205",
-      "pdfUrl": "https://arxiv.org/pdf/2608.14205v1"
+      "publishedAt": "2026-08-17T12:16:09Z",
+      "url": "https://arxiv.org/abs/2608.16477",
+      "pdfUrl": "https://arxiv.org/pdf/2608.16477v1"
     },
     {
-      "id": "arxiv-2608.14198",
-      "title": "MINT: A Universal Zero-Shot Predictor for Transaction Data",
+      "id": "arxiv-2608.16347",
+      "title": "Architecture-Dependent Causal Transfer of Activation States Across Large Language Models",
       "authors": [
-        "Parameswaran Kamalaruban",
-        "Viktor Drobnyi",
-        "Maeve Madigan",
-        "Julia Rozanova",
-        "David Sutton",
-        "Stuart Burrell"
+        "Fernando Cardenas Piepereit"
       ],
-      "summary": "Banks analyse sequential financial transaction data to perform many tasks, including fraud prevention, credit risk assessment and offer personalization. To improve the predictive accuracy of these tasks, Payments Foundation Models encode transaction sequence data as rich contextual embeddings, which can then be provided to task-specific models as features. However, these Foundation Models are not designed for flexible zero-shot reasoning across novel downstream prediction tasks, limiting their adaptability and utility. Existing LLM-based approaches to zero-shot prediction often fail to fully exploit the predictive signal within transaction data, while relying on costly text serialization or task-specific architectures that scale poorly. To address these limitations, we present the Multimodal Instruction Network for Transactions (MINT), a framework that connects a pretrained transaction sequence encoder to a decoder-only LLM through lightweight embedding injection, transaction-language alignment, and instruction tuning. We find that MINT achieves state-of-the-art predictive question-answering performance in both in-distribution and out-of-distribution questions, while substantially reducing input tokens, latency, and memory consumption compared to text-serialization baselines. Through comprehensive analyses of representations, alignment strategies, training data, and history length, we establish that compact transaction embeddings are a superior approach to transaction representation than text serialization for multimodal reasoning and zero-shot prediction tasks.",
-      "reason": "近 30 天；关键词：cs.LG, alignment, latency。Banks analyse sequential financial transaction data to perform many tasks, including fraud prevention, credit risk assessment and...",
+      "summary": "Direct communication between AI systems relies on natural language as an intermediate layer, incurring encoding/decoding overhead, token cost, and latency. We ask whether internal activation states can instead be transferred causally between different large language model (LLM) architectures via a learned projection, evaluated at three levels: representational similarity, cross-model retrieval from projected states, and end-to-end causal transfer via activation injection during generation. Using four architecturally diverse open-weight models (Qwen2-0.5B, Phi-3-mini, Mistral-7B, FLAN-T5-base), we find that representational alignment in trained models exceeds a random-initialization null baseline and is best captured by a rank-based metric (mutual k-nearest-neighbour alignment), more robust to activation-magnitude outliers than centered kernel alignment (CKA) or Procrustes analysis. A learned projection network retrieves the correct target-model representation from a held-out set well above chance for the three causal decoder-only model pairs (45-50% top-1 accuracy vs. 5% chance) but at chance level for the encoder-based FLAN-T5. Injecting projected activations into a target model during generation produces a statistically significant, pre-registered causal effect on retrieval-based output similarity for only one of the three decoder-only pairs (Qwen2-0.5B to Phi-3-mini: 23.3% vs. 0.0% under negative control, p=0.047, FDR-corrected); the two pairs targeting Mistral-7B show no such effect despite comparable representational alignment at the hidden-state level. We interpret these results as evidence for causal transfer of the representational vehicle, not of meaning, and conclude that end-to-end activation-state transfer between LLMs, as currently implemented, is architecture-dependent rather than universal.",
+      "reason": "近 30 天；关键词：cs.CL, alignment, latency。Direct communication between AI systems relies on natural language as an intermediate layer, incurring encoding/decoding overhead,...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.LG",
+        "cs.CL",
         "alignment",
         "latency",
         "llm",
+        "retrieval"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-17T09:53:27Z",
+      "url": "https://arxiv.org/abs/2608.16347",
+      "pdfUrl": "https://arxiv.org/pdf/2608.16347v1"
+    },
+    {
+      "id": "arxiv-2608.16336",
+      "title": "Beyond Binary Priorities: Multi-Tier SLA Scheduling for Large Language Model Serving",
+      "authors": [
+        "Anders Vestrum",
+        "Arya Raeesi",
+        "Hanna Roed"
+      ],
+      "summary": "Modern LLM serving deployments must simultaneously satisfy heterogeneous service-level objectives (SLOs) across a diverse population of user tiers, ranging from latency-critical API calls to background batch processing. Llumnix introduced a dynamic, migration-capable multi-instance scheduler for LLM inference that achieves load balancing, defragmentation, prioritization, and auto-scaling through a unified \"freeness\" metric. However, Llumnix's priority model is restricted to two levels (high and normal), an abstraction too coarse to express the richer SLA classes common in production deployments. In this work, we extend Llumnix's priority model to support an arbitrary number of tiers and evaluate the effects of this extension under three realistic priority distributions (uniform, Gaussian, enterprise) using Vidur, a high-fidelity LLM inference simulator. We implement per-tier headroom with exponential decay, tier-aware dispatch ordering, and the full Llumnix migration pipeline inside Vidur's hierarchical scheduling framework. We compare our extended scheduler against INFaaS (global routing baseline), vLLM, Orca, and Sarathi-Serve (per-replica baselines), sweeping priority levels from 1 to 10. Our experiments demonstrate that four priority tiers yields the best cost-effectiveness tradeoff, achieving prefill mean speedups of up to 8.3x and end-to-end P99 speedups of up to 3.1x over INFaaS with cost-per-latency improvements of 46 to 68%, while preserving strong SLO differentiation across tiers. We further show that the system sustains these gains at 10 priority levels without tail latency collapse, with overhead concentrated in the prefill phase.",
+      "reason": "近 30 天；关键词：cs.AR, inference, latency。Modern LLM serving deployments must simultaneously satisfy heterogeneous service-level objectives (SLOs) across a diverse populati...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.AR",
+        "inference",
+        "latency",
+        "llm",
+        "prefill",
+        "production",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-17T09:43:51Z",
+      "url": "https://arxiv.org/abs/2608.16336",
+      "pdfUrl": "https://arxiv.org/pdf/2608.16336v1"
+    },
+    {
+      "id": "arxiv-2608.16308",
+      "title": "DB-SpMSpV: Dual-View Blocked Sparse Matrix-Sparse Vector Multiplication for Dynamic GPU Workloads",
+      "authors": [
+        "Xing Cong",
+        "Chenhao Xie",
+        "Rui Wang",
+        "Zhongzhi Luan",
+        "Yi Liu",
+        "Depei Qian"
+      ],
+      "summary": "Sparse Matrix-Sparse Vector Multiplication (SpMSpV) is a core primitive in graph traversal, sparse linear algebra, and sparse model inference. Its input vector is often dynamically sparse, so the best GPU execution path depends on both global sparsity and the local vector-block distribution. Existing GPU SpMSpV methods often bind storage layouts, push/pull traversal, and kernels together, making fine-grained adaptation difficult without extra storage or scheduling overhead. This paper presents DB-SpMSpV, a dual-view blocked SpMSpV framework for dynamic GPU workloads. DB-SpMSpV partitions the matrix into fixed-size 2D blocks, maintains block-level CSR/CSC views at the high level, and reuses a single low-level block payload to support both row-driven pull and column-driven push. At runtime, it selects the global traversal path based on input block sparsity, chooses block microkernels from the local matrix/vector block structure, and uses load balancing, asynchronous prefetching, and hierarchical writeback to reduce irregular memory accesses, writeback conflicts, and load imbalance. We further integrate the framework into DB-BFS and DB-Decoding. We evaluate DB-SpMSpV on NVIDIA A100 and RTX 4090 using SuiteSparse matrices, symmetric graphs, and three open-source LLMs. Across input sparsities, DB-SpMSpV achieves average speedups of 5.48$\\times$--64.34$\\times$ over cuSPARSE and 2.36$\\times$--14.01$\\times$ over TileSpMSpV on A100, with similar gains on RTX 4090. DB-BFS further improves end-to-end graph traversal by 2.66$\\times$ over TileBFS on A100 and 3.60$\\times$ on RTX 4090 on average, while DB-Decoding accelerates single-token linear layers by up to 4.50$\\times$.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, inference。Sparse Matrix-Sparse Vector Multiplication (SpMSpV) is a core primitive in graph traversal, sparse linear algebra, and sparse mode...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.DC",
+        "inference",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-08-17T09:18:19Z",
+      "url": "https://arxiv.org/abs/2608.16308",
+      "pdfUrl": "https://arxiv.org/pdf/2608.16308v1"
+    },
+    {
+      "id": "arxiv-2608.16188",
+      "title": "AdaSprite: Resource-efficient Online Co-Adaptation for V2I Systems Under Large-scale Data Drifts",
+      "authors": [
+        "Lehao Wang",
+        "Zhiwen Yu",
+        "Sicong Liu",
+        "Kefan Chen",
+        "Fengmin Wu",
+        "Bin Guo"
+      ],
+      "summary": "The rise of vehicle-infrastructure (V2I) collaboration enables safer and broader perception. To process large-scale V2I video streams, vision-language models (VLMs) are promising as they unify multi-view vision into end-to-end task grounding, reducing handcrafted design. We use Vision Mixture-of-Experts (V-MoE) as the distributed visual backbone of VLMs, leveraging sparse expert routing to enable conditional computation across diverse viewpoints under resource constraints. Yet, V-MoEs face a critical challenge: large-scale data shifts over minutes to hours in V2I systems, amplified by agnostic participants and biased features propagating through experts. To maintain accuracy efficiently, we find it beneficial to co-adapt multiple V-MoEs on edge servers, avoiding the latency and privacy risks of cloud offloading and the accuracy sacrifices of on-device methods. However, the resource-constrained edge poses challenges for efficient co-adaptation: i) DRAM fragmentation and imbalance limit expert parallelism, ii) memory-I/O bottlenecks restrict computation reuse, and iii) asynchronous adaptation increases task-switch overhead. Also, prior work rarely explores the upper bound of concurrent tasks under limited edge resources, a critical factor for practical V2I deployment. To address these, we present AdaSprite. By combining cooperative elastic scaling with multi-level multiplexing, AdaSprite optimizes expert lifespans to reduce DRAM fragmentation, exploits predictable activation patterns for efficient I/O reuse, and employs twin-buffer scheduling to leverage sparsity. On a weak edge, AdaSprite supports up to 17 concurrent V2I tasks (vs. up to 6 for baselines), improving SLO attainment by 1.6x and throughput by 2.1x. Also, it allows users to trade accuracy and concurrency for second-level adaptation.",
+      "reason": "近 30 天；关键词：cs.OS, efficient, latency。The rise of vehicle-infrastructure (V2I) collaboration enables safer and broader perception. To process large-scale V2I video stre...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.OS",
+        "efficient",
+        "latency",
+        "slo",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-17T07:09:47Z",
+      "url": "https://arxiv.org/abs/2608.16188",
+      "pdfUrl": "https://arxiv.org/pdf/2608.16188v1"
+    },
+    {
+      "id": "arxiv-2608.16168",
+      "title": "QUMem: Personalized Memory for Query-Conditioned User-State Inference in LLM Agents",
+      "authors": [
+        "Heng Wang",
+        "Yifei Li",
+        "Lingling Zhang",
+        "Pengyu Li",
+        "Xinyu Che",
+        "Xinyu Zhang",
+        "Zesheng Yang"
+      ],
+      "summary": "Large language model (LLM) agents increasingly use external memory systems to support personalization by drawing on long and evolving interaction histories, in which user preferences may be distributed across time, change with context, and conflict with earlier evidence. However, existing systems face three limitations: fixed-turn, fixed-token, or session-based boundaries can mix unrelated dialogue or split an event from its causes, decisions, and outcomes; storing multiple pieces of user information from the same interaction as a single memory binds together items that serve different functions and should be independently retrievable; and treating the current task as a single top-$k$ retrieval query can return fragments that are individually relevant but fail to jointly capture preference evolution, temporal validity, and contextual applicability. We introduce \\textsc{QUMem}, a structured memory framework for query-conditioned user-state inference. \\textsc{QUMem} first segments interaction histories into variable-length episodes according to semantic continuity, then decomposes each episode into independently retrievable factual, preference, and transferable insight memories while preserving temporal positions and source evidence. At inference time, three sequential agents identify task-specific information needs, plan multi-query retrieval over the typed memory stores, and jointly infer a temporally and contextually valid user state for downstream response generation. \\textsc{QUMem} achieves state-of-the-art performance on both PersonaMem and KnowU-Bench, demonstrating the effectiveness of query-conditioned user-state inference for long-term personalization.",
+      "reason": "近 30 天；关键词：cs.CL, inference, llm。Large language model (LLM) agents increasingly use external memory systems to support personalization by drawing on long and evolv...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "inference",
+        "llm",
+        "retrieval",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-17T06:34:24Z",
+      "url": "https://arxiv.org/abs/2608.16168",
+      "pdfUrl": "https://arxiv.org/pdf/2608.16168v1"
+    },
+    {
+      "id": "arxiv-2608.16157",
+      "title": "FreeToken: Efficient Edge-Native MoE Serving with Bandwidth-Adaptive Execution",
+      "authors": [
+        "Shuo Yang",
+        "Xiaoze Fan",
+        "Melissa Pan",
+        "Haocheng Xi",
+        "Zhe Wang",
+        "Shanlin Sun",
+        "Kurt Keutzer",
+        "Song Han",
+        "Matei Zaharia",
+        "Chenfeng Xu",
+        "Ion Stoica"
+      ],
+      "summary": "Frontier open-weight models are increasingly available, but serving them still largely assumes datacenter infrastructure. We present FreeToken, an edge-native MoE serving system that treats a personal machine not as a small GPU, but as a unified, elastic inference platform. FreeToken co-designs the full serving stack, including model layout and loading, expert residency, CPU--GPU execution, agentic state reuse, and runtime memory management, around two realities of local AI: agent workloads continuously change their execution pattern, and edge hardware exposes heterogeneous resources whose balance differs from machine to machine. Rather than committing to a fixed offloading strategy, FreeToken continuously maps computation and model state onto the resources actually available. FreeToken supports more than 20 MoE models and real coding and tool-using agents across hardware ranging from an 8GB laptop GPU to a single workstation GPU. More importantly, it changes what these machines can practically serve, from a 35B model on a laptop to a 284B model on a gaming desktop and the 753B GLM-5.2 on a single workstation GPU. FreeToken turns open weights into deployable local software, making the machines users already own a practical platform for frontier-scale intelligence. We release the system at flashml.ai.",
+      "reason": "近 30 天；关键词：cs.DC, efficient, inference。Frontier open-weight models are increasingly available, but serving them still largely assumes datacenter infrastructure. We prese...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "efficient",
+        "inference",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-17T06:22:53Z",
+      "url": "https://arxiv.org/abs/2608.16157",
+      "pdfUrl": "https://arxiv.org/pdf/2608.16157v1"
+    },
+    {
+      "id": "arxiv-2608.15869",
+      "title": "Beyond Visual CoT: Internalized Visual Thinking for Proactive Video Reasoning",
+      "authors": [
+        "Xiaoyu Zhu",
+        "Xinke Deng",
+        "Suresh Taddewadikar",
+        "Arnab Kumar Mondal",
+        "Zhongyu Jiang",
+        "Ian Fasel",
+        "Joerg Liebelt"
+      ],
+      "summary": "Multimodal large language models increasingly use visual chain-of-thought (Visual CoT) to reason about spatial, temporal, and embodied environments. By generating intermediate reasoning images, Visual CoT provides an intuitive mechanism for visual foresight but introduces substantial inference overhead, which is particularly problematic for proactive video reasoning. We ask whether models can learn to think visually during training while reasoning directly at inference. We introduce Internalized Visual Thinking (IVT), a post-training framework that jointly optimizes textual prediction and next-embedding prediction over unlabeled videos. Given a partially observed video, IVT predicts latent representations of future frames together with the target textual answer, encouraging the model to capture motion, object transitions, interactions, and latent intent. At inference, IVT generates the answer directly without synthesizing or re-encoding future frames. We conduct controlled studies across target representations, decoder designs, prediction horizons, data mixtures, training curricula, and predictive objectives. IVT improves over direct-answer fine-tuning on all six evaluation settings while retaining the same inference pathway. Compared with explicit Visual CoT, IVT achieves comparable or better performance and reduces average end-to-end latency by more than 5x. Together, our findings suggest that explicit pixel-space generation at inference time, as used in visual chain-of-thought, may not be necessary for effective proactive video reasoning. Predictive world modeling can be internalized during training to produce multimodal reasoners that are both more accurate and substantially more efficient.",
+      "reason": "近 30 天；关键词：cs.CV, efficient, inference。Multimodal large language models increasingly use visual chain-of-thought (Visual CoT) to reason about spatial, temporal, and embo...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CV",
+        "efficient",
+        "inference",
+        "latency",
         "multimodal"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-14T11:17:01Z",
-      "url": "https://arxiv.org/abs/2608.14198",
-      "pdfUrl": "https://arxiv.org/pdf/2608.14198v1"
+      "publishedAt": "2026-08-16T17:35:38Z",
+      "url": "https://arxiv.org/abs/2608.15869",
+      "pdfUrl": "https://arxiv.org/pdf/2608.15869v1"
     },
     {
-      "id": "arxiv-2608.14191",
-      "title": "KV Cache Compression Through the Lens of Transform Coding",
+      "id": "arxiv-2608.15780",
+      "title": "Decomposing Staleness in Recommender Systems: A Dual-Filter Framework for Supersession and Decay",
       "authors": [
-        "Hannah Laus",
-        "Claudio Mayrink Verdun",
-        "Hao Wang",
-        "Flavio du Pin Calmon",
-        "Felix Krahmer"
+        "Di Bai",
+        "Feng Han",
+        "Zhenwei Tang",
+        "Jintao Liu",
+        "Luoshu Wang",
+        "Jialu Liu"
       ],
-      "summary": "The key-value (KV) cache stores information from past tokens and is a major memory bottleneck in long-context inference. Existing quantization methods address this bottleneck by representing the KV cache uniformly with lower-precision data types and designing quantization schemes to minimize reconstruction error in the cache itself, without accounting for how that error propagates through attention mechanisms. We prove that, under a white-noise quantization model, the expected attention-aware distortion decomposes into additive key and value contributions that factor across tokens and channels. Building on transform coding and reverse water-filling, which are classical tools from signal processing and rate-distortion theory, we introduce Attention-Aware Transform Coding (AATC), which allocates bits over a calibration set to minimize attention-aware distortion. On Llama-3.1-8B-Instruct and Qwen-2.5-7B-Instruct, evaluated across LongBench, RULER, GSM8K, MMLU-Pro, and MATH-500, our method achieves near-lossless accuracy at approximately $5.8\\times$ compression, whereas each baseline degrades in at least some settings.",
-      "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.LG。The key-value (KV) cache stores information from past tokens and is a major memory bottleneck in long-context inference. Existing...",
-      "area": "LLM 推理优化",
+      "summary": "Stale recommendations are a pervasive challenge and a leading source of user complaints on large-scale content platforms. Items lose relevance through two primary mechanisms: supersession, where emerging updates render prior coverage stale, and relevance decay, where an item's informational value naturally diminishes over its lifecycle. Traditional countermeasures serve as crude proxies: age cutoffs poorly reflect actual relevance loss, while engagement heuristics rely on lagging signals, broadly exposing users to stale content before the system adapts. We present SDF (Supersession-Decay Filtering), a staleness filtering system fully deployed in Google Discover, a personalized recommendation feed with hundreds of millions of daily and billions of monthly active users. SDF targets both mechanisms with complementary filters, each powered by a learned model: a relational staleness model that detects supersession between item pairs, and a predicted traffic ratio (PTR) model that forecasts relevance decay from the item's content, trained on lifetime visit traffic. Applied via disjunction upstream of the ranking stage, SDF prunes stale candidates, measurably reducing downstream serving costs. Online experiments demonstrate that these filters significantly reduce the prevalence of stale content while improving user engagement. Over a two-year production deployment, user-filed staleness reports (in-product user feedback) declined by 54.9% relative to the pre-deployment baseline, establishing SDF as a robust and scalable paradigm for resolving content staleness at industrial scale.",
+      "reason": "近 30 天；公司信号：Google；推荐/排序/广告方向；关键词：google, cs.IR, deployed。Stale recommendations are a pervasive challenge and a leading source of user complaints on large-scale content platforms. Items lo...",
+      "area": "推荐算法",
       "tags": [
-        "alibaba",
-        "meta",
-        "cs.LG",
-        "inference",
-        "kv-cache",
-        "quantization"
+        "google",
+        "cs.IR",
+        "deployed",
+        "industrial",
+        "production",
+        "ranking",
+        "recommendation"
       ],
       "signal": 99,
-      "source": "Alibaba/Meta/arXiv",
-      "publishedAt": "2026-08-14T11:08:01Z",
-      "url": "https://arxiv.org/abs/2608.14191",
-      "pdfUrl": "https://arxiv.org/pdf/2608.14191v1"
+      "source": "Google/arXiv",
+      "publishedAt": "2026-08-16T15:00:24Z",
+      "url": "https://arxiv.org/abs/2608.15780",
+      "pdfUrl": "https://arxiv.org/pdf/2608.15780v1"
     },
     {
-      "id": "arxiv-2608.13987",
-      "title": "Nanbeige4.2-3B on Apple Silicon: Fixing Deployment Bugs and Decreasing Looped Transformer Memory Overhead",
+      "id": "arxiv-2608.15763",
+      "title": "TaoLive Digital Avatar Agent Technical Report: Training Agents to Evolve with Their Harness",
       "authors": [
-        "John T. Halloran"
+        "TaoLive AIGC LLM Team",
+        "Yuhan Sun",
+        "Wenhao Lin",
+        "Yongdong Luo",
+        "Yibo Hu",
+        "Meiguang Jin",
+        "Junfeng Ma",
+        "Weihang Pan",
+        "Jiaxin Zhao",
+        "Zulong Chen"
       ],
-      "summary": "Nanbeige4.2-3B is a 3B-parameter agentic model built around a Looped Transformer (LT) that reuses one stack of layers for a second forward pass, adding effective depth without additional parameters. Evaluated on Apple Silicon (MPS), we identify five independent bugs which prevent the released checkpoint from running via Hugging Face transformers out of the box (including a silently-zeroed RoPE buffer and calls to removed transformers cache APIs). Furthermore, we show that fixing these bugs is still not sufficient for agentic tasks, due to the LT's layer-reuse strategy (which effectively doubles peak attention memory) used to achieve parameter efficiency. We thus introduce a chunked-prefill strategy which alleviates the incurred memory-capacity penalty, extending allowable context width by $2.7 \\times$ on 32~GiB shared memory. However, even with the reduced memory overhead, we show that patches are required to render Nanbeige4.2-3B usable; resolving both system prompt and MPS-native memory bugs finally allows reliable evaluation on standard MCP and tool-calling benchmarks. On a subset of MCPMark, the debugged model completes up to 30\\% of real agentic tasks (up from the original's 0\\%), while, on BFCL, it is near-perfect at single tool calls (yet fails the majority of multi-tool tests). We release the patched checkpoint, system prompt optimizer, and evaluation harnesses at https://github.com/johnhalloran321/Nanbeige4.2-3B-mps-fix.",
-      "reason": "近 30 天；公司信号：Apple；关键词：apple, cs.AI, lora。Nanbeige4.2-3B is a 3B-parameter agentic model built around a Looped Transformer (LT) that reuses one stack of layers for a second...",
+      "summary": "AI-powered digital-avatar streamers in live e-commerce must answer product questions, engage viewers, and execute changing business strategies in real time. This requires low latency, factual and effective replies, and rapid adaptation to updated campaign, compliance, and style requirements. We develop an evolvable Harness that decouples Skills, Hooks, system prompts, and tools from model weights, allowing runtime behavior to change without retraining. However, Harness evolution creates a moving execution environment: compact models fine-tuned on one configuration may memorize names, schemas, and prompt templates rather than follow the Harness currently provided, while stronger zero-shot models are too slow for real-time use. We address this tension with Harness-Aware Training (HAT), which makes Harness states part of the training distribution. HAT applies task-preserving Harness-State Augmentation (HSA) to Skills, tool schemas, prompt structures, and interaction constraints, and comprises three stages: HSA-based supervised fine-tuning, general on-policy distillation to recover general capabilities, and HSA-based agentic reinforcement learning in a production-informed live-room simulator. Across four evaluation sets with more than 4,500 cases, our compact 35B model scores 94.8 on real-world Live-Stream QA, versus 80.3 for the base model and 93.0 for the strongest evaluated general LLM, while scoring 94.6 on Harness-Variant QA and retaining 83.5 on IFEval. By contrast, fixed-Harness SFT reduces IFEval by 7.7 points. In a controlled complete-agent replay on one NVIDIA H20 GPU with MTP enabled, the system achieves 3.407 s P50 and 8.114 s P95 latency. These results show that HAT produces a latency-feasible compact agent that remains effective under evaluated Harness changes without sacrificing general instruction following.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, latency。AI-powered digital-avatar streamers in live e-commerce must answer product questions, engage viewers, and execute changing busines...",
       "area": "LLM 推理优化",
       "tags": [
-        "apple",
-        "cs.AI",
-        "lora",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "Apple/arXiv",
-      "publishedAt": "2026-08-14T06:05:26Z",
-      "url": "https://arxiv.org/abs/2608.13987",
-      "pdfUrl": "https://arxiv.org/pdf/2608.13987v1"
-    },
-    {
-      "id": "arxiv-2608.13831",
-      "title": "VoiceChat-TTS: A Low-Latency Continuous Speech Synthesis Model for Interactive Agents",
-      "authors": [
-        "Edresson Casanova",
-        "Jaehyeon Kim",
-        "Mariana Graterol Fuenmayor",
-        "Shehzeen Hussain",
-        "Viacheslav Klimkov",
-        "Valentin Mendelev",
-        "Mikyas Desta",
-        "Paarth Neekhara",
-        "Piotr Zelasko",
-        "Chen Chen",
-        "Elena Rastorgueva",
-        "Ke Hu",
-        "Ankita Pasad",
-        "Xuesong Yang",
-        "Aya Alja'fari",
-        "Rajarshi Roy",
-        "Rohan Badlani",
-        "Jason Roche",
-        "Jason Li",
-        "Zhehuai Chen"
-      ],
-      "summary": "Spoken dialogue is a natural form of human--computer interaction, yet most speech language models remain limited to turn-based operation and lack real-time adaptability, such as user barge-in. Recent duplex speech-to-speech and speech-to-text models reduce latency by replacing multi-stage pipelines, but often compromise speech quality because accurate ASR, interruption handling, and high-fidelity synthesis must be optimized jointly. We propose VoiceChat-TTS, a low-latency, continuous, and streamable text-to-speech model for interactive agents. VoiceChat-TTS is driven directly by LLM text-token streams, supports explicit interruption via control tokens, and produces silence when no textual input is available. The model enables always-on, responsive speech generation while preserving modularity and high speech quality, and it supports mid-utterance interruptions without resetting the KV cache.",
-      "reason": "近 30 天；关键词：eess.AS, kv-cache, latency。Spoken dialogue is a natural form of human--computer interaction, yet most speech language models remain limited to turn-based ope...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "eess.AS",
-        "kv-cache",
+        "nvidia",
+        "cs.CL",
         "latency",
         "llm",
-        "serving"
+        "production",
+        "serving",
+        "slo"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-13T23:37:07Z",
-      "url": "https://arxiv.org/abs/2608.13831",
-      "pdfUrl": "https://arxiv.org/pdf/2608.13831v1"
-    },
-    {
-      "id": "arxiv-2608.13800",
-      "title": "Stochastic Control Policies for Robust Molecular Transition Path Sampling",
-      "authors": [
-        "Jingqian Liu",
-        "Yu-Hsiang Wang",
-        "Yanru Qu",
-        "Ge Liu"
-      ],
-      "summary": "Transition path sampling (TPS) aims to efficiently generate rare molecular transition trajectories between metastable states and is essential for understanding biomolecular mechanisms. Beyond traditional molecular dynamics (MD)-based sampling, machine learning has become central to state-of-the-art TPS. One major class of methods learns control forces during explicit MD rollouts. By preserving the underlying molecular dynamics, these methods tend to produce more physically plausible trajectories than endpoint-conditioned generators that construct paths directly. However, rollout-based control methods have been reported to exhibit unstable and strongly seed-dependent performance. We recast rollout-based control as learning a path-space proposal distribution and investigate stochasticity placement as a design choice for improving exploration and optimization robustness. We develop two stochastic policies: FS-TPS, which directly parameterizes a state-dependent Gaussian distribution over the control policy output, and LaS-TPS, which samples a compact latent control variable and decodes it into structured, cross-atom-correlated force variation. We conduct extensive multi-seed experiments on three biomolecular systems of increasing size: alanine dipeptide, chignolin, and BBL, a fast-folding protein. Stochastic policies consistently improve transition success and path quality over deterministic-policy baselines while substantially reducing sensitivity to random initialization.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, lora。Transition path sampling (TPS) aims to efficiently generate rare molecular transition trajectories between metastable states and i...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "efficient",
-        "lora",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-13T22:07:59Z",
-      "url": "https://arxiv.org/abs/2608.13800",
-      "pdfUrl": "https://arxiv.org/pdf/2608.13800v1"
-    },
-    {
-      "id": "arxiv-2608.13756",
-      "title": "The Integer Alibi: Localizing Cross-Kernel Divergence in INT8-Quantized LLM Inference",
-      "authors": [
-        "Teng-Ruei Chen"
-      ],
-      "summary": "Two GPU kernels implementing the same scaled INT8 GEMM interface are usually treated as interchangeable. We test that assumption: holding the checkpoint, prompts, hardware, inference engine, decoding, and quantization configuration fixed, we swap only the INT8 linear kernel (CUTLASS versus Triton) inside vLLM. At 1.7B each arm reproduces itself bit-for-bit across cold restarts, yet the arms agree on no sequence in any end-to-end comparison we ran (0/8, 0/16, and 0/64). What makes this more than a benchmark discrepancy is an integer alibi: for shared INT8 operands under a verified no-overflow bound, the INT32 dot product is exact and order-independent, so the accumulator cannot be the source of any difference. Feeding both kernels identical operands from every linear layer of Qwen3-1.7B and 8B (196 and 252 layers), we find bit-identical outputs under power-of-two scales, confirming a pinned prediction list 196/196 and 252/252 (pre-registered at 1.7B, pinned but not blind at 8B), and observed differences of at most one bfloat16 spacing under the checkpoints' real scales. This localizes the divergence to scale application and output rounding after the exact accumulator. Applied as a probe checkpoint, the same intervention restores end-to-end bitwise agreement (8/8 and 16/16 sequences). Cross-implementation FP8 GEMM shows a different signature: both the prevalence and the magnitude of differences grow with reduction depth, while the INT8 fraction stays at parts per million and within one spacing over a 64x range of K. Teacher-forced replay ties layers to tokens: flips concentrate at small logit margins, which predict flip risk with ROC-AUC 0.94 on 16,384 positions. We will release the pre-registration, per-layer predictions, manifests with kernel-selection evidence, and a conformance procedure that turns these controls into a concrete check for kernel interchangeability.",
-      "reason": "近 30 天；关键词：cs.LG, inference, llm。Two GPU kernels implementing the same scaled INT8 GEMM interface are usually treated as interchangeable. We test that assumption:...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "inference",
-        "llm",
-        "quantization"
-      ],
-      "signal": 97,
-      "source": "arXiv",
-      "publishedAt": "2026-08-13T20:34:36Z",
-      "url": "https://arxiv.org/abs/2608.13756",
-      "pdfUrl": "https://arxiv.org/pdf/2608.13756v1"
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-08-16T14:32:56Z",
+      "url": "https://arxiv.org/abs/2608.15763",
+      "pdfUrl": "https://arxiv.org/pdf/2608.15763v1"
     }
   ]
 }
