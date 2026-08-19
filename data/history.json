@@ -1,7 +1,290 @@
 {
-  "generatedAt": "2026-08-19T06:11:06.533188+08:00",
+  "generatedAt": "2026-08-20T06:13:13.529695+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-08-20",
+      "generatedAt": "2026-08-20T06:13:13.529695+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2608.17613",
+          "title": "Once Generated, Ranked: End-to-End Generative Slate Recommendation with Unified Semantic-Collaborative IDs",
+          "authors": [
+            "Yang Hu",
+            "Jiayi Guo",
+            "Jingui Ma",
+            "Ning Li",
+            "Jiangling Qin",
+            "Yanming Li",
+            "Yang Deng",
+            "Xiaoshuang Chen",
+            "Kaiqiao Zhan"
+          ],
+          "summary": "Slate recommendation treats a slate rather than an individual item as the recommendation unit, requiring joint optimization of item interactions and slate utility. Existing approaches typically separate candidate generation from ranking and restrict optimization to retrieved candidates. Generative recommendation with Semantic IDs (SIDs) offers a path to end-to-end recommendation, but existing SID construction often lacks recommendation-aware semantics and effective local collaborative signals, while next-token prediction is misaligned with slate-level objectives. We propose OGR, an end-to-end framework that directly generates ordered slates-\"Once Generated, Ranked.\" OGR first introduces TUSID, which adaptively fuses item-specific semantic and local collaborative information into hierarchical SIDs. It then uses list-wise preference planning and pipelined position-wise SID decoding to model global preferences and inter-item dependencies while generating ordered slates. We further propose SPA, a reward-guided conservative policy optimization method that aligns generated slates with user preferences beyond likelihood imitation. Offline experiments show that OGR outperforms representative baselines, with 48.2% and 27.2% relative NDCG@5 gains on industrial and public datasets, respectively. Online A/B testing on Kuaishou further yields a 1.120% improvement in Effective Views.",
+          "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, dataset。Slate recommendation treats a slate rather than an individual item as the recommendation unit, requiring joint optimization of ite...",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "cs.IR",
+            "dataset",
+            "generative-recommendation",
+            "industrial",
+            "online-a/b",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-08-18T10:24:09Z",
+          "url": "https://arxiv.org/abs/2608.17613",
+          "pdfUrl": "https://arxiv.org/pdf/2608.17613v1"
+        },
+        {
+          "id": "arxiv-2608.17316",
+          "title": "Empowering Compact LLMs with Fusion of Layer-wise Exits for Recommendation",
+          "authors": [
+            "Xurong Liang",
+            "Tong Chen",
+            "Quoc Viet Hung Nguyen",
+            "Jianxin Li",
+            "Xiangliang Zhang",
+            "Hongzhi Yin"
+          ],
+          "summary": "Large language model-based recommender systems (LLM-RSs) have demonstrated remarkable capabilities, but are computationally unsustainable for many real-world applications. Compact LLMs offer a practical alternative, yet their reduced capacity often requires reasoning or knowledge distillation methods that increase latency or depend on larger models. Combined with autoregressive generation, these approaches face severe scalability bottlenecks. In contrast, discriminative LLM-RSs enable efficient full-corpus ranking through embedding similarity, but compact backbones remain limited in expressiveness and structural adaptivity. We propose the Fusion of Layer-wise Exits for Sequential Recommendation (FLEXRec), a discriminative framework that enhances compact LLMs while retaining scalable full-corpus ranking. FLEXRec inserts prediction heads (i.e., exits) at multiple transformer layers and adaptively fuses their score distributions. An adaptive continuous router (AC-Router) dynamically selects both the number and identity of exits for each user sequence, while a novel target-k hinge loss regulates routing sparsity. Experiments on three real-world datasets with Qwen 3 1.7B and Llama 3.2 3B show that FLEXRec achieves state-of-the-art accuracy among compact-backbone methods while remaining highly efficient. Code: https://github.com/xurong-liang/FLEXRec",
+          "reason": "近 30 天；公司信号：Alibaba, Meta；推荐/排序/广告方向；关键词：alibaba, meta, cs.IR。Large language model-based recommender systems (LLM-RSs) have demonstrated remarkable capabilities, but are computationally unsust...",
+          "area": "推荐算法",
+          "tags": [
+            "alibaba",
+            "meta",
+            "cs.IR",
+            "dataset",
+            "efficient",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "Alibaba/Meta/arXiv",
+          "publishedAt": "2026-08-18T03:14:28Z",
+          "url": "https://arxiv.org/abs/2608.17316",
+          "pdfUrl": "https://arxiv.org/pdf/2608.17316v1"
+        },
+        {
+          "id": "arxiv-2608.17188",
+          "title": "Token Optimization and Context Window Management in Multi-Agent AI Workflows",
+          "authors": [
+            "Dvir Shamay"
+          ],
+          "summary": "Multi-agent AI workflows are limited not only by model quality but by token cost, latency, and context-window quality. This paper presents a practitioner framework for token optimization and context-window management, grounded in an internal production dashboard that extracts structured work items from meetings, email, and chat with LLMs and routes summaries across workstreams. Six patterns are described: context stratification, fetch-once/process-locally architecture, schema-contracted prompts, token-aware fallback chains, semantic caching, and inter-agent communication compression. In production they cut measured cold-load latency to 61-116 seconds (six timed runs) from an operational baseline of roughly 3.5-10.5 minutes, with an estimated 60-70% token reduction. It also reports a controlled context-composition study: 2,420 confirmatory trials across 11 model configurations, using 661 anonymized workplace items scored for relevance. Holding the prompt at a fixed ten items, replacing some high-relevance items with same-domain low-relevance items improves the model's relevance-score concordance on the target items, versus high-relevance items only; we call this relevance-contrast context. In the all-11 paired analysis, the 50:50 signal/noise condition improved relevance accuracy by +0.077 over the 100% condition (naive 95% CI [+0.056, +0.098], Cohen's d = 0.49, Holm-adjusted p < .001, n = 220). These cells are not independent; by the nine model families the effect is +0.084 (95% interval [+0.064, +0.103]), reported as a within-corpus descriptive comparison, not a population inference. A Fusion-of-N follow-up found that learned synthesis did not beat the mechanical set union of item IDs. The contribution is a measured engineering layer between model research and production agent practice: repeatable patterns and evaluation methods for faster, cheaper, more reliable workflows.",
+          "reason": "近 30 天；关键词：cs.CL, inference, latency。Multi-agent AI workflows are limited not only by model quality but by token cost, latency, and context-window quality. This paper...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "inference",
+            "latency",
+            "llm",
+            "production"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-17T22:56:50Z",
+          "url": "https://arxiv.org/abs/2608.17188",
+          "pdfUrl": "https://arxiv.org/pdf/2608.17188v1"
+        },
+        {
+          "id": "arxiv-2608.17071",
+          "title": "KernelArc: A Multi-Agent Framework for GPU Kernel Optimization",
+          "authors": [
+            "Joyjit Kundu",
+            "Ben Stoffelen",
+            "Kaili Wang",
+            "Peter Vrancx",
+            "Ludovic Denoyer"
+          ],
+          "summary": "We present KernelArc, a multi-agent framework for autonomous GPU kernel optimization across heterogeneous workloads. Strategy-specialized agents run in parallel and coordinate through conclusions-only shared memory, a deterministic benchmark guard, and read-only cross-agent state with plateau-triggered drafting. We evaluate \\kernelarc{} on NVIDIA H100 and B200 GPUs using category-representative SOL-ExecBench workloads. The resulting implementations span custom BF16 GEMM, static cuBLASLt Expert-API configuration tables, fused mixture-of-experts backward, shape-gated decoder-layer fusion, native NVFP4 grouped-query attention, and paged prefill attention. At the public SOL-ExecBench leaderboard snapshot recorded on July~30, 2026, these submissions ranked first on representative L1, L2, Quantization, and FlashInfer tasks. The trajectories support the paper's central motivation: shared multi-agent search can broaden exploration and reach stronger incumbents within a fixed candidate budget, while the value of individual coordination features depends on the kernel and optimization stage.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.AI, lora。We present KernelArc, a multi-agent framework for autonomous GPU kernel optimization across heterogeneous workloads. Strategy-spec...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.AI",
+            "lora",
+            "prefill",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-08-17T19:21:23Z",
+          "url": "https://arxiv.org/abs/2608.17071",
+          "pdfUrl": "https://arxiv.org/pdf/2608.17071v1"
+        },
+        {
+          "id": "arxiv-2608.15762",
+          "title": "Global Simulation-Guided Dynamic Operator Scheduling for Efficient Multi-Tenant Model Serving",
+          "authors": [
+            "Weinan Liu",
+            "Zeyuan Ding",
+            "Dian Ding",
+            "Chengcheng Wan",
+            "Lu Tang",
+            "Guangtao Xue",
+            "Jiwu Shu",
+            "Yiming Zhang"
+          ],
+          "summary": "Container-granularity scheduling leaves abundant short-lived idle slices within containers unexploited. Reallocating containers is too heavyweight to utilize such fine-grained opportunities under SLA constraints, and operator-level scheduling requires reasoning about dependencies, memory safety, and cluster-wide execution dynamics in real time. In this paper, we present SliceScheduler, a dynamic operator-level scheduling system for multi-tenant model serving. The key idea is to expose cluster-wide operator execution state and enable what-if reasoning over scheduling decisions. SliceScheduler consists of four key components. First, we introduce the Global Mapping Graph (GMG), a unified abstraction that captures operator dependencies, tensor shapes, resource mappings, and execution states, providing a real-time, cluster-wide view with explicit resource semantics. Second, we build a global simulator on top of GMG to predict operator-level execution and memory evolution under candidate placements. Third, we design an incremental, simulation-based scheduling module that selects placements to exploit fragmented idle slices while avoiding memory violations and preserving SLA. Finally, we develop an operator executor that materializes scheduling decisions on GPUs and coordinates computation and cross-accelerator transfers. We implement SliceScheduler as a PyTorch backend and evaluate it using production trace replay. Experimental results show that SliceScheduler improves token throughput by 1.10--2.29$\\times$ compared to existing approaches, while maintaining SLA violations within 9\\%. SliceScheduler demonstrates that operator-level scheduling is a practical and effective approach to improving GPU utilization for multi-tenant LLM serving.",
+          "reason": "近 30 天；关键词：cs.OS, efficient, llm。Container-granularity scheduling leaves abundant short-lived idle slices within containers unexploited. Reallocating containers is...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.OS",
+            "efficient",
+            "llm",
+            "production",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-16T14:31:56Z",
+          "url": "https://arxiv.org/abs/2608.15762",
+          "pdfUrl": "https://arxiv.org/pdf/2608.15762v1"
+        },
+        {
+          "id": "arxiv-2608.15693",
+          "title": "Large Models for Small Devices: Recent Advances and Empirical Analysis of Edge AI Deployment",
+          "authors": [
+            "Subhransu Das",
+            "Jiaming Cheng",
+            "Arnav Kumar",
+            "Sadia Afrose",
+            "Mingzhe Han",
+            "Michael Silagy",
+            "Shreya Palande",
+            "Brijesh Soni",
+            "Rajiv Ramnath"
+          ],
+          "summary": "Running large AI models on resource-constrained edge devices requires model compression to reduce model size and computation. What compresses well, however, need not deploy well. We survey dozens of recent works that report compression results on real hardware and extract practical deployment guidelines from them. Following these guidelines, we deploy compact language and image models on GPU, CPU, and Raspberry Pi platforms across question answering and image segmentation. No single technique wins across tasks. For question answering, Qwen3.5 0.8B reaches 93.85 SQuAD F1 and 92 EM under Q5_K_M GGUF quantization, while structured pruning at the same precision costs 16 F1 at a 1% ratio. For segmentation, the ranking reverses: default quantization leaves parameters and MACs unchanged, whereas pruning cuts model size by nearly 80% at near-constant mIoU. Pruning can even inflate the deployed artifact by 21-49% by breaking k-quant super-block alignment; combined with longer, less format-compliant outputs, this raises Raspberry Pi latency up to 3.4x. Compression can also manufacture the appearance of competence rather than destroy it visibly: one LoRA-recovered variant stays fully parseable and holds 71% strict BoolQ accuracy while sending 97 of 100 predictions to a single class, at 52.6% balanced accuracy. We explain these effects through neural-flow graph analysis and prefill-decode-level latency decomposition, and condense them into task-specific deployment research directions. The right technique depends on the task, the model, and the hardware. Our experiment code and artifacts are open-sourced at https://github.com/Arnavvvkumar/deployment",
+          "reason": "近 30 天；关键词：cs.AI, alignment, deployed。Running large AI models on resource-constrained edge devices requires model compression to reduce model size and computation. What...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AI",
+            "alignment",
+            "deployed",
+            "latency",
+            "lora",
+            "prefill",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-16T11:52:13Z",
+          "url": "https://arxiv.org/abs/2608.15693",
+          "pdfUrl": "https://arxiv.org/pdf/2608.15693v1"
+        },
+        {
+          "id": "arxiv-2608.15602",
+          "title": "FluxBin: Flexible LUT-based Ultra-low-bit LLM Inference by Algorithm-Kernel Synergy",
+          "authors": [
+            "Qingyao Yang",
+            "Runming Yang",
+            "He Xiao",
+            "Wendong Xu",
+            "Junyu Chen",
+            "Haobo Liu",
+            "Chenchen Ding",
+            "Ruihan Hu",
+            "Yik-Chung Wu",
+            "Ngai Wong"
+          ],
+          "summary": "While binary quantization theoretically promises extreme compression and acceleration for Large Language Models (LLMs), existing research often overlooks the necessity of specialized hardware kernels, thus failing to unleash the full acceleration potential due to persistent reliance on expensive floating-point arithmetic or runtime dequantization overheads. To bridge this gap, we propose FluxBin (\\textbf{F}lexible \\textbf{L}UT-based \\textbf{U}ltra-low-bit e\\textbf{X}ecution with \\textbf{Bin}ary bases), an algorithm-kernel co-design that synergizes post-training quantization with a highly optimized CUDA kernel. Algorithmically, we introduce Decoupled Row-Column Binary Decomposition to enhance representational capacity while maintaining hardware efficiency, complemented by a Hessian-guided saliency-aware hybrid bases that preserve critical information. At the kernel level, we implement a Lookup Table Building Approach with Scale Fusion to reduce floating-point arithmetic, featuring a Virtual Columnar Mapping that transforms irregular, sparse, and salient matrices into dense execution. Extensive evaluations demonstrate FluxBin achieves up to $5.92\\times$ speedup and $10.19\\times$ energy savings across diverse model architectures, delivering comparable accuracy to heavily fine-tuned methods. This effectively enables the deployment of 70B-scale models on one single A100 GPU with a $4\\times$ memory reduction. Code is available at https://github.com/nicyyyy/FluxBin.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, energy。While binary quantization theoretically promises extreme compression and acceleration for Large Language Models (LLMs), existing r...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.LG",
+            "energy",
+            "inference",
+            "llm",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-08-16T08:01:06Z",
+          "url": "https://arxiv.org/abs/2608.15602",
+          "pdfUrl": "https://arxiv.org/pdf/2608.15602v1"
+        },
+        {
+          "id": "arxiv-2608.15584",
+          "title": "GraniKV: Asymmetric Granularity KV-Cache Paging for Multi-Agent Systems with Long Shared Prefix",
+          "authors": [
+            "Jinhyun Jeon",
+            "Sungjoo Yoo"
+          ],
+          "summary": "Production paged-serving engines apply uniform paging granularity to the KV cache, even though the two regions of a multi-agent workload have opposite storage requirements: a long shared prefix demands contiguity, while the per-request suffix demands fine-grained allocation. We present \\textbf{GraniKV}, a KV-cache layer that allocates the shared prefix in a contiguous HOT pool and the suffix in a token-level COLD pool, combined with a per-step dispatcher which selects the appropriate backend among dual backends for each regime (compute-, memory-, or communication-bound). To the best of our knowledge, GraniKV is the first system to apply asymmetric paging granularity to the KV cache of a production paged-serving engine. At $L_p{=}16$\\,K shared tokens GraniKV reaches $\\mathbf{2.16\\times}$, $\\mathbf{1.98\\times}$, and $\\mathbf{1.57\\times}$ output-token throughput over the production baseline on Llama-3.1-8B/TP=1, Qwen-2.5-14B/TP=2, and Qwen-2.5-32B/TP=4. The gain decomposes: cascade attention integration contributes the majority at saturation; the asymmetric storage layer adds $1.05$--$1.15\\times$ end-to-end while being what makes the batched-GEMM prefix backend possible at all. Under heterogeneous multi-agent serving with \\emph{distinct} prompts of different lengths, the attribution inverts: GraniKV sustains $\\mathbf{1.95\\times}$ while batch-global cascade collapses to parity --- the storage layer alone carries the win in the regime that motivates the paper.",
+          "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.LG。Production paged-serving engines apply uniform paging granularity to the KV cache, even though the two regions of a multi-agent wo...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "alibaba",
+            "meta",
+            "cs.LG",
+            "kv-cache",
+            "production",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "Alibaba/Meta/arXiv",
+          "publishedAt": "2026-08-16T07:19:49Z",
+          "url": "https://arxiv.org/abs/2608.15584",
+          "pdfUrl": "https://arxiv.org/pdf/2608.15584v1"
+        },
+        {
+          "id": "arxiv-2608.15531",
+          "title": "FlashQuant: Sparse-Dense Fusion for Memory-Efficient Outlier-Aware LLM Inference",
+          "authors": [
+            "Junqing Lin",
+            "Jingwei Sun",
+            "Zhengding Hu",
+            "Guangzhong Sun"
+          ],
+          "summary": "Low-bit quantization reduces the memory footprint and computational cost of large language model (LLM) inference. However, high-magnitude outlier weights can induce substantial quantization errors and degrade model accuracy. Outlier-aware quantization addresses this issue by retaining outliers in high precision while quantizing the remaining weights, resulting in a low-bit dense GEMM path and a high-precision sparse SpMM path. Existing implementations execute these paths in separate GPU kernels, despite their shared activations and outputs, thereby missing opportunities for intra-operator reuse and incurring redundant global-memory accesses. This inefficiency is particularly pronounced in memory-bound decoding workloads. We propose FlashQuant, a content-sharing execution framework for outlier-aware W4A16 decoding. FlashQuant fuses the dense GEMM and sparse outlier SpMM paths into a single GPU kernel, enabling on-chip reuse of activation and output tiles across heterogeneous computations. It introduces three key techniques: sparse-dense tiling, which aligns outlier processing with dense GEMM tiles; Tile-COO outlier encoding, which enables efficient sparse access and reduces shared-memory bank conflicts; and pipelined scheduling, which overlaps computation with data movement. Experiments show that FlashQuant reduces outlier-processing overhead, achieving $2.74\\times - 4.18\\times$ speedup over cuBLAS BF16 and up to $1.53\\times$ speedup over the strongest unfused outlier-aware baseline.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, inference。Low-bit quantization reduces the memory footprint and computational cost of large language model (LLM) inference. However, high-ma...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "inference",
+            "llm",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-16T04:57:39Z",
+          "url": "https://arxiv.org/abs/2608.15531",
+          "pdfUrl": "https://arxiv.org/pdf/2608.15531v1"
+        },
+        {
+          "id": "arxiv-2608.16975",
+          "title": "Margin-Regularized Structured Semantic Alignment for Brain-Language Correspondence",
+          "authors": [
+            "Jiaqi Wang",
+            "Huawen Hu",
+            "Shu Zhang"
+          ],
+          "summary": "With the rapid advancement of large language models, brain-language decoding has achieved remarkable progress. However, it remains unclear whether decoded content genuinely reflects neural representations or is largely reconstructed by the language model itself. This ambiguity limits interpretability and hinders the investigation of intrinsic brain-language correspondence. To address this challenge, we propose MD-SigLIP. This margin-regularized structured semantic alignment framework directly aligns brain embeddings with text embeddings in a shared semantic space, enabling retrieval-based decoding. This formulation enables explicit modeling of the correspondence between neural representations and language semantics. Building upon duplicate-aware sigmoid contrastive learning, we introduce a listwise margin-regularized term that enforces structured ranking constraints between positive semantic clusters and negative samples. By modeling multi-positive semantic structure and margin-based ordering simultaneously, the method captures the manifold organization of language embeddings reflected in neural signals. Experiments demonstrate state-of-the-art retrieval performance under both full-vocabulary and subset evaluation settings.",
+          "reason": "近 30 天；关键词：cs.CL, alignment, ranking。With the rapid advancement of large language models, brain-language decoding has achieved remarkable progress. However, it remains...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "alignment",
+            "ranking",
+            "retrieval"
+          ],
+          "signal": 96,
+          "source": "arXiv",
+          "publishedAt": "2026-08-17T14:47:15Z",
+          "url": "https://arxiv.org/abs/2608.16975",
+          "pdfUrl": "https://arxiv.org/pdf/2608.16975v1"
+        }
+      ]
+    },
     {
       "date": "2026-08-19",
       "generatedAt": "2026-08-19T06:11:06.533188+08:00",
