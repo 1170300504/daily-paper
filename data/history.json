@@ -1,7 +1,275 @@
 {
-  "generatedAt": "2026-08-20T06:13:13.529695+08:00",
+  "generatedAt": "2026-08-21T06:15:23.886063+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-08-21",
+      "generatedAt": "2026-08-21T06:15:23.886063+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2608.19147",
+          "title": "Pre-Compiled Pipeline Shards for Distributed LLM Inference on Intel AI PC Fleets",
+          "authors": [
+            "Tate Berenbaum",
+            "Muthaiah Venkatachalam"
+          ],
+          "summary": "Modern Intel AI PCs ship capable integrated GPUs and NPUs with 16+ GB of unified memory, and they spend considerable time idle. That is not enough memory to fit a large model such as a 70B-parameter LLM. We show that a handful of AIPCs, working together over an ordinary network, can serve models beyond the capability of any single one. We use pipeline parallelism: a model is split by layer into per-stage shards, each pre-compiled into an OpenVINO graph, so that every machine runs one shard and passes activations to the next. Three techniques make this fast enough to be useful. First, we recover the speed of the unsplit model: a naive per-stage export runs well below monolithic inference because it misses an OpenVINO GPU optimization, and injecting a beam_idx Gather into each shard triggers that optimization (the IndirectKVCache fusion) and brings the shards to parity. Second, we leverage speculative decoding on stateful OpenVINO models. Third, the pipeline serves several users at once by interleaving their requests across the stages, each request carrying its own cache (micro-batching). Together, a two-node Llama 3.1 8B INT4 pipeline serves two concurrent users at 1.79x the single-user throughput of the unsplit model on the same hardware, and the gap widens under simulated wide-area latency. The same design scales to a 70B model that no single fleet member can hold: a four-node deployment of Lunar Lake AI PCs on Intel Tiber Cloud serves a single user at interactive speed, with output token-for-token identical to the same four-node pipeline decoding without speculation. Code, raw benchmark logs, and reproduction scripts ship as a self-contained package at https://github.com/labscommunity/pipeline-sharded-inference-paper (in the top-level reproduction/ directory).",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.DC, batching。Modern Intel AI PCs ship capable integrated GPUs and NPUs with 16+ GB of unified memory, and they spend considerable time idle. Th...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.DC",
+            "batching",
+            "inference",
+            "latency",
+            "llm",
+            "production"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-08-19T17:33:28Z",
+          "url": "https://arxiv.org/abs/2608.19147",
+          "pdfUrl": "https://arxiv.org/pdf/2608.19147v1"
+        },
+        {
+          "id": "arxiv-2608.19075",
+          "title": "ReWEIGH the Evidence: Calibrating Token-Level Ordinal Visual Evidence to Mitigate Hallucinations in Large Vision-Language Models",
+          "authors": [
+            "Jihae Jeong",
+            "Junha Choi",
+            "Hwanjo Yu"
+          ],
+          "summary": "Large vision-language models (LVLMs) often hallucinate, generating content that the input image does not support. Preventing such content during decoding calls for a candidate-specific measure of how strongly the image supports the token under consideration. The model's visual-token states offer a natural source of this evidence because projecting each state through the output head reveals which vocabulary items that position favors. These position-wise readouts cannot be pooled directly because their probability magnitudes are not comparable across visual positions. Vocabulary ranks provide a scale-invariant basis for pooling, but tokens still differ systematically in their typical rank-based evidence. We propose ReWEIGH, a training-free decoding intervention that aggregates these ranks across visual positions and compares each candidate with a token-specific reference estimated from unlabeled images. At inference, ReWEIGH caches the image evidence during prefill and applies a bounded penalty only to candidates that fall below their reference. On four 7B backbones, ReWEIGH reduces hallucinated object mentions by up to 21.3% while largely preserving or improving descriptive and general performance. With evidence cached, the average added latency is 1.33% per token, and the reductions extend across six architecture families to 32B parameters.",
+          "reason": "近 30 天；关键词：cs.CV, inference, latency。Large vision-language models (LVLMs) often hallucinate, generating content that the input image does not support. Preventing such...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CV",
+            "inference",
+            "latency",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-19T16:23:56Z",
+          "url": "https://arxiv.org/abs/2608.19075",
+          "pdfUrl": "https://arxiv.org/pdf/2608.19075v1"
+        },
+        {
+          "id": "arxiv-2608.18779",
+          "title": "SIDScope: A Diagnostic Resource for Semantic-ID Interfaces in Generative Recommendation",
+          "authors": [
+            "Jiandong Ding",
+            "Huijie Qin",
+            "Tiandeng Wu",
+            "Yi Cao"
+          ],
+          "summary": "Semantic-ID mappings are reusable interfaces between item tokenizers and generative recommenders, yet released mappings rarely state whether they are coherent, what structure they expose, how generated paths resolve, or what must be revalidated after a refresh. SIDScope is a source-traced diagnostic resource for these decisions. It normalizes item-to-code artifacts, verifies provenance and joins, profiles mapping structure, compares paired revisions, and accounts for path-to-item outcomes in generated traces. Across nine source-traced tokenizer exports from seven families on Amazon and Yelp data - eight executable routes plus one auditable snapshot - SIDScope reveals that interface health is multi-signal rather than scalar. Its central finding is mechanism-conditional: prefix alignment strongly tracks held-out candidate exposure when retrieval consumes SID prefixes, then weakens as scoring becomes prefix-independent. Trained trace accounting exposes a second hidden gap: a valid target path can survive without uniquely retrieving the target item by 1.2-3.0 percentage points. A refresh case establishes a third: repairing the mapping does not by itself restore an inherited generator; model reuse requires a separate handoff check. The package provides frozen evidence summaries, conformance reports, trace labels, table builders, and CPU-only verifiers. It supports decisions about artifact readiness, interface risks, and revalidation before model reuse.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, alignment。Semantic-ID mappings are reusable interfaces between item tokenizers and generative recommenders, yet released mappings rarely sta...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "alignment",
+            "generative-recommendation",
+            "recommendation",
+            "recommender",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-08-19T10:35:12Z",
+          "url": "https://arxiv.org/abs/2608.18779",
+          "pdfUrl": "https://arxiv.org/pdf/2608.18779v1"
+        },
+        {
+          "id": "arxiv-2608.18733",
+          "title": "Flama: a Python framework for development and deployment of production-ready APIs, machine learning, and LLM services",
+          "authors": [
+            "José A. Perdiguero López",
+            "Miguel A. Durán-Olivencia"
+          ],
+          "summary": "We present Flama, an open-source Python framework for developing and deploying production-ready web APIs, machine learning services, and large-language-model (LLM) applications. Built on the Asynchronous Server Gateway Interface (ASGI), Flama offers a type-driven, async-first programming model that unifies REST API development, predictive model serving, and generative AI inference in one architecture. It is organised around seven subsystems: a component-based dependency injection system resolving handler parameters from type annotations at startup; a pluggable schema layer supporting Pydantic, Marshmallow and Typesystem behind a single adapter; an automatic CRUD generator turning a SQLAlchemy table and a schema class into REST endpoints backed by the Repository and Unit of Work patterns; a portable binary format (.flm) packaging models from scikit-learn, TensorFlow, PyTorch and Hugging Face Transformers with their metadata for zero-code deployment; a multi-backend LLM server running vLLM (Linux/CUDA) or MLX (Apple Silicon) and exposing four wire protocols (OpenAI, Anthropic, Ollama, and a native streaming dialect) through a shared codec; a Rust-accelerated core compiled via Maturin for routing, JSON encoding, compression and parsing; and a Model Context Protocol module turning any application into an MCP server over JSON-RPC 2.0. Built-in capabilities include JWT authentication, two pagination strategies, background tasks in threads or processes, WebSocket endpoints, Server-Sent Event and NDJSON streaming, OpenAPI 3.2.0 generation from handler signatures, and a command-line interface for running applications and for serving, packaging and inspecting models. We describe the architecture, present the programming model through worked examples, and compare Flama with existing frameworks, model serving platforms and LLM inference engines.",
+          "reason": "近 30 天；公司信号：Anthropic, Apple, NVIDIA；关键词：anthropic, apple, nvidia。We present Flama, an open-source Python framework for developing and deploying production-ready web APIs, machine learning service...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "anthropic",
+            "apple",
+            "nvidia",
+            "openai",
+            "cs.SE",
+            "inference",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "Anthropic/Apple/arXiv",
+          "publishedAt": "2026-08-19T09:37:00Z",
+          "url": "https://arxiv.org/abs/2608.18733",
+          "pdfUrl": "https://arxiv.org/pdf/2608.18733v1"
+        },
+        {
+          "id": "arxiv-2608.18656",
+          "title": "FlashAttention for Scalable Vector Architectures",
+          "authors": [
+            "Sonia Rani Gupta",
+            "Nikela Papadopoulou",
+            "Miquel Pericàs"
+          ],
+          "summary": "Inference with transformer models on CPUs is increasingly important, especially for Small Language Models (SLMs), where vector architectures are emerging as a promising execution substrate. The attention module is a major bottleneck due to high memory bandwidth requirements; FlashAttention mitigates this by fusing operations to improve data locality and reduce intermediate memory traffic. In this paper, we present FlashAttention-V, a blocked FlashAttention for scalable vector architectures that adapts efficiently from short to very long vectors by exploiting parallelism across attention heads, inter-head packing to enable efficient utilization of vector lengths beyond the head dimension, and improving vector register utilization and memory access locality. We integrate FlashAttention-V into ggml within llama.cpp and evaluate it on TinyLlama, Llama 3.2, Qwen2.5, and Pythia-410M using gem5 and a Banana Pi BPI-F3. On the Banana Pi BPI-F3, we confirm that loop reordering and loop unrolling across attention heads are effective optimization principles, scaling performance gains with larger models and most pronounced with short contexts and during decoding. Simulation-based analysis shows that FlashAttention-V achieves 22x-42x speedup over scalar FlashAttention at 512-bit VL in prefill, with an additional 2x-2.5x gain scaling to 64 lanes and 4096-bit VL. During decode, FlashAttention-V achieves 8x-11x speedup using 512-bit vector lengths over scalar FlashAttention, with performance showing diminishing sensitivity to vector width and lane count due to single-token, memory-bound execution. We further identify structural bottlenecks in Q8_0 quantized linear layers that limit arithmetic amortization under long-vector execution, consistent across RVV and Arm SVE, indicating that current quantization formats pose a fundamental challenge to long-vector scalability.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, efficient。Inference with transformer models on CPUs is increasingly important, especially for Small Language Models (SLMs), where vector arc...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "efficient",
+            "inference",
+            "prefill",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-08-19T08:02:17Z",
+          "url": "https://arxiv.org/abs/2608.18656",
+          "pdfUrl": "https://arxiv.org/pdf/2608.18656v1"
+        },
+        {
+          "id": "arxiv-2608.18637",
+          "title": "PILOT Technical Report",
+          "authors": [
+            "Jiuning Lin",
+            "Ruiquan Lan",
+            "Xiaodong Zhu",
+            "Bin Zhang",
+            "Chengyu Lai",
+            "Chuxin Chen",
+            "Dimin Wang",
+            "Hongtao Cheng",
+            "Jialin Zhu",
+            "Lingqing Zhang",
+            "Shuai Zhong",
+            "Tao Wang",
+            "Weipeng Huang",
+            "Yinjiang Cai",
+            "Yinnan Song",
+            "Yuan Liu",
+            "Zhibo Xiao",
+            "Zhixin Ma",
+            "Zihong Huang"
+          ],
+          "summary": "Existing agentic approaches for recommendation system optimization remain fundamentally reactive: they adjust parameters in response to observed metric changes but lack the ability to proactively design controlled experiments, personalize strategies at the user-segment level, or accumulate reusable experimental methodology across tasks. We present PILOT (Proactive Insight Learner for Online Tree-Experiments), an LLM-agent framework that organizes three roles within a constrained control loop where deterministic services enforce all safety, statistical, and permission boundaries: (1) an Experiment Manager that drives the full experiment lifecycle -- task intake, observation governance, anomaly recovery, and postmortem -- by selecting only from a rule-generated legal-command envelope; (2) a Search Planner that proposes candidate decision trees for user-segment-level personalization, invoked only when the Manager requests planning; and (3) a Memory Curator that asynchronously distills experiment outcomes into strategy-level domain knowledge and provenance-tracked methodology, failure-isolated from the main loop. The Manager makes the agent proactive, the Planner enables population-level personalization beyond global tuning, and the Curator turns every completed task into a learning opportunity for the next. Deployed on Taobao's platform with 5 experimental buckets, PILOT is compared against ROAM(Reactive Optimization with Agent-driven Moves), a free-exploration agent without lifecycle governance or structured hypothesis testing. PILOT achieves up to +1.40% IPV, +1.60% Core IPV, +0.96% transaction count, and +1.50% transaction amount, improving over ROAM's best results (+1.00% IPV, +0.90% Core IPV, +0.60% transaction count, +1.13% transaction amount) while raising search efficiency from 53.3% to 93.3% (+40 pp), with no human intervention throughout the experimental cycle.",
+          "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, deployed。Existing agentic approaches for recommendation system optimization remain fundamentally reactive: they adjust parameters in respon...",
+          "area": "推荐算法",
+          "tags": [
+            "alibaba",
+            "cs.IR",
+            "deployed",
+            "llm",
+            "lora",
+            "recommendation"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-08-19T07:35:10Z",
+          "url": "https://arxiv.org/abs/2608.18637",
+          "pdfUrl": "https://arxiv.org/pdf/2608.18637v1"
+        },
+        {
+          "id": "arxiv-2608.18531",
+          "title": "Pairwise Ranking Outperforms Single-Action RL for Offline Explanation Selection: A Practical Lesson",
+          "authors": [
+            "Tanay Chowdhury",
+            "Saeideh Shahrokh Esfahani"
+          ],
+          "summary": "Industrial explainable-recommendation systems built on LLMs incur a substantial serving cost: each request triggers an LLM generation, with latency in the hundreds of milliseconds and cost that scales linearly with traffic. We separate generation from selection: explanations are produced ahead of time as a frozen candidate pool (six prompt styles, two commodity LLMs), and a small CPU-resident selector picks one at request time. The stack needs no GPU and returns in under 100 ms. Our primary benchmark is a 2,958-pair XRec Google Local subset, evaluating six offline-pool selectors (LambdaRank, PPO, GRPO, DPO, teacher-student distillation) and three KG-path selectors (random walks, edge-disjoint enumeration, MMR-reranked paths). A 300-pair MovieLens-1M split with Claude-Sonnet-4.5 references serves as an internal cross-dataset check, since no public benchmark exists for this setting. All variants use the same BERTScore-F1 protocol as XRec and G-Refer, averaged across five seeds. LambdaRank reaches F1 = 0.500 on Google Local, exceeding both G-Refer and XRec, and F1 = 0.329 on the MovieLens-1M check. With seed variance below 0.003 F1, the ordering is reliable: pairwise learning-to-rank outperforms single-action RL (PPO, GRPO, DPO), which use only one labelled candidate per rollout, leaving K-1 labels unused. The KG-path family targets a different objective: all three variants reach USR = 1.000 on Google Local and 0.997-1.000 on MovieLens-1M, since per-request path grounding yields a unique output per query, avoiding template-collapse failures affecting cached-LLM outputs. A generator-pool study comparing Claude 3 Haiku and Claude Haiku 4.5 shows small F1 shifts (0.001-0.006) while preserving selector ranking: selector and generator can be evaluated independently, though absolute F1 depends on the generator. End-to-end build cost is near $15 on commodity hardware.",
+          "reason": "近 30 天；公司信号：Anthropic, Google；推荐/排序/广告方向；关键词：anthropic, google, cs.AI。Industrial explainable-recommendation systems built on LLMs incur a substantial serving cost: each request triggers an LLM generat...",
+          "area": "推荐算法",
+          "tags": [
+            "anthropic",
+            "google",
+            "cs.AI",
+            "dataset",
+            "industrial",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "Anthropic/Google/arXiv",
+          "publishedAt": "2026-08-19T04:29:04Z",
+          "url": "https://arxiv.org/abs/2608.18531",
+          "pdfUrl": "https://arxiv.org/pdf/2608.18531v1"
+        },
+        {
+          "id": "arxiv-2608.18469",
+          "title": "ERASE: EaRly bAckpropagation SchEdule for Faster Training of Modern Recommendation Systems",
+          "authors": [
+            "Ergan Shang",
+            "Flavio Sales Truzzi"
+          ],
+          "summary": "Lightweight proxy models enable rapid experimentation without repeatedly training frontier-scale systems, but their small kernels often leave modern accelerators underutilized. Conventional training compounds this inefficiency by scheduling the forward and backward passes as disjoint phases, so spare capacity in one cannot be filled by work from the other. We reinterpret the detachment mechanism of Forward-Forward (FF) as a scheduling primitive: given a local objective, detaching a block's output removes downstream gradient dependencies, making its backward pass ready when its forward pass finishes. ERASE launches each detached subgraph's backward pass early on a separate CUDA stream, overlapping it with subsequent forward work. Execution trace on a lightweight transformer demonstrates this overlap and its limit: a kernel that saturates the device leaves no capacity for concurrency. On a large-scale click-through-rate model, detaching six dense subarchitectures improves training throughput by up to $9.51\\%$ while keeping normalized entropy close to the baseline.",
+          "reason": "近 30 天；公司信号：NVIDIA；推荐/排序/广告方向；关键词：nvidia, cs.LG, click-through。Lightweight proxy models enable rapid experimentation without repeatedly training frontier-scale systems, but their small kernels...",
+          "area": "推荐算法",
+          "tags": [
+            "nvidia",
+            "cs.LG",
+            "click-through",
+            "recommendation",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-08-19T02:51:08Z",
+          "url": "https://arxiv.org/abs/2608.18469",
+          "pdfUrl": "https://arxiv.org/pdf/2608.18469v1"
+        },
+        {
+          "id": "arxiv-2608.18352",
+          "title": "AI in Search Reduces Publisher Referrals Without Improving User Experience: Experimental Evidence",
+          "authors": [
+            "Stephanie T. Wang",
+            "Jeffrey Gleason",
+            "Yakov Bart",
+            "Christo Wilson",
+            "Danaé Metaxa"
+          ],
+          "summary": "The integration of generative AI into web search delivers synthesized answers to user queries, changing how people navigate and assess information, while raising concerns about the downstream impacts on publishers who supply the underlying content. We conduct a preregistered field experiment (N=1,100) on Google Search, the dominant online search platform, to estimate the causal effects of AI Overviews and AI Mode on user behavior, perceptions, and publisher traffic. We show that removing AI Overviews and AI Mode increases click-through rates to publishers, while an AI Mode-only experience reduces click-through rates and erodes user experience and trust in information found on Google. These findings show that integrating generative AI into web search reshapes online attention, with economic consequences for the online publishers that sustain both search platforms and the overall information ecosystem.",
+          "reason": "近 30 天；公司信号：Google；推荐/排序/广告方向；关键词：google, cs.IR, click-through。The integration of generative AI into web search delivers synthesized answers to user queries, changing how people navigate and as...",
+          "area": "推荐算法",
+          "tags": [
+            "google",
+            "cs.IR",
+            "click-through"
+          ],
+          "signal": 99,
+          "source": "Google/arXiv",
+          "publishedAt": "2026-08-18T22:08:10Z",
+          "url": "https://arxiv.org/abs/2608.18352",
+          "pdfUrl": "https://arxiv.org/pdf/2608.18352v1"
+        },
+        {
+          "id": "arxiv-2608.18261",
+          "title": "Cacheable by Design? Training Mixture-of-Experts Routers for Locality Against the Edge Memory-Bandwidth Wall: A Pre-Registered Negative Result with a Systems Measurement Study",
+          "authors": [
+            "Shriniwas Ramesh Suram"
+          ],
+          "summary": "Serving a 235B-parameter Mixture-of-Experts (MoE) model on a single 8 GB GPU is bottlenecked not by compute but by memory bandwidth: decode must stream each token's active experts from whichever tier holds them, and on consumer hardware most experts sit on an SSD far slower than RAM. We quantify this bandwidth wall on Qwen3-235B (Q4_K_M, 134 GB): measured decode is 0.44 tok/s warm, matching a bytes-per-token / bandwidth model, while a batching scheme that should amortize one disk sweep instead collapses at batch 32 from paging thrash. We build llama-moe-trace, a zero-surgery router-telemetry tool, and measure routing on Qwen3-30B: adjacent-token expert reuse is 2.0x chance, 95% of traffic uses 52.5% of experts, and an LRU cache of 13.4% of experts serves 66% of requests. We then ask whether cacheability is trainable: we pre-register training of 137M MoE language models with auxiliary locality and domain router losses, under joint criteria on cache-miss reduction and perplexity. The mechanism works (misses down up to 60%; a 99% static-pin hit rate) but every configuration fails the pre-registered <=1% perplexity gate -- miss reduction and quality are tightly coupled. Concurrent StickyMoE reports the same loss as near-free on single-domain sub-25M models; on multi-domain 137M we find the tax real. Our contribution is this pre-registered, stricter-criterion, multi-domain evaluation plus edge-serving measurements. A 340M rung shows the tax does not shrink with scale (it rises slightly). We further show training-free cache-aware rerouting stacks with trained locality -- together ~80% miss reduction at <=3.4% perplexity at both sizes, far cheaper than either alone -- while domain-primed prefetching does not help. All code, traces, and the pre-registration are released.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.AI, batching。Serving a 235B-parameter Mixture-of-Experts (MoE) model on a single 8 GB GPU is bottlenecked not by compute but by memory bandwidt...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.AI",
+            "batching",
+            "serving",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-08-18T19:23:32Z",
+          "url": "https://arxiv.org/abs/2608.18261",
+          "pdfUrl": "https://arxiv.org/pdf/2608.18261v1"
+        }
+      ]
+    },
     {
       "date": "2026-08-20",
       "generatedAt": "2026-08-20T06:13:13.529695+08:00",
