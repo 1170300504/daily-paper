@@ -1,270 +1,119 @@
 {
-  "generatedAt": "2026-08-22T06:12:15.640660+08:00",
+  "generatedAt": "2026-08-23T06:10:43.191384+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2608.19920",
-      "title": "Learning how to Forget: Fine-tuning for Long-Context Sparse Attention",
+      "id": "arxiv-2608.20290",
+      "title": "Phantom Gains: Auditing Self-Improvement Against a Measured Null",
       "authors": [
-        "Matthias Seeger",
-        "Zeyu Zhang",
-        "Vihang Patil",
-        "Konstantinos Benidis",
-        "Sebastian Schelter"
+        "Cheng Xu",
+        "Nan Yan",
+        "Liming Chen",
+        "M-Tahar Kechadi"
       ],
-      "summary": "A lot of prior work addressed key-value (KV) cache selection and compression by sparse attention to enable long-context inference for transformer language models without excessive hardware budgets. We provide a new method for fine-tuning models with sparse attention. It works for any KV cache policy, runs on a moderate hardware budget (e.g., a single Nvidia A100 GPU with 40 GB RAM), and allows the model to co-adapt with the policy, often outperforming models trained with exact attention (sequence parallelism). We also provide an efficient implementation of H2O sparse attention (the leading policy in our experiments) with dedicated scaled dot product attention kernel support. KeysAndValues (https://github.com/awslabs/keys_values), a new open source library for long-context inference and fine-tuning, provides easy-to-use and performant code for all methods discussed here.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, efficient。A lot of prior work addressed key-value (KV) cache selection and compression by sparse attention to enable long-context inference...",
+      "summary": "Whether a language model has improved itself is increasingly judged not by mean accuracy but by which individual problems it gains and loses. Tracking these transitions means differencing two noisy estimates, leaving them vulnerable to measurement artifacts. Auditing three rounds of rank-$32$ LoRA self-training on Qwen3-8B against a frozen control pushed through the identical pipeline, we identify seven measurement failures, each of which inverts a reported finding when its control is absent. Several are standard practice. A ledger built on a single greedy decode manufactures capability changes on an untrained model, largely an artifact of inference batching; the expansion statistic separating acquisition from sharpening assigns that same model a rate of $0.280$. The natural threshold repair does not survive replication: estimated across the frozen comparisons such a design already contains, its null stays non-zero. We replace it with a per-problem exact test against a pooled baseline under false-discovery-rate control, which detects nothing on any held-out replicate and is unchanged under the multiple-testing rule, error rate and pool size. Applied to a ladder of arms matched in stream, volume and evaluation, the audit finds that external distillation improves problems the base model rarely reaches while three forms of self-training do not; a regression rejects this asymmetry as a by-product of distillation's larger overall gain ($p < 10^{-8}$). On the far smaller set of problems the base model never reaches, the evidence is inconclusive, while self-training corrupts problems solved at baseline at rates well above the measured floor. Transition-level auditing therefore requires a separately measured null for every statistic it reports: nulls that cost no new experiments, built from baseline replicates a multi-arm study already owns, though not from as few as most possess.",
+      "reason": "近 30 天；关键词：cs.AI, batching, inference。Whether a language model has improved itself is increasingly judged not by mean accuracy but by which individual problems it gains...",
       "area": "LLM 推理优化",
       "tags": [
-        "nvidia",
-        "cs.CL",
-        "efficient",
-        "inference",
-        "kv-cache"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-08-20T11:37:04Z",
-      "url": "https://arxiv.org/abs/2608.19920",
-      "pdfUrl": "https://arxiv.org/pdf/2608.19920v1"
-    },
-    {
-      "id": "arxiv-2608.19833",
-      "title": "Do Sequential Recommendation Benchmarks Really Require Higher-Order Sequence Modelling?",
-      "authors": [
-        "Aleksandr V. Petrov",
-        "Praveen Chandar",
-        "Paul N. Bennett",
-        "Hugues Bouchard",
-        "Mounia Lalmas"
-      ],
-      "summary": "Sequential recommenders increasingly use language-model architectures designed to capture complex, context-dependent interactions. Yet it remains unclear whether widely used benchmarks actually require this modelling capacity. We investigate this question using two simple, recency-weighted pairwise probes that do not learn higher-order sequence representations: Sequential Rules (SeqRules) and our Probabilistic Collaborative Transition Model (PCTM). Using the evaluation protocol of eSASRec, at least one probe exceeds our eSASRec reproduction by 15-38% on three Amazon datasets and by 4.4% on MovieLens-1M, but trails it by 27.3% on MovieLens-20M. On the four remaining datasets, at least one probe also outperforms our sampled-softmax SASRec reproduction by 9-28%, suggesting that these widely used benchmarks are poorly suited to measuring gains from higher-order sequence modelling. More broadly, comparing Transformer-based models against strong recency-weighted pairwise probes provides a concrete test of whether a benchmark can meaningfully measure gains from higher-order sequence modelling.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Sequential recommenders increasingly use language-model architectures designed to capture complex, context-dependent interactions....",
-      "area": "推荐算法",
-      "tags": [
-        "amazon",
-        "cs.IR",
-        "dataset",
-        "production",
-        "recommendation",
-        "recommender"
-      ],
-      "signal": 99,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-08-20T09:33:33Z",
-      "url": "https://arxiv.org/abs/2608.19833",
-      "pdfUrl": "https://arxiv.org/pdf/2608.19833v1"
-    },
-    {
-      "id": "arxiv-2608.19825",
-      "title": "Towards Clinically Faithful Medical Image Captioning via Enhanced Vision-Language Alignment",
-      "authors": [
-        "Yunseo Lee",
-        "Hyun Jun Kim",
-        "Heeseung Shin",
-        "Changwon Lim"
-      ],
-      "summary": "Medical image captioning is a technique that accelerates early-stage diagnostic workflows and enhances the interpretability of medical diagnostic AI systems. However, unlike general image captioning, clinically reliable captioning remains challenging due to grayscale-based modalities, subtle anatomical cues, specialized medical phrasing, and variations in data quality. Despite recent advances in large vision-language models, fluent outputs do not necessarily guarantee sufficient alignment with clinical concept spaces or evaluation criteria. To address this issue, we propose a framework that strengthens clinical alignment by separating and enhancing training-time alignment and inference-time alignment. We build a medical image captioning pipeline that integrates single/dual vision encoders based on BioMedCLIP and SigLIP2, a Q-Former, and a LLaMA-based decoder, and examine the contribution of auxiliary learning for UMLS concept/type prediction. At inference, we apply single-embedding-based reranking to select the best caption among candidates, while at training we introduce MedPAIR-SCST, which combines clinically relevant rewards to shift the generative distribution toward improved clinical alignment. Our experiments show that complementary visual representations with a multi-encoder design and concept-level auxiliary learning help preserve clinically meaningful information. Furthermore, inference-time reranking provides a practical way to improve semantic and clinical alignment without additional training, whereas MedPAIR-SCST goes beyond selection by directly improving the model's distribution to generate more consistent and clinically grounded captions. These findings suggest that jointly leveraging selection-based alignment and reinforcement-learning-based alignment can promote more trustworthy medical image captioning even in data-constrained settings.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CV, alignment。Medical image captioning is a technique that accelerates early-stage diagnostic workflows and enhances the interpretability of med...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "cs.CV",
-        "alignment",
-        "inference",
-        "ranking",
-        "reranking"
-      ],
-      "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-08-20T09:25:30Z",
-      "url": "https://arxiv.org/abs/2608.19825",
-      "pdfUrl": "https://arxiv.org/pdf/2608.19825v1"
-    },
-    {
-      "id": "arxiv-2608.19758",
-      "title": "FlashPrefill V2: Block-Sparse Prefill Attention for Long-Context LLM Serving",
-      "authors": [
-        "Qihang Fan",
-        "Huaibo Huang",
-        "Zhiying Wu",
-        "Bingning Wang",
-        "Ran He"
-      ],
-      "summary": "Long-context modeling is a pivotal capability for Large Language Models, yet the quadratic complexity of attention remains a critical bottleneck, particularly during the compute-intensive prefilling phase. Our previous work, FlashPrefill, mitigates this cost through instantaneous pattern discovery and max-based dynamic thresholding; however, it remains an algorithmic prototype that is still distant from production deployment. In this paper, we present FlashPrefill V2, which evolves FlashPrefill from a prototype toward practical long-context serving along three dimensions. First, we introduce a mean correction term that effectively suppresses the approximation error, keeping performance degradation manageable even at extreme sparsity levels. Second, we redesign the sparse attention operator with PackGQA memory access, warp specialization, and pingpong pipelining, fully aligning with the latest FlashAttention-3/4 implementations and supporting FP8 inference to meet practical quantization requirements. Third, FlashPrefill V2 natively supports paged KV cache and continuous batching, allowing integration as an attention backend in modern inference frameworks such as SGLang. Extensive evaluations on NVIDIA H20 GPUs---among the most widely deployed inference accelerators---demonstrate that FlashPrefill V2 delivers up to 47.26x and 27.19x speedups over FlashAttention-2 at 128K context length under FP8 and BF16 precision, respectively, and, in FP8, still achieves a 30.49x speedup against an FA3/4-aligned dense baseline.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, batching。Long-context modeling is a pivotal capability for Large Language Models, yet the quadratic complexity of attention remains a criti...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
-        "cs.CL",
-        "batching",
-        "deployed",
-        "inference",
-        "kv-cache",
-        "llm"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-08-20T08:02:55Z",
-      "url": "https://arxiv.org/abs/2608.19758",
-      "pdfUrl": "https://arxiv.org/pdf/2608.19758v1"
-    },
-    {
-      "id": "arxiv-2608.19677",
-      "title": "CacheRoute: Planned Prefix-Affinity Routing for Large-Scale LLM Serving",
-      "authors": [
-        "Huang Cheng"
-      ],
-      "summary": "Prefix caching avoids prefill only when a repeated request returns to a server that still holds the prefix KV. Cache-blind balancing disperses that reuse; fixed affinity preserves it but can overload a server. CacheRoute resolves this tradeoff with a periodic routing plan. It admits high-rate keys to a stable warm set and places their assignments by expected load. Hot keys may use more than one destination, although every key in our primary semi-synthetic aggregate uses exactly one. On Llama-3.3-70B in fp8 across 60 H100 GPUs, CacheRoute sustains 176+/-11 QPS at a 3.5-s p99 SLO, 2.3x the strongest of five baselines. Served KV-cache hit rate rises from 64.1+/-1.3% under cache-blind balancing to 93.2+/-0.5%. A second semi-synthetic aggregate and controlled 8B and burst experiments separate the effects of affinity and placement. Two 32B workloads provide the counterexamples: when affinity recovers too little KV work, its residual load skew reduces or erases the improvement. We therefore recommend gating any deployment with a shadow replay rather than enabling affinity from workload statistics alone.",
-      "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.DC。Prefix caching avoids prefill only when a repeated request returns to a server that still holds the prefix KV. Cache-blind balanci...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "nvidia",
-        "cs.DC",
-        "llm",
-        "prefill",
-        "serving",
-        "slo"
-      ],
-      "signal": 99,
-      "source": "Meta/NVIDIA/arXiv",
-      "publishedAt": "2026-08-20T06:12:47Z",
-      "url": "https://arxiv.org/abs/2608.19677",
-      "pdfUrl": "https://arxiv.org/pdf/2608.19677v1"
-    },
-    {
-      "id": "arxiv-2608.19659",
-      "title": "FleetSieve: Decision-Critical Profiling for SLO-Aware LLM Fleet Configuration",
-      "authors": [
-        "Huang Cheng",
-        "Scott Zhang",
-        "Aubert Li"
-      ],
-      "summary": "Choosing tensor-parallel (TP) degrees and replica counts for an LLM serving fleet is difficult because performance is not monotonic in TP and the feasible choice can change with load. Exhaustive profiling resolves this uncertainty, but measures many configurations that do not affect the final resource allocation. We present FleetSieve, which selects measurements according to their expected effect on a resource-coupled, SLO-aware fleet decision. FleetSieve models capacity and tail latency jointly, compares conservative and optimistic allocations, and stops when their remaining decision gap is below a specified tolerance. On a fixed H100 measurement grid for a 31B-parameter open-weight model, FleetSieve reaches the oracle aggregate decision using 22,200 GPU-seconds, 6.9% less than uniform random profiling in the fixed comparison. Across 200 random reveal orders, its mean saving over random profiling is 5.4% (95% bootstrap CI: 3.5-7.2%). The fixed-comparison saving is 21.5% for Chat, while FleetSieve does not use the fewest GPU-seconds for Code. Joint capacity and tail modeling also avoids selecting a configuration whose 46.4-second completion p99 violates a 30-second SLO. In a 16-GPU allocation, an incorrect sparse-profile decision loses up to 1.93 requests/s and 12.4 percentage points of max-min fulfillment. Boundary repeats and BurstGPT measurements support the observed load-dependent tail-latency mechanism.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, latency。Choosing tensor-parallel (TP) degrees and replica counts for an LLM serving fleet is difficult because performance is not monotoni...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
-        "cs.LG",
-        "latency",
-        "llm",
-        "serving",
-        "slo"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-08-20T05:54:29Z",
-      "url": "https://arxiv.org/abs/2608.19659",
-      "pdfUrl": "https://arxiv.org/pdf/2608.19659v1"
-    },
-    {
-      "id": "arxiv-2608.19557",
-      "title": "When Do LLM Agents Help? Deadline-Aware Mixed-Criticality Task Scheduling at the Autonomous-Vehicle Edge",
-      "authors": [
-        "Reza Zakerian"
-      ],
-      "summary": "Autonomous vehicles offload latency-sensitive perception tasks to nearby mobile edge computing (MEC) servers, where a missed safety-critical task is unsafe rather than merely degraded. Large language models (LLMs) are increasingly proposed as adaptive, explainable schedulers, yet evidence of when they help is scarce. We study deadline-aware, mixed-criticality scheduling on heterogeneous MEC servers, where time-critical (TC) tasks must be protected at a controlled cost to best-effort traffic, and ask whether a multi-agent LLM control layer improves on a strong heuristic. We answer in two steps. First we build the heuristic: a windowed contract-net auction that orders each admission window time-critical-first by earliest deadline and places tasks by earliest-finish-time. Across 60 instances on three topologies and 15 baselines under an identical online constraint, it attains a TC completion rate of 0.902, above every baseline (Holm-corrected p < 0.001; best baseline 0.838) and at 0.87 of a CP-SAT upper bound. Second, we add the LLM control plane. A controlled decomposition traces the scheduler's advantage to two ordinary factors, the batching horizon and time-critical-first ordering; the auction, the per-window LLM policy, and online adaptation add nothing while the load is stationary, where the heuristic is already near-optimal. Under a mid-run surge of safety-critical tasks the picture changes, and the LLM control plane gains significantly over both the static heuristic and the bandit. LLM orchestration therefore earns its cost only when non-stationarity opens headroom a fixed policy cannot use. We report control-plane latency and rationale, and release all code and seeded instances.",
-      "reason": "近 30 天；关键词：cs.DC, batching, deadline。Autonomous vehicles offload latency-sensitive perception tasks to nearby mobile edge computing (MEC) servers, where a missed safet...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "batching",
-        "deadline",
-        "latency",
-        "llm"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-20T01:55:40Z",
-      "url": "https://arxiv.org/abs/2608.19557",
-      "pdfUrl": "https://arxiv.org/pdf/2608.19557v1"
-    },
-    {
-      "id": "arxiv-2608.19535",
-      "title": "From Retrieved Context to Runtime Control: Adaptive Compression for Edge-based RAG",
-      "authors": [
-        "Zlatan Feric",
-        "Amir Taherin",
-        "Yanzhi Wang",
-        "David Kaeli"
-      ],
-      "summary": "Retrieval-augmented generation (RAG) improves language-model responses by grounding generation in external passages, which comes with overhead: retrieved context lengthens the prompt, increasing prefill work, KV-cache footprint, memory traffic, latency, and energy. Context compression offers a natural remedy by pruning retrieved text before generation. However, state-of-the-art context-compression methods are typically used with a fixed compression budget, or with the rate selected offline and then applied at inference time. This static view ignores both workload variation and the live state of the edge device. On an edge SoC, compression is not free: the compressor itself runs on the same SoC and consumes latency and energy that can offset any generation savings. This paper proposes a vision for telemetry-informed adaptive compression in edge RAG, grounded in experimental evidence. We characterize the compression tradeoff on the NVIDIA Jetson AGX Thor using Llama and Qwen generators, Natural Questions and HotpotQA datasets, and LLMLingua-2 compression. Our measurements show that generation dominates the RAG budget for larger models, reaching roughly 90% of per-query latency and 91% of GPU energy for 7B-8B generators. Exploring the impact of the compression rate reveals an adaptive operating region: mild compression can miss energy opportunities, and overly aggressive compression can hurt inference quality. Intermediate compression can reduce GPU energy by up to 53.2%, and SoC energy by up to 48.2%, with negligible quality loss. We argue for runtime policies that dynamically manage compression, guided by workload features and edge telemetry.",
-      "reason": "近 30 天；公司信号：Alibaba, Meta, NVIDIA；关键词：alibaba, meta, nvidia。Retrieval-augmented generation (RAG) improves language-model responses by grounding generation in external passages, which comes w...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "alibaba",
-        "meta",
-        "nvidia",
         "cs.AI",
-        "dataset",
-        "energy",
-        "inference"
+        "batching",
+        "inference",
+        "lora"
       ],
-      "signal": 99,
-      "source": "Alibaba/Meta/arXiv",
-      "publishedAt": "2026-08-20T01:13:29Z",
-      "url": "https://arxiv.org/abs/2608.19535",
-      "pdfUrl": "https://arxiv.org/pdf/2608.19535v1"
+      "signal": 98,
+      "source": "arXiv",
+      "publishedAt": "2026-08-20T17:30:14Z",
+      "url": "https://arxiv.org/abs/2608.20290",
+      "pdfUrl": "https://arxiv.org/pdf/2608.20290v1"
     },
     {
-      "id": "arxiv-2608.19395",
-      "title": "HYDRA: A Heterogeneous Chiplet DSE Framework for Serving Dynamic Hybrid LLM Workloads",
+      "id": "arxiv-2608.18279",
+      "title": "A Comprehensive Review of Large Language Models for Nanophotonics: From Surrogate Modeling to Autonomous Design",
       "authors": [
-        "Jiahao Lin",
-        "Alish Kanani",
-        "Sangwan Lee",
-        "Jaehyun Park",
-        "Umit Ogras"
+        "Huanshu Zhang",
+        "Kegeng Tang",
+        "Lei Kang",
+        "Sawyer D. Campbell",
+        "Zihao Wang",
+        "Douglas H. Werner"
       ],
-      "summary": "Hybrid Transformer-Mamba large language models (LLMs) enhance long-context efficiency, but their heterogeneous computation and communication patterns complicate efficient hardware acceleration. Chiplet-based architectures offer a scalable solution by integrating specialized compute and memory units. However, the design space spanning static architectural configurations and dynamic runtime policies is prohibitively large to explore exhaustively. To address this challenge, we present HYDRA, a comprehensive design space exploration framework for hybrid LLM serving on heterogeneous chiplet systems. HYDRA jointly explores chiplet composition, placement, inter-chiplet bandwidth provisioning, dynamic batching, and runtime scheduling. It integrates communication-aware placement, dynamic batching, elastic task scheduling, and a fast Markov-based performance estimator that captures multi-tenant runtime dynamics for efficient and accurate exploration. Across all workloads, HYDRA delivers 1.55x the throughput and 43.7 percent lower time-to-first-token on average, with throughput gains reaching up to 2.3x compared to state-of-the-art baselines. These results highlight that co-designing architecture and runtime policies is critical for efficient large-scale LLM serving on heterogeneous chiplet systems.",
-      "reason": "近 30 天；关键词：cs.AR, batching, efficient。Hybrid Transformer-Mamba large language models (LLMs) enhance long-context efficiency, but their heterogeneous computation and com...",
+      "summary": "Metasurfaces have revolutionized the development of photonic devices by enabling unprecedented precision in light manipulation. However, their design processes are often constrained by computationally expensive simulations and complex high-dimensional design spaces. Although deep learning has accelerated the design process by serving as a surrogate model, it remains constrained by task-specific architectures and lacks universal reasoning capabilities. This review surveys how Large Language Models (LLMs) are adding semantic interfaces, code generation, and tool orchestration to established numerical nanophotonic workflows. We first outline the development from classical neural networks to transformer-based models and their applications in nanophotonic design. We then review the emergence of LLM-related methods in nanophotonics and organize them into two operational modes: surrogate models that treat structure-spectrum mapping as a language task, and agentic systems that have been demonstrated to generate code, orchestrate selected simulation steps, and support closed-loop optimization. Furthermore, to identify future cross-disciplinary opportunities, we briefly explore applications of LLMs in research fields such as materials science and wireless communications. This review concludes by looking ahead to the next generation of multimodal foundation models with physical perception capabilities. In this vision, artificial intelligence is evolving from passive tools into active collaborators, participating in autonomous scientific discovery.",
+      "reason": "近 30 天；关键词：physics.optics, llm, multimodal。Metasurfaces have revolutionized the development of photonic devices by enabling unprecedented precision in light manipulation. Ho...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.AR",
-        "batching",
-        "efficient",
+        "physics.optics",
         "llm",
-        "lora",
-        "serving",
-        "throughput"
+        "multimodal",
+        "serving"
       ],
-      "signal": 99,
+      "signal": 97,
       "source": "arXiv",
-      "publishedAt": "2026-08-19T19:26:21Z",
-      "url": "https://arxiv.org/abs/2608.19395",
-      "pdfUrl": "https://arxiv.org/pdf/2608.19395v1"
+      "publishedAt": "2026-08-18T19:57:16Z",
+      "url": "https://arxiv.org/abs/2608.18279",
+      "pdfUrl": "https://arxiv.org/pdf/2608.18279v1"
     },
     {
-      "id": "arxiv-2608.18322",
-      "title": "Multimedia Asset Personalization via Multimodal Embeddings at Netflix",
+      "id": "arxiv-2608.20210",
+      "title": "Daedalus-150M: A Convolution-Attention Hybrid Designed for CPU Inference",
       "authors": [
-        "Emma Yanyang Kong",
-        "Aditya Deshpande",
-        "Bowei Yan",
-        "Asad Abbasi",
-        "Santiago Castro",
-        "Avneesh Saluja",
-        "David Fagnan",
-        "Ashish Rastogi"
+        "Christos Koutsiaris"
       ],
-      "summary": "Personalized promotional assets, namely artwork images and video preview clips, are critical to content discovery on Netflix. Traditional models for asset selection rely on ID-based interaction history, leaving them blind to asset content and unable to serve newly launched titles and assets. We describe how multimodal embeddings reshaped production systems at Netflix and report transferable lessons for practitioners adopting foundation-model embeddings into recommender systems. First, pretrained image embeddings unlock cross-title, cross-canvas knowledge transfer. Augmenting a two-tower model with CLIP image embeddings lets a single model serve all five Netflix artwork canvas types, replacing five separately trained per-canvas models and substantially improving cold-start performance. A lightweight extension reuses CLIP's joint text-image space to make artwork personalization query-aware in search. Second, multimodality decisively beats any single modality for video preview personalization. We describe MediaFM, our in-house tri-modal foundation model trained on a large-scale corpus of shots from the Netflix show catalog, fusing visual (SeqCLIP), audio (wav2vec 2.0), and timed-text signals; adopted for video preview personalization, it outperforms strong visual-only baselines both offline and in online A/B tests. Third, a simple offline proxy task whose performance correlates with online outcomes can accelerate the experimentation and productization cycle. Predicting the popularity-based winner from embeddings alone ranks embedding models and versions, pruning the choice space before any end-to-end integration or A/B test; it now gates every new MediaFM checkpoint. We also share the production engineering decisions (shared embedding infrastructure, low-latency serving, cheap screening) that made these deployments viable, along with the design tradeoffs and failure modes we encountered.",
-      "reason": "近 30 天；公司信号：Netflix；推荐/排序/广告方向；关键词：netflix, cs.IR, latency。Personalized promotional assets, namely artwork images and video preview clips, are critical to content discovery on Netflix. Trad...",
-      "area": "推荐算法",
+      "summary": "Small language models are usually built like large ones and then squeezed onto a CPU afterwards. We did the opposite: we fixed the target first, one user, one token at a time, 4-bit weights, ordinary CPU, and chose the architecture to suit it. The result keeps full attention in only 6 of its 18 blocks. The other 12 use short convolutions whose memory is two timesteps wide no matter how long the conversation gets, so two thirds of the network never re-reads a growing cache. Trained from scratch on 59.9B tokens, the model scores 47.31 on a five-task benchmark against a bar of 42.20 that was fixed before training began. It beats GPT-2 124M, Pythia-160M, OPT-125M and GPT-neo-125M, all trained on three to six times more data, and exceeds MobileLLM-125M's published score despite that model seeing a trillion tokens. Validation bits-per-byte is 0.8685. To check the architecture rather than the training recipe, we trained a conventional all-attention model of the same size on the same data, and wrote down the winning condition before scoring either. The hybrid won the chosen quality metric by 0.81%, matched it on downstream tasks, produced a 6.3% smaller 4-bit file, and decoded 1.76x faster at 2048 tokens of context, 2.08x against an external model of similar size. In every measurement the speed advantage is near zero at an empty context and grows with length, which is what the mechanism predicts and what a merely leaner model would not show. A simple bandwidth calculation predicts only 1.17x, so memory volume alone does not explain the gap. We also report what did not work: an unmitigated 4-bit quality cost, roughly half the convolution channels ending up inert and impossible to remove, and a vocabulary larger than this model size warrants.",
+      "reason": "近 30 天；关键词：cs.IR, inference, llm。Small language models are usually built like large ones and then squeezed onto a CPU afterwards. We did the opposite: we fixed the...",
+      "area": "LLM 推理优化",
       "tags": [
-        "netflix",
         "cs.IR",
-        "latency",
-        "multimodal",
-        "online-a/b",
-        "production",
-        "recommender"
+        "inference",
+        "llm"
       ],
-      "signal": 99,
-      "source": "Netflix/arXiv",
-      "publishedAt": "2026-08-18T21:15:56Z",
-      "url": "https://arxiv.org/abs/2608.18322",
-      "pdfUrl": "https://arxiv.org/pdf/2608.18322v1"
+      "signal": 86,
+      "source": "arXiv",
+      "publishedAt": "2026-08-20T16:09:43Z",
+      "url": "https://arxiv.org/abs/2608.20210",
+      "pdfUrl": "https://arxiv.org/pdf/2608.20210v1"
+    },
+    {
+      "id": "arxiv-2608.20186",
+      "title": "Decoding silent reading from non-invasive EEG",
+      "authors": [
+        "Ingo Marquardt",
+        "Anthilia Alchanat",
+        "Priyanka Jain"
+      ],
+      "summary": "Non-invasive decoding of inner speech faces a fundamental data problem: a corpus pairing brain activity with a person's spontaneous inner monologue cannot be collected, and the available proxy paradigms (cued repetitive and retrospectively reported generative inner speech) are slow to acquire, poorly time-locked, and subject compliance is unverifiable. We therefore treat silent reading as a scalable proxy task and ask how much lexical and semantic information a contrastive decoder can extract from it. We report an open-vocabulary analysis of approximately 240,000 word presentations recorded from a single densely-sampled participant across 393 runs (ca. 49 h) of 19-channel dry-electrode EEG. Words from continuous narrative text were presented in rapid serial visual presentation, with typography randomised on every trial to partially decorrelate word identity from low-level visual form. A convolutional EEG encoder, optionally followed by a causal transformer, was trained with a CLIP-style contrastive objective to align short EEG windows with hidden-state embeddings of the presented word taken from a large language model. Decoding, evaluated as word-grouped top-10 retrieval against permutation baselines, was reliably above chance, extended to mid-frequency and rare words, and scaled log-linearly with training-data volume with no sign of saturation. Removing occipital and posterior-temporal electrodes reduced the word-level gain by roughly one third but left context tracking unchanged. Control analyses separate word-level decoding from narrative context tracking and from a non-neural positional prior introduced by the transformer's positional embedding. These results establish that open-vocabulary word-level information is recoverable from EEG during silent reading, and that decoding is data-limited rather than saturated.",
+      "reason": "近 30 天；关键词：cs.LG, retrieval, slo。Non-invasive decoding of inner speech faces a fundamental data problem: a corpus pairing brain activity with a person's spontaneou...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "retrieval",
+        "slo"
+      ],
+      "signal": 86,
+      "source": "arXiv",
+      "publishedAt": "2026-08-20T15:41:05Z",
+      "url": "https://arxiv.org/abs/2608.20186",
+      "pdfUrl": "https://arxiv.org/pdf/2608.20186v1"
+    },
+    {
+      "id": "arxiv-2608.17843",
+      "title": "Encoded but Not Actionable: Auditing the Decode-Generate-Steer Gap in Frozen LLMs for Geometric Constraints",
+      "authors": [
+        "Man Liang",
+        "Xinzhao Cheng",
+        "Faizan Wajid"
+      ],
+      "summary": "Large language models (LLMs) have demonstrated strong performance on structured reasoning tasks, but what they encode and whether it informs model behavior remain unclear. We investigate this question through geometric reasoning, using parametric CAD constraints as a controlled testbed for separating local pairwise relations from sketch-level constraint status. By probing the hidden states of six frozen decoder-only LLMs, we examine four properties: linear decodability, forced-choice generation, activation-level influence, and behavioral steerability. Pretraining substantially improves the decoding of local geometric relations, and this advantage persists after accounting for positional cues with shuffled-order controls. In contrast, sketch-level DOF status is already highly decodable from randomly initialized representations and improves only modestly with pretraining, indicating that much of its probe performance is available without learned weights. Further analyses show that decodable information is not always actionable. Generation often fails to express this information, and on the two intervention-tested backbones, activation-restoration effects at the patched entity position vanish while decodability persists across depth. Mean-difference steering also does not reliably control outputs. These results show that decodability, generation, activation-level influence, and steerability can diverge in the tested setting. The audit provides a controlled way to distinguish failures to encode geometric structure from failures to express or control encoded information.",
+      "reason": "近 30 天；关键词：cs.CL, llm。Large language models (LLMs) have demonstrated strong performance on structured reasoning tasks, but what they encode and whether...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "llm"
+      ],
+      "signal": 77,
+      "source": "arXiv",
+      "publishedAt": "2026-08-18T14:40:28Z",
+      "url": "https://arxiv.org/abs/2608.17843",
+      "pdfUrl": "https://arxiv.org/pdf/2608.17843v1"
     }
   ]
 }
