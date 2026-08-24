@@ -1,7 +1,276 @@
 {
-  "generatedAt": "2026-08-24T06:10:18.368091+08:00",
+  "generatedAt": "2026-08-25T06:14:24.798239+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-08-25",
+      "generatedAt": "2026-08-25T06:14:24.798239+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2608.21308",
+          "title": "Rethinking Expressivity and Efficiency in Test-Time Training",
+          "authors": [
+            "Zeyun Zhong",
+            "Joya Chen",
+            "Manuel Martin",
+            "Frederik Diederichs",
+            "Juergen Gall",
+            "Juergen Beyerer"
+          ],
+          "summary": "Test-Time Training (TTT) enables long-context processing via continuous weight updates during inference, but current methods struggle to balance the expressivity of per-token update dynamics with the hardware efficiency of chunk-wise approximations. We propose E$^2$-TTT (Expressive and Efficient TTT) to bridge this gap. Under the standard approximation of taking gradients at the chunk-start weights, we derive a closed-form state transition that exactly reproduces the chunk-end fast-weight and momentum states of the per-token recurrence. This enables fully parallelized chunk-level training while preserving the temporal structure of the update rule that prior chunk-wise methods discard. We validate E$^2$-TTT by training models up to 1.3B parameters from scratch. It performs on par with previous TTT and hybrid attention baselines in language modeling while outperforming them on in-context retrieval. Its advantage is most pronounced in length extrapolation: on the standard ``Needle in a Haystack'' passkey test, it retains over 90% accuracy at $8\\times$ the training context length. Meanwhile, E$^2$-TTT can match the training throughput of efficient chunk-wise methods, demonstrating that it effectively reconciles expressivity with efficiency. The code is available at https://github.com/zeyun-zhong/E2-TTT.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Test-Time Training (TTT) enables long-context processing via continuous weight updates during inference, but current methods strug...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "inference",
+            "retrieval",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-21T17:12:28Z",
+          "url": "https://arxiv.org/abs/2608.21308",
+          "pdfUrl": "https://arxiv.org/pdf/2608.21308v1"
+        },
+        {
+          "id": "arxiv-2608.21274",
+          "title": "Recommendation Quality and the Concentration of Consumption: Experimental Evidence from Netflix",
+          "authors": [
+            "Guy Aridor",
+            "Winston Chou",
+            "Nathan Kallus",
+            "Antoine Scheid",
+            "Allen Tren",
+            "Kevin Zielincki"
+          ],
+          "summary": "We study an experiment with 8.5 million users on Netflix's recommender system to measure how improvements in recommendation technology affect the set of products that get consumed. Improvements increase total consumption and users' reliance on recommendations while diffusing recommendations and consumption away from the most popular titles (``superstars\") toward a larger number of moderately popular titles (``middle-tail\"), with minimal effects on the most niche titles (``long-tail\"). Our results challenge the notion that recommender systems polarize consumption -- raising the consumption shares of the head and tail at the expense of the middle -- and suggest that the returns to investing in middle-tail products grow as algorithms improve and platforms scale.",
+          "reason": "近 30 天；公司信号：Netflix；推荐/排序/广告方向；关键词：netflix, econ.GN, recommendation。We study an experiment with 8.5 million users on Netflix's recommender system to measure how improvements in recommendation techno...",
+          "area": "推荐算法",
+          "tags": [
+            "netflix",
+            "econ.GN",
+            "recommendation",
+            "recommender"
+          ],
+          "signal": 99,
+          "source": "Netflix/arXiv",
+          "publishedAt": "2026-08-21T16:30:18Z",
+          "url": "https://arxiv.org/abs/2608.21274",
+          "pdfUrl": "https://arxiv.org/pdf/2608.21274v1"
+        },
+        {
+          "id": "arxiv-2608.21265",
+          "title": "Memory Augmentation Unlocks Efficient Chain-of-Thought Reasoning",
+          "authors": [
+            "Simeng Zhang",
+            "Yilong Chen",
+            "Wenyuan Zhang",
+            "Zhenyu Zhang",
+            "Yao Chen",
+            "Junyuan Shang",
+            "Tingwen Liu"
+          ],
+          "summary": "Large language models often rely on Chain-of-Thought (CoT) reasoning to solve complex tasks, but verbose reasoning traces introduce substantial inference overhead. CoT compression shortens generation, yet aggressive compression may disrupt logical coherence and degrade performance. We formalize this trade-off as the \\textit{Context-Generation Substitution Law}, where explicit reasoning context substitutes for part of decode-time generation. Based on this principle, we propose \\textit{Memory-Augmented Compression}, a training-free framework that constructs reusable reasoning memories from historical traces and retrieves them as prefill-side scaffolds. Rather than using raw demonstrations, these memories summarize reusable reasoning patterns, key constraints, and critical operations to compensate for information lost during compression. Experiments show that Memory consistently improves prompt-based Chain-of-Draft (CoD) compression across mathematical reasoning, complex reasoning, and science question answering tasks, yielding accuracy gains of 21.4, 28.0, 29.5, and 6.61 points over CoD on GSM8K, MATH, BBH, and MMLU-Sci, while achieving a 1.14--1.49$\\times$ latency speedup over standard CoT. Memory is also compatible with token-level, reasoning-trace-level, and inference-state compression mechanisms. Further analyzes show that the gains come from relevant reasoning memories rather than simply increasing context length.",
+          "reason": "近 30 天；关键词：cs.CL, efficient, inference。Large language models often rely on Chain-of-Thought (CoT) reasoning to solve complex tasks, but verbose reasoning traces introduc...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "efficient",
+            "inference",
+            "latency",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-21T16:22:36Z",
+          "url": "https://arxiv.org/abs/2608.21265",
+          "pdfUrl": "https://arxiv.org/pdf/2608.21265v1"
+        },
+        {
+          "id": "arxiv-2608.20953",
+          "title": "Quantization-Aware Healing: A Practical Recipe for Recovering Compressed, 4-Bit LLMs",
+          "authors": [
+            "Bakbergen Ryskulov",
+            "Iker García-Ferrero",
+            "David Montero",
+            "David Jansen",
+            "Ali Hashemi",
+            "Jezabel R. Garcia",
+            "Antonio Tiene",
+            "Román Orús"
+          ],
+          "summary": "Serving large language models cheaply increasingly means shipping models that are both structurally compressed to a fraction of their parameters and quantized to 4 bits. Together these steps degrade reasoning, mathematics, coding, and long-context behavior enough to require a recovery, or healing, stage before deployment. The default recipe, quantization-aware training (QAT), re-fits the compressed, quantized model to hard labels; in our pipeline it converged slowly and collapsed past its peak. We adopted Quantization-Aware Healing (QAH) instead. Because a structurally compressed model is never independently trained at full precision, its bfloat16 checkpoint is a distillation-recovered approximation of the original; QAH distills the 4-bit student directly from the original, uncompressed model. On a GPT-OSS 120B to 60B to MXFP4 pipeline, the QAH student matches or beats its bfloat16 source on 7 of 9 benchmarks at roughly 4 times less weight memory and half the teacher's parameter count, and is released open-weight as Hypernova-60B. Against a matched QAT baseline it reaches a comparable peak about 7 times faster and stays stable under continued training, without hand-tuned early stopping. We also report deployment lessons, including a large, reproducible quality gap between distributed-training backends. Our aim is a recipe deployable without a multi-week hyper-parameter search.",
+          "reason": "近 30 天；关键词：cs.CL, llm, quantization。Serving large language models cheaply increasingly means shipping models that are both structurally compressed to a fraction of th...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm",
+            "quantization",
+            "serving",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-21T10:19:27Z",
+          "url": "https://arxiv.org/abs/2608.20953",
+          "pdfUrl": "https://arxiv.org/pdf/2608.20953v1"
+        },
+        {
+          "id": "arxiv-2608.20927",
+          "title": "MentorPulse: Refreshing Cross-Model Latent Guidance for Long-Form Generation",
+          "authors": [
+            "Ziwu Liu",
+            "Guozhong Li",
+            "Chen Qiu",
+            "Weiyang Kong",
+            "Panos Kalnis"
+          ],
+          "summary": "Cross-model latent guidance lets a frozen large mentor encode an input once and a frozen small student generate from the resulting signal. Existing methods keep this signal fixed, assuming it stays useful as the output grows; we show this fails in long-form generation. On multi-turn instruction following, static guidance pushes a 4B student's constraint satisfaction 2.5 points below its no-guidance baseline; a training-free refresh every 16 tokens changes only the memory content and restores a 2.0-point gain over that baseline. We propose MentorPulse to keep guidance fresh at practical cost: it compresses mentor states into a capped slot memory, incrementally processes newly generated tokens, and updates the memory that the student reads through gated cross-attention without resetting the student's KV cache. Windowed Refresh Training exposes the bridge to prefix-conditioned memory. Across thirteen datasets, MentorPulse closes 52.2% of the mentor-student gap on macro average, outperforming C2C, T2T, and equal-budget LoRA, with the largest gains on long outputs. It performs best on all eleven mentor-student pairs from three model families, with margins that narrow as the capability gap grows, and a lightweight read-pattern check predicts the gain before deployment. Measured costs identify refresh intervals that dominate text guidance on long outputs.",
+          "reason": "近 30 天；关键词：cs.CL, dataset, kv-cache。Cross-model latent guidance lets a frozen large mentor encode an input once and a frozen small student generate from the resulting...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "dataset",
+            "kv-cache",
+            "lora",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-21T09:49:09Z",
+          "url": "https://arxiv.org/abs/2608.20927",
+          "pdfUrl": "https://arxiv.org/pdf/2608.20927v1"
+        },
+        {
+          "id": "arxiv-2608.20873",
+          "title": "Nothing Changed but the Model: CellFill -- Bounded In-Cell Learning for Bit-Identical, Revocable Updates to Quantized LLMs",
+          "authors": [
+            "Zifeng Liu",
+            "Zhiyong Du",
+            "Yaxin Lu",
+            "Yiming Mao",
+            "Zhenhe Wang",
+            "Wenqi Shi",
+            "Zhengkun Jing"
+          ],
+          "summary": "Every way of teaching a deployed language model something new -- full fine-tuning, adapter merging, model editing -- replaces the released checkpoint, and with it every evaluation and cache that referred to those exact bits. We instead learn inside the dequantization gap: with the integer codes and scales of a 4-bit release frozen, new knowledge is written only into the per-weight residual that lives strictly inside each quantization decision cell. Re-quantization then returns the released artifact bit-for-bit, a machine-checkable guarantee; updates are exactly revocable by dropping the residual; and drift is bounded. We give six propositions and three training paths, including CellFill, a bounded reparameterization that makes invariance structural rather than enforced. Exact invariance turns out to be nearly free: across three paired seeds the constrained dense path matches an unconstrained reference whose weights provably escape the artifact (58.9 vs 59.3 percent fact recall; paired difference -0.5 points, 95% CI [-5.0,+4.0]), and is better on held-out cross-domain perplexity. Against the natural null hypothesis -- serving the same update as an unmerged adapter -- projecting into the cells reduces cross-domain forgetting in every run that converged, and a diverged control shows the boundary: projection is a trust region, not a repair. What no method escapes is the cost of knowledge itself, and the apparent free lunch of in-domain perplexity improving past the anchor is an artifact of rehearsal sharing a corpus with the metric. Methods differ threefold at matched rehearsal in knowledge bought per point of cross-domain perplexity, a ranking that is not the recall ranking. The method transfers to a 27B hybrid linear-attention model (2.4e10 constrained weights, verified bit-identical), where matched recall costs about half as much cross-domain perplexity as at 1.7B.",
+          "reason": "近 30 天；关键词：cs.LG, deployed, llm。Every way of teaching a deployed language model something new -- full fine-tuning, adapter merging, model editing -- replaces the...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "deployed",
+            "llm",
+            "quantization",
+            "ranking",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-21T08:49:07Z",
+          "url": "https://arxiv.org/abs/2608.20873",
+          "pdfUrl": "https://arxiv.org/pdf/2608.20873v1"
+        },
+        {
+          "id": "arxiv-2608.20801",
+          "title": "Profiling What Matters: Context-Aware Item Profiles from Large-Scale Metadata for LLM Recommenders",
+          "authors": [
+            "Dojun Hwang",
+            "Seunghan Lee",
+            "Cheonyoung Park",
+            "Sara Yu",
+            "SeongKu Kang"
+          ],
+          "summary": "While Large Language Models (LLMs) have significantly advanced reranking in recommendation, effectively leveraging item-side information remains challenging. Real-world items are described by vast, heterogeneous, and unstructured metadata, where decision-relevant signals are often implicit, noisy, or buried in long descriptions. Moreover, feature salience is highly context-dependent, varying not only across items but also across users. Existing methods often rely on item titles, fixed attributes, or static item summaries, which limit personalized and fine-grained item understanding. To bridge this gap, we propose CAIRO, a user context-aware item profiling framework for LLM-based reranking. CAIRO first structures raw metadata and reviews into objective features and subjective traits, and employs a lightweight profiler to select the most relevant information for each user-item pair with limited serving-time overhead. The resulting profiles are concise and context-specific, providing relevant item-side evidence for the LLM's ranking decision. Experiments show that CAIRO consistently improves LLM-based reranking, highlighting the importance of item profiling that effectively exploits vast item-side information.",
+          "reason": "近 30 天；关键词：cs.IR, llm, ranking。While Large Language Models (LLMs) have significantly advanced reranking in recommendation, effectively leveraging item-side infor...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.IR",
+            "llm",
+            "ranking",
+            "recommendation",
+            "recommender",
+            "reranking",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-21T07:20:06Z",
+          "url": "https://arxiv.org/abs/2608.20801",
+          "pdfUrl": "https://arxiv.org/pdf/2608.20801v1"
+        },
+        {
+          "id": "arxiv-2608.20427",
+          "title": "BF1: A Causal Dyadic Sparse-Attention Retrofit for Efficient Long-Context Transformers",
+          "authors": [
+            "Hina Dixit"
+          ],
+          "summary": "Dense causal attention remains expensive at long context even when implemented with highly optimized exact kernels. We study BF1, a deterministic block-aligned dyadic sparse-attention route that combines a small exact local neighborhood, a global first block, and logarithmically spaced historical blocks. The route is related to prior log-sparse and dilated attention patterns; our contribution is a correctness-gated pretrained-model retrofit, a matched topology-control study, and a systems characterization that connects per-layer sparsity to whole-model latency. For fixed block width, every converted layer uses O(n log n) selected token interactions and has O(log n) graph communication depth. On an NVIDIA RTX PRO 6000 Blackwell GPU, an optimized BF16 implementation crosses dense attention between 2K and 4K tokens and reaches a 10.91x per-layer prefill speedup at 32K. Retrofitting eight of 28 Qwen3-0.6B attention layers lowers warm whole-model time to first token by 7.7%, 11.3%, and 15.3% at 8K, 16K, and 32K, respectively, while the remaining dense layers keep the complete model asymptotically quadratic. Under a matched 1,000-step, 16.384M-token adaptation protocol, BF1 ranks first across three training seeds: mean report perplexity is 1.68639 versus 1.69154 for a matched static-random nonlocal graph, 1.69258 for dense continued training, and 1.81505 for equal-budget local sliding. At seed 1234, the packed-report paired interval places Dense-CT 0.3169-0.4055% above BF1 and static-random graph 17 0.2441-0.3642% above BF1. These results establish BF1 as a reproducible sparse operator and selective retrofit primitive with real long-context systems value. This paper evaluates numerical correctness, selected-interaction scaling, kernel performance, partial-model inference, and matched next-token language modeling.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, efficient。Dense causal attention remains expensive at long context even when implemented with highly optimized exact kernels. We study BF1,...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.LG",
+            "efficient",
+            "inference",
+            "latency",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-08-19T18:35:12Z",
+          "url": "https://arxiv.org/abs/2608.20427",
+          "pdfUrl": "https://arxiv.org/pdf/2608.20427v1"
+        },
+        {
+          "id": "arxiv-2608.21252",
+          "title": "EnSI-RAG: Entity-Structure-Indexed Retrieval-Augmented Generation for Long-Document Question Answering",
+          "authors": [
+            "Xuanyu Meng",
+            "Jiashuo Sun",
+            "Jash Rajesh Parekh",
+            "Jiawei Han"
+          ],
+          "summary": "Question answering (QA) over long, connected documents remains challenging because relevant evidence may span multiple entities and their relationships. Existing retrieval-augmented generation (RAG) methods typically index documents as raw chunks and retrieve them through embedding similarity. Their performance degrades when chunk boundaries separate entities from supporting evidence or when a question requires multi-hop reasoning across the corpus. We propose EnSI-RAG (Entity-Structure-Indexed Retrieval-Augmented Generation), a framework that constructs a query-independent, entity-centered index. Each record (e, t, k, v) represents an entity e, its type t, a semantic category k in {property, relation, aspect}, and a value v, while retaining links to the original source passages. At query time, these records serve as retrieval handles, and an LLM synthesizes the retrieved passages into the final answer. This design separates evidence localization from answer synthesis while preserving traceable source evidence. Across Loong and Oolong, EnSI-RAG achieves an average accuracy of 78.24. Relative to the published baseline scores used as references, this is 6.62 points higher, suggesting its effectiveness across these settings. The code is available at https://github.com/RamonMeng/EnSI-RAG.",
+          "reason": "近 30 天；关键词：cs.CL, llm, retrieval。Question answering (QA) over long, connected documents remains challenging because relevant evidence may span multiple entities an...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm",
+            "retrieval",
+            "serving"
+          ],
+          "signal": 96,
+          "source": "arXiv",
+          "publishedAt": "2026-08-21T16:05:00Z",
+          "url": "https://arxiv.org/abs/2608.21252",
+          "pdfUrl": "https://arxiv.org/pdf/2608.21252v1"
+        },
+        {
+          "id": "arxiv-2608.20839",
+          "title": "SAC-Copula: Quality-Preserving Watermarking for Diffusion Language Models via Smooth Correlated Gumbel Fields",
+          "authors": [
+            "Baixin Li",
+            "Haiyun He"
+          ],
+          "summary": "Watermarking diffusion language models (DLMs) requires mechanisms compatible with iterative parallel unmasking rather than autoregressive decoding. Existing sampling-based watermarking methods typically inject position-wise i.i.d. perturbations, which can be poorly aligned with DLM decoding dynamics and degrade generation quality. We propose SAC-Copula, a quality-preserving watermarking method for DLMs based on smooth, locally correlated Gumbel perturbation fields constructed via a Gaussian copula. We further develop a SAC-aware detector using covariance-aware filtering and native-sample calibration. Mechanism-level analysis shows that local correlation reduces latent perturbation roughness and better matches iterative refinement dynamics. Experiments on LLaDA show that SAC-Copula achieves a favorable quality-detectability trade-off compared with existing baselines. In particular, further evaluations on Dream-7B and additional datasets show that SAC-Copula substantially improves PPL tail stability over the i.i.d. Gumbel baseline, while maintaining strong low-FPR detectability and competitive overall generation quality. Additional token-edit stress tests further assess watermark robustness under controlled synchronization drift.",
+          "reason": "近 30 天；关键词：cs.CL, dataset, serving。Watermarking diffusion language models (DLMs) requires mechanisms compatible with iterative parallel unmasking rather than autoreg...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "dataset",
+            "serving"
+          ],
+          "signal": 89,
+          "source": "arXiv",
+          "publishedAt": "2026-08-21T08:03:18Z",
+          "url": "https://arxiv.org/abs/2608.20839",
+          "pdfUrl": "https://arxiv.org/pdf/2608.20839v1"
+        }
+      ]
+    },
     {
       "date": "2026-08-24",
       "generatedAt": "2026-08-24T06:10:18.368091+08:00",
