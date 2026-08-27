@@ -1,288 +1,288 @@
 {
-  "generatedAt": "2026-08-26T06:14:49.482817+08:00",
+  "generatedAt": "2026-08-27T10:23:08.321147+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2608.23167",
-      "title": "Accelerating Diffusion Language Models via Structured Suffix Modeling",
+      "id": "arxiv-2608.26004",
+      "title": "AsymSpec: Context-Asymmetric Speculative Decoding for Agentic LLMs",
       "authors": [
-        "Zifeng Cheng",
-        "Keda Li",
-        "Zhiwei Jiang",
-        "Cong Wang",
-        "Fei Shen",
-        "Qing Gu"
+        "Sheng Liang",
+        "Yongyue Zhang",
+        "Nathanael Brian",
+        "Hang Lv",
+        "Hao Wang",
+        "Chen Zhang",
+        "Yong Liu"
       ],
-      "summary": "Diffusion Language Models (DLMs) exhibit strong parallel decoding capabilities by denoising multiple tokens in a single generation step. However, this parallelism comes with substantial computational overhead, as each step requires interactions with all suffix tokens. Existing methods typically reduce this cost by retaining only a local suffix window as a substitute for the full suffix. Despite their effectiveness, these methods overlook the structural heterogeneity across suffix regions and re-initialize suffix tokens with identical representations at each timestep. To this end, we propose a structured suffix modeling method for efficient DLM inference. Specifically, we divide the suffix into three regions, i.e., the local, middle, and tail regions, and retain different numbers of suffix tokens in each region according to their structural roles. Moreover, we incorporate the decoding results from the previous step into the suffix token representations at the current step, allowing them to carry evolving denoising information across generation steps. Notably, our method is training-free and orthogonal to several existing acceleration techniques, such as parallel decoding strategies and KV cache. Empirical results across multiple benchmarks on three DLMs demonstrate that our method can further accelerate DLM inference and improve performance in most cases. In particular, in long-sequence inference, our method achieves up to a \\(72.81\\times\\) speedup when combined with other acceleration techniques. Our code is available at https://github.com/zifengcheng/SSM.",
-      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Diffusion Language Models (DLMs) exhibit strong parallel decoding capabilities by denoising multiple tokens in a single generation...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "efficient",
-        "inference",
-        "kv-cache"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-24T12:13:34Z",
-      "url": "https://arxiv.org/abs/2608.23167",
-      "pdfUrl": "https://arxiv.org/pdf/2608.23167v1"
-    },
-    {
-      "id": "arxiv-2608.23154",
-      "title": "The Disconnect Between Better Descriptive Reasoning Trace Quality and Recommendation Effectiveness",
-      "authors": [
-        "Gustavo Penha",
-        "Juan Elenter",
-        "Claudia Hauff",
-        "Hugues Bouchard",
-        "Paul Bennett",
-        "Mounia Lalmas"
-      ],
-      "summary": "Recent work has focused on improving explicit natural-language descriptive reasoning traces for generative recommendation. This includes systems that augment semantic ID (SID) prediction with chain-of-thought reasoning. However, because SIDs are opaque learned identifiers rather than natural language, they require costly alignment before an LLM can reason over them. This provides a controlled experimental setting in which both item representation (Title vs. SID) and semantic grounding (minimal vs. extensive SID alignment) can be varied independently. We therefore present the first controlled comparison of descriptive reasoning trace quality across semantic IDs and natural-language titles in a 2 x 2 factorial study on three Amazon product domains using a shared Qwen3-1.7B backbone. We find that introducing explicit descriptive reasoning traces reduces traditional offline recommendation effectiveness under standard SFT and RL training, even though natural language titles produce substantially more grounded and interpretable traces. Extensive SID alignment improves descriptive trace quality but not traditional offline recommendation effectiveness, while a richer reward signal partially recovers performance. Overall, our results show that improving descriptive reasoning trace quality is not, by itself, sufficient to consistently improve traditional offline recommendation effectiveness under the training objectives and evaluation protocols studied here.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, alignment。Recent work has focused on improving explicit natural-language descriptive reasoning traces for generative recommendation. This in...",
-      "area": "推荐算法",
-      "tags": [
-        "amazon",
-        "cs.IR",
-        "alignment",
-        "generative-recommendation",
-        "llm",
-        "recommendation",
-        "semantic-id"
-      ],
-      "signal": 99,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-08-24T11:58:31Z",
-      "url": "https://arxiv.org/abs/2608.23154",
-      "pdfUrl": "https://arxiv.org/pdf/2608.23154v1"
-    },
-    {
-      "id": "arxiv-2608.22917",
-      "title": "TSWAP: A Multilingual Retrieval-Augmented Thai Wellness Advisor",
-      "authors": [
-        "Pornthep Ukosaramig",
-        "Kobkrit Viriyayudhakorn"
-      ],
-      "summary": "We present TSWAP, a deployed eight-language conversational wellness advisor grounded, via retrieval-augmented generation, in a verified knowledge base of Thai traditional medicine and certified wellness providers. An unmodified open-weight LLM (Qwen3.6-35B-A3B on vLLM) is grounded on a ~30.6K-chunk Thai index by a hybrid dense-sparse retriever with cross-encoder reranking; a first-turn query classifier forces tool-based retrieval for entity lookups; a rule-based safety layer enforces medical scope and Thai emergency routing; and all eight languages are served zero-shot with translate-then-retrieve. We release the first Thai traditional-medicine/wellness retrieval benchmark (50 questions with gold document IDs; Recall@5 = 0.88), production QA logs (91.1% test-retest pass over 259 cases), and a 71-question frontier no-retrieval probe showing what each grounding pillar contributes: without the safety prompt the backend model family produced a full drug-dosing schedule and complied with out-of-scope requests, and without the knowledge base it produced zero verifiable provider recommendations. We further report two transferable deployment findings: English-calibrated 4-bit AWQ quantization corrupts Thai tone marks, and forced-retrieval routing is necessary for reliable grounding.",
-      "reason": "近 30 天；关键词：cs.CL, deployed, llm。We present TSWAP, a deployed eight-language conversational wellness advisor grounded, via retrieval-augmented generation, in a ver...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "deployed",
-        "llm",
-        "production",
-        "quantization",
-        "ranking",
-        "recommendation"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-24T07:54:07Z",
-      "url": "https://arxiv.org/abs/2608.22917",
-      "pdfUrl": "https://arxiv.org/pdf/2608.22917v1"
-    },
-    {
-      "id": "arxiv-2608.22788",
-      "title": "TailSieve: Partial-Rollout-Guided Tail Routing for LLM Rollouts",
-      "authors": [
-        "Tianqi Xu",
-        "Lu Lv",
-        "Haoyang Huang",
-        "Wenjie Huang",
-        "Zhanming Shen",
-        "Yuhao Shen",
-        "Baolin Zhang",
-        "Xinyi Hu",
-        "Shuang Ge",
-        "Jun Dai",
-        "Tianyu Liu",
-        "Suorong Yang",
-        "Zhikai Li",
-        "Ye Bai",
-        "Jun Zhang",
-        "Lei Chen",
-        "Yue Li",
-        "Mingchen Wan"
-      ],
-      "summary": "Large-scale rollouts have become a core component of modern LLM systems, spanning reinforcement learning (RL) post-training, on-policy distillation (OPD), and sampling-heavy evaluation pipelines. Unlike online serving, which is typically optimized for request-level latency and throughput, a small number of long-tail generations can dominate the end-to-end makespan of an entire rollout step. In practice, rollout requests are often routed uniformly across replicas, which can place extremely long generations inside high-concurrency decoding batches. To address this, we present TailSieve, a partial-rollout-guided framework that jointly controls tail routing and replica allocation for LLM rollouts. In an idealized setting with known completion lengths, we show that makespan-optimal routing in the long-tail regime combines tail isolation with load balancing, and that a simple top-k policy closely approximates this offline optimum. Leveraging the observation that long-tail prompts tend to remain long-tailed across policy updates, TailSieve uses partial rollouts as a training-free signal for identifying candidate tail groups. A hierarchical controller then jointly adapts the number of isolated groups and the replica split between the tail and bulk pools using collected response-work history and a measured concurrency-throughput model. TailSieve achieves up to 1.67x routing-only speedup over uniform group routing. The resulting low-concurrency tail pool further enables route-specialized speculative decoding with MTP or DFlash, achieving up to 2.59x speedup over uniform routing. Selected prompts are regenerated under the current policy, preserving on-policy generation and avoiding additional routing-induced length bias in steady state.",
-      "reason": "近 30 天；关键词：cs.AI, latency, llm。Large-scale rollouts have become a core component of modern LLM systems, spanning reinforcement learning (RL) post-training, on-po...",
+      "summary": "Agentic LLM pipelines face escalating inference costs as context accumulates across retrieval, tool use, and multi-turn interactions. To control latency, deployments routinely compress inputs, but this degrades task accuracy. Speculative decoding (SD) accelerates generation losslessly, yet it assumes the drafter and verifier share an identical context, preventing SD from resolving the accuracy-overhead trade-off. We propose AsymSpec, an asymmetric speculative decoding framework that breaks this symmetry: a lightweight drafter reads the full input while the large verifier operates on the compressed view. The drafter steers the verifier via a contrastive $δ$-fusion of logits, modulated by a divergence-aware acceptance gate that preserves verification stability and high draft acceptance rates. Evaluated across four agentic capabilities and two end-to-end agent benchmarks, AsymSpec reaches $\\approx 90\\%$ of full-context accuracy on average, delivering $1.3$--$1.7\\times$ throughput speedups at $0.2$--$0.3\\times$ the compute cost on isolated text capabilities. These results show that asymmetric context access yields substantial gains precisely when compression discards critical reasoning signals.",
+      "reason": "近 30 天；关键词：cs.AI, inference, latency。Agentic LLM pipelines face escalating inference costs as context accumulates across retrieval, tool use, and multi-turn interactio...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.AI",
+        "inference",
         "latency",
         "llm",
-        "serving",
+        "retrieval",
         "speculative",
         "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-24T04:18:09Z",
-      "url": "https://arxiv.org/abs/2608.22788",
-      "pdfUrl": "https://arxiv.org/pdf/2608.22788v1"
+      "publishedAt": "2026-08-26T16:50:02Z",
+      "url": "https://arxiv.org/abs/2608.26004",
+      "pdfUrl": "https://arxiv.org/pdf/2608.26004v1"
     },
     {
-      "id": "arxiv-2608.22761",
-      "title": "Don't Repeat Yourself: Stopping Verbatim Loops at Sampling Time",
+      "id": "arxiv-2608.25683",
+      "title": "psRL: Efficient Training for Agentic AI via Training-Time Prefix Sharing",
       "authors": [
-        "Philipp Emanuel Weidmann",
-        "Allen Roush",
-        "Judah Goldfeder",
-        "Sanjay Basu",
-        "Ravid Shwartz-Ziv"
+        "Mianjie Yu",
+        "Zizhao Mo",
+        "Huanyu Qu",
+        "Zhirong Qian",
+        "Huanle Xu",
+        "Cen Li",
+        "Zifeng Zhao",
+        "Zhi Zhou",
+        "Jinhua Zhou",
+        "Jun Xie",
+        "Chengzhong Xu"
       ],
-      "summary": "Large Language Models generate text autoregressively, but open-ended generation is prone to verbatim looping, in which models repeat spans already present in context. Standard defenses such as repetition, presence, and frequency penalties and n-gram blocking act on token recurrence rather than the sequential structure of a loop, and often suppress looping only at strengths that also degrade formatting or fluency. We propose Don't Repeat Yourself (DRY), a sampling-time logit adjustment that penalizes a candidate token only when generating it would extend the current suffix into an exact continuation of a span seen earlier in the context. Sequence breakers protect chat templates and formatting tokens. Across models from 1.5B to 120B parameters, nine prompt families, and a 600-pair human study, DRY reduces suffix-extension rate by 47% while improving lexical diversity. An intervention-matched placebo produces no comparable reduction, identifying suffix matching as the operative mechanism. On AWQ-quantized 70B and 120B models, DRY reduces loop rate by roughly half while preserving MT-Bench, MMLU, and GSM8K performance, whereas standard alternatives lose measurable ground. DRY has been adopted by popular open-source LLM inference frameworks including llama.cpp, ExLlamaV2, and text-generation-webui, highlighting its practical impact on text generation.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, inference。Large Language Models generate text autoregressively, but open-ended generation is prone to verbatim looping, in which models repe...",
+      "summary": "In modern agentic AI training, the system bottleneck is shifting from rollout to update. Emerging sampling strategies such as tree-structured and step-wise RL greatly increase training sample volume while incurring relatively low marginal rollout cost, causing the update phase to dominate the end-to-end execution time. Crucially, this shift exposes a new optimization opportunity, as production traces reveal substantial prefix redundancy across training samples. In this paper, we propose psRL (prefix sharing for RL), a new training system for agentic AI designed to exploit prefix redundancy among training samples. Leveraging the global visibility and data immutability inherent to the update phase, psRL achieves efficient workload scheduling and memory management for distributed training. Specifically, psRL introduces two novel prefix-sharing mechanisms that enable flexible, fine-grained workload distribution across GPU workers, simultaneously optimizing prefix reuse and achieving load balancing. Moreover, psRL implements a new underlying KV cache manager that facilitates adaptable block-size allocation and dynamic KV caching, maximizing memory utilization while maintaining a high prefix hit rate. Evaluations using production traces demonstrate that psRL outperforms existing systems by up to 5.2x in throughput. The source code will be publicly available soon.",
+      "reason": "近 30 天；关键词：cs.DC, efficient, kv-cache。In modern agentic AI training, the system bottleneck is shifting from rollout to update. Emerging sampling strategies such as tree...",
       "area": "LLM 推理优化",
       "tags": [
-        "meta",
+        "cs.DC",
+        "efficient",
+        "kv-cache",
+        "production",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-26T11:58:47Z",
+      "url": "https://arxiv.org/abs/2608.25683",
+      "pdfUrl": "https://arxiv.org/pdf/2608.25683v1"
+    },
+    {
+      "id": "arxiv-2608.25523",
+      "title": "TOPAS: Workflow-Aware Prefix-State Scheduling for Multi-Agent LLM Serving",
+      "authors": [
+        "Hongqiu Ni",
+        "Han Tian",
+        "Chi Zhang",
+        "Guopeng Li",
+        "Haisheng Tan"
+      ],
+      "summary": "Prefix caching introduces a fundamental tradeoff in multi-agent large language model (LLM) serving: retaining a long system-prompt key-value (KV) cache for an agent accelerates future calls, yet it reduces the GPU memory available for batching concurrent requests. In multi-stage workflows, existing schedulers tend to prioritize either immediate prefix locality or overall workflow progress. However, under a shared KV cache budget, optimizing either objective in isolation can prolong tasklevel job completion time (JCT) through downstream delays or frequent prefix replacement. To strike a balance, we here propose TOPAS, a Task-Oriented Prefix-Aware Scheduler that jointly decides which agent prefixes to keep in the cache and which requests to schedule for execution. TOPAS scores candidate post-decision states by trading off the expected reduction in each task's longest remaining service path against the near-term benefit of downstream prefix reuse, accounting for the costs of prefix movement and preemption. A task-level aging mechanism is also incorporated to prevent starvation. We implement TOPAS within the SGLang framework and assess its performance on three synthetic DAGs and two MetaGPT software-development workflows. Compared with the best performing baseline for each workload and metric, TOPAS reduces the mean/p99 JCT by up to 39.8%/49.4% on the synthetic workloads, while lowering mean JCT by 9.8% on MetaGPT-SOP and mean/p99 JCT by 22.0%/26.6% on MetaGPT-TL.",
+      "reason": "近 30 天；关键词：cs.CL, batching, kv-cache。Prefix caching introduces a fundamental tradeoff in multi-agent large language model (LLM) serving: retaining a long system-prompt...",
+      "area": "LLM 推理优化",
+      "tags": [
         "cs.CL",
-        "inference",
+        "batching",
+        "kv-cache",
         "llm",
         "serving"
       ],
       "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-08-24T03:33:39Z",
-      "url": "https://arxiv.org/abs/2608.22761",
-      "pdfUrl": "https://arxiv.org/pdf/2608.22761v1"
+      "source": "arXiv",
+      "publishedAt": "2026-08-26T08:33:10Z",
+      "url": "https://arxiv.org/abs/2608.25523",
+      "pdfUrl": "https://arxiv.org/pdf/2608.25523v1"
     },
     {
-      "id": "arxiv-2608.22758",
-      "title": "XTC: Head-Aware Sampling by Excluding Top Choices",
+      "id": "arxiv-2608.25343",
+      "title": "GUIDE: Generative Unsupervised Chinese Query Correction via Phonetic and Visual Shared-ID Encoding",
       "authors": [
-        "Philipp Emanuel Weidmann",
-        "Allen Roush",
-        "Judah Goldfeder",
-        "Sanjay Basu",
-        "Ravid Shwartz-Ziv"
+        "Lei Yang",
+        "Binbin Huang",
+        "Jiwei Tan",
+        "Xuhui Sui",
+        "Chang Tu",
+        "Yi Wang",
+        "Han Li"
       ],
-      "summary": "Standard decoding rules for autoregressive language models promote diversity by rescaling the full next-token distribution or truncating its low-probability tail. These strategies overlook a common regime of open-ended generation in which several continuations are plausible but too much probability mass remains concentrated on the most generic choice. We introduce XTC (Exclude Top Choices), a lightweight head-aware decoding operator that targets this regime directly. XTC identifies tokens whose probabilities exceed an absolute plausibility threshold $τ$: when at least two qualify, it removes the dominant eligible choices with probability $ρ$ and retains only the weakest plausible alternative before renormalization. Across 60 experiments on Gemma 3 27B Q4, Gemma 3 12B Q6, and DeepSeek R1 14B Q6, with scaling validation on Llama 3.3 70B Q4, XTC improves the diversity-repetition Pareto frontier. On creative generation, Distinct-2 increases by 11--15% and repeat trigrams decrease by 27--47% across the four models. Combined with temperature scaling, gains reach 38% in Distinct-2 and 71% in repeat-trigram reduction over baseline. A blinded Amazon Mechanical Turk study with 150 Master raters yields a 62.3% creativity preference for XTC ($p<10^{-4}$) without reduced fluency, while a GPT-4o control judge reproduces the Anthropic-judge direction on every measure. On IFEval with Llama 3.3 70B Q4, XTC preserves prompt-level strict accuracy within 1.7 percentage points of baseline while recovering most of the diversity gain; a temperature setting matched on Distinct-2 reduces IFEval by 8.8 points. The effect is additive with temperature and repetition penalties, robust across quantization levels and model families, and consistent across twelve prompt genres. XTC has been adopted by llama.cpp, ExLlamaV2, and text-generation-webui.",
-      "reason": "近 30 天；公司信号：Amazon, Anthropic, Meta；关键词：amazon, anthropic, meta。Standard decoding rules for autoregressive language models promote diversity by rescaling the full next-token distribution or trun...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "amazon",
-        "anthropic",
-        "meta",
-        "cs.CL",
-        "pareto",
-        "quantization"
-      ],
-      "signal": 99,
-      "source": "Amazon/Anthropic/arXiv",
-      "publishedAt": "2026-08-24T03:27:30Z",
-      "url": "https://arxiv.org/abs/2608.22758",
-      "pdfUrl": "https://arxiv.org/pdf/2608.22758v1"
-    },
-    {
-      "id": "arxiv-2608.22753",
-      "title": "Beyond Factual Knowledge: Benchmarking and Learning Step-Level Procedural Rule Reasoning in Large Language Models",
-      "authors": [
-        "Bohan Yu",
-        "Pengfei Cao",
-        "Chen Han",
-        "Chenxi Zhou",
-        "Zhiheng Zhang",
-        "Zhiyang Xie",
-        "Wenhao Teng",
-        "Xiangwen Liao",
-        "Jun Zhao",
-        "Kang Liu"
-      ],
-      "summary": "Large language models (LLMs) excel at text understanding and generation, yet still struggle to reliably understand and apply externally provided procedural rules at scale. To evaluate this capability, we introduce RuleWorld, a large-scale benchmark that reformulates rules as globally reusable abstract units rather than instance-specific facts. In RuleWorld, several scenarios, including single-rule, parallel multi-rule, and multi-hop reasoning, are settled for comprehensive evaluation. We further propose DynaRule, an end-to-end framework that injects the given rules into the KV cache and turns retrieval into an internal, learnable, step-wise process. Specifically, DynaRule employs Stacked Step-Level Attention Training with a special <search> token to enable dynamic rule re-attention and updating during inference. In this way, the model can re-attend to the most relevant rules at each step, dynamically replacing outdated ones to support more stable multi-step reasoning. Experiments on RuleWorld show that existing LLMs face challenges under large rule pools, while DynaRule improves average QA accuracy by up to 19 points and achieves over 85% Recall@1 at 10K rules, outperforming strong baselines by large margins. We make our code and dataset available here: https://github.com/SharkSpicy-NLP/Beyond-Factual-Knowledge.",
-      "reason": "近 30 天；关键词：cs.CL, dataset, inference。Large language models (LLMs) excel at text understanding and generation, yet still struggle to reliably understand and apply exter...",
+      "summary": "Chinese query correction (CQC) is important for search and query recommendation on content platforms, but supervised methods rely on large annotated correction pairs that are costly to maintain as query vocabularies evolve. Unsupervised correction with language models is attractive, yet in the short-query setting, unconstrained generation often over-corrects ambiguous inputs toward high-frequency phrases, causing intent drift. We propose \\textsc{GUIDE}, a generative unsupervised framework for CQC based on a confuse-then-clarify paradigm. \\textsc{GUIDE} encodes phonetically or visually confusable characters with shared-IDs and reconstructs the original query with an encoder--decoder architecture, which constrains correction to plausible confusion neighborhoods while learning from unlabeled query streams. A time-decayed, query-frequency-weighted objective further supports adaptation to rapidly changing query vocabularies. Experiments on \\textit{QSpell 250K} and a large-scale real-world dataset (\\textit{KwaiSearch}) show that \\textsc{GUIDE} consistently outperforms strong baselines, while online A/B testing further confirms gains in correction quality and downstream engagement.",
+      "reason": "近 30 天；关键词：cs.CL, dataset, online-a/b。Chinese query correction (CQC) is important for search and query recommendation on content platforms, but supervised methods rely...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.CL",
         "dataset",
-        "inference",
-        "kv-cache",
+        "online-a/b",
+        "recommendation"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-26T03:54:26Z",
+      "url": "https://arxiv.org/abs/2608.25343",
+      "pdfUrl": "https://arxiv.org/pdf/2608.25343v1"
+    },
+    {
+      "id": "arxiv-2608.25115",
+      "title": "Less can be More: Relieving RAG Bottlenecks via Evidence Frontloading and Pressure-Adaptive Budgeting",
+      "authors": [
+        "Weibin Cai",
+        "Reza Zafarani"
+      ],
+      "summary": "Existing methods for improving Retrieval-Augmented Generation (RAG) efficiency mainly optimize downstream LLM generation, such as context compression or serving optimization. However, RAG is an end-to-end system, and its bottleneck can shift between upstream reranking and downstream generation under different serving loads and reranking budgets.In this paper, we first empirically characterize this shifting-bottleneck behavior and show that upstream reranking can become the dominant bottleneck under high query rates or large reranking budgets. Reducing the reranking budget can relieve this bottleneck, but it may also drop supporting evidence and degrade recall. To address this problem, we propose \\textbf{\\textsf{PACE}} (\\textbf{P}rioritized \\textbf{A}daptive \\textbf{C}overage of \\textbf{E}vidence), a training-free framework that combines \\textit{evidence frontloading} with \\textit{pressure-adaptive budgeting}. \\textsf{PACE} first reorders candidates by marginal evidence coverage, prioritizing documents that are query-relevant, complementary, and useful for forming multi-hop evidence chains. We show that this objective is monotone submodular, giving greedy selection a $(1-1/e)$ approximation guarantee. \\textsf{PACE} then dynamically adjusts the reranking budget according to the relative pressure of the reranker and the LLM. Experiments on three multi-hop QA datasets and online serving simulations show that \\textsf{PACE} improves evidence recall, reduces p95 latency under ranking-heavy workloads. More importantly, the two components together reveal that \\textit{less can be more}: an evidence-dense top-ranked candidates enable higher final recall with fewer reranked documents.",
+      "reason": "近 30 天；关键词：cs.CL, dataset, latency。Existing methods for improving Retrieval-Augmented Generation (RAG) efficiency mainly optimize downstream LLM generation, such as...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "dataset",
+        "latency",
         "llm",
+        "ranking",
+        "reranking",
         "retrieval"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-24T03:22:45Z",
-      "url": "https://arxiv.org/abs/2608.22753",
-      "pdfUrl": "https://arxiv.org/pdf/2608.22753v1"
+      "publishedAt": "2026-08-25T20:10:06Z",
+      "url": "https://arxiv.org/abs/2608.25115",
+      "pdfUrl": "https://arxiv.org/pdf/2608.25115v1"
     },
     {
-      "id": "arxiv-2608.22704",
-      "title": "WnW: Waxing-and-Waning KV Cache for Long-Form Speech LLMs",
+      "id": "arxiv-2608.25096",
+      "title": "Understanding the Energy Scaling of Large Language Model Inference Across Context Lengths and Attention Architectures",
       "authors": [
-        "Yiming Yao",
-        "Chenyang Lyu",
-        "Xuanfan Ni",
-        "Longyue Wang",
-        "Weihua Luo",
-        "Yazheng Yang",
-        "Jinsong Su"
+        "Molka Chkir",
+        "Syed Muhammad Danish",
+        "Jos Höll",
+        "Arghavan Asad"
       ],
-      "summary": "Long-form audio inputs make the KV cache the dominant memory cost of speech LLMs. Prefill-only KV compression methods permanently discard audio KV positions once evicted, with no pathway to recover them during decoding. We show this is fragile on long-form audio: prefill attention concentrates near the audio start (an attention-sink effect), while decode-time attention distributes broadly, and the two rankings overlap weakly. We propose WnW (Waxing-and-Waning KV cache), which classifies KV-heads into anchor, tidal, and fixed roles via offline calibration. Anchor heads remain on GPU and serve as a decode-time importance observer; tidal heads keep a CPU-resident complement that is recalled chunk-by-chunk based on aggregated anchor-head scores; fixed heads keep only an on-GPU subset, with the rest permanently discarded. On LibriSpeech-Long with two 3B backbones (Voxtral-mini-3b and Qwen2.5-Omni-3B), WnW preserves near-Full-Cache accuracy while keeping only 20% of audio tokens on GPU, where prefill-only baselines fail to terminate. Results generalize across language, task, and domain shifts, and CPU-GPU recall adds little decode-time overhead in our measurements.",
-      "reason": "近 30 天；关键词：cs.CL, kv-cache, llm。Long-form audio inputs make the KV cache the dominant memory cost of speech LLMs. Prefill-only KV compression methods permanently...",
+      "summary": "The growing adoption of large language models (LLMs) has raised increasing concerns about the energy consumption and environmental impact of inference. This paper presents a systematic empirical study of decode-phase energy consumption across representative open-source LLMs employing Multi-Head Attention (MHA), Grouped Query Attention (GQA), and Grouped Query Attention with Sliding Window Attention (SWA) to characterize how attention architecture influences decode-phase energy consumption under varying inference workloads. We evaluate four models across different context lengths, batch sizes, and generation workloads while measuring GPU energy using NVIDIA hardware counters. We examine the effects of context length, attention mechanism, Key-Value (KV) cache growth, and batching on decode-phase energy consumption. Results show that attention mechanism is the primary factor governing how decode energy scales with context length. MHA models exhibit substantially steeper energy growth than GQA models, whereas GQA with SWA maintains nearly constant energy consumption. We further show that model size primarily determines absolute energy consumption, while batching reduces both energy per generated token and request latency by up to 87%. These findings provide practical guidance for selecting energy-efficient LLM architectures and inference configurations.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, batching。The growing adoption of large language models (LLMs) has raised increasing concerns about the energy consumption and environmental...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL",
-        "kv-cache",
-        "llm",
-        "prefill",
-        "ranking"
+        "nvidia",
+        "cs.LG",
+        "batching",
+        "efficient",
+        "energy",
+        "inference",
+        "latency"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-24T01:48:30Z",
-      "url": "https://arxiv.org/abs/2608.22704",
-      "pdfUrl": "https://arxiv.org/pdf/2608.22704v1"
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-08-25T19:45:30Z",
+      "url": "https://arxiv.org/abs/2608.25096",
+      "pdfUrl": "https://arxiv.org/pdf/2608.25096v1"
     },
     {
-      "id": "arxiv-2608.22643",
-      "title": "NeuroPrefetcher: Storage-Aware Sparse LLM Inference via Delta Prefetching",
+      "id": "arxiv-2608.25053",
+      "title": "Hydra: Phase-Aware Workload Characterization of LLM Inference across Edge SoC Generations, Backends, and Quantization Levels",
       "authors": [
-        "Nobel Dhar",
-        "Md Romyull Islam",
-        "Xuechen Zhang",
-        "Gongjin Sun",
-        "Sahidul Islam",
-        "Bobin Deng",
-        "Kun Suo"
+        "Amir Taherin",
+        "Sana Taghipour Anvari",
+        "Charles Amante",
+        "Yixiao Chen",
+        "Ruben Noroian",
+        "Zlatan Feric",
+        "Nicolas Bohm Agostini",
+        "Pu Zhao",
+        "José Cano",
+        "Bin Ren",
+        "Yanzhi Wang",
+        "David Kaeli"
       ],
-      "summary": "Deploying large language models on edge devices is increasingly limited by a widening gap between model size and available memory. Existing approaches such as quantization, smaller models, and offloading can raise the effective memory limit, but they still assume that the model can be compressed or partitioned to fit within some budget. We target the harder model-exceeds-memory setting, in which the model remains larger than resident memory throughout execution and storage becomes an active source of weights on the critical path. We observe that MLP activity during autoregressive decoding has strong temporal locality: approximately 82-85% of active neurons persist from one token to the next. This means that most sparse weights needed for the current token are already resident, and only the newly needed rows must be fetched from storage. We present NeuroPrefetcher, a storage-backed LLM inference system that exploits this property through predictive delta prefetching. After layer 0, a single GPU-resident predictor, occupying 2.86% of base model parameters, predicts sparse activity for all downstream MLP layers in one forward pass. The runtime compares these predictions against resident GPU buffers and issues application-scheduled NVMe reads only for incoming delta rows, replacing reactive operating-system demand paging with explicit, model-aware weight movement. On real unified-memory edge hardware, NeuroPrefetcher achieves 7.9-12.0x speedup over llama.cpp across constrained memory budgets.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.DC, inference。Deploying large language models on edge devices is increasingly limited by a widening gap between model size and available memory....",
+      "summary": "Edge LLM deployment is shaped by more than model size and precision: inference backend, hardware platform, memory traffic, and power management all affect latency and efficiency. We present Hydra, a common-schema, phase-aware workload characterization framework for LLM inference on edge SoCs. Hydra instruments HuggingFace Transformers and llama.cpp with a shared per-prompt timing schema and fuses those records with hardware telemetry, enabling a multi-dimensional characterization of performance, system-resource utilization, and efficiency across prefill and decode phases. Using Hydra, we evaluate three consecutive edge System-on-Chip (SoC) generations (AGX Xavier, AGX Orin, and AGX Thor), 13 instruction-tuned LLMs from seven families, five execution formats, and consider input/output-length sensitivity. The resulting artifact contains roughly 107K per-prompt records and is publicly released with Hydra. Our analysis shows that aggregate latency alone hides key deployment effects: backend structure changes where latency is introduced, quantization reduces memory traffic and energy but does not predict power monotonically, and SoC generation changes how utilization and efficiency should be interpreted. By connecting phase-level timing with system-resource utilization and efficiency metrics, Hydra enables reproducible, phase-aware characterization of edge LLM inference. Hydra's source code and the collected per-prompt trace corpus are available open-source at: https://github.com/amirtaherin/hydra",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.AR, energy。Edge LLM deployment is shaped by more than model size and precision: inference backend, hardware platform, memory traffic, and pow...",
       "area": "LLM 推理优化",
       "tags": [
         "meta",
-        "cs.DC",
+        "cs.AR",
+        "energy",
         "inference",
+        "latency",
+        "llm",
+        "prefill"
+      ],
+      "signal": 99,
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-08-25T18:43:43Z",
+      "url": "https://arxiv.org/abs/2608.25053",
+      "pdfUrl": "https://arxiv.org/pdf/2608.25053v1"
+    },
+    {
+      "id": "arxiv-2608.24973",
+      "title": "Resource-Efficient Pruning for Transformer via Low-Rank Importance Estimation",
+      "authors": [
+        "Peng Liu",
+        "Huibing Zeng",
+        "Yiqun Zhang",
+        "Yang Yi",
+        "Jigang Wu"
+      ],
+      "summary": "With the rapid development of large-scale pre-trained language models based on Transformer architectures, their high computational and memory costs have become a major obstacle to deployment, especially in resource-constrained environments. Traditional pruning methods typically depend on full gradient-based importance estimation, and they necessitate prior finetuning of the model to achieve satisfactory performance. This process often results in intolerable resource consumption. This paper proposes REP-LIE, a new approach to enable resource-efficient pruning during the process of finetuning. REP-LIE leverages the gradients of LoRA low-rank matrices to estimate the importance of weights without requiring full gradient computation. To address the inherent randomness in importance estimation, a stability score is introduced, serving as the basis for iterative pruning of unimportant model parameters. The pruned model is further finetuned through lightweight updates, eliminating the need for full-parameter optimization in the process of finetuning. Extensive experiments on both medium-scale encoder models and large-scale generative models (LLaMA-7B and Mistral-7B) demonstrate that REP-LIE still achieves competitive performance compared to existing approaches.",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, efficient。With the rapid development of large-scale pre-trained language models based on Transformer architectures, their high computational...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "meta",
+        "cs.LG",
+        "efficient",
+        "lora",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-08-25T11:36:01Z",
+      "url": "https://arxiv.org/abs/2608.24973",
+      "pdfUrl": "https://arxiv.org/pdf/2608.24973v1"
+    },
+    {
+      "id": "arxiv-2608.24079",
+      "title": "RetrievalFormer: A Dual-Encoder Transformer for Efficient Approximate Nearest Neighbor Retrieval and Cold-Item Recommendation",
+      "authors": [
+        "Theodore Rogers",
+        "Joe Standerfer",
+        "Dmitrii Timoshenko",
+        "Haoxue Li",
+        "Zuhaib Akhtar",
+        "Soyoung Yang"
+      ],
+      "summary": "A shared search-and-recommendation index must score new items from features alone because search has no exploration slot. In a public log covering both surfaces over one catalog, $38.6\\%$ of held-out query-search impressions show an item never previously shown or visited. For user-cold engagements, the feature-based tower serves this demand without measurable loss against $99$ sampled negatives ($0.9595$ Recall@20 versus $0.9510$ warm). A lexical baseline reaches similar parity, while a full-catalog check remains statistically undecided. Dual-encoder retrieval therefore keeps the index \\emph{open} to new items, unlike an ID-softmax recommender that requires retraining. We price this openness on recommendation against six sequential baselines, each retrained and tuned through five rounds on corrected targets. A float32 timestamp bug had reordered leave-one-out targets for $19.7\\%$ of users. On MovieLens-1M, warm accuracy trails the strongest retrained baseline by $5.2\\%$ Recall@20 and $11.4\\%$ NDCG@20. On MIND, the gap narrows to $0.8$--$3.6\\%$ relative to the five strongest baselines, though the model ranks sixth of seven. Under strict zero-leakage cold-start evaluation, the content tower achieves $0.172 \\pm 0.006$ Recall@20, $1.4\\times$ the strongest retrained dedicated method ($0.124 \\pm 0.007$) and $3\\times$ a training-free floor, without cold-specific training. Exact full-softmax training raises Recall@20 by $54\\%$ on MIND-small and $6.9\\%$ on MovieLens-1M over sampled InfoNCE, but recomputes the full catalog each step and exhausts accelerator memory at $240$K items. Approximate nearest-neighbor search explains none of the remaining gap, serving cost does not regress against ID-softmax retrieval, and a history-window sweep explains half the post-recipe remainder. Exact-quality training at catalog scale remains the open problem.",
+      "reason": "近 30 天；关键词：cs.IR, efficient, lora。A shared search-and-recommendation index must score new items from features alone because search has no exploration slot. In a pub...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.IR",
+        "efficient",
+        "lora",
+        "recommendation",
+        "recommender",
+        "retrieval",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-25T05:22:09Z",
+      "url": "https://arxiv.org/abs/2608.24079",
+      "pdfUrl": "https://arxiv.org/pdf/2608.24079v1"
+    },
+    {
+      "id": "arxiv-2608.23843",
+      "title": "PuzzleKV: Page-Wise Low-Rank Decomposition for KV Cache Compression",
+      "authors": [
+        "Zizhong Wang",
+        "Jieying Wang",
+        "Zhao Zhang",
+        "Jiajia Li"
+      ],
+      "summary": "Long-context inference in large language models (LLMs) is increasingly limited by the memory required for the key-value (KV) cache. KV cache compression addresses this problem by reducing the storage cost of previous tokens. Among existing approaches, low-rank compression is particularly attractive because it represents every token in reduced dimensions. Previous low-rank methods typically derive fixed projection spaces from model weights, construct fixed spaces from calibration activations, or construct a shared basis over a broad cache region. Such representations may not capture detailed but important information. We partition each per-head KV cache into fixed-length logical pages and observe substantial low-rank structure within individual pages. Based on this observation, we propose PuzzleKV, a training- and calibration-free method that treats each completed page as an independent compression unit. PuzzleKV decomposes pages within each layer and KV head, computes attention directly over dense and factorized pages, and incrementally compresses newly eligible pages during autoregressive decoding. Experiments across models, context lengths, and benchmarks demonstrate the effectiveness of PuzzleKV under matched storage budgets. At approximately 60% of the original KV cache storage, PuzzleKV achieves more than 96% of Full KV performance across both evaluated models and all benchmark settings, with substantial gains over Global SVD on RULER and competitive performance on LongBench. To achieve a more aggressive compression ratio, PuzzleKV can be further combined with quantization while retaining more than 93% of Full KV performance using only 18.7% of the original storage.",
+      "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。Long-context inference in large language models (LLMs) is increasingly limited by the memory required for the key-value (KV) cache...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "kv-cache",
         "llm",
         "quantization"
       ],
       "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-08-23T22:58:11Z",
-      "url": "https://arxiv.org/abs/2608.22643",
-      "pdfUrl": "https://arxiv.org/pdf/2608.22643v1"
-    },
-    {
-      "id": "arxiv-2608.22110",
-      "title": "What actually runs: a measurement study of language model placement and decode speed on the Apple Neural Engine",
-      "authors": [
-        "Shahir M A"
-      ],
-      "summary": "We ask what gets a language model onto the Apple Neural Engine (ANE) and what makes it fast there, and we answer with three measurements. We sweep a 64-shape matrix of LLM primitives that varies how a computation is expressed while holding what it computes fixed, recording per-operation device support. We then train matched models across size and precision, with quantized checkpoints byte-identical in structure to their fp16 counterparts, so every deployment measurement is of a real trained artifact. And we read the ANE's memory-controller byte counters during inference, establishing what actually ran rather than what the compiler intended. We support every headline claim with at least two of these three measurement paths. We find that placement is a property of how a computation is expressed, not of what it computes: a fused RMSNorm is fully ANE-eligible while its arithmetically identical decomposition is CPU-only. Weight encoding gates the accelerator: CoreML assigns a 25.85M-parameter conv-heavy fp16 model entirely to the CPU (our counters confirm zero bytes through the engine), while the same graph in int8 or 2-bit returns to ~83% residency and runs 1.8-2.2x faster, and a smaller 22.29M all-attention fp16 model sits at 98.9%. Decode cost is bytes streamed per token, at a constant ~0.77 fraction of nominal encoding width across fp16, int8 and 2-bit. The smallest and fastest models we measured are ternary, and at matched size the operator mix barely moves either axis: every resident 25M ternary model lands within 10.0-10.8 MB and 0.62-0.64 ms/token. The headline pair is half-attention ternary at 25M (10.5 MB, 0.63 ms) and 50M (16.8 MB, 0.86 ms) - 9.8x and 6.1x smaller, 3.0x and 2.2x faster than the conv-heavy fp16 design this work began with. From these measurements we draw a design procedure: choose the encoding first, then spend the byte budget on parameters.",
-      "reason": "近 30 天；公司信号：Apple；关键词：apple, cs.LG, inference。We ask what gets a language model onto the Apple Neural Engine (ANE) and what makes it fast there, and we answer with three measur...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "apple",
-        "cs.LG",
-        "inference",
-        "llm"
-      ],
-      "signal": 99,
-      "source": "Apple/arXiv",
-      "publishedAt": "2026-08-22T21:22:24Z",
-      "url": "https://arxiv.org/abs/2608.22110",
-      "pdfUrl": "https://arxiv.org/pdf/2608.22110v1"
+      "source": "arXiv",
+      "publishedAt": "2026-08-24T21:30:11Z",
+      "url": "https://arxiv.org/abs/2608.23843",
+      "pdfUrl": "https://arxiv.org/pdf/2608.23843v1"
     }
   ]
 }
