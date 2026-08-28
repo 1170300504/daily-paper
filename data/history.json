@@ -1,7 +1,293 @@
 {
-  "generatedAt": "2026-08-27T10:23:08.321147+08:00",
+  "generatedAt": "2026-08-28T13:51:50.188468+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-08-28",
+      "generatedAt": "2026-08-28T13:51:50.188468+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2608.27287",
+          "title": "Astar: Learning to Propose Evolution Directions for Self-Evolving Industrial AI Systems",
+          "authors": [
+            "Jinxin Hu",
+            "Hao Deng",
+            "Haibo Xing",
+            "Lingyu Mu",
+            "Muyu Zou",
+            "Weiqin Yang",
+            "Sirui Chen",
+            "Bohao Wang",
+            "Zhezheng Hao",
+            "Hao Zhang",
+            "Zulong Chen",
+            "Shizhun Wang",
+            "Yu Zhang",
+            "Xiaoyi Zeng",
+            "Jiawei Chen"
+          ],
+          "summary": "Modern AI systems advance through continuous iteration: a loop of proposing evolution directions, implementing code, training, and evaluation. While the latter three stages are increasingly automated, the starting point --- proposing effective evolution directions --- remains a critical bottleneck that still relies heavily on senior experts. In this work, we explore whether AI can take over this role. We find that general-purpose LLMs, even the advanced GPT-5.5, offer only generic and misaligned suggestions: the required expertise is accumulated through experience rather than explicitly codified, and thus hard to inject directly. To this end, we propose Astar, a training-based approach that learns a specialized evolution-guiding model from the abundant iteration histories of industrial systems. Realizing this idea, however, raises four challenges: sparse supervision, noisy data, a vast direction space, and prohibitively expensive verification. We address them along two fronts. On the data side, we design a pipeline that turns noisy historical commits into a large, clean evolutionary corpus via pairwise sample expansion and noise filtering. On the model side, we train the model through mid-training, SFT, and RL, guiding evolution direction generation with hierarchical hints and using the reward model in RL as a fast surrogate evaluator. Astar has been deployed in Alibaba's Lazada advertising system for evolution direction proposal. Astar-8B achieves a single-proposal success rate of 0.6786 in real-execution evaluation, far exceeding human experts (0.3229) and the strongest general-purpose LLM (0.3071). More importantly, Astar closes the loop and enables fully automatic iteration: it guided 20 consecutive iterations over two weeks, improving offline Hitrate@200 by 23.6%, while an online A/B test yielded relative lifts of 4.86% in GMV and 1.82% in advertising revenue.",
+          "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, advertising。Modern AI systems advance through continuous iteration: a loop of proposing evolution directions, implementing code, training, and...",
+          "area": "推荐算法",
+          "tags": [
+            "alibaba",
+            "cs.IR",
+            "advertising",
+            "deployed",
+            "industrial",
+            "llm",
+            "online-a/b"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-08-27T15:56:40Z",
+          "url": "https://arxiv.org/abs/2608.27287",
+          "pdfUrl": "https://arxiv.org/pdf/2608.27287v1"
+        },
+        {
+          "id": "arxiv-2608.27128",
+          "title": "TwinKV: A Composable Repair Pass for KV Cache Eviction via Pairwise Key Redundancy",
+          "authors": [
+            "Hong Chen",
+            "Yudong Zeng",
+            "Yongwei Huang",
+            "Zuhao Ouyang",
+            "Junyan Zhang",
+            "Xuming Hu"
+          ],
+          "summary": "Long-context inference is bottlenecked by the memory footprint of the key-value (KV) cache, especially for small models under tight resource budgets. Existing KV cache eviction methods score tokens using the model's attention distribution or, in attention-free variants, each key's distance from a global reference point. Using a controlled leave-one-out probe, we find that attention magnitude is unrelated to a token's causal contribution to the answer (Spearman $ρ=-0.004$), challenging the premise behind dominant eviction methods. We introduce TwinKV, a training-free, attention-free redundancy signal that detects whether a token's key has a near-duplicate elsewhere in context. Rather than replacing existing policies, TwinKV acts as a composable repair pass: given a policy's fixed retained set, it identifies evicted tokens with no surviving duplicate (\\emph{orphans}) and retained tokens whose information is duplicated elsewhere (\\emph{redundant donors}), then swaps them while preserving the original budget and scoring rule. We compose TwinKV with four recent eviction policies across LongBench, LooGLE, RULER, and a short-context MMLU-Pro no-harm control at compression ratios ${0.3,0.5,0.7}$. On Qwen3-4B, TwinKV improves a majority of configurations for two policies, is near-even for a third, and helps only a minority for a fourth adaptive baseline already near a performance ceiling; gains across the three non-ceiling policies are smallest at the loosest ratio. On RULER with Llama-3.2-1B, however, that fourth policy improves in every evaluated cell because its Alone score leaves substantial room to improve. More broadly, Llama-3.2-1B shows a smaller average LongBench gain but a higher fraction of improved cells on LongBench and LooGLE than Qwen3-4B, plus a clean RULER win. We also identify few-shot classification exemplars as a task structure where TwinKV does not help on either model.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, inference。Long-context inference is bottlenecked by the memory footprint of the key-value (KV) cache, especially for small models under tigh...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.CL",
+            "inference",
+            "kv-cache",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-08-27T13:43:30Z",
+          "url": "https://arxiv.org/abs/2608.27128",
+          "pdfUrl": "https://arxiv.org/pdf/2608.27128v1"
+        },
+        {
+          "id": "arxiv-2608.27005",
+          "title": "Topology-Masked Unified Backbone for Joint Feature Interaction and Multi-Domain Sequence Modeling",
+          "authors": [
+            "Zhihao Zhu",
+            "Dezheng Han",
+            "Jikang Xia",
+            "Shuaishuai Guo"
+          ],
+          "summary": "Large-scale post-click conversion rate (CVR) prediction requires jointly modeling heterogeneous feature interactions and dependencies over multi-domain user behavior sequences. Existing industrial ranking models usually handle these two aspects with separate modules. Recent unified architectures attempt to incorporate them into a single framework, but such unification often relies on coordination between modules and does not fully organize all information sources within the same interaction space. To address this problem, we propose MaskRec, a topology-masked unified token interaction architecture for feature interaction and multi-domain sequence modeling. MaskRec transforms heterogeneous features, multi-domain behavior sequences, and contextual signals into unified token representations, and further introduces learnable global memory tokens and domain-level memory tokens as information aggregation nodes. Based on this unified token space, MaskRec designs a structured attention mask, TopoMask, which selectively enables or blocks attention connections according to the structural differences and modeling requirements of different information sources. In this way, heterogeneous feature interaction and multi-domain sequence modeling are performed within the same topology-constrained attention process. In addition, MaskRec incorporates a dual-path interactive query generation module to inject candidate-conditioned user--item interaction signals before the unified backbone. Experiments on the Tencent Advertising Algorithm Competition dataset show that MaskRec achieves stable improvements over the official baseline, validating the effectiveness of the proposed unified framework for industrial CVR prediction.",
+          "reason": "近 30 天；公司信号：Tencent；推荐/排序/广告方向；关键词：tencent, cs.IR, advertising。Large-scale post-click conversion rate (CVR) prediction requires jointly modeling heterogeneous feature interactions and dependenc...",
+          "area": "推荐算法",
+          "tags": [
+            "tencent",
+            "cs.IR",
+            "advertising",
+            "conversion",
+            "dataset",
+            "industrial",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "Tencent/arXiv",
+          "publishedAt": "2026-08-27T11:49:55Z",
+          "url": "https://arxiv.org/abs/2608.27005",
+          "pdfUrl": "https://arxiv.org/pdf/2608.27005v1"
+        },
+        {
+          "id": "arxiv-2608.26926",
+          "title": "A Layer Importance Metric for Quantization Accounting for the Speed-Quality Trade-off in Autoregressive Models",
+          "authors": [
+            "Artem Safronov"
+          ],
+          "summary": "Small language models (sLLMs) are nowadays hosted on devices with limited memory and computational budget. In an autoregressive setup, inference is memory-bandwidth bound: uniform quantization is often detrimental to such models, since their architecture has limited redundancies and only a few layers are not very sensitive to lower precision. We propose a composite metric that combines two orthogonal criteria: information retention (measured in terms of a normalized SQNR-based coefficient) and throughput gains (modeled using a roofline-based latency analysis). By profiling Gemma 3 1B, we find that Feed-Forward Network blocks and the embedding matrix are the most promising targets for acceleration. For each candidate, we estimate a normalized quality score based on simulated quantization and a normalized speed score based on roofline modeling with no actual execution needed. We combine the two scores in a composite priority coefficient, allowing us to tune the trade-off between speed and quality as needed. Our metric is general and can be used to prioritize individual blocks, their projection sublayers, or transformer layers as a whole. We evaluate our approach on several model architectures, showing that our estimates have at around 4% prediction error for the accelerated speedup. We find that our method generally allocates more resources to the most expressive layers compared to evolutionary search, specialized accelerators, or Shapley-value-based approaches that require expensive approximate inference. Our analytical approach makes sLLM quantization a predictable engineering task.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Small language models (sLLMs) are nowadays hosted on devices with limited memory and computational budget. In an autoregressive se...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "inference",
+            "latency",
+            "llm",
+            "quantization",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-27T10:23:01Z",
+          "url": "https://arxiv.org/abs/2608.26926",
+          "pdfUrl": "https://arxiv.org/pdf/2608.26926v1"
+        },
+        {
+          "id": "arxiv-2608.26575",
+          "title": "Benchmarking Confidential Computing Performance on NVIDIA Blackwell GPUs",
+          "authors": [
+            "Daniyal Khan",
+            "Amean Asad",
+            "Ansgar Grunseid"
+          ],
+          "summary": "This paper measures the performance impact of running large language model inference and training inside a Trusted Execution Environment (TEE) on NVIDIA B200 GPUs, using Intel Trust Domain Extensions (TDX) confidential VMs together with NVIDIA Confidential Computing (CC) on Blackwell GPUs. The performance impact is derived from paired confidential versus non-confidential runs on a single physical host where the only variable is the GPU CC bit and the TDX guest object in the VM launch. The main result is that confidential inference on Blackwell achieves low single-digit throughput overhead when the stack is configured correctly, at about 1-3%. Stock inference stacks incur 30 to 40% penalties due to avoidable configurations rather than the achievable operating point. The cost is not fully represented by a single number because it is governed by two independent axes, a fixed per-host-operation cost that amortizes as batch size grows and a per-NVLink-traffic cost that tracks the share of the step spent in encrypted collectives, and which of the two dominates is set by the workload and the software. We localize each cost to a specific encrypted boundary, give a microbenchmark that predicts the serving penalty to within a submission count, and end with concrete deployment guidance. GPU compute, energy draw, and usable memory capacity are unaffected by CC.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, energy。This paper measures the performance impact of running large language model inference and training inside a Trusted Execution Envir...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.DC",
+            "energy",
+            "inference",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-08-27T03:37:35Z",
+          "url": "https://arxiv.org/abs/2608.26575",
+          "pdfUrl": "https://arxiv.org/pdf/2608.26575v1"
+        },
+        {
+          "id": "arxiv-2608.26574",
+          "title": "Dependency-Aware Revocable Decoding for Efficient Diffusion Large Language Model Inference",
+          "authors": [
+            "Wooje Park",
+            "Insu Lee",
+            "Minyoung Noh",
+            "Jaeyun Jang",
+            "Sungmin Lee",
+            "Kyuhong Shim",
+            "Byonghyo Shim"
+          ],
+          "summary": "Diffusion large language models (dLLMs) offer a promising alternative to autoregressive generation by decoding multiple tokens in parallel through iterative denoising. However, increasing decoding parallelism often degrades generation quality, as early errors can contaminate later contexts. Revocable decoding mitigates this issue by re-evaluating decoded tokens and remasking unreliable ones, but existing methods overlook that unreliable tokens may also corrupt the verification context itself. We identify this failure mode and propose Dependency-Aware Revocable Decoding (DARD), a training-free framework that separates tokens into masked, candidate, and unmasked states. DARD verifies candidate tokens using a selective context that excludes less reliable tokens and adaptively regulates their influence on subsequent decoding. Experiments across 12 textual and multimodal benchmarks on 3 open-source dLLMs show that DARD consistently improves the speed-quality Pareto frontier over recent revocable decoding methods, achieving a 2.71$\\times$ speedup and a 4.35-point CIDEr score gain over Saber on Flickr30K.",
+          "reason": "近 30 天；关键词：cs.CL, efficient, inference。Diffusion large language models (dLLMs) offer a promising alternative to autoregressive generation by decoding multiple tokens in...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "efficient",
+            "inference",
+            "llm",
+            "multimodal",
+            "pareto"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-27T03:34:47Z",
+          "url": "https://arxiv.org/abs/2608.26574",
+          "pdfUrl": "https://arxiv.org/pdf/2608.26574v1"
+        },
+        {
+          "id": "arxiv-2608.26523",
+          "title": "VPP: Virtual Pipeline Parallelism for Efficient Chunked Prefill in Long-Context LLM Inference",
+          "authors": [
+            "Yan Shi",
+            "Xiaochao Wang",
+            "Jingchun Gao",
+            "Jintao Luo",
+            "Xinyi Zhou",
+            "Feng Liu",
+            "Kui Luo",
+            "Xushi Li",
+            "Xinjie Guo",
+            "Liangjun Feng"
+          ],
+          "summary": "Chunked prefill pipeline parallelism (CPP) is a key technique for LLM inference. However, equal-size chunks exhibit imbalanced latency, as later chunks attend longer prefix KV caches and incur higher attention costs, leading to pipeline bubbles. Existing approaches mitigate this imbalance through dynamic chunk resizing (Dynamic CPP, DCPP), but our measurements show that this trades scheduling overhead for load balancing, which becomes unfavorable on long sequences. In this study, we propose Virtual Pipeline Parallelism (VPP), which keeps chunk sizes fixed and optimizes the pipeline layout through virtual stages. A V-shaped virtual-stage traversal overlaps each chunk's expensive middle stages with the lighter head and tail stages of its neighbors, while asynchronous communication and pipelined packing further reduce communication stalls and cross-request drain bubbles. We implement VPP in vLLM-Ascend and evaluate it on three MoE-based LLMs with sequences up to 1M tokens on 16 Ascend 910C NPUs. VPP improves throughput by up to 13.1% over DCPP on long sequences and 6.7% on mixed workloads, while preserving performance on short sequences. On a 512K-token DeepSeek-V3.1 prefill workload, VPP reduces the pipeline bubble ratio from 6.4% to 0.1%, achieving a 98.0% reduction compared with DCPP.",
+          "reason": "近 30 天；公司信号：Huawei；关键词：huawei, cs.DC, efficient。Chunked prefill pipeline parallelism (CPP) is a key technique for LLM inference. However, equal-size chunks exhibit imbalanced lat...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "huawei",
+            "cs.DC",
+            "efficient",
+            "inference",
+            "kv-cache",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "Huawei/arXiv",
+          "publishedAt": "2026-08-27T01:59:45Z",
+          "url": "https://arxiv.org/abs/2608.26523",
+          "pdfUrl": "https://arxiv.org/pdf/2608.26523v1"
+        },
+        {
+          "id": "arxiv-2608.26374",
+          "title": "Survival-Guided Length Control for Efficient Diffusion Language Models",
+          "authors": [
+            "Ivan Kobyzev",
+            "Abbas Ghaddar",
+            "Yufei Cui"
+          ],
+          "summary": "Diffusion language models (DLMs) generate text by iteratively denoising masked sequences, but standard decoding either fixes the sequence length or relies on ad hoc stopping rules, often leading to unnecessary denoising steps. We recast length selection as a discrete-time survival problem over the end-of-sequence token and propose a plug-in, training-free length predictor that can be added to any existing DLM. Across reasoning and code-generation benchmarks, survival-guided length decoding speeds up inference by up to 7 times while preserving task accuracy. We further find that predicted lengths vary widely even within the same dataset, making model performance sensitive to the chosen length.",
+          "reason": "近 30 天；关键词：cs.CL, dataset, efficient。Diffusion language models (DLMs) generate text by iteratively denoising masked sequences, but standard decoding either fixes the s...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "dataset",
+            "efficient",
+            "inference",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-26T19:59:42Z",
+          "url": "https://arxiv.org/abs/2608.26374",
+          "pdfUrl": "https://arxiv.org/pdf/2608.26374v1"
+        },
+        {
+          "id": "arxiv-2608.26372",
+          "title": "Knowledge-Verified Emergent Deception in LLM Agents Under Conflicting Incentives",
+          "authors": [
+            "Zheyuan Liu",
+            "Weiliang Zhao",
+            "Xiangchi Yuan",
+            "Ningshan Ma",
+            "Yue Huang",
+            "Meng Jiang"
+          ],
+          "summary": "Large language models are increasingly deployed as autonomous agents serving users on behalf of companies, placing them in settings where user and deployer interests can conflict. When an agent knows that a user is owed something its deployer would prefer to deny, does it remain honest? Answering this is difficult because false statements can reflect either ignorance or hallucination rather than deception. To address this challenge, we introduce KnownLieBench , a knowledge-verified benchmark that first confirms through a neutral probe that an agent knows a user's entitlement, and then evaluates whether it makes false claims once an incentive to deny that entitlement is introduced. Specifically, KnownLieBench covers eight customer-service domains and 112 grounded cases, conducts multi-round dialogues with a trust-tracking customer agent, and separates deception emerging from incentive alone from deception produced under explicit instruction. Across eighteen proprietary and open-weight models, emergent deception varies substantially across model families and domains. We further use the benchmark for post-training, finding that honesty-directed fine-tuning reduces deception under incentive, while deception-graded fine-tuning increases lie success on honest-control dialogues without increasing lie frequency under incentive. By verifying entitlement knowledge before scoring deceptive behavior, KnownLieBench reduces the confound between lying and not knowing and enables more rigorous auditing and steering of agent honesty.",
+          "reason": "近 30 天；关键词：cs.CL, deployed, llm。Large language models are increasingly deployed as autonomous agents serving users on behalf of companies, placing them in setting...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "deployed",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-26T19:56:13Z",
+          "url": "https://arxiv.org/abs/2608.26372",
+          "pdfUrl": "https://arxiv.org/pdf/2608.26372v1"
+        },
+        {
+          "id": "arxiv-2608.26222",
+          "title": "NeuronFuzz: Safety Neuron Guided Fuzzing for LLM Safety Evaluation",
+          "authors": [
+            "Zhiyuan Xu",
+            "Muhammad Firhard Roslan",
+            "Joseph Gardiner",
+            "Sana Belguith",
+            "Lichao Wu"
+          ],
+          "summary": "Safety evaluation is critical for assessing whether aligned Large Language Models (LLMs) remain robust against jailbreak attacks. Existing automated testing methods, however, largely rely on response-level feedback: each candidate prompt typically requires generating a target-model response to evaluate its attack effectiveness. This process is expensive and, more importantly, provides only sparse guidance on strongly aligned models, where most candidates are rejected with the same failure outcome. This paper presents NeuronFuzz, a white-box fuzzing framework that exploits internal safety neurons as continuous execution feedback for LLM safety evaluation. A SafetyOracle converts safety-neuron activations into a continuous safety alarm score that serves as feedback for fuzzing and can be obtained during prefill, eliminating response generation from the fuzzing loop. To construct the SafetyOracle, NeuronFuzz uses template-invariant harmful and benign inputs and stability-aware selection to identify a compact set of safety neurons whose activations capture harmful-intent recognition. Moreover, since the safety alarm score is differentiable, NeuronFuzz uses its gradients to identify safety-sensitive template positions and a masked language model to generate fluent, context-compatible mutations while preserving original harmful payload and avoiding additional optimization variables. We evaluate NeuronFuzz across 21 text and multimodal models. Across five white-box source models, it achieves a 76-100% jailbreak discovery rate, outperforming baselines by up to 48 percentage points. Its optimized templates further transfer zero-shot to open-weight and six proprietary target models, achieving average ASR and top-5 ensemble ASR (EASR) of 69.6%/92.6% and 44.1%/60.0%, respectively.",
+          "reason": "近 30 天；关键词：cs.LG, llm, multimodal。Safety evaluation is critical for assessing whether aligned Large Language Models (LLMs) remain robust against jailbreak attacks....",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "llm",
+            "multimodal",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-26T12:44:32Z",
+          "url": "https://arxiv.org/abs/2608.26222",
+          "pdfUrl": "https://arxiv.org/pdf/2608.26222v1"
+        }
+      ]
+    },
     {
       "date": "2026-08-27",
       "generatedAt": "2026-08-27T10:23:08.321147+08:00",

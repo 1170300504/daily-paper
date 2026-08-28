@@ -1,288 +1,285 @@
 {
-  "generatedAt": "2026-08-27T10:23:08.321147+08:00",
+  "generatedAt": "2026-08-28T13:51:50.188468+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2608.26004",
-      "title": "AsymSpec: Context-Asymmetric Speculative Decoding for Agentic LLMs",
+      "id": "arxiv-2608.27287",
+      "title": "Astar: Learning to Propose Evolution Directions for Self-Evolving Industrial AI Systems",
       "authors": [
-        "Sheng Liang",
-        "Yongyue Zhang",
-        "Nathanael Brian",
-        "Hang Lv",
-        "Hao Wang",
-        "Chen Zhang",
-        "Yong Liu"
+        "Jinxin Hu",
+        "Hao Deng",
+        "Haibo Xing",
+        "Lingyu Mu",
+        "Muyu Zou",
+        "Weiqin Yang",
+        "Sirui Chen",
+        "Bohao Wang",
+        "Zhezheng Hao",
+        "Hao Zhang",
+        "Zulong Chen",
+        "Shizhun Wang",
+        "Yu Zhang",
+        "Xiaoyi Zeng",
+        "Jiawei Chen"
       ],
-      "summary": "Agentic LLM pipelines face escalating inference costs as context accumulates across retrieval, tool use, and multi-turn interactions. To control latency, deployments routinely compress inputs, but this degrades task accuracy. Speculative decoding (SD) accelerates generation losslessly, yet it assumes the drafter and verifier share an identical context, preventing SD from resolving the accuracy-overhead trade-off. We propose AsymSpec, an asymmetric speculative decoding framework that breaks this symmetry: a lightweight drafter reads the full input while the large verifier operates on the compressed view. The drafter steers the verifier via a contrastive $δ$-fusion of logits, modulated by a divergence-aware acceptance gate that preserves verification stability and high draft acceptance rates. Evaluated across four agentic capabilities and two end-to-end agent benchmarks, AsymSpec reaches $\\approx 90\\%$ of full-context accuracy on average, delivering $1.3$--$1.7\\times$ throughput speedups at $0.2$--$0.3\\times$ the compute cost on isolated text capabilities. These results show that asymmetric context access yields substantial gains precisely when compression discards critical reasoning signals.",
-      "reason": "近 30 天；关键词：cs.AI, inference, latency。Agentic LLM pipelines face escalating inference costs as context accumulates across retrieval, tool use, and multi-turn interactio...",
-      "area": "LLM 推理优化",
+      "summary": "Modern AI systems advance through continuous iteration: a loop of proposing evolution directions, implementing code, training, and evaluation. While the latter three stages are increasingly automated, the starting point --- proposing effective evolution directions --- remains a critical bottleneck that still relies heavily on senior experts. In this work, we explore whether AI can take over this role. We find that general-purpose LLMs, even the advanced GPT-5.5, offer only generic and misaligned suggestions: the required expertise is accumulated through experience rather than explicitly codified, and thus hard to inject directly. To this end, we propose Astar, a training-based approach that learns a specialized evolution-guiding model from the abundant iteration histories of industrial systems. Realizing this idea, however, raises four challenges: sparse supervision, noisy data, a vast direction space, and prohibitively expensive verification. We address them along two fronts. On the data side, we design a pipeline that turns noisy historical commits into a large, clean evolutionary corpus via pairwise sample expansion and noise filtering. On the model side, we train the model through mid-training, SFT, and RL, guiding evolution direction generation with hierarchical hints and using the reward model in RL as a fast surrogate evaluator. Astar has been deployed in Alibaba's Lazada advertising system for evolution direction proposal. Astar-8B achieves a single-proposal success rate of 0.6786 in real-execution evaluation, far exceeding human experts (0.3229) and the strongest general-purpose LLM (0.3071). More importantly, Astar closes the loop and enables fully automatic iteration: it guided 20 consecutive iterations over two weeks, improving offline Hitrate@200 by 23.6%, while an online A/B test yielded relative lifts of 4.86% in GMV and 1.82% in advertising revenue.",
+      "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, advertising。Modern AI systems advance through continuous iteration: a loop of proposing evolution directions, implementing code, training, and...",
+      "area": "推荐算法",
       "tags": [
-        "cs.AI",
-        "inference",
-        "latency",
+        "alibaba",
+        "cs.IR",
+        "advertising",
+        "deployed",
+        "industrial",
         "llm",
-        "retrieval",
-        "speculative",
-        "throughput"
+        "online-a/b"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-26T16:50:02Z",
-      "url": "https://arxiv.org/abs/2608.26004",
-      "pdfUrl": "https://arxiv.org/pdf/2608.26004v1"
+      "source": "Alibaba/arXiv",
+      "publishedAt": "2026-08-27T15:56:40Z",
+      "url": "https://arxiv.org/abs/2608.27287",
+      "pdfUrl": "https://arxiv.org/pdf/2608.27287v1"
     },
     {
-      "id": "arxiv-2608.25683",
-      "title": "psRL: Efficient Training for Agentic AI via Training-Time Prefix Sharing",
+      "id": "arxiv-2608.27128",
+      "title": "TwinKV: A Composable Repair Pass for KV Cache Eviction via Pairwise Key Redundancy",
       "authors": [
-        "Mianjie Yu",
-        "Zizhao Mo",
-        "Huanyu Qu",
-        "Zhirong Qian",
-        "Huanle Xu",
-        "Cen Li",
-        "Zifeng Zhao",
-        "Zhi Zhou",
-        "Jinhua Zhou",
-        "Jun Xie",
-        "Chengzhong Xu"
+        "Hong Chen",
+        "Yudong Zeng",
+        "Yongwei Huang",
+        "Zuhao Ouyang",
+        "Junyan Zhang",
+        "Xuming Hu"
       ],
-      "summary": "In modern agentic AI training, the system bottleneck is shifting from rollout to update. Emerging sampling strategies such as tree-structured and step-wise RL greatly increase training sample volume while incurring relatively low marginal rollout cost, causing the update phase to dominate the end-to-end execution time. Crucially, this shift exposes a new optimization opportunity, as production traces reveal substantial prefix redundancy across training samples. In this paper, we propose psRL (prefix sharing for RL), a new training system for agentic AI designed to exploit prefix redundancy among training samples. Leveraging the global visibility and data immutability inherent to the update phase, psRL achieves efficient workload scheduling and memory management for distributed training. Specifically, psRL introduces two novel prefix-sharing mechanisms that enable flexible, fine-grained workload distribution across GPU workers, simultaneously optimizing prefix reuse and achieving load balancing. Moreover, psRL implements a new underlying KV cache manager that facilitates adaptable block-size allocation and dynamic KV caching, maximizing memory utilization while maintaining a high prefix hit rate. Evaluations using production traces demonstrate that psRL outperforms existing systems by up to 5.2x in throughput. The source code will be publicly available soon.",
-      "reason": "近 30 天；关键词：cs.DC, efficient, kv-cache。In modern agentic AI training, the system bottleneck is shifting from rollout to update. Emerging sampling strategies such as tree...",
+      "summary": "Long-context inference is bottlenecked by the memory footprint of the key-value (KV) cache, especially for small models under tight resource budgets. Existing KV cache eviction methods score tokens using the model's attention distribution or, in attention-free variants, each key's distance from a global reference point. Using a controlled leave-one-out probe, we find that attention magnitude is unrelated to a token's causal contribution to the answer (Spearman $ρ=-0.004$), challenging the premise behind dominant eviction methods. We introduce TwinKV, a training-free, attention-free redundancy signal that detects whether a token's key has a near-duplicate elsewhere in context. Rather than replacing existing policies, TwinKV acts as a composable repair pass: given a policy's fixed retained set, it identifies evicted tokens with no surviving duplicate (\\emph{orphans}) and retained tokens whose information is duplicated elsewhere (\\emph{redundant donors}), then swaps them while preserving the original budget and scoring rule. We compose TwinKV with four recent eviction policies across LongBench, LooGLE, RULER, and a short-context MMLU-Pro no-harm control at compression ratios ${0.3,0.5,0.7}$. On Qwen3-4B, TwinKV improves a majority of configurations for two policies, is near-even for a third, and helps only a minority for a fourth adaptive baseline already near a performance ceiling; gains across the three non-ceiling policies are smallest at the loosest ratio. On RULER with Llama-3.2-1B, however, that fourth policy improves in every evaluated cell because its Alone score leaves substantial room to improve. More broadly, Llama-3.2-1B shows a smaller average LongBench gain but a higher fraction of improved cells on LongBench and LooGLE than Qwen3-4B, plus a clean RULER win. We also identify few-shot classification exemplars as a task structure where TwinKV does not help on either model.",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, inference。Long-context inference is bottlenecked by the memory footprint of the key-value (KV) cache, especially for small models under tigh...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.DC",
-        "efficient",
-        "kv-cache",
-        "production",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-26T11:58:47Z",
-      "url": "https://arxiv.org/abs/2608.25683",
-      "pdfUrl": "https://arxiv.org/pdf/2608.25683v1"
-    },
-    {
-      "id": "arxiv-2608.25523",
-      "title": "TOPAS: Workflow-Aware Prefix-State Scheduling for Multi-Agent LLM Serving",
-      "authors": [
-        "Hongqiu Ni",
-        "Han Tian",
-        "Chi Zhang",
-        "Guopeng Li",
-        "Haisheng Tan"
-      ],
-      "summary": "Prefix caching introduces a fundamental tradeoff in multi-agent large language model (LLM) serving: retaining a long system-prompt key-value (KV) cache for an agent accelerates future calls, yet it reduces the GPU memory available for batching concurrent requests. In multi-stage workflows, existing schedulers tend to prioritize either immediate prefix locality or overall workflow progress. However, under a shared KV cache budget, optimizing either objective in isolation can prolong tasklevel job completion time (JCT) through downstream delays or frequent prefix replacement. To strike a balance, we here propose TOPAS, a Task-Oriented Prefix-Aware Scheduler that jointly decides which agent prefixes to keep in the cache and which requests to schedule for execution. TOPAS scores candidate post-decision states by trading off the expected reduction in each task's longest remaining service path against the near-term benefit of downstream prefix reuse, accounting for the costs of prefix movement and preemption. A task-level aging mechanism is also incorporated to prevent starvation. We implement TOPAS within the SGLang framework and assess its performance on three synthetic DAGs and two MetaGPT software-development workflows. Compared with the best performing baseline for each workload and metric, TOPAS reduces the mean/p99 JCT by up to 39.8%/49.4% on the synthetic workloads, while lowering mean JCT by 9.8% on MetaGPT-SOP and mean/p99 JCT by 22.0%/26.6% on MetaGPT-TL.",
-      "reason": "近 30 天；关键词：cs.CL, batching, kv-cache。Prefix caching introduces a fundamental tradeoff in multi-agent large language model (LLM) serving: retaining a long system-prompt...",
-      "area": "LLM 推理优化",
-      "tags": [
+        "meta",
         "cs.CL",
-        "batching",
+        "inference",
         "kv-cache",
-        "llm",
         "serving"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-26T08:33:10Z",
-      "url": "https://arxiv.org/abs/2608.25523",
-      "pdfUrl": "https://arxiv.org/pdf/2608.25523v1"
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-08-27T13:43:30Z",
+      "url": "https://arxiv.org/abs/2608.27128",
+      "pdfUrl": "https://arxiv.org/pdf/2608.27128v1"
     },
     {
-      "id": "arxiv-2608.25343",
-      "title": "GUIDE: Generative Unsupervised Chinese Query Correction via Phonetic and Visual Shared-ID Encoding",
+      "id": "arxiv-2608.27005",
+      "title": "Topology-Masked Unified Backbone for Joint Feature Interaction and Multi-Domain Sequence Modeling",
       "authors": [
-        "Lei Yang",
-        "Binbin Huang",
-        "Jiwei Tan",
-        "Xuhui Sui",
-        "Chang Tu",
-        "Yi Wang",
-        "Han Li"
+        "Zhihao Zhu",
+        "Dezheng Han",
+        "Jikang Xia",
+        "Shuaishuai Guo"
       ],
-      "summary": "Chinese query correction (CQC) is important for search and query recommendation on content platforms, but supervised methods rely on large annotated correction pairs that are costly to maintain as query vocabularies evolve. Unsupervised correction with language models is attractive, yet in the short-query setting, unconstrained generation often over-corrects ambiguous inputs toward high-frequency phrases, causing intent drift. We propose \\textsc{GUIDE}, a generative unsupervised framework for CQC based on a confuse-then-clarify paradigm. \\textsc{GUIDE} encodes phonetically or visually confusable characters with shared-IDs and reconstructs the original query with an encoder--decoder architecture, which constrains correction to plausible confusion neighborhoods while learning from unlabeled query streams. A time-decayed, query-frequency-weighted objective further supports adaptation to rapidly changing query vocabularies. Experiments on \\textit{QSpell 250K} and a large-scale real-world dataset (\\textit{KwaiSearch}) show that \\textsc{GUIDE} consistently outperforms strong baselines, while online A/B testing further confirms gains in correction quality and downstream engagement.",
-      "reason": "近 30 天；关键词：cs.CL, dataset, online-a/b。Chinese query correction (CQC) is important for search and query recommendation on content platforms, but supervised methods rely...",
-      "area": "LLM 推理优化",
+      "summary": "Large-scale post-click conversion rate (CVR) prediction requires jointly modeling heterogeneous feature interactions and dependencies over multi-domain user behavior sequences. Existing industrial ranking models usually handle these two aspects with separate modules. Recent unified architectures attempt to incorporate them into a single framework, but such unification often relies on coordination between modules and does not fully organize all information sources within the same interaction space. To address this problem, we propose MaskRec, a topology-masked unified token interaction architecture for feature interaction and multi-domain sequence modeling. MaskRec transforms heterogeneous features, multi-domain behavior sequences, and contextual signals into unified token representations, and further introduces learnable global memory tokens and domain-level memory tokens as information aggregation nodes. Based on this unified token space, MaskRec designs a structured attention mask, TopoMask, which selectively enables or blocks attention connections according to the structural differences and modeling requirements of different information sources. In this way, heterogeneous feature interaction and multi-domain sequence modeling are performed within the same topology-constrained attention process. In addition, MaskRec incorporates a dual-path interactive query generation module to inject candidate-conditioned user--item interaction signals before the unified backbone. Experiments on the Tencent Advertising Algorithm Competition dataset show that MaskRec achieves stable improvements over the official baseline, validating the effectiveness of the proposed unified framework for industrial CVR prediction.",
+      "reason": "近 30 天；公司信号：Tencent；推荐/排序/广告方向；关键词：tencent, cs.IR, advertising。Large-scale post-click conversion rate (CVR) prediction requires jointly modeling heterogeneous feature interactions and dependenc...",
+      "area": "推荐算法",
       "tags": [
-        "cs.CL",
+        "tencent",
+        "cs.IR",
+        "advertising",
+        "conversion",
         "dataset",
-        "online-a/b",
-        "recommendation"
+        "industrial",
+        "ranking"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-08-26T03:54:26Z",
-      "url": "https://arxiv.org/abs/2608.25343",
-      "pdfUrl": "https://arxiv.org/pdf/2608.25343v1"
+      "source": "Tencent/arXiv",
+      "publishedAt": "2026-08-27T11:49:55Z",
+      "url": "https://arxiv.org/abs/2608.27005",
+      "pdfUrl": "https://arxiv.org/pdf/2608.27005v1"
     },
     {
-      "id": "arxiv-2608.25115",
-      "title": "Less can be More: Relieving RAG Bottlenecks via Evidence Frontloading and Pressure-Adaptive Budgeting",
+      "id": "arxiv-2608.26926",
+      "title": "A Layer Importance Metric for Quantization Accounting for the Speed-Quality Trade-off in Autoregressive Models",
       "authors": [
-        "Weibin Cai",
-        "Reza Zafarani"
+        "Artem Safronov"
       ],
-      "summary": "Existing methods for improving Retrieval-Augmented Generation (RAG) efficiency mainly optimize downstream LLM generation, such as context compression or serving optimization. However, RAG is an end-to-end system, and its bottleneck can shift between upstream reranking and downstream generation under different serving loads and reranking budgets.In this paper, we first empirically characterize this shifting-bottleneck behavior and show that upstream reranking can become the dominant bottleneck under high query rates or large reranking budgets. Reducing the reranking budget can relieve this bottleneck, but it may also drop supporting evidence and degrade recall. To address this problem, we propose \\textbf{\\textsf{PACE}} (\\textbf{P}rioritized \\textbf{A}daptive \\textbf{C}overage of \\textbf{E}vidence), a training-free framework that combines \\textit{evidence frontloading} with \\textit{pressure-adaptive budgeting}. \\textsf{PACE} first reorders candidates by marginal evidence coverage, prioritizing documents that are query-relevant, complementary, and useful for forming multi-hop evidence chains. We show that this objective is monotone submodular, giving greedy selection a $(1-1/e)$ approximation guarantee. \\textsf{PACE} then dynamically adjusts the reranking budget according to the relative pressure of the reranker and the LLM. Experiments on three multi-hop QA datasets and online serving simulations show that \\textsf{PACE} improves evidence recall, reduces p95 latency under ranking-heavy workloads. More importantly, the two components together reveal that \\textit{less can be more}: an evidence-dense top-ranked candidates enable higher final recall with fewer reranked documents.",
-      "reason": "近 30 天；关键词：cs.CL, dataset, latency。Existing methods for improving Retrieval-Augmented Generation (RAG) efficiency mainly optimize downstream LLM generation, such as...",
+      "summary": "Small language models (sLLMs) are nowadays hosted on devices with limited memory and computational budget. In an autoregressive setup, inference is memory-bandwidth bound: uniform quantization is often detrimental to such models, since their architecture has limited redundancies and only a few layers are not very sensitive to lower precision. We propose a composite metric that combines two orthogonal criteria: information retention (measured in terms of a normalized SQNR-based coefficient) and throughput gains (modeled using a roofline-based latency analysis). By profiling Gemma 3 1B, we find that Feed-Forward Network blocks and the embedding matrix are the most promising targets for acceleration. For each candidate, we estimate a normalized quality score based on simulated quantization and a normalized speed score based on roofline modeling with no actual execution needed. We combine the two scores in a composite priority coefficient, allowing us to tune the trade-off between speed and quality as needed. Our metric is general and can be used to prioritize individual blocks, their projection sublayers, or transformer layers as a whole. We evaluate our approach on several model architectures, showing that our estimates have at around 4% prediction error for the accelerated speedup. We find that our method generally allocates more resources to the most expressive layers compared to evolutionary search, specialized accelerators, or Shapley-value-based approaches that require expensive approximate inference. Our analytical approach makes sLLM quantization a predictable engineering task.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Small language models (sLLMs) are nowadays hosted on devices with limited memory and computational budget. In an autoregressive se...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL",
-        "dataset",
+        "cs.LG",
+        "efficient",
+        "inference",
         "latency",
         "llm",
-        "ranking",
-        "reranking",
-        "retrieval"
+        "quantization",
+        "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-25T20:10:06Z",
-      "url": "https://arxiv.org/abs/2608.25115",
-      "pdfUrl": "https://arxiv.org/pdf/2608.25115v1"
+      "publishedAt": "2026-08-27T10:23:01Z",
+      "url": "https://arxiv.org/abs/2608.26926",
+      "pdfUrl": "https://arxiv.org/pdf/2608.26926v1"
     },
     {
-      "id": "arxiv-2608.25096",
-      "title": "Understanding the Energy Scaling of Large Language Model Inference Across Context Lengths and Attention Architectures",
+      "id": "arxiv-2608.26575",
+      "title": "Benchmarking Confidential Computing Performance on NVIDIA Blackwell GPUs",
       "authors": [
-        "Molka Chkir",
-        "Syed Muhammad Danish",
-        "Jos Höll",
-        "Arghavan Asad"
+        "Daniyal Khan",
+        "Amean Asad",
+        "Ansgar Grunseid"
       ],
-      "summary": "The growing adoption of large language models (LLMs) has raised increasing concerns about the energy consumption and environmental impact of inference. This paper presents a systematic empirical study of decode-phase energy consumption across representative open-source LLMs employing Multi-Head Attention (MHA), Grouped Query Attention (GQA), and Grouped Query Attention with Sliding Window Attention (SWA) to characterize how attention architecture influences decode-phase energy consumption under varying inference workloads. We evaluate four models across different context lengths, batch sizes, and generation workloads while measuring GPU energy using NVIDIA hardware counters. We examine the effects of context length, attention mechanism, Key-Value (KV) cache growth, and batching on decode-phase energy consumption. Results show that attention mechanism is the primary factor governing how decode energy scales with context length. MHA models exhibit substantially steeper energy growth than GQA models, whereas GQA with SWA maintains nearly constant energy consumption. We further show that model size primarily determines absolute energy consumption, while batching reduces both energy per generated token and request latency by up to 87%. These findings provide practical guidance for selecting energy-efficient LLM architectures and inference configurations.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, batching。The growing adoption of large language models (LLMs) has raised increasing concerns about the energy consumption and environmental...",
+      "summary": "This paper measures the performance impact of running large language model inference and training inside a Trusted Execution Environment (TEE) on NVIDIA B200 GPUs, using Intel Trust Domain Extensions (TDX) confidential VMs together with NVIDIA Confidential Computing (CC) on Blackwell GPUs. The performance impact is derived from paired confidential versus non-confidential runs on a single physical host where the only variable is the GPU CC bit and the TDX guest object in the VM launch. The main result is that confidential inference on Blackwell achieves low single-digit throughput overhead when the stack is configured correctly, at about 1-3%. Stock inference stacks incur 30 to 40% penalties due to avoidable configurations rather than the achievable operating point. The cost is not fully represented by a single number because it is governed by two independent axes, a fixed per-host-operation cost that amortizes as batch size grows and a per-NVLink-traffic cost that tracks the share of the step spent in encrypted collectives, and which of the two dominates is set by the workload and the software. We localize each cost to a specific encrypted boundary, give a microbenchmark that predicts the serving penalty to within a submission count, and end with concrete deployment guidance. GPU compute, energy draw, and usable memory capacity are unaffected by CC.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, energy。This paper measures the performance impact of running large language model inference and training inside a Trusted Execution Envir...",
       "area": "LLM 推理优化",
       "tags": [
         "nvidia",
-        "cs.LG",
-        "batching",
-        "efficient",
+        "cs.DC",
         "energy",
         "inference",
-        "latency"
+        "serving",
+        "throughput"
       ],
       "signal": 99,
       "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-08-25T19:45:30Z",
-      "url": "https://arxiv.org/abs/2608.25096",
-      "pdfUrl": "https://arxiv.org/pdf/2608.25096v1"
+      "publishedAt": "2026-08-27T03:37:35Z",
+      "url": "https://arxiv.org/abs/2608.26575",
+      "pdfUrl": "https://arxiv.org/pdf/2608.26575v1"
     },
     {
-      "id": "arxiv-2608.25053",
-      "title": "Hydra: Phase-Aware Workload Characterization of LLM Inference across Edge SoC Generations, Backends, and Quantization Levels",
+      "id": "arxiv-2608.26574",
+      "title": "Dependency-Aware Revocable Decoding for Efficient Diffusion Large Language Model Inference",
       "authors": [
-        "Amir Taherin",
-        "Sana Taghipour Anvari",
-        "Charles Amante",
-        "Yixiao Chen",
-        "Ruben Noroian",
-        "Zlatan Feric",
-        "Nicolas Bohm Agostini",
-        "Pu Zhao",
-        "José Cano",
-        "Bin Ren",
-        "Yanzhi Wang",
-        "David Kaeli"
+        "Wooje Park",
+        "Insu Lee",
+        "Minyoung Noh",
+        "Jaeyun Jang",
+        "Sungmin Lee",
+        "Kyuhong Shim",
+        "Byonghyo Shim"
       ],
-      "summary": "Edge LLM deployment is shaped by more than model size and precision: inference backend, hardware platform, memory traffic, and power management all affect latency and efficiency. We present Hydra, a common-schema, phase-aware workload characterization framework for LLM inference on edge SoCs. Hydra instruments HuggingFace Transformers and llama.cpp with a shared per-prompt timing schema and fuses those records with hardware telemetry, enabling a multi-dimensional characterization of performance, system-resource utilization, and efficiency across prefill and decode phases. Using Hydra, we evaluate three consecutive edge System-on-Chip (SoC) generations (AGX Xavier, AGX Orin, and AGX Thor), 13 instruction-tuned LLMs from seven families, five execution formats, and consider input/output-length sensitivity. The resulting artifact contains roughly 107K per-prompt records and is publicly released with Hydra. Our analysis shows that aggregate latency alone hides key deployment effects: backend structure changes where latency is introduced, quantization reduces memory traffic and energy but does not predict power monotonically, and SoC generation changes how utilization and efficiency should be interpreted. By connecting phase-level timing with system-resource utilization and efficiency metrics, Hydra enables reproducible, phase-aware characterization of edge LLM inference. Hydra's source code and the collected per-prompt trace corpus are available open-source at: https://github.com/amirtaherin/hydra",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.AR, energy。Edge LLM deployment is shaped by more than model size and precision: inference backend, hardware platform, memory traffic, and pow...",
+      "summary": "Diffusion large language models (dLLMs) offer a promising alternative to autoregressive generation by decoding multiple tokens in parallel through iterative denoising. However, increasing decoding parallelism often degrades generation quality, as early errors can contaminate later contexts. Revocable decoding mitigates this issue by re-evaluating decoded tokens and remasking unreliable ones, but existing methods overlook that unreliable tokens may also corrupt the verification context itself. We identify this failure mode and propose Dependency-Aware Revocable Decoding (DARD), a training-free framework that separates tokens into masked, candidate, and unmasked states. DARD verifies candidate tokens using a selective context that excludes less reliable tokens and adaptively regulates their influence on subsequent decoding. Experiments across 12 textual and multimodal benchmarks on 3 open-source dLLMs show that DARD consistently improves the speed-quality Pareto frontier over recent revocable decoding methods, achieving a 2.71$\\times$ speedup and a 4.35-point CIDEr score gain over Saber on Flickr30K.",
+      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Diffusion large language models (dLLMs) offer a promising alternative to autoregressive generation by decoding multiple tokens in...",
       "area": "LLM 推理优化",
       "tags": [
-        "meta",
-        "cs.AR",
-        "energy",
+        "cs.CL",
+        "efficient",
         "inference",
-        "latency",
         "llm",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-08-25T18:43:43Z",
-      "url": "https://arxiv.org/abs/2608.25053",
-      "pdfUrl": "https://arxiv.org/pdf/2608.25053v1"
-    },
-    {
-      "id": "arxiv-2608.24973",
-      "title": "Resource-Efficient Pruning for Transformer via Low-Rank Importance Estimation",
-      "authors": [
-        "Peng Liu",
-        "Huibing Zeng",
-        "Yiqun Zhang",
-        "Yang Yi",
-        "Jigang Wu"
-      ],
-      "summary": "With the rapid development of large-scale pre-trained language models based on Transformer architectures, their high computational and memory costs have become a major obstacle to deployment, especially in resource-constrained environments. Traditional pruning methods typically depend on full gradient-based importance estimation, and they necessitate prior finetuning of the model to achieve satisfactory performance. This process often results in intolerable resource consumption. This paper proposes REP-LIE, a new approach to enable resource-efficient pruning during the process of finetuning. REP-LIE leverages the gradients of LoRA low-rank matrices to estimate the importance of weights without requiring full gradient computation. To address the inherent randomness in importance estimation, a stability score is introduced, serving as the basis for iterative pruning of unimportant model parameters. The pruned model is further finetuned through lightweight updates, eliminating the need for full-parameter optimization in the process of finetuning. Extensive experiments on both medium-scale encoder models and large-scale generative models (LLaMA-7B and Mistral-7B) demonstrate that REP-LIE still achieves competitive performance compared to existing approaches.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, efficient。With the rapid development of large-scale pre-trained language models based on Transformer architectures, their high computational...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "cs.LG",
-        "efficient",
-        "lora",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-08-25T11:36:01Z",
-      "url": "https://arxiv.org/abs/2608.24973",
-      "pdfUrl": "https://arxiv.org/pdf/2608.24973v1"
-    },
-    {
-      "id": "arxiv-2608.24079",
-      "title": "RetrievalFormer: A Dual-Encoder Transformer for Efficient Approximate Nearest Neighbor Retrieval and Cold-Item Recommendation",
-      "authors": [
-        "Theodore Rogers",
-        "Joe Standerfer",
-        "Dmitrii Timoshenko",
-        "Haoxue Li",
-        "Zuhaib Akhtar",
-        "Soyoung Yang"
-      ],
-      "summary": "A shared search-and-recommendation index must score new items from features alone because search has no exploration slot. In a public log covering both surfaces over one catalog, $38.6\\%$ of held-out query-search impressions show an item never previously shown or visited. For user-cold engagements, the feature-based tower serves this demand without measurable loss against $99$ sampled negatives ($0.9595$ Recall@20 versus $0.9510$ warm). A lexical baseline reaches similar parity, while a full-catalog check remains statistically undecided. Dual-encoder retrieval therefore keeps the index \\emph{open} to new items, unlike an ID-softmax recommender that requires retraining. We price this openness on recommendation against six sequential baselines, each retrained and tuned through five rounds on corrected targets. A float32 timestamp bug had reordered leave-one-out targets for $19.7\\%$ of users. On MovieLens-1M, warm accuracy trails the strongest retrained baseline by $5.2\\%$ Recall@20 and $11.4\\%$ NDCG@20. On MIND, the gap narrows to $0.8$--$3.6\\%$ relative to the five strongest baselines, though the model ranks sixth of seven. Under strict zero-leakage cold-start evaluation, the content tower achieves $0.172 \\pm 0.006$ Recall@20, $1.4\\times$ the strongest retrained dedicated method ($0.124 \\pm 0.007$) and $3\\times$ a training-free floor, without cold-specific training. Exact full-softmax training raises Recall@20 by $54\\%$ on MIND-small and $6.9\\%$ on MovieLens-1M over sampled InfoNCE, but recomputes the full catalog each step and exhausts accelerator memory at $240$K items. Approximate nearest-neighbor search explains none of the remaining gap, serving cost does not regress against ID-softmax retrieval, and a history-window sweep explains half the post-recipe remainder. Exact-quality training at catalog scale remains the open problem.",
-      "reason": "近 30 天；关键词：cs.IR, efficient, lora。A shared search-and-recommendation index must score new items from features alone because search has no exploration slot. In a pub...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.IR",
-        "efficient",
-        "lora",
-        "recommendation",
-        "recommender",
-        "retrieval",
-        "serving"
+        "multimodal",
+        "pareto"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-25T05:22:09Z",
-      "url": "https://arxiv.org/abs/2608.24079",
-      "pdfUrl": "https://arxiv.org/pdf/2608.24079v1"
+      "publishedAt": "2026-08-27T03:34:47Z",
+      "url": "https://arxiv.org/abs/2608.26574",
+      "pdfUrl": "https://arxiv.org/pdf/2608.26574v1"
     },
     {
-      "id": "arxiv-2608.23843",
-      "title": "PuzzleKV: Page-Wise Low-Rank Decomposition for KV Cache Compression",
+      "id": "arxiv-2608.26523",
+      "title": "VPP: Virtual Pipeline Parallelism for Efficient Chunked Prefill in Long-Context LLM Inference",
       "authors": [
-        "Zizhong Wang",
-        "Jieying Wang",
-        "Zhao Zhang",
-        "Jiajia Li"
+        "Yan Shi",
+        "Xiaochao Wang",
+        "Jingchun Gao",
+        "Jintao Luo",
+        "Xinyi Zhou",
+        "Feng Liu",
+        "Kui Luo",
+        "Xushi Li",
+        "Xinjie Guo",
+        "Liangjun Feng"
       ],
-      "summary": "Long-context inference in large language models (LLMs) is increasingly limited by the memory required for the key-value (KV) cache. KV cache compression addresses this problem by reducing the storage cost of previous tokens. Among existing approaches, low-rank compression is particularly attractive because it represents every token in reduced dimensions. Previous low-rank methods typically derive fixed projection spaces from model weights, construct fixed spaces from calibration activations, or construct a shared basis over a broad cache region. Such representations may not capture detailed but important information. We partition each per-head KV cache into fixed-length logical pages and observe substantial low-rank structure within individual pages. Based on this observation, we propose PuzzleKV, a training- and calibration-free method that treats each completed page as an independent compression unit. PuzzleKV decomposes pages within each layer and KV head, computes attention directly over dense and factorized pages, and incrementally compresses newly eligible pages during autoregressive decoding. Experiments across models, context lengths, and benchmarks demonstrate the effectiveness of PuzzleKV under matched storage budgets. At approximately 60% of the original KV cache storage, PuzzleKV achieves more than 96% of Full KV performance across both evaluated models and all benchmark settings, with substantial gains over Global SVD on RULER and competitive performance on LongBench. To achieve a more aggressive compression ratio, PuzzleKV can be further combined with quantization while retaining more than 93% of Full KV performance using only 18.7% of the original storage.",
-      "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。Long-context inference in large language models (LLMs) is increasingly limited by the memory required for the key-value (KV) cache...",
+      "summary": "Chunked prefill pipeline parallelism (CPP) is a key technique for LLM inference. However, equal-size chunks exhibit imbalanced latency, as later chunks attend longer prefix KV caches and incur higher attention costs, leading to pipeline bubbles. Existing approaches mitigate this imbalance through dynamic chunk resizing (Dynamic CPP, DCPP), but our measurements show that this trades scheduling overhead for load balancing, which becomes unfavorable on long sequences. In this study, we propose Virtual Pipeline Parallelism (VPP), which keeps chunk sizes fixed and optimizes the pipeline layout through virtual stages. A V-shaped virtual-stage traversal overlaps each chunk's expensive middle stages with the lighter head and tail stages of its neighbors, while asynchronous communication and pipelined packing further reduce communication stalls and cross-request drain bubbles. We implement VPP in vLLM-Ascend and evaluate it on three MoE-based LLMs with sequences up to 1M tokens on 16 Ascend 910C NPUs. VPP improves throughput by up to 13.1% over DCPP on long sequences and 6.7% on mixed workloads, while preserving performance on short sequences. On a 512K-token DeepSeek-V3.1 prefill workload, VPP reduces the pipeline bubble ratio from 6.4% to 0.1%, achieving a 98.0% reduction compared with DCPP.",
+      "reason": "近 30 天；公司信号：Huawei；关键词：huawei, cs.DC, efficient。Chunked prefill pipeline parallelism (CPP) is a key technique for LLM inference. However, equal-size chunks exhibit imbalanced lat...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.LG",
+        "huawei",
+        "cs.DC",
+        "efficient",
         "inference",
         "kv-cache",
-        "llm",
-        "quantization"
+        "latency",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "Huawei/arXiv",
+      "publishedAt": "2026-08-27T01:59:45Z",
+      "url": "https://arxiv.org/abs/2608.26523",
+      "pdfUrl": "https://arxiv.org/pdf/2608.26523v1"
+    },
+    {
+      "id": "arxiv-2608.26374",
+      "title": "Survival-Guided Length Control for Efficient Diffusion Language Models",
+      "authors": [
+        "Ivan Kobyzev",
+        "Abbas Ghaddar",
+        "Yufei Cui"
+      ],
+      "summary": "Diffusion language models (DLMs) generate text by iteratively denoising masked sequences, but standard decoding either fixes the sequence length or relies on ad hoc stopping rules, often leading to unnecessary denoising steps. We recast length selection as a discrete-time survival problem over the end-of-sequence token and propose a plug-in, training-free length predictor that can be added to any existing DLM. Across reasoning and code-generation benchmarks, survival-guided length decoding speeds up inference by up to 7 times while preserving task accuracy. We further find that predicted lengths vary widely even within the same dataset, making model performance sensitive to the chosen length.",
+      "reason": "近 30 天；关键词：cs.CL, dataset, efficient。Diffusion language models (DLMs) generate text by iteratively denoising masked sequences, but standard decoding either fixes the s...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "dataset",
+        "efficient",
+        "inference",
+        "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-08-24T21:30:11Z",
-      "url": "https://arxiv.org/abs/2608.23843",
-      "pdfUrl": "https://arxiv.org/pdf/2608.23843v1"
+      "publishedAt": "2026-08-26T19:59:42Z",
+      "url": "https://arxiv.org/abs/2608.26374",
+      "pdfUrl": "https://arxiv.org/pdf/2608.26374v1"
+    },
+    {
+      "id": "arxiv-2608.26372",
+      "title": "Knowledge-Verified Emergent Deception in LLM Agents Under Conflicting Incentives",
+      "authors": [
+        "Zheyuan Liu",
+        "Weiliang Zhao",
+        "Xiangchi Yuan",
+        "Ningshan Ma",
+        "Yue Huang",
+        "Meng Jiang"
+      ],
+      "summary": "Large language models are increasingly deployed as autonomous agents serving users on behalf of companies, placing them in settings where user and deployer interests can conflict. When an agent knows that a user is owed something its deployer would prefer to deny, does it remain honest? Answering this is difficult because false statements can reflect either ignorance or hallucination rather than deception. To address this challenge, we introduce KnownLieBench , a knowledge-verified benchmark that first confirms through a neutral probe that an agent knows a user's entitlement, and then evaluates whether it makes false claims once an incentive to deny that entitlement is introduced. Specifically, KnownLieBench covers eight customer-service domains and 112 grounded cases, conducts multi-round dialogues with a trust-tracking customer agent, and separates deception emerging from incentive alone from deception produced under explicit instruction. Across eighteen proprietary and open-weight models, emergent deception varies substantially across model families and domains. We further use the benchmark for post-training, finding that honesty-directed fine-tuning reduces deception under incentive, while deception-graded fine-tuning increases lie success on honest-control dialogues without increasing lie frequency under incentive. By verifying entitlement knowledge before scoring deceptive behavior, KnownLieBench reduces the confound between lying and not knowing and enables more rigorous auditing and steering of agent honesty.",
+      "reason": "近 30 天；关键词：cs.CL, deployed, llm。Large language models are increasingly deployed as autonomous agents serving users on behalf of companies, placing them in setting...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "deployed",
+        "llm",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-26T19:56:13Z",
+      "url": "https://arxiv.org/abs/2608.26372",
+      "pdfUrl": "https://arxiv.org/pdf/2608.26372v1"
+    },
+    {
+      "id": "arxiv-2608.26222",
+      "title": "NeuronFuzz: Safety Neuron Guided Fuzzing for LLM Safety Evaluation",
+      "authors": [
+        "Zhiyuan Xu",
+        "Muhammad Firhard Roslan",
+        "Joseph Gardiner",
+        "Sana Belguith",
+        "Lichao Wu"
+      ],
+      "summary": "Safety evaluation is critical for assessing whether aligned Large Language Models (LLMs) remain robust against jailbreak attacks. Existing automated testing methods, however, largely rely on response-level feedback: each candidate prompt typically requires generating a target-model response to evaluate its attack effectiveness. This process is expensive and, more importantly, provides only sparse guidance on strongly aligned models, where most candidates are rejected with the same failure outcome. This paper presents NeuronFuzz, a white-box fuzzing framework that exploits internal safety neurons as continuous execution feedback for LLM safety evaluation. A SafetyOracle converts safety-neuron activations into a continuous safety alarm score that serves as feedback for fuzzing and can be obtained during prefill, eliminating response generation from the fuzzing loop. To construct the SafetyOracle, NeuronFuzz uses template-invariant harmful and benign inputs and stability-aware selection to identify a compact set of safety neurons whose activations capture harmful-intent recognition. Moreover, since the safety alarm score is differentiable, NeuronFuzz uses its gradients to identify safety-sensitive template positions and a masked language model to generate fluent, context-compatible mutations while preserving original harmful payload and avoiding additional optimization variables. We evaluate NeuronFuzz across 21 text and multimodal models. Across five white-box source models, it achieves a 76-100% jailbreak discovery rate, outperforming baselines by up to 48 percentage points. Its optimized templates further transfer zero-shot to open-weight and six proprietary target models, achieving average ASR and top-5 ensemble ASR (EASR) of 69.6%/92.6% and 44.1%/60.0%, respectively.",
+      "reason": "近 30 天；关键词：cs.LG, llm, multimodal。Safety evaluation is critical for assessing whether aligned Large Language Models (LLMs) remain robust against jailbreak attacks....",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "llm",
+        "multimodal",
+        "prefill",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-26T12:44:32Z",
+      "url": "https://arxiv.org/abs/2608.26222",
+      "pdfUrl": "https://arxiv.org/pdf/2608.26222v1"
     }
   ]
 }
