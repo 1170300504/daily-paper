@@ -1,7 +1,182 @@
 {
-  "generatedAt": "2026-08-28T13:51:50.188468+08:00",
+  "generatedAt": "2026-08-29T11:24:49.728558+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-08-29",
+      "generatedAt": "2026-08-29T11:24:49.728558+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2608.25977",
+          "title": "When Personality Meets Quantization: A Layer-wise MBTI Analysis of Quantized LLMs",
+          "authors": [
+            "Yao Fu",
+            "Lijia Huang",
+            "Xiaomin Li",
+            "Runchao Li",
+            "Yu Yin",
+            "Kenneth A. Loparo"
+          ],
+          "summary": "Personality is increasingly important in large language models (LLMs), as it shapes users' trust, engagement, and emotional experiences. While the Myers--Briggs Type Indicator (MBTI) has emerged as a common framework for assessing LLMs' personality, existing studies focus primarily on full-precision models and evaluate only final outputs. They overlook the widespread deployment of quantized LLMs requiring low memory footprints, whose personality traits remain underexplored. In this work, we present a systematic MBTI analysis of open-source LLMs across multiple precisions, including mainstream 4-bit methods (GPTQ, AWQ) and extreme 2-bit settings (AQLM variants). Beyond output-level evaluation, we examine how personality emerges across layers through option-level entropy and confidence-gap dynamics, and introduce Uncertainty-Amplified Layer Decoding (UALD) to study decoding-induced personality drift at inference time. Our results reveal a key insight: LLMs' personality is not a static property, but an emergent, layer-dependent decision process sensitive to quantization, prompting, and decoding. Specifically, we find that (1) ENFJ remains dominant across model families and precisions; (2) 4-bit quantization largely preserves coarse personality structure, while 2-bit quantization disrupts fine-grained prompt consistency and cross-precision agreement; (3) personality decisions emerges in upper layers, following substantial ambiguity in early layers; and (4) inference decoding can shift personality, while personality-aligned conditioning improves robustness. These findings provide a new perspective on the behavioral reliability of quantized LLMs and highlight the importance of considering internal dynamics and inference strategies in personality-sensitive chatbot applications.",
+          "reason": "近 30 天；关键词：cs.CL, inference, llm。Personality is increasingly important in large language models (LLMs), as it shapes users' trust, engagement, and emotional experi...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "inference",
+            "llm",
+            "quantization"
+          ],
+          "signal": 97,
+          "source": "arXiv",
+          "publishedAt": "2026-08-26T16:32:50Z",
+          "url": "https://arxiv.org/abs/2608.25977",
+          "pdfUrl": "https://arxiv.org/pdf/2608.25977v1"
+        },
+        {
+          "id": "arxiv-2608.25276",
+          "title": "Groundhog Bit-Flip Attack: Seeding Infinite Generation Loops in Mixture-of-Experts LLMs through Bit Flips",
+          "authors": [
+            "Huakang Lin",
+            "Tiancheng Zheng",
+            "Mingxuan Sun",
+            "Tianhong Xu",
+            "Fan Zhang",
+            "Yunsi Fei",
+            "Ruyi Ding"
+          ],
+          "summary": "Mixture-of-Experts (MoE) architectures enable scalable and efficient large language models (LLMs) by selectively activating expert sub-networks through a routing mechanism. However, this adaptive design introduces a new attack surface: specific experts become disproportionately correlated with certain tokens (e.g., end-of-sequence), allowing adversaries to manipulate model behavior via lightweight perturbations. In this work, we present \\textbf{Groundhog Bit-Flip Attack (GBFA)}, the first bit-flip-based \\textit{ Denial-of-Wallet availability attack} against MoE-based LLMs. By identifying and flipping routing-layer bits associated with related expert activations, we demonstrate that GBFA substantially extends the decoding token usage across three different LLM modes: conversational, reasoning, and agentic tasks, while largely preserving semantic fidelity. Across four main real-world MoE-based LLMs, manually deactivating on average fewer than \\textbf{4 experts} drives average output inflation to $\\mathbf{5912\\%}$, with the majority of test samples reaching max tokens. These results reveal a robustness vulnerability of MoE architectures to bit flip, and highlight the potential of GBFA as an availability attack against LLMs.",
+          "reason": "近 30 天；关键词：cs.CL, efficient, llm。Mixture-of-Experts (MoE) architectures enable scalable and efficient large language models (LLMs) by selectively activating expert...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "efficient",
+            "llm",
+            "serving"
+          ],
+          "signal": 97,
+          "source": "arXiv",
+          "publishedAt": "2026-08-26T01:23:01Z",
+          "url": "https://arxiv.org/abs/2608.25276",
+          "pdfUrl": "https://arxiv.org/pdf/2608.25276v1"
+        },
+        {
+          "id": "arxiv-2608.26580",
+          "title": "Visual Information-Guided Parallel Decoding for Diffusion Multimodal Large Language Models",
+          "authors": [
+            "Insu Lee",
+            "Wooje Park",
+            "Wonseok Shin",
+            "Jinwoo Son",
+            "Byonghyo Shim"
+          ],
+          "summary": "Diffusion multimodal large language models (dMLLMs) have recently emerged as a new decoding paradigm for multimodal generation. Starting from a fully masked sequence, dMLLMs progressively decode the sequence by unmasking a subset of the remaining masked positions at each step. Since the selected tokens serve as the prediction context for subsequent steps, deciding which tokens to decode is crucial to the quality of the final output. The most common strategy prioritizes tokens based on a certainty measure that tends to favor tokens frequently observed in the training data. Recent approaches instead order tokens according to their influence on subsequent predictions, but do not explicitly account for the input image. We propose the Visual Information-Guided Sampler (VIG-Sampler), which prioritizes tokens based on their attention to image tokens. We further impose a constraint that penalizes candidate tokens whose image-attention distributions are similar to those of previously selected tokens, thereby increasing the information gain of the decoded subset. Extensive experiments on 7 captioning and VQA benchmarks with 3 open-source dMLLMs demonstrate the effectiveness of VIG-Sampler, which outperforms the Info-Gain Sampler by an average of 19.3 CIDEr points across the captioning benchmarks and surpasses it on COCO Caption while using only half as many decoding steps.",
+          "reason": "近 30 天；关键词：cs.CV, llm, multimodal。Diffusion multimodal large language models (dMLLMs) have recently emerged as a new decoding paradigm for multimodal generation. St...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CV",
+            "llm",
+            "multimodal"
+          ],
+          "signal": 85,
+          "source": "arXiv",
+          "publishedAt": "2026-08-27T03:46:27Z",
+          "url": "https://arxiv.org/abs/2608.26580",
+          "pdfUrl": "https://arxiv.org/pdf/2608.26580v1"
+        },
+        {
+          "id": "arxiv-2608.26462",
+          "title": "Diff Mining: Logit Differences Reveal Finetuning Objectives",
+          "authors": [
+            "Greg Kocher",
+            "Robert West",
+            "Clément Dumas",
+            "Julian Minder"
+          ],
+          "summary": "Finetuning has become the gold standard for refining existing behaviors and inducing new ones in language models, yet it often remains unclear exactly which behaviors emerge during this process. As models grow ever more capable, understanding finetuning better becomes increasingly important, particularly since unwanted behaviors may arise during finetuning. In this paper, we introduce Diff Mining, a simple yet effective framework for identifying what a finetuned model has learned by comparing its logits to those of its base model. Diff Mining effectively surfaces salient tokens that are amplified in the finetuned model, serving as a fingerprint of its training -- even on text unrelated to the finetuning domain. Unlike many existing model diffing methods which require model internals, Diff Mining only needs access to output logits and scales to large models. The framework consists of two modular stages: (i) extracting per-context logit differences between the finetuned and base models on a reference corpus, and (ii) aggregating the resulting signals to construct an interpretable token set representing the finetune. For aggregation, we explore both a simple Top-K frequency method and a Non-negative Matrix Factorization (NMF)-based approach for disentangling multiple finetuning objectives into distinct token clusters. Empirically, Diff Mining succeeds across diverse settings: on finetune domain detection, it significantly outperforms state-of-the-art model diffing methods both in identifying relevant tokens and in downstream performance when an interpretability agent is given access to the extracted token set; on models with injected biases, it identifies more than one third of the biases without targeted probing. Overall, our framework shows promise in developing auditing tools to detect finetuning objectives.",
+          "reason": "近 30 天；关键词：cs.LG, serving。Finetuning has become the gold standard for refining existing behaviors and inducing new ones in language models, yet it often rem...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "serving"
+          ],
+          "signal": 82,
+          "source": "arXiv",
+          "publishedAt": "2026-08-26T23:33:18Z",
+          "url": "https://arxiv.org/abs/2608.26462",
+          "pdfUrl": "https://arxiv.org/pdf/2608.26462v1"
+        },
+        {
+          "id": "arxiv-2608.25927",
+          "title": "Code World Model: Coding Agent as World Brain",
+          "authors": [
+            "Yiwen Chen",
+            "Guosheng Lin",
+            "Chi Zhang"
+          ],
+          "summary": "World models aim to simulate how complex environments evolve under actions and events, yet existing video-based world models primarily learn dynamics from visual observations, which reveal outcomes rather than the underlying knowledge, rules, and mechanisms governing world evolution. This makes it difficult to maintain persistent consequences and support coherent, open-ended evolution. We introduce Code World Model, a framework that separates world evolution from visual realization by combining the reasoning and coding capabilities of language models with the generative priors of video models. A coding agent serves as the world brain, reasoning about events and their consequences and generating executable code to maintain persistent world state and perform rule-consistent evolution. To connect executable state with visual generation, we introduce a proxy representation that encodes frame-wise spatiotemporal constraints and is compiled into a proxy video, which conditions a video model to render high-fidelity visual observations. We further develop data pipelines for constructing aligned proxy-observation pairs from gameplay and real-world videos. After fine-tuning on paired gameplay data, MiniMax-H3 follows proxy-based spatiotemporal specifications from simple interactive worlds built by the coding agent while preserving rich visual details and dynamics. These results demonstrate the potential of combining code for persistent world evolution with video models for flexible visual realization, providing a new path toward open-ended world models.",
+          "reason": "近 30 天；关键词：cs.CV, serving。World models aim to simulate how complex environments evolve under actions and events, yet existing video-based world models prima...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CV",
+            "serving"
+          ],
+          "signal": 82,
+          "source": "arXiv",
+          "publishedAt": "2026-08-26T15:37:33Z",
+          "url": "https://arxiv.org/abs/2608.25927",
+          "pdfUrl": "https://arxiv.org/pdf/2608.25927v1"
+        },
+        {
+          "id": "arxiv-2608.26319",
+          "title": "When Is Noise Response Universal? Tokenization as the Hidden Variable in Language Models",
+          "authors": [
+            "Yefan Tao",
+            "Gerald Friedland",
+            "Luyang Kong"
+          ],
+          "summary": "The performance of textual neural models often degrades when their inputs are corrupted by noise such as typos, OCR errors, or dropped words. We study the degradation rate across neural models, both sentence embeddings and decoder-only LLMs, and find that how consistent it is depends on the scale of the noise: under word-level noise, models with very different architectures decline along nearly the same curve, while under character-level noise they separate. We further identify the determining factor to be the training objective, not the architecture: eight encoders spanning six pretraining paradigms are scattered initially, and collapse onto a common curve after a short contrastive training recipe. We trace the word/character split to tokenization: a single character edit forces the tokenizer to re-segment the surrounding word, disturbing the token sequence far more than dropping a whole word does. This finding and its underlying mechanism provide a practical means to predict a model's robustness to noise without any noisy evaluation, and to install robustness at a chosen noise scale through noise-augmented training.",
+          "reason": "近 30 天；关键词：cs.CL, llm。The performance of textual neural models often degrades when their inputs are corrupted by noise such as typos, OCR errors, or dro...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm"
+          ],
+          "signal": 77,
+          "source": "arXiv",
+          "publishedAt": "2026-08-26T18:51:51Z",
+          "url": "https://arxiv.org/abs/2608.26319",
+          "pdfUrl": "https://arxiv.org/pdf/2608.26319v1"
+        },
+        {
+          "id": "arxiv-2608.25574",
+          "title": "Generative vs. Encoder Large Language Models for ASR Evaluation: A Comparative Study",
+          "authors": [
+            "Thibault Bañeras-Roux",
+            "Shashi Kumar",
+            "Driss Khalil",
+            "Sergio Burdisso",
+            "Petr Motlicek",
+            "Shiran Liu",
+            "Mickael Rouvier",
+            "Jane Wottawa",
+            "Richard Dufour"
+          ],
+          "summary": "Automatic Speech Recognition (ASR) is typically evaluated using Word Error Rate (WER), which poorly reflects semantic similarity. While embedding-based metrics correlate better with human judgments, the respective roles of encoder and decoder-based Large Language Models (LLMs) remain underexplored. This paper presents a comparative study of both families for ASR evaluation. We analyze BERTScore and SemDist across different LLMs, layers, and pooling strategies, showing that both metrics can achieve strong correlation with human judgments when properly configured. For decoder models, we investigate generative LLMs in two settings: pairwise hypothesis selection via prompting and direct qualitative error classification. Our results show that encoder-based metrics remain highly competitive, while generative LLMs perform strongly in hypothesis comparison and improve the interpretability of ASR evaluation.",
+          "reason": "近 30 天；关键词：cs.CL, llm。Automatic Speech Recognition (ASR) is typically evaluated using Word Error Rate (WER), which poorly reflects semantic similarity....",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm"
+          ],
+          "signal": 77,
+          "source": "arXiv",
+          "publishedAt": "2026-08-26T09:36:48Z",
+          "url": "https://arxiv.org/abs/2608.25574",
+          "pdfUrl": "https://arxiv.org/pdf/2608.25574v1"
+        }
+      ]
+    },
     {
       "date": "2026-08-28",
       "generatedAt": "2026-08-28T13:51:50.188468+08:00",
