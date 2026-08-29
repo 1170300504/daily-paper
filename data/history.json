@@ -1,7 +1,13 @@
 {
-  "generatedAt": "2026-08-29T11:24:49.728558+08:00",
+  "generatedAt": "2026-08-30T07:40:49.043561+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-08-30",
+      "generatedAt": "2026-08-30T07:40:49.043561+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": []
+    },
     {
       "date": "2026-08-29",
       "generatedAt": "2026-08-29T11:24:49.728558+08:00",
@@ -20527,85 +20533,6 @@
           "publishedAt": "2022-11-18T00:00:00Z",
           "url": "https://arxiv.org/abs/2211.10438",
           "pdfUrl": "https://arxiv.org/pdf/2211.10438"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-01",
-      "generatedAt": "2026-06-01T06:00:00+08:00",
-      "source": "curated seed",
-      "papers": [
-        {
-          "id": "arxiv-1706.06978",
-          "title": "Deep Interest Network for Click-Through Rate Prediction",
-          "authors": [
-            "Guorui Zhou",
-            "Chengru Song",
-            "Xiaoqiang Zhu",
-            "Ying Fan",
-            "Han Zhu"
-          ],
-          "summary": "Introduces an attention-based network to adaptively activate user interests from historical behavior for CTR prediction.",
-          "reason": "阿里 DIN 系列的起点，适合关注用户兴趣建模和行为序列特征。",
-          "area": "推荐算法",
-          "tags": [
-            "ctr",
-            "attention",
-            "user-interest"
-          ],
-          "signal": 94,
-          "source": "arXiv",
-          "publishedAt": "2017-06-21T00:00:00Z",
-          "url": "https://arxiv.org/abs/1706.06978",
-          "pdfUrl": "https://arxiv.org/pdf/1706.06978"
-        },
-        {
-          "id": "arxiv-1905.08108",
-          "title": "Neural Graph Collaborative Filtering",
-          "authors": [
-            "Xiang Wang",
-            "Xiangnan He",
-            "Meng Wang",
-            "Fuli Feng",
-            "Tat-Seng Chua"
-          ],
-          "summary": "Models high-order user-item connectivity with graph neural networks for collaborative filtering.",
-          "reason": "图推荐代表作之一，适合跟 LightGCN 和 graph retrieval 方法一起看。",
-          "area": "推荐算法",
-          "tags": [
-            "graph",
-            "collaborative-filtering",
-            "embedding"
-          ],
-          "signal": 91,
-          "source": "arXiv",
-          "publishedAt": "2019-05-20T00:00:00Z",
-          "url": "https://arxiv.org/abs/1905.08108",
-          "pdfUrl": "https://arxiv.org/pdf/1905.08108"
-        },
-        {
-          "id": "arxiv-2306.00978",
-          "title": "AWQ: Activation-aware Weight Quantization for LLM Compression and Acceleration",
-          "authors": [
-            "Ji Lin",
-            "Jiaming Tang",
-            "Haotian Tang",
-            "Shang Yang",
-            "Wei-Ming Chen"
-          ],
-          "summary": "Uses activation-aware weight protection to quantize large language models for efficient deployment with limited accuracy loss.",
-          "reason": "权重量化和部署优化方向的常用基线，适合跟 SmoothQuant、GPTQ 对照。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "quantization",
-            "compression",
-            "deployment"
-          ],
-          "signal": 89,
-          "source": "arXiv",
-          "publishedAt": "2023-06-01T00:00:00Z",
-          "url": "https://arxiv.org/abs/2306.00978",
-          "pdfUrl": "https://arxiv.org/pdf/2306.00978"
         }
       ]
     }
