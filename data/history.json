@@ -1,7 +1,13 @@
 {
-  "generatedAt": "2026-08-30T07:40:49.043561+08:00",
-  "source": "curated industry radar + arXiv API",
+  "generatedAt": "2026-08-31T08:00:40.867672+08:00",
+  "source": "curated industry radar",
   "history": [
+    {
+      "date": "2026-08-31",
+      "generatedAt": "2026-08-31T08:00:40.867672+08:00",
+      "source": "curated industry radar",
+      "papers": []
+    },
     {
       "date": "2026-08-30",
       "generatedAt": "2026-08-30T07:40:49.043561+08:00",
@@ -20428,111 +20434,6 @@
           "publishedAt": "2023-12-01T00:00:00Z",
           "url": "https://arxiv.org/abs/2312.00752",
           "pdfUrl": "https://arxiv.org/pdf/2312.00752"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-02",
-      "generatedAt": "2026-06-02T06:00:00+08:00",
-      "source": "curated seed",
-      "papers": [
-        {
-          "id": "arxiv-1904.06690",
-          "title": "BERT4Rec: Sequential Recommendation with Bidirectional Encoder Representations from Transformer",
-          "authors": [
-            "Fei Sun",
-            "Jun Liu",
-            "Jian Wu",
-            "Changhua Pei",
-            "Xiao Lin"
-          ],
-          "summary": "Applies bidirectional Transformer encoders to sequential recommendation and uses cloze-style objectives for item sequence modeling.",
-          "reason": "推荐算法与 transformer 结合的经典切入点，适合跟 SASRec 对照。",
-          "area": "推荐算法",
-          "tags": [
-            "sequential-recommendation",
-            "bert",
-            "transformer"
-          ],
-          "signal": 93,
-          "source": "arXiv",
-          "publishedAt": "2019-04-13T00:00:00Z",
-          "url": "https://arxiv.org/abs/1904.06690",
-          "pdfUrl": "https://arxiv.org/pdf/1904.06690"
-        },
-        {
-          "id": "arxiv-1606.07792",
-          "title": "Wide & Deep Learning for Recommender Systems",
-          "authors": [
-            "Heng-Tze Cheng",
-            "Levent Koc",
-            "Jeremiah Harmsen",
-            "Tal Shaked",
-            "Tushar Chandra"
-          ],
-          "summary": "Combines memorization from wide linear models with generalization from deep neural networks for app recommendation.",
-          "reason": "工业 CTR 排序结构的基础范式，适合和 DeepFM、DCN 一起读。",
-          "area": "推荐算法",
-          "tags": [
-            "wide-deep",
-            "ranking",
-            "ctr"
-          ],
-          "signal": 92,
-          "source": "arXiv",
-          "publishedAt": "2016-06-24T00:00:00Z",
-          "url": "https://arxiv.org/abs/1606.07792",
-          "pdfUrl": "https://arxiv.org/pdf/1606.07792"
-        },
-        {
-          "id": "arxiv-2305.13245",
-          "title": "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints",
-          "authors": [
-            "Joshua Ainslie",
-            "James Lee-Thorp",
-            "Michiel de Jong",
-            "Yury Zemlyanskiy",
-            "Federico Lebron"
-          ],
-          "summary": "Studies grouped-query attention as a practical middle ground between multi-head attention quality and multi-query attention inference efficiency.",
-          "reason": "KV cache 和吞吐优化相关，适合理解现代 LLM decoder 结构取舍。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "gqa",
-            "kv-cache",
-            "attention",
-            "latency"
-          ],
-          "signal": 91,
-          "source": "arXiv",
-          "publishedAt": "2023-05-22T00:00:00Z",
-          "url": "https://arxiv.org/abs/2305.13245",
-          "pdfUrl": "https://arxiv.org/pdf/2305.13245"
-        },
-        {
-          "id": "arxiv-2211.10438",
-          "title": "SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models",
-          "authors": [
-            "Guangxuan Xiao",
-            "Ji Lin",
-            "Mickael Seznec",
-            "Hao Wu",
-            "Julien Demouth"
-          ],
-          "summary": "Moves activation outliers into weights to enable efficient post-training quantization for LLMs while preserving accuracy.",
-          "reason": "量化推理的重要论文，适合跟 AWQ、GPTQ、FP8 serving 一起看。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "quantization",
-            "ptq",
-            "latency",
-            "memory"
-          ],
-          "signal": 90,
-          "source": "arXiv",
-          "publishedAt": "2022-11-18T00:00:00Z",
-          "url": "https://arxiv.org/abs/2211.10438",
-          "pdfUrl": "https://arxiv.org/pdf/2211.10438"
         }
       ]
     }
