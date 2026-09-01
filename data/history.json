@@ -1,7 +1,294 @@
 {
-  "generatedAt": "2026-09-01T08:53:11.630355+08:00",
+  "generatedAt": "2026-09-02T07:39:38.675296+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-09-02",
+      "generatedAt": "2026-09-02T07:39:38.675296+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2608.31082",
+          "title": "Token-Efficient Data Reasoning Agents via Adaptive Structuring of Unstructured Data",
+          "authors": [
+            "Milad Rezaei Hajidehi",
+            "Qitong Wang",
+            "Stratos Idreos"
+          ],
+          "summary": "Valuable data remains embedded in unstructured sources: web pages, reports, contracts, filings, earnings calls, and PDFs. The big bet in enterprise AI is deploying LLM agents that reason over this data to answer complex questions for every knowledge worker. Agents can do this today, but at prohibitive cost. Each question repeatedly opens large documents to recover scattered evidence, consuming up to a million tokens. However, if the data were already structured, the same question would reduce to a cheap database lookup. For example, on FanOutQA benchmark, reasoning over an ideal pre-structured store is 28X cheaper, and the gap grows to orders of magnitude as questions fan out over more documents. Yet structuring everything in advance is not viable: documents hold vastly more possible structure than any workload will use, and the useful structure and documents are unknown until queries arrive. We propose agentic data cracking, a method that structures unstructured data adaptively and speculatively as a byproduct of reasoning itself. Structuring is adaptive because observed queries decide when it happens and what matters, and speculative because it goes beyond the current question. Whenever the agent opens a document to answer, a cracking sub-agent forks from the already-loaded context at marginal cost and extracts grounded structure likely to serve related future queries. Over time, an increasing share of queries is fully covered by structured data and answered without opening a document, keeping agentic accuracy at close to RAG cost. On FanOutQA, extended with merely one related question per test question, cracking cuts cost by 53% while preserving accuracy. Agentic data cracking is a first step toward next-generation data infrastructure for agentic reasoning over unstructured data: a shared substrate beneath the model where knowledge that reasoning already paid to uncover accumulates.",
+          "reason": "近 30 天；关键词：cs.AI, efficient, llm。Valuable data remains embedded in unstructured sources: web pages, reports, contracts, filings, earnings calls, and PDFs. The big...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AI",
+            "efficient",
+            "llm",
+            "serving",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-31T16:53:45Z",
+          "url": "https://arxiv.org/abs/2608.31082",
+          "pdfUrl": "https://arxiv.org/pdf/2608.31082v1"
+        },
+        {
+          "id": "arxiv-2608.30963",
+          "title": "A Universal Context-Reuse Layer for Cross-Model KV Sharing",
+          "authors": [
+            "Yi Li",
+            "Dongming Jiang",
+            "Yi Zhao",
+            "Bingzhe Li"
+          ],
+          "summary": "Modern large language model (LLM) serving systems increasingly operate over repeated or shared context, yet each model typically performs its own prefill computation even when another model has already processed the same input. Existing KV-cache reuse mechanisms substantially reduce redundant computation within a single model, but generally assume that the producer and consumer of a cache are identical. We study \\emph{cross-model KV sharing}, which translates the KV state produced by a source model into a representation that can be consumed by a different target model, including models that differ in scale, architecture, attention configuration, tokenizer, and model family. We evaluate the approach in both within-family and cross-family settings. For Qwen2.5-7B $\\rightarrow$ Qwen2.5-1.5B, translated KV states improve LongBench2 accuracy from 27.59\\% to 34.48\\%, a gain of 6.89 percentage points over the native 1.5B baseline, while reducing handoff cost relative to native target prefill. For the cross-family Qwen2.5-1.5B $\\rightarrow$ Gemma-2-2B setting, KV handoff reduces target-side prefill cost by up to 67.05\\% at 4K context length while maintaining decoding perplexity close to native-model baselines. In a more heterogeneous Llama3.1-70B $\\rightarrow$ Qwen2.5-7B setting, cross-family handoff achieves 44.0\\% accuracy compared with 45.7\\% for native Qwen2.5-7B inference, while reducing measured latency from 899ms to 138ms. These results provide initial evidence that KV states can serve as transferable computational representations rather than strictly model-local caches, and motivate \\emph{context mobility} as a systems abstraction for reducing redundant prefill across heterogeneous LLM and multi-agent inference workflows.",
+          "reason": "近 30 天；关键词：cs.LG, inference, latency。Modern large language model (LLM) serving systems increasingly operate over repeated or shared context, yet each model typically p...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "latency",
+            "llm",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-31T15:28:17Z",
+          "url": "https://arxiv.org/abs/2608.30963",
+          "pdfUrl": "https://arxiv.org/pdf/2608.30963v1"
+        },
+        {
+          "id": "arxiv-2608.30830",
+          "title": "Adaptive KV Retention for LLM Agents at Human-Approval Timescales",
+          "authors": [
+            "Minseo Choi",
+            "Ananya Joshi"
+          ],
+          "summary": "Unlike the seconds-scale tool-call pauses targeted by prior agent-serving systems, agentic LLM requests can be suspended for minutes or hours while waiting for human approval. We study how suspension and resumption affect GPU serving performance and develop a retention policy that balances active-serving capacity against future recomputation under uncertain approval waits. The central tension is severe because retaining suspended KV preserves fast resume but can consume enough GPU capacity to reduce active-serving goodput by 41%, while evicting it avoids that residency cost at the expense of nearly $10\\times$ higher resume latency when the request returns. We develop a tiered retention controller around GPU opportunity cost, which expresses the serving capacity consumed by preserving or reconstructing a suspended request's KV state in a common GPU-time cost. Within host memory, the controller selects between indefinite retention and load-indexed expiration using calibration wait samples, without requiring per-request wait prediction. On human-scale approval workloads, our controller improves active-request goodput by 23-51% over the vLLM baselines, 22-29% over MORI, and 41-52% over Continuum.",
+          "reason": "近 30 天；关键词：cs.OS, latency, llm。Unlike the seconds-scale tool-call pauses targeted by prior agent-serving systems, agentic LLM requests can be suspended for minut...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.OS",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-31T14:05:52Z",
+          "url": "https://arxiv.org/abs/2608.30830",
+          "pdfUrl": "https://arxiv.org/pdf/2608.30830v1"
+        },
+        {
+          "id": "arxiv-2608.30647",
+          "title": "What It Costs to Compose, Rebuild, and Correct Precomputed Memory",
+          "authors": [
+            "Asa Shepard"
+          ],
+          "summary": "Language models can answer from precomputed memory, a model's saved reading of a body of material, reused across requests instead of read again at each. This paper maps where that practice preserves correctness and the conditions under which it fails. Across experiments on Llama-3.1-8B-Instruct using both saved key-value caches and trained compressions of them, precomputed memory degrades when assembled from separately prepared parts, stays current only through rebuilds costing a large fraction of full preparation in our measurements, and ignores corrections served beside it conditional on phrasing. If precomputed memories can be served alongside one another, be cost-efficiently rebuilt, and be superseded by new information arriving in real-time, they can serve as a way to avoid re-feeding context to a model over repeated queries. The implication of our results for a deployed system that deals with a variety of queries is that precomputed memories are best rebuilt on the cadence at which new information changes what the memory was originally computed from. Both warm-rebuilding trained compressions of key-value caches and serving specifically-phrased updates beside a memory, as pasted text or injected cache state, show particular promise for keeping precomputed memories current, the latter as an interim measure between rebuilds, and we measure the cost and name the remaining questions associated with each.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, deployed。Language models can answer from precomputed memory, a model's saved reading of a body of material, reused across requests instead...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.CL",
+            "deployed",
+            "efficient",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-08-31T11:49:42Z",
+          "url": "https://arxiv.org/abs/2608.30647",
+          "pdfUrl": "https://arxiv.org/pdf/2608.30647v1"
+        },
+        {
+          "id": "arxiv-2608.30439",
+          "title": "Event-Driven Language Models with Sparse Neural Activity for Neuromorphic Hardware",
+          "authors": [
+            "Simon Richter",
+            "Ruhai Lin",
+            "Jason Yik",
+            "Taylor Kergan",
+            "Rui-Jie Zhu",
+            "Farshad Moradi",
+            "Jason Eshraghian"
+          ],
+          "summary": "Inference with transformer-based large language models (LLMs) is often limited by the memory-bound KV cache and quadratic attention cost. State-space models (SSMs) mitigate this through linear attention and fixed-size recurrent states, but their large dense linear projections remain computationally expensive even after quantization. We introduce a method that induces sparse neural activity in heavily quantized linear-attention models with minimal performance loss. Activations below a per-projection trainable threshold ($\\pm Δ$) are nullified while preserving crucial outliers, achieving comparable performance to dense models with up to 4$\\times$ fewer effective arithmetic operations. Targeting a multi-core, multi-chip neuromorphic platform, where event-driven execution converts unstructured sparsity into throughput at both the compute and communication levels, a capability GPU architectures fundamentally lack, we project up to 37$\\times$ higher throughput and 16$\\times$ lower power versus edge GPU inference of a comparable transformer-based model, and up to 5.4$\\times$ improvements over the non-sparsified baseline. These results position sparse, quantized linear-attention models as a natural fit for deploying LLMs on event-driven multi-core platforms.",
+          "reason": "近 30 天；关键词：cs.NE, inference, kv-cache。Inference with transformer-based large language models (LLMs) is often limited by the memory-bound KV cache and quadratic attentio...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.NE",
+            "inference",
+            "kv-cache",
+            "llm",
+            "quantization",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-31T08:28:01Z",
+          "url": "https://arxiv.org/abs/2608.30439",
+          "pdfUrl": "https://arxiv.org/pdf/2608.30439v1"
+        },
+        {
+          "id": "arxiv-2608.30310",
+          "title": "Tail-Replay: Escaping the Curse of Linear Attention in Prefix Caching for Hybrid LLMs",
+          "authors": [
+            "Yirui Liu",
+            "Ruoling Qi",
+            "Xuaner Wu",
+            "Penghang Liu",
+            "Jian Chen"
+          ],
+          "summary": "Hybrid large language models interleave full-attention layers with linear-attention layers to reduce the cost of long-context inference. This structure complicates prefix caching: full-attention key-value caches are token-addressable, whereas linear-attention layers maintain recurrent states that cannot be rolled back to arbitrary prefix boundaries. Existing hybrid prefix caching methods address this mismatch by storing recurrent-state checkpoints. As a result, token-level matches are directly usable only at positions aligned with stored checkpoints, constraining prefix reuse to a discrete set of boundaries. We present Tail-Replay, a prefix caching mechanism that enables unconstrained token-level prefix reuse in hybrid large language models. The key insight is that linear-attention mechanisms such as Gated DeltaNet can be viewed as a structured, lossy compression of the input prefix: gated recurrent updates progressively attenuate the contributions of earlier inputs. Consequently, the recurrent state of a matched prefix can be well approximated by replaying only a short, recent suffix of that prefix. Tail-Replay exploits this property by caching the exact full-attention key-value cache while omitting recurrent-state checkpoints. On a cache hit, it reconstructs the linear-attention states by replaying a short, recent suffix of the matched prefix. As a result, the reuse boundary is determined by the shared tokens rather than by recurrent-state checkpoints. We evaluate Tail-Replay on three Gated DeltaNet-based hybrid models using the LongBench and RULER benchmarks. With only a 5--10\\% replay budget, it retains 92.8--99.9\\% of full-prefill quality on LongBench and RULER. For serving efficiency, we evaluate time-to-first-token speedups across multiple matched-prefix lengths---8K, 16K, and 32K. The speedup grows with prefix length, reaching $9.1$--$14.3\\times$ over full prefill at 32K.",
+          "reason": "近 30 天；关键词：cs.LG, inference, llm。Hybrid large language models interleave full-attention layers with linear-attention layers to reduce the cost of long-context infe...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "llm",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-31T06:27:07Z",
+          "url": "https://arxiv.org/abs/2608.30310",
+          "pdfUrl": "https://arxiv.org/pdf/2608.30310v1"
+        },
+        {
+          "id": "arxiv-2608.30295",
+          "title": "CateKV: On Sequential Consistency for Long-Context LLM Inference Acceleration",
+          "authors": [
+            "Haoyun Jiang",
+            "Haolin Li",
+            "Jianwei Zhang",
+            "Fei Huang",
+            "Qiang Hu",
+            "Minmin Sun",
+            "Shuai Xiao",
+            "Yong Li",
+            "Junyang Lin",
+            "Jiangchao Yao"
+          ],
+          "summary": "Large language models (LLMs) have demonstrated strong capabilities in handling long-context tasks, but processing such long contexts remains challenging due to the substantial memory requirements and inference latency. In this work, we discover that certain attention heads exhibit sequential consistency in their attention patterns, which can be persistently identified using a coefficient-of-variation-based algorithm. Inspired by this observation, we propose CateKV, a hybrid KV cache method that retains only critical token information for consistent heads, thereby reducing KV cache size and computational overhead, while preserving the majority of KV pairs in adaptive heads to ensure high accuracy. We show the unique characteristics of our algorithm and its extension with existing acceleration methods. Comprehensive evaluations on long-context benchmarks show that, while maintaining accuracy comparable to full attention, CateKV reduces memory usage by up to $2.72\\times$ and accelerates decoding by $2.18\\times$ in single-sample inputs, and boosts throughput by $3.96\\times$ in batch scenarios.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Large language models (LLMs) have demonstrated strong capabilities in handling long-context tasks, but processing such long contex...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "inference",
+            "kv-cache",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-08-31T06:02:37Z",
+          "url": "https://arxiv.org/abs/2608.30295",
+          "pdfUrl": "https://arxiv.org/pdf/2608.30295v1"
+        },
+        {
+          "id": "arxiv-2608.29652",
+          "title": "ICEGR: An Intent-Coherent End-to-End Generative Retrieval Framework for E-commerce Search",
+          "authors": [
+            "Jiayi Tuo",
+            "Hehan Li",
+            "Dongjun Fu",
+            "Xin Lu",
+            "Ling Zhuang",
+            "Fuwei Zhang",
+            "Meifang Li",
+            "Peizhi Xu",
+            "Hanmeng Liu",
+            "Shuanglong Li",
+            "Liwei Qian",
+            "Yanbiao Ma",
+            "Fuzhen Zhuang"
+          ],
+          "summary": "Generative Retrieval (GR) is promising for e-commerce search, yet existing methods struggle to maintain query-intent consistency throughout the training pipeline. First, semantic ID (SID) construction based on static product information limits the ability of SIDs to encode product-intent associations. Second, although supervised fine-tuning (SFT) learns product-SID mappings across the catalog, low-exposure products still lack real query-intent supervision because query-to-SID training relies solely on online logs, resulting in poor retrieval performance for these products. Third, business-oriented preference optimization may favor popular or high-value products over those that best match the query intent, weakening query-product relevance. To address these issues, we propose ICEGR, an Intent-Coherent End-to-End Generative Retrieval Framework for E-commerce Search that integrates query intent consistently throughout the GR training pipeline. ICEGR comprises three components: (1) Intent-Aware SID Construction incorporates query-intent signals into SID construction, enabling SIDs to capture search intent beyond static product information; (2) Synthetic Query-Enhanced Unified SFT unifies multiple SFT tasks under the query-to-SID objective and augments sparse supervision from online logs with synthetic queries, providing complementary query-intent supervision for low-exposure products; and (3) Relevance-Calibrated Preference Optimization integrates query-product relevance and business signals into a margin-adaptive preference objective, preserving query intent while enabling business preference learning. Offline results show that ICEGR improves Recall@20 by 21.7% and NDCG@20 by 26.6% over the baseline. Deployed as an end-to-end generative retrieval pathway in Baidu E-commerce Search, ICEGR achieves relative improvements of 3.52% in CTR, 15.96% in order volume, and 7.53% in GMV in an A/B test.",
+          "reason": "近 30 天；公司信号：Baidu；推荐/排序/广告方向；关键词：baidu, cs.IR, deployed。Generative Retrieval (GR) is promising for e-commerce search, yet existing methods struggle to maintain query-intent consistency t...",
+          "area": "推荐算法",
+          "tags": [
+            "baidu",
+            "cs.IR",
+            "deployed",
+            "retrieval",
+            "semantic-id",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Baidu/arXiv",
+          "publishedAt": "2026-08-30T08:28:58Z",
+          "url": "https://arxiv.org/abs/2608.29652",
+          "pdfUrl": "https://arxiv.org/pdf/2608.29652v1"
+        },
+        {
+          "id": "arxiv-2608.29410",
+          "title": "Agents as Knowledge Integrator and Utilizer in Multimodal Recommendation",
+          "authors": [
+            "Jinfeng Xu",
+            "Zheyu Chen",
+            "Shuo Yang",
+            "Jinze Li",
+            "Puzhen Wu",
+            "Zewei Liu",
+            "Zheng Lin",
+            "Jianheng Tang",
+            "Jing Yang",
+            "Wei Wang",
+            "Xiping Hu",
+            "Edith Ngai"
+          ],
+          "summary": "Online platforms increasingly rely on multimodal recommender systems to rank products, media, and other Web content. Existing methods usually inject visual and textual features into item representations or build homogeneous graphs from modality-level similarity, but the resulting signals can remain misaligned with the recommendation objective. We study this semantic gap from a knowledge-integration perspective: multimodal content should be interpreted together with user behavior before it is used to construct recommendation graphs or adjust rankings. We propose AgentMMRec, an agent-based multimodal recommendation framework with two coordinated roles. The Integrator Agent infers behavior- and multimodal-aware user preferences and item properties from training interactions and item content, then stores them in a reusable knowledge memory. The Utilizer Agent consumes this memory to refine modality-specific item-item graphs, construct behavior-aware homogeneous graphs, and rerank candidate lists under a frozen evaluation-time memory. This design differs from direct LLM feature augmentation and pure LLM reranking because the generated knowledge is first converted into graph structure and model representations before recommendation. Experiments on three Amazon multimodal recommendation datasets show that AgentMMRec consistently improves Recall and NDCG over recent multimodal baselines, remains effective under sparsity and item cold-start settings, and can transfer its constructed knowledge to existing backbones.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Online platforms increasingly rely on multimodal recommender systems to rank products, media, and other Web content. Existing meth...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "dataset",
+            "llm",
+            "multimodal",
+            "ranking",
+            "recommendation"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-08-29T19:25:18Z",
+          "url": "https://arxiv.org/abs/2608.29410",
+          "pdfUrl": "https://arxiv.org/pdf/2608.29410v1"
+        },
+        {
+          "id": "arxiv-2608.29179",
+          "title": "TAAL: Mitigating Early Beam Pruning in Generative Recommendation via Temporal Autoregressive Alignment",
+          "authors": [
+            "Lianjie Li",
+            "Zhiying Tu",
+            "Dianhui Chu",
+            "Hongliang Sun"
+          ],
+          "summary": "Generative recommendation encodes items as hierarchical semantic identifiers (SIDs) and retrieves the next item through autoregressive decoding. Standard next-token prediction, however, does not explicitly cover the multimodal transitions present in interaction sequences, leaving the ground-truth SID vulnerable to irreversible pruning at early beam-search branches. Across three public benchmarks, we find that 91.9\\%--96.6\\% of retrieval failures occur within the first two decoding steps. We therefore propose Temporal Autoregressive Alignment (TAAL). During training, TAAL constructs a joint $(c_1,c_2)$ soft target from historical transitions and aligns the early-prefix distribution with a forward KL objective. During inference, it calibrates candidate scores with pointwise mutual information (PMI) to reduce the influence of globally frequent prefixes. On Amazon Beauty, Instruments, and Yelp, TAAL improves NDCG@10 over the standard baseline by 39.5\\%, 6.7\\%, and 28.6\\%, respectively, while increasing full-SID survival by 3.9\\%--16.6\\%. Beam-width analysis further shows that the relative survival gain grows as the beam narrows, reaching 39.4\\% at $B=5$.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, alignment。Generative recommendation encodes items as hierarchical semantic identifiers (SIDs) and retrieves the next item through autoregres...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "alignment",
+            "generative-recommendation",
+            "inference",
+            "multimodal",
+            "recommendation"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-08-29T10:11:47Z",
+          "url": "https://arxiv.org/abs/2608.29179",
+          "pdfUrl": "https://arxiv.org/pdf/2608.29179v1"
+        }
+      ]
+    },
     {
       "date": "2026-09-01",
       "generatedAt": "2026-09-01T08:53:11.630355+08:00",
@@ -20279,235 +20566,6 @@
           "publishedAt": "2024-01-17T18:59:53Z",
           "url": "https://arxiv.org/abs/2401.09670",
           "pdfUrl": "https://arxiv.org/pdf/2401.09670"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-04",
-      "generatedAt": "2026-06-04T11:17:15.789816+08:00",
-      "source": "curated industry radar",
-      "papers": [
-        {
-          "id": "arxiv-2606.03866",
-          "title": "Taiji: Pareto Optimal Policy Optimization with Semantics-IDs Trade-off for Industrial LLM-Enhanced Recommendation",
-          "authors": [
-            "Yuecheng Li",
-            "Zeyu Song",
-            "Jing Yao",
-            "Chi Lu",
-            "Peng Jiang",
-            "Kun Gai"
-          ],
-          "summary": "Presents Taiji, an industrial LLM-as-Enhancer recommender framework that aligns LLM semantic rewards with collaborative ID preference rewards through Pareto Optimal Policy Optimization. It reports offline and online A/B validation and deployment on Kuaishou advertising traffic.",
-          "reason": "近 30 天工业推荐主线：Kuaishou 广告平台、LLM4Rec、Semantic IDs、RL 对齐和线上 A/B 都在一篇里。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "llm4rec",
-            "semantic-id",
-            "rl-alignment",
-            "online-ab"
-          ],
-          "signal": 99,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-02T16:39:06Z",
-          "url": "https://arxiv.org/abs/2606.03866",
-          "pdfUrl": "https://arxiv.org/pdf/2606.03866"
-        },
-        {
-          "id": "arxiv-2604.04976",
-          "title": "Tencent Advertising Algorithm Challenge 2025: All-Modality Generative Recommendation",
-          "authors": [
-            "Junwei Pan",
-            "Wei Xue",
-            "Chao Zhou",
-            "Xing Zhou",
-            "Lunan Fan",
-            "Yanbo Wang",
-            "Haijie Gu",
-            "Jie Jiang"
-          ],
-          "summary": "Introduces TencentGR-1M and TencentGR-10M, two de-identified Tencent Ads datasets for all-modality generative recommendation with exposure, click and conversion signals, plus task definitions, baselines and competition findings.",
-          "reason": "近 90 天大厂推荐数据集方向：工业广告、生成式推荐、全模态特征、点击和转化目标都很贴近线上系统。",
-          "area": "推荐算法",
-          "tags": [
-            "tencent",
-            "ads",
-            "generative-recommendation",
-            "dataset",
-            "conversion"
-          ],
-          "signal": 97,
-          "source": "Tencent/arXiv",
-          "publishedAt": "2026-04-04T17:05:15Z",
-          "url": "https://arxiv.org/abs/2604.04976",
-          "pdfUrl": "https://arxiv.org/pdf/2604.04976"
-        },
-        {
-          "id": "arxiv-2605.29639",
-          "title": "RTP-LLM: High-Performance Alibaba LLM Inference Engine",
-          "authors": [
-            "Boyu Tan",
-            "Jiarui Guo",
-            "Zongwei Lv",
-            "Hanbo Sun",
-            "Tong Yang",
-            "Kan Liu",
-            "Xinfei Shi",
-            "Zetao Hu",
-            "Yaxin Yu",
-            "Chi Zhang"
-          ],
-          "summary": "Technical report for Alibaba's production LLM inference engine, covering model loading, prefill-decode disaggregation, hierarchical KV cache reuse, speculative decoding, quantization and multimodal inference.",
-          "reason": "新的业界笔记/技术报告：5 月底阿里生产推理引擎，直接对标 vLLM/SGLang，适合把经典推理论文落到工业系统。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "alibaba",
-            "inference-engine",
-            "kv-cache",
-            "speculative-decoding"
-          ],
-          "signal": 96,
-          "source": "Alibaba/arXiv",
-          "publishedAt": "2026-05-28T09:07:06Z",
-          "url": "https://arxiv.org/abs/2605.29639",
-          "pdfUrl": "https://arxiv.org/pdf/2605.29639"
-        },
-        {
-          "id": "arxiv-2604.05314",
-          "title": "Next-Scale Generative Reranking: A Tree-based Generative Rerank Method at Meituan",
-          "authors": [
-            "Shuli Wang",
-            "Changhao Li",
-            "Ke Fan",
-            "Senjie Kou",
-            "Junwei Yin",
-            "Chi Wang",
-            "Yinhua Zhu",
-            "Haitao Wang",
-            "Xingxing Wang"
-          ],
-          "summary": "Proposes NSGR, a tree-based generative reranking framework that expands recommendation lists from coarse to fine and uses a multi-scale evaluator to guide generation. The method is reported as deployed on Meituan food delivery.",
-          "reason": "近 90 天工业重排方向：Meituan 线上部署，聚焦多阶段推荐里的 generative reranking 和全局/局部列表建模。",
-          "area": "推荐算法",
-          "tags": [
-            "meituan",
-            "reranking",
-            "generative-recommendation",
-            "production"
-          ],
-          "signal": 96,
-          "source": "Meituan/arXiv",
-          "publishedAt": "2026-04-07T01:35:20Z",
-          "url": "https://arxiv.org/abs/2604.05314",
-          "pdfUrl": "https://arxiv.org/pdf/2604.05314"
-        },
-        {
-          "id": "arxiv-2604.02684",
-          "title": "MBGR: Multi-Business Prediction for Generative Recommendation at Meituan",
-          "authors": [
-            "Changhao Li",
-            "Junwei Yin",
-            "Zhilin Zeng",
-            "Senjie Kou",
-            "Shuli Wang",
-            "Wenshuai Chen",
-            "Yinhua Zhu",
-            "Haitao Wang",
-            "Xingxing Wang"
-          ],
-          "summary": "Builds a multi-business generative recommendation framework with business-aware semantic IDs, business-specific prediction and dynamic label routing. It reports offline and online validation on Meituan food delivery.",
-          "reason": "近 90 天工业生成式推荐：重点是多业务场景、Semantic ID 空间隔离和生产验证。",
-          "area": "推荐算法",
-          "tags": [
-            "meituan",
-            "multi-business",
-            "semantic-id",
-            "generative-recommendation",
-            "online-ab"
-          ],
-          "signal": 95,
-          "source": "Meituan/arXiv",
-          "publishedAt": "2026-04-03T03:26:36Z",
-          "url": "https://arxiv.org/abs/2604.02684",
-          "pdfUrl": "https://arxiv.org/pdf/2604.02684"
-        },
-        {
-          "id": "arxiv-1911.02150",
-          "title": "Fast Transformer Decoding: One Write-Head is All You Need",
-          "authors": [
-            "Noam Shazeer"
-          ],
-          "summary": "Introduces multi-query attention, sharing keys and values across attention heads to reduce memory bandwidth during incremental transformer decoding.",
-          "reason": "LLM 推理经典轮换：MQA 是后续 GQA、KV cache 压缩和高吞吐 decoder 设计的早期关键论文。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "classic",
-            "mqa",
-            "kv-cache",
-            "decode",
-            "memory-bandwidth"
-          ],
-          "signal": 94,
-          "source": "Google/arXiv",
-          "publishedAt": "2019-11-06T18:57:21Z",
-          "url": "https://arxiv.org/abs/1911.02150",
-          "pdfUrl": "https://arxiv.org/pdf/1911.02150"
-        },
-        {
-          "id": "arxiv-2208.07339",
-          "title": "LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale",
-          "authors": [
-            "Tim Dettmers",
-            "Mike Lewis",
-            "Younes Belkada",
-            "Luke Zettlemoyer"
-          ],
-          "summary": "Introduces a mixed-precision int8 inference procedure that handles emergent outlier features and enables large transformer inference with substantially lower memory use.",
-          "reason": "LLM 推理经典轮换：低比特推理的基础论文之一，适合和 SmoothQuant、AWQ、GPTQ 放在一起比较。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "classic",
-            "quantization",
-            "int8",
-            "memory",
-            "inference"
-          ],
-          "signal": 93,
-          "source": "Meta/Hugging Face/arXiv",
-          "publishedAt": "2022-08-15T17:59:08Z",
-          "url": "https://arxiv.org/abs/2208.07339",
-          "pdfUrl": "https://arxiv.org/pdf/2208.07339"
-        },
-        {
-          "id": "arxiv-2604.17459",
-          "title": "Transparent and Controllable Recommendation Filtering via Multimodal Multi-Agent Collaboration",
-          "authors": [
-            "Chi Zhang",
-            "Zhipeng Xu",
-            "Jiahao Liu",
-            "Dongsheng Li",
-            "Hansu Gu",
-            "Peng Zhang",
-            "Ning Gu",
-            "Tun Lu"
-          ],
-          "summary": "Introduces a controllable recommendation filtering framework combining end-to-cloud collaboration, multimodal perception, multi-agent adjudication and editable preference graphs to reduce over-filtering in personalized feeds.",
-          "reason": "近 90 天 Microsoft Research 推荐治理方向：不是单纯 CTR，而是个性化 feed 的可控过滤、透明度和多模态安全边界。",
-          "area": "推荐算法",
-          "tags": [
-            "microsoft",
-            "controllable-recommendation",
-            "multimodal",
-            "agent",
-            "feed"
-          ],
-          "signal": 92,
-          "source": "Microsoft Research/arXiv",
-          "publishedAt": "2026-04-19T14:19:28Z",
-          "url": "https://arxiv.org/abs/2604.17459",
-          "pdfUrl": "https://arxiv.org/pdf/2604.17459"
         }
       ]
     }
