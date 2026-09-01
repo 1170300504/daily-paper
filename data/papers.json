@@ -1,5 +1,266 @@
 {
-  "generatedAt": "2026-08-31T08:00:40.867672+08:00",
-  "source": "curated industry radar",
-  "papers": []
+  "generatedAt": "2026-09-01T08:53:11.630355+08:00",
+  "source": "curated industry radar + arXiv API",
+  "papers": [
+    {
+      "id": "arxiv-2608.28503",
+      "title": "SG-UMP: Sequence-Guided Universal Multimodal Prioritization Calculation Framework",
+      "authors": [
+        "Xinyi Zhang",
+        "Yutong Li",
+        "Peijie Sun"
+      ],
+      "summary": "Multimodal sequential recommendation (MSR) improves recommendation by incorporating heterogeneous information such as text, images, and user interactions. However, existing MSR methods often fail to capture user-level preference heterogeneity and dataset-level modality bias, limiting their adaptability across users and datasets. To address this issue, we propose \\textbf{S}equence-\\textbf{G}uided \\textbf{U}niversal \\textbf{M}ultimodal \\textbf{P}rioritization Calculation Framework (\\textbf{SG-UMP}), a plug-and-play plugin for enhancing multimodal information processing in MSR. SG-UMP includes a Module Combiner for flexible multimodal processing and a Module Router for dynamic module ordering, enabling adaptation to both user preferences and dataset characteristics. Experiments on four real-world datasets show that SG-UMP consistently improves recommendation performance across different backbones and multimodal settings. The code is available at https://github.com/esemsc-xz524/SG-UMP .",
+      "reason": "近 30 天；公司信号：Microsoft；推荐/排序/广告方向；关键词：microsoft, cs.IR, dataset。Multimodal sequential recommendation (MSR) improves recommendation by incorporating heterogeneous information such as text, images...",
+      "area": "推荐算法",
+      "tags": [
+        "microsoft",
+        "cs.IR",
+        "dataset",
+        "multimodal",
+        "recommendation"
+      ],
+      "signal": 99,
+      "source": "Microsoft/arXiv",
+      "publishedAt": "2026-08-28T16:34:27Z",
+      "url": "https://arxiv.org/abs/2608.28503",
+      "pdfUrl": "https://arxiv.org/pdf/2608.28503v1"
+    },
+    {
+      "id": "arxiv-2608.28276",
+      "title": "Parser States Already Know: Structure-Conditioned KV Persistence for Structured Generation",
+      "authors": [
+        "Linze Wu",
+        "Xinrui Chen"
+      ],
+      "summary": "Structured generation underpins large language model (LLM) agents that produce JSON, SQL, and function calls, where a single wrong field can cause the downstream action to fail. Constrained decoding already tracks parser transitions to enforce formal validity, and these transitions expose how generated tokens participate in schema-critical decisions such as required fields, arguments, and structural boundaries under the active grammar. Existing KV compression largely leaves this task-relevant structural signal unused. We introduce PASK (Parser-Aware Structural KV Persistence), which turns parser-derived structure into layer-group-specific KV persistence decisions. PASK addresses the mismatch between model-side KV sensitivity and task-level structured risk by using task-error sensitivity to set minimum protection floors and attention-output distortion to allocate residual KV capacity. An offline calibration stage compiles these signals into a persistence policy, leaving only lightweight structure-conditioned lookup online. At a targe total KV budget of 0.33, PASK outperforms the strongest compressed baseline by 17.39 percentage points on average across eight BFCL non-live and Live subcategories on Qwen3-4B. In end-to-end serving, PASK achieves up to 2.2x higher throughput and 3.3x lower TPOT, while using 0.53x the peak GPU memory of Full KV.",
+      "reason": "近 30 天；关键词：cs.LG, llm, serving。Structured generation underpins large language model (LLM) agents that produce JSON, SQL, and function calls, where a single wrong...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "llm",
+        "serving",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-28T12:38:56Z",
+      "url": "https://arxiv.org/abs/2608.28276",
+      "pdfUrl": "https://arxiv.org/pdf/2608.28276v1"
+    },
+    {
+      "id": "arxiv-2608.28113",
+      "title": "H-Scale: Hessian-Guided Scale Refinement for NVFP4 Sub-Byte LLM Inference",
+      "authors": [
+        "Hao Yu",
+        "Zheng Li",
+        "Dayiheng Liu",
+        "Jianwei Zhang"
+      ],
+      "summary": "The NVIDIA Blackwell architecture, with native support for the ultra-fine-grained NVFP4 format, opens new opportunities for accelerating large language model (LLM) inference. NVFP4's micro-block design, such as a group size of 16, offers strong representational flexibility for capturing local weight distributions and isolating outliers, but it also introduces a large and highly sensitive space of per-group scaling factors. Existing post-training quantization (PTQ) methods primarily focus on refining quantized weight values, leaving this scale-selection step underexplored. To address this gap, we propose \\textbf{H-Scale}, a lightweight post-processing method for NVFP4 per-group scale refinement. Instead of minimizing plain weight reconstruction error, H-Scale selects hardware-valid group scales using a diagonal second-order proxy derived from calibration activations, thereby targeting layer output perturbation more directly. It is designed as a drop-in replacement for RTN-style scale selection in diverse NVFP4 pipelines, requires only modest offline calibration, and introduces strictly zero overhead at inference time. Under a fixed evaluation protocol, experiments on mainstream LLMs show that H-Scale generally improves a broad range of NVFP4 baselines and brings several variants closer to the BF16 reference.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, inference。The NVIDIA Blackwell architecture, with native support for the ultra-fine-grained NVFP4 format, opens new opportunities for accele...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.CL",
+        "inference",
+        "llm",
+        "quantization"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-08-28T09:22:17Z",
+      "url": "https://arxiv.org/abs/2608.28113",
+      "pdfUrl": "https://arxiv.org/pdf/2608.28113v1"
+    },
+    {
+      "id": "arxiv-2608.28099",
+      "title": "Speculative Probing: LLM Monitoring at Speculative-Decoding Cost",
+      "authors": [
+        "Collin Zhang",
+        "Tingwei Zhang",
+        "Vitaly Shmatikov"
+      ],
+      "summary": "Real-time classification during language model inference is valuable for safety filtering, behavioral analysis, and model monitoring, but current approaches force a trade-off between accuracy and efficiency. Hidden-state probes are fast but limited: they are either not context-aware: operating on a single vector and cannot model interactions across positions; or they are very costly: having dedicated classifier models (Llama Guard, Qwen Guard, LLM-as-judge) or performing computation on hidden states for all tokens and then pooling the results (MultiMax). This shows an intrinsic trade-off between efficiency and accuracy. However, we find that the speculative-decoding module in recent LLMs can be repurposed for efficient high-quality classification. By appending a trained soft prompt at the end of the target sequence, we can repurpose the speculative-decoding module into a sequence classifier. At inference time in a speculative-decoding pipeline, the KV cache is already in GPU memory, so classification adds negligible overhead. We evaluate on four classification tasks across four models (Qwen3.5-4B, 9B, 27B, MiniCPM4.1-8B). Our small probes consistently outperform zero-shot GPT-5.4-mini and, on multilingual prompt safety, match or beat specialized 8B safety classifiers (Qwen3Guard-Gen-8B, Llama-Guard-3-8B) without running a full LLM.",
+      "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.AI。Real-time classification during language model inference is valuable for safety filtering, behavioral analysis, and model monitori...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "alibaba",
+        "meta",
+        "cs.AI",
+        "efficient",
+        "inference",
+        "kv-cache",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "Alibaba/Meta/arXiv",
+      "publishedAt": "2026-08-28T09:07:58Z",
+      "url": "https://arxiv.org/abs/2608.28099",
+      "pdfUrl": "https://arxiv.org/pdf/2608.28099v1"
+    },
+    {
+      "id": "arxiv-2608.28048",
+      "title": "AI Hardware Accelerators for Large Language Models: Architectures and the Memory Wall",
+      "authors": [
+        "Siddharth Patel",
+        "Rohit Singh"
+      ],
+      "summary": "Large language models (LLMs) place unprecedented and still-growing demands on the hardware that trains and serves them. This review surveys the full landscape of AI hardware accelerators for LLMs, including general-purpose GPUs, custom ASICs such as TPUs, Trainium, Groq, and Cerebras, reconfigurable FPGAs, processing-in-memory and near-memory architectures, and emerging neuromorphic and photonic approaches across cloud and edge deployment. Using the transformer's computational structure and roofline analysis as a common framework, we show that the decisive constraint on LLM acceleration is not arithmetic but memory: the autoregressive decode phase is bandwidth-bound, the key-value cache can rival the model weights in size, and data movement dominates energy. Comparing platforms on compute, memory, energy, programmability, and scalability, we find that no single architecture is optimal across workloads: GPUs remain the flexible default and the workhorse of training; domain-specific ASICs win at scale for stable, high-volume workloads; processing-in-memory is the most promising near-term response to the memory wall, entering systems as a heterogeneous complement; and neuromorphic and photonic computing, while promising, are not yet production-ready at frontier scale. Future progress depends on hardware-algorithm co-design and heterogeneous, memory-centric systems: for large language models, the memory system has become the computer.",
+      "reason": "近 30 天；关键词：cs.AR, energy, llm。Large language models (LLMs) place unprecedented and still-growing demands on the hardware that trains and serves them. This revie...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.AR",
+        "energy",
+        "llm",
+        "production"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-28T08:10:01Z",
+      "url": "https://arxiv.org/abs/2608.28048",
+      "pdfUrl": "https://arxiv.org/pdf/2608.28048v1"
+    },
+    {
+      "id": "arxiv-2608.28044",
+      "title": "Characterization of Request and Token Energy Costs for LLM Inference Workloads on GPU Platforms",
+      "authors": [
+        "Prabhu Vellaisamy",
+        "Vanessa Lam",
+        "Shawn Blanton",
+        "John Paul Shen"
+      ],
+      "summary": "Large language model (LLM) inference serving is priced by tokens, but GPU energy is consumed over inference windows. This accounting mismatch makes token-normalized metrics incomplete, since average output-token energy can decrease even when total request energy increases. We characterize this behavior with a decomposed energy model: a fixed one-time prefill with a fixed generation setup cost, while each output-token generation step adds marginal step energy. We evaluate this LLM inference energy model on NVIDIA H100 and H200 GPUs across dense and mixture-of-experts (MoE) models, reporting both request energy and token energy as functions of model type (M), phase (P), batch size (B), context length (C), and output length (N). For Llama-3.2-1B on H200 at batch-16 and context-4K, increasing output length from 10 to 512 tokens reduces token energy from 7.46 to 0.72 J/token while total batched inference-window energy increases from 1.19 to 5.93 kJ. Batching also reduces token energy, but the gain is context-bounded: at 10 output tokens, the batch-16 to batch-1 gain falls from 6.31x at context-512 to 1.17x at context-4K. MoE models amplify this effect: sparse routing and fragmented expert execution increase fixed energy at low concurrency, while batching spreads that energy across more generated tokens and substantially narrows the dense-vs.-MoE token-energy gap. These results show that energy-aware serving should jointly optimize both request energy and token energy, rather than only reducing per-token energy cost.",
+      "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.PF。Large language model (LLM) inference serving is priced by tokens, but GPU energy is consumed over inference windows. This accounti...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "meta",
+        "nvidia",
+        "cs.PF",
+        "batching",
+        "energy",
+        "inference",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "Meta/NVIDIA/arXiv",
+      "publishedAt": "2026-08-28T08:07:23Z",
+      "url": "https://arxiv.org/abs/2608.28044",
+      "pdfUrl": "https://arxiv.org/pdf/2608.28044v1"
+    },
+    {
+      "id": "arxiv-2608.28003",
+      "title": "A Method for Layer Bit-Width Allocation in LLM Quantization via Performance Maximization Under a Quality-Degradation Constraint",
+      "authors": [
+        "Artem Safronov"
+      ],
+      "summary": "This paper proposes a layer bit allocation method for Gemma-3-1B, formulating the problem as performance maximization (latency decrease) given a degradation budget constraint (allowable level of generation quality loss). This approach is different from time- and resource-consuming uniform layer quantization methods that are used in the literature (like GPTQ or AWQ) or allocation methods without proven performance-accelerating effect (like MixLLM or TorchAO). The layer sensitivity profile resulting from our prior work SA-PTQ is applied using the activation pass-through mode inside TensorRT-LLM. For each layer precision is determined individually in blocks, according to a grouping introduced in the prior step (5+5, 10+10, all26), differentiating the contribution of FFN, Attention, and lm_head to the overall speedup. The clock speed was measured for 13 W8A8 variants on an RTX 5090. We find that for FFN and lm_head the time cost of quantization/dequantization is compensated for by the use of integer arithmetic, while for short context lengths, the opposite holds true for Attention: an additional step of quantization slows execution down. We propose a manual implementation of SmoothQuant for TensorRT-LLM which was necessary due to export failures, unavailable for lm_head. The best solution found under joint consideration of all three criteria with minimal degradation was FFN 5+5 with lm_head, providing an 11.0% reduction in latency with negligible quality loss (98.90% Top-1 agreement, +0.85% perplexity degradation). With acceptable quality loss for FFN all26 + lm_head, a speedup up to 19.1% was found possible. We suggest further optimizations: fused attention kernels in INT8, KV-cache quantization, using FP8 instead of INT8 and partial Attention quantization analogous to FFN.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, latency。This paper proposes a layer bit allocation method for Gemma-3-1B, formulating the problem as performance maximization (latency dec...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.LG",
+        "latency",
+        "llm",
+        "quantization",
+        "slo"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-08-28T07:13:42Z",
+      "url": "https://arxiv.org/abs/2608.28003",
+      "pdfUrl": "https://arxiv.org/pdf/2608.28003v1"
+    },
+    {
+      "id": "arxiv-2608.27991",
+      "title": "HubMixer: Progressive Latent Hub Mixing for Parameter-Efficient Feature Interaction in Recommendation",
+      "authors": [
+        "Jie Zhou",
+        "Zixian Gong",
+        "Wenhao Li",
+        "Chang Liu",
+        "Enzhao Shen",
+        "Bo Liu",
+        "Xu Guo",
+        "Fei Pan",
+        "Peng Jiang"
+      ],
+      "summary": "Learning effective feature interactions is central to industrial recommendation and advertising ranking systems. Recent token-mixing architectures simplify self-attention with lightweight mixing operators, improving hardware efficiency and enabling large-scale deployment. However, recommendation tokens are fundamentally heterogeneous: user profiles, item attributes, behavioral sequences, context features, statistical signals, and business-side features live in different semantic spaces and interact in sparse, sample-specific patterns. Directly mixing all tokens in the raw heterogeneous token space may therefore be parameter-inefficient, as the model must implicitly discover which feature groups should interact and how such interactions should be routed. In the paper, we propose HubMixer, a parameter-efficient latent hub mixing architecture for feature interaction in recommendation. Instead of directly mixing raw feature tokens, HubMixer introduces a small set of learnable latent hubs to organize feature interactions through an `induction--interaction--readout` paradigm. First, hub induction summarizes heterogeneous tokens into compact latent hubs, where latent hubs query input tokens through cross-attention. Second, hub interaction performs high-order interaction in the cleaner latent hub space. Third, token-conditioned readout lets each original token selectively read from the interacted hubs, injecting global interaction semantics while preserving token-level field identity. Extensive offline experiments on industrial recommendation tasks show that HubMixer outperforms the SOTA models. Online A/B testing in the Kuaishou short-video recruitment business further shows a statistically significant 5.48% improvement in resume submission conversion rate, and HubMixer has been fully deployed in production.",
+      "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, advertising。Learning effective feature interactions is central to industrial recommendation and advertising ranking systems. Recent token-mixi...",
+      "area": "推荐算法",
+      "tags": [
+        "kuaishou",
+        "cs.IR",
+        "advertising",
+        "conversion",
+        "deployed",
+        "efficient",
+        "industrial"
+      ],
+      "signal": 99,
+      "source": "Kuaishou/arXiv",
+      "publishedAt": "2026-08-28T06:59:16Z",
+      "url": "https://arxiv.org/abs/2608.27991",
+      "pdfUrl": "https://arxiv.org/pdf/2608.27991v1"
+    },
+    {
+      "id": "arxiv-2608.27514",
+      "title": "Trajectory-Level Speculative Decoding for Diffusion Language Models",
+      "authors": [
+        "Tianxiang Pan",
+        "Baitao Gong",
+        "Mo Guang",
+        "Hongwei Yong",
+        "Tianpeng Jiang",
+        "Yaqian Li",
+        "Zheng Cao",
+        "Kaiwen Long"
+      ],
+      "summary": "Diffusion-based language models (dLLMs) enable parallel token generation through iterative denoising, but existing decoding strategies collapse to single-token generation under low confidence, severely limiting throughput. Unlike autoregressive models where speculative decoding operates on token sequences in a fixed left-to-right order, dLLMs require speculating over denoising trajectories-sequences of multi-token updates with explicit positions and unmasking orders. We develop a trajectory-level speculative framework that constructs draft denoising trajectories via confidence-stratified tree exploration and verifies them through blockwise parallel evaluation with bidirectional attention masking. Our method further introduces inter-block speculation, exploiting diffusion models' bidirectional structure to perform cross-block lookahead. We formally characterize when this approach is exact and identify trajectory drift as the fundamental cost of increased parallelism. Building on Fast-dLLM's dual-cache infrastructure, our framework reduces denoising iterations by 30-40% and increases tokens-per-step from 2.6 to 4.3, achieving 7-14x speedup over vanilla dLLMs and 1.3x over Fast-dLLM with less than 1% accuracy change across reasoning and code benchmarks.",
+      "reason": "近 30 天；关键词：cs.CL, llm, lora。Diffusion-based language models (dLLMs) enable parallel token generation through iterative denoising, but existing decoding strate...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "llm",
+        "lora",
+        "speculative",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-27T09:42:20Z",
+      "url": "https://arxiv.org/abs/2608.27514",
+      "pdfUrl": "https://arxiv.org/pdf/2608.27514v1"
+    },
+    {
+      "id": "arxiv-2608.27513",
+      "title": "DAMP: Decay-Aware Mixed-Precision Recurrent-State Quantization",
+      "authors": [
+        "Tao Zhang",
+        "Jianchao Tan",
+        "Pingwei Sun",
+        "Yanqi Yu",
+        "Zixu Jiang",
+        "Yuchen Xie",
+        "Xunliang Cai",
+        "Ziqian Zeng"
+      ],
+      "summary": "Softmax attention stores key and value vectors for every preceding token, causing inference memory to grow with sequence length. Recent language models incorporating Gated DeltaNet (GDN) or Kimi Delta Attention (KDA) reduce this cost by replacing the KV cache in most layers with fixed-size recurrent states. However, these recurrent states are commonly stored in FP32 and consume substantial GPU memory; their updates are memory-bandwidth bound and contribute significantly to decoding latency. To our knowledge, we are the first to study post-training quantization of recurrent states in GDN and KDA based language models. We find that uniform quantization provides a poor accuracy--storage trade-off: INT8 and FP8 already degrade accuracy on complex reasoning tasks, while INT4 and NVFP4 reduce it to near zero. We further find that most quantization-error energy is concentrated in a small subset of channels and that the relative decay strength of state channels remains stable across prompts and tasks. Motivated by these findings, DAMP uses both quantization-error energy and decay-based persistence to identify high-risk channels during offline calibration. It stores these channels at higher precision and the remainder in INT8. We evaluate DAMP on Qwen3.6-35B and Kimi-Linear-48B across six benchmarks covering mathematical reasoning, general reasoning, and code generation. At 9.9 bits per state value, DAMP maintains average accuracy close to the FP32 baseline. DAMP reduces recurrent-state storage by 69.1%, accelerates the recurrent-state update kernel by up to 2.01x, and lowers full-model TPOT by up to 10.9%.",
+      "reason": "近 30 天；关键词：cs.LG, energy, inference。Softmax attention stores key and value vectors for every preceding token, causing inference memory to grow with sequence length. R...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "energy",
+        "inference",
+        "kv-cache",
+        "latency",
+        "quantization"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-08-27T09:11:48Z",
+      "url": "https://arxiv.org/abs/2608.27513",
+      "pdfUrl": "https://arxiv.org/pdf/2608.27513v1"
+    }
+  ]
 }
