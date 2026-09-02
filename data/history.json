@@ -1,7 +1,302 @@
 {
-  "generatedAt": "2026-09-02T07:39:38.675296+08:00",
+  "generatedAt": "2026-09-03T07:40:10.440926+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-09-03",
+      "generatedAt": "2026-09-03T07:40:10.440926+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2609.01587",
+          "title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
+          "authors": [
+            "Jundong Hu",
+            "Shekar Ramachandran"
+          ],
+          "summary": "Post-training quantization (PTQ) is widely used to reduce the cost of serving large language models (LLMs), but its accuracy cost is uneven and is often tuned per model. We study where quantization damage occurs and how to allocate a small additional precision budget. Using causal mixed-precision intervention as ground truth (raise each layer to 8-bit in turn and measure the accuracy it recovers) across 9 open-weight models in 4 architecture families, we test 3 intuitive hypotheses: that quantization damage lives in task circuits, where the model computes, or in weight statistics. None of them predicts which layers benefit from restored precision. Recovery is instead diffuse: for 8 of 9 models, recovering 75% of the gap takes roughly half the layers; the lone exception, Qwen3-8B, is sharply concentrated. At a matched precision budget, spending it globally on finer quantization granularity beats locally repairing the most recoverable layers for all 8 group-128-compatible models (all but OpenLLaMA, whose width rules out group-128), by 21-52 points, including the concentrated Qwen3-8B. We report 2 secondary findings: the residual is budget-limited (8-bit is near-lossless in our evaluation across RTN, GPTQ, and AWQ), and the location of peak recovery correlates with architecture within a family, though not across families. Within this budget setting, global granularity is a better default than selectively protecting critical layers. More broadly, cheap signals that correlate with quantization damage do not necessarily identify where restoring precision improves accuracy; this must be tested with causal intervention.",
+          "reason": "近 30 天；关键词：cs.LG, llm, quantization。Post-training quantization (PTQ) is widely used to reduce the cost of serving large language models (LLMs), but its accuracy cost...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "llm",
+            "quantization",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-01T17:53:41Z",
+          "url": "https://arxiv.org/abs/2609.01587",
+          "pdfUrl": "https://arxiv.org/pdf/2609.01587v1"
+        },
+        {
+          "id": "arxiv-2609.01572",
+          "title": "From Production Traffic to Post-Training: Building a Self-Hosted LLM That Covers the Corporate Request Mix",
+          "authors": [
+            "Olga Tsymboi",
+            "Dmitrii Stoianov",
+            "Ramil Latypov",
+            "Danil Taranets",
+            "Daniil Dryabin",
+            "Mikhail Gashkov",
+            "Viktor Zelenkovskiy",
+            "Aleksandr Fida",
+            "Gleb Alektorov",
+            "Nikita Gulyakov",
+            "Arthur Babkin",
+            "Aleksandr Medvedev",
+            "Pavel Gein",
+            "Anatolii Potapov"
+          ],
+          "summary": "Data-residency constraints force enterprises to self-host LLMs, but continuous adoption of newer models without decommissioning their predecessors expands the serving fleet, fragmenting a finite GPU pool. We consolidate traffic from over 200 internal applications onto a single model by closing quality gaps identified through production error analysis along three axes: instruction following, function-calling, and internal task distribution. Quality is tracked by offline benchmarks stratified to production traffic and scored by deterministic verifiers or calibrated LLM judges. Rather than optimising all objectives jointly, which introduces cross-domain reward interference, we train a separate GRPO expert per axis and merge them via two-stage SLERP. Each expert's reward exposes a distinct failure mode, namely semantic collapse, over-calling, and verbosity hacking, each requiring a domain-specific fix. In non-reasoning mode the recipe surpasses a ${\\sim}7\\times$ larger by total parameters baseline on the in-house Arena with 69.6 to 65.8, instruction following with 0.85 to 0.83, and function-calling with 0.79 to 0.77, while lifting general dialogue benchmarks. The model absorbs 50% of platform traffic, 116M requests per month, at a fraction of the serving cost.",
+          "reason": "近 30 天；关键词：cs.CL, llm, production。Data-residency constraints force enterprises to self-host LLMs, but continuous adoption of newer models without decommissioning th...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm",
+            "production",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-01T17:39:26Z",
+          "url": "https://arxiv.org/abs/2609.01572",
+          "pdfUrl": "https://arxiv.org/pdf/2609.01572v1"
+        },
+        {
+          "id": "arxiv-2609.01338",
+          "title": "mzCache: On-Device LLM Memory Management under Multitasking",
+          "authors": [
+            "Hongseung Yu",
+            "Minsung Kim",
+            "Jongseok Park",
+            "Kyunghan Lee"
+          ],
+          "summary": "On-device mobile Large Language Model (LLM) inference is gaining significant attention. However, mobile devices operate in highly dynamic multitasking environments where users frequently switch between applications. This creates memory pressure, forcing LLM memory (model weights and KV cache) to be evicted by the operating system. When a new inference request arrives, the inference system must restore the evicted memory through slow storage reads or recompute the entire KV cache, severely degrading responsiveness. To address this, we present mzCache, an on-device LLM inference system with specialized memory management for multitasking environments. Under unpredictable memory pressure, mzCache elastically evicts LLM memory and leverages the unified memory of mobile SoCs to enable zero-wait inference on the GPU with concurrent CPU-side restoration. mzCache realizes this through restoration-oriented memory management: LLM memory is partitioned into fine-grained shared buffers to enable partial eviction and restoration with concurrent cross-processor access, while hybrid swap and backward-out eviction policies ensure low-latency restoration from any eviction state. Implemented on llama.cpp and deployed as an Android application, mzCache achieves 2.1-5.5$\\times$ reduction in Time-to-First-Token compared to storage-backed partial offload and demonstrates its effectiveness in real multitasking scenarios.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.OS, deployed。On-device mobile Large Language Model (LLM) inference is gaining significant attention. However, mobile devices operate in highly...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.OS",
+            "deployed",
+            "inference",
+            "kv-cache",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-09-01T14:49:20Z",
+          "url": "https://arxiv.org/abs/2609.01338",
+          "pdfUrl": "https://arxiv.org/pdf/2609.01338v1"
+        },
+        {
+          "id": "arxiv-2609.01335",
+          "title": "Bandits in Prod: Hyperparameter Optimization at Inference Time",
+          "authors": [
+            "Louis Abraham",
+            "Tuan-Anh Nguyen",
+            "Nicolas Devatine"
+          ],
+          "summary": "Many production systems can assess a configuration only by using it on live requests and observing noisy feedback. Modern agentic systems are a prominent example, with inference-time choices such as model selection, retrieval depth, prompting strategy, and decoding temperature, yet often with no representative validation data. We formalize this setting as Online Hyperparameter Optimization (OHPO) and cast it as an infinitely many-armed bandit over mixed and conditional search spaces. We introduce IMABO, a general framework that combines any bandit policy for choosing among already sampled configurations with any oracle for proposing new ones. We instantiate it with IMOSS, a restart-free anytime policy whose active set grows as $t^β$, and prove an expected cumulative quantile-regret bound of $O(p_ρ^{-1/β} + T^{(1+β)/2})$, where $β\\in(0,1)$ controls active-set growth and $p_ρ$ lower-bounds the probability that a proposed configuration falls in the top-$ρ$ fraction of the search space. We combine IMOSS with three practical oracles: a Tree-structured Parzen Estimator, an incumbent-mutation oracle driven by a per-coordinate bandit, and a pretrained tabular foundation model, all three improving over the uniform random oracle baseline. IMABO obtains the lowest cumulative regret across diverse OHPO settings, from tuning classical machine-learning models to configuring LLM-based agents.",
+          "reason": "近 30 天；关键词：cs.LG, inference, llm。Many production systems can assess a configuration only by using it on live requests and observing noisy feedback. Modern agentic...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "llm",
+            "production",
+            "retrieval",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-01T14:48:08Z",
+          "url": "https://arxiv.org/abs/2609.01335",
+          "pdfUrl": "https://arxiv.org/pdf/2609.01335v1"
+        },
+        {
+          "id": "arxiv-2609.01316",
+          "title": "MIDR: Enrichment-Augmented Indexing for Multimodal Document Retrieval",
+          "authors": [
+            "Debanjan Mahata",
+            "Atharva Tendle",
+            "Daniel Preotiuc-Pietro",
+            "Yong Zhuang",
+            "Ozan Irsoy"
+          ],
+          "summary": "Retrieval over visually rich documents has a representation problem: important content often lives in tables, charts, figures, and layout relations that plain OCR linearizes, corrupts, or omits. ColPali-family visual retrievers address this with patch-level multi-vector indexes and late-interaction scoring, keeping image-derived retrieval on the query-time serving path. We introduce MIDR (Multimodal Indexing for Document Retrieval), a training-free framework for enrichment-augmented indexing that shifts multimodal reasoning to index time. During ingestion, a multimodal LLM converts rendered pages into verified textual fields that are indexed with BM25F and optionally fused with dense retrieval, enabling text-centric serving over multimodally grounded evidence. On ViDoRe V3, MIDR Hybrid achieves 0.6219 average nDCG across five English domains, a 23.0% relative gain over BM25, remaining competitive with ColQwen2.5. On two French-document domains, enrichment bridges English queries and French page text, lifting BM25 from 0.1532 to 0.5448 nDCG and outperforming ColQwen2.5. Across all seven domains, MIDR leads ColQwen2.5 on four while using approximately 9x smaller index memory and approximately 2x lower query latency. These results establish index-time multimodal reasoning as a compelling accuracy-deployment alternative to serving-time visual late interaction.",
+          "reason": "近 30 天；关键词：cs.IR, latency, llm。Retrieval over visually rich documents has a representation problem: important content often lives in tables, charts, figures, and...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.IR",
+            "latency",
+            "llm",
+            "multimodal",
+            "retrieval",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-01T14:38:39Z",
+          "url": "https://arxiv.org/abs/2609.01316",
+          "pdfUrl": "https://arxiv.org/pdf/2609.01316v1"
+        },
+        {
+          "id": "arxiv-2609.01240",
+          "title": "From Language to Behavior: Scaling Sequence Transformers for Industrial Recommendation Ranking with Rec-Native Designs",
+          "authors": [
+            "Jie Chen",
+            "Xiangqian Yu",
+            "Yanchao Lian",
+            "Tan Lu",
+            "Run Yang",
+            "Zhengchun Shang",
+            "Xing Wang",
+            "Cheng Chen",
+            "Ke Hu",
+            "Qiang Li",
+            "Tianjiu Yin",
+            "Xiaobing Liu"
+          ],
+          "summary": "Scaling Transformers has driven large gains in language modeling, but transplanting this to behavior-sequence modeling in production ranking is challenging: recommendation differs in signal quality, where behavior sequences are noisy, temporally irregular, and sparsely supervised, and in computation asymmetry, where each request scores many candidates against one shared user history under tight latency budgets. We propose ReST, a recommendation-native Transformer scaling framework. For signal quality, it introduces a sequence encoder with dual-gated attention, rotary positional and temporal embedding, stabilized residual normalization, and training-only auxiliary objectives. For computation asymmetry, it factorizes ranking into a heavy reusable encoder and a lightweight cross decoder with projection-free KV attention and token-specific parameterization, coupling user-level shared-prefix training with shared-prefix serving for compute-once, decode-many-times ranking. Across industrial and public benchmarks, ReST achieves higher accuracy and scales more consistently along sequence length, depth, and width, where LLM-style Transformer blocks saturate. A one-week online A/B test on a production advertising platform improves online AUC by 1.31% and lifts a core revenue metric by 11.93% within a 50 ms P99 budget; ReST has since been fully deployed in production, showing that behavior-sequence scaling remains a promising, under-exploited axis for production ranking.",
+          "reason": "近 30 天；关键词：cs.IR, advertising, deployed。Scaling Transformers has driven large gains in language modeling, but transplanting this to behavior-sequence modeling in producti...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.IR",
+            "advertising",
+            "deployed",
+            "industrial",
+            "latency",
+            "llm",
+            "online-a/b"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-01T13:40:36Z",
+          "url": "https://arxiv.org/abs/2609.01240",
+          "pdfUrl": "https://arxiv.org/pdf/2609.01240v1"
+        },
+        {
+          "id": "arxiv-2609.01068",
+          "title": "OUTLETS: Output-Length Prediction from Speculative Decoding Backbones",
+          "authors": [
+            "Weihuang Wen",
+            "Yingying Liu",
+            "Yichuan Liu",
+            "Wenqi Zeng",
+            "Li Zhou",
+            "Chumin Sun",
+            "Jie Sun",
+            "Tianshu Yu"
+          ],
+          "summary": "The heavy-tailed distribution of output lengths in Large Language Model (LLM) serving poses major challenges for resource provisioning and cluster scheduling. Although output-length prediction can mitigate these issues, existing approaches have key drawbacks: external proxy models add substantial latency and often have limited fidelity, whereas internal state-based methods are efficient but rely on shallow probes of current model states. We identify a structural connection between speculative decoding (SD) and length prediction: latent representations produced by the draft decoder in advanced frameworks (e.g., EAGLE-3) encode signals that are predictive of generation length. Building on this insight, we introduce OUTLETS (Output-Length Prediction from Speculative Decoding Backbones), which repurposes the speculative backbone as a trajectory-aware length predictor. When its draft representations are already computed for speculative decoding, OUTLETS adds only a lightweight regression head and achieves lower MAE than the evaluated methods. Under saturated disaggregated serving, OUTLETS predictions enable standard scheduling policies to prioritize shorter requests and distribute requests more evenly across decoding instances, reducing short-request P99 latency by 34.8%.",
+          "reason": "近 30 天；关键词：cs.CL, efficient, latency。The heavy-tailed distribution of output lengths in Large Language Model (LLM) serving poses major challenges for resource provisio...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "efficient",
+            "latency",
+            "llm",
+            "serving",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-01T11:00:39Z",
+          "url": "https://arxiv.org/abs/2609.01068",
+          "pdfUrl": "https://arxiv.org/pdf/2609.01068v1"
+        },
+        {
+          "id": "arxiv-2609.00993",
+          "title": "AInfer-PD: Communication-Safe In-Place Prefill-Decode Multiplexing for Distributed MoE Rollouts",
+          "authors": [
+            "Guowei Wang",
+            "Chaokun Yang",
+            "Zhenxuan Pan",
+            "Yuhong Guo",
+            "Minghua Zhu",
+            "Zhechuan Zhang",
+            "Shuo Wan",
+            "Xiaowei Zhu"
+          ],
+          "summary": "Rollout inference often dominates the wall-clock time of large-scale reinforcement learning (RL). In agentic RL, each trajectory alternates between model generation and environment interaction over multiple turns. Asynchronous trajectories consequently introduce new prefill (P) work while other trajectories remain in decode (D), making P/D coexistence a persistent property of the rollout rather than a one-time prompt-ingestion event. On shared accelerators, persistent P/D coexistence can make prefill interfere with latency-sensitive decode and prolong rollout completion. P/D disaggregation avoids this co-location but requires separate device pools and KV-cache transfers. In-place multiplexing retains shared devices and KV state, but existing designs lack the communication isolation needed for large MoE deployments that combine attention TP/DP with distributed expert execution. In practical implementations, P and D can issue intersecting collectives in inconsistent cross-rank orders; DeepEP's P and D paths also share mutable protocol state. We present AInfer-PD, which extends in-place P/D multiplexing to distributed MoE rollouts. AInfer-PD coordinates P/D collective order across ranks and gives the two DeepEP paths independent communication state, making crossed ADP/ATP and DeepEP paths safe for concurrent P/D execution. The design retains shared model weights and KV storage while coordinating P and D on the same devices. Across repeated single-node prefill-intensive workloads, AInfer-PD reduces fixed-workload rollout completion time by 7.1-22.5% relative to the same AInfer engine with P/D multiplexing disabled and by 24.8-32.9% relative to SGLang. On two nodes, the reductions are 18.0-35.3% and 18.3-31.8%, respectively. In a same-engine ablation, fine-grained boundaries reduce completion time by a further 8.6-19.8% over whole-epoch asynchronous enqueue.",
+          "reason": "近 30 天；关键词：cs.DC, inference, latency。Rollout inference often dominates the wall-clock time of large-scale reinforcement learning (RL). In agentic RL, each trajectory a...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "inference",
+            "latency",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-01T09:44:40Z",
+          "url": "https://arxiv.org/abs/2609.00993",
+          "pdfUrl": "https://arxiv.org/pdf/2609.00993v1"
+        },
+        {
+          "id": "arxiv-2609.00986",
+          "title": "TGR: Advancing Industrial Recommendation from Generative-Paradigm Ranking toward Unified Generation and Reasoning",
+          "authors": [
+            "TGR Team",
+            "Lei Cheng",
+            "Haonan Hu",
+            "Beibei Kong",
+            "Yudong Li",
+            "Zang Li",
+            "Yunsheng Pang",
+            "Hongyang Su",
+            "Jianchao Tu",
+            "Yunlong Wang",
+            "Bing Wen",
+            "Junzhang Zhu",
+            "Shaojie Zhu",
+            "Chengxiang Zhuo"
+          ],
+          "summary": "Industrial recommender systems typically rely on cascaded retrieval, pre-ranking, ranking, and reranking stages, whose separately optimized models limit scaling, fragment decision making, and lack semantic knowledge and reasoning. We present TGR (Tencent Generative Recommendation), an industrial framework that advances recommendation toward the generative paradigm along three coupled directions. TGR-GenRank upgrades ranking through CCFormer, which combines unified feature tokenization, a scalable Transformer backbone, feature-field separated cross attention, subspace token mixing, and hierarchical sequence compression while retaining per-item multi-task outputs. TGR-GenRec explores end-to-end generation under two paradigms: BARGE bridges item-boundary loss and semantic drift in hierarchical semantic-ID generation through item context-aware attention, hierarchical path reranking, and orthogonal dual-path decoding; HiGR performs whole-slate generation with prefix-structured semantic IDs, coarse-to-fine decoding, and listwise multi-objective alignment. TGR-Reason injects offline-generated semantic-ID reason tokens into online decoding, providing reasoning without request-time rollout. TGR is deployed across Tencent production surfaces serving hundreds of millions of users. CCFormer delivers significant gains in five A/B-tested scenarios and is fully launched in two, including +3.57% CTR and +1.71% advertising revenue. BARGE improves Hit@5 by 10.2-16.9% and yields +0.60% CTR and +1.70% reading time after full rollout. HiGR improves offline slate quality by 15.9-21.3% with a 5x inference speedup and achieves up to +1.22% watch time and +1.73% video views. TGR-Reason raises cold-start new-user Hit@1 by 477.8% and delivers +1.75% effective consumption and +13.09% new-user exposure-to-conversion online.",
+          "reason": "近 30 天；公司信号：Microsoft, Tencent；推荐/排序/广告方向；关键词：microsoft, tencent, cs.IR。Industrial recommender systems typically rely on cascaded retrieval, pre-ranking, ranking, and reranking stages, whose separately...",
+          "area": "推荐算法",
+          "tags": [
+            "microsoft",
+            "tencent",
+            "cs.IR",
+            "advertising",
+            "alignment",
+            "conversion",
+            "deployed"
+          ],
+          "signal": 99,
+          "source": "Microsoft/Tencent/arXiv",
+          "publishedAt": "2026-09-01T09:41:26Z",
+          "url": "https://arxiv.org/abs/2609.00986",
+          "pdfUrl": "https://arxiv.org/pdf/2609.00986v1"
+        },
+        {
+          "id": "arxiv-2609.00165",
+          "title": "Two-Sided State-Space Models for Sequential Recommendation with Non-Random Multimodal Review Feedback",
+          "authors": [
+            "Ziwen Pan",
+            "Zihan Liang",
+            "Ruoxuan Xiong"
+          ],
+          "summary": "Two-sided digital platforms are inherently dynamic: user preferences shift, item popularity evolves, and reviews both reflect and drive these changes. Yet most sequential recommendation systems treat reviews as passive signals for updating user states, leaving two aspects underexplored. First, review generation is nonrandom, depending on evolving latent states of both users and items. Second, reviews can reshape item states, induce spillover across related items, and influence future user decisions. To address these gaps, we propose a two-sided state-space model (TS-SSM) for event-conditioned sequential recommendation. TS-SSM consists of three components: (1) a modality-missing-not-at-random fusion module that encodes review content and informative observation patterns; (2) user-state evolution with temporal variation and local graph message passing that uses related item states to refine user preferences; and (3) item-state evolution with asymmetric carryover of positive and negative review feedback. In experiments across six Amazon categories, TS-SSM increases Recall@20 over BSARec by 14.8%--18.8% and exceeds HM4SR by 11.7% on average. On Goodreads Fantasy, Recall@20 improves HM4SR from .5191 to .5847. Ablations highlight distinct contributions of observation patterns, local propagation, and item dynamics.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, multimodal。Two-sided digital platforms are inherently dynamic: user preferences shift, item popularity evolves, and reviews both reflect and...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "multimodal",
+            "recommendation"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-08-31T18:00:49Z",
+          "url": "https://arxiv.org/abs/2609.00165",
+          "pdfUrl": "https://arxiv.org/pdf/2609.00165v1"
+        }
+      ]
+    },
     {
       "date": "2026-09-02",
       "generatedAt": "2026-09-02T07:39:38.675296+08:00",
@@ -20268,304 +20563,6 @@
           "publishedAt": "2026-06-04T16:19:24Z",
           "url": "https://arxiv.org/abs/2606.06347v1",
           "pdfUrl": "https://arxiv.org/pdf/2606.06347v1"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-05",
-      "generatedAt": "2026-06-05T17:07:19.989742+08:00",
-      "source": "curated industry radar",
-      "papers": [
-        {
-          "id": "arxiv-2606.06260",
-          "title": "OneReason Technical Report",
-          "authors": [
-            "OneRec Team",
-            "Biao Yang",
-            "Boyang Ding",
-            "Chenglong Chu",
-            "Dunju Zang",
-            "Fei Pan",
-            "Han Li",
-            "Hao Jiang"
-          ],
-          "summary": "Extends the OneRec family toward reasoning-style generative recommendation. It argues that recommendation reasoning needs itemic-token perception and cognition over user behavior sequences, then introduces OneReason with perception-focused pre-training, three-level cognition-enhanced CoT SFT and specialize-then-unify RL.",
-          "reason": "快手 OneRec 系列最新推荐推理方向：2026-06-04 新稿，把生成式推荐从 scaling 推到 reasoning，重点看 item token 语义感知、用户兴趣认知、CoT 格式和 RL 训练配方。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "onereason",
-            "generative-recommendation",
-            "reasoning",
-            "cot",
-            "rl"
-          ],
-          "signal": 100,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-04T15:04:34Z",
-          "url": "https://arxiv.org/abs/2606.06260",
-          "pdfUrl": "https://arxiv.org/pdf/2606.06260"
-        },
-        {
-          "id": "arxiv-2605.25514",
-          "title": "From Item-Only to Query-Item: Query-Conditioned Generative Search with QGS in Quark",
-          "authors": [
-            "Yanglong Song",
-            "Zihao Yang",
-            "Shuo Meng",
-            "Rujun Guo",
-            "Jin Zhang",
-            "Bin Wang",
-            "Shaoyu Liu",
-            "Xiaozhao Wang"
-          ],
-          "summary": "Introduces Query-Conditioned Generative Search for Quark Search, encoding each interaction as a query-item pair and training a query-conditioned next-item objective. It adds Linear HSTU and HFG-Attention to keep long-history modeling and sparse ranking features practical for online search ranking.",
-          "reason": "阿里夸克搜索排序的新工业样本：把生成式推荐从 item-only 推到 query-item 条件建模，线上 A/B 有 CTR、Click-Search Ratio 和 PV Duration 提升，适合和 OneReason 一起看 generative ranking 的落地形态。",
-          "area": "推荐算法",
-          "tags": [
-            "alibaba",
-            "quark",
-            "generative-search",
-            "query-conditioned",
-            "linear-hstu",
-            "online-ab"
-          ],
-          "signal": 98,
-          "source": "Alibaba/Quark/arXiv",
-          "publishedAt": "2026-05-25T07:18:51Z",
-          "url": "https://arxiv.org/abs/2605.25514",
-          "pdfUrl": "https://arxiv.org/pdf/2605.25514"
-        },
-        {
-          "id": "arxiv-2605.21427",
-          "title": "PALS: Power-Aware LLM Serving for Mixture-of-Experts Models",
-          "authors": [
-            "Can Hankendi",
-            "Rana Shahout",
-            "Minlan Yu",
-            "Ayse K. Coskun"
-          ],
-          "summary": "Presents a power-aware runtime for LLM serving that treats GPU power caps as a controllable resource and jointly tunes them with batch size. It integrates with vLLM and evaluates dense and MoE models on multi-GPU systems.",
-          "reason": "近 30 天 LLM 推理系统：MoE serving、GPU 功耗控制、vLLM 集成和 QoS 违约率都直接对应 2026 年 AI 基建成本问题。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "moe",
-            "power-aware",
-            "vllm",
-            "qos"
-          ],
-          "signal": 98,
-          "source": "arXiv/vLLM",
-          "publishedAt": "2026-05-20T17:19:20Z",
-          "url": "https://arxiv.org/abs/2605.21427",
-          "pdfUrl": "https://arxiv.org/pdf/2605.21427"
-        },
-        {
-          "id": "arxiv-2605.09040",
-          "title": "UxSID: Semantic-Aware User Interests Modeling for Ultra-Long Sequence",
-          "authors": [
-            "Hongwei Zhang",
-            "Qiqiang Zhong",
-            "Jiangxia Cao",
-            "Yiyang Lv",
-            "Huanjie Wang",
-            "Liwei Guan",
-            "Jing Yao",
-            "Yiyu Wang"
-          ],
-          "summary": "Proposes semantic-group shared interest memory for ultra-long user sequence modeling. UxSID uses Semantic IDs and dual-level attention to balance target-aware preference modeling with constant-time online inference, reporting state-of-the-art results and a 0.337% revenue lift in large-scale advertising A/B tests.",
-          "reason": "快手广告超长序列建模方向：Semantic ID 不只用于生成式推荐，也能作为 target 语义路由键做共享兴趣 memory；有线上 revenue lift，和 OneReason 的 perception/cognition 主线能互相补。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "semantic-id",
-            "ultra-long-sequence",
-            "advertising",
-            "online-ab",
-            "revenue"
-          ],
-          "signal": 97,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-05-18T07:00:17Z",
-          "url": "https://arxiv.org/abs/2605.09040",
-          "pdfUrl": "https://arxiv.org/pdf/2605.09040"
-        },
-        {
-          "id": "usenix-nsdi26-droidspeak",
-          "title": "DroidSpeak: KV Cache Sharing Across Fine-tuned Model Variants",
-          "authors": [
-            "Yuhan Liu",
-            "Yuyang Huang",
-            "Jiayi Yao",
-            "Shaoting Feng",
-            "Zhuohan Gu",
-            "Kuntai Du",
-            "Hanchen Li",
-            "Yihua Cheng",
-            "Junchen Jiang",
-            "Shan Lu",
-            "Madan Musuvathi",
-            "Esha Choukse"
-          ],
-          "summary": "Studies KV cache sharing across fine-tuned model variants in multi-LLM serving. DroidSpeak selectively recomputes sensitive layers and reuses the remaining KV cache to cut redundant prefill work.",
-          "reason": "2026 NSDI / Microsoft 参与的推理系统：多模型协作、KV cache 共享、fine-tuned variants 和 agentic workflow 都是大厂线上服务会遇到的问题。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "microsoft",
-            "kv-cache",
-            "multi-llm",
-            "prefill"
-          ],
-          "signal": 97,
-          "source": "Microsoft/USENIX NSDI",
-          "publishedAt": "2026-05-01T00:00:00Z",
-          "url": "https://www.usenix.org/conference/nsdi26/presentation/liu-yuhan",
-          "pdfUrl": "https://www.usenix.org/system/files/nsdi26-liu-yuhan.pdf"
-        },
-        {
-          "id": "msr-qoserve-2026",
-          "title": "QoServe: Breaking the Silos of LLM Inference Serving",
-          "authors": [
-            "Kanishk Goel",
-            "Jayashree Mohan",
-            "Nipun Kwatra",
-            "Ravi Shreyas Anupindi",
-            "Ramachandran Ramjee"
-          ],
-          "summary": "Introduces a QoS-driven LLM inference serving system for co-scheduling diverse latency classes on shared GPU infrastructure. It uses fine-grained QoS classification, dynamic chunking and hybrid prioritization to improve utilization under overload.",
-          "reason": "2026 ASPLOS / Microsoft Research：把 interactive 与 batch 推理从资源孤岛里合并调度，适合看大厂 AI 服务的 SLO、goodput 和过载降级。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "microsoft",
-            "qos",
-            "slo",
-            "scheduling"
-          ],
-          "signal": 96,
-          "source": "Microsoft Research/ASPLOS",
-          "publishedAt": "2026-03-22T00:00:00Z",
-          "url": "https://www.microsoft.com/en-us/research/publication/niyama-breaking-the-silos-of-llm-inference-serving/",
-          "pdfUrl": "https://www.microsoft.com/en-us/research/wp-content/uploads/2025/10/QoServe_CC_final_v2.pdf"
-        },
-        {
-          "id": "arxiv-2604.06370",
-          "title": "ForkKV: Scaling Multi-LoRA Agent Serving via Copy-on-Write Disaggregated KV Cache",
-          "authors": [
-            "Shao Wang",
-            "Rui Ren",
-            "Lin Gui"
-          ],
-          "summary": "Uses an OS-like fork and copy-on-write memory model for multi-LoRA agent serving, splitting KV cache into a shared base component and lightweight agent-specific parts with a custom ResidualAttention kernel.",
-          "reason": "近 90 天 LLM 推理系统：多 LoRA agent serving、KV cache 分离、copy-on-write 和定制 kernel，适合和 DroidSpeak 对照看。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "multi-lora",
-            "kv-cache",
-            "copy-on-write",
-            "agentic"
-          ],
-          "signal": 95,
-          "source": "arXiv",
-          "publishedAt": "2026-04-07T18:52:25Z",
-          "url": "https://arxiv.org/abs/2604.06370",
-          "pdfUrl": "https://arxiv.org/pdf/2604.06370"
-        },
-        {
-          "id": "arxiv-2603.05800",
-          "title": "StreamWise: Serving Multi-Modal Generation in Real-Time at Scale",
-          "authors": [
-            "Haoran Qiu",
-            "Gohar Irfan Chaudhry",
-            "Chaojie Zhang",
-            "Íñigo Goiri",
-            "Esha Choukse",
-            "Rodrigo Fonseca",
-            "Ricardo Bianchini"
-          ],
-          "summary": "Studies real-time multi-modal generation serving at scale, coordinating LLMs, text-to-speech, image, audio and video generation under latency, cost and quality constraints with adaptive scheduling and heterogeneous hardware.",
-          "reason": "2026 Microsoft/Azure Research 推理服务系统：从纯 LLM 扩到多模态生成链路，重点是 SLO、异构资源调度、成本和实时流式体验。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "microsoft",
-            "multimodal",
-            "slo",
-            "scheduling"
-          ],
-          "signal": 94,
-          "source": "Microsoft/arXiv",
-          "publishedAt": "2026-03-06T01:22:16Z",
-          "url": "https://arxiv.org/abs/2603.05800",
-          "pdfUrl": "https://arxiv.org/pdf/2603.05800"
-        },
-        {
-          "id": "arxiv-2602.21140",
-          "title": "ReviveMoE: Fast Recovery for Hardware Failures in Large-Scale MoE LLM Inference Deployments",
-          "authors": [
-            "Haley Li",
-            "Xinglu Wang",
-            "Cong Feng",
-            "Chunxu Zuo",
-            "Yanan Wang",
-            "Hei Lo",
-            "Yufei Cui",
-            "Bingji Wang",
-            "Duo Cui",
-            "Shuming Jing",
-            "Yizhou Shan",
-            "Ying Xiong",
-            "Jiannan Wang",
-            "Yong Zhang",
-            "Zhenan Fan"
-          ],
-          "summary": "Targets failure recovery for large-scale MoE inference deployments, avoiding full serving-instance restarts when hardware failures occur. The system is integrated with Huawei Cloud's MaaS stack and xDeepServe platform.",
-          "reason": "2026 Huawei Cloud 大规模 MoE 推理部署：关注硬件故障恢复、MaaS 稳定性和 xDeepServe 生产栈，属于线上服务可靠性方向。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "huawei",
-            "moe",
-            "reliability",
-            "serving"
-          ],
-          "signal": 93,
-          "source": "Huawei/arXiv",
-          "publishedAt": "2026-02-24T17:39:41Z",
-          "url": "https://arxiv.org/abs/2602.21140",
-          "pdfUrl": "https://arxiv.org/pdf/2602.21140"
-        },
-        {
-          "id": "arxiv-2401.09670",
-          "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving",
-          "authors": [
-            "Yinmin Zhong",
-            "Shengyu Liu",
-            "Junda Chen",
-            "Jiaming Hu",
-            "Yibo Zhu",
-            "Xuanzhe Liu",
-            "Xin Jin",
-            "Hao Zhang"
-          ],
-          "summary": "Separates prefill and decode onto different GPU groups and optimizes placement under latency SLOs, improving goodput for LLM serving workloads with different prompt and output lengths.",
-          "reason": "LLM 推理经典轮换：prefill/decode disaggregation 是 2024 以后推理系统很重要的工程方向。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "classic",
-            "prefill-decode",
-            "serving",
-            "goodput",
-            "latency-slo"
-          ],
-          "signal": 92,
-          "source": "arXiv/OSDI",
-          "publishedAt": "2024-01-17T18:59:53Z",
-          "url": "https://arxiv.org/abs/2401.09670",
-          "pdfUrl": "https://arxiv.org/pdf/2401.09670"
         }
       ]
     }
