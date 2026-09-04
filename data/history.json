@@ -1,7 +1,296 @@
 {
-  "generatedAt": "2026-09-04T07:39:43.645712+08:00",
+  "generatedAt": "2026-09-05T07:32:36.679777+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-09-05",
+      "generatedAt": "2026-09-05T07:32:36.679777+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2609.04198",
+          "title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
+          "authors": [
+            "Haoyaun Zhu",
+            "Jie Zhang"
+          ],
+          "summary": "Language-model judges now gate training data, score generations, and drive leaderboards. The judge is then a measurement instrument, resting on one rarely stated assumption: the same request, sent to the same model name, reads the same tomorrow. We audited that assumption in two preregistered campaigns with every threshold fixed in advance; neither got past validating its instrument. Across 52,988 audited request attempts, same-window repeat rankings agreed at Spearman 0.400 against a required 0.90, and byte-identical next-day replays agreed at 0.78 against a required 0.99, each time with the execution record at ceiling. Three mechanisms explain the gap: a label-to-meaning mapping that biased readouts as strongly as the signal; candidate gaps seven orders of magnitude below the instrument's own noise floor; and byte-identical inputs returning different rankings, a noise that exact-permutation readouts compound. Neither metric substitution nor sampling repaired it on the tested grid. Preregistered follow-ups bound the problem: waiting did not help on the days sampled (0.805 versus 0.800, replicated over five further days); switching providers did not help (four providers share the floor, medians 0.74 to 0.88, predicted by none of the metadata fields they expose); self-hosting on batch-invariant kernels helped only while the server was quiet; and on constructed errors with known gaps, the readout's separation tracks error type, not size. We distill the evidence into a three-level snapshot-identity ladder, eight design rules, and a reporting checklist; a pilot at roughly 2% of the study's call volume would have exposed both unreachable gates in advance. All results concern externally measured behaviour on shared serving infrastructure. On a shared endpoint, a model name is not a frozen instrument; a preregistered evaluation must measure its instrument before freezing any gate on it.",
+          "reason": "近 30 天；关键词：cs.AI, llm, ranking。Language-model judges now gate training data, score generations, and drive leaderboards. The judge is then a measurement instrumen...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AI",
+            "llm",
+            "ranking",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-03T17:59:43Z",
+          "url": "https://arxiv.org/abs/2609.04198",
+          "pdfUrl": "https://arxiv.org/pdf/2609.04198v1"
+        },
+        {
+          "id": "arxiv-2609.04010",
+          "title": "Unlocking Lossless Speedups in LLMs via Discrete Diffusion",
+          "authors": [
+            "Subham Sekhar Sahoo",
+            "Lingjie Chen",
+            "Khiem Pham",
+            "Jonathan Geuter",
+            "Chaitanya Dwivedi",
+            "Varad Pimpalkhute",
+            "Yash Akhauri",
+            "Alexander Moreno",
+            "Mikhail Yurochkin",
+            "Zhenting Wang",
+            "Mostafa Elhoushi",
+            "Nolan Dey",
+            "Shane Bergsma",
+            "Joel Hestness",
+            "John Thickstun",
+            "Eric Xing",
+            "Zhengzhong Liu"
+          ],
+          "summary": "Large Language Models (LLMs) owe much of their success to next-token prediction (NTP), but their autoregressive (AR) structure requires slow, sequential token generation. To overcome this bottleneck, we introduce diffusion-augmented LLMs, a new class of models that defines an AR model distribution while using diffusion to draw multiple tokens in parallel from that distribution. We decouple the parameters of these models into two sets: AR weights, trained using the standard NTP objective, and lightweight diffusion weights, trained to generate multiple tokens simultaneously. The diffusion weights are learned through a simple Diffusion Distillation phase that adds negligible overhead to existing LLM training pipelines. We also introduce $Ψ$-Spec, a family of samplers that enables lossless acceleration and inference-time scaling at a fixed context length. Unlike speculative decoding, our method requires no separate draft model. Unlike diffusion LLMs (d-LLMs), it accelerates generation without sacrificing the quality of the underlying AR model. The resulting models, called Uno, can be trained from scratch or built by augmenting existing open-weight AR LLMs. Uno achieves higher throughput than leading speculative-decoding methods at every evaluated batch size and delivers up to $3\\times$ speedups over the base AR model, including at the largest batch size supported by the device. Notably, our 8B Uno model outperforms the leading open d-LLM, the 26B DiffusionGemma, and the proprietary Mercury 2 across all evaluated benchmarks in agentic tool use, coding, and long-context reasoning. We release code and checkpoints at: https://s-sahoo.github.io/uno/",
+          "reason": "近 30 天；关键词：cs.LG, inference, llm。Large Language Models (LLMs) owe much of their success to next-token prediction (NTP), but their autoregressive (AR) structure req...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "llm",
+            "slo",
+            "speculative",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-03T15:48:43Z",
+          "url": "https://arxiv.org/abs/2609.04010",
+          "pdfUrl": "https://arxiv.org/pdf/2609.04010v1"
+        },
+        {
+          "id": "arxiv-2609.03949",
+          "title": "VestigeKV: The NoPE-MLA KV Cache Carries Its Own Eviction Signal in a Vestigial Branch",
+          "authors": [
+            "WenJie Fan"
+          ],
+          "summary": "The problem. A long-lived KV cache must be compressed before the queries that will read it exist; selection by observed attention (H2O, SnapKV) collapses there (0.00-0.33 needle retrieval on a NoPE MLA model), because a token's importance has not yet been observed. The method. On Kimi Linear, VestigeKV evicts by a query-independent signal the cache already carries: the 64-dimensional decoupled branch, a vestige of RoPE that NoPE training repurposes into a salience channel. Reading 11% of each row, it partitions the cache: the top-m rows stay in the attended tier; every other row moves -- exactly, never deleted -- to a GPU-resident archive reachable per step by a certified trigger. No training, no quantization, no weight or kernel change. Cost. Nothing measurable: retrieval holds at 1.00 under 8x and 0.92 under 32x from 8k to 65k context, zero gap to full-row selection. The attended tier is 0.25 KB of Kimi Linear's 8.1 KB per-token cache at 32x; the archive stays bit-exact and GPU-resident, with host offload as the VRAM-reclaiming variant. The recall tier -- the standard configuration -- holds 128x at 1.00. Kimi K3 is reported to use a NoPE Gated-MLA variant; if its cache layout matches, the method plausibly extends there -- we make no claim beyond the measured model. NoPE exclusivity. The identical operator on a RoPE MLA collapses to 0.08 (plain eviction: 0.42); query-independent salience itself exists only without rotation (top-1 targets span 2.3-6.7% of tokens vs. 10.2-46.8%), and query-universal exact merging is provably impossible under RoPE. All thresholds were frozen before data; 20 archived verdicts and 8 closed routes accompany the paper.",
+          "reason": "近 30 天；关键词：cs.LG, kv-cache, quantization。The problem. A long-lived KV cache must be compressed before the queries that will read it exist; selection by observed attention...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "kv-cache",
+            "quantization",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-03T14:53:20Z",
+          "url": "https://arxiv.org/abs/2609.03949",
+          "pdfUrl": "https://arxiv.org/pdf/2609.03949v1"
+        },
+        {
+          "id": "arxiv-2609.03807",
+          "title": "Free Pause Tokens",
+          "authors": [
+            "John Langford",
+            "Nathan Godey",
+            "Giovanni Monea",
+            "Yoav Artzi",
+            "Harry Dong",
+            "Ying Fan",
+            "Gustavo de Rosa",
+            "Zheng Zhan"
+          ],
+          "summary": "A free pause token gives a language model extra compute to form each next-token prediction (as a pause, or thinking, token does) but carries that compute in a parallel prediction stream over a weight-shared backbone rather than as an extra token in the sequence. It improves next-token prediction by 2-3 centinats in practice on a 1B parameter model. Because the pause rides an existing position instead of adding one, it is free to use: at inference it adds no context length, no KV cache, and essentially no latency with the growth in inference flops typically irrelevant as it is not the active bottleneck on throughput. The only primary cost is in training, where additional training compute versus an optimized pretraining pipeline is reduced to as low as x1.14 while preserving most of the benefits. The result is an isoflop, isoparameter, and isotoken improvement over standard next token trained transformers.",
+          "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。A free pause token gives a language model extra compute to form each next-token prediction (as a pause, or thinking, token does) b...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "kv-cache",
+            "latency",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-03T13:12:47Z",
+          "url": "https://arxiv.org/abs/2609.03807",
+          "pdfUrl": "https://arxiv.org/pdf/2609.03807v1"
+        },
+        {
+          "id": "arxiv-2609.03522",
+          "title": "EPIC: Explicit Posterior Item Conditioning for Semantic ID Diffusion Recommendation",
+          "authors": [
+            "Tuan-Binh Tran",
+            "Thanh Tam Nguyen",
+            "Quoc Viet Hung Nguyen",
+            "Dung D. Le",
+            "Tung Kieu",
+            "Thanh Trung Huynh"
+          ],
+          "summary": "Semantic ID (SID) generative recommendation predicts the next item by generating a short tuple of discrete tokens. Recent masked-diffusion methods improve this process through bidirectional context and flexible decoding, yet recommendation ultimately requires selecting among complete catalog items. At each denoising step, a partial SID can correspond to multiple feasible items, while existing methods primarily reason through position-wise token predictions. We propose Explicit Posterior Item Conditioning (EPIC), which introduces explicit item-level competition into SID denoising. EPIC constructs a personalized posterior over feasible candidate items using the current generation context and the user's recent interactions, then projects this distribution back to unresolved SID positions to guide subsequent token decisions. The pretrained backbone remains frozen and requires no additional decoder forward pass. Experiments on four Amazon benchmarks show consistent improvements over strong baselines, while diagnostic analyses indicate that the gains primarily arise from personalized transition evidence that preserves promising item hypotheses during denoising.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, generative-recommendation。Semantic ID (SID) generative recommendation predicts the next item by generating a short tuple of discrete tokens. Recent masked-d...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "generative-recommendation",
+            "recommendation",
+            "semantic-id"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-09-03T08:21:50Z",
+          "url": "https://arxiv.org/abs/2609.03522",
+          "pdfUrl": "https://arxiv.org/pdf/2609.03522v1"
+        },
+        {
+          "id": "arxiv-2609.03430",
+          "title": "Random Attention: Rethinking KV Cache Eviction for Efficient Reasoning",
+          "authors": [
+            "Heng Wang",
+            "Jielin Qiu",
+            "Wenting Zhao",
+            "Cheng Qian",
+            "Liangwei Yang",
+            "Jiawei Han",
+            "Heng Ji",
+            "Silvio Savarese",
+            "Shelby Heinecke",
+            "Huan Wang"
+          ],
+          "summary": "Large language models achieve superior performance on tasks that require extended reasoning, but long chains of thought make the KV cache a severe memory bottleneck. Existing KV cache compression methods share one paradigm: score each cached token by some estimate of how much it will matter later, and keep the top-scoring ones. We show that the selection signal contributes almost nothing. Random Attention keeps the prompt and evicts uniformly at random within each attention head, computing no score at all; across four models and six reasoning tasks it matches the strongest prior evictor while serving 32-43% higher throughput than it in vLLM deployment. Controlled experiments explain this by showing that 1) the prompt is the fragile part of the cache, and most of the gap between selectors is just whether their selection signal happened to keep it; 2) the reasoning trace protects itself against eviction with redundancy at two levels, in the text (the model restates what it still needs as it works) and across attention heads (each keeps its own copy of the trace), so once the prompt is safe, a random draw retains enough copies of what the model still needs, and no score is required to pick them. Our code is publicly available at https://github.com/SalesforceAIResearch/Random-Attention.",
+          "reason": "近 30 天；关键词：cs.CL, efficient, kv-cache。Large language models achieve superior performance on tasks that require extended reasoning, but long chains of thought make the K...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "efficient",
+            "kv-cache",
+            "llm",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-03T06:38:38Z",
+          "url": "https://arxiv.org/abs/2609.03430",
+          "pdfUrl": "https://arxiv.org/pdf/2609.03430v1"
+        },
+        {
+          "id": "arxiv-2609.03335",
+          "title": "Latency-Aware Orchestration for Multi-Agent LLM Workflows on Heterogeneous GPUs",
+          "authors": [
+            "Jinghao Wang",
+            "Yifeng Zhang",
+            "Xiao Zhou",
+            "Yao Lu",
+            "Yihui Zhang",
+            "Xiaoyang Sun",
+            "Tianyu Wo",
+            "Xu Wang",
+            "Chunming Hu",
+            "Renyu Yang"
+          ],
+          "summary": "Concurrent multi-agent workflows expose future dependencies and serving-state requirements while running on heterogeneous GPU pools with time-varying load, model residency, and resource availability. The logical workflow defines the required computation, whereas its physical scheduling units, model-lifecycle actions, resource ordering, and placement must be selected according to the observed pool state. We present a prediction-guided runtime that uses workflow forecasts to construct and optimize a physical execution graph. Predictor estimates device-specific activation latency, peak memory, and model-loading cost, then propagates these predictions through workflow dependencies to forecast activation readiness and future model demand. Constructor builds semantics-preserving fusion and model-lifecycle alternatives, while Scheduler jointly optimizes their selection, placement, and execution order based on the live pool state. Across a workload spanning three workflow scenarios on a heterogeneous GPU pool, our system reduces end-to-end makespan and overall p95 completion latency under burst arrivals by up to 36.8% and 25.9%, respectively, over state-of-the-art workflow schedulers. It also saves up to 24.63 GPU-s per completed session.",
+          "reason": "近 30 天；关键词：cs.DC, latency, llm。Concurrent multi-agent workflows expose future dependencies and serving-state requirements while running on heterogeneous GPU pool...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-03T03:48:39Z",
+          "url": "https://arxiv.org/abs/2609.03335",
+          "pdfUrl": "https://arxiv.org/pdf/2609.03335v1"
+        },
+        {
+          "id": "arxiv-2609.03290",
+          "title": "UniCon: A Unified Context-Centric Modeling Paradigm for CTR Prediction",
+          "authors": [
+            "Jiajun Cui",
+            "Zhengqi Xu",
+            "Fan Zhang",
+            "Zhangteng",
+            "Gu Tang",
+            "Honghong Zhu",
+            "Mengxi Wu",
+            "Yulin Liang",
+            "Xingxing Wang"
+          ],
+          "summary": "Unified modeling has become a major direction for industrial click-through rate (CTR) prediction. Existing approaches typically unify sequential and non-sequential signals at the token level, model their interactions in a shared backbone, and increase model capacity to improve scaling behavior. However, this division originates from legacy feature-engineering practice and is misaligned with the underlying decision process. User behavior is inherently a sequence of homogeneous context units; at the level of input organization, historical behavior and the current request differ only in whether their outcomes are observed or remain to be predicted. Treating them as heterogeneous signals obscures structural dependencies within the user's decision context, limiting both scaling efficiency and prediction quality. This limitation is particularly pronounced in context-rich scenarios such as e-commerce shelves and waterfall feeds. To address this, we propose UniCon, a unified context-centric modeling architecture that treats the request context as the basic modeling unit and organizes history and prediction targets as homogeneous context units. Intra-context attention captures local coupling among items within a context (Locality), while inter-context attention models the dynamic evolution of decision states across contexts (Dynamics). This organization bridges the structural gap between history and target and supports more effective scaling of unified CTR models. Context-unit-level sequence compression further reduces deployment overhead. On Meituan search advertising, UniCon improves offline AUC by 0.0139 over a strong production baseline and achieves statistically significant online lifts of 3.09% in RPM, 2.07% in CTR, and 2.95% in revenue.",
+          "reason": "近 30 天；公司信号：Meituan；推荐/排序/广告方向；关键词：meituan, cs.IR, advertising。Unified modeling has become a major direction for industrial click-through rate (CTR) prediction. Existing approaches typically un...",
+          "area": "推荐算法",
+          "tags": [
+            "meituan",
+            "cs.IR",
+            "advertising",
+            "click-through",
+            "industrial",
+            "production"
+          ],
+          "signal": 99,
+          "source": "Meituan/arXiv",
+          "publishedAt": "2026-09-03T02:33:12Z",
+          "url": "https://arxiv.org/abs/2609.03290",
+          "pdfUrl": "https://arxiv.org/pdf/2609.03290v1"
+        },
+        {
+          "id": "arxiv-2609.03235",
+          "title": "SGD-KV: Summarization Guided KV Cache Compression",
+          "authors": [
+            "Zeyu Liu",
+            "Woomin Song",
+            "Xuandi Fu",
+            "Sai Muralidhar Jayanthi",
+            "Vivek Govindan",
+            "Aram Galstyan",
+            "Sravan Babu Bodapati",
+            "Srikanth Ronanki"
+          ],
+          "summary": "Large language models (LLMs) face severe memory bottlenecks in long-context inference due to the linearly growing size of key-value (KV) caches. Existing KV cache compression techniques typically rely on simple heuristics, overlooking the distinct functional roles of different attention heads. We present SGD-KV (Summarization-Guided KV Cache Compression), a head-aware framework that leverages a novel chunk-summarization diagnostic task to systematically identify and prioritize attention heads specialized in hierarchical information aggregation. Experiments on Qwen2.5-7B-1M and Qwen3-32B across diverse long-context benchmarks demonstrate that SGD-KV achieves state-of-the-art performance with contexts up to 1M tokens, while reducing KV cache memory usage by up to 75%. Our findings show that strategically allocating the KV cache budget based on the summarization score distribution of attention heads yields a superior efficiency-accuracy trade-off for long-context inference.",
+          "reason": "近 30 天；关键词：cs.CL, inference, kv-cache。Large language models (LLMs) face severe memory bottlenecks in long-context inference due to the linearly growing size of key-valu...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "inference",
+            "kv-cache",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-03T00:31:11Z",
+          "url": "https://arxiv.org/abs/2609.03235",
+          "pdfUrl": "https://arxiv.org/pdf/2609.03235v1"
+        },
+        {
+          "id": "arxiv-2609.03047",
+          "title": "SHELF: A Synthetic Harness for Multi-Task Bibliographic Benchmarking",
+          "authors": [
+            "Michael J. Bommarito"
+          ],
+          "summary": "Libraries and archives manage large collections with limited staff and computing budgets, yet common benchmarks do not systematically test their bibliographic work. They need to know which methods work for their tasks and what those methods require to run. SHELF, the Synthetic Harness for Evaluating LLM Fitness, addresses this gap. It is a Python system that turns labelled taxonomies, writing specifications, and a generation budget into controlled benchmark data and evaluation tasks. This first release contains 62,899 model-written documents based on Library of Congress vocabularies, with tasks for classification, clustering, retrieval, pair classification, and instruction retrieval. We compare TF, TF-IDF, BM25, popular encoders, and, on subject classification only, zero-shot decoders; each method appears only on tasks that support it. Subject classification reaches 0.8887, while genre-form classification reaches only 0.2605, and several pair and clustering tasks remain near chance. Sparse methods remain competitive on classification, while TF-IDF is the fastest measured arm in the subject timing experiment. SHELF also varies bibliographic facets independently and can generate new, verifiably unseen documents after a model's training cutoff. Comparisons with LCSHBench and Project Gutenberg show that model rankings transfer more reliably than absolute scores, but SHELF scores do not estimate accuracy on production catalogue data. We release all source code and data under permissive licenses on GitHub and Hugging Face.",
+          "reason": "近 30 天；关键词：cs.CL, llm, production。Libraries and archives manage large collections with limited staff and computing budgets, yet common benchmarks do not systematica...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm",
+            "production",
+            "ranking",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-02T18:17:41Z",
+          "url": "https://arxiv.org/abs/2609.03047",
+          "pdfUrl": "https://arxiv.org/pdf/2609.03047v1"
+        }
+      ]
+    },
     {
       "date": "2026-09-04",
       "generatedAt": "2026-09-04T07:39:43.645712+08:00",
@@ -20286,294 +20575,6 @@
           "publishedAt": "2026-06-05T04:49:37Z",
           "url": "https://arxiv.org/abs/2606.06906v1",
           "pdfUrl": "https://arxiv.org/pdf/2606.06906v1"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-07",
-      "generatedAt": "2026-06-07T06:00:00+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2606.07383v1",
-          "title": "RhinoVLA Technical Report",
-          "authors": [
-            "Huixi Intelligence",
-            ":",
-            "Chen Zhang",
-            "Chenyang Zhou",
-            "Guanglei Ding",
-            "Guanghui He",
-            "Haibin Gao",
-            "Jiajia Chen",
-            "Jianyong Zhang",
-            "Lianyi Yu",
-            "Ningyi Xu",
-            "Ping Xu",
-            "Qingchen Li",
-            "Yingjun Hu",
-            "Yijia Zhang",
-            "Yuxi Liu"
-          ],
-          "summary": "Vision-Language-Action (VLA) models have shown strong potential for robotic manipulation, but real-time deployment on edge hardware remains challenging. In this work, we identify VLM visual and context tokens as a major source of deployment latency: for GEMM-dominated projection operators, computation grows linearly with the number of input tokens when model dimensions are fixed. Motivated by this observation, we propose RhinoVLA, a deployment-oriented VLA model co-designed with the Huixi R1 edge SoC. RhinoVLA adopts a token-efficient Qwen3-VL backbone and a continuous Action Expert, reducing the VLM-side token and computation burden while preserving pretrained multimodal capability. To support cross-robot learning, RhinoVLA further introduces a unified interface that combines View Registry, 72D physical state-action slot space, and robotinstance LoRA, allowing heterogeneous robot observations and action schemas to be aligned under a shared policy. On the deployment side, RhinoVLA is optimized through hardware-aware compilation, mixed-precision execution, and parallel visual encoding. Experiments show that RhinoVLA achieves downstream performance comparable to π0.5 at a similar parameter scale, while reaching 11.69 Hz end-to-end inference on Huixi R1, meeting the 10 Hz real-time closedloop control target. The project will be open-sourced at https://github.com/HuixiAI/RhinoVLA.",
-          "reason": "近 30 天；关键词：cs.RO, efficient, inference。Vision-Language-Action (VLA) models have shown strong potential for robotic manipulation, but real-time deployment on edge hardwar...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.RO",
-            "efficient",
-            "inference",
-            "latency",
-            "lora",
-            "multimodal",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-06-05T15:21:41Z",
-          "url": "https://arxiv.org/abs/2606.07383v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.07383v1"
-        },
-        {
-          "id": "arxiv-2606.07362v1",
-          "title": "Breaking the Ice: Analyzing Cold Start Latency in vLLM",
-          "authors": [
-            "Huzaifa Shaaban Kabakibo",
-            "Animesh Trivedi",
-            "Lin Wang"
-          ],
-          "summary": "As scalable inference services become popular, the cold start latency of an inference engine becomes important. Today, vLLM has evolved into the de facto inference engine of choice for many inference workloads. Although popular, due to its complexity and rapid evolution, there has not been a systematic study of its startup latency. With major architectural innovations such as the V1 API and the introduction of torch.compile, this paper presents the first detailed performance characterization of vLLM startup latency. We break down the startup process into six foundational steps and demonstrate that it is predominantly CPU bound. Each step exhibits consistent and interpretable scaling trends with respect to model-level and system-level parameters, enabling fine-grained attribution of latency sources. Building on these insights, we develop a lightweight analytical model that accurately predicts vLLM startup latency for a given hardware configuration, providing actionable guidance for resource planning in large-scale inference environments. All benchmarking datasets, analysis tools, and prediction scripts are open sourced at https://github.com/upb-cn/vllm-startup-profiler.",
-          "reason": "近 30 天；关键词：cs.LG, dataset, inference。As scalable inference services become popular, the cold start latency of an inference engine becomes important. Today, vLLM has ev...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "dataset",
-            "inference",
-            "latency",
-            "llm"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-06-05T15:07:22Z",
-          "url": "https://arxiv.org/abs/2606.07362v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.07362v1"
-        },
-        {
-          "id": "arxiv-2606.07317v1",
-          "title": "Gated Bidirectional Linear Attention for Generative Retrieval",
-          "authors": [
-            "Artem Matveev",
-            "Vladislav Tytskiy",
-            "Sergei Makeev",
-            "Sergei Liamaev"
-          ],
-          "summary": "In recommender systems, generative retrieval typically uses an encoder-decoder setup: an encoder processes a user interaction history, and an autoregressive decoder then generates recommended items. In large-scale streaming services, active users accumulate very long histories over time. As histories grow, the encoder becomes a major latency bottleneck because softmax attention scales quadratically with sequence length. In our experiments, using bidirectional attention in the encoder substantially improves quality. However, most sub-quadratic attention methods focus on causal attention. We propose Gated Bidirectional Linear Attention (GBLA), a linear-time bidirectional attention layer that extends kernelized linear attention with three lightweight components: local causal mixing (Conv1D), sequence-level key gating for soft forgetting, and a gated RMSNorm output. On a large-scale Yandex Music dataset, a hybrid encoder that interleaves self-attention (SA) and GBLA in a 1:2 ratio (one SA block followed by two GBLA blocks) matches bidirectional self-attention quality. On H100 GPUs, GBLA reaches up to an $8.2\\times$ single-layer speedup at a history length of 32768, compared to FlashAttention-v3. Finally, we show that the same hybrid design generalizes beyond our proprietary setting, consistently preserving self-attention retrieval quality on public Amazon benchmarks.",
-          "reason": "近 30 天；公司信号：Amazon, NVIDIA；推荐/排序/广告方向；关键词：amazon, nvidia, cs.IR。In recommender systems, generative retrieval typically uses an encoder-decoder setup: an encoder processes a user interaction hist...",
-          "area": "推荐算法",
-          "tags": [
-            "amazon",
-            "nvidia",
-            "cs.IR",
-            "dataset",
-            "latency",
-            "recommender",
-            "retrieval"
-          ],
-          "signal": 99,
-          "source": "Amazon/NVIDIA/arXiv",
-          "publishedAt": "2026-06-05T14:37:02Z",
-          "url": "https://arxiv.org/abs/2606.07317v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.07317v1"
-        },
-        {
-          "id": "arxiv-2606.07248v1",
-          "title": "Clairvoyant: Predictive SJF Scheduling to Mitigate Head-of-Line Blocking in Serial LLM Backends",
-          "authors": [
-            "Aravind Sundaresan"
-          ],
-          "summary": "Serial LLM inference backends -- such as Ollama -- process requests one at a time under FCFS admission, causing Head-of-Line Blocking (HOLB) under mixed workloads at high utilisation: short factual queries can be delayed by minutes behind long generation jobs. While cloud-scale deployments mitigate HOLB via continuous batching (vLLM, Orca), these solutions require tens of GB of VRAM for concurrent KV-caches -- infeasible for memory-constrained edge and local deployments that rely on serial request dispatch. We present \\clairvoyant, a drop-in sidecar proxy for any serial OpenAI-compatible backend (e.g., Ollama, llama.cpp). \\clairvoyant predicts response length from 19 lightweight lexical features via an ONNX-exported XGBoost classifier, achieving 0.029\\,ms per-request latency (four orders of magnitude below typical generation time). Because admission scheduling depends on relative ordering rather than exact prediction, the system optimises ranking fidelity, achieving 62--96\\% in-distribution and 52--66\\% cross-distribution accuracy across natural conversation datasets. We find that curated instruction datasets are degenerate training sources for length prediction: GPT-imposed brevity constraints reduce Long-class representation to under 0.02\\% of examples, making natural conversation logs the only viable training source. End-to-end GPU benchmarks on an RTX~4090 show 70--76\\% P50 latency reduction for short requests under maximum queue pressure (100 concurrent requests) and 17\\% under steady-state Poisson arrivals ($ρ=0.74$). \\clairvoyant is open-source and requires no modifications to the inference backend.",
-          "reason": "近 30 天；公司信号：Meta, OpenAI；关键词：meta, openai, cs.DC。Serial LLM inference backends -- such as Ollama -- process requests one at a time under FCFS admission, causing Head-of-Line Block...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "meta",
-            "openai",
-            "cs.DC",
-            "batching",
-            "dataset",
-            "inference",
-            "latency"
-          ],
-          "signal": 99,
-          "source": "Meta/OpenAI/arXiv",
-          "publishedAt": "2026-06-05T13:19:05Z",
-          "url": "https://arxiv.org/abs/2606.07248v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.07248v1"
-        },
-        {
-          "id": "arxiv-2606.07156v1",
-          "title": "ANNS-AMP: Accelerating Approximate Nearest Neighbor Search via Adaptive Mixed-Precision Computing",
-          "authors": [
-            "Mingkai Chen",
-            "Cheng Liu",
-            "Shengwen Liang",
-            "Lei Zhang",
-            "Xiaowei Li",
-            "Huawei Li"
-          ],
-          "summary": "Approximate nearest neighbor search(ANNS) is a critical kernel in modern applications such as LLM and recommendation systems.However,its efficiency is fundamentally limited by the need to compute distances between a query and a massive number of high-dimensional vectors,most of which are non-neighbors.Existing approaches reduce redundancy via index optimization or early termination,but remain constrained by fixed-precision computation,leading to unnecessary arithmetic and memory bandwidth overhead.This paper presents ANNS-AMP,an adaptive mixed-precision framework and accelerator that adapts the precision of distance computation to the characteristics of queries and data distribution.The key insight is that different regions of the vector space require different levels of precision to preserve top-k accuracy.ANNS-AMP leverages the clustered structure of PQ-based indices and introduces a lightweight predictor to determine cluster-level precision at runtime based on features such as scale,radius,and query distance.To efficiently realize variable-precision execution,we design a bit-serial accelerator with a bit-interleaved data layout,enabling throughput to scale with reduced precision while mitigating memory bandwidth bottlenecks and load imbalance through a greedy scheduling strategy.Moreover,the runtime predictor can also reuse the bit-serial computing array for efficient runtime prediction and can be fitted to the ANNS pipeline without performance penalty.According to our experiments on representative datasets,ANNS-AMP achieves 163.76x,10.57x,and 2.06x performance speedups on average,and reduces average energy consumption by 1100.00x,39.41x,and 6.66x compared to CPU,GPU,and customized ANNS accelerator baselines,respectively,while maintaining accuracy loss below 2.7%.These results demonstrate that adaptive mixed-precision computing is a promising direction for efficient large-scale ANNS.",
-          "reason": "近 30 天；公司信号：Huawei；关键词：huawei, cs.PF, dataset。Approximate nearest neighbor search(ANNS) is a critical kernel in modern applications such as LLM and recommendation systems.Howev...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "huawei",
-            "cs.PF",
-            "dataset",
-            "efficient",
-            "energy",
-            "llm",
-            "recommendation"
-          ],
-          "signal": 99,
-          "source": "Huawei/arXiv",
-          "publishedAt": "2026-06-05T11:15:04Z",
-          "url": "https://arxiv.org/abs/2606.07156v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.07156v1"
-        },
-        {
-          "id": "arxiv-2606.07098v1",
-          "title": "SigmaScale: LLM Compression with SVD-based Low-Rank Decomposition and Learned Scaling Matrices",
-          "authors": [
-            "Ernests Lavrinovics",
-            "Marco Letizia",
-            "Roy Janco",
-            "Shai Segal",
-            "Johannes Bjerva",
-            "Maurizio Pierini"
-          ],
-          "summary": "We present SigmaScale, a method for learning auxiliary scaling matrices $S$ to aid truncated Singular Value Decomposition (SVD) based Large Language Model (LLM) compression. Instead of deriving scaling matrices analytically, SigmaScale optimizes two sets of vectors that define diagonal row and column scaling transformations under an activation-aware compression loss. We show that learned scaling lowers the effective intrinsic rank of weight matrices, as reflected by reductions in effective-rank entropy, and that this reduction is strongly correlated with compression loss. Experiments on Llama 3.1 8B Instruct and Qwen3-8B show that SigmaScale is competitive with closely related state-of-the-art SVD-based compression methods across perplexity and zero-shot benchmarks. By using learned activation-aware transformations, SigmaScale explores a more flexible route to low-rank LLM compression by adapting to the structure of individual model weights. The advantage observed in specific tasks makes our approach a valid option for applications requiring a reduced LLM-inference computing cost.",
-          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, inference。We present SigmaScale, a method for learning auxiliary scaling matrices $S$ to aid truncated Singular Value Decomposition (SVD) ba...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "meta",
-            "cs.CL",
-            "inference",
-            "llm"
-          ],
-          "signal": 99,
-          "source": "Meta/arXiv",
-          "publishedAt": "2026-06-05T09:48:58Z",
-          "url": "https://arxiv.org/abs/2606.07098v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.07098v1"
-        },
-        {
-          "id": "arxiv-2606.06947v1",
-          "title": "DREAM: Dynamic Refinement of Early Assignment Mappings",
-          "authors": [
-            "Liwei Guan",
-            "Huanjie Wang",
-            "Hongwei Zhang",
-            "Linxun Chen",
-            "Zhaojie Liu"
-          ],
-          "summary": "Generative recommendation advances item retrieval by reformulating it as autoregressive generation of Semantic IDs (SIDs), compact token sequences that encode item semantics. While SIDs offer a strong semantic prior, current SID-based methods assign each item a single static identifier through offline tokenization before sufficient user feedback is observed. For cold-start items, this one-shot commitment produces poorly discriminative codes, generating misaligned paths that remain unrefined because the associated tokens are rarely sampled during training. We identify this early static commitment, not model capacity, as the fundamental cold-start bottleneck in SID-based generative recommendation. To overcome this bottleneck and bridge the disjoint objectives of tokenization and generation, we propose DREAM (Dynamic Refinement of Early Assignment Mappings), a three-stage framework that resolves this flaw through progressive refinement. First, an intent-aware tokenizer rebuilds the SID space through counterfactual contrastive learning, generating a diverse pool of behavior-aligned candidates per cold-start item. Second, the frozen recommendation backbone serves as an evaluator, selecting the most reliable candidate based on multi-context user support without retraining. Third, a dynamic beam mechanism maintains multiple weighted SID hypotheses throughout training and inference, preventing premature collapse to a single assignment. Extensive experiments on three Amazon benchmarks show that DREAM substantially outperforms state-of-the-art generative and sequential baselines on cold-start metrics.",
-          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, generative-recommendation。Generative recommendation advances item retrieval by reformulating it as autoregressive generation of Semantic IDs (SIDs), compact...",
-          "area": "推荐算法",
-          "tags": [
-            "amazon",
-            "cs.IR",
-            "generative-recommendation",
-            "inference",
-            "recommendation",
-            "retrieval",
-            "semantic-id"
-          ],
-          "signal": 99,
-          "source": "Amazon/arXiv",
-          "publishedAt": "2026-06-05T06:21:01Z",
-          "url": "https://arxiv.org/abs/2606.06947v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.06947v1"
-        },
-        {
-          "id": "arxiv-2606.05537v1",
-          "title": "PHKT:Personalized Dynamic Hypergraph-enhanced KAN-Transformer for Multi-behavior Sequential Recommendation",
-          "authors": [
-            "Ruijie Du",
-            "Hao Chen",
-            "Xin Zhang",
-            "Dongjing Wang",
-            "Ze Zhang",
-            "Xudong Shen",
-            "Runze Wu",
-            "Dongjin Yu"
-          ],
-          "summary": "In multi-behavior recommendation, auxiliary behaviors such as clicks, add-to-cart, and purchases can provide richer supervisory information for predicting target behaviors. Although existing graph and hypergraph methods are capable of modeling high-order relationships among users, items, and behaviors, they still have limitations in heterogeneous semantics, user-specific weighting, and sequence dependency modeling. While standard Transformers excel at sequence modeling, their shared feedforward mapping struggles to accommodate the differentiated requirements of heterogeneous latent patterns in multi-behavior scenarios. To address this, this paper proposes the Personalized Hypergraph-enhanced Kolmogorov-Arnold Network Transformer (PHKT). Specifically, we design a personalized dynamic hypergraph module that performs behavior-aware weighting of item similarities based on users' historical behavior sequences to capture user-specific heterogeneous high-order relationships. Meanwhile, a Transformer is used as the temporal backbone to model the evolution of short- and long-term preferences, and KAN is introduced to replace the traditional MLP in the feedforward network to enhance fine-grained modeling capability for nonlinear responses to different latent patterns. Experiments on three real datasets, Tmall, RetailRocket, and IJCAI, show that PHKT consistently outperforms nine strong baseline models across multiple evaluation metrics, demonstrating its effectiveness in multi-behavior preference modeling and target behavior prediction.",
-          "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, dataset。In multi-behavior recommendation, auxiliary behaviors such as clicks, add-to-cart, and purchases can provide richer supervisory in...",
-          "area": "推荐算法",
-          "tags": [
-            "alibaba",
-            "cs.IR",
-            "dataset",
-            "recommendation"
-          ],
-          "signal": 99,
-          "source": "Alibaba/arXiv",
-          "publishedAt": "2026-06-04T00:40:58Z",
-          "url": "https://arxiv.org/abs/2606.05537v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.05537v1"
-        },
-        {
-          "id": "arxiv-2606.03866",
-          "title": "Taiji: Pareto Optimal Policy Optimization with Semantics-IDs Trade-off for Industrial LLM-Enhanced Recommendation",
-          "authors": [
-            "Yuecheng Li",
-            "Zeyu Song",
-            "Jing Yao",
-            "Chi Lu",
-            "Peng Jiang",
-            "Kun Gai"
-          ],
-          "summary": "Presents Taiji, an industrial LLM-as-Enhancer recommender framework that aligns LLM semantic rewards with collaborative ID preference rewards through Pareto Optimal Policy Optimization. It reports offline and online A/B validation and deployment on Kuaishou advertising traffic.",
-          "reason": "近 30 天工业推荐主线：Kuaishou 广告平台、LLM4Rec、Semantic IDs、RL 对齐和线上 A/B 都在一篇里。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "llm4rec",
-            "semantic-id",
-            "rl-alignment",
-            "online-ab"
-          ],
-          "signal": 99,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-02T16:39:06Z",
-          "url": "https://arxiv.org/abs/2606.03866",
-          "pdfUrl": "https://arxiv.org/pdf/2606.03866"
-        },
-        {
-          "id": "arxiv-2604.04976",
-          "title": "Tencent Advertising Algorithm Challenge 2025: All-Modality Generative Recommendation",
-          "authors": [
-            "Junwei Pan",
-            "Wei Xue",
-            "Chao Zhou",
-            "Xing Zhou",
-            "Lunan Fan",
-            "Yanbo Wang",
-            "Haijie Gu",
-            "Jie Jiang"
-          ],
-          "summary": "Introduces TencentGR-1M and TencentGR-10M, two de-identified Tencent Ads datasets for all-modality generative recommendation with exposure, click and conversion signals, plus task definitions, baselines and competition findings.",
-          "reason": "近 90 天大厂推荐数据集方向：工业广告、生成式推荐、全模态特征、点击和转化目标都很贴近线上系统。",
-          "area": "推荐算法",
-          "tags": [
-            "tencent",
-            "ads",
-            "generative-recommendation",
-            "dataset",
-            "conversion"
-          ],
-          "signal": 97,
-          "source": "Tencent/arXiv",
-          "publishedAt": "2026-04-04T17:05:15Z",
-          "url": "https://arxiv.org/abs/2604.04976",
-          "pdfUrl": "https://arxiv.org/pdf/2604.04976"
         }
       ]
     }
