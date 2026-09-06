@@ -1,210 +1,53 @@
 {
-  "generatedAt": "2026-09-06T07:26:22.614387+08:00",
+  "generatedAt": "2026-09-07T07:19:44.298512+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2609.02293",
-      "title": "SEAL: Reinforcing Global Safety in Mixture-of-Experts through Shared Expert ALignment",
+      "id": "arxiv-1911.02150",
+      "title": "Fast Transformer Decoding: One Write-Head is All You Need",
       "authors": [
-        "Qingyu Meng",
-        "Yiwei Zha",
-        "Jiahuan Pei",
-        "Koen Hindriks",
-        "Herbert Bos",
-        "Min Chen"
+        "Noam Shazeer"
       ],
-      "summary": "Mixture-of-Experts (MoE) is a scaling architecture for large language models that activates only a small subset of expert modules per token, enabling massive parameter growth with nearly constant computation. Recent Hybrid MoE architecture adds \\textit{shared experts} to capture consistently useful representations, further improving stability and generalization. MoE now powers many flagship open-source and commercial models, yet remains vulnerable to adversarial attacks. Specifically, sparse routing introduces a structural vulnerability: MoE safety hinges on which experts are activated, and adversaries can subvert this selection through jailbreak prompts, malicious fine-tuning, and weight-level pruning of safety-critical neurons. Existing defenses primarily focus on hardening the router, but an adversary may still manipulate or bypass the routing trajectory due to the routing process's nondeterministic nature, thereby collapsing the defense. To cope with this problem, we first identify theoretically and empirically that shared expert, an always-activated component containing a small proportion of safety-critical neurons, can overcome the uncertainty of sparsely activated routing path and serve as a router-independent anchor to enhance global safety alignment. Based on this insight, we propose SEAL, a training-time parameter-efficient defense that produces a plug-and-play adapter attached to shared expert, and SEAL++, a variant that adds an orthogonal constraint preserving pre-existing safety subspaces during training. We evaluate SEAL and SEAL++ across six attack scenarios that combine three adversarial inputs (harmful prompting, jailbreak, malicious fine-tuning) with and without neuron pruning. SEAL reduces attack success rate (ASR) by up to 60\\%, at a capability cost of at most 1.4\\% on a five-benchmark average. Additionally, SEAL can seamlessly integrate with router-level ......",
-      "reason": "近 30 天；关键词：cs.LG, alignment, efficient。Mixture-of-Experts (MoE) is a scaling architecture for large language models that activates only a small subset of expert modules...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "alignment",
-        "efficient",
-        "serving"
-      ],
-      "signal": 98,
-      "source": "arXiv",
-      "publishedAt": "2026-09-02T08:40:19Z",
-      "url": "https://arxiv.org/abs/2609.02293",
-      "pdfUrl": "https://arxiv.org/pdf/2609.02293v1"
-    },
-    {
-      "id": "arxiv-2609.02796",
-      "title": "DiscoSign: Discourse-Aware Text to Sign Language Gloss Translation",
-      "authors": [
-        "Vasileios Baltatzis",
-        "Mert Inan",
-        "Connor Gillis",
-        "Raja Kushalnagar",
-        "Lorna Quandt",
-        "Leah Findlater",
-        "Colin Lea"
-      ],
-      "summary": "Sign language processing systems have traditionally operated at the sentence level, ignoring critical discourse phenomena fundamental to sign language comprehension. We introduce DiscoSign, a computational approach for discourse-aware text to sign language gloss translation grounded in linguistic research. We address three key phenomena within our modular Large Language Model (LLM)-based translation framework: (i) spatial coreference resolution, where entities maintain consistent spatial locations throughout discourse; (ii) Question-Answer Clauses (QACs), pseudocleft structures serving specific discourse functions; and (iii) concept-gloss consistency, ensuring stable mappings between English concepts and American Sign Language (ASL) signs. Traditional translation metrics fail to capture discourse-level quality, so we introduce a suite of novel evaluation metrics designed to assess each dimension of discourse coherence addressed by our framework. Experiments on sentence-level and discourse-level datasets show that our approach for discourse-aware processing significantly improves spatial consistency and entity tracking relative to sentence-only translation, while maintaining competitive single-sentence gloss translation quality. Our work establishes the first systematic framework for discourse-level text to sign language gloss translation with corresponding evaluation methodology.",
-      "reason": "近 30 天；关键词：cs.CL, dataset, llm。Sign language processing systems have traditionally operated at the sentence level, ignoring critical discourse phenomena fundamen...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "dataset",
-        "llm",
-        "serving"
-      ],
-      "signal": 96,
-      "source": "arXiv",
-      "publishedAt": "2026-09-02T16:31:39Z",
-      "url": "https://arxiv.org/abs/2609.02796",
-      "pdfUrl": "https://arxiv.org/pdf/2609.02796v1"
-    },
-    {
-      "id": "arxiv-2609.02292",
-      "title": "SCX Router: Streaming Zero-Shot Model Selection with a Decoder-KV Classifier and a Real-World Task Ontology",
-      "authors": [
-        "Ihor Stepanov",
-        "Aleksandr Smechov",
-        "Mykhailo Shtopko",
-        "Dmytro Vodianytskyi",
-        "Oleksandr Lukashov"
-      ],
-      "summary": "The rapid proliferation of large language models (LLMs) and the growing diversity of their applications presents a unique optimization opportunity: selecting the right model for the task, while optimizing for speed, cost, and quality at a per-task level. However, inference endpoints can vary widely in quality, price, latency, context support, tool use, domain expertise, and reasoning behavior. This heterogeneity makes manual heuristics difficult to maintain and unlikely to achieve consistently favorable speed--cost--quality trade-offs on their own. We introduce \\router{}, a lightweight GLiClass-based router that assigns a suitability score to each inference-time model label without autoregressive generation. The released 0.6B-parameter checkpoint combines a Qwen3 decoder with a shallow bidirectional scorer. Its decoder-KV execution path preserves a text-only key--value cache across a session, encodes only new dialogue turns, and evaluates transient candidate-label tokens without adding them to the persistent cache. The same checkpoint also predicts task type, difficulty, reasoning mode, and expected output length, and supports custom zero-shot labels. For task generation, we construct a task ontology with 23 families, 115 task types, 345 routable subtypes, 1,173 synthetic examples, and an orthogonal axis of 30 domains. Using this structure, we generate 150,000 verifier-scored tasks and 15,000 open-ended tasks. We then train the Qwen3 decoder on these tasks, while explicitly separating learned request prediction from per-task policies for attributes such as eligibility, cost, cache reuse, safety, and sovereignty. Across six LiveBench subsets, the router outperforms the mean candidate; on the selected 1,000-task subset, it achieves an aggregate top-1 score of 0.707 versus 0.696 for the strongest fixed model, with benchmark-dependent gains.",
-      "reason": "近 30 天；关键词：cs.AI, inference, latency。The rapid proliferation of large language models (LLMs) and the growing diversity of their applications presents a unique optimiza...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.AI",
-        "inference",
-        "latency",
-        "llm"
-      ],
-      "signal": 96,
-      "source": "arXiv",
-      "publishedAt": "2026-09-02T08:40:07Z",
-      "url": "https://arxiv.org/abs/2609.02292",
-      "pdfUrl": "https://arxiv.org/pdf/2609.02292v1"
-    },
-    {
-      "id": "arxiv-2211.17192",
-      "title": "Fast Inference from Transformers via Speculative Decoding",
-      "authors": [
-        "Yaniv Leviathan",
-        "Matan Kalman",
-        "Yossi Matias"
-      ],
-      "summary": "Uses a small draft model to propose tokens and a larger model to verify them, reducing autoregressive decoding latency while preserving the target model distribution under the algorithm assumptions.",
-      "reason": "LLM 推理经典轮换：speculative decoding 是解码加速的核心路线，适合和 Medusa、EAGLE、lookahead decoding 对照。",
+      "summary": "Introduces multi-query attention, sharing keys and values across attention heads to reduce memory bandwidth during incremental transformer decoding.",
+      "reason": "LLM 推理经典轮换：MQA 是后续 GQA、KV cache 压缩和高吞吐 decoder 设计的早期关键论文。",
       "area": "LLM 推理优化",
       "tags": [
         "classic",
-        "speculative-decoding",
-        "draft-model",
-        "latency",
-        "serving"
-      ],
-      "signal": 96,
-      "source": "Google/arXiv",
-      "publishedAt": "2022-11-30T17:15:06Z",
-      "url": "https://arxiv.org/abs/2211.17192",
-      "pdfUrl": "https://arxiv.org/pdf/2211.17192"
-    },
-    {
-      "id": "arxiv-2305.13245",
-      "title": "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints",
-      "authors": [
-        "Joshua Ainslie",
-        "James Lee-Thorp",
-        "Michiel de Jong",
-        "Yury Zemlyanskiy",
-        "Federico Lebron"
-      ],
-      "summary": "Studies grouped-query attention as a practical middle ground between multi-head attention quality and multi-query attention inference efficiency, reducing KV cache pressure in decoder-only models.",
-      "reason": "LLM 推理经典轮换：GQA/MQA 是理解现代 decoder KV cache 和吞吐取舍的结构入口。",
-      "area": "LLM 推理优化",
-      "tags": [
-        "classic",
-        "gqa",
         "mqa",
         "kv-cache",
-        "attention"
+        "decode",
+        "memory-bandwidth"
       ],
-      "signal": 95,
+      "signal": 94,
       "source": "Google/arXiv",
-      "publishedAt": "2023-05-22T19:00:42Z",
-      "url": "https://arxiv.org/abs/2305.13245",
-      "pdfUrl": "https://arxiv.org/pdf/2305.13245"
+      "publishedAt": "2019-11-06T18:57:21Z",
+      "url": "https://arxiv.org/abs/1911.02150",
+      "pdfUrl": "https://arxiv.org/pdf/1911.02150"
     },
     {
-      "id": "arxiv-2609.02548",
-      "title": "Learn from Whoever Is Right: Answer-Verified Multi-Teacher Distillation for Multi-Domain LLMs",
+      "id": "arxiv-2208.07339",
+      "title": "LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale",
       "authors": [
-        "Xixiang He",
-        "Xingming Li",
-        "Baiqi Wu",
-        "Qiyao Sun",
-        "Xuanyu Ji",
-        "Ao Cheng",
-        "Qingyong Hu"
+        "Tim Dettmers",
+        "Mike Lewis",
+        "Younes Belkada",
+        "Luke Zettlemoyer"
       ],
-      "summary": "Modern large language models (LLMs) rely on reinforcement learning to build strong capabilities in individual domains, but integrating those capabilities into a single deployable model remains challenging. By routing each sample to the teacher whose domain matches it, existing approaches let a domain label decide which teacher provides supervision. However, domain expertise holds only on average: the matched teacher is not always correct on a given sample, while a teacher from another domain sometimes is. The reliable teacher therefore has to be identified per sample, not per domain. In this paper, we introduce Multi-Teacher Self-Distillation Policy Optimization (MT-SDPO), an on-policy distillation method that unifies several frozen teachers into one student model. MT-SDPO consists of three components: (1) self-anchors, where a rollout is supervised by a correct rollout from its own group; (2) answer-verified eligibility, where a teacher may supervise a sample only if its own answer passes a verifier; and (3) privileged distillation, which merges the anchor and all verified feedback into one context that an exponential moving average self-teacher reads and the student does not, thereby keeping one policy at deployment. Across five students from three model families, MT-SDPO lifts the weakest domain of Qwen3-8B by 14.79 points and narrows its domain gap by 74.7%, a better balance than serving one matched teacher per domain. Verified reliability, not domain membership, should decide who teaches. Code is available at https://github.com/hexixiang/MT-SDPO.",
-      "reason": "近 30 天；关键词：cs.LG, llm, serving。Modern large language models (LLMs) rely on reinforcement learning to build strong capabilities in individual domains, but integra...",
+      "summary": "Introduces a mixed-precision int8 inference procedure that handles emergent outlier features and enables large transformer inference with substantially lower memory use.",
+      "reason": "LLM 推理经典轮换：低比特推理的基础论文之一，适合和 SmoothQuant、AWQ、GPTQ 放在一起比较。",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.LG",
-        "llm",
-        "serving"
+        "classic",
+        "quantization",
+        "int8",
+        "memory",
+        "inference"
       ],
-      "signal": 89,
-      "source": "arXiv",
-      "publishedAt": "2026-09-02T13:00:45Z",
-      "url": "https://arxiv.org/abs/2609.02548",
-      "pdfUrl": "https://arxiv.org/pdf/2609.02548v1"
-    },
-    {
-      "id": "arxiv-2609.02264",
-      "title": "Codebook Agent: Amortized Topology Design for LLM Multi-Agent Systems",
-      "authors": [
-        "Jinxi Yu",
-        "Yubei Li",
-        "Eric Hanchen Jiang",
-        "Zhi Zhang",
-        "Dong Liu",
-        "Wenxiao Zhao",
-        "Levina Li",
-        "Kai-Wei Chang",
-        "Ying Nian Wu"
-      ],
-      "summary": "Adapting the communication topology of an LLM multi-agent system to each query improves both accuracy and efficiency, yet current designers treat this as conditional graph generation: a variational, autoregressive, or diffusion decoder searches the $N \\times N$ adjacency space, and a graph-network proxy trained on utility and a structural cost such as edge count ranks the sampled candidates. We argue that this formulation is misaligned with the problem. Empirically, topologies that survive a reward filter collapse to about six distinct graphs even when the codebook capacity grows from 8 to 64; edge count is negatively correlated with measured token consumption (Pearson $r \\approx -0.4$), so sparsifying the graph makes inference more expensive; and a message-passing scorer over agent-profile nodes is adjacency-invariant whenever agents share a profile---the default configuration of published benchmarks---so it cannot rank candidates at all in that regime. These three facts motivate Codebook Agent: a vector-quantized autoencoder compresses successful topologies into a query-independent 16-entry codebook; a reward-weighted MLP maps the query embedding to a distribution over codes; and an MLP proxy that reads the flattened adjacency, regressed on measured utility and per-task normalized token cost, reranks the top decoded candidates in a single batched forward pass. With no iterative search and no message passing at test time, Codebook Agent is the most accurate method on all six benchmarks we compare (84.6 average against 83.0 for the strongest prior designer), emits a topology in 2.4 ms, and uses 21.9--33.2% fewer LLM tokens.",
-      "reason": "近 30 天；关键词：cs.AI, inference, llm。Adapting the communication topology of an LLM multi-agent system to each query improves both accuracy and efficiency, yet current...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.AI",
-        "inference",
-        "llm"
-      ],
-      "signal": 86,
-      "source": "arXiv",
-      "publishedAt": "2026-09-02T08:10:22Z",
-      "url": "https://arxiv.org/abs/2609.02264",
-      "pdfUrl": "https://arxiv.org/pdf/2609.02264v1"
-    },
-    {
-      "id": "arxiv-2609.03322",
-      "title": "How Perturbations Propagate: A Multi-Level Analysis of Robustness in Large Language Models",
-      "authors": [
-        "Dun Li Chan",
-        "Emily Liu",
-        "Niyathi Allu",
-        "Christian Hoang"
-      ],
-      "summary": "Language models encounter typos, corrupted text, altered words, and disrupted token order, yet robustness is usually evaluated only through output behavior. We study how six naturalistic and synthetic input perturbations propagate through decoder-only language models at three levels: output behavior, hidden-state geometry, and attention-head function. We evaluate behavioral effects across four GPT-2 and two Qwen2.5 checkpoints by analyzing layerwise geometry using centered kernel alignment and intrinsic dimension, and examine attention-head responses in GPT-2. Perturbation types produce distinguishable metric profiles that are not fully captured by output measures and are only partly consistent across the tested checkpoints. Copying scores are especially associated with activation-patching recovery under token substitution and shuffling. Gradient-guided HotFlip perturbations also cause stronger behavioral and representational disruption than rate-matched random token substitutions in GPT-2; their behavioral effects are consistent across all six tested checkpoints. Our results show that robustness claims based on a single behavioral or representational metric can be misleading, and motivate multi-level evaluation of how perturbations alter language-model computation.",
-      "reason": "近 30 天；关键词：cs.CL, alignment。Language models encounter typos, corrupted text, altered words, and disrupted token order, yet robustness is usually evaluated onl...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "alignment"
-      ],
-      "signal": 78,
-      "source": "arXiv",
-      "publishedAt": "2026-09-03T03:17:25Z",
-      "url": "https://arxiv.org/abs/2609.03322",
-      "pdfUrl": "https://arxiv.org/pdf/2609.03322v1"
+      "signal": 93,
+      "source": "Meta/Hugging Face/arXiv",
+      "publishedAt": "2022-08-15T17:59:08Z",
+      "url": "https://arxiv.org/abs/2208.07339",
+      "pdfUrl": "https://arxiv.org/pdf/2208.07339"
     }
   ]
 }
