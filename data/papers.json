@@ -1,264 +1,176 @@
 {
-  "generatedAt": "2026-09-08T07:50:32.358839+08:00",
+  "generatedAt": "2026-09-09T07:44:32.844724+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2609.05274",
-      "title": "How to Speculate about Uncertainty in Agentic Coding? A Draft-Model Gate Method",
+      "id": "arxiv-2609.04434",
+      "title": "What Attention Recalls and Recurrence Controls in Hybrid Language Models",
       "authors": [
-        "Konstantin Grotov",
-        "Valentin Malykh"
+        "Kirill Afendulev",
+        "Alexey Dontsov",
+        "Elena Tutubalina",
+        "Anton Korznikov"
       ],
-      "summary": "LLM agents deployed for software engineering fail expensively: they act confidently wrong, and bad actions are recognized only after costly execution and retry. We present Speculative Uncertainty (SU), a method that recovers a predictive failure signal for a black-box agent from its output tokens alone, with no access to logits, weights, activations, or repeated sampling. Inverting speculative decoding, a small open-weight draft model scores the agent's already-generated trajectory in a single forward pass. From these speculative cross-likelihoods we extract phase-aware features by separating the reasoning and action spans, and calibrate them against a verifiable objective. SU produces a failure-likelihood score that any downstream policy, such as routing, human intervention, or extra test-time compute, can consume directly. To show the signal is actionable, we instantiate one such policy, a pre-execution veto gate, on software engineering agents Qwen3-Coder-480B and closed-source Claude 3.5 Sonnet, cutting execution error rate by 6-8 percentage points and token cost by 14-19% in deployment, transferring to out-of-distribution benchmarks without retraining, and generalizing across agent models.",
-      "reason": "近 30 天；公司信号：Anthropic；关键词：anthropic, cs.LG, deployed。LLM agents deployed for software engineering fail expensively: they act confidently wrong, and bad actions are recognized only aft...",
+      "summary": "Hybrid language models combine attention with a fixed-size recurrent state, but the role of each channel remains unclear. We introduce two cache-level interventions. Split-prefill keeps only the KV cache or only the recurrent state from a prefilled context, then generates an answer. State-swap pairs the KV cache from one context with the recurrent state from another in a single forward pass. On Qwen3.5 and Falcon-H1, the two channels split sharply by function. Exact retrieval survives only through attention (64-98% of full accuracy) and collapses to zero through recurrence. Output language and persona reverse the pattern: both survive recurrence (70-80% and 3-5x) while KV-only drops to ~1% language accuracy. State-swap confirms this causally: the answer takes its value from the KV side and its language from the recurrent side. Recurrent-only generation also accepts words that were never in the context but share meaning or parts with seen items. Attention provides a lookup over what was said; the recurrent state shapes how the model says it next.",
+      "reason": "近 30 天；关键词：cs.CL, kv-cache, prefill。Hybrid language models combine attention with a fixed-size recurrent state, but the role of each channel remains unclear. We intro...",
       "area": "LLM 推理优化",
       "tags": [
-        "anthropic",
-        "cs.LG",
-        "deployed",
-        "llm",
-        "speculative"
-      ],
-      "signal": 99,
-      "source": "Anthropic/arXiv",
-      "publishedAt": "2026-09-04T15:30:22Z",
-      "url": "https://arxiv.org/abs/2609.05274",
-      "pdfUrl": "https://arxiv.org/pdf/2609.05274v1"
-    },
-    {
-      "id": "arxiv-2609.05235",
-      "title": "PRICE: A Systematic Study of LLM Adaptation Choices for Bitcoin Price Forecasting",
-      "authors": [
-        "Maryam Fakhari",
-        "Mehran Safayani"
-      ],
-      "summary": "Cryptocurrency markets exhibit extreme volatility and non-stationary dynamics that challenge conventional forecasting methods. Although Large Language Models (LLMs) have shown promise for time series forecasting, the combined effects of adaptation choices remain largely unexplored in financial settings. This study introduces PRICE, a structured approach for adapting LLMs to short-term Bitcoin price forecasting. Built on a 4-bit quantized LLaMA-3 8B model, PRICE investigates how fine-tuning, numerical representation, prompting, inference, and decoding jointly influence forecasting performance. PRICE integrates Parameter-efficient fine-tuning with Low-Rank Adaptation (LoRA), Recursive multi-step inference, Integer-rounded numerical representation, Context-Task-Format (CTF) prompting, and Exact zero-temperature decoding. Ablation studies show that each component contributes to forecasting accuracy and reliability. LoRA enables efficient training on limited hardware, recursive inference improves accuracy, integer-rounded values reduce errors, CTF prompting outperforms Chain-of-Thought, Implicit Chain-of-Thought (iCoT), and few-shot prompting, and zero-temperature decoding improves stability during recursive forecasting. Comparative evaluation against eight transformer-based and time-series foundation models shows that PRICE achieves the lowest forecasting errors on both validation and test sets while maintaining robust performance across evaluation periods. Despite being based on a model primarily pretrained on text rather than time-series data, PRICE achieves competitive or superior performance relative to specialized foundation models. These findings demonstrate that adaptation choices critically determine the accuracy and robustness of LLMs for numerical time-series forecasting.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, efficient。Cryptocurrency markets exhibit extreme volatility and non-stationary dynamics that challenge conventional forecasting methods. Alt...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "cs.LG",
-        "efficient",
-        "inference",
-        "llm",
-        "lora"
-      ],
-      "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-09-04T15:01:38Z",
-      "url": "https://arxiv.org/abs/2609.05235",
-      "pdfUrl": "https://arxiv.org/pdf/2609.05235v1"
-    },
-    {
-      "id": "arxiv-2609.05063",
-      "title": "Beyond Co-purchase Relation: Evolution of Complementary Recommendations at Allegro",
-      "authors": [
-        "Aleksandra Osowska-Kurczab",
-        "Klaudia Nazarko",
-        "Eliška Kosturová",
-        "Lidia Wojciechowska",
-        "Michał Bień"
-      ],
-      "summary": "When a customer adds a professional camera to their cart, should the system suggest a matching lens, a generic tripod, or another camera body? Complementary Product Recommendation is vital for comprehensive basket building, yet standard models often fail to distinguish between items that are merely bought together and those that truly work together. In this paper, we present AlleCompanion: a production-scale retrieval framework deployed at Allegro.com that transforms noisy behavioural signals into precise semantic compatibility. We mitigate the intrinsic noise in large-scale co-purchase traffic by combining data-level filtering heuristics with a category-constrained Two Tower architecture. Within this framework, the Category Adapter guides the model in the embedding space, constraining candidates within logically complementary boundaries. Since modelling authentic user behaviour at scale is inherently difficult, we introduce ComCat, a multi-source Complementary Categories Mapping. ComCat acts as a translational layer that distils meaningful patterns from noisy traffic into a maintainable and controllable solution, integrating expert rules, human-in-the-loop feedback, LLM-based reasoning, and statistical mining. Our experimental results demonstrate that combining explicit category-level constraints with neural architectures effectively filters out co-purchase noise to surface recommendations that satisfy real-world user needs. Serving over 20 million active users monthly, the framework delivers significant uplifts in attributed GMV for organic discovery and drives substantial revenue growth in sponsored placements.",
-      "reason": "近 30 天；关键词：cs.IR, deployed, llm。When a customer adds a professional camera to their cart, should the system suggest a matching lens, a generic tripod, or another...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.IR",
-        "deployed",
-        "llm",
-        "production",
-        "recommendation",
-        "retrieval",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-09-04T12:25:56Z",
-      "url": "https://arxiv.org/abs/2609.05063",
-      "pdfUrl": "https://arxiv.org/pdf/2609.05063v1"
-    },
-    {
-      "id": "arxiv-2609.04971",
-      "title": "BeaconKV: Key-Value Cache Compression Guided by Beacon Queries for Efficient Large Reasoning Model Inference",
-      "authors": [
-        "Janghyeon Kim",
-        "Minsoo Kim",
-        "Kyuhong Shim",
-        "Jungwook Choi"
-      ],
-      "summary": "Large Reasoning Models (LRMs) achieve superior problem-solving through extended Chain-of-Thought (CoT) generation, but the resulting key-value (KV) cache grows linearly with sequence length and creates severe memory bottlenecks, often exceeding GPU capacity for long reasoning traces. Existing KV cache compression methods rely on recent queries to estimate future token importance, implicitly assuming these serve as reliable proxies for future attention patterns. We demonstrate that this assumption fails in long-horizon reasoning: certain decoding steps generate Thought Revisiting Tokens (TRT) that re-attend to distant previous context, such as task-solving plans formulated early in the trace. Through systematic analysis, we discover that queries corresponding to the TRT cluster into a small number of similarity groups in the embedding space. Based on this insight, we propose BeaconKV, a training-free KV cache compression method that maintains beacon queries, compact representatives for each global query cluster, to anticipate which KV pairs will be revisited without storing the entire query history. Across four open-source LRMs and diverse reasoning benchmarks, BeaconKV generally outperforms existing compression methods, achieving up to $5.8\\times$ memory reduction while nearly preserving full cache accuracy and improving throughput by over $4.3\\times$.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Large Reasoning Models (LRMs) achieve superior problem-solving through extended Chain-of-Thought (CoT) generation, but the resulti...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "efficient",
-        "inference",
+        "cs.CL",
         "kv-cache",
-        "serving",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-09-04T10:23:16Z",
-      "url": "https://arxiv.org/abs/2609.04971",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04971v1"
-    },
-    {
-      "id": "arxiv-2609.04895",
-      "title": "Cache-Aware Joint Router Adaptation for Memory-Efficient MoE Inference",
-      "authors": [
-        "Zhenhe Wu",
-        "Yaping Jin",
-        "Qinghua Xing",
-        "Hang Zhou",
-        "Wei He",
-        "Xianjie Wu",
-        "Xianfu Cheng",
-        "Jian Yang",
-        "Hanting Chen"
-      ],
-      "summary": "Mixture-of-Experts (MoE) models activate only a small subset of experts per token, but the full expert set often exceeds GPU memory, causing repeated weight transfers during decoding. We formulate expert-cache management as a model-side algorithmic problem and propose a cache-aware post-training framework that jointly adapts the MoE backbone and lightweight auxiliary cache routers while preserving the native Top-K expert-selection rule at inference. Its update-only mode, Temporal Router, predicts same-layer reuse and retains experts for future tokens without proactive loading. The full Spatio-Temporal Router adds a Spatio Router that uses the causal predecessor's hidden state to refine the temporal cache before target-layer access. We evaluate both modes on Qwen3 and GPT-OSS across GSM8K, MATH, and CommonsenseQA. Temporal Router consistently improves cache hit rate and reduces expert-weight traffic over matched LM-only baselines. On Qwen3, Spatio-Temporal Router achieves the best load-adjusted efficiency across three tasks, improving adjusted hit rate by 1.15--18.03 points and reducing traffic by 4.6--53.3% relative to the strongest evaluated prefetching baseline; results on GPT-OSS are competitive but task-dependent. An auxiliary-only ablation preserves baseline accuracy but yields modest cache gains, whereas joint post-training produces larger improvements. Sensitivity analyses show that cache capacity controls transfer demand, while the refinement budget governs the trade-off between pre-access coverage and proactive traffic.",
-      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Mixture-of-Experts (MoE) models activate only a small subset of experts per token, but the full expert set often exceeds GPU memor...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "efficient",
-        "inference",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-09-04T08:52:36Z",
-      "url": "https://arxiv.org/abs/2609.04895",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04895v1"
-    },
-    {
-      "id": "arxiv-2609.04774",
-      "title": "Adaptive Context Parallelism for Production LLM Serving",
-      "authors": [
-        "Jiarui Guo",
-        "Rongle Wang",
-        "Peijun Huang",
-        "Zongwei Lv",
-        "Ziqing Wang",
-        "Kan Liu",
-        "Tao Lan",
-        "Lin Qu",
-        "Xiaolin Wang",
-        "Tong Yang"
-      ],
-      "summary": "As LLM context windows expand and input sequences grow longer, serving systems face increasing computational and memory demands. Context parallelism (CP), which partitions the input sequence across multiple ranks to parallelize the computation, has therefore become increasingly important for efficient LLM serving. However, existing CP-enabled systems either rely on static CP configurations or adjust the CP degree only for active requests or batches. In this paper, we present Vertumnus, an adaptive CP serving system designed for heterogeneous and evolving workloads. At the request level, Vertumnus routes requests among workers with different CP degrees using a placement cost that combines predicted queuing delay, cache-aware prefill time, and GPU-time cost. At the cluster level, Vertumnus adapts the worker composition through seconds-scale split and merge operations as workload demand changes. Vertumnus further introduces a global prefix-cache management policy that coordinates cache placement and replication among workers with the same or different CP degrees, preserving cache locality as request assignments and worker composition change. Experiments on a 64-GPU cluster with public and production workloads show that, under the highest evaluated loads, Vertumnus reduces mean TTFT by up to 28.1% and improves token-weighted SLO attainment by up to 13.3 percentage points over the strongest baseline.",
-      "reason": "近 30 天；关键词：cs.OS, efficient, llm。As LLM context windows expand and input sequences grow longer, serving systems face increasing computational and memory demands. C...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.OS",
-        "efficient",
-        "llm",
         "prefill",
-        "production",
-        "serving",
-        "slo"
+        "retrieval"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-09-04T06:10:15Z",
-      "url": "https://arxiv.org/abs/2609.04774",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04774v1"
+      "publishedAt": "2026-09-03T19:56:26Z",
+      "url": "https://arxiv.org/abs/2609.04434",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04434v1"
     },
     {
-      "id": "arxiv-2609.04748",
-      "title": "Same Request, Different Answer: Quantization Amplifies Cache-Induced Divergence in LLM Serving",
+      "id": "arxiv-2609.04344",
+      "title": "SharedSAE: One Feature Dictionary Across Language Models",
       "authors": [
-        "Aditi Patodiya"
+        "Daniil Ognev",
+        "Célian Vasson",
+        "Lijie Hu",
+        "Kentaro Inui",
+        "Benjamin Heinzerling"
       ],
-      "summary": "Prefix caching, in which a serving engine reuses the key and value tensors of a shared prompt prefix across requests, is enabled by default in the major open-source stacks and treated as a transparent optimization. We measure what it costs in reproducibility, and find that the cost rises sharply with weight quantization. Holding the model, decoding parameters, seed, and request order fixed, and issuing every request serially at batch size one, we ran an eighty-episode multi-turn agentic tool-use workload with caching enabled and disabled across two engines and four weight formats. Enabling the cache changed the agent's trajectory on 36.2 percent of episodes at 16-bit precision and on 75.0 percent at four-bit, a gradient that survives re-measurement under a controlled cache configuration. With caching disabled, repeated execution was bit-identical in every configuration, 0 of 800 episodes, which bounds other sources of nondeterminism at 0.5 percent. Repeated cache-enabled runs did diverge, and three experiments locate the cause: a single server-level prompt-cache setting moves run-to-run divergence by 37.5 percentage points, execution order acts only while that setting is active, and restoring cache state makes the cached and recompute paths each reproduce on 40 of 40 items while still differing from each other on 14. Cached serving is deterministic given cache state, and irreproducible in practice because that state is absent from the request and never reset by default. A single-turn bridge shows the divergence reaching task outcomes without shifting aggregate accuracy. We release the harness, logs, and analysis pipeline.",
-      "reason": "近 30 天；关键词：cs.SE, llm, quantization。Prefix caching, in which a serving engine reuses the key and value tensors of a shared prompt prefix across requests, is enabled b...",
+      "summary": "Sparse autoencoders (SAEs) are widely used to interpret language model activations, but SAE training and latent labelling are typically repeated for every model. Here, we show that a single shared SAE can replace a collection of dedicated per-model SAEs. Our method, SharedSAE, combines a shared dictionary with model-specific encoder-decoder pairs. Unlike the closest prior method, which discards activation magnitudes and requires all models at inference, SharedSAE instead normalizes only selection scores, preserving magnitudes, and uses model dropout for single-model inference. We train SharedSAE on four 1B-scale base language models spanning distinct families and tokenizers. Despite sharing its latents across models, SharedSAE retains 96.6% of dedicated SAEs' mean explained variance; its latent activations exhibit cross-model correlations 1.8 times as high as separate SAEs aligned post-hoc, and its latent descriptions transfer across models. After the dictionary is frozen, new models can be efficiently adapted to it, achieving near-dedicated-SAE reconstruction quality while reusing the shared latent descriptions.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Sparse autoencoders (SAEs) are widely used to interpret language model activations, but SAE training and latent labelling are typi...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.SE",
-        "llm",
-        "quantization",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-09-04T05:27:34Z",
-      "url": "https://arxiv.org/abs/2609.04748",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04748v1"
-    },
-    {
-      "id": "arxiv-2609.04705",
-      "title": "Sustainable Edge Vision via Empirically Calibrated DVFS: Eliminating Thermal Throttling on Passively Cooled Hardware",
-      "authors": [
-        "Aayush Marasini",
-        "Zhaoxian Zhou"
-      ],
-      "summary": "Passive cooling eliminates the energy overhead and mechanical failure modes of fans, making it attractive for edge deployment, yet sustained Deep Neural Network (DNN) inference on passively cooled edge Systems-on-Chip (SoCs) is bottlenecked by thermal throttling. To address this, we propose an empirically calibrated, state-aware Dynamic Voltage and Frequency Scaling (DVFS) scheduler. Unlike heuristic-driven controllers, our methodology utilizes time-domain guards and absolute temperature bounds, with derivative triggers acting as safeguards against sharp thermal spikes. Evaluated on a passively cooled Raspberry Pi 5 running YOLOv8n, our scheduler eliminates all observed thermal throttling events during sustained 30-minute workloads. It outperforms a temperature-only reactive baseline by achieving a 6.8% higher frame rate (Cohen's d = 8.73) while consuming 1.9% less energy per frame. Furthermore, our optimized passive scheduling surpasses an actively cooled reference system in energy efficiency (Joules/frame), though active cooling remains superior for raw throughput. Through isolated ablations, we show that the dwell guard is necessary for run-to-run reproducibility. Finally, exploratory boundary probes indicate that the passive operating envelope closes at ambient temperatures ($\\ge 27^\\circ$C) where nonlinear leakage defeats DVFS-based control. These results indicate that, within the mapped envelope, correct scheduling can make mechanical cooling unnecessary for sustained edge inference on this platform.",
-      "reason": "近 30 天；关键词：cs.AR, energy, inference。Passive cooling eliminates the energy overhead and mechanical failure modes of fans, making it attractive for edge deployment, yet...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.AR",
-        "energy",
+        "cs.LG",
+        "efficient",
         "inference",
-        "lora",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-09-04T04:24:05Z",
-      "url": "https://arxiv.org/abs/2609.04705",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04705v1"
-    },
-    {
-      "id": "arxiv-2609.04645",
-      "title": "Latent-Aligned Reasoning for Multimodal Recommendation",
-      "authors": [
-        "Jiarui Jin",
-        "Anyang Ji"
-      ],
-      "summary": "Multimodal Vision-Language Models (VLMs) have demonstrated remarkable capabilities in cross-modal understanding, yet a fundamental challenge persists when applying them to recommendation: as representations propagate through multi-step reasoning, both visual and textual signals progressively attenuate - a phenomenon we term cross-modal dilution. To address this, we propose LARK (Latent-Aligned Reasoning frameworK), a two-stage latent reasoning framework with complementary alignment mechanisms within a single VLM. In the first stage, learnable latent tokens are interleaved with multi-step chain-of-thought (CoT) reasoning and explicitly aligned with a frozen vision encoder, serving as visual checkpoints that preserve perceptual details throughout the reasoning chain. In the second stage, the latent representations are projected via a bridge MLP and trained with item-to-item contrastive learning; to prevent the reasoning semantics from fading, intermediate features are aligned with the CoT hidden states from the first stage, anchoring the final embeddings to the model's own reasoning output. Experiments on three public benchmarks and one industrial dataset show that LARK achieves state-of-the-art performance across multiple recommendation architectures, with controlled ablations confirming the distinct contribution of each component.",
-      "reason": "近 30 天；关键词：cs.IR, alignment, dataset。Multimodal Vision-Language Models (VLMs) have demonstrated remarkable capabilities in cross-modal understanding, yet a fundamental...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.IR",
-        "alignment",
-        "dataset",
-        "industrial",
-        "multimodal",
-        "recommendation",
         "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-09-04T02:24:48Z",
-      "url": "https://arxiv.org/abs/2609.04645",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04645v1"
+      "publishedAt": "2026-09-03T18:09:41Z",
+      "url": "https://arxiv.org/abs/2609.04344",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04344v1"
     },
     {
-      "id": "arxiv-2609.04526",
-      "title": "Scale-QLoRA: Code-Invariant Adapter Merging for Native 4-bit Microscaling LLMs",
+      "id": "arxiv-2609.04852",
+      "title": "KVMem: Virtualizing Million-Token Agent Workspaces on a Consumer GPU",
       "authors": [
-        "Tung-Ling Li",
-        "Jiale Huang",
-        "Lee-Chi Wang",
-        "Janaki Ram Gotei"
+        "Di Chai",
+        "Leye Wang",
+        "Zeshen Su",
+        "Zhiguo Xia",
+        "Zhihang Yu"
       ],
-      "summary": "Merging a LoRA adapter into its base model is standard deployment practice: it removes the runtime adapter's per-forward overhead and leaves a single standalone checkpoint any serving stack can load. On a native 4-bit microscaling checkpoint (NVFP4, MXFP4) that step stops being free. The merged weights must be written back through a quantizer, which re-derives the checkpoint's discrete E2M1 code plane (roughly 90% of the artifact's bytes), so the deployed artifact becomes coupled to one quantization convention, and every later code-touching event in its lifecycle can move it. Done naively the step is worse than fragile: it deletes the adaptation, by up to 39 pp, because against an already-on-grid base the reconstruction optimum is that base. Scale-QLoRA instead adapts only the native per-block scale field, trains those scales on the deployment grid, and freezes every E2M1 code. Within a fixed native format, scale grid, block layout and code plane, merging is then a bit-exact identity and the merged artifact is code-invariant. Across four models and four tasks, Scale-QLoRA and merge-aware QAT-LoRA are both accuracy-lossless, so we claim no accuracy ordering between them; they differ structurally, in that QAT-LoRA re-derives the code plane through a quantizer while Scale-QLoRA preserves it exactly. That difference is what the lifecycle prices: nearest-rounding implementations disagree by about a point on the measured task, and more extreme rule mismatches can drive the weight-space artifact to ~0%, which we report as a sensitivity bound rather than a deployment frequency. Preserving the code plane also drops the weight-space straight-through estimator from training (3.9x per step on the dense 8B model) and enables exact rollback, code-plane deduplication, and a ~125x faster scale-only task swap.",
-      "reason": "近 30 天；关键词：cs.CL, deployed, llm。Merging a LoRA adapter into its base model is standard deployment practice: it removes the runtime adapter's per-forward overhead...",
+      "summary": "Modern LLM agents operate in persistent workspaces whose accumulated history can exceed both GPU KV capacity and the model's native context window. Existing systems typically compact older context into summaries or retrieve it later as text, either losing fine-grained execution evidence or repeatedly prefilling content that the model has already processed. We present KVMem, a KV-context virtualization system that preserves overflowed workspace history as paged KV state across GPU memory, host memory, and NVMe. KVMem uses lightweight, model-native attention-space indexes to select relevant historical blocks and materializes a query-dependent execution view bounded by the model's native context window. Extensive evaluations on long-context agent benchmarks spanning histories up to one million tokens, including LongMemEval, MemoryAgentBench, and AgentLongBench, show that KVMem generally achieves higher task utility and greater inference efficiency than compaction-based approaches, the de facto standard for handling context overflow. In the DeepSWE long-context test with Qwen3.8-27B, KVMem improves task success from 43.8% with compaction-only context management to 48.4%. In our local-deployment evaluation, KVMem runs Qwen3.6/3.8-27B NVFP4 with MTP on an off-the-shelf laptop equipped with a 24\\,GB RTX 5090 Laptop GPU, virtualizing agent workspaces of up to 1M tokens-four times the model's native 256K-token context window. In a single-session setting, KVMem generates $\\sim$50 tokens/s, providing interactive responsiveness for local agent execution. More broadly, by decoupling addressable workspace size from the LLM's native context window, KVMem provides a practical path toward long-running agents whose workspaces can grow beyond that window.",
+      "reason": "近 30 天；关键词：cs.LG, inference, llm。Modern LLM agents operate in persistent workspaces whose accumulated history can exceed both GPU KV capacity and the model's nativ...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "llm",
+        "prefill"
+      ],
+      "signal": 96,
+      "source": "arXiv",
+      "publishedAt": "2026-09-04T08:09:59Z",
+      "url": "https://arxiv.org/abs/2609.04852",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04852v1"
+    },
+    {
+      "id": "arxiv-2609.04582",
+      "title": "When Do Internal Probes Beat Reading the Answer? Miscalibrated Readouts and Behavior-Concealed Knowledge in Language Models",
+      "authors": [
+        "Gnaneswar Villuri",
+        "Hashmath Shaik",
+        "Alex Doboli"
+      ],
+      "summary": "A 0.6B language model, asked to verify 1,200 logical conclusions (half valid, half corrupted by a single semantic edit), answers YES every time. Judged by behavior it discriminates nothing; linear probes on its hidden states read the correct verdict at 0.96 AUC, transferring to unseen logical structures and separating foils built from exactly the words of the true conclusion (0.90). We ask where the verdict is lost, and find the dominant failure is a single scalar. The verdict survives to the model's own output logits (margin AUC 0.89) along a well-aligned readout direction; a saturated decision threshold, offset by +4.6 sigma, erases it. The diagnosis generalizes: across 90 semantic-label configurations of a five-model, three-family factorial, behavioral accuracy collapses onto a single function of threshold offset (Spearman -0.93) while margin ranking moves far less. Across a 13x scale range, internal knowledge saturates while free-form behavior is non-monotone: an 8B model underperforms its 4B sibling through an answer-channel failure rather than the threshold; forced-choice accuracy is monotone. The diagnosis is actionable: a one-parameter correction, never fit on evaluated structures, repairs behavior from 50% to 81% (0.6B); calibrated margin decoding recovers 94% at 8B; few-shot prompting works the same way, recentering the threshold (+4.6 sigma to 0.0 sigma) while preserving ranking. Comparing probe to margin separates three regimes: concealed, miscalibrated, and undetected. On a maze task built so foils carry no surface cues, the audit correctly reports the third. In the standard generation setting, answer-surface features and heuristic labels reproduce published probing results without any internal access.",
+      "reason": "近 30 天；关键词：cs.CL, ranking, serving。A 0.6B language model, asked to verify 1,200 logical conclusions (half valid, half corrupted by a single semantic edit), answers Y...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.CL",
-        "deployed",
-        "llm",
-        "lora",
-        "quantization",
+        "ranking",
         "serving"
       ],
-      "signal": 99,
+      "signal": 93,
       "source": "arXiv",
-      "publishedAt": "2026-09-03T22:29:37Z",
-      "url": "https://arxiv.org/abs/2609.04526",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04526v1"
+      "publishedAt": "2026-09-04T00:26:45Z",
+      "url": "https://arxiv.org/abs/2609.04582",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04582v1"
+    },
+    {
+      "id": "arxiv-2401.09670",
+      "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving",
+      "authors": [
+        "Yinmin Zhong",
+        "Shengyu Liu",
+        "Junda Chen",
+        "Jiaming Hu",
+        "Yibo Zhu",
+        "Xuanzhe Liu",
+        "Xin Jin",
+        "Hao Zhang"
+      ],
+      "summary": "Separates prefill and decode onto different GPU groups and optimizes placement under latency SLOs, improving goodput for LLM serving workloads with different prompt and output lengths.",
+      "reason": "LLM 推理经典轮换：prefill/decode disaggregation 是 2024 以后推理系统很重要的工程方向。",
+      "area": "LLM 推理优化",
+      "tags": [
+        "classic",
+        "prefill-decode",
+        "serving",
+        "goodput",
+        "latency-slo"
+      ],
+      "signal": 92,
+      "source": "arXiv/OSDI",
+      "publishedAt": "2024-01-17T18:59:53Z",
+      "url": "https://arxiv.org/abs/2401.09670",
+      "pdfUrl": "https://arxiv.org/pdf/2401.09670"
+    },
+    {
+      "id": "arxiv-2609.04453",
+      "title": "When Load-Balancing Goes Too Far: Expert Pruning in Over-Dispersed Mixture-of-Experts Models",
+      "authors": [
+        "Berkcan Kapusuzoglu",
+        "Connor Pryor",
+        "Sangwoo Cho",
+        "Supriyo Chakraborty",
+        "Shi-Xiong Zhang",
+        "Sambit Sahu",
+        "Milind Naphade"
+      ],
+      "summary": "Expert pruning reduces the memory and serving cost of Mixture-of-Experts (MoE) models by removing low-importance experts identified by the router, assuming router probabilities provide a reliable importance signal. We observe that this assumption breaks down under over-dispersed routing, a regime associated with aggressive load-balancing during training, in which tokens are distributed nearly uniformly across experts and importance signals collapse. In this regime, perplexity does not predict downstream task accuracy: on gpt-oss-20B, the lowest-perplexity pruning configuration yields the worst mathematical reasoning, while the highest-perplexity configuration preserves it. This does not occur under standard routing (e.g., Mixtral-8x7B-Instruct), where perplexity and accuracy degrade together. Pruning under over-dispersed routing also exposes a capability trade-off in which no single scoring metric dominates: activation-aware scoring preserves mathematical reasoning but severely degrades knowledge-intensive science (an 18-point gap on GPQA), whereas frequency-based scoring exhibits the reverse. We propose Minimax Expert Score Allocation (MESA), a domain-aware method that iteratively boosts importance scores for experts serving whichever domain is currently worst-affected, minimizing worst-case domain degradation rather than average accuracy. At 25% expert pruning MESA achieves the smallest worst-case degradation across domains, outperforming activation-aware baselines on 7 of 11 benchmarks at a correspondingly reduced memory footprint, and it generalizes to gpt-oss-120B, Gemma-4-26B-A4B, and OLMoE-1B-7B. Our results indicate that over-dispersed routing is a qualitatively distinct pruning regime in which standard assumptions fail, and that recognizing it is a prerequisite for principled expert pruning of load-balanced MoE models.",
+      "reason": "近 30 天；关键词：cs.LG, serving。Expert pruning reduces the memory and serving cost of Mixture-of-Experts (MoE) models by removing low-importance experts identifie...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "serving"
+      ],
+      "signal": 82,
+      "source": "arXiv",
+      "publishedAt": "2026-09-03T20:21:20Z",
+      "url": "https://arxiv.org/abs/2609.04453",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04453v1"
+    },
+    {
+      "id": "arxiv-2609.04755",
+      "title": "Vectorizing Classical Tamil: Representation Learning for Verse-Commentary Pairs",
+      "authors": [
+        "Amrit Gopinath",
+        "Sangeetha Sivanesan"
+      ],
+      "summary": "We construct a corpus of 1,262 verse-commentary (urai) pairs from five Classical Tamil source sections, ranging from technical grammatical prose to modern paraphrase, and ask what information representation learning can recover. We train recurrent and Transformer encoders, a Siamese-style pair-matching network, an mBART-style encoder-decoder, and a decoder-only language model. Each analysis is interpreted against an appropriate control on the same data. TF-IDF provides a strong no-training lexical retrieval baseline, alongside representation analyses and generation controls for the learned models. A fixed string containing the 25 most frequent commentary words scores higher on generation overlap than the decoder-only model. Canonical correlation reaches 1.000 on Gaussian noise at these sample sizes, token-F1 spans only about 0.02-0.20 on this corpus, and the encoder-decoder continues to lower training loss for sixteen epochs after validation loss has begun to rise. One narrow result remains: the decoder-only model prefers authentic word order in 107 of 112 minimal-pair comparisons (95.5%), but does not reproduce held-out commentary content. We release the extraction and evaluation protocol; redistribution of the source commentaries remains subject to permission.",
+      "reason": "近 30 天；关键词：cs.CL, retrieval。We construct a corpus of 1,262 verse-commentary (urai) pairs from five Classical Tamil source sections, ranging from technical gra...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "retrieval"
+      ],
+      "signal": 77,
+      "source": "arXiv",
+      "publishedAt": "2026-09-04T05:38:31Z",
+      "url": "https://arxiv.org/abs/2609.04755",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04755v1"
     }
   ]
 }
