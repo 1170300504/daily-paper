@@ -1,176 +1,292 @@
 {
-  "generatedAt": "2026-09-09T07:44:32.844724+08:00",
+  "generatedAt": "2026-09-10T07:38:58.853555+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2609.04434",
-      "title": "What Attention Recalls and Recurrence Controls in Hybrid Language Models",
+      "id": "arxiv-2609.08739",
+      "title": "Tools-CC-Bench: a Benchmark Suite for Collective Communication with Compression in HPC and AI Workloads",
       "authors": [
-        "Kirill Afendulev",
-        "Alexey Dontsov",
-        "Elena Tutubalina",
-        "Anton Korznikov"
+        "Haozhe Fan",
+        "Wei Wang",
+        "Xingchen Liu",
+        "Man Liu",
+        "Xingjian Tian",
+        "Haoquan Long",
+        "Zedong Liu",
+        "Daran Sun",
+        "Jinwu Yang",
+        "Bo Yang",
+        "Jie Liu",
+        "Yonggang Che",
+        "Hairui Zhao",
+        "Guangming Tan",
+        "Dingwen Tao"
       ],
-      "summary": "Hybrid language models combine attention with a fixed-size recurrent state, but the role of each channel remains unclear. We introduce two cache-level interventions. Split-prefill keeps only the KV cache or only the recurrent state from a prefilled context, then generates an answer. State-swap pairs the KV cache from one context with the recurrent state from another in a single forward pass. On Qwen3.5 and Falcon-H1, the two channels split sharply by function. Exact retrieval survives only through attention (64-98% of full accuracy) and collapses to zero through recurrence. Output language and persona reverse the pattern: both survive recurrence (70-80% and 3-5x) while KV-only drops to ~1% language accuracy. State-swap confirms this causally: the answer takes its value from the KV side and its language from the recurrent side. Recurrent-only generation also accepts words that were never in the context but share meaning or parts with seen items. Attention provides a lookup over what was said; the recurrent state shapes how the model says it next.",
-      "reason": "近 30 天；关键词：cs.CL, kv-cache, prefill。Hybrid language models combine attention with a fixed-size recurrent state, but the role of each channel remains unclear. We intro...",
+      "summary": "Distributed HPC and LLM workloads increasingly require efficient communication for scalability, yet growing data movement has become a major performance bottleneck. Communication compression can reduce this overhead and complement execution-level optimizations, but its benefits remain difficult to assess because existing benchmarks lack support for diverse backends, realistic datasets, application-specific accuracy metrics, and overlap-induced resource contention. We present CC-Bench, a lightweight, extensible, and application-oriented benchmark suite for evaluating communication compression under realistic execution conditions. CC-Bench uses declarative application-environment modeling to decouple profiling logic from communication libraries, datasets, and fidelity metrics, enabling portable cross-library evaluation. It further combines function-level interception and hardware counter monitoring to characterize per-phase latency, hardware utilization, numerical fidelity, and computation interference. With representative datasets from HPC and LLM workloads, CC-Bench evaluates three compression-enabled communication libraries on CPU and GPU clusters, revealing accuracy-performance trade-offs and bottlenecks to guide practical deployment and optimization.",
+      "reason": "近 30 天；关键词：cs.DC, dataset, efficient。Distributed HPC and LLM workloads increasingly require efficient communication for scalability, yet growing data movement has beco...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL",
-        "kv-cache",
-        "prefill",
-        "retrieval"
+        "cs.DC",
+        "dataset",
+        "efficient",
+        "latency",
+        "llm"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-09-03T19:56:26Z",
-      "url": "https://arxiv.org/abs/2609.04434",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04434v1"
+      "publishedAt": "2026-09-08T13:31:47Z",
+      "url": "https://arxiv.org/abs/2609.08739",
+      "pdfUrl": "https://arxiv.org/pdf/2609.08739v1"
     },
     {
-      "id": "arxiv-2609.04344",
-      "title": "SharedSAE: One Feature Dictionary Across Language Models",
+      "id": "arxiv-2609.08703",
+      "title": "TontaubeV1: Streaming Text-to-Speech with Hierarchical Codec Modeling and Bounded Context",
       "authors": [
-        "Daniil Ognev",
-        "Célian Vasson",
-        "Lijie Hu",
-        "Kentaro Inui",
-        "Benjamin Heinzerling"
+        "Fritz Cremer",
+        "Jonathan Cremer"
       ],
-      "summary": "Sparse autoencoders (SAEs) are widely used to interpret language model activations, but SAE training and latent labelling are typically repeated for every model. Here, we show that a single shared SAE can replace a collection of dedicated per-model SAEs. Our method, SharedSAE, combines a shared dictionary with model-specific encoder-decoder pairs. Unlike the closest prior method, which discards activation magnitudes and requires all models at inference, SharedSAE instead normalizes only selection scores, preserving magnitudes, and uses model dropout for single-model inference. We train SharedSAE on four 1B-scale base language models spanning distinct families and tokenizers. Despite sharing its latents across models, SharedSAE retains 96.6% of dedicated SAEs' mean explained variance; its latent activations exhibit cross-model correlations 1.8 times as high as separate SAEs aligned post-hoc, and its latent descriptions transfer across models. After the dictionary is frozen, new models can be efficiently adapted to it, achieving near-dedicated-SAE reconstruction quality while reusing the shared latent descriptions.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Sparse autoencoders (SAEs) are widely used to interpret language model activations, but SAE training and latent labelling are typi...",
+      "summary": "Text-to-speech systems often face a trade-off between natural prosody and efficient inference: higher perceptual quality typically comes at increased computational cost and latency. We present TontaubeV1, a model that preserves natural prosody while enabling streaming from a single consumer GPU. Speech is encoded by the hierarchical DualCodec representation at 12.5 Hz, which separates a semantic stream from successive acoustic refinements. Our design assumes that prosodic structure is largely established when the semantic stream is generated, and allocates capacity accordingly: a Qwen3-1.7B-derived transformer predicts that stream and thereby the utterance duration, while three progressively smaller Qwen3-0.6B-derived transformers each add one acoustic refinement. Text is tokenized per character rather than by subword. Paired text and audio markers at shared positions support long-form generation with bounded context, and overlapping DualCodec reconstructions are mapped into the VibeVoice acoustic latent space and decoded causally, enabling streaming despite DualCodec's noncausal decoder. The model accepts up to one minute of reference audio for voice conditioning and is designed primarily for English and German, with additional multilingual support. The four predictors total 2.9B parameters; on a single RTX 5090 the streaming path reaches approximately 200 ms to first audio. In separate non-streaming measurements, the end-to-end real-time factor (RTF) is 0.08 for one input and the aggregate RTF is 0.02 across eight concurrent inputs. On our LLM-as-a-judge audiobook-reading benchmark, TontaubeV1 matches ElevenLabs Flash v2.5 and outperforms Fish Audio S2 Pro, the April 2026 Gradium API, and Cartesia Sonic 3 on prosody. The model weights are released on Hugging Face under the Tontaube Community Model License 1.0.",
+      "reason": "近 30 天；关键词：cs.SD, efficient, inference。Text-to-speech systems often face a trade-off between natural prosody and efficient inference: higher perceptual quality typically...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.SD",
+        "efficient",
+        "inference",
+        "latency",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-09-08T13:03:46Z",
+      "url": "https://arxiv.org/abs/2609.08703",
+      "pdfUrl": "https://arxiv.org/pdf/2609.08703v1"
+    },
+    {
+      "id": "arxiv-2609.08663",
+      "title": "MoEMB: Scaling Universal Multimodal Embeddings with Efficient Mixture-of-Experts Models",
+      "authors": [
+        "Xuanming Cui",
+        "Shlok Kumar Mishra",
+        "Wentao Bao",
+        "Aashu Singh",
+        "Zihao Wang",
+        "Xiangjun Fan",
+        "Jun Xiao",
+        "Ser-Nam Lim",
+        "Jianpeng Cheng"
+      ],
+      "summary": "Universal multimodal embedding (UME) increasingly demands encoder's capacity for handling a broad range of tasks and modalities with increased complexity. Prior scaling methods either increase the representation size, retrieval effort, or scales the encoder into a heavy multimodal LLM. Recent works, such as Think-Then-Embed (TTE), explore scaling via reasoning tokens. However, embedding models are hard to scale up: increasing parameters directly tradeoffs for the large training batch size that contrastive learning needs, and retrieval has to be served under tight latency. Moreover, UME tasks are diverse in complexity, where scaling up embedders can bring significant redundant computation. In this work, we propose MOEMB, which instead scales UME along the expert axis through mixture-of-experts (MoE), growing encoder capacity while preserving single-vector, non-autoregressive encoding. Through a systematic study of the design space and training recipes for MoE-based UME, MoEMB sets a new state of the art on both MMEB-V2 and MRMR among models trained on public MMEB-family data: with only 3B active parameters, MoEMB surpasses TTE-based methods with >4x active parameters, using significantly less computes. To further improve the scalability and efficiency, we conduct the first comprehensive study of adaptive computation for MoE-based embedding, spanning diverse strategies across training-based and inference-only methods. Together, these results support expert scaling as an effective and efficient direction for UME, with adaptive computation further improving efficiency for MLLM-based embedding models towards large-scale retrieval and recommendation systems.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Universal multimodal embedding (UME) increasingly demands encoder's capacity for handling a broad range of tasks and modalities wi...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
         "efficient",
         "inference",
+        "latency",
+        "llm",
+        "multimodal",
+        "recommendation"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-09-08T12:29:50Z",
+      "url": "https://arxiv.org/abs/2609.08663",
+      "pdfUrl": "https://arxiv.org/pdf/2609.08663v1"
+    },
+    {
+      "id": "arxiv-2609.08443",
+      "title": "SequenceO1: End-to-End Ultra-Long (100K) Sequence Modeling in Recommendation with Low-Rank Caching",
+      "authors": [
+        "Lin Guan",
+        "Jia-Qi Yang",
+        "Zhishan Zhao",
+        "Jiaqi Huang",
+        "Hangyu Wang",
+        "Longbin Li",
+        "Beichuan Zhang",
+        "Haonan Jiang",
+        "Jinan Ni",
+        "Xiangyu Fan",
+        "Xiaowen Li",
+        "Ziyao Ren",
+        "Yuhang Qi",
+        "Xiaolong Zhu",
+        "Xuanyuan Luo",
+        "Qiwei Chen",
+        "Yi Cheng",
+        "Lele Yu"
+      ],
+      "summary": "Modeling long-term user behavior is central to sequential recommendation and billion-scale industrial recommender systems, yet production ranking models operate under strict latency, memory, communication, and training-throughput constraints. At the 100K scale, the challenge extends beyond attention complexity: raw sequence features must be stored, transferred, and repeatedly processed during training and online serving. Existing approaches based on history truncation, multi-stage behavior retrieval, compressed lifelong histories, or train-short/infer-long extrapolation either weaken end-to-end optimization or retain substantial length-dependent cost. We present SequenceO1, an end-to-end framework for ultra-long user behavior sequence modeling, deployed at full traffic on Douyin with histories of up to 100K interactions. SequenceO1 follows a compress-then-reason design. Its Sketch Attention (SA) uses learnable prototypes and prototype-wise normalization to compress the raw history into a fixed-size, target-agnostic user representation. Target-conditioned Stacked Target-to-History Cross Attention (STCA) then models complementary time scales: a recent 10K suffix for short-term interests and the compact sketch for long-term preferences. To make training and inference practical, SequenceO1 combines low-rank user representation caching, multi-request user-level batching, pipeline lift, and a fused FlashSA kernel to amortize feature storage, communication, and computation across targets, training instances, and consecutive requests. Production experiments show consistent offline and online gains, while the compact cached sketch retains most of the benefit of directly scaling end-to-end sequence ranking to 100K. These results provide a practical model-system approach to efficient attention, sequence compression, and scalable long-sequence and long-context recommendation systems.",
+      "reason": "近 30 天；公司信号：ByteDance；推荐/排序/广告方向；关键词：bytedance, cs.IR, batching。Modeling long-term user behavior is central to sequential recommendation and billion-scale industrial recommender systems, yet pro...",
+      "area": "推荐算法",
+      "tags": [
+        "bytedance",
+        "cs.IR",
+        "batching",
+        "deployed",
+        "efficient",
+        "inference",
+        "industrial"
+      ],
+      "signal": 99,
+      "source": "ByteDance/arXiv",
+      "publishedAt": "2026-09-08T08:49:44Z",
+      "url": "https://arxiv.org/abs/2609.08443",
+      "pdfUrl": "https://arxiv.org/pdf/2609.08443v1"
+    },
+    {
+      "id": "arxiv-2609.08307",
+      "title": "A Measurement Study of LLM Inference Trade-offs Across Edge Continuum Hardware",
+      "authors": [
+        "Maysam Khatib",
+        "Moysis Symeonides",
+        "Demetris Trihinas",
+        "George Pallis",
+        "Marios D. Dikaiakos"
+      ],
+      "summary": "Large language models (LLMs) are increasingly used as backends for intelligent web services, but serving them across the edge continuum requires balancing quality, latency, model footprint, and energy. This paper presents a controlled measurement study of self-hosted LLM inference across edge and near-edge deployment nodes: an NVIDIA Jetson AGX Orin and a near-edge server with CPU-only and GPU-enabled inference modes. We evaluate multiple open-weight LLMs and quantization variants using a fixed question-answering workload, and compare them against GPT-4o as a cloud-hosted accuracy and latency reference. Our benchmarking pipeline reports accuracy, model footprint, per-token decoding latency, prefill latency, and overall execution energy. The results show that GPU-enabled server execution provides the lowest compute-side latency, while Jetson Orin shows lower measured energy, consistent with its lower platform power under our setup. CPU-only execution is consistently dominated in latency for our workload and shows higher measured energy. We also show that parameter count and downloaded weight-file size alone do not reliably predict observed accuracy or latency. Finally, using Pareto-frontier analysis, we study how deployment decisions may change under possible streamed-token delivery overheads, highlighting that compute-side inference metrics alone can lead to suboptimal placement for latency-sensitive interactive web services.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, energy。Large language models (LLMs) are increasingly used as backends for intelligent web services, but serving them across the edge cont...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.DC",
+        "energy",
+        "inference",
+        "latency",
+        "llm",
+        "pareto"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-09-08T06:28:32Z",
+      "url": "https://arxiv.org/abs/2609.08307",
+      "pdfUrl": "https://arxiv.org/pdf/2609.08307v1"
+    },
+    {
+      "id": "arxiv-2609.08306",
+      "title": "HoneyRoute: Honeypot-Model Routing for Adversarial LLM Serving",
+      "authors": [
+        "Han Jin"
+      ],
+      "summary": "We introduce HoneyRoute, an inference-serving layer that detects whether an incoming request is malicious and, if so, routes it to a dedicated honeypot model, shielding production while the adversary's interaction is continuously harvested for intelligence. Existing defenses embed traps inside model memory or rebuild deception at the protocol layer, leaving the serving tier unprotected and feeding nothing back into detection. HoneyRoute couples (i) a streaming router (a frozen 0.8B-embedding backbone with per-domain MLP heads), (ii) a dual-implementation honeypot (a rule/prompt-engineered code honeypot or a dedicated same-family replica), and (iii) an analysis loop that converts trapped interactions into attacker fingerprints for router retraining. On a production trace plus a seven-domain attack corpus, the router reaches F1=.911 at 38 ms median added latency, matching 96% of a two-tier guard-LLM cascade's F1 at 1/385 of its latency with 0% evasion under 13 adversarial transformations; diverting the malicious share cuts production-model token consumption under concurrent flooding with real GCG-suffix payloads by 97.8%; the trained replica agrees with the production model on 92.9% of benign holdout requests, while naive unconditional bait injection collapses to 7.6% and selective camouflaged injection recovers to 88.9%, mapping the recoverable fidelity-traceability frontier; and a loop-trained correction head cuts misrouting of legitimate security research 9x while raising detection F1 to .933.",
+      "reason": "近 30 天；关键词：cs.CR, inference, latency。We introduce HoneyRoute, an inference-serving layer that detects whether an incoming request is malicious and, if so, routes it to...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CR",
+        "inference",
+        "latency",
+        "llm",
+        "production",
         "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-09-03T18:09:41Z",
-      "url": "https://arxiv.org/abs/2609.04344",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04344v1"
+      "publishedAt": "2026-09-08T06:26:46Z",
+      "url": "https://arxiv.org/abs/2609.08306",
+      "pdfUrl": "https://arxiv.org/pdf/2609.08306v1"
     },
     {
-      "id": "arxiv-2609.04852",
-      "title": "KVMem: Virtualizing Million-Token Agent Workspaces on a Consumer GPU",
+      "id": "arxiv-2609.08059",
+      "title": "MI-PEFT: Mixture-of-Experts Integrated Parameter-Efficient Fine-Tuning Protein Language Models Improves Acidophilic Proteins Classification",
       "authors": [
-        "Di Chai",
-        "Leye Wang",
-        "Zeshen Su",
-        "Zhiguo Xia",
-        "Zhihang Yu"
+        "Honghan Shen"
       ],
-      "summary": "Modern LLM agents operate in persistent workspaces whose accumulated history can exceed both GPU KV capacity and the model's native context window. Existing systems typically compact older context into summaries or retrieve it later as text, either losing fine-grained execution evidence or repeatedly prefilling content that the model has already processed. We present KVMem, a KV-context virtualization system that preserves overflowed workspace history as paged KV state across GPU memory, host memory, and NVMe. KVMem uses lightweight, model-native attention-space indexes to select relevant historical blocks and materializes a query-dependent execution view bounded by the model's native context window. Extensive evaluations on long-context agent benchmarks spanning histories up to one million tokens, including LongMemEval, MemoryAgentBench, and AgentLongBench, show that KVMem generally achieves higher task utility and greater inference efficiency than compaction-based approaches, the de facto standard for handling context overflow. In the DeepSWE long-context test with Qwen3.8-27B, KVMem improves task success from 43.8% with compaction-only context management to 48.4%. In our local-deployment evaluation, KVMem runs Qwen3.6/3.8-27B NVFP4 with MTP on an off-the-shelf laptop equipped with a 24\\,GB RTX 5090 Laptop GPU, virtualizing agent workspaces of up to 1M tokens-four times the model's native 256K-token context window. In a single-session setting, KVMem generates $\\sim$50 tokens/s, providing interactive responsiveness for local agent execution. More broadly, by decoupling addressable workspace size from the LLM's native context window, KVMem provides a practical path toward long-running agents whose workspaces can grow beyond that window.",
-      "reason": "近 30 天；关键词：cs.LG, inference, llm。Modern LLM agents operate in persistent workspaces whose accumulated history can exceed both GPU KV capacity and the model's nativ...",
+      "summary": "Acidophilic proteins that remain stable and functional under highly acidic conditions, are important for industrial biocatalysis, acid-related bioprocessing, and the discovery of acid-stable enzymes. However, their identification relies heavily on time-consuming experimental screening methods. With the rapid growth of protein sequence databases, the need for computational identification methods that are both accurate and efficient has become stronger. The emergence of protein language models (PLMs) has significantly improved the sequence representation of downstream biological prediction tasks. This paper proposes MI-PEFT, a mixture-of-experts integrated parameter-efficient fine-tuning framework. Built on the ESM C-600M backbone, the framework incorporates LoRA-based PEFT methods and a DeepSeekMoE-based classification head to resolve the limitations of PEFT and significantly improve computational efficiency. Notably, this task is characterized by a significant class imbalance in the dataset, making high specificity particularly challenging. The experimental results demonstrate that MI-PEFT on PLMs, especially {\\text{C}}^{\\text{3}}\\text{A}, serves as an efficient tool for identifying acidophilic proteins and a constrained pathway that helps resolve class-imbalance by preserving the pretrained representations.",
+      "reason": "近 30 天；关键词：q-bio.QM, dataset, efficient。Acidophilic proteins that remain stable and functional under highly acidic conditions, are important for industrial biocatalysis,...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "q-bio.QM",
+        "dataset",
+        "efficient",
+        "industrial",
+        "lora",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-09-07T23:51:12Z",
+      "url": "https://arxiv.org/abs/2609.08059",
+      "pdfUrl": "https://arxiv.org/pdf/2609.08059v1"
+    },
+    {
+      "id": "arxiv-2609.07986",
+      "title": "Automated Chest CT Protocol Selection via Large Language Model Derived Text Embeddings from Imaging Request Text",
+      "authors": [
+        "Zahra Hosseini",
+        "Mahan Pouromidi",
+        "Farzad Khalvati",
+        "Patrik Rogalla"
+      ],
+      "summary": "Purpose: Accurate CT protocol selection is critical for diagnostic quality and patient safety, yet the current process is manual, time-consuming, and prone to inconsistencies. Prior Machine Learning methods using keywords or bag-of-words lack contextual understanding and perform poorly on rare protocols. We propose a decision support system using large language model (LLM) features to recommend protocols from free-text clinical indications, capturing clinical nuance and phrasing variation for more consistent, efficient selection. Methods: In this REB-approved retrospective study, 285,123 chest CT imaging requests from a large academic medical center (2017-2024) were split into training (228,099, 80%) and held-out test (57,024, 20%) sets. Each request included procedure names, clinical indication, HIS comments, and the selected protocol. Clinical text was embedded using a fine-tuned LLM, Meta's LLaMA-3.1-70B; these features input a logistic regression classifier predicting 18 protocol labels (e.g., PE, LDCT). Results: The pipeline achieved a weighted precision of 0.84, weighted F1-score of 0.81, and overall accuracy of 79% across 18 CT protocols. On 300 independent cases with expert consensus, the LLM reached an overall accuracy of 80% versus 83% for radiologists, with no significant difference (p = 0.263). Performance was comparable across most classes, with the LLM exceeding radiologists for some challenging categories, and entropy analyses indicated more balanced protocol use, suggesting reduced variability. Conclusion: An LLM-based recommendation system can leverage general knowledge from a large natural-text corpus to accurately assign chest CT protocols from free-text imaging requests, and may serve as a viable foundation for protocol recommendation tools where inputs require language understanding.",
+      "reason": "近 30 天；公司信号：Meta；推荐/排序/广告方向；关键词：meta, cs.LG, efficient。Purpose: Accurate CT protocol selection is critical for diagnostic quality and patient safety, yet the current process is manual,...",
+      "area": "推荐算法",
+      "tags": [
+        "meta",
+        "cs.LG",
+        "efficient",
+        "llm",
+        "recommendation"
+      ],
+      "signal": 99,
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-09-07T21:05:36Z",
+      "url": "https://arxiv.org/abs/2609.07986",
+      "pdfUrl": "https://arxiv.org/pdf/2609.07986v1"
+    },
+    {
+      "id": "arxiv-2609.07966",
+      "title": "MetaKV: Adaptive KV Cache Compression for Constrained LLM Inference",
+      "authors": [
+        "Michael Wang",
+        "Keith Li",
+        "Roozbeh Bostandoost"
+      ],
+      "summary": "Key--value (KV) cache compression is an effective way to reduce the memory overhead of large language model (LLM) inference, particularly for long-context workloads. However, existing compression methods make different trade-offs among accuracy, inference latency, and peak KV cache memory utilization, making a single fixed configuration unsuitable across different prompts and resource constraints. We introduce MetaKV, an adaptive framework that selects a KV cache compression configuration for each input prompt based on user-specified latency and peak memory budgets. MetaKV uses lightweight prediction models to estimate the end-to-end latency, peak memory, and probability of a correct response for each candidate configuration, and selects the configuration that best satisfies the latency-memory constraints while preserving accuracy. We evaluate MetaKV across ten configurations from three representative KV cache compression methods, KVQuant, H$_2$O, and RocketKV, together with an uncompressed FP16 configuration, on four datasets covering mathematics, science, commonsense reasoning, and reading comprehension. Across a wide range of latency and peak memory constraints, MetaKV consistently outperforms the best static configuration, improving constrained success rate (CSR), the fraction of prompts answered correctly while satisfying both constraints, by approximately 0.07 on average and up to 0.135. These results demonstrate the benefit of adapting KV cache compression to individual prompts and latency-memory constraints. Code is available at https://github.com/MichaelWang0505/MetaKV.git",
+      "reason": "近 30 天；关键词：cs.LG, dataset, inference。Key--value (KV) cache compression is an effective way to reduce the memory overhead of large language model (LLM) inference, parti...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
+        "dataset",
         "inference",
+        "kv-cache",
+        "latency",
+        "llm",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-09-07T20:44:23Z",
+      "url": "https://arxiv.org/abs/2609.07966",
+      "pdfUrl": "https://arxiv.org/pdf/2609.07966v1"
+    },
+    {
+      "id": "arxiv-2609.07883",
+      "title": "Deadline-Aware Adaptive Prefill Chunking for Efficient Large Language Model Serving",
+      "authors": [
+        "Siyu Song",
+        "Qi Bai",
+        "Jinbo Hao",
+        "Kai Li",
+        "Chenchen Wang",
+        "Jiayu Sun"
+      ],
+      "summary": "Continuous batching improves large language model (LLM) serving throughput, but long prompt prefills can delay decode iterations and violate inter-token latency objectives. Chunked prefill mitigates this interference, yet its chunk size is normally fixed: small chunks protect decode latency but repeatedly pay launch overhead, while large chunks improve prefill efficiency but create latency spikes. We introduce SLOWeave, an online scheduling method that selects the largest prefill chunk predicted to finish before the earliest active decode deadline. The decision requires no workload-specific chunk-size tuning and is computed by a logarithmic-time search over a monotone iteration-cost model. We prove that, whenever a decode-only iteration is feasible and the cost predictor is accurate, SLOWeave maximizes immediate prefill progress among decisions that preserve every active request's next-token deadline. We evaluate the method in a reproducible event-driven simulator and an iteration-level GPU runtime across chat, mixed-context, long-context, and bursty workloads. Under a 25ms time-per-output-token objective, SLOWeave improves goodput over the strongest fixed-chunk baseline by 39% on mixed requests and 38% on long-context requests. Under a stricter 10ms objective, the gains rise to 3.3$\\times$ and 2.4$\\times$, respectively. These results isolate adaptive chunk sizing as a useful serving primitive and provide an implementation-ready controller for integration with iteration-level LLM runtimes.",
+      "reason": "近 30 天；关键词：cs.CL, batching, deadline。Continuous batching improves large language model (LLM) serving throughput, but long prompt prefills can delay decode iterations a...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "batching",
+        "deadline",
+        "efficient",
+        "latency",
         "llm",
         "prefill"
       ],
-      "signal": 96,
+      "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-09-04T08:09:59Z",
-      "url": "https://arxiv.org/abs/2609.04852",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04852v1"
-    },
-    {
-      "id": "arxiv-2609.04582",
-      "title": "When Do Internal Probes Beat Reading the Answer? Miscalibrated Readouts and Behavior-Concealed Knowledge in Language Models",
-      "authors": [
-        "Gnaneswar Villuri",
-        "Hashmath Shaik",
-        "Alex Doboli"
-      ],
-      "summary": "A 0.6B language model, asked to verify 1,200 logical conclusions (half valid, half corrupted by a single semantic edit), answers YES every time. Judged by behavior it discriminates nothing; linear probes on its hidden states read the correct verdict at 0.96 AUC, transferring to unseen logical structures and separating foils built from exactly the words of the true conclusion (0.90). We ask where the verdict is lost, and find the dominant failure is a single scalar. The verdict survives to the model's own output logits (margin AUC 0.89) along a well-aligned readout direction; a saturated decision threshold, offset by +4.6 sigma, erases it. The diagnosis generalizes: across 90 semantic-label configurations of a five-model, three-family factorial, behavioral accuracy collapses onto a single function of threshold offset (Spearman -0.93) while margin ranking moves far less. Across a 13x scale range, internal knowledge saturates while free-form behavior is non-monotone: an 8B model underperforms its 4B sibling through an answer-channel failure rather than the threshold; forced-choice accuracy is monotone. The diagnosis is actionable: a one-parameter correction, never fit on evaluated structures, repairs behavior from 50% to 81% (0.6B); calibrated margin decoding recovers 94% at 8B; few-shot prompting works the same way, recentering the threshold (+4.6 sigma to 0.0 sigma) while preserving ranking. Comparing probe to margin separates three regimes: concealed, miscalibrated, and undetected. On a maze task built so foils carry no surface cues, the audit correctly reports the third. In the standard generation setting, answer-surface features and heuristic labels reproduce published probing results without any internal access.",
-      "reason": "近 30 天；关键词：cs.CL, ranking, serving。A 0.6B language model, asked to verify 1,200 logical conclusions (half valid, half corrupted by a single semantic edit), answers Y...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "ranking",
-        "serving"
-      ],
-      "signal": 93,
-      "source": "arXiv",
-      "publishedAt": "2026-09-04T00:26:45Z",
-      "url": "https://arxiv.org/abs/2609.04582",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04582v1"
-    },
-    {
-      "id": "arxiv-2401.09670",
-      "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving",
-      "authors": [
-        "Yinmin Zhong",
-        "Shengyu Liu",
-        "Junda Chen",
-        "Jiaming Hu",
-        "Yibo Zhu",
-        "Xuanzhe Liu",
-        "Xin Jin",
-        "Hao Zhang"
-      ],
-      "summary": "Separates prefill and decode onto different GPU groups and optimizes placement under latency SLOs, improving goodput for LLM serving workloads with different prompt and output lengths.",
-      "reason": "LLM 推理经典轮换：prefill/decode disaggregation 是 2024 以后推理系统很重要的工程方向。",
-      "area": "LLM 推理优化",
-      "tags": [
-        "classic",
-        "prefill-decode",
-        "serving",
-        "goodput",
-        "latency-slo"
-      ],
-      "signal": 92,
-      "source": "arXiv/OSDI",
-      "publishedAt": "2024-01-17T18:59:53Z",
-      "url": "https://arxiv.org/abs/2401.09670",
-      "pdfUrl": "https://arxiv.org/pdf/2401.09670"
-    },
-    {
-      "id": "arxiv-2609.04453",
-      "title": "When Load-Balancing Goes Too Far: Expert Pruning in Over-Dispersed Mixture-of-Experts Models",
-      "authors": [
-        "Berkcan Kapusuzoglu",
-        "Connor Pryor",
-        "Sangwoo Cho",
-        "Supriyo Chakraborty",
-        "Shi-Xiong Zhang",
-        "Sambit Sahu",
-        "Milind Naphade"
-      ],
-      "summary": "Expert pruning reduces the memory and serving cost of Mixture-of-Experts (MoE) models by removing low-importance experts identified by the router, assuming router probabilities provide a reliable importance signal. We observe that this assumption breaks down under over-dispersed routing, a regime associated with aggressive load-balancing during training, in which tokens are distributed nearly uniformly across experts and importance signals collapse. In this regime, perplexity does not predict downstream task accuracy: on gpt-oss-20B, the lowest-perplexity pruning configuration yields the worst mathematical reasoning, while the highest-perplexity configuration preserves it. This does not occur under standard routing (e.g., Mixtral-8x7B-Instruct), where perplexity and accuracy degrade together. Pruning under over-dispersed routing also exposes a capability trade-off in which no single scoring metric dominates: activation-aware scoring preserves mathematical reasoning but severely degrades knowledge-intensive science (an 18-point gap on GPQA), whereas frequency-based scoring exhibits the reverse. We propose Minimax Expert Score Allocation (MESA), a domain-aware method that iteratively boosts importance scores for experts serving whichever domain is currently worst-affected, minimizing worst-case domain degradation rather than average accuracy. At 25% expert pruning MESA achieves the smallest worst-case degradation across domains, outperforming activation-aware baselines on 7 of 11 benchmarks at a correspondingly reduced memory footprint, and it generalizes to gpt-oss-120B, Gemma-4-26B-A4B, and OLMoE-1B-7B. Our results indicate that over-dispersed routing is a qualitatively distinct pruning regime in which standard assumptions fail, and that recognizing it is a prerequisite for principled expert pruning of load-balanced MoE models.",
-      "reason": "近 30 天；关键词：cs.LG, serving。Expert pruning reduces the memory and serving cost of Mixture-of-Experts (MoE) models by removing low-importance experts identifie...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "serving"
-      ],
-      "signal": 82,
-      "source": "arXiv",
-      "publishedAt": "2026-09-03T20:21:20Z",
-      "url": "https://arxiv.org/abs/2609.04453",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04453v1"
-    },
-    {
-      "id": "arxiv-2609.04755",
-      "title": "Vectorizing Classical Tamil: Representation Learning for Verse-Commentary Pairs",
-      "authors": [
-        "Amrit Gopinath",
-        "Sangeetha Sivanesan"
-      ],
-      "summary": "We construct a corpus of 1,262 verse-commentary (urai) pairs from five Classical Tamil source sections, ranging from technical grammatical prose to modern paraphrase, and ask what information representation learning can recover. We train recurrent and Transformer encoders, a Siamese-style pair-matching network, an mBART-style encoder-decoder, and a decoder-only language model. Each analysis is interpreted against an appropriate control on the same data. TF-IDF provides a strong no-training lexical retrieval baseline, alongside representation analyses and generation controls for the learned models. A fixed string containing the 25 most frequent commentary words scores higher on generation overlap than the decoder-only model. Canonical correlation reaches 1.000 on Gaussian noise at these sample sizes, token-F1 spans only about 0.02-0.20 on this corpus, and the encoder-decoder continues to lower training loss for sixteen epochs after validation loss has begun to rise. One narrow result remains: the decoder-only model prefers authentic word order in 107 of 112 minimal-pair comparisons (95.5%), but does not reproduce held-out commentary content. We release the extraction and evaluation protocol; redistribution of the source commentaries remains subject to permission.",
-      "reason": "近 30 天；关键词：cs.CL, retrieval。We construct a corpus of 1,262 verse-commentary (urai) pairs from five Classical Tamil source sections, ranging from technical gra...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "retrieval"
-      ],
-      "signal": 77,
-      "source": "arXiv",
-      "publishedAt": "2026-09-04T05:38:31Z",
-      "url": "https://arxiv.org/abs/2609.04755",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04755v1"
+      "publishedAt": "2026-09-07T18:47:57Z",
+      "url": "https://arxiv.org/abs/2609.07883",
+      "pdfUrl": "https://arxiv.org/pdf/2609.07883v1"
     }
   ]
 }
