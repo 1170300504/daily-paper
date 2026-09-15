@@ -1,7 +1,279 @@
 {
-  "generatedAt": "2026-09-11T07:32:21.676919+08:00",
+  "generatedAt": "2026-09-16T07:48:29.578174+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-09-16",
+      "generatedAt": "2026-09-16T07:48:29.578174+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2609.15627",
+          "title": "DeepSeek-V4-Flash on AMD gfx90a: Correctness Recovery and Inference Performance Engineering",
+          "authors": [
+            "Siming Huang"
+          ],
+          "summary": "We present the enablement, correctness recovery, and performance engineering of DeepSeek-V4-Flash inference on AMD Instinct MI250 GPUs using the gfx90a/CDNA2 architecture. The system integrates native safetensors loading, tensor and expert parallelism, FP4 routed mixture-of-experts computation, FP8 dense projections, sparse attention, HIP graph execution, and OpenAI-compatible serving within SGLang. An initially fast execution path was found to be numerically incorrect because of a routed-expert W2 layout mismatch. We identify the output permutation, repair the weight layout at load time, and establish fixed-token and hash-based correctness checks before further optimization. On the corrected path, decode performance is improved through packed FP4 weights, INT8 activation quantization, CDNA2 dot-product instructions, peer-read all-reduce, and topology-aware kernel geometry. Prefill is accelerated using CDNA2 MFMA kernels, improved packed-weight reuse, reduced sparse-attention overhead, larger chunks, and retuned expert sorting. On four MI250 GCDs, TP4/EP1 native autoregressive decode reaches approximately 74.5 tok/s, while a 4,604-token prompt reaches 2.061-2.062 s TTFT, or approximately 2,234 input tok/s. The results show that efficient DeepSeek-V4-Flash inference on CDNA2 is limited not only by memory bandwidth, but also by FP4 execution-format mismatch, low-M utilization, and per-layer synchronization costs.",
+          "reason": "近 30 天；公司信号：OpenAI；关键词：openai, cs.DC, efficient。We present the enablement, correctness recovery, and performance engineering of DeepSeek-V4-Flash inference on AMD Instinct MI250...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "openai",
+            "cs.DC",
+            "efficient",
+            "inference",
+            "prefill",
+            "quantization",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "OpenAI/arXiv",
+          "publishedAt": "2026-09-14T14:18:39Z",
+          "url": "https://arxiv.org/abs/2609.15627",
+          "pdfUrl": "https://arxiv.org/pdf/2609.15627v1"
+        },
+        {
+          "id": "arxiv-2609.15230",
+          "title": "ETCInfer: An Energy-efficient Thermal-aware Cooling-joint Scheduler for LLM Inference in AI Datacenters",
+          "authors": [
+            "Rui Lu",
+            "Rui Ge",
+            "Huanghuang Liang",
+            "Xiaobo Zhou",
+            "Dan Wang"
+          ],
+          "summary": "Large language model (LLM) inference in AI datacenters creates a coupled control problem between GPU serving and facility cooling. Raising ambient temperature setpoints can reduce cooling energy and carbon, but also shrinks thermal headroom, induces GPU throttling, and leads to Service-Level-Objective (SLO) violations. In this paper, we study joint cooling--computing control for LLM inference: minimizing per-job GPU-plus-cooling energy while satisfying thermal safety and latency SLO constraints. We present ETCInfer, an energy-efficient, thermal-aware scheduler that selects a pre-job Computer Room Air Conditioner (CRAC) setpoint and adapts per-GPU frequency and micro-batch size during execution. ETCInfer builds compact physics-informed control models by calibrating GPU heat generation, chassis heat dissipation, CRAC power, and prefill/decode latency relations from telemetry. These models estimate hidden thermal states and time-to-throttle, enabling the scheduler to evaluate energy, temperature, and latency before applying an action. We formulate this joint setpoint--frequency--micro-batch control problem as a partially observable Markov decision process and design ETCAdapter, a learning-based controller that minimizes per-job energy under thermal safety and SLO constraints. We implement ETCInfer as a coordination layer over typical inference and cluster management stacks. Evaluation across real-trace simulation and validation experiments shows that ETCInfer reduces total job energy by up to 33.1%, thermal throttle exposure by up to 92.9%, and keeps SLO violation rates below 0.7% even at ambient temperatures up to $48^{\\circ}\\mathrm{C}$.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, energy。Large language model (LLM) inference in AI datacenters creates a coupled control problem between GPU serving and facility cooling....",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "energy",
+            "inference",
+            "latency",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-14T08:50:43Z",
+          "url": "https://arxiv.org/abs/2609.15230",
+          "pdfUrl": "https://arxiv.org/pdf/2609.15230v1"
+        },
+        {
+          "id": "arxiv-2609.15039",
+          "title": "SpliTEE: Improving LLM Inference on Trusted Hardware with Differentially Private GPU Outsourcing",
+          "authors": [
+            "Shashie Dilhara Batan Arachchige",
+            "Robin Carpentier",
+            "Hassan Jameel Asghar",
+            "Dali Kaafar"
+          ],
+          "summary": "User prompts provided to large language models (LLMs) may contain sensitive or private information that can be misused by remotely deployed models, such as through inadvertent memorization during retraining. One way to protect user prompts is to execute the LLM inside a trusted execution environment (TEE), with the guarantee that the service provider has no access to computations performed within or information exchanged with the TEE. However, current TEEs are primarily CPU-based and significantly slower than GPUs optimized for LLM inference. To circumvent this, Tramer and Boneh (2019) proposed Slalom, which splits neural network inference between a TEE and an untrusted GPU and encrypts intermediate inputs sent to the GPU. We extend this split-inference architecture to LLM inference and instead protect intermediate inputs using differential privacy. We show that masking intermediate representations is necessary by showing that a prompt-reconstruction attack can recover prompts from these representations with nearly 80% accuracy. Our main contribution is a global sensitivity analysis of key LLM functions, which bounds the required scale of differentially private noise. Unlike encryption, differential privacy avoids quantization, allowing the LLM to remain in the floating-point domain. We also derive an upper bound on floating-point error from masking and noise cancellation in the TEE as a function of the privacy parameter epsilon. We implement our architecture using Intel TDX and evaluate it with two LLMs: Llama-3.2-3B and Qwen3-4B. Our split execution is nearly twice as fast as fully CPU-based inference inside TDX and 5-15 seconds faster than encryption-based Slalom while achieving higher accuracy. Finally, we demonstrate that prompt reconstruction, even with knowledge of the differential privacy mechanism, cannot recover more information than is contained in an unrelated prompt.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CR, deployed。User prompts provided to large language models (LLMs) may contain sensitive or private information that can be misused by remotely...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.CR",
+            "deployed",
+            "inference",
+            "llm",
+            "quantization",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-09-14T04:55:17Z",
+          "url": "https://arxiv.org/abs/2609.15039",
+          "pdfUrl": "https://arxiv.org/pdf/2609.15039v1"
+        },
+        {
+          "id": "arxiv-2609.15021",
+          "title": "Shared KV Caching for Replicated 27B Inference: Correctness Failures and Performance Boundaries",
+          "authors": [
+            "Frank Li"
+          ],
+          "summary": "Shared host-memory caching can avoid repeated prefill when a request moves between inference replicas. Its usefulness depends on both correct state transfer and lost prefix locality. We study two single-GPU 27B vLLM replicas sharing a 256 GiB LMCache pool. After adopting an existing packed-page patch, we isolate a raw-pointer fallback that omits the dependency on the current CUDA stream. Controlled byte tests fail under an imposed delay and pass when the dependency is restored; the existing mixed allocator provides a working deployment path. Full-pool allocation checks and service regression complete the validation. A four-block OFF-ON-ON-OFF comparison contains 768 measured requests within two block pairs. Median cross-replica time to first content token falls from 31.715 to 0.605 seconds at 128k input and from 92.047 to 0.790 seconds at 256k. Six-turn synthetic sessions alternating replicas improve by approximately 35% and 45% at initial contexts of 32k and 128k, while fixed placement shows little benefit. This engineering case study identifies practical validation steps and the locality conditions in which shared caching pays off.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, inference。Shared host-memory caching can avoid repeated prefill when a request moves between inference replicas. Its usefulness depends on b...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.DC",
+            "inference",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-09-14T04:37:44Z",
+          "url": "https://arxiv.org/abs/2609.15021",
+          "pdfUrl": "https://arxiv.org/pdf/2609.15021v1"
+        },
+        {
+          "id": "arxiv-2609.14872",
+          "title": "AgentKV: Phase-Aware KV Eviction for Agentic LLMs",
+          "authors": [
+            "Taowen Tony Liu",
+            "Jeffrey T. H. Wong",
+            "Can Xiao",
+            "Bowen Yang",
+            "Hao Mark Chen",
+            "Yiren Zhao"
+          ],
+          "summary": "Agentic serving can consume orders of magnitude more tokens than chatbot workloads, stressing both KV-cache capacity and decode-time bandwidth. Most KV-eviction methods score cached keys against representative queries drawn from the most recent tokens, assuming future attention resembles recent attention. We show that agentic generation violates this assumption: future queries form a mixture over think, act, tool, and others phases, and principal-angle analysis shows these components occupy measurably different query subspaces, so recency representatives systematically undervalue keys that upcoming phases will need. We propose AGENTKV, which maintains a small query buffer per phase and scores cached keys against their union. We further implement AGENTKV in a persistent multi-turn serving path that carries compressed KV state across turns and compacts retained KV pages online. Across two models, six task domains, and three KV budgets each, AGENTKV improves task score by 5.5 points on average over R-KV and 5.3 over Tri-attention. Relative to upstream full-KV SGLang, AGENTKV improves output-token throughput by up to 1.80x. Code: https://github.com/LiuTaowen-Tony/agentkv.",
+          "reason": "近 30 天；关键词：cs.LG, llm, serving。Agentic serving can consume orders of magnitude more tokens than chatbot workloads, stressing both KV-cache capacity and decode-ti...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "llm",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-14T00:42:53Z",
+          "url": "https://arxiv.org/abs/2609.14872",
+          "pdfUrl": "https://arxiv.org/pdf/2609.14872v1"
+        },
+        {
+          "id": "arxiv-2609.14850",
+          "title": "Self-Orchestrating Language Models: Leveraging Semantic Dependence for Efficient Inference",
+          "authors": [
+            "Tian Jin"
+          ],
+          "summary": "Large language models (LLMs) demonstrate impressive capabilities, but their deployment presents significant efficiency challenges. Autoregressive decoding imposes substantial inference latency and under-utilizes hardware accelerators in low batch size regimes. Discrete diffusion models can generate in parallel but struggle to match autoregressive quality without many diffusion denoising steps. Long-context reasoning creates memory bottlenecks that strain even state-of-the-art accelerators. My thesis is that language models can direct their own inference execution strategy by annotating semantic dependence -- which tokens depend on which others -- in their generation. I call such models self-orchestrating language models. For each system, I design a runtime that acts on these annotations to parallelize autoregressive decoding, evict intermediate context, or derive denoising orders, achieving Pareto-optimal quality-efficiency trade-offs. I demonstrate this approach through three self-orchestrating systems. First, PASTA uses semantic dependence to parallelize autoregressive decoding, training the model to annotate which output chunks can generate independently. Second, TIP uses semantic dependence to evict intermediate reasoning steps from the KV cache, reducing memory consumption while preserving accuracy. Third, Planned Diffusion uses semantic dependence to derive a denoising order for discrete diffusion, autoregressively generating a plan that specifies which chunks to denoise in parallel.",
+          "reason": "近 30 天；关键词：cs.AI, efficient, inference。Large language models (LLMs) demonstrate impressive capabilities, but their deployment presents significant efficiency challenges....",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AI",
+            "efficient",
+            "inference",
+            "kv-cache",
+            "latency",
+            "llm",
+            "pareto"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-13T23:48:33Z",
+          "url": "https://arxiv.org/abs/2609.14850",
+          "pdfUrl": "https://arxiv.org/pdf/2609.14850v1"
+        },
+        {
+          "id": "arxiv-2609.14762",
+          "title": "TriCalRAG: A Three-Strategy, Retrieval-Augmented Benchmark for On-Premise LLM-Based Root Cause Analysis in AIOps",
+          "authors": [
+            "Rohit Patel",
+            "Susil Kumar Mohanty",
+            "Jeenal Chaudhary"
+          ],
+          "summary": "Cloud-hosted large language models (LLMs) are increasingly used for root cause analysis (RCA) in AIOps pipelines, but they introduce data privacy risk, network latency, and per-query cost that scale poorly with production log volumes. We present TriCalRAG, a benchmark evaluating open-weight LLMs served locally via vLLM on a single high-memory workstation GPU (NVIDIA RTX PRO 6000, 96GB) against a classical LSTM-based log anomaly detector (DeepLog), across four real, publicly available log datasets (BGL, HDFS, Thunderbird, OpenStack). We evaluate two open-weight models (Qwen2.5-14B, Mistral-Small) under three prompting strategies: zero-shot, few-shot, and retrieval-augmented generation (RAG) over a labeled incident history, reporting accuracy, precision/recall, and F1 with bootstrap 95% confidence intervals across 3 random seeds, alongside throughput and VRAM footprint. Our results show that RAG not only improves mean F1 by 0.10-0.27 over zero-shot prompting but, more importantly, substantially stabilizes model calibration: zero-shot prompting drives both models toward near-degenerate behavior (predicting \"anomaly\" on up to 100% of incidents on some datasets), while RAG keeps predicted-positive rates close to the true class balance in the majority of configurations. Mistral-Small achieves higher macro-averaged F1 than Qwen2.5-14B (0.644 vs. 0.560) but exhibits calibration failures in more configurations (7 vs. 5 of 12), while running at roughly half the throughput - indicating the better model choice depends on whether a deployment prioritizes peak accuracy or predictable behavior across prompting conditions. Ablations show batching scales throughput 41 times on a single card and that 4-bit quantization reduces latency 20% with no measurable accuracy loss. We release our benchmark harness, dataset splits, and evaluation code to support reproducible on-premise AIOps research.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, batching。Cloud-hosted large language models (LLMs) are increasingly used for root cause analysis (RCA) in AIOps pipelines, but they introdu...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.DC",
+            "batching",
+            "dataset",
+            "latency",
+            "llm",
+            "production"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-09-13T19:52:46Z",
+          "url": "https://arxiv.org/abs/2609.14762",
+          "pdfUrl": "https://arxiv.org/pdf/2609.14762v1"
+        },
+        {
+          "id": "arxiv-2609.14717",
+          "title": "Carryover Drafting: Recycling Rejected States for Speculative Decoding",
+          "authors": [
+            "Jahyun Koo",
+            "Sunghyeon Woo",
+            "Jaeeun Kil",
+            "Jeongtae Lee",
+            "Sungjae Lee",
+            "Kyomin Jung",
+            "Minsub Kim"
+          ],
+          "summary": "Speculative decoding accelerates LLM inference by verifying multiple drafted tokens in parallel, allowing a single target forward pass to accept several tokens. By construction, verification computes representations for both accepted and rejected tokens. Yet, conventional drafters retain only the representations of accepted tokens, leaving the substantial verifier computation spent on rejected tokens effectively wasted. We find that these discarded hidden states generated during target forward retain useful information about future tokens that can improve subsequent drafts. However, realizing this opportunity poses two distinct challenges. At inference, recycling overhead can increase drafting latency, diminishing the speedup gained from increased acceptance length. During training, standard parallel drafter training does not produce inference-aligned rejected states, while obtaining them through sequential rollouts would sacrifice parallelism across training positions. We introduce Carryover Drafting, which addresses both challenges. Carryover recycles rejected target hidden states as temporary KV context, allowing the drafter to selectively attend to them. It reuses the drafter's existing interface and adds only a single learned embedding to distinguish rejected states from committed context. The additional KV context is replaced each drafting round, keeping its length bounded by one proposal block. We introduce parallel draft--verify--draft training that exposes the drafter to inference-aligned rejected states while preserving parallelism across training positions. Experiments with DFlash and a DSpark-derived semi-autoregressive drafter across two target models show that this simple Carryover mechanism improves average acceptance length by 6.5--14.7% and end-to-end vLLM speedup by 7.9--14.4% over the corresponding baselines, with speedup gains reaching 28.8% on translation.",
+          "reason": "近 30 天；关键词：cs.LG, inference, latency。Speculative decoding accelerates LLM inference by verifying multiple drafted tokens in parallel, allowing a single target forward...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "latency",
+            "llm",
+            "serving",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-13T18:20:31Z",
+          "url": "https://arxiv.org/abs/2609.14717",
+          "pdfUrl": "https://arxiv.org/pdf/2609.14717v1"
+        },
+        {
+          "id": "arxiv-2609.14493",
+          "title": "VARG: Value-Aware and Ranking-Aligned Generative Retrieval for Dynamic E-commerce Search",
+          "authors": [
+            "Xiaopeng Chu",
+            "Jianbo Zhu",
+            "Mingmin Jin",
+            "Jing Wang",
+            "Xing Fang",
+            "Wenyi Zhang"
+          ],
+          "summary": "Integrating recall and pre-ranking in e-commerce search requires candidate generation to account for relevance, personalization, and business value before final ranking. To this end, we present VARG, a generative retrieval system for Tmall App search that directly admits generated item candidates to the existing final ranker. VARG-ID constructs semantic prefixes using RQ-VAE, enhances search relevance through bidirectional query-item contrastive learning, and combines these prefixes with a value-ordered third token to provide fine-grained item addresses and a business-value prior. Three-stage supervised fine-tuning progressively learns item-to-identifier mappings, query-semantic retrieval, and personalized retrieval. Personalized model training combines value-aware and hierarchy-aligned supervision with expanded user context, and uses local ordinal supervision (LO-SFT) to learn the local within-cluster ordering encoded by the third token. Prefix-GRPO combines gated rewards based on output legality, user behavior, ranker advantage, and search relevance with prefix-aware token weighting to align candidate generation with business value and ranking objectives. Coordinated daily product and model updates preserve existing item addresses while incorporating new products and behavioral feedback. Offline experiments on tens of millions of products validate identifier stability and demonstrate gains in retrieval quality and head-level value recall from SFT strategies and Prefix-GRPO over their respective baselines. In a 14-day online A/B test covering 20% of search traffic, VARG directly admits generated candidates to the final ranker and improves GMV by 1.45%, per-user IPV by 0.22%, and PCTR by 0.31%. Online shopping-guide query evaluations further show that VARG maintains competitive relevance with a smaller candidate quota.",
+          "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, online-a/b。Integrating recall and pre-ranking in e-commerce search requires candidate generation to account for relevance, personalization, a...",
+          "area": "推荐算法",
+          "tags": [
+            "alibaba",
+            "cs.IR",
+            "online-a/b",
+            "ranking",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-09-13T12:59:04Z",
+          "url": "https://arxiv.org/abs/2609.14493",
+          "pdfUrl": "https://arxiv.org/pdf/2609.14493v1"
+        },
+        {
+          "id": "arxiv-2609.14339",
+          "title": "Communication-Efficient LLM Adaptation over Decentralized GPU Meshes",
+          "authors": [
+            "Sameera Ramasinghe",
+            "Shamane Siriwardhana",
+            "Thalaiyasingam Ajanthan",
+            "Hadi Mohaghegh Dolatabadi",
+            "Chamin P Hewa Koneputugodage",
+            "Gil Avraham",
+            "Violetta Shevchenko",
+            "James Snewin",
+            "Karol Pajak",
+            "Harry Xi",
+            "Alexander Long"
+          ],
+          "summary": "Decentralized training enables large-model training over low-end GPUs and internet-grade connections, but communication along both data-parallel and pipeline-parallel axes becomes the primary bottleneck. We study post-pretraining adaptation in this setting. We propose an asynchronous two-circuit system: a fast compressed training circuit drives throughput using activation masking for pipeline-parallel (PP) transfer and compressed data-parallel (DP) synchronization, while a slow anchor circuit runs occasional unmasked forward--backward passes off the critical path. Then, we introduce a spectral correction optimizer that uses these delayed anchor priors to denoise masked gradients without blocking the fast stream. Although prior work has found aggressive activation compression unreliable, we show that masking supports post-pretraining adaptation at high compression rates when anchored this way. Pipeline-parallel compression alone yields up to a $9\\times$ throughput gain, and combining it with data-parallel compression increases beyond $40\\times$ over internet-grade $\\sim 200$Mbps connections, while matching dense uncompressed performance across domain adaptation and continual pretraining.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, llm。Decentralized training enables large-model training over low-end GPUs and internet-grade connections, but communication along both...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "llm",
+            "slo",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-13T06:56:50Z",
+          "url": "https://arxiv.org/abs/2609.14339",
+          "pdfUrl": "https://arxiv.org/pdf/2609.14339v1"
+        }
+      ]
+    },
     {
       "date": "2026-09-11",
       "generatedAt": "2026-09-11T07:32:21.676919+08:00",
@@ -19749,303 +20021,6 @@
           "publishedAt": "2026-03-06T01:22:16Z",
           "url": "https://arxiv.org/abs/2603.05800",
           "pdfUrl": "https://arxiv.org/pdf/2603.05800"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-14",
-      "generatedAt": "2026-06-14T06:53:19.857253+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2606.06260",
-          "title": "OneReason Technical Report",
-          "authors": [
-            "OneRec Team",
-            "Biao Yang",
-            "Boyang Ding",
-            "Chenglong Chu",
-            "Dunju Zang",
-            "Fei Pan",
-            "Han Li",
-            "Hao Jiang"
-          ],
-          "summary": "Extends the OneRec family toward reasoning-style generative recommendation. It argues that recommendation reasoning needs itemic-token perception and cognition over user behavior sequences, then introduces OneReason with perception-focused pre-training, three-level cognition-enhanced CoT SFT and specialize-then-unify RL.",
-          "reason": "快手 OneRec 系列最新推荐推理方向：2026-06-04 新稿，把生成式推荐从 scaling 推到 reasoning，重点看 item token 语义感知、用户兴趣认知、CoT 格式和 RL 训练配方。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "onereason",
-            "generative-recommendation",
-            "reasoning",
-            "cot",
-            "rl"
-          ],
-          "signal": 100,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-04T15:04:34Z",
-          "url": "https://arxiv.org/abs/2606.06260",
-          "pdfUrl": "https://arxiv.org/pdf/2606.06260"
-        },
-        {
-          "id": "arxiv-2606.03866",
-          "title": "Taiji: Pareto Optimal Policy Optimization with Semantics-IDs Trade-off for Industrial LLM-Enhanced Recommendation",
-          "authors": [
-            "Yuecheng Li",
-            "Zeyu Song",
-            "Jing Yao",
-            "Chi Lu",
-            "Peng Jiang",
-            "Kun Gai"
-          ],
-          "summary": "Presents Taiji, an industrial LLM-as-Enhancer recommender framework that aligns LLM semantic rewards with collaborative ID preference rewards through Pareto Optimal Policy Optimization. It reports offline and online A/B validation and deployment on Kuaishou advertising traffic.",
-          "reason": "近 30 天工业推荐主线：Kuaishou 广告平台、LLM4Rec、Semantic IDs、RL 对齐和线上 A/B 都在一篇里。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "llm4rec",
-            "semantic-id",
-            "rl-alignment",
-            "online-ab"
-          ],
-          "signal": 99,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-02T16:39:06Z",
-          "url": "https://arxiv.org/abs/2606.03866",
-          "pdfUrl": "https://arxiv.org/pdf/2606.03866"
-        },
-        {
-          "id": "arxiv-2605.21427",
-          "title": "PALS: Power-Aware LLM Serving for Mixture-of-Experts Models",
-          "authors": [
-            "Can Hankendi",
-            "Rana Shahout",
-            "Minlan Yu",
-            "Ayse K. Coskun"
-          ],
-          "summary": "Presents a power-aware runtime for LLM serving that treats GPU power caps as a controllable resource and jointly tunes them with batch size. It integrates with vLLM and evaluates dense and MoE models on multi-GPU systems.",
-          "reason": "近 30 天 LLM 推理系统：MoE serving、GPU 功耗控制、vLLM 集成和 QoS 违约率都直接对应 2026 年 AI 基建成本问题。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "moe",
-            "power-aware",
-            "vllm",
-            "qos"
-          ],
-          "signal": 98,
-          "source": "arXiv/vLLM",
-          "publishedAt": "2026-05-20T17:19:20Z",
-          "url": "https://arxiv.org/abs/2605.21427",
-          "pdfUrl": "https://arxiv.org/pdf/2605.21427"
-        },
-        {
-          "id": "arxiv-2309.06180",
-          "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
-          "authors": [
-            "Woosuk Kwon",
-            "Zhuohan Li",
-            "Siyuan Zhuang",
-            "Ying Sheng",
-            "Lianmin Zheng",
-            "Cody Hao Yu",
-            "Joseph E. Gonzalez",
-            "Hao Zhang",
-            "Ion Stoica"
-          ],
-          "summary": "Introduces PagedAttention and vLLM, treating KV cache management like virtual memory so LLM serving can batch more requests with lower memory waste and higher throughput.",
-          "reason": "LLM 推理两篇经典之一：PagedAttention/vLLM 基本成了现代 serving 系统理解 KV cache、continuous batching 的入口。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "classic",
-            "vllm",
-            "pagedattention",
-            "kv-cache",
-            "serving"
-          ],
-          "signal": 98,
-          "source": "Berkeley/vLLM/arXiv",
-          "publishedAt": "2023-09-12T12:50:04Z",
-          "url": "https://arxiv.org/abs/2309.06180",
-          "pdfUrl": "https://arxiv.org/pdf/2309.06180"
-        },
-        {
-          "id": "usenix-nsdi26-droidspeak",
-          "title": "DroidSpeak: KV Cache Sharing Across Fine-tuned Model Variants",
-          "authors": [
-            "Yuhan Liu",
-            "Yuyang Huang",
-            "Jiayi Yao",
-            "Shaoting Feng",
-            "Zhuohan Gu",
-            "Kuntai Du",
-            "Hanchen Li",
-            "Yihua Cheng",
-            "Junchen Jiang",
-            "Shan Lu",
-            "Madan Musuvathi",
-            "Esha Choukse"
-          ],
-          "summary": "Studies KV cache sharing across fine-tuned model variants in multi-LLM serving. DroidSpeak selectively recomputes sensitive layers and reuses the remaining KV cache to cut redundant prefill work.",
-          "reason": "2026 NSDI / Microsoft 参与的推理系统：多模型协作、KV cache 共享、fine-tuned variants 和 agentic workflow 都是大厂线上服务会遇到的问题。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "microsoft",
-            "kv-cache",
-            "multi-llm",
-            "prefill"
-          ],
-          "signal": 97,
-          "source": "Microsoft/USENIX NSDI",
-          "publishedAt": "2026-05-01T00:00:00Z",
-          "url": "https://www.usenix.org/conference/nsdi26/presentation/liu-yuhan",
-          "pdfUrl": "https://www.usenix.org/system/files/nsdi26-liu-yuhan.pdf"
-        },
-        {
-          "id": "arxiv-2205.14135",
-          "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
-          "authors": [
-            "Tri Dao",
-            "Daniel Y. Fu",
-            "Stefano Ermon",
-            "Atri Rudra",
-            "Christopher Re"
-          ],
-          "summary": "Reorders exact attention computation around GPU memory hierarchy, using tiling to reduce HBM/SRAM traffic and unlock faster long-sequence transformer training and inference.",
-          "reason": "LLM 推理两篇经典之一：kernel/显存 IO/attention 吞吐的底层心智模型，读推理优化绕不开。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "classic",
-            "flashattention",
-            "attention-kernel",
-            "memory-io",
-            "throughput"
-          ],
-          "signal": 97,
-          "source": "arXiv",
-          "publishedAt": "2022-05-27T17:53:09Z",
-          "url": "https://arxiv.org/abs/2205.14135",
-          "pdfUrl": "https://arxiv.org/pdf/2205.14135"
-        },
-        {
-          "id": "arxiv-2605.29639",
-          "title": "RTP-LLM: High-Performance Alibaba LLM Inference Engine",
-          "authors": [
-            "Boyu Tan",
-            "Jiarui Guo",
-            "Zongwei Lv",
-            "Hanbo Sun",
-            "Tong Yang",
-            "Kan Liu",
-            "Xinfei Shi",
-            "Zetao Hu",
-            "Yaxin Yu",
-            "Chi Zhang"
-          ],
-          "summary": "Technical report for Alibaba's production LLM inference engine, covering model loading, prefill-decode disaggregation, hierarchical KV cache reuse, speculative decoding, quantization and multimodal inference.",
-          "reason": "新的业界笔记/技术报告：5 月底阿里生产推理引擎，直接对标 vLLM/SGLang，适合把经典推理论文落到工业系统。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "alibaba",
-            "inference-engine",
-            "kv-cache",
-            "speculative-decoding"
-          ],
-          "signal": 96,
-          "source": "Alibaba/arXiv",
-          "publishedAt": "2026-05-28T09:07:06Z",
-          "url": "https://arxiv.org/abs/2605.29639",
-          "pdfUrl": "https://arxiv.org/pdf/2605.29639"
-        },
-        {
-          "id": "arxiv-2604.05314",
-          "title": "Next-Scale Generative Reranking: A Tree-based Generative Rerank Method at Meituan",
-          "authors": [
-            "Shuli Wang",
-            "Changhao Li",
-            "Ke Fan",
-            "Senjie Kou",
-            "Junwei Yin",
-            "Chi Wang",
-            "Yinhua Zhu",
-            "Haitao Wang",
-            "Xingxing Wang"
-          ],
-          "summary": "Proposes NSGR, a tree-based generative reranking framework that expands recommendation lists from coarse to fine and uses a multi-scale evaluator to guide generation. The method is reported as deployed on Meituan food delivery.",
-          "reason": "近 90 天工业重排方向：Meituan 线上部署，聚焦多阶段推荐里的 generative reranking 和全局/局部列表建模。",
-          "area": "推荐算法",
-          "tags": [
-            "meituan",
-            "reranking",
-            "generative-recommendation",
-            "production"
-          ],
-          "signal": 96,
-          "source": "Meituan/arXiv",
-          "publishedAt": "2026-04-07T01:35:20Z",
-          "url": "https://arxiv.org/abs/2604.05314",
-          "pdfUrl": "https://arxiv.org/pdf/2604.05314"
-        },
-        {
-          "id": "arxiv-2604.02684",
-          "title": "MBGR: Multi-Business Prediction for Generative Recommendation at Meituan",
-          "authors": [
-            "Changhao Li",
-            "Junwei Yin",
-            "Zhilin Zeng",
-            "Senjie Kou",
-            "Shuli Wang",
-            "Wenshuai Chen",
-            "Yinhua Zhu",
-            "Haitao Wang",
-            "Xingxing Wang"
-          ],
-          "summary": "Builds a multi-business generative recommendation framework with business-aware semantic IDs, business-specific prediction and dynamic label routing. It reports offline and online validation on Meituan food delivery.",
-          "reason": "近 90 天工业生成式推荐：重点是多业务场景、Semantic ID 空间隔离和生产验证。",
-          "area": "推荐算法",
-          "tags": [
-            "meituan",
-            "multi-business",
-            "semantic-id",
-            "generative-recommendation",
-            "online-ab"
-          ],
-          "signal": 95,
-          "source": "Meituan/arXiv",
-          "publishedAt": "2026-04-03T03:26:36Z",
-          "url": "https://arxiv.org/abs/2604.02684",
-          "pdfUrl": "https://arxiv.org/pdf/2604.02684"
-        },
-        {
-          "id": "arxiv-2604.17459",
-          "title": "Transparent and Controllable Recommendation Filtering via Multimodal Multi-Agent Collaboration",
-          "authors": [
-            "Chi Zhang",
-            "Zhipeng Xu",
-            "Jiahao Liu",
-            "Dongsheng Li",
-            "Hansu Gu",
-            "Peng Zhang",
-            "Ning Gu",
-            "Tun Lu"
-          ],
-          "summary": "Introduces a controllable recommendation filtering framework combining end-to-cloud collaboration, multimodal perception, multi-agent adjudication and editable preference graphs to reduce over-filtering in personalized feeds.",
-          "reason": "近 90 天 Microsoft Research 推荐治理方向：不是单纯 CTR，而是个性化 feed 的可控过滤、透明度和多模态安全边界。",
-          "area": "推荐算法",
-          "tags": [
-            "microsoft",
-            "controllable-recommendation",
-            "multimodal",
-            "agent",
-            "feed"
-          ],
-          "signal": 92,
-          "source": "Microsoft Research/arXiv",
-          "publishedAt": "2026-04-19T14:19:28Z",
-          "url": "https://arxiv.org/abs/2604.17459",
-          "pdfUrl": "https://arxiv.org/pdf/2604.17459"
         }
       ]
     }
