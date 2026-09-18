@@ -1,0 +1,60 @@
+Use case: scientific-educational
+Asset type: original technical infographic for a Chinese article about Context Parallelism.
+Create ONE high-resolution landscape scientific educational infographic, approximately 3840×2160, white background, crisp deep navy typography, restrained blue/cyan/orange palette, precise flat vector-like technical illustration rendered as a bitmap. Large readable Chinese labels, mathematically correct, polished research textbook quality. No branding, no watermark, no decorative filler.
+
+TITLE verbatim: "Context Parallel：长序列如何在多卡上协作"
+Subtitle: "沿 token 切分 · 保留全局注意力 · 跨卡协作"
+
+COMPOSITION: Six numbered panels with unmistakable reading order 1 → 2 → 3 → 4 → 5 → 6. Panels 1 and 2 on the top row, panel 3 spanning the large middle row and taking most visual space, panels 4, 5, 6 on the lower row. Large solid blue linking arrows establish the flow. A narrow footer contains performance notes. Plenty of white space. All text below must be correctly spelled and legible. Use short labels rather than verbose prose.
+
+PANEL 1, heading "1  沿 token 维切分"
+Show the same single sequence as eight token tiles labeled 1 2 3 4 5 6 7 8. Four pairs branch to four GPU boxes with exact labels:
+"GPU 0: 1, 2", "GPU 1: 3, 4", "GPU 2: 5, 6", "GPU 3: 7, 8".
+Small label: "同一条长序列，P = 4"
+Do not imply four replicated full sequences or four independent sequences.
+
+PANEL 2, heading "2  本地计算 Q / K / V"
+For each shard depict "本地 token → Norm → Q, K, V".
+Emphasize "保留全局位置编号".
+All four GPUs use the same model weights. Q and KV initially correspond to each GPU's owned token pair.
+
+PANEL 3, heading "3  Q 固定，K/V 沿环轮转"
+This is the visual centerpiece. Four large GPU nodes arranged in a square, GPU 0 upper-left, GPU 1 upper-right, GPU 2 lower-right, GPU 3 lower-left. Draw exactly one directed clockwise ring of solid cyan arrows: GPU 0 → GPU 1 → GPU 2 → GPU 3 → GPU 0. Large clear arrowheads. Label each link "K/V". Within each GPU, show a fixed dark-blue Q block clearly anchored locally, and a cyan K/V block representing the currently visited block. Use Q labels Q[1,2], Q[3,4], Q[5,6], Q[7,8] matching the owners. Ring center text:
+"Q 留在本卡"
+"K/V 分块传递"
+"覆盖 mask 允许的全局 K/V"
+To the right of the ring, a small, clear causal attention matrix with query rows 1…8 and key columns 1…8. Allowed cells are on and below main diagonal in blue, forbidden future cells above diagonal in pale gray with small x symbols. Label "因果 mask：禁止看未来".
+Small line under the ring: "本地块 + 3 次轮转，访问 4 个 K/V 块"
+Never imply the query moves around the ring. Never imply only local attention.
+
+PANEL 4, heading "4  全局归一化合并"
+Show four block attention contributions flowing into a single merge box labeled "Online Softmax".
+Supporting text, exact:
+"统一 softmax 归一化"
+"按全局权重合并"
+"不能直接相加或平均"
+Make the final warning orange. Depict an accumulator for running maximum, normalization denominator, and weighted value sum; concise symbolic labels "m", "l", "Σ exp(s−m)V". If formula is present it must mean globally normalized weighted accumulation; never display a plain mean of partial attention outputs.
+
+PANEL 5, heading "5  本地输出 → 下一层"
+Show a compact horizontal flow:
+"Attention 输出 → 残差 / MLP → 下一层"
+Below, four separate token shard strips maintain ownership and division.
+Caption: "输出继续按 token 分片"
+Small caption: "每层无需聚合整序列"
+
+PANEL 6, heading "6  反向传播"
+Use orange dashed arrows only for gradient communication. Concise three stacked lines:
+"dQ：本地累加"
+"dK / dV：跨卡汇总 → owner"
+"共享权重梯度：归约"
+Small caption: "可组合 FSDP；并非 CP 必要条件"
+Show the dashed gradient route going from contributing GPUs to the K/V owner; do not imply dK/dV are only local or that FSDP is mandatory.
+
+Legend: solid blue/cyan arrow "前向与 K/V 通信"; dashed orange arrow "反向梯度通信".
+Footer labels verbatim, well spaced and easily legible:
+"每卡分片激活约 1/P"
+"总稠密 Attention FLOPs 不变"
+"理想每卡：O(S²d / P)"
+"不是 O((S/P)²d)"
+The final incorrect-cost expression must be explicitly marked as "不是", not accidentally presented as the actual cost.
+Overall requirements: all six stages visible, generous font sizes, accurate Chinese, clear nonintersecting arrows, no misleading computations, no photographic GPU hardware, no 3D shadows, no background textures.

@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="从输入分片、KV 环形交换、全局 softmax 到反向传播，完整理解 Context Parallel。含 GPT Image 流程图及可交互的因果注意力矩阵。" />
+  <title>Context Parallel：长序列如何在多卡上协作 · 论文每日一读</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="attention-demo.css" />
+  <script src="theme.js"></script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar" aria-label="站点导航">
+      <a class="brand" href="../"><span class="brand-mark">读</span><span><strong>论文每日一读</strong><small>RecSys &amp; Inference Radar</small></span></a>
+      <div class="topbar-actions">
+        <nav class="site-switcher" aria-label="内容导航">
+          <a class="site-switcher-link" href="../">论文</a>
+          <a class="site-switcher-link" href="../textbooks/">经典教材导读</a>
+          <a class="site-switcher-link" href="../practice/">刷题</a>
+        </nav>
+        <button class="quiet-button" id="articleTheme" type="button" aria-label="切换明暗主题">切换主题</button>
+      </div>
+    </header>
+
+    <main>
+      <header class="article-header">
+        <p class="eyebrow">AI Systems / 长上下文训练 · 2026-09-18</p>
+        <h1>Context Parallel<br /><span>长序列如何在多卡上协作</span></h1>
+        <p class="article-lead">把同一条序列的 token 分给多张 GPU。每张卡只更新自己负责的 token，却仍通过通信，保留完整的注意力关系。</p>
+        <div class="article-links"><a href="#interactive">操作注意力矩阵</a><a href="#ring">跟着 K/V 走一圈</a><a href="#sources">查看一手资料</a></div>
+      </header>
+
+      <figure class="overview" id="overview">
+        <a href="assets/context-parallel-flow.png" target="_blank" rel="noopener" aria-label="打开 Context Parallel 总流程原图"><img src="assets/context-parallel-flow.png" width="1672" height="941" alt="Context Parallel 六阶段：同一序列分片；本地生成 Q/K/V 并保留全局位置；Q 保留本卡而 K/V 沿四张 GPU 环形交换；用全局 softmax 合并贡献；本地输出进入残差、MLP 和下一层；反向累加 dQ、汇总 dK/dV 和共享权重梯度。" fetchpriority="high" /></a>
+        <figcaption><span>完整流程 · GPT Image 绘制。图以 pass-KV / Ring Attention 路径为例。</span><a href="assets/context-parallel-flow.png" target="_blank" rel="noopener">查看大图 ↗</a></figcaption>
+        <p class="figure-note">第 4 阶段“各 GPU 的贡献”指各卡拥有的 K/V 块对同一本地 Q 的贡献，并非合并不同 query 的输出。图中先展示纯 CP；组合 TP、FSDP 后，权重的物理存储方式会不同。</p>
+      </figure>
+
+      <div class="reading-layout">
+        <aside class="article-toc" aria-label="文章目录">
+          <p>阅读路线</p>
+          <nav>
+            <a href="#partition">01 / 为什么切序列</a>
+            <a href="#interactive">02 / 本地 Q，全局 K/V</a>
+            <a href="#ring">03 / K/V 如何交换</a>
+            <a href="#softmax">04 / softmax 如何合并</a>
+            <a href="#layer">05 / 一整层如何执行</a>
+            <a href="#backward">06 / 反向传播</a>
+            <a href="#positions">07 / 位置、mask 与负载</a>
+            <a href="#torchtitan">08 / 对应 TorchTitan</a>
+            <a href="#cost">09 / 收益与代价</a>
+            <a href="#parallelisms">10 / 和其他并行的区别</a>
+            <a href="#sources">参考资料</a>
+          </nav>
+        </aside>
+
+        <article class="article-body">
+          <section id="partition">
+            <p class="section-number">01 / 输入分片</p>
+            <h2>一条样本已经放不下，怎么继续分？</h2>
+            <p>数据并行（DP）把不同样本分给不同 GPU。但如果一篇超长文档本身就占满了单卡显存，即使每张卡只放一条样本也无济于事。Context Parallel（CP）沿这条样本的<strong>序列长度维度</strong>继续切分，让一组 GPU 合作处理同一条序列。</p>
+            <div class="formula" aria-label="全局输入形状为 B 乘 S 乘 D，本卡输入形状为 B 乘 S 除以 P 乘 D">X: [B, S, D] <span>→</span> X<sub>r</sub>: [B, S/P, D]</div>
+            <p>B 是 batch size，S 是 token 数，D 是隐藏维度，P 是 CP 并行度。忽略其他并行方式时，每张卡只保存、更新自己负责的 token 的隐藏状态，中间激活也随之分散。</p>
+            <p>比如将一条 8-token 序列连续分给 4 张卡，每张卡负责 2 个位置。它们仍然属于同一条样本，模型权重在逻辑上也属于同一个模型。</p>
+          </section>
+
+          <section id="interactive">
+            <p class="section-number">02 / 交互观察</p>
+            <h2>每张卡负责一些行，但这些行仍需要跨卡的列</h2>
+            <p>行是 query 的位置，列是 key/value 的位置。选择 GPU，查看它需要完成的 Q/K 配对；再切换首尾配对，观察同样的 token 数如何对应不同计算量。G0–G3 表示 K/V 原来属于哪张 GPU。</p>
+            <div class="attention-demo-host">
+              <div id="cp-attention-explainer">
+  <div class="viz-controls">
+    <label class="form-label" for="cp-partition">序列分片
+      <select class="form-select" id="cp-partition">
+        <option value="contiguous">连续分片</option>
+        <option value="headtail">首尾配对分片</option>
+      </select>
+    </label>
+    <div class="viz-row" role="group" aria-label="选择负责计算的 GPU">
+      <button class="btn" type="button" data-gpu="0" aria-pressed="false">GPU0</button>
+      <button class="btn" type="button" data-gpu="1" aria-pressed="false">GPU1</button>
+      <button class="btn" type="button" data-gpu="2" aria-pressed="false">GPU2</button>
+      <button class="btn" type="button" data-gpu="3" aria-pressed="true">GPU3</button>
+    </div>
+  </div>
+  <div class="cp-state tabular-nums" id="cp-state" aria-live="polite">GPU3 · Q 位置 7, 8 · 有效 QK 对 15</div>
+  <div class="cp-axis-title">K/V 位置 →</div>
+  <div class="cp-matrix tabular-nums" id="cp-matrix" role="img" aria-labelledby="cp-state" aria-describedby="cp-description"></div>
+  <div class="cp-legend text-small">
+    <span><i class="cp-swatch cp-active" aria-hidden="true">●</i>所选卡计算</span>
+    <span><i class="cp-swatch cp-idle" aria-hidden="true"></i>其他卡计算</span>
+    <span><i class="cp-swatch cp-masked" aria-hidden="true">×</i>未来位置被遮罩</span>
+  </div>
+  <div class="sr-only" id="cp-description"></div>
+</div>
+              <noscript><p>请启用 JavaScript 使用交互演示。连续分片时四张卡分别负责位置 1–2、3–4、5–6、7–8；因果注意力下有效 QK 对数为 3、7、11、15。首尾配对后，各卡有效 QK 对数均为 9。</p></noscript>
+            </div>
+            <p class="takeaway"><strong>本地 Q × 全局可见 K/V。</strong>分片决定谁来计算某个 query 的输出；mask 决定这个 query 能看哪些 key。CP 本身不截断上下文。</p>
+            <p>对单个 attention head，本卡计算的是：</p>
+            <div class="formula">O<sub>r</sub> = softmax(Q<sub>r</sub>K<sup>T</sup> / √d + M<sub>r</sub>)V</div>
+            <p>其中 Q<sub>r</sub> 是本卡的 query，K、V 逻辑上覆盖全序列，M<sub>r</sub> 是对应这些 query 的 mask。对于因果注意力，未来位置仍被屏蔽。“全局可见”不代表一次把完整 K/V 全部留在显存里。</p>
+          </section>
+
+          <section id="ring">
+            <p class="section-number">03 / 前向通信</p>
+            <h2>Q 留在原地，K/V 分块传过来</h2>
+            <p>在 pass-KV 的环形实现中，每张卡先用本地 Q 和本地 K/V 计算，然后把 K/V 传给下一张卡，接收上一张卡的块。Q 始终留在本卡。下表按 GPU0 → GPU1 → GPU2 → GPU3 → GPU0 的方向轮转。</p>
+            <div class="table-scroll"><table>
+              <caption>每一轮，各 GPU 的本地 Q 正在配哪个 K/V 块</caption>
+              <thead><tr><th>轮次</th><th>GPU0</th><th>GPU1</th><th>GPU2</th><th>GPU3</th></tr></thead>
+              <tbody>
+                <tr><th>本地计算</th><td>KV₀</td><td>KV₁</td><td>KV₂</td><td>KV₃</td></tr>
+                <tr><th>交换 1 次</th><td>KV₃</td><td>KV₀</td><td>KV₁</td><td>KV₂</td></tr>
+                <tr><th>交换 2 次</th><td>KV₂</td><td>KV₃</td><td>KV₀</td><td>KV₁</td></tr>
+                <tr><th>交换 3 次</th><td>KV₁</td><td>KV₂</td><td>KV₃</td><td>KV₀</td></tr>
+              </tbody>
+            </table></div>
+            <p>KVᵣ 表示最初放在 GPU r 上的 K/V 块。表格展示块的传递顺序；实际 causal kernel 会屏蔽未来位置，并可跳过完全无效的计算。它不会让早期 query 看到未来 token。</p>
+            <p>理想情况下，<strong>当前块的计算与下一块的传输重叠</strong>。Ring Attention 的价值不仅是分块，还在于尽可能减少等待通信的时间。</p>
+            <h3>文章里的 allgather 和 alltoall</h3>
+            <p>PyTorch 的 pass-KV 路径中，<code>allgather</code> 一次收集各卡 K/V，再按块计算；收集过程可以与本地块计算部分重叠。<code>alltoall</code> 则用于环形交换 K/V，通常需要多轮通信。</p>
+            <p>这里的 <code>alltoall</code> 不等于 Ulysses 的完整算法。Ulysses 通常将“部分序列、全部 heads”的布局转成“完整序列、部分 heads”，算完 attention 再转回来。相同的通信原语可以服务于不同的数据布局。</p>
+          </section>
+
+          <section id="softmax">
+            <p class="section-number">04 / 精确合并</p>
+            <h2>分块计算，仍然属于同一个 softmax</h2>
+            <p>每个 K/V 块的 attention 输出不能直接相加，也不能简单平均。对同一个 query，softmax 的分母必须覆盖所有允许访问的 key。</p>
+            <p>记 s<sub>j</sub> 为经过缩放和 mask 处理后的注意力分数，第 b 块的分母和局部输出为：</p>
+            <div class="formula">Z<sub>b</sub> = Σ<sub>j∈b</sub> exp(s<sub>j</sub>)<br />o<sub>b</sub> = Σ<sub>j∈b</sub> exp(s<sub>j</sub>)v<sub>j</sub> / Z<sub>b</sub></div>
+            <p>完整输出要按分母加权：</p>
+            <div class="formula formula-emphasis">o = Σ<sub>b</sub> Z<sub>b</sub>o<sub>b</sub> / Σ<sub>b</sub> Z<sub>b</sub></div>
+            <p>举例：两个块各一个 key，分数是 0 和 ln 3，value 是 0 和 10。局部输出分别为 0 和 10，但全局权重是 ¼ 和 ¾，正确输出是 <strong>7.5</strong>；直接平均得到的 5 是错误的。</p>
+            <p>实际实现用 running max、logsumexp 等统计量稳定地增量合并，不会直接计算可能溢出的指数。完全被 mask 的块贡献为零。数学上仍是原 attention，浮点运算顺序变化可能带来微小差异。</p>
+          </section>
+
+          <section id="layer">
+            <p class="section-number">05 / Transformer 层</p>
+            <h2>Attention 前后的计算，大多仍可按 token 本地完成</h2>
+            <ol class="process-list">
+              <li><strong>本地归一化。</strong>RMSNorm / LayerNorm 通常沿每个 token 的隐藏维度计算。</li>
+              <li><strong>生成 Q/K/V。</strong>本地 X<sub>r</sub> 乘投影权重，得到 Q<sub>r</sub>、K<sub>r</sub>、V<sub>r</sub>；位置编码保留全局位置。</li>
+              <li><strong>跨卡 attention。</strong>本地 Q 配合交换来的 K/V，正确合并所有有效块的贡献。</li>
+              <li><strong>本地输出投影、残差、MLP。</strong>对标准稠密 Transformer，这些操作不要求混合不同 token 的隐藏状态。</li>
+              <li><strong>输出继续分片。</strong>X′<sub>r</sub> 直接进入下一层，到了下一层 attention 再交换所需信息。</li>
+            </ol>
+            <p class="takeaway">不必每层都把整条序列重新聚合。各卡得到的是<strong>自己负责的位置、已经融合了全局可见上下文的输出</strong>。</p>
+            <p>这里先忽略 TP、FSDP、MoE 等其他并行产生的通信。训练时输入 token 都已知，因此可在 causal mask 下同时计算；推理时逐步生成尚未知晓的新 token，是另一种执行场景。</p>
+          </section>
+
+          <section id="backward">
+            <p class="section-number">06 / 反向传播</p>
+            <h2>K/V 被多张卡使用，梯度也要汇总</h2>
+            <p>前向中，一个 K/V 块会影响多张卡的 query 输出，因此反向不能让每张卡独立结束。</p>
+            <ul>
+              <li><strong>dQ：</strong>同一份本地 Q 与不同 K/V 块交互产生的贡献，在本地累加。</li>
+              <li><strong>dK / dV：</strong>累加来自不同 query 分片的贡献，并返回 K/V 所属的 rank。</li>
+              <li><strong>模型参数梯度：</strong>各 token 对共享权重的贡献需要跨 CP 组正确归约。</li>
+              <li><strong>loss：</strong>按所有有效 token 的约定计算和归一化；若各卡有效 token 数不同，不能直接平均各卡的局部平均 loss。</li>
+            </ul>
+            <p>输入和标签也必须一致分片。对于 next-token 训练，应保留原序列中的标签对应关系，不能在每个局部片段内单独移位而丢掉分片边界上的预测目标。</p>
+          </section>
+
+          <section id="positions">
+            <p class="section-number">07 / 正确性与负载</p>
+            <h2>位置不能重置，mask 不能丢掉跨卡上下文</h2>
+            <h3>保留 token 原来的位置编号</h3>
+            <p>交互演示用 1–8 方便阅读；代码一般从 0 开始编号。原位置为 4、5 的 token 分到某张卡后，positions 仍然是 4、5，不能重新变成 0、1。否则跨卡 Q/K 的 RoPE 位置关系就变了。</p>
+            <pre><code>全局 positions:  [0, 1, 2, 3, 4, 5, 6, 7]
+本卡选择的索引:  [4, 5]
+本卡 positions:  [4, 5]  // 随 token 一起切分</code></pre>
+            <p>原文代码先生成全局 positions，再和 inputs、labels 一起切分，这个思路正确。“切分后重算”应理解为确保分片与全局位置对应，不能理解为每卡重新从零编号。</p>
+            <h3>为什么 mask 只切 Q 维？</h3>
+            <p>逻辑上的 mask 是 [B,H,Q,KV]。本卡只计算部分 Q，所以只取对应行；这些行仍可能访问其他卡的 key，因此 KV 维要保持全局可见关系。原文“query 只需要本段 KV”的表述不准确。</p>
+            <p>全局可见关系不等于必须分配一张完整稠密 mask；BlockMask 等表示可以紧凑地描述它。</p>
+            <h3>headtail 如何均衡负载？</h3>
+            <p>因果注意力越靠后，能看到的 key 越多。连续分片容易让前面的卡空闲、后面的卡繁忙。headtail 把序列切成 2P 块，将第 r 块与第 2P−1−r 块配给 rank r。</p>
+            <p>这样把前段较少的计算和后段较多的计算配对。它只改变 token 归哪张 GPU，保持全局顺序和 mask 语义。FlexAttention 的稀疏 mask 也可以采用基于实际块工作量的负载均衡方案。</p>
+          </section>
+
+          <section id="torchtitan">
+            <p class="section-number">08 / 对照源码</p>
+            <h2>TorchTitan 把数据分片与 attention 协作接起来</h2>
+            <div class="table-scroll"><table>
+              <caption>对应原文所讨论版本的三个接入点</caption>
+              <thead><tr><th>入口</th><th>职责</th></tr></thead>
+              <tbody>
+                <tr><td><code>prepare_context_parallel_input</code><br /><code>cp_shard</code></td><td>输入、标签、位置一致分片；处理 mask 和负载均衡。</td></tr>
+                <tr><td><code>apply_cp_to_attention_module</code></td><td>将 attention 包装模块接入 CP 感知的执行计划。</td></tr>
+                <tr><td><code>create_context_parallel_ctx</code></td><td>在相应调用路径中管理 buffer 分片、恢复和 CP 执行上下文。</td></tr>
+              </tbody>
+            </table></div>
+            <p>SDPA 是函数，把它放进 nn.Module 包装器后，框架才能按模块挂接并行计划。底层分布式 attention 负责 K/V 通信、计算调度和结果合并。</p>
+            <h3>CP 必须配 FSDP 吗？</h3>
+            <p><strong>算法上不必须。</strong>CP 切序列相关激活，FSDP 切参数、梯度和优化器状态。CP 可以与复制的权重一起工作，前提是正确同步共享权重梯度。</p>
+            <p>原文所讨论的 TorchTitan 方案将 dp_shard 与 cp 合并进 FSDP 网格，让参数 all-gather 与梯度 reduce-scatter 一并覆盖这些 GPU。这是工程设计选择，不是 CP 的数学前提。</p>
+            <p class="note">版本提示：本文按原文的代码片段解释接入职责。函数位置、实验接口、varlen 支持范围与整除要求可能随版本变化；原文的行号和配置约束不能直接作为任意版本的运行说明。</p>
+          </section>
+
+          <section id="cost">
+            <p class="section-number">09 / 资源开销</p>
+            <h2>每卡负担下降，总稠密 attention 计算量仍在</h2>
+            <p>举例，B=1、S=131072（128K）、D=8192、BF16 时，一份 [B,S,D] 隐藏状态就占 2 GiB。CP=8 均匀分片后，每卡这份张量约 256 MiB。训练中的多份中间激活会一同受益。</p>
+            <p>但整个训练峰值显存不能保证直接除以 P。参数、通信缓冲区、临时工作区，以及 all-gather 路径下收集的完整 K/V，都可能不按这个比例缩小。</p>
+            <div class="formula">总 attention: O(S²d)<br />每卡 attention: O((S/P) × S × d) = O(S²d/P)</div>
+            <p>这里按单个 head 计量，并忽略 causal 带来的常数因子。每卡只有 S/P 个 query，但每个 query 仍处理全局可见的 key，不能漏掉跨分片计算而误写成 O((S/P)²d)。</p>
+            <p>FlashAttention 避免将完整 S×S 分数矩阵写入显存；CP 则进一步把长序列激活与计算分散到多卡。两者可以组合。训练中的显存问题也不应只用推理场景里的“KV cache”来解释。</p>
+            <p>序列固定时，CP 度越大，本地块越小，通信延迟和同步就越难隐藏。真正的提速取决于序列长度、GPU 互联、注意力后端、负载均衡与其他并行方式。</p>
+          </section>
+
+          <section id="parallelisms">
+            <p class="section-number">10 / 并行方式</p>
+            <h2>它们分配的是不同的维度</h2>
+            <div class="table-scroll"><table>
+              <thead><tr><th>方式</th><th>主要分配什么</th></tr></thead>
+              <tbody>
+                <tr><td>DP / 数据并行</td><td>不同样本。</td></tr>
+                <tr><td>CP / 上下文并行</td><td>同一样本中的不同 token 位置及相关激活。</td></tr>
+                <tr><td>TP / 张量并行</td><td>层内矩阵计算的不同部分，如隐藏维度或 heads。</td></tr>
+                <tr><td>PP / 流水线并行</td><td>不同 Transformer 层。</td></tr>
+                <tr><td>FSDP</td><td>参数、梯度与优化器状态的存储分片。</td></tr>
+              </tbody>
+            </table></div>
+            <p>Megatron 中狭义的 Sequence Parallel（SP），主要配合 TP 切分 LayerNorm、Dropout 等区域的激活；CP 则让序列分片贯穿模型，并处理 attention 的跨分片依赖。论文里的 sequence parallelism 有时是更广义的总称，阅读时要先确认定义。</p>
+          </section>
+
+          <section id="sources" class="references">
+            <h2>继续阅读</h2>
+            <p>原文提供 TorchTitan 代码线索；机制解释和必要澄清对照以下一手资料。</p>
+            <ol>
+              <li><a href="https://zhuanlan.zhihu.com/p/2077195962246751819">知乎原文：TorchTitan 上下文并行深度解析</a></li>
+              <li><a href="https://docs.pytorch.org/tutorials/unstable/context_parallel.html">PyTorch：Introduction to Context Parallel</a></li>
+              <li><a href="https://discuss.pytorch.org/t/distributed-w-torchtitan-breaking-barriers-training-long-context-llms-with-1m-sequence-length-in-pytorch-using-context-parallel/215082">PyTorch 实现者：百万 token 长上下文训练、通信与 FSDP 组合</a></li>
+              <li><a href="https://github.com/pytorch/pytorch/blob/main/torch/distributed/tensor/experimental/_context_parallel/_attention.py">PyTorch CP 源码：轮转、前后向与 SDPA merger</a></li>
+              <li><a href="https://arxiv.org/abs/2310.01889">Ring Attention with Blockwise Transformers</a></li>
+              <li><a href="https://arxiv.org/abs/2205.14135">FlashAttention</a></li>
+              <li><a href="https://arxiv.org/abs/2309.14509">DeepSpeed Ulysses</a></li>
+              <li><a href="https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/context_parallel.html">Megatron Core：CP 与 SP 的区别</a></li>
+            </ol>
+          </section>
+        </article>
+      </div>
+    </main>
+    <footer class="site-footer"><a href="../">← 返回论文每日一读</a><a href="#overview">回到总流程图 ↑</a></footer>
+  </div>
+  <script src="attention-demo.js"></script>
+</body>
+</html>

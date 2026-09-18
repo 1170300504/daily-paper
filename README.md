@@ -4,6 +4,8 @@
 
 一级导航分为“论文”“经典教材导读”和“刷题”：论文面板保留在根目录；[经典教材导读](textbooks/) 收录 [CSAPP Codebook](csapp/)、[算法导读](algorithms/)、[CS224n NLP Lab](cs224n/) 与 [CS336 LM Forge](cs336/)；[AI 实现练习场](practice/) 提供 36 道 AI 系统实现题、九条学习路径、浏览器内判题、本地草稿和进度记录。
 
+[Context Parallel 专题](context-parallel/) 包含 GPT Image 总流程图、可切换 GPU 与分片方式的因果注意力矩阵，以及前向通信、softmax 合并、反向传播和 TorchTitan 接入详解。专题直接从首页进入，交互部分使用本地 JavaScript，不依赖外部运行时。
+
 ## 本地预览
 
 ```bash
