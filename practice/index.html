@@ -9,7 +9,7 @@
     />
     <meta name="color-scheme" content="light dark" />
     <title>AI 实现练习场 · 经典教材导读</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=completion-20260919" />
   </head>
   <body>
     <a class="skip-link" href="#catalogMain">跳到主要内容</a>
@@ -366,6 +366,9 @@
                 <i class="unsaved-dot" aria-label="草稿已自动保存在本机" title="草稿已自动保存在本机"></i>
               </div>
               <div class="editor-tools">
+                <button id="completionButton" class="completion-trigger" type="button" title="代码补全（Ctrl + Space）" aria-controls="codeCompletionList" aria-expanded="false">
+                  <i data-lucide="zap" aria-hidden="true"></i><span>补全</span>
+                </button>
                 <label class="language-field" for="languageSelect">
                   <span class="sr-only">编程语言</span>
                   <select id="languageSelect">
@@ -383,12 +386,22 @@
                 id="codeEditor"
                 class="code-editor"
                 aria-label="代码编辑器"
+                aria-autocomplete="list"
+                aria-controls="codeCompletionList"
+                aria-describedby="completionHelp"
                 autocomplete="off"
                 autocapitalize="off"
+                autocorrect="off"
                 spellcheck="false"
                 wrap="off"
               ></textarea>
+              <div id="codeCompletion" class="code-completion" hidden>
+                <div id="codeCompletionList" class="completion-list" role="listbox" aria-label="代码补全建议"></div>
+                <div class="completion-hint" aria-hidden="true">↑↓ 选择 · Tab / Enter 插入 · Esc 关闭</div>
+              </div>
             </div>
+            <span id="completionHelp" class="sr-only">输入时自动提示 Python、NumPy 和当前代码中的名称。Ctrl 加空格或点击补全按钮打开建议，方向键选择，Tab 或 Enter 插入，Escape 关闭。</span>
+            <span id="completionAnnouncement" class="sr-only" role="status" aria-live="polite"></span>
           </div>
 
           <section class="console-panel" aria-label="测试与运行结果">
@@ -476,6 +489,8 @@
     <script src="problems-training.js" defer></script>
     <script src="problems-transformer.js" defer></script>
     <script src="problems-vision-graph.js" defer></script>
-    <script src="app.js" defer></script>
+    <script src="completion-engine.js?v=completion-20260919" defer></script>
+    <script src="code-completion.js?v=completion-20260919" defer></script>
+    <script src="app.js?v=completion-20260919" defer></script>
   </body>
 </html>

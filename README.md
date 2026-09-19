@@ -18,6 +18,10 @@ python3 -m http.server 4173
 
 `practice/` 借鉴 [Pyre Code](https://github.com/whwangovo/pyre-code) 的题库、学习路径和分栏工作台形式，并针对纯静态 GitHub Pages 改写为浏览器 NumPy 版。`运行` 执行两条公开样例，`提交` 执行全部测试；代码、进度与最近提交只保存在当前设备。原项目及 TorchCode 的 MIT 许可说明见 `practice/LICENSE-pyre-code.txt`。
 
+编辑器支持本地代码补全：输入 `np.`、Python 关键字或当前代码中的变量前缀即可查看建议，也可按 `Ctrl + Space` 或点击「补全」手动唤起。使用上下方向键选择，`Tab` / `Enter` 插入，`Esc` 关闭；没有建议时 `Tab` 仍插入四个空格。补全不需要联网或 API Key，不读取参考答案；它根据常用名称和当前代码提供建议，不执行类型分析。
+
+补全逻辑的回归测试可运行 `node --test practice/completion-engine.test.cjs`。
+
 ## 发布到 username.github.io
 
 1. 在 GitHub 新建仓库，仓库名使用 `<你的用户名>.github.io`。
@@ -67,6 +71,8 @@ python3 -m http.server 4173
 │   ├── index.html
 │   ├── styles.css
 │   ├── app.js
+│   ├── completion-engine.js
+│   ├── code-completion.js
 │   ├── problems.js
 │   ├── problems-training.js
 │   ├── problems-transformer.js

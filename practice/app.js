@@ -51,6 +51,13 @@
     ].map((id) => [id, document.getElementById(id)]),
   );
 
+  const codeCompletion = window.PracticeCodeCompletion?.attach(els.codeEditor, {
+    popup: document.getElementById("codeCompletion"),
+    list: document.getElementById("codeCompletionList"),
+    trigger: document.getElementById("completionButton"),
+    announcement: document.getElementById("completionAnnouncement"),
+  });
+
   boot();
 
   function boot() {
@@ -205,6 +212,7 @@
   }
 
   function showCatalog(push) {
+    codeCompletion?.close();
     if (state.pendingRequest) cancelPendingJudge();
     if (push) {
       const url = new URL(window.location.href);
@@ -231,6 +239,7 @@
   function showWorkspace(id) {
     const problem = problemMap.get(id);
     if (!problem) return;
+    codeCompletion?.close();
     if (state.pendingRequest && state.pendingRequest.problemId !== id) cancelPendingJudge();
     state.currentId = id;
     localStorage.setItem(storageKeys.lastProblem, id);
@@ -446,6 +455,7 @@
   }
 
   function applyMobilePanel() {
+    codeCompletion?.close();
     if (els.workspaceView) els.workspaceView.dataset.mobilePanel = state.mobilePanel;
     if (els.workspaceMain) els.workspaceMain.dataset.mobilePane = state.mobilePanel === "code" ? "editor" : "problem";
     if (els.mobilePanelToggle) {
@@ -466,6 +476,7 @@
 
   function openDrawer() {
     if (!els.problemDrawer) return;
+    codeCompletion?.close();
     els.problemDrawer.hidden = false;
     els.problemDrawer.dataset.open = "true";
     els.problemDrawer.setAttribute("aria-hidden", "false");
@@ -484,7 +495,9 @@
   }
 
   function handleEditorKeydown(event) {
-    if (event.key === "Tab") {
+    if (codeCompletion?.handleKeydown(event)) return;
+    if (event.isComposing || event.keyCode === 229) return;
+    if (event.key === "Tab" && !event.shiftKey && !event.metaKey && !event.ctrlKey && !event.altKey) {
       event.preventDefault();
       const editor = event.currentTarget;
       const start = editor.selectionStart;
@@ -537,6 +550,7 @@
     const problem = currentProblem();
     if (!problem || !els.codeEditor) return;
     if (els.codeEditor.value !== problem.starter && !window.confirm("重置后会覆盖当前草稿，继续吗？")) return;
+    codeCompletion?.close();
     els.codeEditor.value = problem.starter || "";
     localStorage.setItem(storageKeys.draft(problem.id), els.codeEditor.value);
     updateLineNumbers();
