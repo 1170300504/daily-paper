@@ -2,7 +2,7 @@
 
 一个可以直接部署到 GitHub Pages 的静态学习站。首页论文面板优先读取 `data/history.json`，支持按日期回看、搜索、领域筛选、排序和本地收藏；站内还包含经典教材导读与可在浏览器中运行的 Python/NumPy 刷题场。
 
-一级导航分为“论文”“经典教材导读”和“刷题”：论文面板保留在根目录；[经典教材导读](textbooks/) 收录 [CSAPP Codebook](csapp/)、[算法导读](algorithms/)、[CS224n NLP Lab](cs224n/) 与 [CS336 LM Forge](cs336/)；[AI 实现练习场](practice/) 提供 36 道 AI 系统实现题、九条学习路径、浏览器内判题、本地草稿和进度记录。
+一级导航分为“论文”“经典教材导读”和“刷题”：论文面板保留在根目录；[经典教材导读](textbooks/) 收录 [CSAPP Codebook](csapp/)、[算法导读](algorithms/)、[CS224n NLP Lab](cs224n/) 与 [CS336 LM Forge](cs336/)；[AI 实现练习场](practice/) 提供 54 道 AI 系统实现题、十二条学习路径、浏览器内判题、本地草稿和进度记录。
 
 [Context Parallel 专题](context-parallel/) 包含 GPT Image 总流程图、可切换 GPU 与分片方式的因果注意力矩阵，以及前向通信、softmax 合并、反向传播和 TorchTitan 接入详解。专题直接从首页进入，交互部分使用本地 JavaScript，不依赖外部运行时。
 
@@ -21,6 +21,16 @@ python3 -m http.server 4173
 编辑器支持本地代码补全：输入 `np.`、Python 关键字或当前代码中的变量前缀即可查看建议，也可按 `Ctrl + Space` 或点击「补全」手动唤起。使用上下方向键选择，`Tab` / `Enter` 插入，`Esc` 关闭；没有建议时 `Tab` 仍插入四个空格。补全不需要联网或 API Key，不读取参考答案；它根据常用名称和当前代码提供建议，不执行类型分析。
 
 补全逻辑的回归测试可运行 `node --test practice/completion-engine.test.cjs`。
+
+新增的三个专项各有 6 道题，每题均可独立运行：
+
+- 手撕 Transformer：融合 QKV、GQA、交叉注意力、Pre-LN Encoder / Decoder Block，以及多层 Tiny Transformer LM。
+- FlashAttention 核心：在线 Softmax、分块状态合并、分块前向、因果掩码、Softmax 反向与重计算注意力反向。
+- PagedAttention 核心：逻辑块到物理槽的映射、KV Gather / Scatter、分页 Decode、Copy-on-Write 与增量块分配。
+
+这些题目是原创 NumPy 教学实现，参考 [Attention Is All You Need](https://arxiv.org/abs/1706.03762)、[FlashAttention](https://arxiv.org/abs/2205.14135) 和 [PagedAttention](https://arxiv.org/abs/2309.06180) 的核心思想。Transformer Block 采用题面明示的 Pre-LN 变体，分页缓存采用简化布局。判题检查数值与状态更新，不能替代 CUDA / Triton 内核的性能及显存测量。
+
+整库校验使用 `node scripts/validate_practice.cjs`，需要本机 Python 与 NumPy。可用环境变量 `PRACTICE_PYTHON` 指定 Python 可执行文件。校验涵盖题库结构、扩展文件重复加载、全部参考解测试以及起始代码不能直接通过全部测试。
 
 ## 发布到 username.github.io
 
@@ -77,6 +87,9 @@ python3 -m http.server 4173
 │   ├── problems-training.js
 │   ├── problems-transformer.js
 │   ├── problems-vision-graph.js
+│   ├── problems-transformer-systems.js
+│   ├── problems-flash-attention.js
+│   ├── problems-paged-attention.js
 │   ├── runner-worker.js
 │   └── LICENSE-pyre-code.txt
 ├── cs224n/
@@ -94,7 +107,8 @@ python3 -m http.server 4173
 │   ├── history.json
 │   └── papers.json
 ├── scripts/
-│   └── fetch_papers.py
+│   ├── fetch_papers.py
+│   └── validate_practice.cjs
 └── .github/
     └── workflows/
         └── daily-papers.yml

@@ -588,6 +588,75 @@ svg {
   scroll-margin-top: 18px;
 }
 
+.systems-tracks {
+  padding-top: 42px;
+}
+
+.systems-tracks h2 {
+  margin: 8px 0;
+  font-family: var(--serif);
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: 500;
+}
+
+.systems-tracks > header > p:last-child,
+.systems-track-note {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.systems-track-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0 12px;
+}
+
+.systems-track-grid > a {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid var(--line-strong);
+  border-top: 3px solid var(--red);
+  background: var(--paper);
+}
+
+.systems-track-grid > a:hover,
+.systems-track-grid > a:focus-visible {
+  border-color: var(--red);
+  outline: 2px solid var(--red-soft);
+}
+
+.systems-track-grid span {
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.systems-track-grid h3 {
+  font-size: 17px;
+}
+
+.systems-track-grid p {
+  flex: 1;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.systems-track-grid strong {
+  color: var(--blue);
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  .systems-track-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .section-heading {
   display: flex;
   align-items: end;

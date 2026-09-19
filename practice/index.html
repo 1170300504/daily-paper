@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="AI 实现练习场：36 道 Python/NumPy 题覆盖训练、Transformer、推理、视觉、扩散与图学习。"
+      content="AI 实现练习场：54 道 Python/NumPy 题，新增手撕 Transformer、FlashAttention 与 PagedAttention 核心模块。"
     />
     <meta name="color-scheme" content="light dark" />
     <title>AI 实现练习场 · 经典教材导读</title>
-    <link rel="stylesheet" href="styles.css?v=completion-20260919" />
+    <link rel="stylesheet" href="styles.css?v=systems-20260919" />
   </head>
   <body>
     <a class="skip-link" href="#catalogMain">跳到主要内容</a>
@@ -103,6 +103,35 @@
               <small>guided tracks</small>
             </div>
           </dl>
+
+          <section class="systems-tracks" aria-labelledby="systemsTracksTitle">
+            <header>
+              <p class="section-kicker">18 new exercises · from operators to systems</p>
+              <h2 id="systemsTracksTitle">手撕大模型关键模块</h2>
+              <p>每条路径 6 题，从张量操作到完整前向、反向与缓存管理。可在下方按路径筛选，也可从第一题开始。</p>
+            </header>
+            <div class="systems-track-grid">
+              <a href="?problem=packed-qkv-projection" data-problem-id="packed-qkv-projection">
+                <span>01 · Transformer</span>
+                <h3>从 QKV 到完整语言模型</h3>
+                <p>融合投影、GQA、交叉注意力、Encoder / Decoder Block、多层 Tiny LM。</p>
+                <strong>开始手撕 Transformer ↗</strong>
+              </a>
+              <a href="?problem=online-softmax-update" data-problem-id="online-softmax-update">
+                <span>02 · FlashAttention</span>
+                <h3>把注意力拆成小块计算</h3>
+                <p>在线 Softmax、状态合并、分块前向、因果掩码、Softmax 与注意力反向。</p>
+                <strong>开始 FlashAttention 核心 ↗</strong>
+              </a>
+              <a href="?problem=paged-slot-mapping" data-problem-id="paged-slot-mapping">
+                <span>03 · PagedAttention</span>
+                <h3>让 KV 缓存按页生长</h3>
+                <p>块表寻址、分页读写、Decode Attention、Copy-on-Write 与增量分配。</p>
+                <strong>开始 PagedAttention 核心 ↗</strong>
+              </a>
+            </div>
+            <p class="systems-track-note">本组使用 NumPy 练习算法与数据布局。测试验证数值结果、边界和状态更新；GPU 内核的访存效率与加速效果需要在 CUDA / Triton 环境中另行测量。</p>
+          </section>
 
           <section class="catalog-section" id="problemCatalog" aria-labelledby="catalogHeading">
             <header class="section-heading">
@@ -489,6 +518,9 @@
     <script src="problems-training.js" defer></script>
     <script src="problems-transformer.js" defer></script>
     <script src="problems-vision-graph.js" defer></script>
+    <script src="problems-transformer-systems.js" defer></script>
+    <script src="problems-flash-attention.js" defer></script>
+    <script src="problems-paged-attention.js" defer></script>
     <script src="completion-engine.js?v=completion-20260919" defer></script>
     <script src="code-completion.js?v=completion-20260919" defer></script>
     <script src="app.js?v=completion-20260919" defer></script>
