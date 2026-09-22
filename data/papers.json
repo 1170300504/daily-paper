@@ -1,32 +1,36 @@
 {
-  "generatedAt": "2026-09-21T07:41:22.824809+08:00",
+  "generatedAt": "2026-09-22T08:22:03.031080+08:00",
   "source": "curated industry radar",
   "papers": [
     {
-      "id": "arxiv-2205.14135",
-      "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+      "id": "arxiv-2309.06180",
+      "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
       "authors": [
-        "Tri Dao",
-        "Daniel Y. Fu",
-        "Stefano Ermon",
-        "Atri Rudra",
-        "Christopher Re"
+        "Woosuk Kwon",
+        "Zhuohan Li",
+        "Siyuan Zhuang",
+        "Ying Sheng",
+        "Lianmin Zheng",
+        "Cody Hao Yu",
+        "Joseph E. Gonzalez",
+        "Hao Zhang",
+        "Ion Stoica"
       ],
-      "summary": "Reorders exact attention computation around GPU memory hierarchy, using tiling to reduce HBM/SRAM traffic and unlock faster long-sequence transformer training and inference.",
-      "reason": "LLM 推理两篇经典之一：kernel/显存 IO/attention 吞吐的底层心智模型，读推理优化绕不开。",
+      "summary": "Introduces PagedAttention and vLLM, treating KV cache management like virtual memory so LLM serving can batch more requests with lower memory waste and higher throughput.",
+      "reason": "LLM 推理两篇经典之一：PagedAttention/vLLM 基本成了现代 serving 系统理解 KV cache、continuous batching 的入口。",
       "area": "LLM 推理优化",
       "tags": [
         "classic",
-        "flashattention",
-        "attention-kernel",
-        "memory-io",
-        "throughput"
+        "vllm",
+        "pagedattention",
+        "kv-cache",
+        "serving"
       ],
-      "signal": 97,
-      "source": "arXiv",
-      "publishedAt": "2022-05-27T17:53:09Z",
-      "url": "https://arxiv.org/abs/2205.14135",
-      "pdfUrl": "https://arxiv.org/pdf/2205.14135"
+      "signal": 98,
+      "source": "Berkeley/vLLM/arXiv",
+      "publishedAt": "2023-09-12T12:50:04Z",
+      "url": "https://arxiv.org/abs/2309.06180",
+      "pdfUrl": "https://arxiv.org/pdf/2309.06180"
     }
   ]
 }
