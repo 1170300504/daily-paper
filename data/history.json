@@ -1,7 +1,284 @@
 {
-  "generatedAt": "2026-09-22T08:22:03.031080+08:00",
-  "source": "curated industry radar",
+  "generatedAt": "2026-09-29T09:20:41.657936+08:00",
+  "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-09-29",
+      "generatedAt": "2026-09-29T09:20:41.657936+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2609.32839",
+          "title": "Mend the Measurement Gap: Latent User Preference Modeling for Short-Form Video Recommendation",
+          "authors": [
+            "Shuo Chang",
+            "Yueqi Wang",
+            "Zihuan Diao",
+            "Ali Montazer",
+            "Jiangguo Zhang",
+            "Joyneel Misra",
+            "Dapeng Hong",
+            "Tomer Margolin",
+            "Sourabh Bansod",
+            "Ningren Han"
+          ],
+          "summary": "Recommender systems rely heavily on heterogeneous behavioral feedback to infer user preference. Although abundant, these signals are imperfect measurements: the same observed behavior can arise from different underlying states, such as genuine enjoyment, passive consumption, or inattention. The challenge is especially acute in short-form video, where watch-based signals are strongly affected by measurement confounders such as video duration - the same watch time can imply different levels of preference for videos of different lengths, while ratio-based metrics can systematically favor short videos. As a result, optimizing raw engagement can amplify measurement artifacts rather than improving user value. We propose a Factorized Latent Value Model (FLVM) for measuring user preference from heterogeneous behavioral feedback. The model treats observed behaviors as noisy measurements of a low-dimensional, factorized latent value state and uses structured output heads to model heterogeneous feedback signals. A restricted baseline path captures predictable variation from measurement-confounding features such as video duration, user propensity, and session context, while a routed latent path estimates preference-relevant value advantage. The resulting latent value score can be integrated into an existing recommender system as a ranking feature or ranking score. On YouTube Shorts, a major short-form video platform, this model improves offline metrics and lifts a primary viewer enjoyment metric by 2.67% in online A/B tests.",
+          "reason": "近 30 天；公司信号：Google；推荐/排序/广告方向；关键词：google, cs.IR, online-a/b。Recommender systems rely heavily on heterogeneous behavioral feedback to infer user preference. Although abundant, these signals a...",
+          "area": "推荐算法",
+          "tags": [
+            "google",
+            "cs.IR",
+            "online-a/b",
+            "ranking",
+            "recommendation",
+            "recommender"
+          ],
+          "signal": 99,
+          "source": "Google/arXiv",
+          "publishedAt": "2026-09-26T18:11:20Z",
+          "url": "https://arxiv.org/abs/2609.32839",
+          "pdfUrl": "https://arxiv.org/pdf/2609.32839v1"
+        },
+        {
+          "id": "arxiv-2609.32831",
+          "title": "UniCache: Task- and Type-Aware KV Cache Compression for Unified Multimodal Models",
+          "authors": [
+            "Wanqi Yang",
+            "Yuexiao Ma",
+            "Mei Xie",
+            "Xiawu Zheng",
+            "Shiwei Liu"
+          ],
+          "summary": "Unified multimodal models combine understanding, generation, and editing within a single network, offering a promising foundation for versatile multimodal applications. However, growing multimodal contexts make KV cache storage and access increasingly costly. Existing KV cache compression methods are typically tailored to specific tasks and single-modality caches, while overlooking changes in cache importance across tasks and timesteps. However, in unified multimodal models, each task involves multiple KV cache types, and both their composition and dynamics differ across tasks. As a result, a single compression policy overlooks task- and type-specific requirements, leading to the loss of critical information and degraded quality across tasks. Based on these findings, we propose UniCache, a training-free framework for task- and type-aware KV cache compression. UniCache identifies the cache segments activated by each task and assigns suitable compression policies through offline calibration. It coordinates their parallel execution under a shared storage budget through attention-guided allocation and task-aware temporal scheduling. Experiments show that UniCache achieves $5\\times$ KV cache compression for understanding and editing and $2.5\\times$ for generation with negligible quality loss, while increasing throughput by up to $1.78\\times$ in long-context settings, significantly improving the practicality of scaling unified multimodal models to longer context.",
+          "reason": "近 30 天；关键词：cs.LG, kv-cache, multimodal。Unified multimodal models combine understanding, generation, and editing within a single network, offering a promising foundation...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "kv-cache",
+            "multimodal",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-26T18:02:55Z",
+          "url": "https://arxiv.org/abs/2609.32831",
+          "pdfUrl": "https://arxiv.org/pdf/2609.32831v1"
+        },
+        {
+          "id": "arxiv-2609.32663",
+          "title": "Distance-KV: Exploiting Relative Distance for Efficient Long-Context Inference",
+          "authors": [
+            "Xianpeng Shang",
+            "Canbin Huang",
+            "Jiang Li",
+            "Tian Lan",
+            "Qianyi Cai",
+            "Xiaojun Quan",
+            "Xiangdong Su"
+          ],
+          "summary": "The memory usage and decoding latency of LLM inference grow rapidly with context length. To reduce these costs, key-value (KV) cache compression methods selectively retain cached states based on token importance or differences in attention patterns across heads. However, we discover that retrieval capability varies substantially with relative distance, even within the same attention head. To exploit this structure, we introduce Distance-KV, which learns a static KV retention pattern over the joint space of layers, attention heads, and relative distances. The pattern is learned offline with the language model frozen and reused across inputs to prune and compact the KV cache without online importance scoring. Across three backbone models and four long-context benchmarks, Distance-KV consistently achieves the best overall performance among competing KV cache compression methods, exceeding the strongest compression baseline by up to 9.3 points on RULER at 128K. On Llama-3.1-8B-Instruct at 128K, Distance-KV reduces KV cache memory by 65.4% and achieves a $1.66\\times$ decoding speedup relative to Dense. Together, these results identify relative distance as an important structural dimension for understanding how LLMs retrieve information over long contexts and for designing more efficient inference methods.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, efficient。The memory usage and decoding latency of LLM inference grow rapidly with context length. To reduce these costs, key-value (KV) cac...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "efficient",
+            "inference",
+            "kv-cache",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-09-26T14:20:58Z",
+          "url": "https://arxiv.org/abs/2609.32663",
+          "pdfUrl": "https://arxiv.org/pdf/2609.32663v1"
+        },
+        {
+          "id": "arxiv-2609.32610",
+          "title": "KV-Lingo: Learning KV-Cache Translators with Distillation",
+          "authors": [
+            "Valérie Castin",
+            "Keitaro Sakamoto",
+            "Anastasiia Filippova",
+            "João Monteiro",
+            "Marco Cuturi",
+            "Pierre Ablin"
+          ],
+          "summary": "Large language models represent context with a key-value (KV) cache. Caches are model-specific: for the same text, models with different architectures or weights produce incompatible representations. This makes it costly to switch models over a shared context: although the context has already been processed by one model, the incoming model must process it again to build its own cache. We introduce KV-Lingo, a method for translating the KV cache of a source model into one that can be read by a target model. KV-Lingo consists of a collection of linear maps, typically one per layer of the target model, that are applied independently on all tokens' key and value representations. We train these maps using distillation, minimising the divergence between the target model's predictions from its native cache and those from the translated cache. We consider several model pairs spanning multiple sizes and architectures, training one translator per pair on a generic text corpus. The resulting translators preserve strong downstream performance in both small-to-large and large-to-small transfers. Since a switch then costs a linear map and a single decoding step instead of a prefill, replacing re-prefill with cache translation reduces the time to first token after a model switch by 9.6x already on a 64-token prompt for Qwen models on an Apple M3 Ultra, and by up to 29x at 32k context length on an H100. These gains make KV-Lingo particularly useful for dynamic model routing: a context can be processed by one model and handed off to another only when needed, without re-prefilling the shared prefix. We finally show that KV-Lingo can be used for seamless model switching, staying close to re-prefill across repeated switches in our multi-turn evaluations.",
+          "reason": "近 30 天；公司信号：Alibaba, Apple, NVIDIA；关键词：alibaba, apple, nvidia。Large language models represent context with a key-value (KV) cache. Caches are model-specific: for the same text, models with dif...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "alibaba",
+            "apple",
+            "nvidia",
+            "cs.CL",
+            "kv-cache",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "Alibaba/Apple/arXiv",
+          "publishedAt": "2026-09-26T13:34:19Z",
+          "url": "https://arxiv.org/abs/2609.32610",
+          "pdfUrl": "https://arxiv.org/pdf/2609.32610v1"
+        },
+        {
+          "id": "arxiv-2609.32546",
+          "title": "Shared Autoregressive Context Can Distort Relationships in Synthetic Data",
+          "authors": [
+            "Thomas S. Robinson"
+          ],
+          "summary": "Large language models can generate several records within one autoregressive completion, making earlier answers available as context for later records. This paper shows that such shared-completion batching can distort relationships among variables in the resulting synthetic data, using controlled tests on synthetic survey respondents. In a matched experiment on 2,000 European Social Survey profiles, generating ten rather than one respondent per request increases mean absolute error in within-country correlations by 48-58% for Qwen3.8-27B and 114-127% for Llama-3.3-70B-Instruct across three seeds, holding profiles, examples, questions and decoding parameters fixed. The distortion primarily reflects exaggerated relationship strength, while retaining substantial agreement with the human ordering of correlations. Controlled interventions establish answer history as a causal channel: re-pairing the same preceding values, with profiles and marginal distributions fixed, changes correlations among subsequently generated responses. Hiding preceding answers reduces correlation error in the tested settings but worsens marginal accuracy. Exploratory corrections across social-attitude, health and economic data likewise show that lower correlation error can coexist with worse marginal distributions and regression estimates. Request construction is therefore part of the data-generating process, and synthetic-data validity must be evaluated against the analyses the generated data are intended to support.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, batching。Large language models can generate several records within one autoregressive completion, making earlier answers available as conte...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "batching",
+            "lora"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-09-26T12:25:58Z",
+          "url": "https://arxiv.org/abs/2609.32546",
+          "pdfUrl": "https://arxiv.org/pdf/2609.32546v1"
+        },
+        {
+          "id": "arxiv-2609.32486",
+          "title": "Elastic Selective Spectral Hybrids for Train-Once, Export-Many Budgeted Inference",
+          "authors": [
+            "Dachuan Song",
+            "Chuchu Chen",
+            "Xuan Wang"
+          ],
+          "summary": "Deploying a language model under different computing and latency budgets calls for compact models with different quality-cost trade-offs. Towards this end, elastic spectral state space models provide ordered and temporally decomposed channels that can be truncated, but they are associated with linear time-invariant filters that cannot selectively preserve relevant past information or forget irrelevant information as the context evolves. To address this, we introduce the Elastic Selective Spectral Hybrid (ESSH), which realizes each Hankel spectral channel as an independent recurrent unit using fitted damped rotation modes. It also features an input-dependent decay and write/read gates that make temporal retention and state update input-dependent while preserving channel-wise truncation and a structured recurrence for efficient execution. ESSH combines these selective spectral mixers with sliding-window attention and jointly trains multiple capacities by reducing spectral-channel count and feed-forward width at different rates through a two-rate capacity map with full-model distillation. The resulting models support chunked parallel training and fused recurrent decoding while avoiding computation for discarded channels. At full capacity, ESSH achieves language-modeling quality comparable to similarly sized independently trained models, while smaller exports exhibit a smooth quality-cost trade-off. We validate the effectiveness of the proposed framework using language understanding, retrieval, cross-domain text, and DNA experiments, by assessing quality retention and the trade-off against independently trained and elastic baselines. At the 1.53B model configuration, fused batch-one decoding takes 1.37 ms per token on a B300, providing a 2.14-2.80x speedup over the tested Mamba-2 and Mamba-3 implementations and 3.03x over Transformer++ at matched parameter counts.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Deploying a language model under different computing and latency budgets calls for compact models with different quality-cost trad...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "inference",
+            "latency",
+            "retrieval",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-26T11:28:56Z",
+          "url": "https://arxiv.org/abs/2609.32486",
+          "pdfUrl": "https://arxiv.org/pdf/2609.32486v1"
+        },
+        {
+          "id": "arxiv-2609.32474",
+          "title": "PC-SubMax: Efficient Prompt Compression via Regularized Submodular Maximization",
+          "authors": [
+            "Ziyi Zhang",
+            "Shuang Cui",
+            "Haotian Zhang",
+            "Xiaoyu Wang"
+          ],
+          "summary": "While large language models (LLMs) are increasingly deployed in long-context scenarios, lengthy prompts can increase inference costs and latency and exacerbate the ``lost-in-the-middle'' phenomenon. Selective prompt compression offers a model-agnostic approach to alleviating these issues. However, methods based on fixed token- or sentence-level importance scores may overlook how content contributions change with the selected subset, limiting their ability to account for inter-sentence redundancy. Compression procedures that rely on autoregressive LLM scoring can also introduce substantial overhead. We propose PC-SubMax, a theoretically grounded framework that formulates selective prompt compression as regularized monotone submodular maximization under a knapsack constraint. The objective is $U(S)-\\ell(S)$, where the monotone submodular utility $U$ combines information coverage, query relevance, and log-determinant diversity, and the non-negative modular penalty $\\ell$ captures token cost. Through diminishing marginal returns, the objective evaluates each sentence's contribution relative to the selected content. To optimize this objective, we develop the Regularized Greedy+Max (RGM) algorithm, which deterministically returns a feasible set $Q$ satisfying $U(Q)-\\ell(Q)\\geq \\frac{1}{2}U(O)-\\ell(O)$, where $O$ is an optimal feasible solution to the regularized problem. RGM uses $O(nκ)$ value-oracle queries, where $n$ is the number of candidate sentences and $κ$ is the maximum feasible subset size. PC-SubMax uses encoder representations and avoids autoregressive LLM scoring during compression. Experiments across seven diverse benchmarks demonstrate competitive downstream performance with low compression overhead.",
+          "reason": "近 30 天；关键词：cs.CL, deployed, efficient。While large language models (LLMs) are increasingly deployed in long-context scenarios, lengthy prompts can increase inference cos...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "deployed",
+            "efficient",
+            "inference",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-26T11:07:23Z",
+          "url": "https://arxiv.org/abs/2609.32474",
+          "pdfUrl": "https://arxiv.org/pdf/2609.32474v1"
+        },
+        {
+          "id": "arxiv-2609.32353",
+          "title": "Fewer Tokens, More Self-Teaching: On-Policy Self-Distillation for Extreme Visual Token Reduction",
+          "authors": [
+            "Junxian Li",
+            "Ruixuan Yang",
+            "Tianao Zhang",
+            "Tiange Xu",
+            "Weisheng Dong",
+            "Yulun Zhang"
+          ],
+          "summary": "Visual token reduction is an effective way to accelerate multimodal large language models (MLLMs), but performance deteriorates rapidly under extremely low token budgets. Existing work has explored both visual-token selection and training-based adaptation to reduced visual inputs. We take a step further by asking how a heavily compressed MLLM should learn from the states induced by its own generations. This setting naturally calls for on-policy self-distillation: a heavily compressed model is supervised on the states induced by its own generations, while its full-token counterpart serves as an information-rich teacher. Based on this insight, we propose LT-OPD, a training framework for extreme visual-token reduction. The student rolls out responses with only a small fraction of visual tokens, and a frozen full-token copy of the same MLLM provides distributional supervision along these student-generated trajectories. To stabilize on-policy learning when visual evidence is severely limited, we further introduce a budget-level curriculum that progressively decreases the token budget during training. Across nine benchmarks on Qwen3.5-4B, LT-OPD raises average retained performance under 5% visual-token retention from 68.6% to 82.3%, outperforming training-free, training-based, and reinforcement-learning baselines at the same budget. The gains transfer consistently to Qwen3.5-9B, GLM-4.6V-9B, and LLaVA-OV-1.5-4B. LT-OPD also reduces KV-cache usage by 85.2% and prefill FLOPs by 85.4% without additional inference overhead, demonstrating that on-policy learning can substantially recover capabilities lost to extreme visual-token reduction.",
+          "reason": "近 30 天；关键词：cs.CV, inference, llm。Visual token reduction is an effective way to accelerate multimodal large language models (MLLMs), but performance deteriorates ra...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CV",
+            "inference",
+            "llm",
+            "multimodal",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-26T08:16:07Z",
+          "url": "https://arxiv.org/abs/2609.32353",
+          "pdfUrl": "https://arxiv.org/pdf/2609.32353v1"
+        },
+        {
+          "id": "arxiv-2609.32283",
+          "title": "AgentReplay: Token-Wise Trace Replay Is Essential for Fair Serving System Performance Benchmarking",
+          "authors": [
+            "Zaifeng Pan",
+            "Michael Wang",
+            "Chris Wu",
+            "Zhengding Hu",
+            "Xinwei Qiang",
+            "Zhongkai Yu",
+            "Yufei Ding"
+          ],
+          "summary": "LLM-based agents execute multi-turn workflows with interleaved model inference and tool calls, making efficient serving increasingly important. However, evaluating serving optimizations is challenging because identical tasks can produce different execution trajectories. Changes in generated tokens can alter subsequent prompts, tool calls, and reasoning turns, making it difficult to distinguish system improvements from workload variation. Greedy decoding does not guarantee identical outputs, while replaying only sequence lengths loses token information that affects prefix caching and mixture-of-experts (MoE) routing. To address these problems, we propose AgentReplay, a configurable trace record-and-replay framework for agent serving. AgentReplay records input/output tokens, expert selections, request dependencies, and tool durations. During replay, it forces the recorded output tokens while performing normal autoregressive computation, with optional controls for MoE expert selection and tool delays. This allows different systems to execute the same recorded workload while retaining their own batching, scheduling, and parallelization decisions. We further separate trajectory generation from performance evaluation, enabling compatible smaller models to replay long-horizon traces collected with more capable models. Our experiments show that token-wise replay in AgentReplay effectively eliminates workload variation that greedy decoding and length-wise replay cannot avoid, enabling fairer performance comparisons across serving configurations.",
+          "reason": "近 30 天；关键词：cs.DC, batching, efficient。LLM-based agents execute multi-turn workflows with interleaved model inference and tool calls, making efficient serving increasing...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "batching",
+            "efficient",
+            "inference",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-26T06:15:48Z",
+          "url": "https://arxiv.org/abs/2609.32283",
+          "pdfUrl": "https://arxiv.org/pdf/2609.32283v1"
+        },
+        {
+          "id": "arxiv-2609.32278",
+          "title": "RR-Evict: Fine-Grained Prefix Cache Eviction beyond LRU for Agentic LLM Serving",
+          "authors": [
+            "Zaifeng Pan",
+            "Chris Wu",
+            "Zhengding Hu",
+            "Xinwei Qiang",
+            "Zhongkai Yu",
+            "Yufei Ding"
+          ],
+          "summary": "LLM-based agents execute long-horizon tasks through repeated model calls interleaved with tool execution and user interaction. As each call extends the history accumulated in previous turns, prefix caching avoids repeated prefill of the agent's entire context. However, the aggregate cache footprint grows with context length and concurrency, forcing serving systems to reclaim cached KV tensors. We identify recency synchronization: accesses to an agent's cached history refresh its cache nodes together, causing least recently used (LRU) eviction to concentrate on a few agents' private histories. When a fully evicted agent returns, it must recompute nearly its entire accumulated context, producing a large time-to-first-token (TTFT) outlier even if most other requests retain substantial cache reuse. We present RR-EVICT, a fine-grained prefix-cache eviction strategy that distributes reclamation across idle agent trajectories. RR-EVICT visits agents in round-robin order and evicts a tail chunk from each, preserving reusable prefixes for more agents when capacity remains for idle state. Returning agents can reuse these partial histories and recompute smaller missing suffixes. The policy requires no prediction of future arrivals or tool latency. We implement RR-EVICT in SGLang and evaluate conversational and coding-agent workloads under colocated and prefill-decode-disaggregated serving. Compared with LRU, RR-EVICT reduces P99 TTFT by up to 75.4% and P99 uncached prompt tokens by up to 65.7%.",
+          "reason": "近 30 天；关键词：cs.DC, latency, llm。LLM-based agents execute long-horizon tasks through repeated model calls interleaved with tool execution and user interaction. As...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "latency",
+            "llm",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-26T06:09:15Z",
+          "url": "https://arxiv.org/abs/2609.32278",
+          "pdfUrl": "https://arxiv.org/pdf/2609.32278v1"
+        }
+      ]
+    },
     {
       "date": "2026-09-22",
       "generatedAt": "2026-09-22T08:22:03.031080+08:00",
@@ -19230,304 +19507,6 @@
           "publishedAt": "2026-06-16T17:59:03Z",
           "url": "https://arxiv.org/abs/2606.18246v1",
           "pdfUrl": "https://arxiv.org/pdf/2606.18246v1"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-17",
-      "generatedAt": "2026-06-17T07:17:06.405950+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2606.06260",
-          "title": "OneReason Technical Report",
-          "authors": [
-            "OneRec Team",
-            "Biao Yang",
-            "Boyang Ding",
-            "Chenglong Chu",
-            "Dunju Zang",
-            "Fei Pan",
-            "Han Li",
-            "Hao Jiang"
-          ],
-          "summary": "Extends the OneRec family toward reasoning-style generative recommendation. It argues that recommendation reasoning needs itemic-token perception and cognition over user behavior sequences, then introduces OneReason with perception-focused pre-training, three-level cognition-enhanced CoT SFT and specialize-then-unify RL.",
-          "reason": "快手 OneRec 系列最新推荐推理方向：2026-06-04 新稿，把生成式推荐从 scaling 推到 reasoning，重点看 item token 语义感知、用户兴趣认知、CoT 格式和 RL 训练配方。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "onereason",
-            "generative-recommendation",
-            "reasoning",
-            "cot",
-            "rl"
-          ],
-          "signal": 100,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-04T15:04:34Z",
-          "url": "https://arxiv.org/abs/2606.06260",
-          "pdfUrl": "https://arxiv.org/pdf/2606.06260"
-        },
-        {
-          "id": "arxiv-2606.17034v1",
-          "title": "KVEraser: Learning to Steer KV Cache for Efficient Localized Context Erasing",
-          "authors": [
-            "Mufei Li",
-            "Shikun Liu",
-            "Dongqi Fu",
-            "Haoyu Wang",
-            "Yinglong Xia",
-            "Hong Li",
-            "Hong Yan",
-            "Pan Li"
-          ],
-          "summary": "Post-hoc context erasing over the KV cache is challenging because a local edit has a global consequence: once a span has been processed, its influence propagates into the cached states of all subsequent tokens. This issue arises naturally in long-context LLM applications, where stale retrieved facts, incorrect tool observations, retracted user preferences, or harmful prompt injections may be identified only after prefill. Exact erasing must then recompute all tokens after the deleted span, making its computational cost depend on suffix length rather than erased-span length. We introduce KVEraser, a learned KV-cache editing method for efficient localized context erasing. Given a processed context and a span to remove, KVEraser replaces only the KV states of the erased interval with learned steering states while reusing the remaining cache unchanged. To learn a transferable erasing mechanism, we build a two-stage training pipeline: generic span-neighbor pre-training teaches the eraser to suppress the influence of the erased span, while task-specific fine-tuning adapts this capability to downstream scenarios. Experiments show that KVEraser nearly matches full recomputation in post-erasure performance on in-domain tasks across 1K--32K context lengths, while its latency increases by only 24% compared with a 17.6x increase for full recomputation. KVEraser also generalizes to unseen long-document QA tasks with harmful factual distractors, achieving the best performance among approximate baselines with a 3--4x speedup over full recomputation.",
-          "reason": "近 30 天；关键词：cs.CL, efficient, kv-cache。Post-hoc context erasing over the KV cache is challenging because a local edit has a global consequence: once a span has been proc...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "efficient",
-            "kv-cache",
-            "latency",
-            "llm",
-            "prefill"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-06-15T17:53:09Z",
-          "url": "https://arxiv.org/abs/2606.17034v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.17034v1"
-        },
-        {
-          "id": "arxiv-2606.16824v1",
-          "title": "CacheWise: Understanding Workloads and Optimizing KVCache Management for Efficiently Serving LLM Coding Agents",
-          "authors": [
-            "Shubham Tiwari",
-            "Tapan Chugh",
-            "Nash Rickert",
-            "Simon Peter",
-            "Ratul Mahajan",
-            "Haiying Shen"
-          ],
-          "summary": "Coding agents are a fast-growing LLM application, executing as long-running closed-loop sessions in which LLM generations alternate with external tool calls. Yet, unlike chat workloads, their serving behavior has not been studied extensively. We address this gap by collecting a dataset of real-world coding assistant traces. Our analysis shows that coding agent sessions repeatedly reuse large prefixes and create sustained KVCache pressure that conventional LLM serving policies handle poorly. Based on our analysis, we present CacheWise, a KVCache management layer that improves KVCache reuse for coding agent workloads. CacheWise combines prefix-aware scheduling with reuse-aware eviction guided by lightweight predictions from tool call metadata. Implemented in vLLM and evaluated on the collected traces, CacheWise reduces KVCache evictions by up to 2-2.6x and improves total agent session completion time by up to 3.5x.",
-          "reason": "近 30 天；关键词：cs.DC, dataset, efficient。Coding agents are a fast-growing LLM application, executing as long-running closed-loop sessions in which LLM generations alternat...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.DC",
-            "dataset",
-            "efficient",
-            "llm",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-06-15T15:08:01Z",
-          "url": "https://arxiv.org/abs/2606.16824v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.16824v1"
-        },
-        {
-          "id": "arxiv-2606.03866",
-          "title": "Taiji: Pareto Optimal Policy Optimization with Semantics-IDs Trade-off for Industrial LLM-Enhanced Recommendation",
-          "authors": [
-            "Yuecheng Li",
-            "Zeyu Song",
-            "Jing Yao",
-            "Chi Lu",
-            "Peng Jiang",
-            "Kun Gai"
-          ],
-          "summary": "Presents Taiji, an industrial LLM-as-Enhancer recommender framework that aligns LLM semantic rewards with collaborative ID preference rewards through Pareto Optimal Policy Optimization. It reports offline and online A/B validation and deployment on Kuaishou advertising traffic.",
-          "reason": "近 30 天工业推荐主线：Kuaishou 广告平台、LLM4Rec、Semantic IDs、RL 对齐和线上 A/B 都在一篇里。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "llm4rec",
-            "semantic-id",
-            "rl-alignment",
-            "online-ab"
-          ],
-          "signal": 99,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-02T16:39:06Z",
-          "url": "https://arxiv.org/abs/2606.03866",
-          "pdfUrl": "https://arxiv.org/pdf/2606.03866"
-        },
-        {
-          "id": "arxiv-2605.25514",
-          "title": "From Item-Only to Query-Item: Query-Conditioned Generative Search with QGS in Quark",
-          "authors": [
-            "Yanglong Song",
-            "Zihao Yang",
-            "Shuo Meng",
-            "Rujun Guo",
-            "Jin Zhang",
-            "Bin Wang",
-            "Shaoyu Liu",
-            "Xiaozhao Wang"
-          ],
-          "summary": "Introduces Query-Conditioned Generative Search for Quark Search, encoding each interaction as a query-item pair and training a query-conditioned next-item objective. It adds Linear HSTU and HFG-Attention to keep long-history modeling and sparse ranking features practical for online search ranking.",
-          "reason": "阿里夸克搜索排序的新工业样本：把生成式推荐从 item-only 推到 query-item 条件建模，线上 A/B 有 CTR、Click-Search Ratio 和 PV Duration 提升，适合和 OneReason 一起看 generative ranking 的落地形态。",
-          "area": "推荐算法",
-          "tags": [
-            "alibaba",
-            "quark",
-            "generative-search",
-            "query-conditioned",
-            "linear-hstu",
-            "online-ab"
-          ],
-          "signal": 98,
-          "source": "Alibaba/Quark/arXiv",
-          "publishedAt": "2026-05-25T07:18:51Z",
-          "url": "https://arxiv.org/abs/2605.25514",
-          "pdfUrl": "https://arxiv.org/pdf/2605.25514"
-        },
-        {
-          "id": "arxiv-2605.21427",
-          "title": "PALS: Power-Aware LLM Serving for Mixture-of-Experts Models",
-          "authors": [
-            "Can Hankendi",
-            "Rana Shahout",
-            "Minlan Yu",
-            "Ayse K. Coskun"
-          ],
-          "summary": "Presents a power-aware runtime for LLM serving that treats GPU power caps as a controllable resource and jointly tunes them with batch size. It integrates with vLLM and evaluates dense and MoE models on multi-GPU systems.",
-          "reason": "近 30 天 LLM 推理系统：MoE serving、GPU 功耗控制、vLLM 集成和 QoS 违约率都直接对应 2026 年 AI 基建成本问题。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "moe",
-            "power-aware",
-            "vllm",
-            "qos"
-          ],
-          "signal": 98,
-          "source": "arXiv/vLLM",
-          "publishedAt": "2026-05-20T17:19:20Z",
-          "url": "https://arxiv.org/abs/2605.21427",
-          "pdfUrl": "https://arxiv.org/pdf/2605.21427"
-        },
-        {
-          "id": "arxiv-2309.06180",
-          "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
-          "authors": [
-            "Woosuk Kwon",
-            "Zhuohan Li",
-            "Siyuan Zhuang",
-            "Ying Sheng",
-            "Lianmin Zheng",
-            "Cody Hao Yu",
-            "Joseph E. Gonzalez",
-            "Hao Zhang",
-            "Ion Stoica"
-          ],
-          "summary": "Introduces PagedAttention and vLLM, treating KV cache management like virtual memory so LLM serving can batch more requests with lower memory waste and higher throughput.",
-          "reason": "LLM 推理两篇经典之一：PagedAttention/vLLM 基本成了现代 serving 系统理解 KV cache、continuous batching 的入口。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "classic",
-            "vllm",
-            "pagedattention",
-            "kv-cache",
-            "serving"
-          ],
-          "signal": 98,
-          "source": "Berkeley/vLLM/arXiv",
-          "publishedAt": "2023-09-12T12:50:04Z",
-          "url": "https://arxiv.org/abs/2309.06180",
-          "pdfUrl": "https://arxiv.org/pdf/2309.06180"
-        },
-        {
-          "id": "arxiv-2605.09040",
-          "title": "UxSID: Semantic-Aware User Interests Modeling for Ultra-Long Sequence",
-          "authors": [
-            "Hongwei Zhang",
-            "Qiqiang Zhong",
-            "Jiangxia Cao",
-            "Yiyang Lv",
-            "Huanjie Wang",
-            "Liwei Guan",
-            "Jing Yao",
-            "Yiyu Wang"
-          ],
-          "summary": "Proposes semantic-group shared interest memory for ultra-long user sequence modeling. UxSID uses Semantic IDs and dual-level attention to balance target-aware preference modeling with constant-time online inference, reporting state-of-the-art results and a 0.337% revenue lift in large-scale advertising A/B tests.",
-          "reason": "快手广告超长序列建模方向：Semantic ID 不只用于生成式推荐，也能作为 target 语义路由键做共享兴趣 memory；有线上 revenue lift，和 OneReason 的 perception/cognition 主线能互相补。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "semantic-id",
-            "ultra-long-sequence",
-            "advertising",
-            "online-ab",
-            "revenue"
-          ],
-          "signal": 97,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-05-18T07:00:17Z",
-          "url": "https://arxiv.org/abs/2605.09040",
-          "pdfUrl": "https://arxiv.org/pdf/2605.09040"
-        },
-        {
-          "id": "usenix-nsdi26-droidspeak",
-          "title": "DroidSpeak: KV Cache Sharing Across Fine-tuned Model Variants",
-          "authors": [
-            "Yuhan Liu",
-            "Yuyang Huang",
-            "Jiayi Yao",
-            "Shaoting Feng",
-            "Zhuohan Gu",
-            "Kuntai Du",
-            "Hanchen Li",
-            "Yihua Cheng",
-            "Junchen Jiang",
-            "Shan Lu",
-            "Madan Musuvathi",
-            "Esha Choukse"
-          ],
-          "summary": "Studies KV cache sharing across fine-tuned model variants in multi-LLM serving. DroidSpeak selectively recomputes sensitive layers and reuses the remaining KV cache to cut redundant prefill work.",
-          "reason": "2026 NSDI / Microsoft 参与的推理系统：多模型协作、KV cache 共享、fine-tuned variants 和 agentic workflow 都是大厂线上服务会遇到的问题。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "microsoft",
-            "kv-cache",
-            "multi-llm",
-            "prefill"
-          ],
-          "signal": 97,
-          "source": "Microsoft/USENIX NSDI",
-          "publishedAt": "2026-05-01T00:00:00Z",
-          "url": "https://www.usenix.org/conference/nsdi26/presentation/liu-yuhan",
-          "pdfUrl": "https://www.usenix.org/system/files/nsdi26-liu-yuhan.pdf"
-        },
-        {
-          "id": "arxiv-2604.04976",
-          "title": "Tencent Advertising Algorithm Challenge 2025: All-Modality Generative Recommendation",
-          "authors": [
-            "Junwei Pan",
-            "Wei Xue",
-            "Chao Zhou",
-            "Xing Zhou",
-            "Lunan Fan",
-            "Yanbo Wang",
-            "Haijie Gu",
-            "Jie Jiang"
-          ],
-          "summary": "Introduces TencentGR-1M and TencentGR-10M, two de-identified Tencent Ads datasets for all-modality generative recommendation with exposure, click and conversion signals, plus task definitions, baselines and competition findings.",
-          "reason": "近 90 天大厂推荐数据集方向：工业广告、生成式推荐、全模态特征、点击和转化目标都很贴近线上系统。",
-          "area": "推荐算法",
-          "tags": [
-            "tencent",
-            "ads",
-            "generative-recommendation",
-            "dataset",
-            "conversion"
-          ],
-          "signal": 97,
-          "source": "Tencent/arXiv",
-          "publishedAt": "2026-04-04T17:05:15Z",
-          "url": "https://arxiv.org/abs/2604.04976",
-          "pdfUrl": "https://arxiv.org/pdf/2604.04976"
         }
       ]
     }
