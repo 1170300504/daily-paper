@@ -1,276 +1,302 @@
 {
-  "generatedAt": "2026-09-29T09:20:41.657936+08:00",
+  "generatedAt": "2026-09-30T08:51:35.302269+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2609.32839",
-      "title": "Mend the Measurement Gap: Latent User Preference Modeling for Short-Form Video Recommendation",
+      "id": "arxiv-2609.35769",
+      "title": "Telescopic Language Models",
       "authors": [
-        "Shuo Chang",
-        "Yueqi Wang",
-        "Zihuan Diao",
-        "Ali Montazer",
-        "Jiangguo Zhang",
-        "Joyneel Misra",
-        "Dapeng Hong",
-        "Tomer Margolin",
-        "Sourabh Bansod",
-        "Ningren Han"
+        "Zhilin Guo",
+        "Boqiao Zhang",
+        "Hakan Aktas",
+        "Kyle Fogarty",
+        "Nursena Koprucu Aslan",
+        "Wenzhao Li",
+        "Canberk Baykal",
+        "Albert Miao",
+        "Siyu Hong",
+        "Yixiao Liu",
+        "Adam Wu",
+        "Ashish Kumar Singh",
+        "Sakar Khattar",
+        "Chenliang Zhou",
+        "Weihao Xia",
+        "Cristina Nader Vasconcelos",
+        "Cengiz Oztireli"
       ],
-      "summary": "Recommender systems rely heavily on heterogeneous behavioral feedback to infer user preference. Although abundant, these signals are imperfect measurements: the same observed behavior can arise from different underlying states, such as genuine enjoyment, passive consumption, or inattention. The challenge is especially acute in short-form video, where watch-based signals are strongly affected by measurement confounders such as video duration - the same watch time can imply different levels of preference for videos of different lengths, while ratio-based metrics can systematically favor short videos. As a result, optimizing raw engagement can amplify measurement artifacts rather than improving user value. We propose a Factorized Latent Value Model (FLVM) for measuring user preference from heterogeneous behavioral feedback. The model treats observed behaviors as noisy measurements of a low-dimensional, factorized latent value state and uses structured output heads to model heterogeneous feedback signals. A restricted baseline path captures predictable variation from measurement-confounding features such as video duration, user propensity, and session context, while a routed latent path estimates preference-relevant value advantage. The resulting latent value score can be integrated into an existing recommender system as a ranking feature or ranking score. On YouTube Shorts, a major short-form video platform, this model improves offline metrics and lifts a primary viewer enjoyment metric by 2.67% in online A/B tests.",
-      "reason": "近 30 天；公司信号：Google；推荐/排序/广告方向；关键词：google, cs.IR, online-a/b。Recommender systems rely heavily on heterogeneous behavioral feedback to infer user preference. Although abundant, these signals a...",
-      "area": "推荐算法",
-      "tags": [
-        "google",
-        "cs.IR",
-        "online-a/b",
-        "ranking",
-        "recommendation",
-        "recommender"
-      ],
-      "signal": 99,
-      "source": "Google/arXiv",
-      "publishedAt": "2026-09-26T18:11:20Z",
-      "url": "https://arxiv.org/abs/2609.32839",
-      "pdfUrl": "https://arxiv.org/pdf/2609.32839v1"
-    },
-    {
-      "id": "arxiv-2609.32831",
-      "title": "UniCache: Task- and Type-Aware KV Cache Compression for Unified Multimodal Models",
-      "authors": [
-        "Wanqi Yang",
-        "Yuexiao Ma",
-        "Mei Xie",
-        "Xiawu Zheng",
-        "Shiwei Liu"
-      ],
-      "summary": "Unified multimodal models combine understanding, generation, and editing within a single network, offering a promising foundation for versatile multimodal applications. However, growing multimodal contexts make KV cache storage and access increasingly costly. Existing KV cache compression methods are typically tailored to specific tasks and single-modality caches, while overlooking changes in cache importance across tasks and timesteps. However, in unified multimodal models, each task involves multiple KV cache types, and both their composition and dynamics differ across tasks. As a result, a single compression policy overlooks task- and type-specific requirements, leading to the loss of critical information and degraded quality across tasks. Based on these findings, we propose UniCache, a training-free framework for task- and type-aware KV cache compression. UniCache identifies the cache segments activated by each task and assigns suitable compression policies through offline calibration. It coordinates their parallel execution under a shared storage budget through attention-guided allocation and task-aware temporal scheduling. Experiments show that UniCache achieves $5\\times$ KV cache compression for understanding and editing and $2.5\\times$ for generation with negligible quality loss, while increasing throughput by up to $1.78\\times$ in long-context settings, significantly improving the practicality of scaling unified multimodal models to longer context.",
-      "reason": "近 30 天；关键词：cs.LG, kv-cache, multimodal。Unified multimodal models combine understanding, generation, and editing within a single network, offering a promising foundation...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "kv-cache",
-        "multimodal",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-09-26T18:02:55Z",
-      "url": "https://arxiv.org/abs/2609.32831",
-      "pdfUrl": "https://arxiv.org/pdf/2609.32831v1"
-    },
-    {
-      "id": "arxiv-2609.32663",
-      "title": "Distance-KV: Exploiting Relative Distance for Efficient Long-Context Inference",
-      "authors": [
-        "Xianpeng Shang",
-        "Canbin Huang",
-        "Jiang Li",
-        "Tian Lan",
-        "Qianyi Cai",
-        "Xiaojun Quan",
-        "Xiangdong Su"
-      ],
-      "summary": "The memory usage and decoding latency of LLM inference grow rapidly with context length. To reduce these costs, key-value (KV) cache compression methods selectively retain cached states based on token importance or differences in attention patterns across heads. However, we discover that retrieval capability varies substantially with relative distance, even within the same attention head. To exploit this structure, we introduce Distance-KV, which learns a static KV retention pattern over the joint space of layers, attention heads, and relative distances. The pattern is learned offline with the language model frozen and reused across inputs to prune and compact the KV cache without online importance scoring. Across three backbone models and four long-context benchmarks, Distance-KV consistently achieves the best overall performance among competing KV cache compression methods, exceeding the strongest compression baseline by up to 9.3 points on RULER at 128K. On Llama-3.1-8B-Instruct at 128K, Distance-KV reduces KV cache memory by 65.4% and achieves a $1.66\\times$ decoding speedup relative to Dense. Together, these results identify relative distance as an important structural dimension for understanding how LLMs retrieve information over long contexts and for designing more efficient inference methods.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, efficient。The memory usage and decoding latency of LLM inference grow rapidly with context length. To reduce these costs, key-value (KV) cac...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "cs.LG",
-        "efficient",
-        "inference",
-        "kv-cache",
-        "latency",
-        "llm"
-      ],
-      "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-09-26T14:20:58Z",
-      "url": "https://arxiv.org/abs/2609.32663",
-      "pdfUrl": "https://arxiv.org/pdf/2609.32663v1"
-    },
-    {
-      "id": "arxiv-2609.32610",
-      "title": "KV-Lingo: Learning KV-Cache Translators with Distillation",
-      "authors": [
-        "Valérie Castin",
-        "Keitaro Sakamoto",
-        "Anastasiia Filippova",
-        "João Monteiro",
-        "Marco Cuturi",
-        "Pierre Ablin"
-      ],
-      "summary": "Large language models represent context with a key-value (KV) cache. Caches are model-specific: for the same text, models with different architectures or weights produce incompatible representations. This makes it costly to switch models over a shared context: although the context has already been processed by one model, the incoming model must process it again to build its own cache. We introduce KV-Lingo, a method for translating the KV cache of a source model into one that can be read by a target model. KV-Lingo consists of a collection of linear maps, typically one per layer of the target model, that are applied independently on all tokens' key and value representations. We train these maps using distillation, minimising the divergence between the target model's predictions from its native cache and those from the translated cache. We consider several model pairs spanning multiple sizes and architectures, training one translator per pair on a generic text corpus. The resulting translators preserve strong downstream performance in both small-to-large and large-to-small transfers. Since a switch then costs a linear map and a single decoding step instead of a prefill, replacing re-prefill with cache translation reduces the time to first token after a model switch by 9.6x already on a 64-token prompt for Qwen models on an Apple M3 Ultra, and by up to 29x at 32k context length on an H100. These gains make KV-Lingo particularly useful for dynamic model routing: a context can be processed by one model and handed off to another only when needed, without re-prefilling the shared prefix. We finally show that KV-Lingo can be used for seamless model switching, staying close to re-prefill across repeated switches in our multi-turn evaluations.",
-      "reason": "近 30 天；公司信号：Alibaba, Apple, NVIDIA；关键词：alibaba, apple, nvidia。Large language models represent context with a key-value (KV) cache. Caches are model-specific: for the same text, models with dif...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "alibaba",
-        "apple",
-        "nvidia",
-        "cs.CL",
-        "kv-cache",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "Alibaba/Apple/arXiv",
-      "publishedAt": "2026-09-26T13:34:19Z",
-      "url": "https://arxiv.org/abs/2609.32610",
-      "pdfUrl": "https://arxiv.org/pdf/2609.32610v1"
-    },
-    {
-      "id": "arxiv-2609.32546",
-      "title": "Shared Autoregressive Context Can Distort Relationships in Synthetic Data",
-      "authors": [
-        "Thomas S. Robinson"
-      ],
-      "summary": "Large language models can generate several records within one autoregressive completion, making earlier answers available as context for later records. This paper shows that such shared-completion batching can distort relationships among variables in the resulting synthetic data, using controlled tests on synthetic survey respondents. In a matched experiment on 2,000 European Social Survey profiles, generating ten rather than one respondent per request increases mean absolute error in within-country correlations by 48-58% for Qwen3.8-27B and 114-127% for Llama-3.3-70B-Instruct across three seeds, holding profiles, examples, questions and decoding parameters fixed. The distortion primarily reflects exaggerated relationship strength, while retaining substantial agreement with the human ordering of correlations. Controlled interventions establish answer history as a causal channel: re-pairing the same preceding values, with profiles and marginal distributions fixed, changes correlations among subsequently generated responses. Hiding preceding answers reduces correlation error in the tested settings but worsens marginal accuracy. Exploratory corrections across social-attitude, health and economic data likewise show that lower correlation error can coexist with worse marginal distributions and regression estimates. Request construction is therefore part of the data-generating process, and synthetic-data validity must be evaluated against the analyses the generated data are intended to support.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, batching。Large language models can generate several records within one autoregressive completion, making earlier answers available as conte...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "cs.LG",
-        "batching",
-        "lora"
-      ],
-      "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-09-26T12:25:58Z",
-      "url": "https://arxiv.org/abs/2609.32546",
-      "pdfUrl": "https://arxiv.org/pdf/2609.32546v1"
-    },
-    {
-      "id": "arxiv-2609.32486",
-      "title": "Elastic Selective Spectral Hybrids for Train-Once, Export-Many Budgeted Inference",
-      "authors": [
-        "Dachuan Song",
-        "Chuchu Chen",
-        "Xuan Wang"
-      ],
-      "summary": "Deploying a language model under different computing and latency budgets calls for compact models with different quality-cost trade-offs. Towards this end, elastic spectral state space models provide ordered and temporally decomposed channels that can be truncated, but they are associated with linear time-invariant filters that cannot selectively preserve relevant past information or forget irrelevant information as the context evolves. To address this, we introduce the Elastic Selective Spectral Hybrid (ESSH), which realizes each Hankel spectral channel as an independent recurrent unit using fitted damped rotation modes. It also features an input-dependent decay and write/read gates that make temporal retention and state update input-dependent while preserving channel-wise truncation and a structured recurrence for efficient execution. ESSH combines these selective spectral mixers with sliding-window attention and jointly trains multiple capacities by reducing spectral-channel count and feed-forward width at different rates through a two-rate capacity map with full-model distillation. The resulting models support chunked parallel training and fused recurrent decoding while avoiding computation for discarded channels. At full capacity, ESSH achieves language-modeling quality comparable to similarly sized independently trained models, while smaller exports exhibit a smooth quality-cost trade-off. We validate the effectiveness of the proposed framework using language understanding, retrieval, cross-domain text, and DNA experiments, by assessing quality retention and the trade-off against independently trained and elastic baselines. At the 1.53B model configuration, fused batch-one decoding takes 1.37 ms per token on a B300, providing a 2.14-2.80x speedup over the tested Mamba-2 and Mamba-3 implementations and 3.03x over Transformer++ at matched parameter counts.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Deploying a language model under different computing and latency budgets calls for compact models with different quality-cost trad...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "efficient",
-        "inference",
-        "latency",
-        "retrieval",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-09-26T11:28:56Z",
-      "url": "https://arxiv.org/abs/2609.32486",
-      "pdfUrl": "https://arxiv.org/pdf/2609.32486v1"
-    },
-    {
-      "id": "arxiv-2609.32474",
-      "title": "PC-SubMax: Efficient Prompt Compression via Regularized Submodular Maximization",
-      "authors": [
-        "Ziyi Zhang",
-        "Shuang Cui",
-        "Haotian Zhang",
-        "Xiaoyu Wang"
-      ],
-      "summary": "While large language models (LLMs) are increasingly deployed in long-context scenarios, lengthy prompts can increase inference costs and latency and exacerbate the ``lost-in-the-middle'' phenomenon. Selective prompt compression offers a model-agnostic approach to alleviating these issues. However, methods based on fixed token- or sentence-level importance scores may overlook how content contributions change with the selected subset, limiting their ability to account for inter-sentence redundancy. Compression procedures that rely on autoregressive LLM scoring can also introduce substantial overhead. We propose PC-SubMax, a theoretically grounded framework that formulates selective prompt compression as regularized monotone submodular maximization under a knapsack constraint. The objective is $U(S)-\\ell(S)$, where the monotone submodular utility $U$ combines information coverage, query relevance, and log-determinant diversity, and the non-negative modular penalty $\\ell$ captures token cost. Through diminishing marginal returns, the objective evaluates each sentence's contribution relative to the selected content. To optimize this objective, we develop the Regularized Greedy+Max (RGM) algorithm, which deterministically returns a feasible set $Q$ satisfying $U(Q)-\\ell(Q)\\geq \\frac{1}{2}U(O)-\\ell(O)$, where $O$ is an optimal feasible solution to the regularized problem. RGM uses $O(nκ)$ value-oracle queries, where $n$ is the number of candidate sentences and $κ$ is the maximum feasible subset size. PC-SubMax uses encoder representations and avoids autoregressive LLM scoring during compression. Experiments across seven diverse benchmarks demonstrate competitive downstream performance with low compression overhead.",
-      "reason": "近 30 天；关键词：cs.CL, deployed, efficient。While large language models (LLMs) are increasingly deployed in long-context scenarios, lengthy prompts can increase inference cos...",
+      "summary": "One deployed language model must often serve many compute budgets, yet serving each budget still means a separate training or compression run per point. We train a Telescopic Language Model (TLM) to be that continuum: a nested-capacity Transformer supervised by stochastic prefix supervision with a full anchor. At every step, one randomly truncated prefix of the capacity axis is trained against the full next-token target, alongside one full-capacity pass, so the trained artifact is a valid language model at every depth. Two forward-backward passes per step, no architectural change, nothing extra at inference. Fixed-exit suites such as Matryoshka Language Model Suites (MLMS) occupy one point in this design space, and the point has a cost: supervising only a few fixed exits leaves the nested model at chance level everywhere else (perplexity 10^2-10^5 in our baselines). On a 200M proxy suite (20B FineWeb-Edu tokens, identical data stream for all methods), a single TLM run is a valid language model at every one of its twenty layer prefixes, in perplexity and on perplexity-sensitive downstream tasks, reducing the area under the quality-budget curve by 43-44% relative to the fixed-exit suites while matching them at full capacity, at ~12% lower GPU cost per run. The prefix sampling density is a dial: concentrating it on a few depths recovers fixed-exit quality there at the price of the continuum, so the operating points become a training-time choice rather than an architectural one. These results indicate that the training objective, not the nesting itself, is what makes a model elastic.",
+      "reason": "近 30 天；关键词：cs.CL, deployed, inference。One deployed language model must often serve many compute budgets, yet serving each budget still means a separate training or comp...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.CL",
         "deployed",
-        "efficient",
         "inference",
-        "latency",
-        "llm"
+        "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-09-26T11:07:23Z",
-      "url": "https://arxiv.org/abs/2609.32474",
-      "pdfUrl": "https://arxiv.org/pdf/2609.32474v1"
+      "publishedAt": "2026-09-28T17:59:53Z",
+      "url": "https://arxiv.org/abs/2609.35769",
+      "pdfUrl": "https://arxiv.org/pdf/2609.35769v1"
     },
     {
-      "id": "arxiv-2609.32353",
-      "title": "Fewer Tokens, More Self-Teaching: On-Policy Self-Distillation for Extreme Visual Token Reduction",
+      "id": "arxiv-2609.35750",
+      "title": "KV-streams for Efficient Compaction in Agentic Reinforcement Learning",
       "authors": [
-        "Junxian Li",
-        "Ruixuan Yang",
-        "Tianao Zhang",
-        "Tiange Xu",
-        "Weisheng Dong",
-        "Yulun Zhang"
+        "Emiliano Penaloza",
+        "Dane Malenfant",
+        "Dheeraj Vattikonda",
+        "Roger Creus Castanyer",
+        "Siddarth Venkatraman",
+        "Abhay Puri",
+        "Jonathan Light",
+        "Matthew James Sargent",
+        "Augustine N. Mavor-Parker",
+        "Massimo Caccia",
+        "Lucas Caccia",
+        "Glen Berseth",
+        "Esmeralda S. Whitammer",
+        "Alessandro Sordoni",
+        "Minseon Kim",
+        "Marc-Alexandre Côté",
+        "Laurent Charlin",
+        "Guillaume Lajoie"
       ],
-      "summary": "Visual token reduction is an effective way to accelerate multimodal large language models (MLLMs), but performance deteriorates rapidly under extremely low token budgets. Existing work has explored both visual-token selection and training-based adaptation to reduced visual inputs. We take a step further by asking how a heavily compressed MLLM should learn from the states induced by its own generations. This setting naturally calls for on-policy self-distillation: a heavily compressed model is supervised on the states induced by its own generations, while its full-token counterpart serves as an information-rich teacher. Based on this insight, we propose LT-OPD, a training framework for extreme visual-token reduction. The student rolls out responses with only a small fraction of visual tokens, and a frozen full-token copy of the same MLLM provides distributional supervision along these student-generated trajectories. To stabilize on-policy learning when visual evidence is severely limited, we further introduce a budget-level curriculum that progressively decreases the token budget during training. Across nine benchmarks on Qwen3.5-4B, LT-OPD raises average retained performance under 5% visual-token retention from 68.6% to 82.3%, outperforming training-free, training-based, and reinforcement-learning baselines at the same budget. The gains transfer consistently to Qwen3.5-9B, GLM-4.6V-9B, and LLaVA-OV-1.5-4B. LT-OPD also reduces KV-cache usage by 85.2% and prefill FLOPs by 85.4% without additional inference overhead, demonstrating that on-policy learning can substantially recover capabilities lost to extreme visual-token reduction.",
-      "reason": "近 30 天；关键词：cs.CV, inference, llm。Visual token reduction is an effective way to accelerate multimodal large language models (MLLMs), but performance deteriorates ra...",
+      "summary": "Scaling the horizon of agentic LLMs is bottlenecked by the need to fit ever longer context traces in GPU memory. Context compaction has been the most popular mechanism to alleviate this issue, keeping GPU memory constant for a given trace. Unfortunately, most compaction strategies rely on prefilling the LLM context many times over, hindering training throughput. To alleviate this bottleneck and enable efficient trainable compaction, we propose KV-streams, a plug-and-play strategy compatible with any compaction strategy that substantially increases throughput while showing no evidence of hindering performance. KV-streams enable scalable compaction by streaming the KV cache forward rather than flushing it after each compaction. We show that KV-streams enable three different compaction strategies, achieving a 2.6 to 5x wall-clock speedup in training. Beyond efficiency, we find that the streamed KV cache can act as a recurrent state, carrying forward information that has long since disappeared from the context. Specifically, in a controlled setting we show that, contrary to prior work, RL alone is all that is needed for this behavior to emerge. Overall, we show KV-streams to be an efficient and lightweight plug-and-play addition to any post-training pipeline.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, kv-cache。Scaling the horizon of agentic LLMs is bottlenecked by the need to fit ever longer context traces in GPU memory. Context compactio...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "efficient",
+        "kv-cache",
+        "llm",
+        "prefill",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-09-28T17:57:42Z",
+      "url": "https://arxiv.org/abs/2609.35750",
+      "pdfUrl": "https://arxiv.org/pdf/2609.35750v1"
+    },
+    {
+      "id": "arxiv-2609.35621",
+      "title": "Cartridges++: KV Cache Compression without Off-Context Derailment",
+      "authors": [
+        "Sonia Laguna",
+        "Joao Monteiro",
+        "Marco Cuturi",
+        "Pierre Ablin",
+        "Eleonora Gualdoni"
+      ],
+      "summary": "Serving long documents to a Large Language Model (LLM) repeatedly is expensive: computations grow with context length, and the memory footprint of the key-value (KV) cache balloons. Compressed KV (CKV) representations aim to mimic the cache of a document and are typically computed once and for all, ahead of inference time. Methods to obtain CKVs range from drop mechanisms that reduce their number of columns, to learned approaches. Among the latter, Cartridges have emerged as a leading compression method, learning compact KV representations through distillation on relevant Q/A pairs. While existing evaluations focus primarily on whether Cartridges and other CKVs yield approximately similar responses to document-related, on-context queries, we investigate the crucial deployment question of whether they can handle off-context queries, something the native KV representation is particularly good at, thanks to the mechanics of attention. We observe a fundamental trade-off: while Cartridges perform better for on-context queries, heuristic-variants preserve better the original LLM's ability to operate off-context. We measure this through their capability to avoid context contamination in their response, retain general knowledge, and follow instructions. We propose Cartridges++, simple modifications to cartridges that retain off-context abilities at small or negligible cost. The router variant decides at inference time whether the query should use the learned long-context memory, while the data-mixing variant allocates a small fraction of training Q/As to queries outside the reference long document. Our study shows that assessing CKVs on document utility alone can mask substantial degradation in broader model capabilities, yet those issues can be fixed with benign changes to CKV inference or training.",
+      "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。Serving long documents to a Large Language Model (LLM) repeatedly is expensive: computations grow with context length, and the mem...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "kv-cache",
+        "llm",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-09-28T16:57:36Z",
+      "url": "https://arxiv.org/abs/2609.35621",
+      "pdfUrl": "https://arxiv.org/pdf/2609.35621v1"
+    },
+    {
+      "id": "arxiv-2609.35569",
+      "title": "Beyond Energy: When Sustainability Dimensions Reshape LLM Serving Decisions",
+      "authors": [
+        "Tianyao Shi",
+        "Xipeng Shen",
+        "Yi Ding"
+      ],
+      "summary": "Large language model (LLM) serving has environmental impacts across energy consumption, carbon emission, water consumption, and biodiversity loss. Yet these dimensions are largely evaluated in isolation, leaving it unclear when and how they lead to different optimization decisions. We present PRISM, a unified framework for characterizing and optimizing LLM serving across energy, carbon, water, and biodiversity impacts. Our analysis reveals a fundamental distinction: computing configurations determine energy consumption, whereas where and when LLM serving is deployed determine its carbon, water, and biodiversity impacts. Under a fixed deployment choice and operational-only accounting, all dimensions preserve the same energy-based configuration ranking. Deployment rankings can diverge across dimensions, while embodied impacts can break configuration invariance when they exceed a lifecycle crossover boundary. PRISM identifies these conditions, quantifies cross-dimensional regrets, and balances the four dimensions. In regional-routing experiments, PRISM reduces median worst-case regret by 50.2% relative to the strongest baseline.",
+      "reason": "近 30 天；关键词：cs.CY, deployed, energy。Large language model (LLM) serving has environmental impacts across energy consumption, carbon emission, water consumption, and bi...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CY",
+        "deployed",
+        "energy",
+        "llm",
+        "ranking",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-09-28T16:31:50Z",
+      "url": "https://arxiv.org/abs/2609.35569",
+      "pdfUrl": "https://arxiv.org/pdf/2609.35569v1"
+    },
+    {
+      "id": "arxiv-2609.35481",
+      "title": "TopoEP: Topology-Aware Load Balancing for Expert-Parallel MoE Training",
+      "authors": [
+        "Jiacheng Zhu",
+        "Xie Zhao",
+        "Gongming Zhao",
+        "Hongli Xu",
+        "Yao Fei",
+        "Jin Fang"
+      ],
+      "summary": "Dynamic routing creates severe load imbalance in large-scale expert-parallel Mixture-of-Experts (MoE) training, turning GPUs that host hot experts into stragglers. As each MoE layer waits for its slowest rank, these stragglers prolong the expert-parallel stage and reduce overall training efficiency. Existing expert-parallelism load-balancing (EPLB) systems commonly compute load-balancing plans on the CPU, incurring device--host data transfers and cross-rank synchronization that make scheduling at every layer and microbatch expensive. Their planning formulations also overlook the hierarchical communication costs of modern scale-up and scale-out GPU clusters. We present \\textit{TopoEP}, a GPU-native, topology-aware load-balancing system for large-scale MoE training. At each MoE layer and training microbatch, \\textit{TopoEP} converts the current routing result into hot-expert replication and token-rerouting decisions and executes the resulting plan without data-dependent host synchronization, reducing critical-path overhead. To generate these decisions, \\textit{TopoEP} uses a deterministic GPU solver that performs inter-node placement followed by intra-node refinement, allowing all ranks to independently produce bitwise-identical plans. On a 32-GPU NVIDIA H800 cluster, integrating \\textit{TopoEP} with Megatron-LM improves end-to-end training throughput by 6.2\\%--11.4\\% across three representative MoE models.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, slo。Dynamic routing creates severe load imbalance in large-scale expert-parallel Mixture-of-Experts (MoE) training, turning GPUs that...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.DC",
+        "slo",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-09-28T15:57:31Z",
+      "url": "https://arxiv.org/abs/2609.35481",
+      "pdfUrl": "https://arxiv.org/pdf/2609.35481v1"
+    },
+    {
+      "id": "arxiv-2609.35473",
+      "title": "Handwritten Text Recognition Lives in the High-Pixel Variance Subspace",
+      "authors": [
+        "Carlos Garrido-Munoz",
+        "Jorge Calvo-Zaragoza"
+      ],
+      "summary": "In self-supervised pretraining for Handwritten Text Recognition (HTR), pixel reconstruction methods outperform contrastive methods, unlike in natural-image classification. We argue that this difference follows from where discriminative signal lies in pixel space: for HTR, it is concentrated in high-variance directions and largely absent from low-variance ones. This predicts that objectives preserving high-variance pixel content will transfer best. We test six SSL methods from three families (pixel-grounded MIM, JEPA, and contrastive) under matched encoder, data, and evaluation protocols on six handwriting benchmarks across five languages. With full labels, pixel-groundrounded SSL achieves the lowest CER on every benchmark and both frozen probes, exposes per-position character information that other families recover only through the readout, and is the only family to benefit from pretraining on real handwriting. Pixel-grounded representations are also more label efficient. Across datasets, encoder alignment with the high-variance pixel subspace predicts CER within every method. With a pretrained LLM decoder, a frozen pixel-grounded encoder is competitive with fully fine-tuned supervised baselines; full fine-tuning achieves the lowest mean CER and ranks first or second on every benchmark. These results show that the value of pixel reconstruction depends on where discriminative signal lies in the input.",
+      "reason": "近 30 天；关键词：cs.CV, alignment, dataset。In self-supervised pretraining for Handwritten Text Recognition (HTR), pixel reconstruction methods outperform contrastive methods...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.CV",
-        "inference",
-        "llm",
-        "multimodal",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-09-26T08:16:07Z",
-      "url": "https://arxiv.org/abs/2609.32353",
-      "pdfUrl": "https://arxiv.org/pdf/2609.32353v1"
-    },
-    {
-      "id": "arxiv-2609.32283",
-      "title": "AgentReplay: Token-Wise Trace Replay Is Essential for Fair Serving System Performance Benchmarking",
-      "authors": [
-        "Zaifeng Pan",
-        "Michael Wang",
-        "Chris Wu",
-        "Zhengding Hu",
-        "Xinwei Qiang",
-        "Zhongkai Yu",
-        "Yufei Ding"
-      ],
-      "summary": "LLM-based agents execute multi-turn workflows with interleaved model inference and tool calls, making efficient serving increasingly important. However, evaluating serving optimizations is challenging because identical tasks can produce different execution trajectories. Changes in generated tokens can alter subsequent prompts, tool calls, and reasoning turns, making it difficult to distinguish system improvements from workload variation. Greedy decoding does not guarantee identical outputs, while replaying only sequence lengths loses token information that affects prefix caching and mixture-of-experts (MoE) routing. To address these problems, we propose AgentReplay, a configurable trace record-and-replay framework for agent serving. AgentReplay records input/output tokens, expert selections, request dependencies, and tool durations. During replay, it forces the recorded output tokens while performing normal autoregressive computation, with optional controls for MoE expert selection and tool delays. This allows different systems to execute the same recorded workload while retaining their own batching, scheduling, and parallelization decisions. We further separate trajectory generation from performance evaluation, enabling compatible smaller models to replay long-horizon traces collected with more capable models. Our experiments show that token-wise replay in AgentReplay effectively eliminates workload variation that greedy decoding and length-wise replay cannot avoid, enabling fairer performance comparisons across serving configurations.",
-      "reason": "近 30 天；关键词：cs.DC, batching, efficient。LLM-based agents execute multi-turn workflows with interleaved model inference and tool calls, making efficient serving increasing...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "batching",
+        "alignment",
+        "dataset",
         "efficient",
-        "inference",
         "llm",
         "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-09-26T06:15:48Z",
-      "url": "https://arxiv.org/abs/2609.32283",
-      "pdfUrl": "https://arxiv.org/pdf/2609.32283v1"
+      "publishedAt": "2026-09-28T15:54:35Z",
+      "url": "https://arxiv.org/abs/2609.35473",
+      "pdfUrl": "https://arxiv.org/pdf/2609.35473v1"
     },
     {
-      "id": "arxiv-2609.32278",
-      "title": "RR-Evict: Fine-Grained Prefix Cache Eviction beyond LRU for Agentic LLM Serving",
+      "id": "arxiv-2609.35465",
+      "title": "Tetra: Serving Leech-Lattice Quantized LLMs at 2.7 Bits per Parameter",
       "authors": [
-        "Zaifeng Pan",
-        "Chris Wu",
-        "Zhengding Hu",
-        "Xinwei Qiang",
-        "Zhongkai Yu",
-        "Yufei Ding"
+        "Pier-Jean Malandrino"
       ],
-      "summary": "LLM-based agents execute long-horizon tasks through repeated model calls interleaved with tool execution and user interaction. As each call extends the history accumulated in previous turns, prefix caching avoids repeated prefill of the agent's entire context. However, the aggregate cache footprint grows with context length and concurrency, forcing serving systems to reclaim cached KV tensors. We identify recency synchronization: accesses to an agent's cached history refresh its cache nodes together, causing least recently used (LRU) eviction to concentrate on a few agents' private histories. When a fully evicted agent returns, it must recompute nearly its entire accumulated context, producing a large time-to-first-token (TTFT) outlier even if most other requests retain substantial cache reuse. We present RR-EVICT, a fine-grained prefix-cache eviction strategy that distributes reclamation across idle agent trajectories. RR-EVICT visits agents in round-robin order and evicts a tail chunk from each, preserving reusable prefixes for more agents when capacity remains for idle state. Returning agents can reuse these partial histories and recompute smaller missing suffixes. The policy requires no prediction of future arrivals or tool latency. We implement RR-EVICT in SGLang and evaluate conversational and coding-agent workloads under colocated and prefill-decode-disaggregated serving. Compared with LRU, RR-EVICT reduces P99 TTFT by up to 75.4% and P99 uncached prompt tokens by up to 65.7%.",
-      "reason": "近 30 天；关键词：cs.DC, latency, llm。LLM-based agents execute long-horizon tasks through repeated model calls interleaved with tool execution and user interaction. As...",
+      "summary": "Leech-lattice quantization gives good quality at two bits per weight, but its codebooks hold more than 10^14 points, too many for a lookup table. Our earlier kernel expanded the codes at load time and read 4.804 bits per weight from GPU memory for 2 bits of code. We present Tetra, a new codebook on the same lattice. A 24-weight block still takes 48 bits, most of which index a 64-state trellis of the Golay code and one shared 16 KiB table. The kernel decodes a block with six table loads and two small lookups inside the matrix-vector product, and reads 2.148 bits per weight. For full models, we retrain one scale per matrix row, store the matrices that lose the most as 4-bit integers, and pay for them with 4-bit embedding tables. Our Qwen3-4B, 8B and 14B files hold 2.73, 2.70 and 2.73 bits per parameter over the whole model. They score 63.37, 69.58 and 75.66 on the full MMLU test set, 4.76, 4.21 and 2.46 points below 4-bit AWQ at 5.3 to 6.0 bits per parameter. They generate 113.8, 95.0 and 57.2 tokens per second in our engine. On GSM8K, through the served kernel, they lose 9.63, 4.62 and 3.26 points to FP16. At 4B our file scores 23.6 points above llama.cpp's IQ2_XXS (2.48 bits per parameter). Every number we measured for a table or figure comes from one NVIDIA L40S GPU. We preregistered the main experiments.",
+      "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.LG。Leech-lattice quantization gives good quality at two bits per weight, but its codebooks hold more than 10^14 points, too many for...",
       "area": "LLM 推理优化",
       "tags": [
+        "meta",
+        "nvidia",
+        "cs.LG",
+        "llm",
+        "quantization",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "Meta/NVIDIA/arXiv",
+      "publishedAt": "2026-09-28T15:51:56Z",
+      "url": "https://arxiv.org/abs/2609.35465",
+      "pdfUrl": "https://arxiv.org/pdf/2609.35465v1"
+    },
+    {
+      "id": "arxiv-2609.35285",
+      "title": "Textual User Taste: Natural-Language User Context for Foundation-Model Recommender System at Scale",
+      "authors": [
+        "Ghazal Fazelnia",
+        "Paul Gigioli",
+        "Eliza Klyce",
+        "Sharon Zheng",
+        "Katie Zelvin",
+        "Ye Myat Thein",
+        "Anurag Deshpande",
+        "Seda Davtyan",
+        "Kate Remeika",
+        "Maya Hristakeva",
+        "Erik Franco",
+        "Karen Banzon",
+        "Peng Ge",
+        "Jacqueline Wood",
+        "Nandini Singh",
+        "David Murgatroyd",
+        "Mounia Lalmas",
+        "Yves Raimond",
+        "Andreas Damianou"
+      ],
+      "summary": "Foundation model recommender systems require user context that can be consumed by large language models, reasoned over, and refined through natural-language interaction. Traditional behavioral embedding vectors remain highly effective for retrieval and ranking, but they are opaque to users and not natively expressed for language model workflows. We present Textual User Taste, a system that generates structured natural-language taste profiles from listening behavior, interaction signals, content metadata, and optional user feedback, and deploys them to millions of Spotify users. We describe the end-to-end production lifecycle required to generate, evaluate, optimize, and maintain these representations at industrial scale, including prompt development and compression, user steering, and integration with downstream personalization systems. Because no unique ground-truth taste profile exists, we introduce a multi-faceted evaluation framework to evaluate taste profiles as a production representation: they carry user-specific predictive signal independently, and when integrated with behavioral embeddings, improve MRR by 0.6% for future-track prediction and NDCG@7 by 2.2% for search ranking. Our evaluation also reveals that taste profiles support positive natural-language steering, while exposing important limitations, including challenges with negation and short-term temporal adaptation. These findings position taste profiles not as replacements for behavioral embeddings, but as an interpretable and steerable interface between evolving user context and foundation-model recommender systems.",
+      "reason": "近 30 天；公司信号：Spotify；推荐/排序/广告方向；关键词：spotify, cs.AI, industrial。Foundation model recommender systems require user context that can be consumed by large language models, reasoned over, and refine...",
+      "area": "推荐算法",
+      "tags": [
+        "spotify",
+        "cs.AI",
+        "industrial",
+        "production",
+        "ranking",
+        "recommender",
+        "retrieval"
+      ],
+      "signal": 99,
+      "source": "Spotify/arXiv",
+      "publishedAt": "2026-09-28T14:34:14Z",
+      "url": "https://arxiv.org/abs/2609.35285",
+      "pdfUrl": "https://arxiv.org/pdf/2609.35285v1"
+    },
+    {
+      "id": "arxiv-2609.35263",
+      "title": "WavePP: High-Throughput Pipeline Parallel LLM Prefill under Prefix Reuse",
+      "authors": [
+        "Aaryam Sharma"
+      ],
+      "summary": "Pipeline parallelism can improve prefill throughput by processing multiple request chunks concurrently across different stages of the model. However, keeping the pipeline fully utilized requires efficient scheduling and request preparation. In systems where stages retain and evict cache state independently, a local cache hit does not guarantee that the same prefix can be reused across the pipeline. Here, coordination overhead can impede request admission cadence and thus reduce overall throughput. In this paper, we present WavePP, a prefill runtime built on top of TensorRT-LLM that addresses these challenges by overlapping request admission with pipeline execution. WavePP asynchronously finds a prefix that can be reused across all stages, protects the cached state, and reserves space for the remaining input while earlier requests continue to execute. It subsequently plans the chunk sizes of each request dynamically to maximize pipeline fill. Each stage then completes the local preparation before executing the request. In the same system and pipeline topology, WavePP improves TensorRT-LLM's prefill throughput in 37 of 40 tested settings on GLM 5.2 and MiniMax M2.7. At concurrency 128 with high cache reuse, these changes increase throughput by factors of 2.91 and 2.02, respectively. Across 28 Kimi K3 settings, WavePP also has the highest measured throughput in all 18 settings at concurrency eight or higher, compared with tensor/expert-parallel and pipeline-parallel baselines from TRT-LLM, SGLang, and vLLM.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, efficient。Pipeline parallelism can improve prefill throughput by processing multiple request chunks concurrently across different stages of...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
         "cs.DC",
-        "latency",
+        "efficient",
         "llm",
         "prefill",
-        "serving"
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-09-28T14:21:21Z",
+      "url": "https://arxiv.org/abs/2609.35263",
+      "pdfUrl": "https://arxiv.org/pdf/2609.35263v1"
+    },
+    {
+      "id": "arxiv-2609.35167",
+      "title": "EdgeCraft: Automated Model Crafting for Edge IoT",
+      "authors": [
+        "Genglin Wang",
+        "Kaiwei Liu",
+        "Liekang Zeng",
+        "Wangsong Yin",
+        "Shangcheng Jin",
+        "Guoliang Xing",
+        "Zhenyu Yan"
+      ],
+      "summary": "Machine learning (ML) increasingly powers Internet of Things (IoT) applications at the edge. Yet producing a deployable edge ML artifact for a specific scenario requires navigating a huge search space spanning data representation, model design, training on domain-specific data, and runtime customization. This workflow is fragmented and difficult to scale across diverse edge applications. We present EdgeCraft, an LLM-driven system that turns high-level intent into deployable edge ML artifacts. Building such a system raises two challenges: (1) How can an LLM be guided to find high-quality solutions that meet dynamic SLOs for task quality, latency, and energy? (2) How can trustworthy target-device verification be obtained at low cost? EdgeCraft addresses these challenges with two designs. (1) A constraint-aware synthesis tree explores alternative candidates and uses measured SLO gaps to guide each improvement. (2) A multi-fidelity verifier progressively combines low-cost checks with full target-device verification to reduce verification cost while preserving reliable verification results. It also records verified failures for reuse, avoiding repeated device work. To support concurrency, EdgeCraft provides a multi-tenant runtime that runs cloud training and target-device verification in parallel while isolating requests. Across 50 public tasks, EdgeCraft exceeds the task-specific Reference in best-observed quality on 40 tasks and finds an SLO-feasible artifact on 45, with the two outcomes overlapping on 38 tasks. Moreover, EdgeCraft achieves competitive performance on our self-collected SEN dataset, suggesting its generalizability to real-world IoT sensing tasks.",
+      "reason": "近 30 天；关键词：cs.LG, dataset, energy。Machine learning (ML) increasingly powers Internet of Things (IoT) applications at the edge. Yet producing a deployable edge ML ar...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "dataset",
+        "energy",
+        "latency",
+        "llm",
+        "serving",
+        "slo"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-09-26T06:09:15Z",
-      "url": "https://arxiv.org/abs/2609.32278",
-      "pdfUrl": "https://arxiv.org/pdf/2609.32278v1"
+      "publishedAt": "2026-09-28T13:39:03Z",
+      "url": "https://arxiv.org/abs/2609.35167",
+      "pdfUrl": "https://arxiv.org/pdf/2609.35167v1"
     }
   ]
 }

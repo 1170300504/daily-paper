@@ -1,7 +1,310 @@
 {
-  "generatedAt": "2026-09-29T09:20:41.657936+08:00",
+  "generatedAt": "2026-09-30T08:51:35.302269+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-09-30",
+      "generatedAt": "2026-09-30T08:51:35.302269+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2609.35769",
+          "title": "Telescopic Language Models",
+          "authors": [
+            "Zhilin Guo",
+            "Boqiao Zhang",
+            "Hakan Aktas",
+            "Kyle Fogarty",
+            "Nursena Koprucu Aslan",
+            "Wenzhao Li",
+            "Canberk Baykal",
+            "Albert Miao",
+            "Siyu Hong",
+            "Yixiao Liu",
+            "Adam Wu",
+            "Ashish Kumar Singh",
+            "Sakar Khattar",
+            "Chenliang Zhou",
+            "Weihao Xia",
+            "Cristina Nader Vasconcelos",
+            "Cengiz Oztireli"
+          ],
+          "summary": "One deployed language model must often serve many compute budgets, yet serving each budget still means a separate training or compression run per point. We train a Telescopic Language Model (TLM) to be that continuum: a nested-capacity Transformer supervised by stochastic prefix supervision with a full anchor. At every step, one randomly truncated prefix of the capacity axis is trained against the full next-token target, alongside one full-capacity pass, so the trained artifact is a valid language model at every depth. Two forward-backward passes per step, no architectural change, nothing extra at inference. Fixed-exit suites such as Matryoshka Language Model Suites (MLMS) occupy one point in this design space, and the point has a cost: supervising only a few fixed exits leaves the nested model at chance level everywhere else (perplexity 10^2-10^5 in our baselines). On a 200M proxy suite (20B FineWeb-Edu tokens, identical data stream for all methods), a single TLM run is a valid language model at every one of its twenty layer prefixes, in perplexity and on perplexity-sensitive downstream tasks, reducing the area under the quality-budget curve by 43-44% relative to the fixed-exit suites while matching them at full capacity, at ~12% lower GPU cost per run. The prefix sampling density is a dial: concentrating it on a few depths recovers fixed-exit quality there at the price of the continuum, so the operating points become a training-time choice rather than an architectural one. These results indicate that the training objective, not the nesting itself, is what makes a model elastic.",
+          "reason": "近 30 天；关键词：cs.CL, deployed, inference。One deployed language model must often serve many compute budgets, yet serving each budget still means a separate training or comp...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "deployed",
+            "inference",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-28T17:59:53Z",
+          "url": "https://arxiv.org/abs/2609.35769",
+          "pdfUrl": "https://arxiv.org/pdf/2609.35769v1"
+        },
+        {
+          "id": "arxiv-2609.35750",
+          "title": "KV-streams for Efficient Compaction in Agentic Reinforcement Learning",
+          "authors": [
+            "Emiliano Penaloza",
+            "Dane Malenfant",
+            "Dheeraj Vattikonda",
+            "Roger Creus Castanyer",
+            "Siddarth Venkatraman",
+            "Abhay Puri",
+            "Jonathan Light",
+            "Matthew James Sargent",
+            "Augustine N. Mavor-Parker",
+            "Massimo Caccia",
+            "Lucas Caccia",
+            "Glen Berseth",
+            "Esmeralda S. Whitammer",
+            "Alessandro Sordoni",
+            "Minseon Kim",
+            "Marc-Alexandre Côté",
+            "Laurent Charlin",
+            "Guillaume Lajoie"
+          ],
+          "summary": "Scaling the horizon of agentic LLMs is bottlenecked by the need to fit ever longer context traces in GPU memory. Context compaction has been the most popular mechanism to alleviate this issue, keeping GPU memory constant for a given trace. Unfortunately, most compaction strategies rely on prefilling the LLM context many times over, hindering training throughput. To alleviate this bottleneck and enable efficient trainable compaction, we propose KV-streams, a plug-and-play strategy compatible with any compaction strategy that substantially increases throughput while showing no evidence of hindering performance. KV-streams enable scalable compaction by streaming the KV cache forward rather than flushing it after each compaction. We show that KV-streams enable three different compaction strategies, achieving a 2.6 to 5x wall-clock speedup in training. Beyond efficiency, we find that the streamed KV cache can act as a recurrent state, carrying forward information that has long since disappeared from the context. Specifically, in a controlled setting we show that, contrary to prior work, RL alone is all that is needed for this behavior to emerge. Overall, we show KV-streams to be an efficient and lightweight plug-and-play addition to any post-training pipeline.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, kv-cache。Scaling the horizon of agentic LLMs is bottlenecked by the need to fit ever longer context traces in GPU memory. Context compactio...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "kv-cache",
+            "llm",
+            "prefill",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-28T17:57:42Z",
+          "url": "https://arxiv.org/abs/2609.35750",
+          "pdfUrl": "https://arxiv.org/pdf/2609.35750v1"
+        },
+        {
+          "id": "arxiv-2609.35621",
+          "title": "Cartridges++: KV Cache Compression without Off-Context Derailment",
+          "authors": [
+            "Sonia Laguna",
+            "Joao Monteiro",
+            "Marco Cuturi",
+            "Pierre Ablin",
+            "Eleonora Gualdoni"
+          ],
+          "summary": "Serving long documents to a Large Language Model (LLM) repeatedly is expensive: computations grow with context length, and the memory footprint of the key-value (KV) cache balloons. Compressed KV (CKV) representations aim to mimic the cache of a document and are typically computed once and for all, ahead of inference time. Methods to obtain CKVs range from drop mechanisms that reduce their number of columns, to learned approaches. Among the latter, Cartridges have emerged as a leading compression method, learning compact KV representations through distillation on relevant Q/A pairs. While existing evaluations focus primarily on whether Cartridges and other CKVs yield approximately similar responses to document-related, on-context queries, we investigate the crucial deployment question of whether they can handle off-context queries, something the native KV representation is particularly good at, thanks to the mechanics of attention. We observe a fundamental trade-off: while Cartridges perform better for on-context queries, heuristic-variants preserve better the original LLM's ability to operate off-context. We measure this through their capability to avoid context contamination in their response, retain general knowledge, and follow instructions. We propose Cartridges++, simple modifications to cartridges that retain off-context abilities at small or negligible cost. The router variant decides at inference time whether the query should use the learned long-context memory, while the data-mixing variant allocates a small fraction of training Q/As to queries outside the reference long document. Our study shows that assessing CKVs on document utility alone can mask substantial degradation in broader model capabilities, yet those issues can be fixed with benign changes to CKV inference or training.",
+          "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。Serving long documents to a Large Language Model (LLM) repeatedly is expensive: computations grow with context length, and the mem...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "kv-cache",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-28T16:57:36Z",
+          "url": "https://arxiv.org/abs/2609.35621",
+          "pdfUrl": "https://arxiv.org/pdf/2609.35621v1"
+        },
+        {
+          "id": "arxiv-2609.35569",
+          "title": "Beyond Energy: When Sustainability Dimensions Reshape LLM Serving Decisions",
+          "authors": [
+            "Tianyao Shi",
+            "Xipeng Shen",
+            "Yi Ding"
+          ],
+          "summary": "Large language model (LLM) serving has environmental impacts across energy consumption, carbon emission, water consumption, and biodiversity loss. Yet these dimensions are largely evaluated in isolation, leaving it unclear when and how they lead to different optimization decisions. We present PRISM, a unified framework for characterizing and optimizing LLM serving across energy, carbon, water, and biodiversity impacts. Our analysis reveals a fundamental distinction: computing configurations determine energy consumption, whereas where and when LLM serving is deployed determine its carbon, water, and biodiversity impacts. Under a fixed deployment choice and operational-only accounting, all dimensions preserve the same energy-based configuration ranking. Deployment rankings can diverge across dimensions, while embodied impacts can break configuration invariance when they exceed a lifecycle crossover boundary. PRISM identifies these conditions, quantifies cross-dimensional regrets, and balances the four dimensions. In regional-routing experiments, PRISM reduces median worst-case regret by 50.2% relative to the strongest baseline.",
+          "reason": "近 30 天；关键词：cs.CY, deployed, energy。Large language model (LLM) serving has environmental impacts across energy consumption, carbon emission, water consumption, and bi...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CY",
+            "deployed",
+            "energy",
+            "llm",
+            "ranking",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-28T16:31:50Z",
+          "url": "https://arxiv.org/abs/2609.35569",
+          "pdfUrl": "https://arxiv.org/pdf/2609.35569v1"
+        },
+        {
+          "id": "arxiv-2609.35481",
+          "title": "TopoEP: Topology-Aware Load Balancing for Expert-Parallel MoE Training",
+          "authors": [
+            "Jiacheng Zhu",
+            "Xie Zhao",
+            "Gongming Zhao",
+            "Hongli Xu",
+            "Yao Fei",
+            "Jin Fang"
+          ],
+          "summary": "Dynamic routing creates severe load imbalance in large-scale expert-parallel Mixture-of-Experts (MoE) training, turning GPUs that host hot experts into stragglers. As each MoE layer waits for its slowest rank, these stragglers prolong the expert-parallel stage and reduce overall training efficiency. Existing expert-parallelism load-balancing (EPLB) systems commonly compute load-balancing plans on the CPU, incurring device--host data transfers and cross-rank synchronization that make scheduling at every layer and microbatch expensive. Their planning formulations also overlook the hierarchical communication costs of modern scale-up and scale-out GPU clusters. We present \\textit{TopoEP}, a GPU-native, topology-aware load-balancing system for large-scale MoE training. At each MoE layer and training microbatch, \\textit{TopoEP} converts the current routing result into hot-expert replication and token-rerouting decisions and executes the resulting plan without data-dependent host synchronization, reducing critical-path overhead. To generate these decisions, \\textit{TopoEP} uses a deterministic GPU solver that performs inter-node placement followed by intra-node refinement, allowing all ranks to independently produce bitwise-identical plans. On a 32-GPU NVIDIA H800 cluster, integrating \\textit{TopoEP} with Megatron-LM improves end-to-end training throughput by 6.2\\%--11.4\\% across three representative MoE models.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, slo。Dynamic routing creates severe load imbalance in large-scale expert-parallel Mixture-of-Experts (MoE) training, turning GPUs that...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.DC",
+            "slo",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-09-28T15:57:31Z",
+          "url": "https://arxiv.org/abs/2609.35481",
+          "pdfUrl": "https://arxiv.org/pdf/2609.35481v1"
+        },
+        {
+          "id": "arxiv-2609.35473",
+          "title": "Handwritten Text Recognition Lives in the High-Pixel Variance Subspace",
+          "authors": [
+            "Carlos Garrido-Munoz",
+            "Jorge Calvo-Zaragoza"
+          ],
+          "summary": "In self-supervised pretraining for Handwritten Text Recognition (HTR), pixel reconstruction methods outperform contrastive methods, unlike in natural-image classification. We argue that this difference follows from where discriminative signal lies in pixel space: for HTR, it is concentrated in high-variance directions and largely absent from low-variance ones. This predicts that objectives preserving high-variance pixel content will transfer best. We test six SSL methods from three families (pixel-grounded MIM, JEPA, and contrastive) under matched encoder, data, and evaluation protocols on six handwriting benchmarks across five languages. With full labels, pixel-groundrounded SSL achieves the lowest CER on every benchmark and both frozen probes, exposes per-position character information that other families recover only through the readout, and is the only family to benefit from pretraining on real handwriting. Pixel-grounded representations are also more label efficient. Across datasets, encoder alignment with the high-variance pixel subspace predicts CER within every method. With a pretrained LLM decoder, a frozen pixel-grounded encoder is competitive with fully fine-tuned supervised baselines; full fine-tuning achieves the lowest mean CER and ranks first or second on every benchmark. These results show that the value of pixel reconstruction depends on where discriminative signal lies in the input.",
+          "reason": "近 30 天；关键词：cs.CV, alignment, dataset。In self-supervised pretraining for Handwritten Text Recognition (HTR), pixel reconstruction methods outperform contrastive methods...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CV",
+            "alignment",
+            "dataset",
+            "efficient",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-28T15:54:35Z",
+          "url": "https://arxiv.org/abs/2609.35473",
+          "pdfUrl": "https://arxiv.org/pdf/2609.35473v1"
+        },
+        {
+          "id": "arxiv-2609.35465",
+          "title": "Tetra: Serving Leech-Lattice Quantized LLMs at 2.7 Bits per Parameter",
+          "authors": [
+            "Pier-Jean Malandrino"
+          ],
+          "summary": "Leech-lattice quantization gives good quality at two bits per weight, but its codebooks hold more than 10^14 points, too many for a lookup table. Our earlier kernel expanded the codes at load time and read 4.804 bits per weight from GPU memory for 2 bits of code. We present Tetra, a new codebook on the same lattice. A 24-weight block still takes 48 bits, most of which index a 64-state trellis of the Golay code and one shared 16 KiB table. The kernel decodes a block with six table loads and two small lookups inside the matrix-vector product, and reads 2.148 bits per weight. For full models, we retrain one scale per matrix row, store the matrices that lose the most as 4-bit integers, and pay for them with 4-bit embedding tables. Our Qwen3-4B, 8B and 14B files hold 2.73, 2.70 and 2.73 bits per parameter over the whole model. They score 63.37, 69.58 and 75.66 on the full MMLU test set, 4.76, 4.21 and 2.46 points below 4-bit AWQ at 5.3 to 6.0 bits per parameter. They generate 113.8, 95.0 and 57.2 tokens per second in our engine. On GSM8K, through the served kernel, they lose 9.63, 4.62 and 3.26 points to FP16. At 4B our file scores 23.6 points above llama.cpp's IQ2_XXS (2.48 bits per parameter). Every number we measured for a table or figure comes from one NVIDIA L40S GPU. We preregistered the main experiments.",
+          "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.LG。Leech-lattice quantization gives good quality at two bits per weight, but its codebooks hold more than 10^14 points, too many for...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "nvidia",
+            "cs.LG",
+            "llm",
+            "quantization",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Meta/NVIDIA/arXiv",
+          "publishedAt": "2026-09-28T15:51:56Z",
+          "url": "https://arxiv.org/abs/2609.35465",
+          "pdfUrl": "https://arxiv.org/pdf/2609.35465v1"
+        },
+        {
+          "id": "arxiv-2609.35285",
+          "title": "Textual User Taste: Natural-Language User Context for Foundation-Model Recommender System at Scale",
+          "authors": [
+            "Ghazal Fazelnia",
+            "Paul Gigioli",
+            "Eliza Klyce",
+            "Sharon Zheng",
+            "Katie Zelvin",
+            "Ye Myat Thein",
+            "Anurag Deshpande",
+            "Seda Davtyan",
+            "Kate Remeika",
+            "Maya Hristakeva",
+            "Erik Franco",
+            "Karen Banzon",
+            "Peng Ge",
+            "Jacqueline Wood",
+            "Nandini Singh",
+            "David Murgatroyd",
+            "Mounia Lalmas",
+            "Yves Raimond",
+            "Andreas Damianou"
+          ],
+          "summary": "Foundation model recommender systems require user context that can be consumed by large language models, reasoned over, and refined through natural-language interaction. Traditional behavioral embedding vectors remain highly effective for retrieval and ranking, but they are opaque to users and not natively expressed for language model workflows. We present Textual User Taste, a system that generates structured natural-language taste profiles from listening behavior, interaction signals, content metadata, and optional user feedback, and deploys them to millions of Spotify users. We describe the end-to-end production lifecycle required to generate, evaluate, optimize, and maintain these representations at industrial scale, including prompt development and compression, user steering, and integration with downstream personalization systems. Because no unique ground-truth taste profile exists, we introduce a multi-faceted evaluation framework to evaluate taste profiles as a production representation: they carry user-specific predictive signal independently, and when integrated with behavioral embeddings, improve MRR by 0.6% for future-track prediction and NDCG@7 by 2.2% for search ranking. Our evaluation also reveals that taste profiles support positive natural-language steering, while exposing important limitations, including challenges with negation and short-term temporal adaptation. These findings position taste profiles not as replacements for behavioral embeddings, but as an interpretable and steerable interface between evolving user context and foundation-model recommender systems.",
+          "reason": "近 30 天；公司信号：Spotify；推荐/排序/广告方向；关键词：spotify, cs.AI, industrial。Foundation model recommender systems require user context that can be consumed by large language models, reasoned over, and refine...",
+          "area": "推荐算法",
+          "tags": [
+            "spotify",
+            "cs.AI",
+            "industrial",
+            "production",
+            "ranking",
+            "recommender",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "Spotify/arXiv",
+          "publishedAt": "2026-09-28T14:34:14Z",
+          "url": "https://arxiv.org/abs/2609.35285",
+          "pdfUrl": "https://arxiv.org/pdf/2609.35285v1"
+        },
+        {
+          "id": "arxiv-2609.35263",
+          "title": "WavePP: High-Throughput Pipeline Parallel LLM Prefill under Prefix Reuse",
+          "authors": [
+            "Aaryam Sharma"
+          ],
+          "summary": "Pipeline parallelism can improve prefill throughput by processing multiple request chunks concurrently across different stages of the model. However, keeping the pipeline fully utilized requires efficient scheduling and request preparation. In systems where stages retain and evict cache state independently, a local cache hit does not guarantee that the same prefix can be reused across the pipeline. Here, coordination overhead can impede request admission cadence and thus reduce overall throughput. In this paper, we present WavePP, a prefill runtime built on top of TensorRT-LLM that addresses these challenges by overlapping request admission with pipeline execution. WavePP asynchronously finds a prefix that can be reused across all stages, protects the cached state, and reserves space for the remaining input while earlier requests continue to execute. It subsequently plans the chunk sizes of each request dynamically to maximize pipeline fill. Each stage then completes the local preparation before executing the request. In the same system and pipeline topology, WavePP improves TensorRT-LLM's prefill throughput in 37 of 40 tested settings on GLM 5.2 and MiniMax M2.7. At concurrency 128 with high cache reuse, these changes increase throughput by factors of 2.91 and 2.02, respectively. Across 28 Kimi K3 settings, WavePP also has the highest measured throughput in all 18 settings at concurrency eight or higher, compared with tensor/expert-parallel and pipeline-parallel baselines from TRT-LLM, SGLang, and vLLM.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, efficient。Pipeline parallelism can improve prefill throughput by processing multiple request chunks concurrently across different stages of...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.DC",
+            "efficient",
+            "llm",
+            "prefill",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-09-28T14:21:21Z",
+          "url": "https://arxiv.org/abs/2609.35263",
+          "pdfUrl": "https://arxiv.org/pdf/2609.35263v1"
+        },
+        {
+          "id": "arxiv-2609.35167",
+          "title": "EdgeCraft: Automated Model Crafting for Edge IoT",
+          "authors": [
+            "Genglin Wang",
+            "Kaiwei Liu",
+            "Liekang Zeng",
+            "Wangsong Yin",
+            "Shangcheng Jin",
+            "Guoliang Xing",
+            "Zhenyu Yan"
+          ],
+          "summary": "Machine learning (ML) increasingly powers Internet of Things (IoT) applications at the edge. Yet producing a deployable edge ML artifact for a specific scenario requires navigating a huge search space spanning data representation, model design, training on domain-specific data, and runtime customization. This workflow is fragmented and difficult to scale across diverse edge applications. We present EdgeCraft, an LLM-driven system that turns high-level intent into deployable edge ML artifacts. Building such a system raises two challenges: (1) How can an LLM be guided to find high-quality solutions that meet dynamic SLOs for task quality, latency, and energy? (2) How can trustworthy target-device verification be obtained at low cost? EdgeCraft addresses these challenges with two designs. (1) A constraint-aware synthesis tree explores alternative candidates and uses measured SLO gaps to guide each improvement. (2) A multi-fidelity verifier progressively combines low-cost checks with full target-device verification to reduce verification cost while preserving reliable verification results. It also records verified failures for reuse, avoiding repeated device work. To support concurrency, EdgeCraft provides a multi-tenant runtime that runs cloud training and target-device verification in parallel while isolating requests. Across 50 public tasks, EdgeCraft exceeds the task-specific Reference in best-observed quality on 40 tasks and finds an SLO-feasible artifact on 45, with the two outcomes overlapping on 38 tasks. Moreover, EdgeCraft achieves competitive performance on our self-collected SEN dataset, suggesting its generalizability to real-world IoT sensing tasks.",
+          "reason": "近 30 天；关键词：cs.LG, dataset, energy。Machine learning (ML) increasingly powers Internet of Things (IoT) applications at the edge. Yet producing a deployable edge ML ar...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "dataset",
+            "energy",
+            "latency",
+            "llm",
+            "serving",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-28T13:39:03Z",
+          "url": "https://arxiv.org/abs/2609.35167",
+          "pdfUrl": "https://arxiv.org/pdf/2609.35167v1"
+        }
+      ]
+    },
     {
       "date": "2026-09-29",
       "generatedAt": "2026-09-29T09:20:41.657936+08:00",
@@ -19226,287 +19529,6 @@
           "publishedAt": "2026-03-22T00:00:00Z",
           "url": "https://www.microsoft.com/en-us/research/publication/niyama-breaking-the-silos-of-llm-inference-serving/",
           "pdfUrl": "https://www.microsoft.com/en-us/research/wp-content/uploads/2025/10/QoServe_CC_final_v2.pdf"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-18",
-      "generatedAt": "2026-06-18T07:16:14.050014+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2606.06260",
-          "title": "OneReason Technical Report",
-          "authors": [
-            "OneRec Team",
-            "Biao Yang",
-            "Boyang Ding",
-            "Chenglong Chu",
-            "Dunju Zang",
-            "Fei Pan",
-            "Han Li",
-            "Hao Jiang"
-          ],
-          "summary": "Extends the OneRec family toward reasoning-style generative recommendation. It argues that recommendation reasoning needs itemic-token perception and cognition over user behavior sequences, then introduces OneReason with perception-focused pre-training, three-level cognition-enhanced CoT SFT and specialize-then-unify RL.",
-          "reason": "快手 OneRec 系列最新推荐推理方向：2026-06-04 新稿，把生成式推荐从 scaling 推到 reasoning，重点看 item token 语义感知、用户兴趣认知、CoT 格式和 RL 训练配方。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "onereason",
-            "generative-recommendation",
-            "reasoning",
-            "cot",
-            "rl"
-          ],
-          "signal": 100,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-04T15:04:34Z",
-          "url": "https://arxiv.org/abs/2606.06260",
-          "pdfUrl": "https://arxiv.org/pdf/2606.06260"
-        },
-        {
-          "id": "arxiv-2606.18096v1",
-          "title": "S4oP: Operator-level Pruning of Structured State Space Models for Resource-Constrained Devices",
-          "authors": [
-            "Marco Deano",
-            "Filippo Ziche",
-            "Nicola Bombieri"
-          ],
-          "summary": "Structured State Space Models (SSMs), including the S4 and S4D architectures, have recently emerged as powerful alternatives to attention-based models for capturing long-range dependencies in sequential data. Despite their strong empirical performance, deploying these models in time- and resource-constrained settings remains challenging due to their computational and memory demands. In this paper, we propose a novel incremental, operator-level pruning approach for S4- and S4D-based models that significantly reduces inference cost while preserving predictive performance. To the best of our knowledge, this is the first work to systematically investigate structured operator pruning for SSMs. Our method progressively prunes model operators by interleaving structured masking with fine-tuning, while jointly monitoring accuracy and inference latency. We implement this approach within a unified training and evaluation framework that enables systematic exploration of efficiency-accuracy trade-offs. Experiments across multiple benchmark datasets show that pruning up to 70% of the model operators preserves the performance of the original models in most cases, while substantially reducing inference latency. These results demonstrate that structured operator pruning is an effective and previously unexplored strategy for improving the efficiency of SSMs and facilitate their deployment in practical, resource-constrained scenarios.",
-          "reason": "近 30 天；关键词：cs.LG, dataset, inference。Structured State Space Models (SSMs), including the S4 and S4D architectures, have recently emerged as powerful alternatives to at...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "dataset",
-            "inference",
-            "latency",
-            "lora",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-06-16T15:59:10Z",
-          "url": "https://arxiv.org/abs/2606.18096v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.18096v1"
-        },
-        {
-          "id": "arxiv-2606.18042v1",
-          "title": "Latency Prediction for LLM Inference on NPU Systems",
-          "authors": [
-            "Juhyun Park",
-            "Seungwoo Jeong",
-            "Jingyu Lee",
-            "Kyungyong Lee"
-          ],
-          "summary": "Deploying Large Language Models (LLMs) requires exploring a large configuration space spanning parallelization strategies, batching techniques, and scheduling policies. Exhaustive measurement across this space is impractical, making latency prediction essential for system optimization. While NPUs have emerged as accelerators designed for LLM inference, no prediction methodology has been established for them. Specifically, applying prior work to LLM inference latency prediction on NPUs faces three challenges: undisclosed microarchitecture of commercial NPUs, unpredictable compiler optimizations, and latency non-linearity induced by bucketing. We present LENS, a latency estimator that predicts NPU inference latency without information on the microarchitecture or compiler, and captures the non-linear latency induced by bucketing. LENS profiles each bucket with two end-to-end (E2E) measurements and composes the results to predict latency for arbitrary input-output length combinations. We validate LENS across NPUs from multiple vendors, several LLMs, and diverse workloads, achieving a mean prediction error of 2.15\\%. We further compare LENS against two methodologically related baselines, confirming the validity of its approach.",
-          "reason": "近 30 天；关键词：cs.DC, batching, inference。Deploying Large Language Models (LLMs) requires exploring a large configuration space spanning parallelization strategies, batchin...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.DC",
-            "batching",
-            "inference",
-            "latency",
-            "llm"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-06-16T15:18:53Z",
-          "url": "https://arxiv.org/abs/2606.18042v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.18042v1"
-        },
-        {
-          "id": "arxiv-2606.17949v1",
-          "title": "RouteBalance: Fused Model Routing and Load Balancing for Heterogeneous LLM Serving",
-          "authors": [
-            "Wei Da",
-            "Evangelia Kalyvianaki"
-          ],
-          "summary": "Heterogeneous LLM serving stacks split scheduling into two layers that optimize in isolation: model routers pick a model from quality and cost signals while ignoring instance load, and serving load balancers optimize queues while ignoring quality. We present RouteBalance, a serving-aware scheduling layer that fuses both into a single online assignment over concrete model instances, jointly trading off quality, latency, and cost. A batched in-process predictor stack and dead-reckoned instance state keep the joint decision cheap on the request hot path ($\\approx$32 ms at 12 req/s). On a 13-instance, 28-GPU heterogeneous cluster serving four model sizes, a single deployed RouteBalance stack traces the upper region of the three-way quality-cost-throughput frontier. Sweeping one weight vector reaches both the highest routing-decision quality (DeepEval $0.419$, $+0.013$ over the strongest baseline, $95\\%$ CI $[{+}0.005,{+}0.022]$; the ordering holds when a second judge re-scores the actually served text) and, at its cost-priority corner, per-request cost that ties the cheapest baseline. With router engineering equalized against concurrent-scoring baseline variants we build, its balanced preset serves at $2.8$ s and $30$ req/s, leading $2.6$ to $4.1\\times$ ahead of enhanced BEST-Route at high load. (Deploying those routers as published, one serial scoring call per request, makes them collapse $23\\times$ under load, a deployment-architecture effect we isolate separately, not the routing result.) A four-arm isolation shows the benefit follows from pricing latency at model-selection time; the learned predictors contribute calibration and SLO headroom rather than the headline frontier. Code: https://github.com/AKafakA/route-balance",
-          "reason": "近 30 天；关键词：cs.DC, deployed, latency。Heterogeneous LLM serving stacks split scheduling into two layers that optimize in isolation: model routers pick a model from qual...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.DC",
-            "deployed",
-            "latency",
-            "llm",
-            "serving",
-            "slo",
-            "throughput"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-06-16T14:02:34Z",
-          "url": "https://arxiv.org/abs/2606.17949v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.17949v1"
-        },
-        {
-          "id": "arxiv-2606.17707v1",
-          "title": "Do Generative Recommenders Deepen the Information Cocoon? A Closed-Loop Simulation with LLM-powered User Simulators",
-          "authors": [
-            "Jiyuan Yang",
-            "Gengxin Sun",
-            "Mengqi Zhang",
-            "Lingjie Wang",
-            "Yuanzi Li",
-            "Hongxi Cui",
-            "Xin Xin",
-            "Pengjie Ren"
-          ],
-          "summary": "Recommender systems alleviate information overload, yet repeated feedback between recommendations and user interactions can reinforce existing preferences and narrow users' exposure, forming information cocoons. While this phenomenon has been widely studied in traditional sequential recommendation, its impact on generative recommendation remains unclear. By replacing atomic item IDs with Semantic ID (SID) sequences, generative recommenders introduce a different recommendation mechanism whose role in information cocoon formation is not yet understood. To investigate whether generative recommenders deepen information cocoons, we propose \\textsc{RecLoop}, a closed-loop simulation framework with LLM-driven user agents. We compare two generative recommenders and two traditional sequential baselines on two Amazon datasets across multiple feedback cycles. In addition to standard exposure-level metrics, we introduce \\emph{Code-Space Structural Cocoon}, a model-level metric that measures concentration in the generated SID space. Experimental results show that generative recommenders are generally less prone to exposure-level cocoon formation than traditional baselines, preserving broader exposure diversity and slowing cross-user homogenization. However, feedback loops can still induce concentration within the generated SID space. We further find that cocoon severity depends strongly on tokenization strategy and model scale: collaborative-signal tokenization produces stronger cocoon effects than semantic tokenization, whereas larger models maintain greater code-space diversity and better retain access to niche content. These findings suggest that information cocoons in generative recommendation are shaped not only by recommendation behavior, but also by item tokenization and model capacity. Our code is available at https://github.com/Dregen-Yor/RecLoop.",
-          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Recommender systems alleviate information overload, yet repeated feedback between recommendations and user interactions can reinfo...",
-          "area": "推荐算法",
-          "tags": [
-            "amazon",
-            "cs.IR",
-            "dataset",
-            "generative-recommendation",
-            "llm",
-            "recommendation",
-            "recommender"
-          ],
-          "signal": 99,
-          "source": "Amazon/arXiv",
-          "publishedAt": "2026-06-16T09:17:46Z",
-          "url": "https://arxiv.org/abs/2606.17707v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.17707v1"
-        },
-        {
-          "id": "arxiv-2205.14135",
-          "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
-          "authors": [
-            "Tri Dao",
-            "Daniel Y. Fu",
-            "Stefano Ermon",
-            "Atri Rudra",
-            "Christopher Re"
-          ],
-          "summary": "Reorders exact attention computation around GPU memory hierarchy, using tiling to reduce HBM/SRAM traffic and unlock faster long-sequence transformer training and inference.",
-          "reason": "LLM 推理两篇经典之一：kernel/显存 IO/attention 吞吐的底层心智模型，读推理优化绕不开。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "classic",
-            "flashattention",
-            "attention-kernel",
-            "memory-io",
-            "throughput"
-          ],
-          "signal": 97,
-          "source": "arXiv",
-          "publishedAt": "2022-05-27T17:53:09Z",
-          "url": "https://arxiv.org/abs/2205.14135",
-          "pdfUrl": "https://arxiv.org/pdf/2205.14135"
-        },
-        {
-          "id": "arxiv-2604.05314",
-          "title": "Next-Scale Generative Reranking: A Tree-based Generative Rerank Method at Meituan",
-          "authors": [
-            "Shuli Wang",
-            "Changhao Li",
-            "Ke Fan",
-            "Senjie Kou",
-            "Junwei Yin",
-            "Chi Wang",
-            "Yinhua Zhu",
-            "Haitao Wang",
-            "Xingxing Wang"
-          ],
-          "summary": "Proposes NSGR, a tree-based generative reranking framework that expands recommendation lists from coarse to fine and uses a multi-scale evaluator to guide generation. The method is reported as deployed on Meituan food delivery.",
-          "reason": "近 90 天工业重排方向：Meituan 线上部署，聚焦多阶段推荐里的 generative reranking 和全局/局部列表建模。",
-          "area": "推荐算法",
-          "tags": [
-            "meituan",
-            "reranking",
-            "generative-recommendation",
-            "production"
-          ],
-          "signal": 96,
-          "source": "Meituan/arXiv",
-          "publishedAt": "2026-04-07T01:35:20Z",
-          "url": "https://arxiv.org/abs/2604.05314",
-          "pdfUrl": "https://arxiv.org/pdf/2604.05314"
-        },
-        {
-          "id": "arxiv-2604.02684",
-          "title": "MBGR: Multi-Business Prediction for Generative Recommendation at Meituan",
-          "authors": [
-            "Changhao Li",
-            "Junwei Yin",
-            "Zhilin Zeng",
-            "Senjie Kou",
-            "Shuli Wang",
-            "Wenshuai Chen",
-            "Yinhua Zhu",
-            "Haitao Wang",
-            "Xingxing Wang"
-          ],
-          "summary": "Builds a multi-business generative recommendation framework with business-aware semantic IDs, business-specific prediction and dynamic label routing. It reports offline and online validation on Meituan food delivery.",
-          "reason": "近 90 天工业生成式推荐：重点是多业务场景、Semantic ID 空间隔离和生产验证。",
-          "area": "推荐算法",
-          "tags": [
-            "meituan",
-            "multi-business",
-            "semantic-id",
-            "generative-recommendation",
-            "online-ab"
-          ],
-          "signal": 95,
-          "source": "Meituan/arXiv",
-          "publishedAt": "2026-04-03T03:26:36Z",
-          "url": "https://arxiv.org/abs/2604.02684",
-          "pdfUrl": "https://arxiv.org/pdf/2604.02684"
-        },
-        {
-          "id": "arxiv-2604.17459",
-          "title": "Transparent and Controllable Recommendation Filtering via Multimodal Multi-Agent Collaboration",
-          "authors": [
-            "Chi Zhang",
-            "Zhipeng Xu",
-            "Jiahao Liu",
-            "Dongsheng Li",
-            "Hansu Gu",
-            "Peng Zhang",
-            "Ning Gu",
-            "Tun Lu"
-          ],
-          "summary": "Introduces a controllable recommendation filtering framework combining end-to-cloud collaboration, multimodal perception, multi-agent adjudication and editable preference graphs to reduce over-filtering in personalized feeds.",
-          "reason": "近 90 天 Microsoft Research 推荐治理方向：不是单纯 CTR，而是个性化 feed 的可控过滤、透明度和多模态安全边界。",
-          "area": "推荐算法",
-          "tags": [
-            "microsoft",
-            "controllable-recommendation",
-            "multimodal",
-            "agent",
-            "feed"
-          ],
-          "signal": 92,
-          "source": "Microsoft Research/arXiv",
-          "publishedAt": "2026-04-19T14:19:28Z",
-          "url": "https://arxiv.org/abs/2604.17459",
-          "pdfUrl": "https://arxiv.org/pdf/2604.17459"
-        },
-        {
-          "id": "arxiv-2606.18246v1",
-          "title": "Variable-Width Transformers",
-          "authors": [
-            "Zhaofeng Wu",
-            "Oliver Sieberling",
-            "Shawn Tan",
-            "Rameswar Panda",
-            "Yury Polyanskiy",
-            "Yoon Kim"
-          ],
-          "summary": "Scaling model size, specifically depth and width, has driven significant progress in transformer-based language models. However, most architectures maintain a constant width across all layers, allocating a fixed parameter and computation budget evenly despite different layers potentially playing distinct computational roles. In this work, we empirically investigate nonuniform capacity allocation across network depth by proposing a $\\times$-shaped > <former architecture. This design maintains wider early and late layers while narrowing the middle layers, utilizing a parameter-free residual resizing mechanism. Across decoder-only language models ranging from 200M to 2B parameters (dense) and 3B parameters (MoE), our > <former consistently outperforms parameter-matched uniform baselines on language modeling loss. By reducing the average layer width, this architecture also requires fewer overall FLOPs (22% reduction under fitted loss-matched scaling curves) and smaller KV cache memory and I/O cost (15% reduction). In analysis, we show that this bottleneck structure results in qualitatively different representations in residual streams. Overall, our results demonstrate that nonuniform width allocation can result in more resource-optimal scaling of language models.",
-          "reason": "近 30 天；关键词：cs.CL, kv-cache。Scaling model size, specifically depth and width, has driven significant progress in transformer-based language models. However, m...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "kv-cache"
-          ],
-          "signal": 83,
-          "source": "arXiv",
-          "publishedAt": "2026-06-16T17:59:03Z",
-          "url": "https://arxiv.org/abs/2606.18246v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.18246v1"
         }
       ]
     }
