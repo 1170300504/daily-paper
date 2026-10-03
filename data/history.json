@@ -1,7 +1,300 @@
 {
-  "generatedAt": "2026-10-02T09:11:06.725724+08:00",
+  "generatedAt": "2026-10-03T08:48:30.577925+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-10-03",
+      "generatedAt": "2026-10-03T08:48:30.577925+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2610.01892",
+          "title": "Selection-Based Structured Reasoning: Toward Efficient Multimodal Search Agents",
+          "authors": [
+            "Feiyu Gavin Zhu",
+            "Xiaoyu Zhu",
+            "Jiqi Yang",
+            "Rui Yang",
+            "Arnab Kumar Mondal",
+            "Yancheng Wang",
+            "Xinke Deng",
+            "Jean Oh",
+            "Reid Simmons",
+            "Joerg Liebelt",
+            "Xiang Kong",
+            "Zhongyu Jiang"
+          ],
+          "summary": "Multimodal agents commonly generate free-form reasoning before each action. For small models, limited model capacity can result in lengthy reasoning that provides little useful guidance for action generation while incurring substantial inference cost. To address this challenge, we introduce Selection-based Structured Reasoning (SSR), a framework that reformulates reasoning as selection instead of open-ended generation. SSR represents recurring high-level reasoning as pre-specified, reusable natural-language candidates. At each turn, the model selects from these reasoning candidates based on their likelihoods given the current context, without requiring an auxiliary task head. Using pre-specified reasoning traces enables parallel scoring, where teacher-forced prefilling computes token likelihoods concurrently within and across candidates using a shared context KV cache. We evaluate SSR on seven multimodal search benchmarks using 2B and 4B models. Across multiple reinforcement learning objectives and supervised fine-tuning, SSR delivers significant efficiency gains without sacrificing task performance. SSR achieves an average success rate competitive with leading search agents of the same scale, while reducing per-turn reasoning latency by over 90% and total per-question model inference latency by 28-54%. Project page: https://zfy0314.github.io/ssr-webpage/.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Multimodal agents commonly generate free-form reasoning before each action. For small models, limited model capacity can result in...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "inference",
+            "kv-cache",
+            "latency",
+            "multimodal",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-01T15:42:14Z",
+          "url": "https://arxiv.org/abs/2610.01892",
+          "pdfUrl": "https://arxiv.org/pdf/2610.01892v1"
+        },
+        {
+          "id": "arxiv-2610.01784",
+          "title": "ePACT: Energy-Performance-Aware Commitment Tracking for LLM Serving",
+          "authors": [
+            "You Peng",
+            "Youhe Jiang",
+            "Chen Wang",
+            "Binhang Yuan"
+          ],
+          "summary": "Reducing LLM serving energy does not by itself guarantee lower deployment cost when electricity procurement exposes operators to unfavorable deviations from preset commitments. We study hourly commitments with positive, potentially asymmetric costs for overuse and underuse, and formulate energy-Performance-Aware Commitment Tracking: minimize deviation costs subject to request-level service requirements. We implement ePACT, a two-level controller that adjusts serving capacity and GPU clocks as requests arrive. A global planner updates interval energy targets from measured consumption and the remaining hourly commitment. A local decision maker predicts candidate configurations' energy and completion times, checks predicted deadline misses, and selects among admitted configurations by asymmetric target-deviation cost, with a service-first fallback. Coarse-to-fine action search runs asynchronously with serving. We evaluate ePACT through single-hour comparisons, controller ablations, and full-day trace simulations for H20 and H200 GPU pools. In the 24-hour simulations, ePACT reduces the asymmetric deviation cost by $73.8\\%$ and $75.7\\%$ relative to vLLM while retaining near-vLLM SLO attainment. Mean absolute hourly deviations are $2.16\\%$ and $2.31\\%$, respectively.",
+          "reason": "近 30 天；关键词：cs.DC, deadline, energy。Reducing LLM serving energy does not by itself guarantee lower deployment cost when electricity procurement exposes operators to u...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "deadline",
+            "energy",
+            "llm",
+            "serving",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-01T14:32:24Z",
+          "url": "https://arxiv.org/abs/2610.01784",
+          "pdfUrl": "https://arxiv.org/pdf/2610.01784v1"
+        },
+        {
+          "id": "arxiv-2610.01434",
+          "title": "MWOP: Modality-aware Width-wise Operation Pruning for Efficient MLLMs",
+          "authors": [
+            "Xudong Wang",
+            "Hao Wu",
+            "Haozhe Hu",
+            "Peiran Yin",
+            "Xinghao Chen",
+            "Yunpu Ma",
+            "Wei Zhang",
+            "Xiaoyu Shen"
+          ],
+          "summary": "Multimodal large language models (MLLMs) incur substantial inference costs when processing long visual-textual sequences. While existing operation compression methods exploit modality-level redundancy, they largely treat computation within attention heads and shared feed-forward network (FFN) channels as unified units, leaving finer-grained redundancy underexplored. We find that redundancy varies both across modality-interaction paths within the same attention head and across visual and textual executions of the same FFN channel. Based on these findings, we propose Modality-aware Width-wise Operation Pruning (MWOP), which independently prunes visual-to-visual (V2V), text-to-visual (T2V), and text-to-text (T2T) attention paths within each layer, and separately selects FFN channels for visual and textual inputs. A first-order Taylor criterion guides the pruning process, with FFN importance re-evaluated after attention pruning and LoRA-based recovery training. To translate the resulting fine-grained sparsity into practical acceleration, we further develop path-sparse Triton attention kernels and compact visual-side FFN execution. MWOP preserves the token sequence while reducing attention and FFN computation, making it complementary to token compression and enabling simultaneous reduction of sequence length and per-token computation. On LLaVA-OneVision-7B, MWOP alone achieves a $1.6\\times$ prefill speedup with 99.7\\% average performance retention across 12 benchmarks. Combined with two representative token compression methods, it further increases their prefill speedups from $2.0\\times$ and $1.9\\times$ to $2.9\\times$ and $2.7\\times$, respectively. Results on Qwen2.5-VL-7B further demonstrate its applicability across architectures. The code is available at https://github.com/EIT-NLP/MWOP.",
+          "reason": "近 30 天；关键词：cs.CV, efficient, inference。Multimodal large language models (MLLMs) incur substantial inference costs when processing long visual-textual sequences. While ex...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CV",
+            "efficient",
+            "inference",
+            "llm",
+            "lora",
+            "multimodal",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-01T10:31:21Z",
+          "url": "https://arxiv.org/abs/2610.01434",
+          "pdfUrl": "https://arxiv.org/pdf/2610.01434v1"
+        },
+        {
+          "id": "arxiv-2610.01380",
+          "title": "GPU-Initiated Communication: Dissecting Down to the Bone",
+          "authors": [
+            "Javid Baydamirli",
+            "Ismayil Ismayilov",
+            "Kaan Oktay",
+            "Didem Unat"
+          ],
+          "summary": "GPU-initiated communication lets GPU threads post RDMA operations directly to the NIC. It underpins NVSHMEM, NCCL GIN, and DeepEP, which serve the fine-grained, latency-critical communication of Mixture-of-Experts (MoE) models, yet its performance characteristics and optimizations remain scarcely documented beyond source code, and library comparisons fail to separate the costs of the hardware mechanism from those of the library around it. This paper dissects GPU-initiated communication at the GPU-NIC boundary. We first detail the GPU-side network path: queue placement, work-request construction, doorbell ordering, and completion semantics. We then introduce mini-gda and mini-proxy, minimal transports for the GPU and CPU-proxy submission paths, and measure them alongside NVSHMEM IBGDA, NCCL GIN, DeepEP, UCCL-EP, MSCCL++, and fabric-lib on NVIDIA H100, H200, B200, and GB200 platforms. A minimal GPU path issues an operation in 0.7 $μ$s and completes in 4.0 $μ$s; libraries add up to 4.6 $μ$s of issue time through queue management, memory ordering, and completion scope, and issue time scales with the SM clock. A tuned CPU proxy matches or beats the GPU path at idle, at the cost of a dedicated core whose operating state sets its latency and throughput. On either path, sharing a queue with bulk traffic raises latency by one to three orders of magnitude. Reaching the 260 M msg/s ceiling of our InfiniBand platform requires doorbell batching and queue parallelism, and both have resource costs: communication code can reduce GPU block residency even when unused, and all-to-all traffic loses 59% of its NIC message rate at about 3,000 active connections. The submission path alone therefore does not predict communication performance. Our experiment code and results are available at https://github.com/ParCoreLab/Dissecting-GPU-Communication-Experiments.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, batching。GPU-initiated communication lets GPU threads post RDMA operations directly to the NIC. It underpins NVSHMEM, NCCL GIN, and DeepEP,...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.DC",
+            "batching",
+            "latency",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-10-01T09:46:08Z",
+          "url": "https://arxiv.org/abs/2610.01380",
+          "pdfUrl": "https://arxiv.org/pdf/2610.01380v1"
+        },
+        {
+          "id": "arxiv-2610.01265",
+          "title": "RapidMoE: Exploiting Cross-Asymmetry via Adaptive Residual Offloading for Large-Scale MoE Inference",
+          "authors": [
+            "Wenxun Wang",
+            "Likai Ma",
+            "Zongle Huang",
+            "Chen Tang",
+            "Yongpan Liu"
+          ],
+          "summary": "The widespread adoption of Mixture-of-Experts (MoE) has created a growing need for deployment on heterogeneous platforms. However, it exposes a fundamental mismatch between the algorithmic demands of large-scale MoE and the disparate characteristics of hardware.Existing CPU-GPU hybrid inference systems fail to resolve this as they either encounter PCIe bandwidth bottlenecks when loading experts to GPUs, or rely heavily on CPU computation. Consequently, this leads to low resource utilization and inevitable violations of fixed latency budgets as parameters scale. In this paper, we identify and exploit Cross-Asymmetry--a structural alignment between the algorithmic workload skew of MoE routing and the physical disparity of heterogeneous hardware. To this end, we introduce RapidMoE, a residual offloading system for efficient large-scale MoE inference. We propose how RapidMoE leverages a residual-split framework to enable offloading paradigm shift from expert-level to bit-level, which unfolds across three key dimensions: (1) data representation, enabling compact and decoupled storage; (2) routing strategy, partitioning computation into dual paths aligned with hardware capabilities; (3) execution parallelism, scheduling a balanced storage-compute workload across devices. We further employ a novel Unified Multi-Level Importance Arbitration to adaptively adjust the critical expert set at runtime, ensuring the accuracy-latency Pareto frontier. These innovations exploit inherent cross-asymmetry, fundamentally breaking the algorithm-hardware misalignment. Experimental results show that RapidMoE achieves up to 3.5x speedup in decoding and 2.1x speedup in prefill compared to state-of-the-art (SOTA) offloading systems.",
+          "reason": "近 30 天；关键词：cs.DC, alignment, efficient。The widespread adoption of Mixture-of-Experts (MoE) has created a growing need for deployment on heterogeneous platforms. However,...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "alignment",
+            "efficient",
+            "inference",
+            "latency",
+            "pareto",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-01T08:02:24Z",
+          "url": "https://arxiv.org/abs/2610.01265",
+          "pdfUrl": "https://arxiv.org/pdf/2610.01265v1"
+        },
+        {
+          "id": "arxiv-2610.00888",
+          "title": "Match the Distribution, Not the Compute: Post-Training Multi-Token Prediction Heads",
+          "authors": [
+            "Prachi Badarayani",
+            "Aidan Jay",
+            "Chenghui Zhou",
+            "Dayquan Julienne",
+            "Yuan Gao",
+            "Tianwei Chen",
+            "George Zerveas",
+            "Ishmam Zabir",
+            "Xiren Zhou",
+            "Chris Quirk",
+            "Xia Song"
+          ],
+          "summary": "Multi-token prediction (MTP) improves the throughput of autoregressive generation by enabling the language model to draft multiple next tokens per forward pass, while a verification step over draft tokens ensures that token distribution of the backbone is preserved. Every open MTP-family release (MiMo-7B, DeepSeek-V3, Qwen3) trains its heads jointly with the backbone over the full pretraining run of tens of trillions of tokens, thus setting the drafter quality at pretraining time. We ask whether a lightweight post-training pass on target-generated chain-of-thought is enough to reach the same expected throughput speedup on a frozen reasoning model, and study how a serving-time system built on such a checkpoint can be optimized. We present three findings. 1) On a frozen Qwen3-8B with $K{=}3$ chained MTP heads, we show that a post-training recipe with plain cross-entropy on $\\approx\\!2.5$B tokens reaches or exceeds the expected speedup of jointly trained MiMo-7B on math, coding and knowledge benchmarks. Our post-training recipe utilizes $10^3$-$10^4\\times$ less MTP-training tokens as compared with joint pre-training of MiMO-7B MTP baseline. 2) We propose a chain-aware relaxation of draft token verification rule that allows a bounded drift from backbone language model token distribution. We show that this relaxation lifts expected speedups by $+12$ to $+16\\%$ per benchmark while preserving task accuracy. 3) We propose an adaptive controller that dynamically chooses the number of MTP heads to be engaged at inference time and demonstrate recovery of upto $11$--$14\\%$ loss in speedup using fixed maximum MTP draft length.",
+          "reason": "近 30 天；关键词：cs.LG, inference, serving。Multi-token prediction (MTP) improves the throughput of autoregressive generation by enabling the language model to draft multiple...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-01T01:09:18Z",
+          "url": "https://arxiv.org/abs/2610.00888",
+          "pdfUrl": "https://arxiv.org/pdf/2610.00888v1"
+        },
+        {
+          "id": "arxiv-2610.00831",
+          "title": "AnyJev Technical Report",
+          "authors": [
+            "Jiamu Zhang",
+            "Tianze Yang",
+            "Yucheng Shi",
+            "Evan Chen",
+            "Zixiang Nie",
+            "Kelly Wan",
+            "Liangjie Hong",
+            "Ninghao Liu",
+            "Liang Wu"
+          ],
+          "summary": "A typed decision is a choice among a fixed set of options, returned as a probability rather than as text. Systems that need typed decisions today use models trained for that purpose. This report describes AnyJev, which reads a typed decision from one prefill of a pretrained instruction-tuned language model. The readout restricts the next-token distribution at the answer position to the option tokens. It has two defects: the model assigns higher probability to some labels whatever the input, and to some positions in the option list. AnyJev corrects both with no gradient steps and no parameter changes: it divides out a label prior estimated from unlabelled inputs, and it averages log-probabilities over the K cyclic rotations of the option list. On two 20-option tasks the rotations lower the order-flip rate from 0.33 to 0.14 and from 0.33 to 0.18, and raise accuracy on 11 of 11 models on both. Reading every rotation requires K prefills. A stopping rule selected against the full-rotation decision on unlabelled states cuts that. Selecting the threshold on one unlabelled split and bounding its disagreement on a second, it reads 10.6 rotations of 18 at a verified 0.008 bound on two of four cells; selected and bounded on one split, as our serving run did, it reads 7.3 and serves 2.2 times as many decisions per second on vLLM. The code is open source.",
+          "reason": "近 30 天；关键词：cs.LG, llm, prefill。A typed decision is a choice among a fixed set of options, returned as a probability rather than as text. Systems that need typed...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "llm",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-30T23:43:04Z",
+          "url": "https://arxiv.org/abs/2610.00831",
+          "pdfUrl": "https://arxiv.org/pdf/2610.00831v1"
+        },
+        {
+          "id": "arxiv-2610.00671",
+          "title": "MegaFlux: Skew-Resilient MoE Megakernels via Pipelined Expert Replication",
+          "authors": [
+            "Jianzhu Yao",
+            "Siva Kumar Sastry Hari",
+            "Vignesh Balaji",
+            "Sana Damani",
+            "Insu Jang",
+            "Pramod Viswanath",
+            "Christos Kozyrakis"
+          ],
+          "summary": "Mixture-of-experts (MoE) megakernels fuse expert-parallel communication with expert computation. However, under fixed expert placement, routing skew creates GPU stragglers: overloaded GPUs determine layer latency while others sit idle. Replicating hot experts can shift work to underloaded GPUs, but dynamic replicas introduce additional work: replicas must receive expert weights to execute and, during training, their partial weight gradients must be reduced at the expert owners. We present MegaFlux, which makes expert replication a runtime decision and pipelines the communication induced by replication within persistent MoE execution. An on-device planner jointly selects replica locations and assigns tile-aligned token blocks under a per-GPU replica budget, leaving router outputs unchanged. The forward and backward megakernels realize pipelined expert replication: replicas begin computation as their required weights arrive, while backward overlaps replica-gradient reduction with ongoing expert computation. MegaFlux extends TensorRT-LLM's CuTeDSL MegaMoE forward kernel and introduces a new backward MoE megakernel. Across 147 configurations per direction on eight NVIDIA B200 GPUs, MegaFlux achieves geometric-mean speedups of $1.45\\times$ for forward and $1.28\\times$ for backward over the same megakernels with fixed placement, peaking at $2.14\\times$ and $2.64\\times$. In ablations, pipelining hides $56$--$76$% of replica-weight transfer cost in forward and $91$--$100$% of combined weight-transfer and replica-gradient-reduction cost in backward, yielding up to $13.2$% and $26.7$% additional layer-latency reductions over the same replication plans with these operations executed separately. Integrated into vLLM for DeepSeek-V4-Pro prefill, MegaFlux delivers $1.13$--$1.26\\times$ median end-to-end speedups over fixed placement.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, latency。Mixture-of-experts (MoE) megakernels fuse expert-parallel communication with expert computation. However, under fixed expert place...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.DC",
+            "latency",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-09-30T20:09:09Z",
+          "url": "https://arxiv.org/abs/2610.00671",
+          "pdfUrl": "https://arxiv.org/pdf/2610.00671v1"
+        },
+        {
+          "id": "arxiv-2610.00656",
+          "title": "Lingtai: What Concept Geometry Reveals--and Does Not Reveal--About LLM Inference",
+          "authors": [
+            "Jiangang Chen"
+          ],
+          "summary": "Observing what a large language model computes during autoregressive inference--online and without training probes--remains difficult. We introduce Lingtai, a training-free concept telemetry layer: at each generation step, residual states are projected onto a domain-specific bank of named concept anchors, constructed without labeled concept examples, outcome labels, gradient fitting, or activation-space optimization, producing a structured per-step concept-coordinate signal. Across code generation and grade-school mathematical reasoning, this signal exhibits a robust association with predictive uncertainty: the association survives problem-identity and token-position controls and is not attributable to a single token type, is not explained by a simple correct/incorrect mixture on GSM8K, and is not reproduced by matched random anchors; it is markedly weaker or direction-inconsistent in K-means and PCA projections. Two structures emerge: a recurring uncertainty-linked activity signal whose functional geometry is task-conditioned (distinct activity-entropy shapes on HumanEval, MBPP, and GSM8K), and an execution-specific trajectory identity with strong local inertia but weak re-instantiation invariance--under completion-only elastic alignment, corruption at k=32 (approximately a median quarter of the completion) on the matched re-execution subset still retrieves the archived episode at 62.0%, while a fresh execution retrieves it only 11.7-16.0% of the time. Finally, a matched audit finds no evidence that the scalar concept-activity signal used here supplies a stable correctness coordinate under the tested protocol; we therefore treat correctness as externally supplied. Telemetry adds 0.7-1.6% per-token decode overhead for the 161-anchor code implementation, with unchanged generated tokens.",
+          "reason": "近 30 天；关键词：cs.CL, alignment, inference。Observing what a large language model computes during autoregressive inference--online and without training probes--remains diffic...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "alignment",
+            "inference",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-30T19:55:20Z",
+          "url": "https://arxiv.org/abs/2610.00656",
+          "pdfUrl": "https://arxiv.org/pdf/2610.00656v1"
+        },
+        {
+          "id": "arxiv-2610.00499",
+          "title": "Denoising Surface: Modeling and Predicting Inference Cost for Diffusion LLM Serving",
+          "authors": [
+            "Haoyu Zheng",
+            "Fangcheng Fu",
+            "Binhang Yuan",
+            "Yongqiang Zhang",
+            "Liang Deng",
+            "Hao Wang",
+            "Yuanyuan Zhu",
+            "Xiao Yan",
+            "Jiawei Jiang"
+          ],
+          "summary": "As diffusion large language models (dLLMs) become more capable, they are moving from research settings to real-world \\textit{serving}, where request management (such as scheduling and resource allocation) relies on accurate estimation of per-request inference cost. However, common cost proxies fall short for dLLMs: output length ignores that one forward pass can unmask multiple tokens, and denoising-step count ignores the \\textit{heterogeneous} per-step costs. We observe that the block-autoregressive generation mechanism induces a two-dimensional execution structure over output blocks and within-block denoising steps, whereas these proxies collapse it into a scalar, discarding information essential for characterizing the cost. Motivated by this insight, we propose the Denoising Workload Surface (DWS), which preserves this two-dimensional block-step structure as a probability surface to weight the heterogeneous per-step costs. We then design a coarse-to-fine training scheme that enables a lightweight prompt-only predictor to accurately predict the complex DWS. This predictor runs efficiently even on a single CPU core, avoiding GPU contention with the serving model. Since DWS decouples request-dependent execution behavior from deployment-specific cost factors, the predictor transfers across hardware configurations without retraining. In \\textit{real-world} serving experiments, DWS reduces cost-prediction error by up to $2.50\\times$ over scalar-based predictors, while the DWS-guided shortest-job-first scheduler reduces end-to-end latency by up to $1.92\\times$ for online chatbots.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, inference。As diffusion large language models (dLLMs) become more capable, they are moving from research settings to real-world \\textit{servi...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "inference",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-09-30T18:01:37Z",
+          "url": "https://arxiv.org/abs/2610.00499",
+          "pdfUrl": "https://arxiv.org/pdf/2610.00499v1"
+        }
+      ]
+    },
     {
       "date": "2026-10-02",
       "generatedAt": "2026-10-02T09:11:06.725724+08:00",
@@ -19114,311 +19407,6 @@
           "publishedAt": "2026-04-19T14:19:28Z",
           "url": "https://arxiv.org/abs/2604.17459",
           "pdfUrl": "https://arxiv.org/pdf/2604.17459"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-21",
-      "generatedAt": "2026-06-21T06:57:33.750865+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2606.06260",
-          "title": "OneReason Technical Report",
-          "authors": [
-            "OneRec Team",
-            "Biao Yang",
-            "Boyang Ding",
-            "Chenglong Chu",
-            "Dunju Zang",
-            "Fei Pan",
-            "Han Li",
-            "Hao Jiang"
-          ],
-          "summary": "Extends the OneRec family toward reasoning-style generative recommendation. It argues that recommendation reasoning needs itemic-token perception and cognition over user behavior sequences, then introduces OneReason with perception-focused pre-training, three-level cognition-enhanced CoT SFT and specialize-then-unify RL.",
-          "reason": "快手 OneRec 系列最新推荐推理方向：2026-06-04 新稿，把生成式推荐从 scaling 推到 reasoning，重点看 item token 语义感知、用户兴趣认知、CoT 格式和 RL 训练配方。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "onereason",
-            "generative-recommendation",
-            "reasoning",
-            "cot",
-            "rl"
-          ],
-          "signal": 100,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-04T15:04:34Z",
-          "url": "https://arxiv.org/abs/2606.06260",
-          "pdfUrl": "https://arxiv.org/pdf/2606.06260"
-        },
-        {
-          "id": "arxiv-2606.03866",
-          "title": "Taiji: Pareto Optimal Policy Optimization with Semantics-IDs Trade-off for Industrial LLM-Enhanced Recommendation",
-          "authors": [
-            "Yuecheng Li",
-            "Zeyu Song",
-            "Jing Yao",
-            "Chi Lu",
-            "Peng Jiang",
-            "Kun Gai"
-          ],
-          "summary": "Presents Taiji, an industrial LLM-as-Enhancer recommender framework that aligns LLM semantic rewards with collaborative ID preference rewards through Pareto Optimal Policy Optimization. It reports offline and online A/B validation and deployment on Kuaishou advertising traffic.",
-          "reason": "近 30 天工业推荐主线：Kuaishou 广告平台、LLM4Rec、Semantic IDs、RL 对齐和线上 A/B 都在一篇里。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "llm4rec",
-            "semantic-id",
-            "rl-alignment",
-            "online-ab"
-          ],
-          "signal": 99,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-02T16:39:06Z",
-          "url": "https://arxiv.org/abs/2606.03866",
-          "pdfUrl": "https://arxiv.org/pdf/2606.03866"
-        },
-        {
-          "id": "arxiv-2605.25514",
-          "title": "From Item-Only to Query-Item: Query-Conditioned Generative Search with QGS in Quark",
-          "authors": [
-            "Yanglong Song",
-            "Zihao Yang",
-            "Shuo Meng",
-            "Rujun Guo",
-            "Jin Zhang",
-            "Bin Wang",
-            "Shaoyu Liu",
-            "Xiaozhao Wang"
-          ],
-          "summary": "Introduces Query-Conditioned Generative Search for Quark Search, encoding each interaction as a query-item pair and training a query-conditioned next-item objective. It adds Linear HSTU and HFG-Attention to keep long-history modeling and sparse ranking features practical for online search ranking.",
-          "reason": "阿里夸克搜索排序的新工业样本：把生成式推荐从 item-only 推到 query-item 条件建模，线上 A/B 有 CTR、Click-Search Ratio 和 PV Duration 提升，适合和 OneReason 一起看 generative ranking 的落地形态。",
-          "area": "推荐算法",
-          "tags": [
-            "alibaba",
-            "quark",
-            "generative-search",
-            "query-conditioned",
-            "linear-hstu",
-            "online-ab"
-          ],
-          "signal": 98,
-          "source": "Alibaba/Quark/arXiv",
-          "publishedAt": "2026-05-25T07:18:51Z",
-          "url": "https://arxiv.org/abs/2605.25514",
-          "pdfUrl": "https://arxiv.org/pdf/2605.25514"
-        },
-        {
-          "id": "arxiv-2605.21427",
-          "title": "PALS: Power-Aware LLM Serving for Mixture-of-Experts Models",
-          "authors": [
-            "Can Hankendi",
-            "Rana Shahout",
-            "Minlan Yu",
-            "Ayse K. Coskun"
-          ],
-          "summary": "Presents a power-aware runtime for LLM serving that treats GPU power caps as a controllable resource and jointly tunes them with batch size. It integrates with vLLM and evaluates dense and MoE models on multi-GPU systems.",
-          "reason": "近 30 天 LLM 推理系统：MoE serving、GPU 功耗控制、vLLM 集成和 QoS 违约率都直接对应 2026 年 AI 基建成本问题。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "moe",
-            "power-aware",
-            "vllm",
-            "qos"
-          ],
-          "signal": 98,
-          "source": "arXiv/vLLM",
-          "publishedAt": "2026-05-20T17:19:20Z",
-          "url": "https://arxiv.org/abs/2605.21427",
-          "pdfUrl": "https://arxiv.org/pdf/2605.21427"
-        },
-        {
-          "id": "arxiv-2309.06180",
-          "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
-          "authors": [
-            "Woosuk Kwon",
-            "Zhuohan Li",
-            "Siyuan Zhuang",
-            "Ying Sheng",
-            "Lianmin Zheng",
-            "Cody Hao Yu",
-            "Joseph E. Gonzalez",
-            "Hao Zhang",
-            "Ion Stoica"
-          ],
-          "summary": "Introduces PagedAttention and vLLM, treating KV cache management like virtual memory so LLM serving can batch more requests with lower memory waste and higher throughput.",
-          "reason": "LLM 推理两篇经典之一：PagedAttention/vLLM 基本成了现代 serving 系统理解 KV cache、continuous batching 的入口。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "classic",
-            "vllm",
-            "pagedattention",
-            "kv-cache",
-            "serving"
-          ],
-          "signal": 98,
-          "source": "Berkeley/vLLM/arXiv",
-          "publishedAt": "2023-09-12T12:50:04Z",
-          "url": "https://arxiv.org/abs/2309.06180",
-          "pdfUrl": "https://arxiv.org/pdf/2309.06180"
-        },
-        {
-          "id": "arxiv-2605.09040",
-          "title": "UxSID: Semantic-Aware User Interests Modeling for Ultra-Long Sequence",
-          "authors": [
-            "Hongwei Zhang",
-            "Qiqiang Zhong",
-            "Jiangxia Cao",
-            "Yiyang Lv",
-            "Huanjie Wang",
-            "Liwei Guan",
-            "Jing Yao",
-            "Yiyu Wang"
-          ],
-          "summary": "Proposes semantic-group shared interest memory for ultra-long user sequence modeling. UxSID uses Semantic IDs and dual-level attention to balance target-aware preference modeling with constant-time online inference, reporting state-of-the-art results and a 0.337% revenue lift in large-scale advertising A/B tests.",
-          "reason": "快手广告超长序列建模方向：Semantic ID 不只用于生成式推荐，也能作为 target 语义路由键做共享兴趣 memory；有线上 revenue lift，和 OneReason 的 perception/cognition 主线能互相补。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "semantic-id",
-            "ultra-long-sequence",
-            "advertising",
-            "online-ab",
-            "revenue"
-          ],
-          "signal": 97,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-05-18T07:00:17Z",
-          "url": "https://arxiv.org/abs/2605.09040",
-          "pdfUrl": "https://arxiv.org/pdf/2605.09040"
-        },
-        {
-          "id": "usenix-nsdi26-droidspeak",
-          "title": "DroidSpeak: KV Cache Sharing Across Fine-tuned Model Variants",
-          "authors": [
-            "Yuhan Liu",
-            "Yuyang Huang",
-            "Jiayi Yao",
-            "Shaoting Feng",
-            "Zhuohan Gu",
-            "Kuntai Du",
-            "Hanchen Li",
-            "Yihua Cheng",
-            "Junchen Jiang",
-            "Shan Lu",
-            "Madan Musuvathi",
-            "Esha Choukse"
-          ],
-          "summary": "Studies KV cache sharing across fine-tuned model variants in multi-LLM serving. DroidSpeak selectively recomputes sensitive layers and reuses the remaining KV cache to cut redundant prefill work.",
-          "reason": "2026 NSDI / Microsoft 参与的推理系统：多模型协作、KV cache 共享、fine-tuned variants 和 agentic workflow 都是大厂线上服务会遇到的问题。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "microsoft",
-            "kv-cache",
-            "multi-llm",
-            "prefill"
-          ],
-          "signal": 97,
-          "source": "Microsoft/USENIX NSDI",
-          "publishedAt": "2026-05-01T00:00:00Z",
-          "url": "https://www.usenix.org/conference/nsdi26/presentation/liu-yuhan",
-          "pdfUrl": "https://www.usenix.org/system/files/nsdi26-liu-yuhan.pdf"
-        },
-        {
-          "id": "arxiv-2604.04976",
-          "title": "Tencent Advertising Algorithm Challenge 2025: All-Modality Generative Recommendation",
-          "authors": [
-            "Junwei Pan",
-            "Wei Xue",
-            "Chao Zhou",
-            "Xing Zhou",
-            "Lunan Fan",
-            "Yanbo Wang",
-            "Haijie Gu",
-            "Jie Jiang"
-          ],
-          "summary": "Introduces TencentGR-1M and TencentGR-10M, two de-identified Tencent Ads datasets for all-modality generative recommendation with exposure, click and conversion signals, plus task definitions, baselines and competition findings.",
-          "reason": "近 90 天大厂推荐数据集方向：工业广告、生成式推荐、全模态特征、点击和转化目标都很贴近线上系统。",
-          "area": "推荐算法",
-          "tags": [
-            "tencent",
-            "ads",
-            "generative-recommendation",
-            "dataset",
-            "conversion"
-          ],
-          "signal": 97,
-          "source": "Tencent/arXiv",
-          "publishedAt": "2026-04-04T17:05:15Z",
-          "url": "https://arxiv.org/abs/2604.04976",
-          "pdfUrl": "https://arxiv.org/pdf/2604.04976"
-        },
-        {
-          "id": "arxiv-2603.05800",
-          "title": "StreamWise: Serving Multi-Modal Generation in Real-Time at Scale",
-          "authors": [
-            "Haoran Qiu",
-            "Gohar Irfan Chaudhry",
-            "Chaojie Zhang",
-            "Íñigo Goiri",
-            "Esha Choukse",
-            "Rodrigo Fonseca",
-            "Ricardo Bianchini"
-          ],
-          "summary": "Studies real-time multi-modal generation serving at scale, coordinating LLMs, text-to-speech, image, audio and video generation under latency, cost and quality constraints with adaptive scheduling and heterogeneous hardware.",
-          "reason": "2026 Microsoft/Azure Research 推理服务系统：从纯 LLM 扩到多模态生成链路，重点是 SLO、异构资源调度、成本和实时流式体验。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "microsoft",
-            "multimodal",
-            "slo",
-            "scheduling"
-          ],
-          "signal": 94,
-          "source": "Microsoft/arXiv",
-          "publishedAt": "2026-03-06T01:22:16Z",
-          "url": "https://arxiv.org/abs/2603.05800",
-          "pdfUrl": "https://arxiv.org/pdf/2603.05800"
-        },
-        {
-          "id": "arxiv-2602.21140",
-          "title": "ReviveMoE: Fast Recovery for Hardware Failures in Large-Scale MoE LLM Inference Deployments",
-          "authors": [
-            "Haley Li",
-            "Xinglu Wang",
-            "Cong Feng",
-            "Chunxu Zuo",
-            "Yanan Wang",
-            "Hei Lo",
-            "Yufei Cui",
-            "Bingji Wang",
-            "Duo Cui",
-            "Shuming Jing",
-            "Yizhou Shan",
-            "Ying Xiong",
-            "Jiannan Wang",
-            "Yong Zhang",
-            "Zhenan Fan"
-          ],
-          "summary": "Targets failure recovery for large-scale MoE inference deployments, avoiding full serving-instance restarts when hardware failures occur. The system is integrated with Huawei Cloud's MaaS stack and xDeepServe platform.",
-          "reason": "2026 Huawei Cloud 大规模 MoE 推理部署：关注硬件故障恢复、MaaS 稳定性和 xDeepServe 生产栈，属于线上服务可靠性方向。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "huawei",
-            "moe",
-            "reliability",
-            "serving"
-          ],
-          "signal": 93,
-          "source": "Huawei/arXiv",
-          "publishedAt": "2026-02-24T17:39:41Z",
-          "url": "https://arxiv.org/abs/2602.21140",
-          "pdfUrl": "https://arxiv.org/pdf/2602.21140"
         }
       ]
     }
