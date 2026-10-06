@@ -1,292 +1,284 @@
 {
-  "generatedAt": "2026-10-03T08:48:30.577925+08:00",
+  "generatedAt": "2026-10-06T09:58:22.047407+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2610.01892",
-      "title": "Selection-Based Structured Reasoning: Toward Efficient Multimodal Search Agents",
+      "id": "arxiv-2610.04537",
+      "title": "PhaseGate: Phase-Aware CPU Retrieval Scheduling for On-Device LLMs on Unified Memory",
       "authors": [
-        "Feiyu Gavin Zhu",
-        "Xiaoyu Zhu",
-        "Jiqi Yang",
-        "Rui Yang",
-        "Arnab Kumar Mondal",
-        "Yancheng Wang",
-        "Xinke Deng",
-        "Jean Oh",
-        "Reid Simmons",
-        "Joerg Liebelt",
-        "Xiang Kong",
-        "Zhongyu Jiang"
+        "Seoyoon Yum",
+        "Sehoon Kim"
       ],
-      "summary": "Multimodal agents commonly generate free-form reasoning before each action. For small models, limited model capacity can result in lengthy reasoning that provides little useful guidance for action generation while incurring substantial inference cost. To address this challenge, we introduce Selection-based Structured Reasoning (SSR), a framework that reformulates reasoning as selection instead of open-ended generation. SSR represents recurring high-level reasoning as pre-specified, reusable natural-language candidates. At each turn, the model selects from these reasoning candidates based on their likelihoods given the current context, without requiring an auxiliary task head. Using pre-specified reasoning traces enables parallel scoring, where teacher-forced prefilling computes token likelihoods concurrently within and across candidates using a shared context KV cache. We evaluate SSR on seven multimodal search benchmarks using 2B and 4B models. Across multiple reinforcement learning objectives and supervised fine-tuning, SSR delivers significant efficiency gains without sacrificing task performance. SSR achieves an average success rate competitive with leading search agents of the same scale, while reducing per-turn reasoning latency by over 90% and total per-question model inference latency by 28-54%. Project page: https://zfy0314.github.io/ssr-webpage/.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Multimodal agents commonly generate free-form reasoning before each action. For small models, limited model capacity can result in...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "efficient",
-        "inference",
-        "kv-cache",
-        "latency",
-        "multimodal",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-01T15:42:14Z",
-      "url": "https://arxiv.org/abs/2610.01892",
-      "pdfUrl": "https://arxiv.org/pdf/2610.01892v1"
-    },
-    {
-      "id": "arxiv-2610.01784",
-      "title": "ePACT: Energy-Performance-Aware Commitment Tracking for LLM Serving",
-      "authors": [
-        "You Peng",
-        "Youhe Jiang",
-        "Chen Wang",
-        "Binhang Yuan"
-      ],
-      "summary": "Reducing LLM serving energy does not by itself guarantee lower deployment cost when electricity procurement exposes operators to unfavorable deviations from preset commitments. We study hourly commitments with positive, potentially asymmetric costs for overuse and underuse, and formulate energy-Performance-Aware Commitment Tracking: minimize deviation costs subject to request-level service requirements. We implement ePACT, a two-level controller that adjusts serving capacity and GPU clocks as requests arrive. A global planner updates interval energy targets from measured consumption and the remaining hourly commitment. A local decision maker predicts candidate configurations' energy and completion times, checks predicted deadline misses, and selects among admitted configurations by asymmetric target-deviation cost, with a service-first fallback. Coarse-to-fine action search runs asynchronously with serving. We evaluate ePACT through single-hour comparisons, controller ablations, and full-day trace simulations for H20 and H200 GPU pools. In the 24-hour simulations, ePACT reduces the asymmetric deviation cost by $73.8\\%$ and $75.7\\%$ relative to vLLM while retaining near-vLLM SLO attainment. Mean absolute hourly deviations are $2.16\\%$ and $2.31\\%$, respectively.",
-      "reason": "近 30 天；关键词：cs.DC, deadline, energy。Reducing LLM serving energy does not by itself guarantee lower deployment cost when electricity procurement exposes operators to u...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "deadline",
-        "energy",
-        "llm",
-        "serving",
-        "slo"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-01T14:32:24Z",
-      "url": "https://arxiv.org/abs/2610.01784",
-      "pdfUrl": "https://arxiv.org/pdf/2610.01784v1"
-    },
-    {
-      "id": "arxiv-2610.01434",
-      "title": "MWOP: Modality-aware Width-wise Operation Pruning for Efficient MLLMs",
-      "authors": [
-        "Xudong Wang",
-        "Hao Wu",
-        "Haozhe Hu",
-        "Peiran Yin",
-        "Xinghao Chen",
-        "Yunpu Ma",
-        "Wei Zhang",
-        "Xiaoyu Shen"
-      ],
-      "summary": "Multimodal large language models (MLLMs) incur substantial inference costs when processing long visual-textual sequences. While existing operation compression methods exploit modality-level redundancy, they largely treat computation within attention heads and shared feed-forward network (FFN) channels as unified units, leaving finer-grained redundancy underexplored. We find that redundancy varies both across modality-interaction paths within the same attention head and across visual and textual executions of the same FFN channel. Based on these findings, we propose Modality-aware Width-wise Operation Pruning (MWOP), which independently prunes visual-to-visual (V2V), text-to-visual (T2V), and text-to-text (T2T) attention paths within each layer, and separately selects FFN channels for visual and textual inputs. A first-order Taylor criterion guides the pruning process, with FFN importance re-evaluated after attention pruning and LoRA-based recovery training. To translate the resulting fine-grained sparsity into practical acceleration, we further develop path-sparse Triton attention kernels and compact visual-side FFN execution. MWOP preserves the token sequence while reducing attention and FFN computation, making it complementary to token compression and enabling simultaneous reduction of sequence length and per-token computation. On LLaVA-OneVision-7B, MWOP alone achieves a $1.6\\times$ prefill speedup with 99.7\\% average performance retention across 12 benchmarks. Combined with two representative token compression methods, it further increases their prefill speedups from $2.0\\times$ and $1.9\\times$ to $2.9\\times$ and $2.7\\times$, respectively. Results on Qwen2.5-VL-7B further demonstrate its applicability across architectures. The code is available at https://github.com/EIT-NLP/MWOP.",
-      "reason": "近 30 天；关键词：cs.CV, efficient, inference。Multimodal large language models (MLLMs) incur substantial inference costs when processing long visual-textual sequences. While ex...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CV",
-        "efficient",
-        "inference",
-        "llm",
-        "lora",
-        "multimodal",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-01T10:31:21Z",
-      "url": "https://arxiv.org/abs/2610.01434",
-      "pdfUrl": "https://arxiv.org/pdf/2610.01434v1"
-    },
-    {
-      "id": "arxiv-2610.01380",
-      "title": "GPU-Initiated Communication: Dissecting Down to the Bone",
-      "authors": [
-        "Javid Baydamirli",
-        "Ismayil Ismayilov",
-        "Kaan Oktay",
-        "Didem Unat"
-      ],
-      "summary": "GPU-initiated communication lets GPU threads post RDMA operations directly to the NIC. It underpins NVSHMEM, NCCL GIN, and DeepEP, which serve the fine-grained, latency-critical communication of Mixture-of-Experts (MoE) models, yet its performance characteristics and optimizations remain scarcely documented beyond source code, and library comparisons fail to separate the costs of the hardware mechanism from those of the library around it. This paper dissects GPU-initiated communication at the GPU-NIC boundary. We first detail the GPU-side network path: queue placement, work-request construction, doorbell ordering, and completion semantics. We then introduce mini-gda and mini-proxy, minimal transports for the GPU and CPU-proxy submission paths, and measure them alongside NVSHMEM IBGDA, NCCL GIN, DeepEP, UCCL-EP, MSCCL++, and fabric-lib on NVIDIA H100, H200, B200, and GB200 platforms. A minimal GPU path issues an operation in 0.7 $μ$s and completes in 4.0 $μ$s; libraries add up to 4.6 $μ$s of issue time through queue management, memory ordering, and completion scope, and issue time scales with the SM clock. A tuned CPU proxy matches or beats the GPU path at idle, at the cost of a dedicated core whose operating state sets its latency and throughput. On either path, sharing a queue with bulk traffic raises latency by one to three orders of magnitude. Reaching the 260 M msg/s ceiling of our InfiniBand platform requires doorbell batching and queue parallelism, and both have resource costs: communication code can reduce GPU block residency even when unused, and all-to-all traffic loses 59% of its NIC message rate at about 3,000 active connections. The submission path alone therefore does not predict communication performance. Our experiment code and results are available at https://github.com/ParCoreLab/Dissecting-GPU-Communication-Experiments.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, batching。GPU-initiated communication lets GPU threads post RDMA operations directly to the NIC. It underpins NVSHMEM, NCCL GIN, and DeepEP,...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
-        "cs.DC",
-        "batching",
-        "latency",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-10-01T09:46:08Z",
-      "url": "https://arxiv.org/abs/2610.01380",
-      "pdfUrl": "https://arxiv.org/pdf/2610.01380v1"
-    },
-    {
-      "id": "arxiv-2610.01265",
-      "title": "RapidMoE: Exploiting Cross-Asymmetry via Adaptive Residual Offloading for Large-Scale MoE Inference",
-      "authors": [
-        "Wenxun Wang",
-        "Likai Ma",
-        "Zongle Huang",
-        "Chen Tang",
-        "Yongpan Liu"
-      ],
-      "summary": "The widespread adoption of Mixture-of-Experts (MoE) has created a growing need for deployment on heterogeneous platforms. However, it exposes a fundamental mismatch between the algorithmic demands of large-scale MoE and the disparate characteristics of hardware.Existing CPU-GPU hybrid inference systems fail to resolve this as they either encounter PCIe bandwidth bottlenecks when loading experts to GPUs, or rely heavily on CPU computation. Consequently, this leads to low resource utilization and inevitable violations of fixed latency budgets as parameters scale. In this paper, we identify and exploit Cross-Asymmetry--a structural alignment between the algorithmic workload skew of MoE routing and the physical disparity of heterogeneous hardware. To this end, we introduce RapidMoE, a residual offloading system for efficient large-scale MoE inference. We propose how RapidMoE leverages a residual-split framework to enable offloading paradigm shift from expert-level to bit-level, which unfolds across three key dimensions: (1) data representation, enabling compact and decoupled storage; (2) routing strategy, partitioning computation into dual paths aligned with hardware capabilities; (3) execution parallelism, scheduling a balanced storage-compute workload across devices. We further employ a novel Unified Multi-Level Importance Arbitration to adaptively adjust the critical expert set at runtime, ensuring the accuracy-latency Pareto frontier. These innovations exploit inherent cross-asymmetry, fundamentally breaking the algorithm-hardware misalignment. Experimental results show that RapidMoE achieves up to 3.5x speedup in decoding and 2.1x speedup in prefill compared to state-of-the-art (SOTA) offloading systems.",
-      "reason": "近 30 天；关键词：cs.DC, alignment, efficient。The widespread adoption of Mixture-of-Experts (MoE) has created a growing need for deployment on heterogeneous platforms. However,...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "alignment",
-        "efficient",
-        "inference",
-        "latency",
-        "pareto",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-01T08:02:24Z",
-      "url": "https://arxiv.org/abs/2610.01265",
-      "pdfUrl": "https://arxiv.org/pdf/2610.01265v1"
-    },
-    {
-      "id": "arxiv-2610.00888",
-      "title": "Match the Distribution, Not the Compute: Post-Training Multi-Token Prediction Heads",
-      "authors": [
-        "Prachi Badarayani",
-        "Aidan Jay",
-        "Chenghui Zhou",
-        "Dayquan Julienne",
-        "Yuan Gao",
-        "Tianwei Chen",
-        "George Zerveas",
-        "Ishmam Zabir",
-        "Xiren Zhou",
-        "Chris Quirk",
-        "Xia Song"
-      ],
-      "summary": "Multi-token prediction (MTP) improves the throughput of autoregressive generation by enabling the language model to draft multiple next tokens per forward pass, while a verification step over draft tokens ensures that token distribution of the backbone is preserved. Every open MTP-family release (MiMo-7B, DeepSeek-V3, Qwen3) trains its heads jointly with the backbone over the full pretraining run of tens of trillions of tokens, thus setting the drafter quality at pretraining time. We ask whether a lightweight post-training pass on target-generated chain-of-thought is enough to reach the same expected throughput speedup on a frozen reasoning model, and study how a serving-time system built on such a checkpoint can be optimized. We present three findings. 1) On a frozen Qwen3-8B with $K{=}3$ chained MTP heads, we show that a post-training recipe with plain cross-entropy on $\\approx\\!2.5$B tokens reaches or exceeds the expected speedup of jointly trained MiMo-7B on math, coding and knowledge benchmarks. Our post-training recipe utilizes $10^3$-$10^4\\times$ less MTP-training tokens as compared with joint pre-training of MiMO-7B MTP baseline. 2) We propose a chain-aware relaxation of draft token verification rule that allows a bounded drift from backbone language model token distribution. We show that this relaxation lifts expected speedups by $+12$ to $+16\\%$ per benchmark while preserving task accuracy. 3) We propose an adaptive controller that dynamically chooses the number of MTP heads to be engaged at inference time and demonstrate recovery of upto $11$--$14\\%$ loss in speedup using fixed maximum MTP draft length.",
-      "reason": "近 30 天；关键词：cs.LG, inference, serving。Multi-token prediction (MTP) improves the throughput of autoregressive generation by enabling the language model to draft multiple...",
+      "summary": "On-device assistants run GPU-based LLM inference alongside CPU retrieval on unified-memory systems. Under a saturated local-retrieval workload, four concurrent retrieval workers raise 95th-percentile (p95) decode latency by 60-61% on two M4 systems, whereas prefill latency rises by only 5.7-6.9%. We study LLM phase as an admission signal for independent CPU retrieval under controlled LLM workloads. PHASEGATE calibrates separate concurrency limits for prefill and decode, selecting four and one on our base-M4 configuration. Under a backlogged queue, it achieves 2.0 times the aggregate retrieval throughput of the best tested feasible fixed policy, with both p95 LLM latency metrics within 1.25 times their no-retrieval baselines in all seven held-out runs. A phase-blind control, TimeGate, uses the same two limits on a calibration-derived schedule without observing LLM phase. It achieves similar retrieval throughput but violates the output-token latency limit in every run. M2 and M2 Pro Mac minis reproduce the policy ordering, while output-length sweeps show that the advantage narrows as decode occupies more of each request.",
+      "reason": "近 30 天；关键词：cs.LG, inference, latency。On-device assistants run GPU-based LLM inference alongside CPU retrieval on unified-memory systems. Under a saturated local-retrie...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
         "inference",
-        "serving",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-01T01:09:18Z",
-      "url": "https://arxiv.org/abs/2610.00888",
-      "pdfUrl": "https://arxiv.org/pdf/2610.00888v1"
-    },
-    {
-      "id": "arxiv-2610.00831",
-      "title": "AnyJev Technical Report",
-      "authors": [
-        "Jiamu Zhang",
-        "Tianze Yang",
-        "Yucheng Shi",
-        "Evan Chen",
-        "Zixiang Nie",
-        "Kelly Wan",
-        "Liangjie Hong",
-        "Ninghao Liu",
-        "Liang Wu"
-      ],
-      "summary": "A typed decision is a choice among a fixed set of options, returned as a probability rather than as text. Systems that need typed decisions today use models trained for that purpose. This report describes AnyJev, which reads a typed decision from one prefill of a pretrained instruction-tuned language model. The readout restricts the next-token distribution at the answer position to the option tokens. It has two defects: the model assigns higher probability to some labels whatever the input, and to some positions in the option list. AnyJev corrects both with no gradient steps and no parameter changes: it divides out a label prior estimated from unlabelled inputs, and it averages log-probabilities over the K cyclic rotations of the option list. On two 20-option tasks the rotations lower the order-flip rate from 0.33 to 0.14 and from 0.33 to 0.18, and raise accuracy on 11 of 11 models on both. Reading every rotation requires K prefills. A stopping rule selected against the full-rotation decision on unlabelled states cuts that. Selecting the threshold on one unlabelled split and bounding its disagreement on a second, it reads 10.6 rotations of 18 at a verified 0.008 bound on two of four cells; selected and bounded on one split, as our serving run did, it reads 7.3 and serves 2.2 times as many decisions per second on vLLM. The code is open source.",
-      "reason": "近 30 天；关键词：cs.LG, llm, prefill。A typed decision is a choice among a fixed set of options, returned as a probability rather than as text. Systems that need typed...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
+        "latency",
         "llm",
         "prefill",
+        "retrieval",
         "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-09-30T23:43:04Z",
-      "url": "https://arxiv.org/abs/2610.00831",
-      "pdfUrl": "https://arxiv.org/pdf/2610.00831v1"
+      "publishedAt": "2026-10-03T14:07:04Z",
+      "url": "https://arxiv.org/abs/2610.04537",
+      "pdfUrl": "https://arxiv.org/pdf/2610.04537v1"
     },
     {
-      "id": "arxiv-2610.00671",
-      "title": "MegaFlux: Skew-Resilient MoE Megakernels via Pipelined Expert Replication",
+      "id": "arxiv-2610.03894",
+      "title": "Proxy Confidence: Auditing Black-Box LLM Agents with a Surrogate's Log-Probabilities",
       "authors": [
-        "Jianzhu Yao",
-        "Siva Kumar Sastry Hari",
-        "Vignesh Balaji",
-        "Sana Damani",
-        "Insu Jang",
-        "Pramod Viswanath",
-        "Christos Kozyrakis"
+        "Yikai Zhao",
+        "Saurabh Pandey",
+        "Pradeep Kumar Misra"
       ],
-      "summary": "Mixture-of-experts (MoE) megakernels fuse expert-parallel communication with expert computation. However, under fixed expert placement, routing skew creates GPU stragglers: overloaded GPUs determine layer latency while others sit idle. Replicating hot experts can shift work to underloaded GPUs, but dynamic replicas introduce additional work: replicas must receive expert weights to execute and, during training, their partial weight gradients must be reduced at the expert owners. We present MegaFlux, which makes expert replication a runtime decision and pipelines the communication induced by replication within persistent MoE execution. An on-device planner jointly selects replica locations and assigns tile-aligned token blocks under a per-GPU replica budget, leaving router outputs unchanged. The forward and backward megakernels realize pipelined expert replication: replicas begin computation as their required weights arrive, while backward overlaps replica-gradient reduction with ongoing expert computation. MegaFlux extends TensorRT-LLM's CuTeDSL MegaMoE forward kernel and introduces a new backward MoE megakernel. Across 147 configurations per direction on eight NVIDIA B200 GPUs, MegaFlux achieves geometric-mean speedups of $1.45\\times$ for forward and $1.28\\times$ for backward over the same megakernels with fixed placement, peaking at $2.14\\times$ and $2.64\\times$. In ablations, pipelining hides $56$--$76$% of replica-weight transfer cost in forward and $91$--$100$% of combined weight-transfer and replica-gradient-reduction cost in backward, yielding up to $13.2$% and $26.7$% additional layer-latency reductions over the same replication plans with these operations executed separately. Integrated into vLLM for DeepSeek-V4-Pro prefill, MegaFlux delivers $1.13$--$1.26\\times$ median end-to-end speedups over fixed placement.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, latency。Mixture-of-experts (MoE) megakernels fuse expert-parallel communication with expert computation. However, under fixed expert place...",
+      "summary": "A deployed LLM agent emits tool calls, queries, and code that can be silently wrong -- by the time the error surfaces, the action has run. Frontier chat APIs hide the model's token probabilities; the agent's stated confidence barely beats chance on the mistakes that matter; and resampling does not help, since frontier models are highly repetitive, reproducing the same call across samples. We recover the missing signal from a low-cost open-weight surrogate run in parallel. It reads the same context, schema, and proposed action as the agent, then scores the call from its own log-probabilities through a family of complementary readouts: teacher forcing and request-PMI weigh the likelihood of each argument value, a discriminative verdict judges the call as a whole, and tool-choice competition tests the function against its siblings. One principle says which to trust: a generative likelihood localizes wrong argument values, while the verdict catches holistically wrong calls. When the error type is unknown, an ensemble is the low-regret default. The readout is training-free, needs no access to the agent's internals, and costs one prefill pass alongside the tool call. On difficult coding tasks it reaches AUROC 0.825 where the actor's stated confidence is near chance (0.598), and the generative readouts beat it by +0.07 to +0.28 across three further actors. Against self-consistency it gains +0.14 to +0.19 on near-deterministic actors, at 1/K the cost. The signal drives two deployment modes: a real-time gate escalating the least-trustworthy calls for review (+0.05 to +0.30 accepted-action accuracy at 50% coverage), and confidence feedback, returning the tool result with the score so the agent adapts its next step -- lifting task success on live-execution benchmarks (+0.119 and +0.137, p <= 1e-4) and beating a random-value control where step errors are silent (+0.078, p = 0.003).",
+      "reason": "近 30 天；关键词：cs.AI, deployed, llm。A deployed LLM agent emits tool calls, queries, and code that can be silently wrong -- by the time the error surfaces, the action...",
       "area": "LLM 推理优化",
       "tags": [
-        "nvidia",
-        "cs.DC",
-        "latency",
+        "cs.AI",
+        "deployed",
         "llm",
         "prefill"
       ],
       "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-09-30T20:09:09Z",
-      "url": "https://arxiv.org/abs/2610.00671",
-      "pdfUrl": "https://arxiv.org/pdf/2610.00671v1"
+      "source": "arXiv",
+      "publishedAt": "2026-10-02T18:09:00Z",
+      "url": "https://arxiv.org/abs/2610.03894",
+      "pdfUrl": "https://arxiv.org/pdf/2610.03894v1"
     },
     {
-      "id": "arxiv-2610.00656",
-      "title": "Lingtai: What Concept Geometry Reveals--and Does Not Reveal--About LLM Inference",
+      "id": "arxiv-2610.03394",
+      "title": "EdgeAgent: Orchestrating On-Device LLM inference for End-User Multi-Agent Systems on CPU-GPU Unified Memory Architectures",
       "authors": [
-        "Jiangang Chen"
+        "Yuhai Long",
+        "Yuanxin Wei",
+        "Kai Wu",
+        "Jinhui Wei",
+        "Dan Huang",
+        "Jiangsu Du"
       ],
-      "summary": "Observing what a large language model computes during autoregressive inference--online and without training probes--remains difficult. We introduce Lingtai, a training-free concept telemetry layer: at each generation step, residual states are projected onto a domain-specific bank of named concept anchors, constructed without labeled concept examples, outcome labels, gradient fitting, or activation-space optimization, producing a structured per-step concept-coordinate signal. Across code generation and grade-school mathematical reasoning, this signal exhibits a robust association with predictive uncertainty: the association survives problem-identity and token-position controls and is not attributable to a single token type, is not explained by a simple correct/incorrect mixture on GSM8K, and is not reproduced by matched random anchors; it is markedly weaker or direction-inconsistent in K-means and PCA projections. Two structures emerge: a recurring uncertainty-linked activity signal whose functional geometry is task-conditioned (distinct activity-entropy shapes on HumanEval, MBPP, and GSM8K), and an execution-specific trajectory identity with strong local inertia but weak re-instantiation invariance--under completion-only elastic alignment, corruption at k=32 (approximately a median quarter of the completion) on the matched re-execution subset still retrieves the archived episode at 62.0%, while a fresh execution retrieves it only 11.7-16.0% of the time. Finally, a matched audit finds no evidence that the scalar concept-activity signal used here supplies a stable correctness coordinate under the tested protocol; we therefore treat correctness as externally supplied. Telemetry adds 0.7-1.6% per-token decode overhead for the 161-anchor code implementation, with unchanged generated tokens.",
-      "reason": "近 30 天；关键词：cs.CL, alignment, inference。Observing what a large language model computes during autoregressive inference--online and without training probes--remains diffic...",
+      "summary": "Emerging multi-agent LLMs demand privacy-preserving edge deployment, yet current inference systems struggle with these collaborative workflows. Specifically, the memory-bound decode phase causes severe bus contention on unified memory architectures (UMA), paralyzing naive CPU-GPU co-execution. Furthermore, speculative decoding in multi-agent workloads faces extreme variance in drafting difficulty, alternating between complex reasoning and predictable structured generation. Compounded by frequent tool-induced stalls, this highly fragmented execution severely underutilizes hardware and defeats traditional static batching. We present EdgeAgent, a cross-layer inference system explicitly co-designed for edge UMA and multi-agent workloads. At the micro-architectural level, it bypasses rigid graph-compiler constraints to enable zero-copy UMA-aware tensor parallelism, utilizing asymmetric memory layouts to fully saturate both CPU and GPU compute units. At the scheduling level, it dynamically allocates draft budgets based on real-time sequence predictability to bound bandwidth waste. Concurrently, an asynchronous suspend-and-yield mechanism actively evicts stalled agents, ensuring continuous hardware saturation during unpredictable tool invocations. Extensive evaluations on an Apple M4 SoC demonstrate that the UMA-aware execution alone contributes a 1.29x speedup over batched speculative decoding. Adding the agent-aware scheduling lifts the full EdgeAgent system to a 1.77x speedup under extreme tool-use latencies.",
+      "reason": "近 30 天；公司信号：Apple；关键词：apple, cs.DC, batching。Emerging multi-agent LLMs demand privacy-preserving edge deployment, yet current inference systems struggle with these collaborati...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "apple",
+        "cs.DC",
+        "batching",
+        "inference",
+        "llm",
+        "serving",
+        "speculative"
+      ],
+      "signal": 99,
+      "source": "Apple/arXiv",
+      "publishedAt": "2026-10-02T14:43:42Z",
+      "url": "https://arxiv.org/abs/2610.03394",
+      "pdfUrl": "https://arxiv.org/pdf/2610.03394v1"
+    },
+    {
+      "id": "arxiv-2610.03286",
+      "title": "VenusRL: A Fully Disaggregated Agentic RL System with Priority Scheduling and Scalable Interaction",
+      "authors": [
+        "Mingjun Zhang",
+        "Yucheng Li",
+        "Menghao Zhang",
+        "Shuyong Zhu",
+        "Ping Zhang",
+        "Xiaohe Hu",
+        "Jun Chen",
+        "Zhixin Wang",
+        "Xutong Wang",
+        "He Liu",
+        "Yanmin Jia",
+        "Shengrong Zhu",
+        "Peng Sun",
+        "Mingjie Zhang",
+        "Liming Liu",
+        "Jinlong Hou",
+        "Yuan Cheng",
+        "Yujun Zhang"
+      ],
+      "summary": "Agentic Reinforcement Learning (RL) trains LLM agents through multi-turn interactions with external tool environments. Its multi-turn nature exposes two system-level bottlenecks unaddressed by existing agentic RL frameworks. First, end-to-end training throughput is constrained by the slowest trajectories to complete, yet optimizing per-GPU utilization alone scatters rollout progress across many groups, delaying the completion of enough groups to unblock the next training step. Second, tool sandboxes are statically over-provisioned by their declared memory ceilings, leaving most physical memory stranded while replicating near-identical state across sandboxes launched from the same prompt. We present VenusRL, a fully disaggregated agentic RL system that addresses both bottlenecks. VenusRL's priority-aware action scheduler uses length-prediction heuristics to identify sample groups whose completion is most likely to unblock the next training step, and pushes them ahead of others across batch admission, KV Cache residency, and cross-worker request orchestration. VenusRL's environment resource manager combines a memory-aware admission threshold with a template-keyed page-sharing pool, packing more sandboxes per node while preserving strict memory isolation via write-protected page table entry aliasing and copy-on-write. Across representative agentic RL workloads, VenusRL achieves up to 4.24x end-to-end training speedup over state-of-the-art baselines and reduces environment cost by up to 89%.",
+      "reason": "近 30 天；关键词：cs.DC, copy-on-write, kv-cache。Agentic Reinforcement Learning (RL) trains LLM agents through multi-turn interactions with external tool environments. Its multi-t...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "copy-on-write",
+        "kv-cache",
+        "llm",
+        "serving",
+        "slo",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-02T13:29:40Z",
+      "url": "https://arxiv.org/abs/2610.03286",
+      "pdfUrl": "https://arxiv.org/pdf/2610.03286v1"
+    },
+    {
+      "id": "arxiv-2610.03203",
+      "title": "AFORE: Attention-FFN Disaggregation with Overlapped Reconfiguration of Experts",
+      "authors": [
+        "Wenshuang Li",
+        "Youhe Jiang",
+        "You Peng",
+        "Jiawei Jiang",
+        "Binhang Yuan"
+      ],
+      "summary": "Efficient serving of Mixture-of-Experts (MoE) models is challenging due to large expert parameters, input-dependent expert activation, and dynamic workloads. Expert parallelism distributes expert computation across GPUs, while attention-FFN disaggregation (AFD) separates attention and feed-forward computation into independent worker pools. However, we observe that a naive AFD implementation could make expert load imbalance more harmful: once FFN computation becomes an independent pipeline stage, overloaded experts directly slow the FFN stage and degrade end-to-end serving performance. To solve this problem, we present AFORE, a timely expert reconfiguration system for AFD-based MoE serving. AFORE exploits two architectural properties of AFD. First, AFD exposes the expert-token distribution of upcoming microbatches before they reach FFN execution, enabling placement decisions based on near-future demand instead of stale historical profiles. Second, AFD creates a pipeline window in which expert migration for a target microbatch can be overlapped with the computation of preceding in-flight microbatches. AFORE formulates expert reconfiguration as a microbatch-aware scheduling problem and uses a migration-aware scheduler to decide when and which experts to migrate. AFORE further implements lightweight demand prefetching and NVLink-based GPU-GPU expert migration to reduce reconfiguration overhead. Evaluation on a 110B-parameter MoE model across four dynamic workloads shows that AFORE improves output throughput by 10.1-17.6% and reduces P95 inter-token latency by 7.1-9.5% compared with the strongest competing baseline. Compared with static placement, AFORE improves throughput by 29.8% on average and reduces P95 inter-token latency by 18.2% on average. Migration profiling further shows that AFD pipeline overlap can fully hide expert-migration latency.",
+      "reason": "近 30 天；关键词：cs.DC, efficient, latency。Efficient serving of Mixture-of-Experts (MoE) models is challenging due to large expert parameters, input-dependent expert activat...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "efficient",
+        "latency",
+        "serving",
+        "slo",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-02T12:20:29Z",
+      "url": "https://arxiv.org/abs/2610.03203",
+      "pdfUrl": "https://arxiv.org/pdf/2610.03203v1"
+    },
+    {
+      "id": "arxiv-2610.03135",
+      "title": "Page-EntroKV: Hardware-Aligned, Entropy-Weighted KV-Cache Eviction under Grouped-Query Attention",
+      "authors": [
+        "Inbasekaran S"
+      ],
+      "summary": "Serving long-context autoregressive language models is constrained by the key-value (KV) cache. Most dynamic eviction methods score token importance per query head and choose tokens independently. This fits poorly with grouped-query attention (GQA), where several query heads share one physical KV buffer: divergent per-head selections force the serving engine to retain the union of their choices - inflating the cache by up to the group ratio r - while arithmetic mean pooling dilutes the specialized retrieval heads that carry factual recall. We introduce Page-EntroKV, a formal framework for KV-cache eviction operating at the granularity GQA serving actually allocates. Heads within each physical group are pooled by weights derived from sink-isolated collision (Renyi-2) entropy - one inner product per head, computed once at prefill with no calibration - so sink heads cannot masquerade as retrieval heads. Pooled scores are projected onto PagedAttention page frames, and eviction executes at the hardware tuple (layer, group, page). We formalize the union overhead ratio (UOR) and intra-group disagreement, prove an exact identity linking them for two-head groups alongside two-sided bounds at every group ratio, prove strict budget preservation and a finite-context needle-retention bound that arithmetic mean pooling provably violates, and give exact per-layer page accounting. On a pilot architecture (Qwen2.5-1.5B-Instruct, r=6), head-independent replay over 2,240 group measurements yields union overhead up to 4.75x at a 2% budget, while Page-EntroKV holds UOR exactly 1.000; sink isolation removes a 13x sink masquerade; needle recall is 100% versus 0% for mean pooling at a 20% budget; retained cardinality is exact for every page size; and QA and code tasks remain solvable at 20% retention.",
+      "reason": "近 30 天；关键词：cs.LG, pagedattention, prefill。Serving long-context autoregressive language models is constrained by the key-value (KV) cache. Most dynamic eviction methods scor...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "pagedattention",
+        "prefill",
+        "retrieval",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-02T11:01:39Z",
+      "url": "https://arxiv.org/abs/2610.03135",
+      "pdfUrl": "https://arxiv.org/pdf/2610.03135v1"
+    },
+    {
+      "id": "arxiv-2610.03088",
+      "title": "Coda: Exploiting Admission Flexibility for Coding-Agent Serving",
+      "authors": [
+        "Youhe Jiang",
+        "Fangcheng Fu",
+        "Binhang Yuan",
+        "Krishna Malladi",
+        "Ehsan K. Ardestani",
+        "Zhan Shu",
+        "Adnan Aziz",
+        "Yi Xu"
+      ],
+      "summary": "Coding agents powered by large language models (LLMs) repeatedly alternate between model inference and tool calls, creating long-lived sessions with reusable key-value (KV) states and asynchronous request resumptions. Logical readiness, however, does not ensure efficient admission in a shared serving system. Through direct trace analysis and trace-driven replay, we identify two mismatches: reusable KV states reside across storage tiers and incur unequal computational costs for state preparation, while requests with heterogeneous context lengths can decode inefficiently together. Our central insight is that exploiting admission flexibility can improve serving performance while preserving request progress. We present Coda, a coding-agent serving system that realizes this insight through a readiness-informed admission layer incorporating two mechanisms. Tiered-Aging state admission exploits bounded flexibility in admission order to improve admission efficiency and preserve request progress. Compatibility-Aware execution admission exploits flexibility in attention grouping within each model iteration to reduce mixed-context interference and improve shared decoding efficiency. For multi-worker configurations, Coda introduces a separate routing layer that considers KV-state residency, worker load, and request-to-worker context-length compatibility to guide efficient request placement. We evaluate Coda across different models and workloads against state-of-the-art coding-agent serving systems and vLLM. Across the single-worker and multi-worker experiments, Coda improves output-token and SLO-compliant throughput by 20.3% and 70.5% on average, with peak gains of 29.3% and 140.2%.",
+      "reason": "近 30 天；关键词：cs.DC, efficient, inference。Coding agents powered by large language models (LLMs) repeatedly alternate between model inference and tool calls, creating long-l...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "efficient",
+        "inference",
+        "llm",
+        "serving",
+        "slo",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-02T10:07:36Z",
+      "url": "https://arxiv.org/abs/2610.03088",
+      "pdfUrl": "https://arxiv.org/pdf/2610.03088v1"
+    },
+    {
+      "id": "arxiv-2610.03039",
+      "title": "HyperThink: Text-to-Parameter Hypernetworks for Efficient Reasoning",
+      "authors": [
+        "Donggyun Kim",
+        "Jack Lu",
+        "Chanwoo Kim",
+        "Mengye Ren",
+        "Seunghoon Hong"
+      ],
+      "summary": "Long-form thinking traces can substantially improve the multi-step reasoning performance of large language models (LLMs), but they introduce high inference-time overhead, with latency dominated by sequential decoding. We propose HyperThink, a text-to-parameter approach that amortizes this reasoning computation into a single query-conditioned parameter update: a lightweight hypernetwork reads the question and predicts updates to a small subset of the base LLM's parameters, while a vector-quantized decoder constrains them to a finite set of reusable patterns to improve robustness and transfer. Trained end-to-end on outputs from the base model itself, HyperThink eliminates long thinking traces at test time: after one hypernetwork forward pass, the adapted model generates a concise step-by-step solution and final answer without an intermediate trace, using far fewer tokens while retaining strong reasoning performance. Empirically, HyperThink improves the low-latency region of the accuracy-latency trade-off on mathematical and general reasoning tasks, with its strongest gains in the near-non-thinking regime.",
+      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Long-form thinking traces can substantially improve the multi-step reasoning performance of large language models (LLMs), but they...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.CL",
-        "alignment",
+        "efficient",
         "inference",
+        "latency",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-02T09:19:59Z",
+      "url": "https://arxiv.org/abs/2610.03039",
+      "pdfUrl": "https://arxiv.org/pdf/2610.03039v1"
+    },
+    {
+      "id": "arxiv-2610.03027",
+      "title": "Tailoring the Quantization Space for 1-Bit KV Cache Compression",
+      "authors": [
+        "Minsoo Cheong",
+        "Donghyun Son",
+        "Sungjoo Yoo"
+      ],
+      "summary": "The key-value (KV) cache becomes a major memory bottleneck in long-context LLM inference, placing substantial pressure on memory capacity and bandwidth. To mitigate this bottleneck, vector quantization (VQ) has emerged as a promising approach for aggressive KV cache compression. However, existing VQ methods degrade substantially in the 1-bit regime. At such extreme compression, each codebook must represent a larger group of channels with a limited set of centroids, making effective use of its capacity increasingly challenging. To address this, we introduce $\\textbf{TaSQ}$, which tailors the VQ target space by combining query-guided channel weighting, cross-head normalization, and covariance-aware channel grouping to better reflect the error sensitivity and statistical structure of cached activations. Since these transforms are RoPE-compatible and can be easily merged into projection weights and codebooks, TaSQ preserves the conventional VQ lookup structure and adds negligible serving overhead. Across general, long-chain-of-thought reasoning, and long-context retrieval benchmarks, TaSQ consistently outperforms existing low-bit KV cache VQ baselines while preserving reasoning stability. On a single RTX 6000 Ada GPU, its SGLang implementation supports up to $14\\times$ larger batch sizes and achieves $1.87\\times$ higher peak throughput compared to the BF16 baseline.",
+      "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。The key-value (KV) cache becomes a major memory bottleneck in long-context LLM inference, placing substantial pressure on memory c...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "kv-cache",
         "llm",
+        "quantization",
+        "retrieval",
         "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-09-30T19:55:20Z",
-      "url": "https://arxiv.org/abs/2610.00656",
-      "pdfUrl": "https://arxiv.org/pdf/2610.00656v1"
+      "publishedAt": "2026-10-02T09:04:25Z",
+      "url": "https://arxiv.org/abs/2610.03027",
+      "pdfUrl": "https://arxiv.org/pdf/2610.03027v1"
     },
     {
-      "id": "arxiv-2610.00499",
-      "title": "Denoising Surface: Modeling and Predicting Inference Cost for Diffusion LLM Serving",
+      "id": "arxiv-2610.02953",
+      "title": "SlimKV: Joint Token-Feature KV Cache Compression with Reconstruction-Free Beacon Attention",
       "authors": [
-        "Haoyu Zheng",
-        "Fangcheng Fu",
-        "Binhang Yuan",
-        "Yongqiang Zhang",
-        "Liang Deng",
-        "Hao Wang",
-        "Yuanyuan Zhu",
-        "Xiao Yan",
-        "Jiawei Jiang"
+        "Zihan Teng",
+        "Jiayu Zhao",
+        "Wentao Ren",
+        "Minhao Fan",
+        "Tianrui Ma",
+        "Song Chen",
+        "Weichen Liu"
       ],
-      "summary": "As diffusion large language models (dLLMs) become more capable, they are moving from research settings to real-world \\textit{serving}, where request management (such as scheduling and resource allocation) relies on accurate estimation of per-request inference cost. However, common cost proxies fall short for dLLMs: output length ignores that one forward pass can unmask multiple tokens, and denoising-step count ignores the \\textit{heterogeneous} per-step costs. We observe that the block-autoregressive generation mechanism induces a two-dimensional execution structure over output blocks and within-block denoising steps, whereas these proxies collapse it into a scalar, discarding information essential for characterizing the cost. Motivated by this insight, we propose the Denoising Workload Surface (DWS), which preserves this two-dimensional block-step structure as a probability surface to weight the heterogeneous per-step costs. We then design a coarse-to-fine training scheme that enables a lightweight prompt-only predictor to accurately predict the complex DWS. This predictor runs efficiently even on a single CPU core, avoiding GPU contention with the serving model. Since DWS decouples request-dependent execution behavior from deployment-specific cost factors, the predictor transfers across hardware configurations without retraining. In \\textit{real-world} serving experiments, DWS reduces cost-prediction error by up to $2.50\\times$ over scalar-based predictors, while the DWS-guided shortest-job-first scheduler reduces end-to-end latency by up to $1.92\\times$ for online chatbots.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, inference。As diffusion large language models (dLLMs) become more capable, they are moving from research settings to real-world \\textit{servi...",
+      "summary": "Long-context LLM serving is increasingly bottlenecked by KV-cache memory, especially in resource-constrained scenarios. Among existing KV-cache compression strategies, token-wise methods reduce cached states but risk information loss through eviction or condensation, while feature-wise methods reduce per-token KV dimensions but can require full-dimensional reconstruction to apply positional embedding, limiting decoding speedups. We introduce SlimKV, a question-agnostic joint token-feature KV-cache compression method. SlimKV uses low-rank-aware training to compress long contexts into beacon memory states with latent KV representations, together with layer-adaptive rank allocation. We further uncover a positional asymmetry: removing key-side RoPE affects beacon and raw tokens differently, with much smaller degradation for beacon tokens. Exploiting this asymmetry, SlimKV trains beacon KV projections under a K-RoPE-free constraint and enables latent-space attention during decoding, mitigating reconstruction latency. On LongBench, SlimKV outperforms baselines at 16x/32x compression and remains leading at 4x/8x, where it retains over 96% of the uncompressed model's score. Needle-in-a-Haystack confirms robustness across evidence positions, and efficiency evaluation shows up to 7.34x attention speedup and 3.38x end-to-end decoding speedup over the uncompressed model at 128K length.",
+      "reason": "近 30 天；关键词：cs.LG, kv-cache, latency。Long-context LLM serving is increasingly bottlenecked by KV-cache memory, especially in resource-constrained scenarios. Among exis...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
-        "efficient",
-        "inference",
+        "kv-cache",
         "latency",
         "llm",
         "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-09-30T18:01:37Z",
-      "url": "https://arxiv.org/abs/2610.00499",
-      "pdfUrl": "https://arxiv.org/pdf/2610.00499v1"
+      "publishedAt": "2026-10-02T07:45:42Z",
+      "url": "https://arxiv.org/abs/2610.02953",
+      "pdfUrl": "https://arxiv.org/pdf/2610.02953v1"
     }
   ]
 }

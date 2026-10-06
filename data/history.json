@@ -1,7 +1,292 @@
 {
-  "generatedAt": "2026-10-03T08:48:30.577925+08:00",
+  "generatedAt": "2026-10-06T09:58:22.047407+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-10-06",
+      "generatedAt": "2026-10-06T09:58:22.047407+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2610.04537",
+          "title": "PhaseGate: Phase-Aware CPU Retrieval Scheduling for On-Device LLMs on Unified Memory",
+          "authors": [
+            "Seoyoon Yum",
+            "Sehoon Kim"
+          ],
+          "summary": "On-device assistants run GPU-based LLM inference alongside CPU retrieval on unified-memory systems. Under a saturated local-retrieval workload, four concurrent retrieval workers raise 95th-percentile (p95) decode latency by 60-61% on two M4 systems, whereas prefill latency rises by only 5.7-6.9%. We study LLM phase as an admission signal for independent CPU retrieval under controlled LLM workloads. PHASEGATE calibrates separate concurrency limits for prefill and decode, selecting four and one on our base-M4 configuration. Under a backlogged queue, it achieves 2.0 times the aggregate retrieval throughput of the best tested feasible fixed policy, with both p95 LLM latency metrics within 1.25 times their no-retrieval baselines in all seven held-out runs. A phase-blind control, TimeGate, uses the same two limits on a calibration-derived schedule without observing LLM phase. It achieves similar retrieval throughput but violates the output-token latency limit in every run. M2 and M2 Pro Mac minis reproduce the policy ordering, while output-length sweeps show that the advantage narrows as decode occupies more of each request.",
+          "reason": "近 30 天；关键词：cs.LG, inference, latency。On-device assistants run GPU-based LLM inference alongside CPU retrieval on unified-memory systems. Under a saturated local-retrie...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "latency",
+            "llm",
+            "prefill",
+            "retrieval",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-03T14:07:04Z",
+          "url": "https://arxiv.org/abs/2610.04537",
+          "pdfUrl": "https://arxiv.org/pdf/2610.04537v1"
+        },
+        {
+          "id": "arxiv-2610.03894",
+          "title": "Proxy Confidence: Auditing Black-Box LLM Agents with a Surrogate's Log-Probabilities",
+          "authors": [
+            "Yikai Zhao",
+            "Saurabh Pandey",
+            "Pradeep Kumar Misra"
+          ],
+          "summary": "A deployed LLM agent emits tool calls, queries, and code that can be silently wrong -- by the time the error surfaces, the action has run. Frontier chat APIs hide the model's token probabilities; the agent's stated confidence barely beats chance on the mistakes that matter; and resampling does not help, since frontier models are highly repetitive, reproducing the same call across samples. We recover the missing signal from a low-cost open-weight surrogate run in parallel. It reads the same context, schema, and proposed action as the agent, then scores the call from its own log-probabilities through a family of complementary readouts: teacher forcing and request-PMI weigh the likelihood of each argument value, a discriminative verdict judges the call as a whole, and tool-choice competition tests the function against its siblings. One principle says which to trust: a generative likelihood localizes wrong argument values, while the verdict catches holistically wrong calls. When the error type is unknown, an ensemble is the low-regret default. The readout is training-free, needs no access to the agent's internals, and costs one prefill pass alongside the tool call. On difficult coding tasks it reaches AUROC 0.825 where the actor's stated confidence is near chance (0.598), and the generative readouts beat it by +0.07 to +0.28 across three further actors. Against self-consistency it gains +0.14 to +0.19 on near-deterministic actors, at 1/K the cost. The signal drives two deployment modes: a real-time gate escalating the least-trustworthy calls for review (+0.05 to +0.30 accepted-action accuracy at 50% coverage), and confidence feedback, returning the tool result with the score so the agent adapts its next step -- lifting task success on live-execution benchmarks (+0.119 and +0.137, p <= 1e-4) and beating a random-value control where step errors are silent (+0.078, p = 0.003).",
+          "reason": "近 30 天；关键词：cs.AI, deployed, llm。A deployed LLM agent emits tool calls, queries, and code that can be silently wrong -- by the time the error surfaces, the action...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AI",
+            "deployed",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-02T18:09:00Z",
+          "url": "https://arxiv.org/abs/2610.03894",
+          "pdfUrl": "https://arxiv.org/pdf/2610.03894v1"
+        },
+        {
+          "id": "arxiv-2610.03394",
+          "title": "EdgeAgent: Orchestrating On-Device LLM inference for End-User Multi-Agent Systems on CPU-GPU Unified Memory Architectures",
+          "authors": [
+            "Yuhai Long",
+            "Yuanxin Wei",
+            "Kai Wu",
+            "Jinhui Wei",
+            "Dan Huang",
+            "Jiangsu Du"
+          ],
+          "summary": "Emerging multi-agent LLMs demand privacy-preserving edge deployment, yet current inference systems struggle with these collaborative workflows. Specifically, the memory-bound decode phase causes severe bus contention on unified memory architectures (UMA), paralyzing naive CPU-GPU co-execution. Furthermore, speculative decoding in multi-agent workloads faces extreme variance in drafting difficulty, alternating between complex reasoning and predictable structured generation. Compounded by frequent tool-induced stalls, this highly fragmented execution severely underutilizes hardware and defeats traditional static batching. We present EdgeAgent, a cross-layer inference system explicitly co-designed for edge UMA and multi-agent workloads. At the micro-architectural level, it bypasses rigid graph-compiler constraints to enable zero-copy UMA-aware tensor parallelism, utilizing asymmetric memory layouts to fully saturate both CPU and GPU compute units. At the scheduling level, it dynamically allocates draft budgets based on real-time sequence predictability to bound bandwidth waste. Concurrently, an asynchronous suspend-and-yield mechanism actively evicts stalled agents, ensuring continuous hardware saturation during unpredictable tool invocations. Extensive evaluations on an Apple M4 SoC demonstrate that the UMA-aware execution alone contributes a 1.29x speedup over batched speculative decoding. Adding the agent-aware scheduling lifts the full EdgeAgent system to a 1.77x speedup under extreme tool-use latencies.",
+          "reason": "近 30 天；公司信号：Apple；关键词：apple, cs.DC, batching。Emerging multi-agent LLMs demand privacy-preserving edge deployment, yet current inference systems struggle with these collaborati...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "apple",
+            "cs.DC",
+            "batching",
+            "inference",
+            "llm",
+            "serving",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "Apple/arXiv",
+          "publishedAt": "2026-10-02T14:43:42Z",
+          "url": "https://arxiv.org/abs/2610.03394",
+          "pdfUrl": "https://arxiv.org/pdf/2610.03394v1"
+        },
+        {
+          "id": "arxiv-2610.03286",
+          "title": "VenusRL: A Fully Disaggregated Agentic RL System with Priority Scheduling and Scalable Interaction",
+          "authors": [
+            "Mingjun Zhang",
+            "Yucheng Li",
+            "Menghao Zhang",
+            "Shuyong Zhu",
+            "Ping Zhang",
+            "Xiaohe Hu",
+            "Jun Chen",
+            "Zhixin Wang",
+            "Xutong Wang",
+            "He Liu",
+            "Yanmin Jia",
+            "Shengrong Zhu",
+            "Peng Sun",
+            "Mingjie Zhang",
+            "Liming Liu",
+            "Jinlong Hou",
+            "Yuan Cheng",
+            "Yujun Zhang"
+          ],
+          "summary": "Agentic Reinforcement Learning (RL) trains LLM agents through multi-turn interactions with external tool environments. Its multi-turn nature exposes two system-level bottlenecks unaddressed by existing agentic RL frameworks. First, end-to-end training throughput is constrained by the slowest trajectories to complete, yet optimizing per-GPU utilization alone scatters rollout progress across many groups, delaying the completion of enough groups to unblock the next training step. Second, tool sandboxes are statically over-provisioned by their declared memory ceilings, leaving most physical memory stranded while replicating near-identical state across sandboxes launched from the same prompt. We present VenusRL, a fully disaggregated agentic RL system that addresses both bottlenecks. VenusRL's priority-aware action scheduler uses length-prediction heuristics to identify sample groups whose completion is most likely to unblock the next training step, and pushes them ahead of others across batch admission, KV Cache residency, and cross-worker request orchestration. VenusRL's environment resource manager combines a memory-aware admission threshold with a template-keyed page-sharing pool, packing more sandboxes per node while preserving strict memory isolation via write-protected page table entry aliasing and copy-on-write. Across representative agentic RL workloads, VenusRL achieves up to 4.24x end-to-end training speedup over state-of-the-art baselines and reduces environment cost by up to 89%.",
+          "reason": "近 30 天；关键词：cs.DC, copy-on-write, kv-cache。Agentic Reinforcement Learning (RL) trains LLM agents through multi-turn interactions with external tool environments. Its multi-t...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "copy-on-write",
+            "kv-cache",
+            "llm",
+            "serving",
+            "slo",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-02T13:29:40Z",
+          "url": "https://arxiv.org/abs/2610.03286",
+          "pdfUrl": "https://arxiv.org/pdf/2610.03286v1"
+        },
+        {
+          "id": "arxiv-2610.03203",
+          "title": "AFORE: Attention-FFN Disaggregation with Overlapped Reconfiguration of Experts",
+          "authors": [
+            "Wenshuang Li",
+            "Youhe Jiang",
+            "You Peng",
+            "Jiawei Jiang",
+            "Binhang Yuan"
+          ],
+          "summary": "Efficient serving of Mixture-of-Experts (MoE) models is challenging due to large expert parameters, input-dependent expert activation, and dynamic workloads. Expert parallelism distributes expert computation across GPUs, while attention-FFN disaggregation (AFD) separates attention and feed-forward computation into independent worker pools. However, we observe that a naive AFD implementation could make expert load imbalance more harmful: once FFN computation becomes an independent pipeline stage, overloaded experts directly slow the FFN stage and degrade end-to-end serving performance. To solve this problem, we present AFORE, a timely expert reconfiguration system for AFD-based MoE serving. AFORE exploits two architectural properties of AFD. First, AFD exposes the expert-token distribution of upcoming microbatches before they reach FFN execution, enabling placement decisions based on near-future demand instead of stale historical profiles. Second, AFD creates a pipeline window in which expert migration for a target microbatch can be overlapped with the computation of preceding in-flight microbatches. AFORE formulates expert reconfiguration as a microbatch-aware scheduling problem and uses a migration-aware scheduler to decide when and which experts to migrate. AFORE further implements lightweight demand prefetching and NVLink-based GPU-GPU expert migration to reduce reconfiguration overhead. Evaluation on a 110B-parameter MoE model across four dynamic workloads shows that AFORE improves output throughput by 10.1-17.6% and reduces P95 inter-token latency by 7.1-9.5% compared with the strongest competing baseline. Compared with static placement, AFORE improves throughput by 29.8% on average and reduces P95 inter-token latency by 18.2% on average. Migration profiling further shows that AFD pipeline overlap can fully hide expert-migration latency.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, latency。Efficient serving of Mixture-of-Experts (MoE) models is challenging due to large expert parameters, input-dependent expert activat...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "latency",
+            "serving",
+            "slo",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-02T12:20:29Z",
+          "url": "https://arxiv.org/abs/2610.03203",
+          "pdfUrl": "https://arxiv.org/pdf/2610.03203v1"
+        },
+        {
+          "id": "arxiv-2610.03135",
+          "title": "Page-EntroKV: Hardware-Aligned, Entropy-Weighted KV-Cache Eviction under Grouped-Query Attention",
+          "authors": [
+            "Inbasekaran S"
+          ],
+          "summary": "Serving long-context autoregressive language models is constrained by the key-value (KV) cache. Most dynamic eviction methods score token importance per query head and choose tokens independently. This fits poorly with grouped-query attention (GQA), where several query heads share one physical KV buffer: divergent per-head selections force the serving engine to retain the union of their choices - inflating the cache by up to the group ratio r - while arithmetic mean pooling dilutes the specialized retrieval heads that carry factual recall. We introduce Page-EntroKV, a formal framework for KV-cache eviction operating at the granularity GQA serving actually allocates. Heads within each physical group are pooled by weights derived from sink-isolated collision (Renyi-2) entropy - one inner product per head, computed once at prefill with no calibration - so sink heads cannot masquerade as retrieval heads. Pooled scores are projected onto PagedAttention page frames, and eviction executes at the hardware tuple (layer, group, page). We formalize the union overhead ratio (UOR) and intra-group disagreement, prove an exact identity linking them for two-head groups alongside two-sided bounds at every group ratio, prove strict budget preservation and a finite-context needle-retention bound that arithmetic mean pooling provably violates, and give exact per-layer page accounting. On a pilot architecture (Qwen2.5-1.5B-Instruct, r=6), head-independent replay over 2,240 group measurements yields union overhead up to 4.75x at a 2% budget, while Page-EntroKV holds UOR exactly 1.000; sink isolation removes a 13x sink masquerade; needle recall is 100% versus 0% for mean pooling at a 20% budget; retained cardinality is exact for every page size; and QA and code tasks remain solvable at 20% retention.",
+          "reason": "近 30 天；关键词：cs.LG, pagedattention, prefill。Serving long-context autoregressive language models is constrained by the key-value (KV) cache. Most dynamic eviction methods scor...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "pagedattention",
+            "prefill",
+            "retrieval",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-02T11:01:39Z",
+          "url": "https://arxiv.org/abs/2610.03135",
+          "pdfUrl": "https://arxiv.org/pdf/2610.03135v1"
+        },
+        {
+          "id": "arxiv-2610.03088",
+          "title": "Coda: Exploiting Admission Flexibility for Coding-Agent Serving",
+          "authors": [
+            "Youhe Jiang",
+            "Fangcheng Fu",
+            "Binhang Yuan",
+            "Krishna Malladi",
+            "Ehsan K. Ardestani",
+            "Zhan Shu",
+            "Adnan Aziz",
+            "Yi Xu"
+          ],
+          "summary": "Coding agents powered by large language models (LLMs) repeatedly alternate between model inference and tool calls, creating long-lived sessions with reusable key-value (KV) states and asynchronous request resumptions. Logical readiness, however, does not ensure efficient admission in a shared serving system. Through direct trace analysis and trace-driven replay, we identify two mismatches: reusable KV states reside across storage tiers and incur unequal computational costs for state preparation, while requests with heterogeneous context lengths can decode inefficiently together. Our central insight is that exploiting admission flexibility can improve serving performance while preserving request progress. We present Coda, a coding-agent serving system that realizes this insight through a readiness-informed admission layer incorporating two mechanisms. Tiered-Aging state admission exploits bounded flexibility in admission order to improve admission efficiency and preserve request progress. Compatibility-Aware execution admission exploits flexibility in attention grouping within each model iteration to reduce mixed-context interference and improve shared decoding efficiency. For multi-worker configurations, Coda introduces a separate routing layer that considers KV-state residency, worker load, and request-to-worker context-length compatibility to guide efficient request placement. We evaluate Coda across different models and workloads against state-of-the-art coding-agent serving systems and vLLM. Across the single-worker and multi-worker experiments, Coda improves output-token and SLO-compliant throughput by 20.3% and 70.5% on average, with peak gains of 29.3% and 140.2%.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, inference。Coding agents powered by large language models (LLMs) repeatedly alternate between model inference and tool calls, creating long-l...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "inference",
+            "llm",
+            "serving",
+            "slo",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-02T10:07:36Z",
+          "url": "https://arxiv.org/abs/2610.03088",
+          "pdfUrl": "https://arxiv.org/pdf/2610.03088v1"
+        },
+        {
+          "id": "arxiv-2610.03039",
+          "title": "HyperThink: Text-to-Parameter Hypernetworks for Efficient Reasoning",
+          "authors": [
+            "Donggyun Kim",
+            "Jack Lu",
+            "Chanwoo Kim",
+            "Mengye Ren",
+            "Seunghoon Hong"
+          ],
+          "summary": "Long-form thinking traces can substantially improve the multi-step reasoning performance of large language models (LLMs), but they introduce high inference-time overhead, with latency dominated by sequential decoding. We propose HyperThink, a text-to-parameter approach that amortizes this reasoning computation into a single query-conditioned parameter update: a lightweight hypernetwork reads the question and predicts updates to a small subset of the base LLM's parameters, while a vector-quantized decoder constrains them to a finite set of reusable patterns to improve robustness and transfer. Trained end-to-end on outputs from the base model itself, HyperThink eliminates long thinking traces at test time: after one hypernetwork forward pass, the adapted model generates a concise step-by-step solution and final answer without an intermediate trace, using far fewer tokens while retaining strong reasoning performance. Empirically, HyperThink improves the low-latency region of the accuracy-latency trade-off on mathematical and general reasoning tasks, with its strongest gains in the near-non-thinking regime.",
+          "reason": "近 30 天；关键词：cs.CL, efficient, inference。Long-form thinking traces can substantially improve the multi-step reasoning performance of large language models (LLMs), but they...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "efficient",
+            "inference",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-02T09:19:59Z",
+          "url": "https://arxiv.org/abs/2610.03039",
+          "pdfUrl": "https://arxiv.org/pdf/2610.03039v1"
+        },
+        {
+          "id": "arxiv-2610.03027",
+          "title": "Tailoring the Quantization Space for 1-Bit KV Cache Compression",
+          "authors": [
+            "Minsoo Cheong",
+            "Donghyun Son",
+            "Sungjoo Yoo"
+          ],
+          "summary": "The key-value (KV) cache becomes a major memory bottleneck in long-context LLM inference, placing substantial pressure on memory capacity and bandwidth. To mitigate this bottleneck, vector quantization (VQ) has emerged as a promising approach for aggressive KV cache compression. However, existing VQ methods degrade substantially in the 1-bit regime. At such extreme compression, each codebook must represent a larger group of channels with a limited set of centroids, making effective use of its capacity increasingly challenging. To address this, we introduce $\\textbf{TaSQ}$, which tailors the VQ target space by combining query-guided channel weighting, cross-head normalization, and covariance-aware channel grouping to better reflect the error sensitivity and statistical structure of cached activations. Since these transforms are RoPE-compatible and can be easily merged into projection weights and codebooks, TaSQ preserves the conventional VQ lookup structure and adds negligible serving overhead. Across general, long-chain-of-thought reasoning, and long-context retrieval benchmarks, TaSQ consistently outperforms existing low-bit KV cache VQ baselines while preserving reasoning stability. On a single RTX 6000 Ada GPU, its SGLang implementation supports up to $14\\times$ larger batch sizes and achieves $1.87\\times$ higher peak throughput compared to the BF16 baseline.",
+          "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。The key-value (KV) cache becomes a major memory bottleneck in long-context LLM inference, placing substantial pressure on memory c...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "kv-cache",
+            "llm",
+            "quantization",
+            "retrieval",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-02T09:04:25Z",
+          "url": "https://arxiv.org/abs/2610.03027",
+          "pdfUrl": "https://arxiv.org/pdf/2610.03027v1"
+        },
+        {
+          "id": "arxiv-2610.02953",
+          "title": "SlimKV: Joint Token-Feature KV Cache Compression with Reconstruction-Free Beacon Attention",
+          "authors": [
+            "Zihan Teng",
+            "Jiayu Zhao",
+            "Wentao Ren",
+            "Minhao Fan",
+            "Tianrui Ma",
+            "Song Chen",
+            "Weichen Liu"
+          ],
+          "summary": "Long-context LLM serving is increasingly bottlenecked by KV-cache memory, especially in resource-constrained scenarios. Among existing KV-cache compression strategies, token-wise methods reduce cached states but risk information loss through eviction or condensation, while feature-wise methods reduce per-token KV dimensions but can require full-dimensional reconstruction to apply positional embedding, limiting decoding speedups. We introduce SlimKV, a question-agnostic joint token-feature KV-cache compression method. SlimKV uses low-rank-aware training to compress long contexts into beacon memory states with latent KV representations, together with layer-adaptive rank allocation. We further uncover a positional asymmetry: removing key-side RoPE affects beacon and raw tokens differently, with much smaller degradation for beacon tokens. Exploiting this asymmetry, SlimKV trains beacon KV projections under a K-RoPE-free constraint and enables latent-space attention during decoding, mitigating reconstruction latency. On LongBench, SlimKV outperforms baselines at 16x/32x compression and remains leading at 4x/8x, where it retains over 96% of the uncompressed model's score. Needle-in-a-Haystack confirms robustness across evidence positions, and efficiency evaluation shows up to 7.34x attention speedup and 3.38x end-to-end decoding speedup over the uncompressed model at 128K length.",
+          "reason": "近 30 天；关键词：cs.LG, kv-cache, latency。Long-context LLM serving is increasingly bottlenecked by KV-cache memory, especially in resource-constrained scenarios. Among exis...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "kv-cache",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-02T07:45:42Z",
+          "url": "https://arxiv.org/abs/2610.02953",
+          "pdfUrl": "https://arxiv.org/pdf/2610.02953v1"
+        }
+      ]
+    },
     {
       "date": "2026-10-03",
       "generatedAt": "2026-10-03T08:48:30.577925+08:00",
@@ -19121,292 +19406,6 @@
           "publishedAt": "2026-04-07T18:52:25Z",
           "url": "https://arxiv.org/abs/2604.06370",
           "pdfUrl": "https://arxiv.org/pdf/2604.06370"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-22",
-      "generatedAt": "2026-06-22T06:59:23.889216+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2606.06260",
-          "title": "OneReason Technical Report",
-          "authors": [
-            "OneRec Team",
-            "Biao Yang",
-            "Boyang Ding",
-            "Chenglong Chu",
-            "Dunju Zang",
-            "Fei Pan",
-            "Han Li",
-            "Hao Jiang"
-          ],
-          "summary": "Extends the OneRec family toward reasoning-style generative recommendation. It argues that recommendation reasoning needs itemic-token perception and cognition over user behavior sequences, then introduces OneReason with perception-focused pre-training, three-level cognition-enhanced CoT SFT and specialize-then-unify RL.",
-          "reason": "快手 OneRec 系列最新推荐推理方向：2026-06-04 新稿，把生成式推荐从 scaling 推到 reasoning，重点看 item token 语义感知、用户兴趣认知、CoT 格式和 RL 训练配方。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "onereason",
-            "generative-recommendation",
-            "reasoning",
-            "cot",
-            "rl"
-          ],
-          "signal": 100,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-04T15:04:34Z",
-          "url": "https://arxiv.org/abs/2606.06260",
-          "pdfUrl": "https://arxiv.org/pdf/2606.06260"
-        },
-        {
-          "id": "arxiv-2606.20537v1",
-          "title": "Execution-State Capsules: Graph-Bound Execution-State Checkpoint and Restore for Low-Latency, Small-Batch, On-Device Physical-AI Serving",
-          "authors": [
-            "Liang Su"
-          ],
-          "summary": "Mainstream LLM serving systems reuse prefix work mainly through paged or radix key-value (KV) caches. This is highly effective for high-throughput, high-concurrency serving, but it manages only one positional fragment of execution state: the KV cache. We study the opposite regime: low-latency, small-batch, on-device physical-AI serving, where interactive LLM agents, speech systems, and robot policies repeatedly branch, reset, interrupt, and re-enter under tight responsiveness budgets. We introduce execution-state capsules, a graph-bound checkpoint and restore mechanism for the complete restorable state at a committed boundary. FlashRT is a white-box, backend-facing kernel runtime whose evaluated NVIDIA CUDA backend runs captured graph plans over contiguous static buffers with no block-table indirection. Because the live state is a closed set of named buffers, a capsule can snapshot, restore, fork, or roll back the whole execution boundary, including KV, recurrent state, convolution state, MTP state, and metadata. This moves reuse from token-addressed KV fragments to graph-bound execution-state boundaries. On an RTX 5090, capsule restore is byte-exact at the stored-state level and token-identical under greedy decode. A KV-only ablation diverges, showing that recurrent state is load-bearing. GPU-resident snapshot and restore are sub-millisecond, and TTFT speedup over cold prefill grows from 3.9x at 2k tokens to 27x at 16k tokens. On Jetson AGX Thor and DGX Spark, the same correctness and structural properties hold. Capsules are not a replacement for high-throughput KV-cache serving; they define a complementary latency-first serving point for explicit execution-state reuse.",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, kv-cache。Mainstream LLM serving systems reuse prefix work mainly through paged or radix key-value (KV) caches. This is highly effective for...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.LG",
-            "kv-cache",
-            "latency",
-            "llm",
-            "prefill",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-06-18T17:49:36Z",
-          "url": "https://arxiv.org/abs/2606.20537v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.20537v1"
-        },
-        {
-          "id": "arxiv-2606.20474v1",
-          "title": "UltraQuant: 4-bit KV Caching for Context-Heavy Agents",
-          "authors": [
-            "Inesh Chakrabarti",
-            "David Limpus",
-            "Aditi Ghai Rana",
-            "Bowen Bao",
-            "Spandan Tiwari",
-            "Thiago Crepaldi",
-            "Ashish Sirasao"
-          ],
-          "summary": "Context-heavy agents place unusual pressure on the key-value (KV) cache: long prefixes are reused across many short turns, while concurrency determines whether the serving system can keep GPUs utilized. We study 4-bit KV-cache compression for this setting, using TurboQuant-style rotation and codebook quantization as a quality anchor and vLLM FP8 KV caching as the deployment anchor. We report three contributions. First, we frame 4-bit KV caching around multi-round agent workloads where task quality, cache residency, and serving throughput must be measured jointly. Second, we describe the practical design choices needed to make the 4-bit path robust, including asymmetric K/V treatment, Walsh-Hadamard rotation, QJL removal, and block-scale variants. Third, we present serving optimizations on AMD GPUs, including optimized decode-attention kernels and UltraQuant, an FP4 approximation path that uses FP8 queries, FP4 KV tensors, UE8M0 group scales, and native scaled-MFMA support on CDNA4. On a long-context, multi-turn agentic workload, UltraQuant cuts P50 time-to-first-token by 3.47x in the cache-pressured late rounds (2.3x across all rounds) and raises output throughput by 1.63x over the FP8 KV baseline.",
-          "reason": "近 30 天；关键词：cs.LG, llm, quantization。Context-heavy agents place unusual pressure on the key-value (KV) cache: long prefixes are reused across many short turns, while c...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "llm",
-            "quantization",
-            "serving",
-            "throughput"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-06-18T16:54:07Z",
-          "url": "https://arxiv.org/abs/2606.20474v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.20474v1"
-        },
-        {
-          "id": "arxiv-2606.19993v1",
-          "title": "Activation- and Influence-Aware Ranks (AIR): Function-Preserving SVD Compression for LLMs",
-          "authors": [
-            "Nico Harder",
-            "Daniel Becking",
-            "Karsten Mueller",
-            "Wojciech Samek"
-          ],
-          "summary": "We present Activation- and Influence-Aware Ranks (AIR), an SVD-based LLM compression framework that guides each weight matrix's low-rank approximation with a backward-signal influence metric. Starting from the activation-aware optimum of SVD-LLM(W), AIR runs a single closed-form alternating least squares (ALS) sweep that integrates influence element-wise under a monotone-descent guarantee. AIR is layer-local and composes orthogonally with end-to-end methods: alone it exceeds ACIP, and AIR+LoRA outperforms it further. AIR improves perplexity over SVD-LLM(W) by >18% at <=60% parameter retention, matches its quality with ~90% less calibration data, and turns parameter savings into FLOP, peak-memory, and per-token latency gains.",
-          "reason": "近 30 天；关键词：cs.LG, latency, llm。We present Activation- and Influence-Aware Ranks (AIR), an SVD-based LLM compression framework that guides each weight matrix's lo...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "latency",
-            "llm",
-            "lora",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-06-18T09:31:31Z",
-          "url": "https://arxiv.org/abs/2606.19993v1",
-          "pdfUrl": "https://arxiv.org/pdf/2606.19993v1"
-        },
-        {
-          "id": "arxiv-2606.03866",
-          "title": "Taiji: Pareto Optimal Policy Optimization with Semantics-IDs Trade-off for Industrial LLM-Enhanced Recommendation",
-          "authors": [
-            "Yuecheng Li",
-            "Zeyu Song",
-            "Jing Yao",
-            "Chi Lu",
-            "Peng Jiang",
-            "Kun Gai"
-          ],
-          "summary": "Presents Taiji, an industrial LLM-as-Enhancer recommender framework that aligns LLM semantic rewards with collaborative ID preference rewards through Pareto Optimal Policy Optimization. It reports offline and online A/B validation and deployment on Kuaishou advertising traffic.",
-          "reason": "近 30 天工业推荐主线：Kuaishou 广告平台、LLM4Rec、Semantic IDs、RL 对齐和线上 A/B 都在一篇里。",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "llm4rec",
-            "semantic-id",
-            "rl-alignment",
-            "online-ab"
-          ],
-          "signal": 99,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-06-02T16:39:06Z",
-          "url": "https://arxiv.org/abs/2606.03866",
-          "pdfUrl": "https://arxiv.org/pdf/2606.03866"
-        },
-        {
-          "id": "arxiv-2205.14135",
-          "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
-          "authors": [
-            "Tri Dao",
-            "Daniel Y. Fu",
-            "Stefano Ermon",
-            "Atri Rudra",
-            "Christopher Re"
-          ],
-          "summary": "Reorders exact attention computation around GPU memory hierarchy, using tiling to reduce HBM/SRAM traffic and unlock faster long-sequence transformer training and inference.",
-          "reason": "LLM 推理两篇经典之一：kernel/显存 IO/attention 吞吐的底层心智模型，读推理优化绕不开。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "classic",
-            "flashattention",
-            "attention-kernel",
-            "memory-io",
-            "throughput"
-          ],
-          "signal": 97,
-          "source": "arXiv",
-          "publishedAt": "2022-05-27T17:53:09Z",
-          "url": "https://arxiv.org/abs/2205.14135",
-          "pdfUrl": "https://arxiv.org/pdf/2205.14135"
-        },
-        {
-          "id": "arxiv-2605.29639",
-          "title": "RTP-LLM: High-Performance Alibaba LLM Inference Engine",
-          "authors": [
-            "Boyu Tan",
-            "Jiarui Guo",
-            "Zongwei Lv",
-            "Hanbo Sun",
-            "Tong Yang",
-            "Kan Liu",
-            "Xinfei Shi",
-            "Zetao Hu",
-            "Yaxin Yu",
-            "Chi Zhang"
-          ],
-          "summary": "Technical report for Alibaba's production LLM inference engine, covering model loading, prefill-decode disaggregation, hierarchical KV cache reuse, speculative decoding, quantization and multimodal inference.",
-          "reason": "新的业界笔记/技术报告：5 月底阿里生产推理引擎，直接对标 vLLM/SGLang，适合把经典推理论文落到工业系统。",
-          "area": "LLM 推理优化",
-          "tags": [
-            "new-note",
-            "alibaba",
-            "inference-engine",
-            "kv-cache",
-            "speculative-decoding"
-          ],
-          "signal": 96,
-          "source": "Alibaba/arXiv",
-          "publishedAt": "2026-05-28T09:07:06Z",
-          "url": "https://arxiv.org/abs/2605.29639",
-          "pdfUrl": "https://arxiv.org/pdf/2605.29639"
-        },
-        {
-          "id": "arxiv-2604.05314",
-          "title": "Next-Scale Generative Reranking: A Tree-based Generative Rerank Method at Meituan",
-          "authors": [
-            "Shuli Wang",
-            "Changhao Li",
-            "Ke Fan",
-            "Senjie Kou",
-            "Junwei Yin",
-            "Chi Wang",
-            "Yinhua Zhu",
-            "Haitao Wang",
-            "Xingxing Wang"
-          ],
-          "summary": "Proposes NSGR, a tree-based generative reranking framework that expands recommendation lists from coarse to fine and uses a multi-scale evaluator to guide generation. The method is reported as deployed on Meituan food delivery.",
-          "reason": "近 90 天工业重排方向：Meituan 线上部署，聚焦多阶段推荐里的 generative reranking 和全局/局部列表建模。",
-          "area": "推荐算法",
-          "tags": [
-            "meituan",
-            "reranking",
-            "generative-recommendation",
-            "production"
-          ],
-          "signal": 96,
-          "source": "Meituan/arXiv",
-          "publishedAt": "2026-04-07T01:35:20Z",
-          "url": "https://arxiv.org/abs/2604.05314",
-          "pdfUrl": "https://arxiv.org/pdf/2604.05314"
-        },
-        {
-          "id": "arxiv-2604.02684",
-          "title": "MBGR: Multi-Business Prediction for Generative Recommendation at Meituan",
-          "authors": [
-            "Changhao Li",
-            "Junwei Yin",
-            "Zhilin Zeng",
-            "Senjie Kou",
-            "Shuli Wang",
-            "Wenshuai Chen",
-            "Yinhua Zhu",
-            "Haitao Wang",
-            "Xingxing Wang"
-          ],
-          "summary": "Builds a multi-business generative recommendation framework with business-aware semantic IDs, business-specific prediction and dynamic label routing. It reports offline and online validation on Meituan food delivery.",
-          "reason": "近 90 天工业生成式推荐：重点是多业务场景、Semantic ID 空间隔离和生产验证。",
-          "area": "推荐算法",
-          "tags": [
-            "meituan",
-            "multi-business",
-            "semantic-id",
-            "generative-recommendation",
-            "online-ab"
-          ],
-          "signal": 95,
-          "source": "Meituan/arXiv",
-          "publishedAt": "2026-04-03T03:26:36Z",
-          "url": "https://arxiv.org/abs/2604.02684",
-          "pdfUrl": "https://arxiv.org/pdf/2604.02684"
-        },
-        {
-          "id": "arxiv-2604.17459",
-          "title": "Transparent and Controllable Recommendation Filtering via Multimodal Multi-Agent Collaboration",
-          "authors": [
-            "Chi Zhang",
-            "Zhipeng Xu",
-            "Jiahao Liu",
-            "Dongsheng Li",
-            "Hansu Gu",
-            "Peng Zhang",
-            "Ning Gu",
-            "Tun Lu"
-          ],
-          "summary": "Introduces a controllable recommendation filtering framework combining end-to-cloud collaboration, multimodal perception, multi-agent adjudication and editable preference graphs to reduce over-filtering in personalized feeds.",
-          "reason": "近 90 天 Microsoft Research 推荐治理方向：不是单纯 CTR，而是个性化 feed 的可控过滤、透明度和多模态安全边界。",
-          "area": "推荐算法",
-          "tags": [
-            "microsoft",
-            "controllable-recommendation",
-            "multimodal",
-            "agent",
-            "feed"
-          ],
-          "signal": 92,
-          "source": "Microsoft Research/arXiv",
-          "publishedAt": "2026-04-19T14:19:28Z",
-          "url": "https://arxiv.org/abs/2604.17459",
-          "pdfUrl": "https://arxiv.org/pdf/2604.17459"
         }
       ]
     }
