@@ -1,289 +1,269 @@
 {
-  "generatedAt": "2026-10-08T09:25:47.442828+08:00",
+  "generatedAt": "2026-10-09T09:32:19.176492+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2610.09827",
-      "title": "Dual-QK: Sharp Queries and Flat Keys for Prunable 2-bit KV Caches",
+      "id": "arxiv-2610.11358",
+      "title": "RaReCache: Bridging the Gap in Cross-Model KV Cache Reuse via Rank disagreement-based Selective Recomputation",
       "authors": [
-        "Sunjoo Whang",
-        "Jungjun Oh",
-        "Minsung Kim",
-        "Dongho Seo",
-        "Jisu Shin",
-        "Gregory Kielian",
-        "Hoi-Jun Yoo",
-        "Sangjin Kim"
+        "Sreetama Sarkar",
+        "Saptarshi Mitra",
+        "Sitao Huang",
+        "Souvik Kundu",
+        "Peter A. Beerel"
       ],
-      "summary": "Long inputs and extended generation increase the storage and access costs of the key-value (KV) cache. Low-bit quantization reduces storage and memory traffic, while query-channel pruning can further reduce key-cache reads. Rotation-based quantization redistributes the energy of key outliers across channels. To maintain computational invariance, the same orthogonal transform must be applied to queries, preserving query-key dot products. However, this rotation can disperse query energy, weakening the separation between a few large components to retain and many small ones to prune. We introduce Dual-QK, which uses paired non-orthogonal query and key transforms to address this conflict. Using calibrated query and key statistics, Dual-QK combines partial key whitening with a query-aligned basis to balance key scales for INT2 quantization and concentrate query energy for dynamic channel pruning. Channel-0 protection and bucket-relative RoPE support low-bit accuracy over long contexts. Experiments on four models across five generative benchmarks and long-context retrieval tasks show improved accuracy over OSCAR on most tasks at 40% query-channel sparsity. At a 128K context, Dual-QK provides $6.8\\times$ KV-cache compression and an estimated $8.3\\times$ reduction in KV read volume relative to unpruned BF16. Under the evaluated configurations, our SGLang implementation achieves up to $3.75\\times$ the decoding throughput of unpruned BF16.",
-      "reason": "近 30 天；关键词：cs.LG, energy, kv-cache。Long inputs and extended generation increase the storage and access costs of the key-value (KV) cache. Low-bit quantization reduce...",
+      "summary": "Cross-model KV-cache reuse remains a key challenge in modern LLM serving. Coding agents and multi-model systems increasingly route a shared context across models: a user may switch models mid-session, or a cascade may escalate a difficult query. Because KV caches contain model-specific representations, each switch typically forces the receiving model to prefill the entire context from scratch. Recent work shows that closed-form linear maps can translate KV caches between models in the same family, but transfer accuracy degrades as the model-size gap widens. In this paper, we establish that these transfer failures are concentrated in a small subset of information-dense tokens. To bridge this gap, we introduce RaReCache, a framework that enables a large target model to decode accurately from a cache prefilled by a much smaller source via selective recomputation. RaReCache identifies these critical positions using a novel rank disagreement metric, scoring each token by the energy of its mapped KV in output directions weakly supported by the calibration data. Across two model families and five benchmarks, on a 23x parameter gap (Qwen3-0.6B to 14B) recomputing just 30% of positions retains 95-99% of the target accuracy, whereas on a 8.8x gap (Llama3-8B to 70B), recomputing 40% retains 96.5% of the target accuracy. RaReCache largely removes sensitivity to source-model size, and achieves up to a 3.04x prefill speedup. For online serving, it handles 1.8x the request throughput of target prefill on a single GPU, and at the target's saturation load, reduces median and 99th-percentile time-to-first-token (TTFT) by 5.0x and 6.4x respectively, with a 30% recompute budget. RaReCache establishes an efficient serving paradigm where small models prefill on behalf of massive targets, enabling large models to recompute only critical tokens, drastically reducing prefill latency.",
+      "reason": "近 30 天；关键词：cs.AI, efficient, energy。Cross-model KV-cache reuse remains a key challenge in modern LLM serving. Coding agents and multi-model systems increasingly route...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.LG",
+        "cs.AI",
+        "efficient",
         "energy",
         "kv-cache",
-        "quantization",
-        "retrieval",
-        "serving",
-        "throughput"
+        "latency",
+        "llm",
+        "prefill"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-07T10:50:06Z",
-      "url": "https://arxiv.org/abs/2610.09827",
-      "pdfUrl": "https://arxiv.org/pdf/2610.09827v1"
+      "publishedAt": "2026-10-08T06:49:28Z",
+      "url": "https://arxiv.org/abs/2610.11358",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11358v1"
     },
     {
-      "id": "arxiv-2610.09778",
-      "title": "Reproducible LLM Inference Benchmarking: A Sequential Isolation Protocol for Regression Testing",
+      "id": "arxiv-2610.11351",
+      "title": "Deception by Omission: Language Models Knowingly Hide Their Mistakes",
       "authors": [
-        "Arnold Olympio",
-        "Juan Manuel Servera Bondroit",
-        "Wael Abdelmalek",
-        "Guang Lu",
-        "João Carvalho"
+        "Lucas Florin",
+        "Amelie Knecht",
+        "Ulysse Schaller",
+        "Thilo Hagendorff"
       ],
-      "summary": "Reproducible benchmarking of Large Language Model (LLM) inference is challenging because repeated measurements can vary with execution and system state. We present the Sequential Isolation Methodology, a controlled benchmarking and regression-testing protocol designed to reduce between-run measurement variance while deliberately varying workload concurrency. We evaluate three representative open-source LLMs on an NVIDIA A100 80GB GPU using vLLM 0.9.1 across six context sizes and eight concurrency levels, with five repetitions per configuration. The final protocol reduces average coefficient of variation (CV) from 15.2% in the least controlled methodology stage to 2.2% under the final protocol; using CV computed across the five repetition-level median (P50) TTFT values per configuration, 113 of 144 configurations (78.5%) achieve CV below 3%. The measurements also show a marked latency transition between 200 and 500 concurrent users on the tested stack and descriptive differences in P99 latency across the three models. We additionally provide an explicit cost break-even model with sensitivity to API pricing. The protocol is intended to provide a stable reference for reproducible comparison and regression testing rather than to predict absolute behavior under uncontrolled production traffic. Infrastructure-as-Code and benchmark scripts support replication of the experimental environment.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.PF, efficient。Reproducible benchmarking of Large Language Model (LLM) inference is challenging because repeated measurements can vary with execu...",
+      "summary": "Large language models (LLMs) increasingly act as agents with little human oversight, so potential mistakes they make can go unnoticed. Users then depend on the model to report what went wrong. An honest model discloses its mistakes, while a deceptive one conceals them. However, it is unclear how current LLMs behave in such situations. In this study, we prefill LLM trajectories with synthetic mistakes. The trajectories resemble real deployments in chat and agentic settings. Models fail to disclose their mistake in 36.4% of chat and 67.1% of agentic rollouts. In 2.4% and 5.3% of rollouts, respectively, they are aware of the mistake in their chain of thought but still deceptively conceal it. Rates vary by model: for instance, Gemini 3.5 Flash knowingly conceals mistakes in up to 19.9% of agentic rollouts. In 11.9% of chat and 51.8% of agentic rollouts, models show no awareness of mistakes, even though they reliably spot them when reviewing the same transcript as an outside observer. Our results show that, as agents take on more tasks with less oversight, users cannot rely on them to self-report possible mistakes. Developers should instead use independent monitors that review agent trajectories, or specifically train models to check their past actions and disclose what they find.",
+      "reason": "近 30 天；公司信号：Google；关键词：google, cs.CL, llm。Large language models (LLMs) increasingly act as agents with little human oversight, so potential mistakes they make can go unnoti...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "google",
+        "cs.CL",
+        "llm",
+        "prefill"
+      ],
+      "signal": 99,
+      "source": "Google/arXiv",
+      "publishedAt": "2026-10-08T06:45:02Z",
+      "url": "https://arxiv.org/abs/2610.11351",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11351v1"
+    },
+    {
+      "id": "arxiv-2610.11245",
+      "title": "Read What Matters: Query-Adaptive Quantization for KV Caches",
+      "authors": [
+        "Siddharth Bhandari",
+        "Lucas Gretta",
+        "Krishna Balasubramanian",
+        "Shiva Kasiviswanathan"
+      ],
+      "summary": "KV-cache entries are stored before their future queries are known, but each decoding query needs precision in different places. We study this mismatch using separate budgets for retained bits and bits fetched per query. ReadKV stores each key and value in a progressive code whose prefixes support different reconstruction precisions. For each query, it allocates key-channel prefixes using the query, computes attention from the reconstructed keys, and then allocates value-token prefixes using that attention. Stored entries remain unchanged. Each stage optimizes a calibrated distortion objective under a fixed budget; we prove exact allocation under diminishing refinement gains and relate these objectives to attention-output error. We also exhibit a finite-dimensional attention family where query-dependent access strictly outperforms every query-independent reader at the same read budget, even with unrestricted competing encoders and decoders. Across six base models, reading four bits on average from an eight-bit cache increases C4 perplexity by at most 0.66%, using about one quarter of the logical reads and half the retained capacity of a 16-bit cache. It is consistently more accurate than storing and fully reading four bits at the same payload-read budget. Retaining more bits than each query fetches is aimed at long-context decoding, where the cache bytes moved per step, rather than the weights, dominate cost. Long-context question answering and retrieval on two instruction-tuned models provide additional quality evidence. On the tested 8K-token, batch-one, single-layer workload on an NVIDIA A10G, a restricted eight-bit ReadKV reader with a two-bit mean payload-read budget has 39% lower latency than the tested TurboQuant codec.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, kv-cache。KV-cache entries are stored before their future queries are known, but each decoding query needs precision in different places. We...",
       "area": "LLM 推理优化",
       "tags": [
         "nvidia",
-        "cs.PF",
-        "efficient",
+        "cs.LG",
+        "kv-cache",
+        "latency",
+        "quantization",
+        "retrieval"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-10-08T04:47:41Z",
+      "url": "https://arxiv.org/abs/2610.11245",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11245v1"
+    },
+    {
+      "id": "arxiv-2610.11196",
+      "title": "Selective Listening: Mechanism-Guided Control of Audio Influence in Large Audio-Language Models",
+      "authors": [
+        "Yulin Sun",
+        "Kele Xu",
+        "Yong Dou"
+      ],
+      "summary": "Large audio-language models (LALMs) exploit multimodal evidence, yet task-irrelevant audio can alter text-reasoning decisions when listening is unnecessary. Aggregate Accuracy can hide this paired drift because audio-induced repairs and damages may cancel. Paired drift analysis and targeted interventions identify architecture-specific, intervention-sensitive late audio pathways as actionable control points. We introduce ICAP-Gate, which applies mechanism-guided, task-conditioned control to each model's pathway. Across four LALMs, two reasoning benchmarks, and environmental-sound and natural-speech interference, ICAP-Gate has lower point estimates for Influence Rate and Answer Flip than ungated inference in all 16 full-split model--condition evaluations. Fixed suppression degrades automatic speech recognition (ASR) across all four models, whereas ICAP-Gate matches ungated ASR performance by preserving the pathway for explicit audio-demand instructions. ICAP-Gate has lower paired-drift point estimates than mitigation prompting in all four evaluated settings and provides competitive stabilization relative to eight-sample Self-Consistency while using one generation per query; in controlled ARC measurements, Self-Consistency incurs $7.0$--$9.2\\times$ ungated latency. These results establish selective modality influence control as a design principle for robust multimodal reasoning.",
+      "reason": "近 30 天；关键词：cs.SD, inference, latency。Large audio-language models (LALMs) exploit multimodal evidence, yet task-irrelevant audio can alter text-reasoning decisions when...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.SD",
         "inference",
         "latency",
+        "multimodal",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-08T04:00:47Z",
+      "url": "https://arxiv.org/abs/2610.11196",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11196v1"
+    },
+    {
+      "id": "arxiv-2610.11111",
+      "title": "Lapras: Latent Reasoning for Time Series Language Models",
+      "authors": [
+        "Yuliang Chen",
+        "Yu Yvonne Wu",
+        "Patrick Langer",
+        "Arvind Pillai",
+        "Sudarshan Regmi",
+        "Martin Maritsch",
+        "Juncheng Liu",
+        "Robert Jakob",
+        "Thomas Kaar",
+        "Tess Z. Griffin",
+        "Lisa Marsch",
+        "Michael V. Heinz",
+        "Nicholas C. Jacobson",
+        "Andrew Campbell"
+      ],
+      "summary": "Time Series Language Models (TSLMs) offer a promising path toward time series understanding by reasoning over temporal signals and producing natural language answers and explanations. A common approach is Chain-of-Thought (CoT), which generates step-by-step rationales linking relevant signal patterns to final answers. Although these models learn from reference CoT traces during post-training, generating faithful descriptions of input time series at inference remains challenging. Expressing high-dimensional, continuous temporal representations in discrete language tokens may cause the model to neglect task-relevant patterns or describe them inaccurately. Because later reasoning steps build on these descriptions, early errors propagate, leading to incorrect answers with plausible explanations that are inconsistent with the input signal. We propose Lapras (Latent Post-trained Reasoning Across Series), a post-training framework that equips TSLMs with latent reasoning. A model trained with Lapras reasons through a sequence of continuous thoughts in the joint time series-language space, producing text only for the final answer. It learns this through teacher-student self-distillation, where a teacher trained on CoT reference traces reasons explicitly through text. The student aligns its hidden states with the teacher's at the answer stage, transferring the teacher's reasoning ability into its latent computation. We evaluate Lapras across four TSLM backbones on five time series question answering benchmarks. Lapras improves average F1 by up to 10.79% over explicit CoT while generating 23.9x fewer tokens. Lapras's continuous thoughts can also be decoded into readable reasoning traces via standard language decoding, preserving textual explanations. Together, these results highlight Lapras as a promising post-training paradigm for efficient, effective, and interpretable TSLM reasoning.",
+      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Time Series Language Models (TSLMs) offer a promising path toward time series understanding by reasoning over temporal signals and...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "efficient",
+        "inference",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-08T02:33:37Z",
+      "url": "https://arxiv.org/abs/2610.11111",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11111v1"
+    },
+    {
+      "id": "arxiv-2610.10990",
+      "title": "Omni-Diffusion-Distill: Few-Step Distillation of Unified Multimodal Diffusion Large Language Models",
+      "authors": [
+        "Hong Huang",
+        "Chenhongyi Yang",
+        "Junzhe Sun",
+        "Animesh Sinha",
+        "Wuyang Chen",
+        "Yifan Jiang"
+      ],
+      "summary": "Unified multimodal diffusion large language models (dLLMs) offer a single architecture for both image generation and multimodal understanding, but their iterative decoding requires tens to hundreds of forward passes. Existing few-step distillation methods largely focus on either image generation or text generation, making it unclear how to compress a fully discrete multimodal dLLM into a single efficient student while preserving both generation and understanding. We introduce Omni-Diffusion-Distill, a unified two-stage distillation framework that retains strong generation and understanding capabilities while substantially reducing the inference cost of a unified multimodal dLLM. Omni-Diffusion-Distill aligns the distillation of both generation and understanding, for both images and text, in the discrete token space. In the first stage, the student is trained to skip decoding steps by replaying cached teacher trajectories, and in the second stage the student is refined on intermediate states along its own rollouts. We further remedy two sources of degradation in unified distillation with a pairwise collision penalty that reduces repetition under parallel text decoding, and entropy-matched guidance that prevents entropy collapse caused by fitting the sharpened teacher distribution in image generation. Omni-Diffusion-Distill achieves state-of-the-art trade-offs between decoding efficiency and generation and understanding performance for multimodal dLLMs, reducing image generation from 128 to 8 decoding steps and multimodal understanding from 512 to 64, giving 18.2x and 21.2x wall-clock speedups. Under these budgets, it scores 0.828 on GenEval and 83.0 on DPG-Bench for text-to-image generation, while reaching GPT judge scores of 20.0 on MM-Vet and 57.2 on COCO captioning (twice the teacher's 28.4 at the same steps) for multimodal understanding.",
+      "reason": "近 30 天；关键词：cs.CV, efficient, inference。Unified multimodal diffusion large language models (dLLMs) offer a single architecture for both image generation and multimodal un...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CV",
+        "efficient",
+        "inference",
+        "llm",
+        "multimodal",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-07T23:24:16Z",
+      "url": "https://arxiv.org/abs/2610.10990",
+      "pdfUrl": "https://arxiv.org/pdf/2610.10990v1"
+    },
+    {
+      "id": "arxiv-2610.10845",
+      "title": "Real Long-Term Memory for AI: A 50-Million-Token Window That Is Faster and Cheaper Than Recompute",
+      "authors": [
+        "Sietse Schelpe"
+      ],
+      "summary": "A large language model can only use the text that fits in its context window, and it recomputes its internal key-value (KV) state for a prompt every time the prompt is sent. We test a memory layer, the public package galahad-kv, that saves the KV state of each block of about 16,000 tokens to encrypted local NVMe disk and loads it back later, byte-exact, without recomputing it. We ran it on 50,000,000 tokens of real public text, served through vLLM on one NVIDIA H100, with Gemma 4 12B and Gemma 4 31B. Every block we probed was loaded back from the encrypted store with no recompute (100 of 100, at depths from 0 to 50M tokens) on both models. Loading a block was 2.8x to 4.3x faster than recomputing it and used 8.8x to 12.3x less GPU energy, and GPU memory stayed flat over the whole 50M-token stream. Asked about facts planted millions of tokens earlier, the 12B model gave the right answer 82 times out of 100 and the 31B model 98 times out of 100. Neither model made up an answer. The limits are as follows. This is reuse of stored state, not a wider attention window: one block is loaded at a time, and how well a question is answered depends on the model. Writing the memory is a one-time cost, and the store takes terabytes of local NVMe disk. We describe the test protocol, which is built to resist common ways of gaming long-context benchmarks, and give a single-GPU reproduction that uses public software and a free licence for the package.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, energy。A large language model can only use the text that fits in its context window, and it recomputes its internal key-value (KV) state...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.CL",
+        "energy",
         "llm",
         "production"
       ],
       "signal": 99,
       "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-10-07T09:58:30Z",
-      "url": "https://arxiv.org/abs/2610.09778",
-      "pdfUrl": "https://arxiv.org/pdf/2610.09778v1"
+      "publishedAt": "2026-10-07T19:50:53Z",
+      "url": "https://arxiv.org/abs/2610.10845",
+      "pdfUrl": "https://arxiv.org/pdf/2610.10845v1"
     },
     {
-      "id": "arxiv-2610.09772",
-      "title": "Decoupling Logic from Persona: Structural Immunity of Edge LLM Agents to Context Pollution",
+      "id": "arxiv-2610.10827",
+      "title": "Grammar Concept Annotation at Scale: Deployed Fine-Tuned Small Language Models Outperform Prompted Frontier Models",
       "authors": [
-        "Masaaki Nakatsu",
-        "Reno Wang"
+        "Marjan Celikik",
+        "Ana Peleteiro Ramallo",
+        "Javier Morales"
       ],
-      "summary": "Small language-model agents on edge devices must hold a persona and reason correctly at once, inside one context window that fills with conversational history and persona instructions. We study what happens to the logical part of such an agent when that history is long, misleading and persona-heavy (persona-logic interference), and present a Decoupling Architecture (AO-DA) that separates logical inference (\"What\") from persona expression (\"How\") into two inference paths on one INT4 base model with hot-swappable LoRA adapters. The logic path receives only the core turn and emits a verifiable structured state (Micro-State); the persona path renders it in character with the full history. In same-base-model ablations on an Apple M2 laptop (Llama-3.1-8B-Instruct and Gemma-3-4B-it, 4-bit; 480 runs over 4 pollution levels x 3 arms x 2 tasks x 2 personas x 5 seeds) we find: (i) the decoupled logic path is structurally invariant to pollution: its prompt stays at 180 (Llama) or 167 (Gemma) tokens while the mixed single-pass prompt grows from 242 to 1,203, and its outputs are byte-identical across levels (40/40); (ii) the mixed single pass degrades monotonically (composite logic score 0.669 to 0.150 on Llama, 0.487 to 0.150 on Gemma), mostly by failing to emit the required structured output (80-95% of runs on Llama, 100% on Gemma at the two highest levels); (iii) with the same pollution fed into the decoupled logic path, the dedicated-adapter, dedicated-format path is still more robust than the single pass on the 8B model (failure 0-20% vs 80-95%; paired $Δ$ +0.30 to +0.50, Cliff's $δ$ 0.50-0.85, Holm-adjusted $p \\le 0.03$) but not on the 4B model, where both collapse. Separation costs one extra decode on a topic's first turn (28.2 s vs 18.2 s on Llama) and buys persona hot-swapping in 1.7 ms without re-running the logic path. Code, rubric, fixtures, adapters and logs are released.",
-      "reason": "近 30 天；公司信号：Apple, Meta；关键词：apple, meta, cs.CL。Small language-model agents on edge devices must hold a persona and reason correctly at once, inside one context window that fills...",
+      "summary": "Corrective feedback is among the best-evidenced drivers of second-language acquisition, yet corrections delivered during lessons rarely accumulate into an actionable view of grammar mastery. Prompted frontier models can provide such a view from learner--tutor lesson transcripts, but they are costly at scale. We close this gap by fine-tuning Qwen3.5 small language models (SLMs) on filtered and rebalanced teacher-generated supervision, then deploying an efficient 0.8B model in an end-to-end grammar mastery tracker for all English learners on our platform. Internalizing the annotation contract into adapter weights enables pairing the 0.8B model with a compact matched prompt rather than verbose instructions. On two human-curated benchmarks, both the deployed 0.8B model and a 4B reference comparator outperform prompted GPT-5.4 and GPT-5.6 Sol in precision and recall under nested matching criteria of increasing strictness: concept, evidence span, and correctness. The deployed 0.8B SLM reduces serving cost by approximately 16$\\times$. A feature-level online experiment shows significant gains in learner engagement ($+15.8\\%$) and key business metrics, including scheduled hours ($+2.1\\%$) and GMV from new lessons ($+13.2\\%$).",
+      "reason": "近 30 天；关键词：cs.CL, deployed, efficient。Corrective feedback is among the best-evidenced drivers of second-language acquisition, yet corrections delivered during lessons r...",
       "area": "LLM 推理优化",
       "tags": [
-        "apple",
-        "meta",
         "cs.CL",
-        "inference",
-        "llm",
-        "lora"
-      ],
-      "signal": 99,
-      "source": "Apple/Meta/arXiv",
-      "publishedAt": "2026-10-07T09:53:28Z",
-      "url": "https://arxiv.org/abs/2610.09772",
-      "pdfUrl": "https://arxiv.org/pdf/2610.09772v1"
-    },
-    {
-      "id": "arxiv-2610.09424",
-      "title": "Democratizing MoE inference on commodity GPUs with CoMoE",
-      "authors": [
-        "Ruwen Fan",
-        "Yuezhi Zu",
-        "Junru Li",
-        "Qingda Hu",
-        "Xinjun",
-        "Yang",
-        "Jiwu Shu",
-        "Youyou Lu"
-      ],
-      "summary": "Deploying Mixture-of-Experts (MoE) models relies heavily on Expert Parallelism, which generates intense inter-GPU communication. Consequently, state-of-the-art inference systems require high-bandwidth, P2P interconnects (e.g., NVLink) in datacenter GPUs to handle massive token routing, making deployment prohibitively expensive. Consumer GPUs offer comparable compute power at significantly lower cost, promising to democratize MoE inference for individuals and enable privacy-preserving local deployments. However, their bandwidth-limited (only weak PCIe bus bandwidth) and host-mediated interconnects (no P2P support) introduce severe communication bottlenecks. We present CoMoE, a communication-efficient MoE inference system that resolves this mismatch through novel host-centric routing. Our key insight is that the unique communication topology provides the opportunity to elevate the host to an active routing hub, which can fundamentally reduce communication volume and eliminate global synchronization-induced stalls. Specifically, for token dispatch, we introduce host-backed token multicast to write shared tokens to the host exactly once, eliminating outbound transmission redundancy. For token combine, we propose a fine-grained, token-level aggregation mechanism using host staging buffers, which replaces rigid global synchronization and mitigates straggler effects. Evaluation on RTX 5090 GPUs shows that CoMoE improves inference throughput by up to 1.46x, approaching the performance of NVLink-capable A800 GPUs at only 23.4% of the hardware cost.",
-      "reason": "近 30 天；关键词：cs.DC, efficient, inference。Deploying Mixture-of-Experts (MoE) models relies heavily on Expert Parallelism, which generates intense inter-GPU communication. C...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
+        "deployed",
         "efficient",
-        "inference",
-        "serving",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-07T04:24:45Z",
-      "url": "https://arxiv.org/abs/2610.09424",
-      "pdfUrl": "https://arxiv.org/pdf/2610.09424v1"
-    },
-    {
-      "id": "arxiv-2610.09307",
-      "title": "vLLM-Omni Technical Report: A Unified Serving Runtime for Omni-Modality Generation",
-      "authors": [
-        "vLLM-Omni Team"
-      ],
-      "summary": "Interaction with intelligent systems is expanding beyond text-centric chatbots and coding agents. Speech-native assistants, visual generation and editing, world-model environments, and robot action loops require models that emit text, audio, images, video, and actions. These models differ in execution pattern: multi-stage autoregressive omni and TTS pipelines, iterative diffusion or flow-matching generators, and longer-lived world-model or robot loops that carry state across steps. As a result, serving is no longer a single text decode loop, but a heterogeneous multi-stage workflow with cross-stage transfer, streaming, and session-shaped interaction. Existing inference stacks are typically optimized for one architecture family. LLM servers deepen autoregressive scheduling and KV management, while diffusion stacks deepen denoising and parallel generation. Neither provides a shared control plane for pipelines that emit speech, pixels, or actions through separate generators, so production deployments often fall back to ad-hoc composition across disjoint runtimes. We present vLLM-Omni, a unified serving runtime for omni-modality generation. vLLM-Omni organizes each workload as a multi-stage pipeline under a single orchestrator that admits requests, advances them across stages, and demultiplexes streaming outputs. Specialized engines and stage replicas provide compute; a connector carries heavy payloads on the data plane; and session-oriented control supports long-lived duplex, world-model, and robot workloads. This report covers the architecture (stage-level KV paths, replica pools, multi-hardware platforms, and efficiency stack) and OpenAI-compatible and OpenPI APIs for omni, TTS, image/video, world-model, robot, and duplex workloads. We evaluate on the multimodal nightly CI on H100 (TTS and MiniCPM-o on H200), focused on Qwen3-Omni.",
-      "reason": "近 30 天；公司信号：NVIDIA, OpenAI；关键词：nvidia, openai, cs.DC。Interaction with intelligent systems is expanding beyond text-centric chatbots and coding agents. Speech-native assistants, visual...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
-        "openai",
-        "cs.DC",
-        "inference",
-        "llm",
-        "multimodal",
-        "production"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/OpenAI/arXiv",
-      "publishedAt": "2026-10-07T02:04:28Z",
-      "url": "https://arxiv.org/abs/2610.09307",
-      "pdfUrl": "https://arxiv.org/pdf/2610.09307v1"
-    },
-    {
-      "id": "arxiv-2610.09202",
-      "title": "Few Bits, One Law: Toward W2A4KV2",
-      "authors": [
-        "Kai Yi",
-        "Tarek Elgamal",
-        "Sruthikesh Surineni",
-        "Vignesh Vivekraja",
-        "Soumyadeep Ghosh",
-        "Steven Li"
-      ],
-      "summary": "Extreme low-bit LLM compression is most challenging when weights, activations, and KV caches are quantized together: their distributions differ, and quantization errors interact throughout the network. We introduce CanonQ, a unified quantization-aware training framework that addresses these challenges by separating source canonicalization from task-aware adaptation. Fixed rotations and energy normalization map heterogeneous tensor sources to canonical coordinates, enabling frozen Gaussian-reference codebooks to be reused across layers and models. Joint training then adapts the network to the coupled errors of weight, activation, and cache quantization within a common scalar/vector interface. We bound frozen-codebook transfer error and local task loss, and derive an exact normalization-aware straight-through Jacobian that links quantization distortion to gradient bias. The strongest gains arise under joint W2A4KV2 compression: across LLaMA3-1B/3B/8B, CanonQ-Omni achieves up to 14.28x lower WikiText-2 perplexity and up to 57.9% higher mean zero-shot accuracy than prior state-of-the-art and representative quantization baselines. The benefits extend to Qwen3-1.7B, code generation, and mathematical reasoning: on instruction-tuned MobileLLM-Pro-1B at W2A16KV16, CanonQ achieves relative improvements of 41.7% in HumanEval pass@1 and 39.1% in GSM8K exact match over the strongest evaluated quantization baseline.",
-      "reason": "近 30 天；关键词：cs.AI, energy, kv-cache。Extreme low-bit LLM compression is most challenging when weights, activations, and KV caches are quantized together: their distrib...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.AI",
-        "energy",
-        "kv-cache",
-        "llm",
-        "quantization"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-06T22:55:36Z",
-      "url": "https://arxiv.org/abs/2610.09202",
-      "pdfUrl": "https://arxiv.org/pdf/2610.09202v1"
-    },
-    {
-      "id": "arxiv-2610.09051",
-      "title": "A Self-Pruning Transformer: Extreme KV-Cache Compression with Universal Attention",
-      "authors": [
-        "Davis Wertheimer",
-        "Haochen Shen",
-        "Ahan Gupta",
-        "Derrick Liu",
-        "Yu Chin Fabian Lim",
-        "Mudhakar Srivatsa",
-        "Raghu K. Ganti",
-        "Minjia Zhang",
-        "Naigang Wang"
-      ],
-      "summary": "The large KV-cache size of modern LLMs creates a barrier to efficient deployment. Recent work has explored replacing attention layers' RoPE positional embeddings with alternative decay-based mechanisms, which can then be used to prune KV-cache during inference. However, these decay functions have limited expressivity, and in practice devolve into sliding-window-like eviction patterns. In this work, we propose a unifying framework for complementary and novel decay mechanisms, capturing complex key statistics and interactions while preserving expressive RoPE embeddings and Softmax attention. The resulting Universal Attention is a highly expressive and end-to-end trainable architecture, whose composite decay mechanism acts as a natural, $\\textit{adaptive}$ pruning criterion, removing tokens that contribute least to attention computation. Experimentally, Universal Attention achieves state-of-the-art $10\\times$ compression on natural language and synthetic task data, while $\\textit{improving}$ downstream performance compared to both state-of-the-art baselines and unpruned oracles. It further demonstrates superior long-context generalization with unprecedented $25\\times$ compression at length 16k.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, inference。The large KV-cache size of modern LLMs creates a barrier to efficient deployment. Recent work has explored replacing attention lay...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "efficient",
-        "inference",
-        "llm",
         "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-06T20:00:04Z",
-      "url": "https://arxiv.org/abs/2610.09051",
-      "pdfUrl": "https://arxiv.org/pdf/2610.09051v1"
+      "publishedAt": "2026-10-07T19:31:24Z",
+      "url": "https://arxiv.org/abs/2610.10827",
+      "pdfUrl": "https://arxiv.org/pdf/2610.10827v1"
     },
     {
-      "id": "arxiv-2610.09025",
-      "title": "SPIN: Shadow Predictive Indexer for Sparse Attention",
+      "id": "arxiv-2610.10381",
+      "title": "ResidualQuant: KV Cache Quantization for Looped Transformers with 2-Bit Residuals",
       "authors": [
-        "Yao Fu",
-        "Cyrus Chang",
-        "Ritchie Zhao",
-        "Bryce Long",
-        "Yueying Li",
-        "Mahdi Kamani",
-        "Samkit Jain",
-        "Rahul Raman",
-        "Tara Safavi",
-        "Shreya Gupta",
-        "Parsa Ashrafi Fashi",
-        "Minseok Lee",
-        "Julien Demouth",
-        "Bita Darvish Rouhani"
+        "Heejun Kim",
+        "Junyoung Lee",
+        "SangLyul Cho",
+        "Dongsu Han",
+        "Insu Han",
+        "Sehoon Kim"
       ],
-      "summary": "Indexer-based sparse attention reduces the cost of core attention by passing only a fixed, small number of important tokens to it. However, the indexer must still score the entire KV cache at every decoding step. This scoring overhead becomes a major bottleneck as the context length grows. We propose SPIN (Shadow Predictive Indexer) to reduce this indexer overhead. SPIN uses lightweight, history-based prediction to identify important KV blocks, avoiding the need to score the full KV cache at every decoding step. SPIN treats KV blocks and speculative decoding as first-class design and implementation considerations. Across extensive evaluations on long-context and agentic benchmarks, SPIN achieves 30-40% sparsity while preserving task quality. In end-to-end vLLM serving, SPIN improves output throughput by up to 14.9% and reduces median inter-token latency by up to 13.2%.",
-      "reason": "近 30 天；关键词：cs.LG, kv-cache, latency。Indexer-based sparse attention reduces the cost of core attention by passing only a fixed, small number of important tokens to it....",
+      "summary": "Looped Transformers improve parameter efficiency by repeatedly applying shared Transformer blocks over multiple recurrent loops, increasing computational depth without increasing the parameter count. However, KV cache memory still scales with the number of loops, becoming a key memory bottleneck that limits batch size and inference throughput. KV cache quantization can alleviate this bottleneck, but existing methods often suffer substantial accuracy degradation at aggressive low-precision regimes. We observe that looped Transformers offer a unique opportunity: KV states across loops are highly similar. Based on this observation, we propose ResidualQuant, which uses the final-loop KV states as a reference and represents the remaining loops with low-precision residuals. Our method further combines least-square scaling and rotations applied to the residuals, as well as loop-wise mixed precision, to enable accurate quantization down to INT2 while retaining efficient reconstruction. Across multiple looped Transformer models and mathematical reasoning and code generation benchmarks, ResidualQuant consistently improves the accuracy-memory tradeoff over state-of-the-art rotation-based KV quantization. In particular, our method retains accuracy close to BF16 under mixed-precision settings while reducing theoretical KV storage by 80.7%, achieving up to 13.0% higher accuracy than the rotation-based baseline at the same memory budget. On an RTX 5090, the reduced KV memory traffic improves fixed-batch decode throughput by up to 2.73x, while the smaller memory footprint enables up to 2x larger batches, improving peak throughput by up to 4.15x.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Looped Transformers improve parameter efficiency by repeatedly applying shared Transformer blocks over multiple recurrent loops, i...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
+        "efficient",
+        "inference",
         "kv-cache",
-        "latency",
-        "llm",
-        "serving",
-        "speculative",
+        "quantization",
         "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-06T19:23:10Z",
-      "url": "https://arxiv.org/abs/2610.09025",
-      "pdfUrl": "https://arxiv.org/pdf/2610.09025v1"
+      "publishedAt": "2026-10-07T16:40:21Z",
+      "url": "https://arxiv.org/abs/2610.10381",
+      "pdfUrl": "https://arxiv.org/pdf/2610.10381v1"
     },
     {
-      "id": "arxiv-2610.08678",
-      "title": "Secure Speculative Decoding for Large Language Models",
+      "id": "arxiv-2610.10124",
+      "title": "Training with Missed Targets in Generative Recommendation: Separating Supervision from Probability Competition",
       "authors": [
-        "Yichi Zhang",
-        "Zhiqi Wang",
-        "Neil Gong",
-        "Yuchen Yang"
+        "Xuesi Wang",
+        "Yangbin Shi",
+        "Xiaolin Zheng"
       ],
-      "summary": "Speculative decoding accelerates inference for a large language model (LLM), referred to as the \\emph{target model}, by first using a smaller model, referred to as the \\emph{draft model}, to generate candidate tokens and then verifying them with the target model for acceptance or rejection. Prior studies primarily focused on the efficiency-utility trade-off of speculative decoding, e.g., lossy speculative decoding, leaving its security implications largely unexplored. In this work, we bridge this gap by providing the \\emph{first} systematic study of the security implications of speculative decoding. Through a large-scale measurement study, we reveal a pronounced security-utility asymmetry: across a wide range of lossy speculative decoding methods, improvements in inference efficiency come at a disproportionately high cost to security, with attack success rates for jailbreak and prompt injection attacks increasing much faster than utility degrades. We then propose SecureSD, a new theory-guided speculative decoding method that enhances security while maintaining efficiency and utility. Specifically, our theoretical analysis reveals that security degradation primarily originates from the early tokens generated by the draft model. Motivated by this insight, SecureSD applies a stricter verification criterion to draft-model tokens at early decoding positions. Extensive experiments on both security and utility benchmarks demonstrate that SecureSD significantly improves security while preserving efficiency and utility compared to existing speculative decoding methods.",
-      "reason": "近 30 天；关键词：cs.CR, inference, llm。Speculative decoding accelerates inference for a large language model (LLM), referred to as the \\emph{target model}, by first usin...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CR",
-        "inference",
-        "llm",
-        "serving",
-        "speculative"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-06T16:59:37Z",
-      "url": "https://arxiv.org/abs/2610.08678",
-      "pdfUrl": "https://arxiv.org/pdf/2610.08678v1"
-    },
-    {
-      "id": "arxiv-2610.08136",
-      "title": "Adapting Generative Recommenders for Multi-Turn Interaction",
-      "authors": [
-        "Yu-Chen Den",
-        "Zhi Rui Tam",
-        "Yung-Yu Shih",
-        "Shih-Hsin Wang",
-        "Yun-Nung Chen",
-        "Pu-Jen Cheng",
-        "Eugene Yang"
-      ],
-      "summary": "Generative recommenders decode items from a user's interaction history, but offer no way for users to correct a recommendation that misses their current intent. Adding conversation is natural since items and words share same output space, yet training the model to converse may overwrite the history-to-item mapping it relies on. We introduce INTEGER (**INTE**ractive **GE**nerative **R**ecommendation), which extends generative recommendation to multi-turn interaction with a learned routing token that lets the model decide when to recommend, history re-anchoring that conditions each item on both past behavior and the dialogue, and behavioral replay with instruction-data rehearsal that prevents forgetting during adaptation. Users can thus give feedback on recommendations within the dialogue, while recommendations stay grounded in behavioral history and accuracy is not traded for fluency. On Amazon Beauty and Toys, INTEGER matches or exceeds the strongest baselines in accuracy with competitive conversation quality, improving Hit@10 by 13.3% on Amazon Beauty, and significantly outperforms the generative recommender it starts from. Our analyses show that INTEGER learns behaviors that naive adaptation fails to acquire, recommending once the user's intent is clear and staying attentive to behavioral history at the moment of recommendation. INTEGER also learns an intent-agnostic replacement over the item space, which suppresses rejected items but points to attribute-aware feedback as the next step.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, generative-recommendation。Generative recommenders decode items from a user's interaction history, but offer no way for users to correct a recommendation tha...",
+      "summary": "Generative recommenders return a limited candidate set and may omit observed targets before reranking. A training strategy appends these missed targets to reranker training lists, although inference still ranks only original candidates. This operation simultaneously changes retrieved-target weight, adds supervision over appended targets, and makes the two groups compete for probability. An append/no-append comparison therefore cannot explain changes in returned-item rankings. We construct three matched losses that hold retrieved-target weight fixed while introducing appended-target supervision and group competition separately. The intermediate loss trains within both groups but normalizes them separately, preventing training-only targets from competing with inference candidates. Experiments with a released OneRec model and locally trained Amazon generators show that this competition can harm returned-item ranking. In four prespecified Amazon Video Games comparisons, removing it improved full-target normalized discounted cumulative gain (FT-NDCG) by 7.8--22.2\\%; 95\\% intervals over users and three of four intervals over training runs excluded zero. A conservative development-set rule selected appended-target training for two of three generators in one held-out category and rejected it for all three in another, avoiding a 1.7\\% loss. Candidate completion should therefore be evaluated for each generator rather than applied automatically.",
+      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, generative-recommendation。Generative recommenders return a limited candidate set and may omit observed targets before reranking. A training strategy appends...",
       "area": "推荐算法",
       "tags": [
         "amazon",
         "cs.IR",
         "generative-recommendation",
+        "inference",
+        "ranking",
         "recommendation",
         "recommender"
       ],
       "signal": 99,
       "source": "Amazon/arXiv",
-      "publishedAt": "2026-10-06T10:51:53Z",
-      "url": "https://arxiv.org/abs/2610.08136",
-      "pdfUrl": "https://arxiv.org/pdf/2610.08136v1"
+      "publishedAt": "2026-10-07T14:07:06Z",
+      "url": "https://arxiv.org/abs/2610.10124",
+      "pdfUrl": "https://arxiv.org/pdf/2610.10124v1"
     }
   ]
 }
