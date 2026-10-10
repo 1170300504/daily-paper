@@ -1,269 +1,265 @@
 {
-  "generatedAt": "2026-10-09T09:32:19.176492+08:00",
+  "generatedAt": "2026-10-10T09:23:23.523479+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2610.11358",
-      "title": "RaReCache: Bridging the Gap in Cross-Model KV Cache Reuse via Rank disagreement-based Selective Recomputation",
+      "id": "arxiv-2610.12361",
+      "title": "Cited but Not Consulted: A Counterfactual Audit of Legal Chain-of-Thought Faithfulness",
       "authors": [
-        "Sreetama Sarkar",
-        "Saptarshi Mitra",
-        "Sitao Huang",
-        "Souvik Kundu",
-        "Peter A. Beerel"
+        "Saisab Sadhu",
+        "Shreeyans Arora",
+        "Pratinav Seth"
       ],
-      "summary": "Cross-model KV-cache reuse remains a key challenge in modern LLM serving. Coding agents and multi-model systems increasingly route a shared context across models: a user may switch models mid-session, or a cascade may escalate a difficult query. Because KV caches contain model-specific representations, each switch typically forces the receiving model to prefill the entire context from scratch. Recent work shows that closed-form linear maps can translate KV caches between models in the same family, but transfer accuracy degrades as the model-size gap widens. In this paper, we establish that these transfer failures are concentrated in a small subset of information-dense tokens. To bridge this gap, we introduce RaReCache, a framework that enables a large target model to decode accurately from a cache prefilled by a much smaller source via selective recomputation. RaReCache identifies these critical positions using a novel rank disagreement metric, scoring each token by the energy of its mapped KV in output directions weakly supported by the calibration data. Across two model families and five benchmarks, on a 23x parameter gap (Qwen3-0.6B to 14B) recomputing just 30% of positions retains 95-99% of the target accuracy, whereas on a 8.8x gap (Llama3-8B to 70B), recomputing 40% retains 96.5% of the target accuracy. RaReCache largely removes sensitivity to source-model size, and achieves up to a 3.04x prefill speedup. For online serving, it handles 1.8x the request throughput of target prefill on a single GPU, and at the target's saturation load, reduces median and 99th-percentile time-to-first-token (TTFT) by 5.0x and 6.4x respectively, with a 30% recompute budget. RaReCache establishes an efficient serving paradigm where small models prefill on behalf of massive targets, enabling large models to recompute only critical tokens, drastically reducing prefill latency.",
-      "reason": "近 30 天；关键词：cs.AI, efficient, energy。Cross-model KV-cache reuse remains a key challenge in modern LLM serving. Coding agents and multi-model systems increasingly route...",
+      "summary": "Large language models increasingly justify legal decisions by naming the statute or precedent behind a verdict, treated as evidence that the decision follows from it. We test this directly: holding case facts fixed, we substitute the named legal authority for an unrelated one and decode a model's evolving verdict from its hidden states. Across seven open-weight models (8B-70B) and four benchmarks spanning judicial and contractual reasoning, when explicitly required to justify a verdict by naming the governing authority, models name the correct one in 66.7%-100% of generations, while the verdict changing when the authority changes is far less consistent: 0.0%-21.7% on CaseHOLD, 30.0%-76.7% on ECHR and SCOTUS, and 43.3%-50.0% on ContractNLI. Neither scale nor a purpose-built legal-reasoning model (a best-effort LoRA reproduction; Section 6) closes this gap. A red-teaming evaluation on five core models finds compliance with an adversarial instruction hidden in the case facts (73.3%-96.4%) exceeds verdict-swap sensitivity by a wide margin, holding without exception across model rankings. Naming a legal authority is thus a poor proxy for a verdict's dependence on it, while the same verdict remains separately vulnerable to adversarial manipulation. Both findings replicate across checks ruling out prompt-wording noise and confounded sampling, and bear directly on the use of generated legal explanations as compliance or audit artefacts.",
+      "reason": "近 30 天；关键词：cs.AI, lora, production。Large language models increasingly justify legal decisions by naming the statute or precedent behind a verdict, treated as evidenc...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.AI",
-        "efficient",
-        "energy",
-        "kv-cache",
-        "latency",
-        "llm",
-        "prefill"
+        "lora",
+        "production",
+        "ranking"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-08T06:49:28Z",
-      "url": "https://arxiv.org/abs/2610.11358",
-      "pdfUrl": "https://arxiv.org/pdf/2610.11358v1"
+      "publishedAt": "2026-10-08T17:26:17Z",
+      "url": "https://arxiv.org/abs/2610.12361",
+      "pdfUrl": "https://arxiv.org/pdf/2610.12361v1"
     },
     {
-      "id": "arxiv-2610.11351",
-      "title": "Deception by Omission: Language Models Knowingly Hide Their Mistakes",
+      "id": "arxiv-2610.12327",
+      "title": "SparseDecoding: Decoding-Aware Pruning for Accurate and Efficient LLM Inference",
       "authors": [
-        "Lucas Florin",
-        "Amelie Knecht",
-        "Ulysse Schaller",
-        "Thilo Hagendorff"
+        "Qitong Wang",
+        "Xinwei Niu",
+        "Mingluo Su",
+        "Shanwei Zhao",
+        "Shiai Zhu",
+        "Huan Wang"
       ],
-      "summary": "Large language models (LLMs) increasingly act as agents with little human oversight, so potential mistakes they make can go unnoticed. Users then depend on the model to report what went wrong. An honest model discloses its mistakes, while a deceptive one conceals them. However, it is unclear how current LLMs behave in such situations. In this study, we prefill LLM trajectories with synthetic mistakes. The trajectories resemble real deployments in chat and agentic settings. Models fail to disclose their mistake in 36.4% of chat and 67.1% of agentic rollouts. In 2.4% and 5.3% of rollouts, respectively, they are aware of the mistake in their chain of thought but still deceptively conceal it. Rates vary by model: for instance, Gemini 3.5 Flash knowingly conceals mistakes in up to 19.9% of agentic rollouts. In 11.9% of chat and 51.8% of agentic rollouts, models show no awareness of mistakes, even though they reliably spot them when reviewing the same transcript as an outside observer. Our results show that, as agents take on more tasks with less oversight, users cannot rely on them to self-report possible mistakes. Developers should instead use independent monitors that review agent trajectories, or specifically train models to check their past actions and disclose what they find.",
-      "reason": "近 30 天；公司信号：Google；关键词：google, cs.CL, llm。Large language models (LLMs) increasingly act as agents with little human oversight, so potential mistakes they make can go unnoti...",
+      "summary": "The memory-bound nature of the decoding stage of large language model (LLM) inference incurs significant latency. Layer-wise training-free network pruning approaches guided by the Hessian have been a prominent solution to this problem, as pruning reduces the number of nonzero parameters read from memory during decoding. Nevertheless, typical methods in this line compute the Hessian using pre-collected natural sequences, whereas the model is fed self-generated tokens during decoding, creating a distribution shift between the two sequences. The Hessian calculated on the natural sequence is different from that calculated on the generated sequence. We observe that this discrepancy causes the activation distribution during generation to deviate from that used for pruning, further hurting the pruned model performance. Moreover, most existing LLM pruning methods that bring actual speedup primarily target the sparse matrix-matrix (SpMM) multiplication, providing limited support for the sparse matrix-vector (SpMV) operations, which dominate decoding. To solve these problems, we introduce SparseDecoding, a principled decoding-aware pruning framework tailored for accurate and efficient LLM decoding. Specifically, at the algorithmic axis, SparseDecoding constructs calibration matrices from layer-wise activations collected during the dense-model autoregressive generation, excluding prefill, thereby aligning the pruning objective with the decoding activations. At the system axis, we develop an optimized N:M sparse matrix-vector kernel with bitmask indexing and fixed-step traversal. Substantial empirical results on representative LLMs (Llama-3.1-8B, Llama-3.3-70B, Qwen3-14B / 32B) demonstrate that our method consistently outperforms standard fixed-text calibration on the long-form generation benchmarks while achieving up to 1.48x end-to-end wall-clock decoding speedup on A100 GPUs.",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, efficient。The memory-bound nature of the decoding stage of large language model (LLM) inference incurs significant latency. Layer-wise train...",
       "area": "LLM 推理优化",
       "tags": [
-        "google",
-        "cs.CL",
-        "llm",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "Google/arXiv",
-      "publishedAt": "2026-10-08T06:45:02Z",
-      "url": "https://arxiv.org/abs/2610.11351",
-      "pdfUrl": "https://arxiv.org/pdf/2610.11351v1"
-    },
-    {
-      "id": "arxiv-2610.11245",
-      "title": "Read What Matters: Query-Adaptive Quantization for KV Caches",
-      "authors": [
-        "Siddharth Bhandari",
-        "Lucas Gretta",
-        "Krishna Balasubramanian",
-        "Shiva Kasiviswanathan"
-      ],
-      "summary": "KV-cache entries are stored before their future queries are known, but each decoding query needs precision in different places. We study this mismatch using separate budgets for retained bits and bits fetched per query. ReadKV stores each key and value in a progressive code whose prefixes support different reconstruction precisions. For each query, it allocates key-channel prefixes using the query, computes attention from the reconstructed keys, and then allocates value-token prefixes using that attention. Stored entries remain unchanged. Each stage optimizes a calibrated distortion objective under a fixed budget; we prove exact allocation under diminishing refinement gains and relate these objectives to attention-output error. We also exhibit a finite-dimensional attention family where query-dependent access strictly outperforms every query-independent reader at the same read budget, even with unrestricted competing encoders and decoders. Across six base models, reading four bits on average from an eight-bit cache increases C4 perplexity by at most 0.66%, using about one quarter of the logical reads and half the retained capacity of a 16-bit cache. It is consistently more accurate than storing and fully reading four bits at the same payload-read budget. Retaining more bits than each query fetches is aimed at long-context decoding, where the cache bytes moved per step, rather than the weights, dominate cost. Long-context question answering and retrieval on two instruction-tuned models provide additional quality evidence. On the tested 8K-token, batch-one, single-layer workload on an NVIDIA A10G, a restricted eight-bit ReadKV reader with a two-bit mean payload-read budget has 39% lower latency than the tested TurboQuant codec.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, kv-cache。KV-cache entries are stored before their future queries are known, but each decoding query needs precision in different places. We...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
+        "meta",
         "cs.LG",
-        "kv-cache",
-        "latency",
-        "quantization",
-        "retrieval"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-10-08T04:47:41Z",
-      "url": "https://arxiv.org/abs/2610.11245",
-      "pdfUrl": "https://arxiv.org/pdf/2610.11245v1"
-    },
-    {
-      "id": "arxiv-2610.11196",
-      "title": "Selective Listening: Mechanism-Guided Control of Audio Influence in Large Audio-Language Models",
-      "authors": [
-        "Yulin Sun",
-        "Kele Xu",
-        "Yong Dou"
-      ],
-      "summary": "Large audio-language models (LALMs) exploit multimodal evidence, yet task-irrelevant audio can alter text-reasoning decisions when listening is unnecessary. Aggregate Accuracy can hide this paired drift because audio-induced repairs and damages may cancel. Paired drift analysis and targeted interventions identify architecture-specific, intervention-sensitive late audio pathways as actionable control points. We introduce ICAP-Gate, which applies mechanism-guided, task-conditioned control to each model's pathway. Across four LALMs, two reasoning benchmarks, and environmental-sound and natural-speech interference, ICAP-Gate has lower point estimates for Influence Rate and Answer Flip than ungated inference in all 16 full-split model--condition evaluations. Fixed suppression degrades automatic speech recognition (ASR) across all four models, whereas ICAP-Gate matches ungated ASR performance by preserving the pathway for explicit audio-demand instructions. ICAP-Gate has lower paired-drift point estimates than mitigation prompting in all four evaluated settings and provides competitive stabilization relative to eight-sample Self-Consistency while using one generation per query; in controlled ARC measurements, Self-Consistency incurs $7.0$--$9.2\\times$ ungated latency. These results establish selective modality influence control as a design principle for robust multimodal reasoning.",
-      "reason": "近 30 天；关键词：cs.SD, inference, latency。Large audio-language models (LALMs) exploit multimodal evidence, yet task-irrelevant audio can alter text-reasoning decisions when...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.SD",
+        "efficient",
         "inference",
         "latency",
-        "multimodal",
-        "serving"
+        "llm",
+        "prefill"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-08T04:00:47Z",
-      "url": "https://arxiv.org/abs/2610.11196",
-      "pdfUrl": "https://arxiv.org/pdf/2610.11196v1"
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-10-08T17:06:32Z",
+      "url": "https://arxiv.org/abs/2610.12327",
+      "pdfUrl": "https://arxiv.org/pdf/2610.12327v1"
     },
     {
-      "id": "arxiv-2610.11111",
-      "title": "Lapras: Latent Reasoning for Time Series Language Models",
+      "id": "arxiv-2610.12242",
+      "title": "TokenRouter: Efficient Serving System for Token-Level LLM Routing",
       "authors": [
-        "Yuliang Chen",
-        "Yu Yvonne Wu",
-        "Patrick Langer",
-        "Arvind Pillai",
-        "Sudarshan Regmi",
-        "Martin Maritsch",
-        "Juncheng Liu",
-        "Robert Jakob",
-        "Thomas Kaar",
-        "Tess Z. Griffin",
-        "Lisa Marsch",
-        "Michael V. Heinz",
-        "Nicholas C. Jacobson",
-        "Andrew Campbell"
+        "Tianyu Fu",
+        "Tengxuan Liu",
+        "Ruoxi Wang",
+        "Yixin Dong",
+        "Yi Ge",
+        "Yichen You",
+        "Yu Wang"
       ],
-      "summary": "Time Series Language Models (TSLMs) offer a promising path toward time series understanding by reasoning over temporal signals and producing natural language answers and explanations. A common approach is Chain-of-Thought (CoT), which generates step-by-step rationales linking relevant signal patterns to final answers. Although these models learn from reference CoT traces during post-training, generating faithful descriptions of input time series at inference remains challenging. Expressing high-dimensional, continuous temporal representations in discrete language tokens may cause the model to neglect task-relevant patterns or describe them inaccurately. Because later reasoning steps build on these descriptions, early errors propagate, leading to incorrect answers with plausible explanations that are inconsistent with the input signal. We propose Lapras (Latent Post-trained Reasoning Across Series), a post-training framework that equips TSLMs with latent reasoning. A model trained with Lapras reasons through a sequence of continuous thoughts in the joint time series-language space, producing text only for the final answer. It learns this through teacher-student self-distillation, where a teacher trained on CoT reference traces reasons explicitly through text. The student aligns its hidden states with the teacher's at the answer stage, transferring the teacher's reasoning ability into its latent computation. We evaluate Lapras across four TSLM backbones on five time series question answering benchmarks. Lapras improves average F1 by up to 10.79% over explicit CoT while generating 23.9x fewer tokens. Lapras's continuous thoughts can also be decoded into readable reasoning traces via standard language decoding, preserving textual explanations. Together, these results highlight Lapras as a promising post-training paradigm for efficient, effective, and interpretable TSLM reasoning.",
-      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Time Series Language Models (TSLMs) offer a promising path toward time series understanding by reasoning over temporal signals and...",
+      "summary": "Large language model (LLM) routing distributes inference work across different models, advancing the cost-quality Pareto frontier of LLM serving. While coarse-grained routing at the session or query level has been widely adopted in production systems, recent algorithmic work shows that fine-grained token-level routing can yield substantial efficiency and quality gains. However, efficiently serving token-level routed inference poses significant challenges to existing systems. Built on single-LLM assumptions, current systems suffer from severe step desynchronization and frequent batch admission delays under token-level routing, and they also impose high implementation complexity on developers. To address these challenges, we design TokenRouter, an efficient and developer-friendly serving system for token-level routed LLM inference. TokenRouter follows the principle of request-centric programming, model-centric execution: developers describe routing logic from the perspective of a single request, while the runtime launches a subserver for each LLM and dispatches requests asynchronously. Each subserver employs a delayed-batching scheduler, whose optimal hyperparameters are derived from a mathematical throughput model of the system. Across diverse routing algorithms, workloads, and model pairs, TokenRouter achieves 2.01-64.15x higher decoding throughput than existing systems, substantially advancing the serving efficiency of token-level LLM routing. Our code is available at https://github.com/thu-nics/TokenRouter.",
+      "reason": "近 30 天；关键词：cs.CL, batching, efficient。Large language model (LLM) routing distributes inference work across different models, advancing the cost-quality Pareto frontier...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.CL",
-        "efficient",
-        "inference",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-08T02:33:37Z",
-      "url": "https://arxiv.org/abs/2610.11111",
-      "pdfUrl": "https://arxiv.org/pdf/2610.11111v1"
-    },
-    {
-      "id": "arxiv-2610.10990",
-      "title": "Omni-Diffusion-Distill: Few-Step Distillation of Unified Multimodal Diffusion Large Language Models",
-      "authors": [
-        "Hong Huang",
-        "Chenhongyi Yang",
-        "Junzhe Sun",
-        "Animesh Sinha",
-        "Wuyang Chen",
-        "Yifan Jiang"
-      ],
-      "summary": "Unified multimodal diffusion large language models (dLLMs) offer a single architecture for both image generation and multimodal understanding, but their iterative decoding requires tens to hundreds of forward passes. Existing few-step distillation methods largely focus on either image generation or text generation, making it unclear how to compress a fully discrete multimodal dLLM into a single efficient student while preserving both generation and understanding. We introduce Omni-Diffusion-Distill, a unified two-stage distillation framework that retains strong generation and understanding capabilities while substantially reducing the inference cost of a unified multimodal dLLM. Omni-Diffusion-Distill aligns the distillation of both generation and understanding, for both images and text, in the discrete token space. In the first stage, the student is trained to skip decoding steps by replaying cached teacher trajectories, and in the second stage the student is refined on intermediate states along its own rollouts. We further remedy two sources of degradation in unified distillation with a pairwise collision penalty that reduces repetition under parallel text decoding, and entropy-matched guidance that prevents entropy collapse caused by fitting the sharpened teacher distribution in image generation. Omni-Diffusion-Distill achieves state-of-the-art trade-offs between decoding efficiency and generation and understanding performance for multimodal dLLMs, reducing image generation from 128 to 8 decoding steps and multimodal understanding from 512 to 64, giving 18.2x and 21.2x wall-clock speedups. Under these budgets, it scores 0.828 on GenEval and 83.0 on DPG-Bench for text-to-image generation, while reaching GPT judge scores of 20.0 on MM-Vet and 57.2 on COCO captioning (twice the teacher's 28.4 at the same steps) for multimodal understanding.",
-      "reason": "近 30 天；关键词：cs.CV, efficient, inference。Unified multimodal diffusion large language models (dLLMs) offer a single architecture for both image generation and multimodal un...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CV",
+        "batching",
         "efficient",
         "inference",
         "llm",
-        "multimodal",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-07T23:24:16Z",
-      "url": "https://arxiv.org/abs/2610.10990",
-      "pdfUrl": "https://arxiv.org/pdf/2610.10990v1"
-    },
-    {
-      "id": "arxiv-2610.10845",
-      "title": "Real Long-Term Memory for AI: A 50-Million-Token Window That Is Faster and Cheaper Than Recompute",
-      "authors": [
-        "Sietse Schelpe"
-      ],
-      "summary": "A large language model can only use the text that fits in its context window, and it recomputes its internal key-value (KV) state for a prompt every time the prompt is sent. We test a memory layer, the public package galahad-kv, that saves the KV state of each block of about 16,000 tokens to encrypted local NVMe disk and loads it back later, byte-exact, without recomputing it. We ran it on 50,000,000 tokens of real public text, served through vLLM on one NVIDIA H100, with Gemma 4 12B and Gemma 4 31B. Every block we probed was loaded back from the encrypted store with no recompute (100 of 100, at depths from 0 to 50M tokens) on both models. Loading a block was 2.8x to 4.3x faster than recomputing it and used 8.8x to 12.3x less GPU energy, and GPU memory stayed flat over the whole 50M-token stream. Asked about facts planted millions of tokens earlier, the 12B model gave the right answer 82 times out of 100 and the 31B model 98 times out of 100. Neither model made up an answer. The limits are as follows. This is reuse of stored state, not a wider attention window: one block is loaded at a time, and how well a question is answered depends on the model. Writing the memory is a one-time cost, and the store takes terabytes of local NVMe disk. We describe the test protocol, which is built to resist common ways of gaming long-context benchmarks, and give a single-GPU reproduction that uses public software and a free licence for the package.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, energy。A large language model can only use the text that fits in its context window, and it recomputes its internal key-value (KV) state...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
-        "cs.CL",
-        "energy",
-        "llm",
+        "pareto",
         "production"
       ],
       "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-10-07T19:50:53Z",
-      "url": "https://arxiv.org/abs/2610.10845",
-      "pdfUrl": "https://arxiv.org/pdf/2610.10845v1"
+      "source": "arXiv",
+      "publishedAt": "2026-10-08T16:21:50Z",
+      "url": "https://arxiv.org/abs/2610.12242",
+      "pdfUrl": "https://arxiv.org/pdf/2610.12242v1"
     },
     {
-      "id": "arxiv-2610.10827",
-      "title": "Grammar Concept Annotation at Scale: Deployed Fine-Tuned Small Language Models Outperform Prompted Frontier Models",
+      "id": "arxiv-2610.11922",
+      "title": "Project Greenhouse: Progress Toward Fully Open and Sovereign Agentic Search",
       "authors": [
-        "Marjan Celikik",
-        "Ana Peleteiro Ramallo",
-        "Javier Morales"
+        "Jimmy Lin",
+        "Sahel Sharifymoghaddam",
+        "Lingwei Gu",
+        "Nour Jedidi"
       ],
-      "summary": "Corrective feedback is among the best-evidenced drivers of second-language acquisition, yet corrections delivered during lessons rarely accumulate into an actionable view of grammar mastery. Prompted frontier models can provide such a view from learner--tutor lesson transcripts, but they are costly at scale. We close this gap by fine-tuning Qwen3.5 small language models (SLMs) on filtered and rebalanced teacher-generated supervision, then deploying an efficient 0.8B model in an end-to-end grammar mastery tracker for all English learners on our platform. Internalizing the annotation contract into adapter weights enables pairing the 0.8B model with a compact matched prompt rather than verbose instructions. On two human-curated benchmarks, both the deployed 0.8B model and a 4B reference comparator outperform prompted GPT-5.4 and GPT-5.6 Sol in precision and recall under nested matching criteria of increasing strictness: concept, evidence span, and correctness. The deployed 0.8B SLM reduces serving cost by approximately 16$\\times$. A feature-level online experiment shows significant gains in learner engagement ($+15.8\\%$) and key business metrics, including scheduled hours ($+2.1\\%$) and GMV from new lessons ($+13.2\\%$).",
-      "reason": "近 30 天；关键词：cs.CL, deployed, efficient。Corrective feedback is among the best-evidenced drivers of second-language acquisition, yet corrections delivered during lessons r...",
+      "summary": "Project Greenhouse represents our exploration of a simple thesis: We believe that it is possible to build fully open and sovereign models for agentic search with only modest computational resources. As a first milestone, we describe how to build a competitive pointwise decoder-only reranker using a simple two-step recipe comprising pre-training from scratch followed by supervised fine-tuning, starting only from commonly available datasets. Contrary to the dominant approach in the literature, we do not rely on existing open-weight backbones from third parties, and thus we are fully in control of model training, from end to end. We were able to accomplish the bulk of our experiments using no more than a handful of GPUs. This report articulates the importance and benefits of our approach, and we share artifacts that enable transparent, independent reproduction of all aspects of model training. Beyond data, code, and configurations that capture our efforts, we also release checkpoints for our family of Gaggle models, demonstrating the feasibility of our approach and providing a first step toward validating our broader thesis.",
+      "reason": "近 30 天；关键词：cs.IR, dataset, lora。Project Greenhouse represents our exploration of a simple thesis: We believe that it is possible to build fully open and sovereign...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL",
-        "deployed",
-        "efficient",
-        "serving"
+        "cs.IR",
+        "dataset",
+        "lora",
+        "production"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-07T19:31:24Z",
-      "url": "https://arxiv.org/abs/2610.10827",
-      "pdfUrl": "https://arxiv.org/pdf/2610.10827v1"
+      "publishedAt": "2026-10-08T13:19:46Z",
+      "url": "https://arxiv.org/abs/2610.11922",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11922v1"
     },
     {
-      "id": "arxiv-2610.10381",
-      "title": "ResidualQuant: KV Cache Quantization for Looped Transformers with 2-Bit Residuals",
+      "id": "arxiv-2610.11784",
+      "title": "Compile the Table: Query-Calibrated Operator Compression for Tabular In-Context Learning",
       "authors": [
-        "Heejun Kim",
-        "Junyoung Lee",
-        "SangLyul Cho",
-        "Dongsu Han",
-        "Insu Han",
-        "Sehoon Kim"
+        "Xu Zhao",
+        "Jiaming Zhao",
+        "Bin Zhao",
+        "Yong Yang"
       ],
-      "summary": "Looped Transformers improve parameter efficiency by repeatedly applying shared Transformer blocks over multiple recurrent loops, increasing computational depth without increasing the parameter count. However, KV cache memory still scales with the number of loops, becoming a key memory bottleneck that limits batch size and inference throughput. KV cache quantization can alleviate this bottleneck, but existing methods often suffer substantial accuracy degradation at aggressive low-precision regimes. We observe that looped Transformers offer a unique opportunity: KV states across loops are highly similar. Based on this observation, we propose ResidualQuant, which uses the final-loop KV states as a reference and represents the remaining loops with low-precision residuals. Our method further combines least-square scaling and rotations applied to the residuals, as well as loop-wise mixed precision, to enable accurate quantization down to INT2 while retaining efficient reconstruction. Across multiple looped Transformer models and mathematical reasoning and code generation benchmarks, ResidualQuant consistently improves the accuracy-memory tradeoff over state-of-the-art rotation-based KV quantization. In particular, our method retains accuracy close to BF16 under mixed-precision settings while reducing theoretical KV storage by 80.7%, achieving up to 13.0% higher accuracy than the rotation-based baseline at the same memory budget. On an RTX 5090, the reduced KV memory traffic improves fixed-batch decode throughput by up to 2.73x, while the smaller memory footprint enables up to 2x larger batches, improving peak throughput by up to 4.15x.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Looped Transformers improve parameter efficiency by repeatedly applying shared Transformer blocks over multiple recurrent loops, i...",
+      "summary": "Tabular in-context learning (ICL) has emerged as a training-free and accurate paradigm for tabular prediction, but current approaches to compressing its in-context examples face an accuracy-throughput tradeoff: fixed subsets can sacrifice accuracy, while query-specific retrieval limits cache reuse and batching across queries, reducing throughput. We propose QCOC (Query-Calibrated Operator Compression), which exploits the exchangeability and repeated use of in-context examples by compiling their full KV cache once into compact memory shared across subsequent queries. Instead of retaining raw examples, QCOC clusters their states into joint-KV prototypes, preserves per-cluster multiplicities and the original example count, and calibrates prototype values against attention query vectors produced by the in-context examples through an anchored closed-form solution. Prototype compression drives the speedup, while value fitting helps preserve accuracy. On 64 held-out OpenML-CC18 datasets, QCOC achieves the highest mean accuracy among the compared compression and retrieval methods at both retained counts. Across 12 configurations on seven long tables, it ranks first among compressed methods in ten and averages 0.23 percentage points below full context. Compressing 8,192 in-context examples to 512 memory slots yields a 10.5x cache compression ratio; excluding one-time compilation, in a single-core CPU online-serving comparison over 1,000 queries, QCOC is up to 508x faster than dynamic retrieval baselines and 1.98x faster than full-context inference. These results show that QCOC enables compact-memory reuse and efficient inference across queries while retaining accuracy close to full context.",
+      "reason": "近 30 天；关键词：cs.LG, batching, dataset。Tabular in-context learning (ICL) has emerged as a training-free and accurate paradigm for tabular prediction, but current approac...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
+        "batching",
+        "dataset",
         "efficient",
         "inference",
         "kv-cache",
-        "quantization",
-        "throughput"
+        "retrieval"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-07T16:40:21Z",
-      "url": "https://arxiv.org/abs/2610.10381",
-      "pdfUrl": "https://arxiv.org/pdf/2610.10381v1"
+      "publishedAt": "2026-10-08T12:00:43Z",
+      "url": "https://arxiv.org/abs/2610.11784",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11784v1"
     },
     {
-      "id": "arxiv-2610.10124",
-      "title": "Training with Missed Targets in Generative Recommendation: Separating Supervision from Probability Competition",
+      "id": "arxiv-2610.10304",
+      "title": "SemanticFold: Latent Sequence Compression SeparatesLanguage Modeling, Decodability, and Reasoning",
       "authors": [
-        "Xuesi Wang",
-        "Yangbin Shi",
-        "Xiaolin Zheng"
+        "Mingyan Liu",
+        "Min Huang"
       ],
-      "summary": "Generative recommenders return a limited candidate set and may omit observed targets before reranking. A training strategy appends these missed targets to reranker training lists, although inference still ranks only original candidates. This operation simultaneously changes retrieved-target weight, adds supervision over appended targets, and makes the two groups compete for probability. An append/no-append comparison therefore cannot explain changes in returned-item rankings. We construct three matched losses that hold retrieved-target weight fixed while introducing appended-target supervision and group competition separately. The intermediate loss trains within both groups but normalizes them separately, preventing training-only targets from competing with inference candidates. Experiments with a released OneRec model and locally trained Amazon generators show that this competition can harm returned-item ranking. In four prespecified Amazon Video Games comparisons, removing it improved full-target normalized discounted cumulative gain (FT-NDCG) by 7.8--22.2\\%; 95\\% intervals over users and three of four intervals over training runs excluded zero. A conservative development-set rule selected appended-target training for two of three generators in one held-out category and rejected it for all three in another, avoiding a 1.7\\% loss. Candidate completion should therefore be evaluated for each generator rather than applied automatically.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, generative-recommendation。Generative recommenders return a limited candidate set and may omit observed targets before reranking. A training strategy appends...",
-      "area": "推荐算法",
+      "summary": "We study whether latent sequence compression of prompt prefixes preserves the capabilities that large language models rely on during inference. We introduce SemanticFold, a compression scheme that folds prefix hidden states at learned boundaries, and evaluate it across five model scales: Qwen3-1.7B, Qwen3-8B, SmolLM2-1.7B, Pythia-1.4B, and Pythia-6.9B. We use a fixed-target protocol: a frozen prefix is executed natively or compressed, and both arms teacher-force identical continuation tokens. This design rules out target-selection explanations for likelihood changes. We examine five endpoint families: fixed-target negative log-likelihood, finite-label reasoning accuracy, linear probe accessibility, open-ended generation, and systems-level memory and latency. We find that compression moves these endpoints non-monotonically and that they do not share a single compression threshold. On Qwen3-1.7B at compression ratio R=1.7, compressed-minus-native mean NLL decreases by 0.135 under paired bootstrap with 10000 draws. On SmolLM2 at R=1.2, the mean change is 0.013 higher than native. On both Pythia checkpoints, NLL is effectively unchanged. An NLL decomposition separating sequence shortening from the learned residual transform shows that the favorable Qwen likelihood is attributable primarily to residual adaptation rather than to shortening alone. MLP-only, which applies the transform without shortening, achieves 0.082 lower NLL than Full SemanticFold. Linear probe accuracy and macro AUC change by less than 0.03 in absolute value across conditions, with confidence intervals crossing zero. We conclude that preservation under latent compression has no single scalar certificate: language-model fit, decodability, and reasoning behavior answer different questions and can move in different directions under the same compression operation.",
+      "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.LG, inference。We study whether latent sequence compression of prompt prefixes preserves the capabilities that large language models rely on duri...",
+      "area": "LLM 推理优化",
       "tags": [
-        "amazon",
-        "cs.IR",
-        "generative-recommendation",
+        "alibaba",
+        "cs.LG",
         "inference",
-        "ranking",
-        "recommendation",
-        "recommender"
+        "latency",
+        "llm"
       ],
       "signal": 99,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-10-07T14:07:06Z",
-      "url": "https://arxiv.org/abs/2610.10124",
-      "pdfUrl": "https://arxiv.org/pdf/2610.10124v1"
+      "source": "Alibaba/arXiv",
+      "publishedAt": "2026-10-07T16:00:59Z",
+      "url": "https://arxiv.org/abs/2610.10304",
+      "pdfUrl": "https://arxiv.org/pdf/2610.10304v1"
+    },
+    {
+      "id": "arxiv-2610.10201",
+      "title": "GAGR-Lab: Evaluating Joint Spatial-Geometric and Analytic Function Reasoning",
+      "authors": [
+        "Jingyao Zhang",
+        "Yun Li",
+        "Lu Han"
+      ],
+      "summary": "Joint spatial-geometric and analytic function reasoning requires translating a perceived spatial configuration into a symbolic function whose executed curve satisfies geometric constraints. We present GAGR-Lab, a framework for measuring this capability through Cartesian game scenes, explicit function semantics, and authoritative Rust trajectory execution. It distinguishes spatial perception, metric grounding, geometric relations, function interpretation, function construction, and constrained synthesis. We specify four configurable scene-difficulty presets and a prospective 24-cell diagnostic design, while reporting only the subset actually evaluated. A bounded pilot of one hosted model (Llama 3.2 11B Vision Instruct) using two API credentials as execution replicas yields 72 balanced games with 432 attempts, 429 valid provider responses, and no target hits; exploratory ordinary-function prompt variants also fail to hit, while the structured localization interface yields no scoreable outputs. A privileged analytic search control independently succeeds on 600 directional cases from 300 generated scenes, with exact repeatability and 1,200 successful vertical-reflection or translation checks. The framework separates serving reliability, symbolic compliance, and geometric success, and preserves exact model-visible inputs and realized paths. A staged protocol outlines diagnostic calibration, held-out replication, multi-model comparison, and paired robustness tests. The contribution is an operational research framework with an executed pilot and a clearly identified prospective study plan; the full difficulty matrix and comparative model results remain untested.",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.AI, lora。Joint spatial-geometric and analytic function reasoning requires translating a perceived spatial configuration into a symbolic fun...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "meta",
+        "cs.AI",
+        "lora",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-10-07T15:01:54Z",
+      "url": "https://arxiv.org/abs/2610.10201",
+      "pdfUrl": "https://arxiv.org/pdf/2610.10201v1"
+    },
+    {
+      "id": "arxiv-2610.10641",
+      "title": "Coverage-Aware Reasoning with Medical Tokens for Diagnosis Prediction",
+      "authors": [
+        "Kaisong Zhang",
+        "Haotian Fang",
+        "Junmeng Zhou",
+        "Hang Lv",
+        "Yulan Pan",
+        "Yanchao Tan"
+      ],
+      "summary": "Large language models (LLMs) offer promising potential for next-visit diagnosis prediction, owing to their ability to integrate longitudinal clinical evidence and reason over it in natural language. However, reinforcement learning for LLM reasoning commonly rewards each trajectory according to the correctness of its final answer. In next-visit diagnosis prediction, multiple diagnoses can be simultaneously valid, but independently rewarding one diagnosis per trajectory does not distinguish repeated hits from coverage of different diagnoses. The policy can therefore concentrate on a few correct diagnoses, leaving others uncovered. Meanwhile, LLM tokenizers can split ICD codes into several generic tokens with limited clinical meaning, requiring multiple decoding steps to predict each diagnosis and hindering reasoning over a large disease vocabulary. To address both challenges, we propose CARing, a framework that represents diagnoses with compositional Semantic IDs (SIDs) and optimizes reasoning trajectories for multi-label coverage. Concretely, we first encode ontology-enriched disease semantics into compact SIDs through residual quantization, and ground the resulting SID tokens in natural language and longitudinal EHR contexts through multi-task alignment and reasoning-enriched training to unlock transferable LLM reasoning. CARing further improves unordered multi-label prediction through a coverage reward for reinforcement learning and multi-positive supervision. At inference time, the model supports both efficient direct constrained decoding and multi-chain reasoning with rank fusion. On MIMIC-III and MIMIC-IV, CARing exceeds all EHR-trained baselines in weighted F1 and attains the highest top-k recall at every reported cutoff, including R@30 of 46.04% and 46.52% in reasoning mode. Our codes and logs are available at https://github.com/zmlxzyh/CARing-Codes-Logs.",
+      "reason": "近 30 天；关键词：cs.LG, alignment, efficient。Large language models (LLMs) offer promising potential for next-visit diagnosis prediction, owing to their ability to integrate lo...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "alignment",
+        "efficient",
+        "inference",
+        "llm",
+        "quantization",
+        "semantic-id"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-07T14:39:18Z",
+      "url": "https://arxiv.org/abs/2610.10641",
+      "pdfUrl": "https://arxiv.org/pdf/2610.10641v1"
+    },
+    {
+      "id": "arxiv-2610.11314",
+      "title": "From Retrieval to Reconstruction: Constructing Evolvable Cognitive Memory for Long-Term Dialogue",
+      "authors": [
+        "Zirui Liao",
+        "Zhengxian Wu",
+        "Zhuohong Chen",
+        "Yunyao Yu",
+        "Xiaoyu Liu",
+        "Yifan Xu",
+        "Haoqian Wang"
+      ],
+      "summary": "Large Language Models (LLMs) serving as long-term dialogue agents require memory systems that support reliable reasoning over extended interactions. However, existing Retrieval-Augmented Generation (RAG) frameworks typically treat memory as passive storage, making it difficult to distinguish source-attributed beliefs from unattributed event/fact records and to connect evidence dispersed across sessions. We introduce CogMem, a cognitive memory architecture based on the PEC$^2$F (Person-Event-Concept-Claim-Fact) graph schema. Dedicated Claim nodes preserve the source and target of subjective statements, while Fact and Event nodes represent semantic and episodic knowledge. Dialogue turns are incrementally converted into provenance-aware graph records, consolidated into higher-level facts, and reconciled into temporally scoped Claim views when the same source provides conflicting updates. For retrieval, a rule-based controller driven by LLM intent parsing composes four deterministic graph operators---anchoring, traversal, intersection, and evidence grounding---to reconstruct query-relevant context. Experiments on LoCoMo and LongMemEval show strong performance, especially on multi-hop, temporal, and knowledge-update tasks. Ablations and a semantic-collapse probe support complementary contributions from epistemic separation, consolidation, and agentic retrieval. Code: https://github.com/Silent-Rain02/CogMem.",
+      "reason": "近 30 天；关键词：cs.CL, llm, retrieval。Large Language Models (LLMs) serving as long-term dialogue agents require memory systems that support reliable reasoning over exte...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "llm",
+        "retrieval",
+        "serving"
+      ],
+      "signal": 96,
+      "source": "arXiv",
+      "publishedAt": "2026-10-08T06:21:45Z",
+      "url": "https://arxiv.org/abs/2610.11314",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11314v1"
+    },
+    {
+      "id": "arxiv-2610.11948",
+      "title": "When History Helps and Hurts: Selective History Use across Multimodal Turns",
+      "authors": [
+        "Shuoyang Sun",
+        "Kerui Gu",
+        "Hao Fang",
+        "Shaoli Huang",
+        "Bin Chen"
+      ],
+      "summary": "Reliable multimodal interaction depends on selective use of conversational history: an earlier question may remain relevant while its previous answer is outdated, whereas a current request may depend on historical evidence despite conflicting new observations. Existing multi-turn evaluations rarely separate these history-use demands from underlying question difficulty. To address this gap, we introduce ReTurn, a benchmark of 7,000 base tasks spanning visual and audio evidence for evaluating selective history use. For task-carrying history, Reconfirm/Reground require applying a historical question to current media while varying historical agreement; for evidence-carrying history, Retrieve/Rebind require answering a current question using historical media while varying current-media competition. Each pair preserves the target question, media, and answer. Tasks support open-ended and multiple-choice evaluation, with matched single-turn counterparts serving as answerability references. Across 13 omni-modal, vision-language, and audio-language models, median model-level open-ended accuracy falls from 93.7% with direct input to 72.3% in conversation. Behavioral probes show that high question recall can coexist with weaker task application, while competing media can redirect answers away from historical targets. Supervised adaptation yields only partial gains. ReTurn provides a controlled framework for assessing whether multimodal models select and use the historical information required by each request.",
+      "reason": "近 30 天；关键词：cs.CL, multimodal, serving。Reliable multimodal interaction depends on selective use of conversational history: an earlier question may remain relevant while...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "multimodal",
+        "serving"
+      ],
+      "signal": 90,
+      "source": "arXiv",
+      "publishedAt": "2026-10-08T13:36:12Z",
+      "url": "https://arxiv.org/abs/2610.11948",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11948v1"
     }
   ]
 }
