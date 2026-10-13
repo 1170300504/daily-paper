@@ -1,5 +1,289 @@
 {
-  "generatedAt": "2026-10-12T08:48:43.893088+08:00",
+  "generatedAt": "2026-10-13T10:45:40.750414+08:00",
   "source": "curated industry radar + arXiv API",
-  "papers": []
+  "papers": [
+    {
+      "id": "arxiv-2610.13778",
+      "title": "ReplaySSM: Cache SSM Inputs, Not State",
+      "authors": [
+        "Ze-Wei Liou",
+        "Harris Nover",
+        "Amey Naik",
+        "Andrii Skliar",
+        "Igor Shovkun",
+        "Ido Shahaf",
+        "Tri Dao"
+      ],
+      "summary": "State-space models (SSMs) maintain a fixed-size recurrent state, but reading and writing it at every decoding step can bottleneck hybrid models. This eager state management causes large state I/O with low arithmetic intensity, leaves speculative decoding no cheap rollback, and feeds state quantization error into subsequent recurrent updates. We introduce ReplaySSM, which unrolls the recurrence to represent the state as a checkpoint and a buffer of recent SSM inputs. This separates output computation from checkpoint updates. By updating the checkpoint periodically, ReplaySSM avoids state writes on most steps and roughly halves the dominant state memory traffic. Keeping recent inputs also makes speculative rollback a buffer-pointer operation and enables output-only verification without materializing intermediate states. The same separation allows a low-precision checkpoint to serve output computation on most steps while a higher-precision checkpoint serves recurrent updates, so rounding error in the low-precision copy never enters later updates. We implement ReplaySSM in vLLM for Mamba-2 and Gated DeltaNet. At serving batch size 256, it accelerates standard decoding by $1.20$--$1.47\\times$ over a tuned vLLM baseline across four hybrid models, and delivers about $1.8\\times$ the throughput of vLLM's speculative decoding on the two 120B-class models. Separate state precisions also reduce output KL divergence and downstream accuracy losses compared with a shared low-precision checkpoint.",
+      "reason": "近 30 天；关键词：cs.LG, llm, quantization。State-space models (SSMs) maintain a fixed-size recurrent state, but reading and writing it at every decoding step can bottleneck...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "llm",
+        "quantization",
+        "serving",
+        "speculative",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-09T15:59:40Z",
+      "url": "https://arxiv.org/abs/2610.13778",
+      "pdfUrl": "https://arxiv.org/pdf/2610.13778v1"
+    },
+    {
+      "id": "arxiv-2610.13767",
+      "title": "DualQuant: Dual-scale Calibration-free Weight-and-Activation Quantization for LLMs",
+      "authors": [
+        "Mahsa Salmani",
+        "Sayeh Sharify",
+        "Hesham Mostafa"
+      ],
+      "summary": "Low-bit inference on accelerators with native 4-bit support requires quantizing both weights and activations to realize the full throughput gains these formats provide. While post-training weight quantization has been extensively studied, activation quantization remains considerably more challenging and typically requires calibration data. In this work, we introduce DUALQUANT, a dual-scale, calibration-free post-training quantization framework that directly minimizes the weight-reconstruction Mean Squared Error (MSE) and, as an immediate by-product, yields per-channel activation rescalings prior to activation quantization. Our key observation is that the scaling factors obtained by minimizing weight-reconstruction error provide effective activation rescalings, enabling competitive activation quantization without calibration data. We formulate DUALQUANT as a non-differentiable weight-reconstruction problem and develop an efficient solver based on variable splitting and block coordinate descent, where each subproblem admits a closed-form update. DUALQUANT provides a unified algorithm supporting a wide range of formats, including the full MX family and NVFP4. To our knowledge, DUALQUANT is the first dual-scaling method to formally support MX and NV block formats. Across Llama and Qwen models evaluated on WikiText-2, C4, and zero-shot downstream tasks, DUALQUANT matches or exceeds the accuracy of calibration-based SmoothQuant across most models and formats, and substantially outperforms calibration-free baselines, with large gains for MX and NV block formats. We validate these gains with a real packed W4A4 inference path for Llama-3.1-8B on an RTX 4090. The resulting implementation closely matches the accuracy of fake quantization while delivering up to 2.61x memory reduction and up to 2.46x throughput speedup over BF16.",
+      "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.LG。Low-bit inference on accelerators with native 4-bit support requires quantizing both weights and activations to realize the full t...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "alibaba",
+        "meta",
+        "cs.LG",
+        "efficient",
+        "inference",
+        "llm",
+        "quantization"
+      ],
+      "signal": 99,
+      "source": "Alibaba/Meta/arXiv",
+      "publishedAt": "2026-10-09T15:51:38Z",
+      "url": "https://arxiv.org/abs/2610.13767",
+      "pdfUrl": "https://arxiv.org/pdf/2610.13767v1"
+    },
+    {
+      "id": "arxiv-2610.13735",
+      "title": "Orthros: Phase-Aware Heterogeneous Attention for Efficient Transformers",
+      "authors": [
+        "Yuhong Chou",
+        "Zehao Liu",
+        "Yuqi Pan",
+        "Qian Liu",
+        "Xianwei Chen",
+        "Zhongzhu Zhou",
+        "Jibin Wu"
+      ],
+      "summary": "Efficient attention mechanisms, such as linear and sliding window attention, aim to reduce the computational complexity of Transformers from quadratic to linear. However, their degraded in-context recall often necessitates interleaving full attention layers, leaving the quadratic bottleneck unresolved in long-context processing. To address this, we introduce Orthros attention, which shifts the efficiency paradigm from structural allocation to phase-aware decoupling. As a unified module, it dynamically switches its computation pattern across different phases of sequence processing, enabling linear complexity prefilling and full attention decoding. Our design grants Orthros attention a lower asymptotic complexity compared to vanilla Transformers in prevalent long-context scenarios characterized by heavy prefilling and light decoding. Beyond theoretical formulation and complexity analysis, extensive empirical evaluations demonstrate Orthros's superiority across multiple dimensions. First, we validate its fundamental language modeling capabilities, demonstrating scalability across varying model sizes and strong competitiveness in comprehensive architectural comparisons. Second, Orthros exhibits exceptional conversion feasibility via a data-efficient Transformer-to-Orthros conversion, yielding performance that even surpasses the original Transformer. Finally, Orthros achieves a $21.9\\times$ prefilling speedup over Transformers with end-to-end inference gains, while preserving long-context capabilities, as demonstrated by near-perfect 128K needle-in-a-haystack results and Transformer-level performance on real-world in-context recall tasks. Overall, these advantages in high performance, flexibility, and efficiency position Orthros as a promising candidate to succeed the Transformer in industrial applications.",
+      "reason": "近 30 天；关键词：cs.LG, conversion, efficient。Efficient attention mechanisms, such as linear and sliding window attention, aim to reduce the computational complexity of Transfo...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "conversion",
+        "efficient",
+        "inference",
+        "industrial",
+        "prefill",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-09T15:30:08Z",
+      "url": "https://arxiv.org/abs/2610.13735",
+      "pdfUrl": "https://arxiv.org/pdf/2610.13735v1"
+    },
+    {
+      "id": "arxiv-2610.13325",
+      "title": "Taking Tokenization off the Host for Agentic LLM Serving",
+      "authors": [
+        "Mohammad Siavashi",
+        "Pascal Schwinte",
+        "Ali Banaei",
+        "Gerald Q. Maguire",
+        "Marco Chiesa",
+        "Dejan Kostić"
+      ],
+      "summary": "Agentic workloads resend long contexts that barely change between calls. Prefix caching now skips most of their prefill, yet every request must still be tokenized in full before the cache can even be consulted. Tokenization, a CPU stage long treated as negligible, becomes the largest part of time-to-first-token (TTFT), and a frontend that tokenizes for a whole GPU fleet limits how many GPUs it can feed. We present GraphTok, a GPU tokenizer that runs the entire encoding pipeline, from pre-tokenization through byte-pair encoding (BPE) merging to token-ID assembly, as one replayable CUDA graph. GraphTok reproduces the reference token IDs bit-for-bit on GPT-2, Llama 3, Qwen 2.5, DeepSeek-V3, and Gemma 3, hands short inputs to a CPU engine where the GPU cannot win, and plugs into unmodified vLLM and NVIDIA Dynamo. GraphTok encodes one million GPT-2 tokens in 1.7-3.2 ms including data transfers, and on Llama 3 it is 4.7-6.0x faster than gigatoken, the strongest CPU tokenizer. On TokTier's own single-request benchmark, it is 2.6-3.9x faster than gigatoken and up to 18.1x faster than TokTier. In vLLM with a cached prefix, it lowers mean TTFT by 2.1-2.4x. The largest gain is capacity. Within a 2 s P99 target, one Dynamo frontend with GraphTok sustains 518 requests/s of 121k-token traffic, the busiest-hour load of 56 GPUs, against 296 with gigatoken and 18.5 with the default tokenizer. Across 121k to one million tokens, this is 1.75-2.5x the load gigatoken sustains, with a P99 up to 64x lower where gigatoken's tail breaks.",
+      "reason": "近 30 天；公司信号：Alibaba, Meta, NVIDIA；关键词：alibaba, meta, nvidia。Agentic workloads resend long contexts that barely change between calls. Prefix caching now skips most of their prefill, yet every...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "alibaba",
+        "meta",
+        "nvidia",
+        "cs.DC",
+        "llm",
+        "prefill",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "Alibaba/Meta/arXiv",
+      "publishedAt": "2026-10-09T10:05:09Z",
+      "url": "https://arxiv.org/abs/2610.13325",
+      "pdfUrl": "https://arxiv.org/pdf/2610.13325v1"
+    },
+    {
+      "id": "arxiv-2610.13202",
+      "title": "S$^3$R: Fast and Faithful RL Rollouts via Self-Sparse Speculative Decoding",
+      "authors": [
+        "Yuhang He",
+        "Hongyu Ge",
+        "Zihan Lin",
+        "Siyi Liu",
+        "Yongqi Zhang"
+      ],
+      "summary": "Fast rollout generation for long-context reinforcement learning with verifiable rewards (RLVR) requires reducing KV-cache traffic without changing the response groups used for policy optimization. In our profiled RLVR workloads, attention accounts for 72--76\\% of autoregressive decoding kernel time. Sparse attention reduces these reads, but sampling directly from a sparse policy changes the response groups used for learning. For group-relative optimization, we show that even exact response-wise reweighting does not generally recover the expected dense-policy update because the advantage of each response depends on the rewards of other group members. We propose Self-Sparse Speculative Rollouts (S$^3$R). It uses sparse attention to propose tokens, then generates responses through full-attention verification and exact speculative sampling. Drafting and verification share the same policy parameter, eliminating the need to train or update a separate drafter. The resulting response groups follow the dense-policy distribution. Under S$^3$R, we characterize speedup conditions and the costs of drafting and verification. We found that dense verification still requires the complete historical KV cache. A KV-aware scheduler therefore limits KV-cache repeated offloading and restoration while maintaining rollout parallelism. % OR thrashing In a matched ablation with an aggressive sparse drafting budget, S$^3$R maintains stable training while direct sparse sampling with training-side correction becomes unstable. On long-context mathematical reasoning, S$^3$R achieves $1.39\\times~1.35\\times$ the end-to-end training throughput of autoregressive rollouts on Qwen3 model, with comparable task performance.",
+      "reason": "近 30 天；关键词：cs.LG, kv-cache, speculative。Fast rollout generation for long-context reinforcement learning with verifiable rewards (RLVR) requires reducing KV-cache traffic...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "kv-cache",
+        "speculative",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-09T08:22:40Z",
+      "url": "https://arxiv.org/abs/2610.13202",
+      "pdfUrl": "https://arxiv.org/pdf/2610.13202v1"
+    },
+    {
+      "id": "arxiv-2610.13041",
+      "title": "RAMP: Recurrent Adaptive Mixed Precision for Efficient Prefill in Recurrent-Depth Language Models",
+      "authors": [
+        "Ke Wan",
+        "Chen Chen"
+      ],
+      "summary": "Recurrent-depth language models improve inference-time reasoning by repeatedly applying a shared network to refine internal representations, but the additional recurrent computation also increases inference cost. This overhead is particularly pronounced during long-context prefill, where the full input sequence is repeatedly processed across recurrent depth. Weight-and-activation quantization offers a natural way to accelerate this computation through lower-precision arithmetic, yet repeatedly applying quantized computation introduces numerical perturbations that accumulate along the recurrent trajectory. We systematically analyze how such errors propagate across recurrent depth and show that quantization errors introduced earlier are attenuated by more subsequent recurrent steps and therefore have a smaller effect on the final representation. Matched-budget experiments strongly support this prediction, showing that placing quantized computation earlier in recurrent depth consistently yields the best fidelity. Based on this insight, we introduce RAMP (Recurrent Adaptive Mixed Precision), which performs early recurrent refinement using low-precision weight-and-activation computation and restores high precision for terminal refinement. Across context lengths up to 4K, RAMP preserves near-full-precision prefill quality while achieving up to 1.16x end-to-end first-prefill speedup on an NVIDIA H100, corresponding to a 13.9% latency reduction.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, efficient。Recurrent-depth language models improve inference-time reasoning by repeatedly applying a shared network to refine internal repres...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.CL",
+        "efficient",
+        "inference",
+        "latency",
+        "prefill",
+        "quantization"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-10-09T05:57:33Z",
+      "url": "https://arxiv.org/abs/2610.13041",
+      "pdfUrl": "https://arxiv.org/pdf/2610.13041v1"
+    },
+    {
+      "id": "arxiv-2610.13035",
+      "title": "GeoGR: Spatial-Semantic Token Compression and Group Routing for Efficient 3D VLMs",
+      "authors": [
+        "Yongxin Zheng",
+        "Hao Wu",
+        "Fang Li",
+        "Hu Fu",
+        "Peiran Yin",
+        "Xudong Wang",
+        "Haozhe Hu",
+        "Xinghao Chen",
+        "Yunpu Ma",
+        "Wei Zhang",
+        "Xiaoyu Shen"
+      ],
+      "summary": "Multi-view representations enable pretrained image and video vision-language models to understand 3D scenes, but their long visual token sequences make inference costly. Redundancy arises both from repeated observations of the same scene regions across views and from processing all visual tokens at every LLM layer, regardless of their relevance to the current computation. We propose GeoGR, a two-stage framework that jointly compresses scene representations and visual computation. At the projector level, GeoSemZip consolidates cross-view observations into 3D voxel tokens and combines semantic saliency with spatial coverage to construct a compact scene representation. Unselected voxel features are aggregated into contextual anchors to retain scene information that would otherwise be discarded. At the LLM level, we identify an effective visual computation window and observe that query-conditioned token relevance remains locally stable but changes over longer layer intervals. Guided by these findings, GroupRoute combines late entry and early exit with recoverable group-wise skipping. Low-relevance tokens bypass complete LLM layers while retaining their hidden states and can rejoin the active group at subsequent anchor layers selected under a computation budget. For compression-aware post-training, we construct a compact dataset of 67K samples by retaining 30% of the original training pool. With this protocol, GeoGR retains 95.2% and 96.8% of the dense post-trained models' performance on LLaVA-OneVision-7B and Video-3D LLM-7B, respectively, while accelerating LLM prefill by $6.8\\times$ and $6.1\\times$. These results demonstrate the consistent effectiveness of GeoGR across 3D VLMs with and without explicit 3D spatial encoding, highlighting a favorable performance-efficiency trade-off. The code is available at https://github.com/EIT-NLP/GeoGR.",
+      "reason": "近 30 天；关键词：cs.CV, dataset, efficient。Multi-view representations enable pretrained image and video vision-language models to understand 3D scenes, but their long visual...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CV",
+        "dataset",
+        "efficient",
+        "inference",
+        "llm",
+        "prefill"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-09T05:46:54Z",
+      "url": "https://arxiv.org/abs/2610.13035",
+      "pdfUrl": "https://arxiv.org/pdf/2610.13035v1"
+    },
+    {
+      "id": "arxiv-2610.12971",
+      "title": "PredictIO: Decoupling Workload Prediction from OS-Controlled Storage Prefetching",
+      "authors": [
+        "Jun Lu",
+        "Yancan Mao",
+        "Zhenya Ma",
+        "Sheng Yue",
+        "Yongjian Fu",
+        "Ju Ren"
+      ],
+      "summary": "Storage stalls remain a significant source of application latency even on fast storage devices. Prefetching can hide part of this latency by fetching data before it is demanded, but general-purpose operating-system mechanisms typically infer future accesses from recent file offsets. This approach is ineffective when accesses are determined by workload structure, such as recurring sparse accesses during application launch, logical traversal in database scans, or model-layout metadata in LLM runtimes. Existing workload-aware prefetchers usually embed prediction logic inside individual applications and couple execution to application-level I/O paths, making policies difficult to reuse across workloads and systems. We present PredictIO, a programmable interface that separates workload prediction from prefetch execution. PredictIO delivers kernel-observed accesses and application hints to user-space policies, which express predictions as uniform page-range requests. A kernel-space executor validates, bounds, and filters these requests against cached and in-flight pages before issuing asynchronous prefetch I/O. We implement PredictIO for application launch, SQLite range scans, and LLM model loading. Across these workloads, PredictIO reduces latency by 5.3-26.3%, achieves up to 2.99x speedup for SQLite scans, and reduces LLM loading latency by 8.8-47.9%. We further show that a common prediction policy can be reused across SQLite and LMDB through lightweight adapters, that an application-integrated RocksDB readahead policy can be migrated while preserving its workload selectivity, and that the execution backend determines how much benefit migration provides for different access patterns and storage devices.",
+      "reason": "近 30 天；关键词：cs.OS, latency, llm。Storage stalls remain a significant source of application latency even on fast storage devices. Prefetching can hide part of this...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.OS",
+        "latency",
+        "llm",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-09T04:12:11Z",
+      "url": "https://arxiv.org/abs/2610.12971",
+      "pdfUrl": "https://arxiv.org/pdf/2610.12971v1"
+    },
+    {
+      "id": "arxiv-2610.12599",
+      "title": "STAPLE: Static Sparse Upcycling of Pretrained Checkpoints via Embedding Modules",
+      "authors": [
+        "Ranajoy Sadhukhan",
+        "Euijin Hong",
+        "Sheng Cao",
+        "Zechun Liu",
+        "Shuowei Jin",
+        "Sha Li",
+        "Changlong Yu",
+        "Xin Liu",
+        "Qin Lu",
+        "Zhenyu Shi",
+        "Priyanka Nigam",
+        "Beidi Chen"
+      ],
+      "summary": "Sparse computation can scale the parametric capacity of LLMs without proportionally increasing active computation, but pretraining sparse architectures remains expensive and data-hungry. Existing sparse upcycling methods mainly target Mixture-of-Experts models, where expert homogeneity, sample inefficiency, and system overheads can limit practical scalability. Static sparse memory offers predictable access and token-specific updates that can help address these challenges, but naively integrating it into pretrained computation yields poor returns. In this work, we introduce STAPLE, a recipe built upon STEM for integrating static sparse memory into pretrained models. Whereas STEM replaces FFN up-projections with token-indexed embeddings, STAPLE retains them and adds the embeddings as a residual pathway, preserving pretrained computation while learning complementary token-specific information in a scalable manner. On OLMo-2 1B, STAPLE improves over continued dense training by 4.27 points on HumanEval, 2.80 on MBPP, 2.27 on GSM8K, and 1.65 on DROP. Average performance increases with static capacity, and improvements persist on the larger OLMo-2 7B backbone. STAPLE also outperforms static sparse baselines such as STEM and an Engram-style model, and achieves a higher average score than an MoE upcycling baseline while decoding 2x faster with less than half its GPU model memory and measured GPU energy per token in our throughput-oriented decoding evaluation. Importantly, despite introducing billions of parameters late in training, our host-offloaded implementation keeps generation throughput within 1.5% and training throughput within 3% of the dense baseline, while caching only the ~5% most frequent embeddings on GPU. These results show that static sparse memory can provide a sample-efficient, scalable, and sustainable path for expanding pretrained models without sparse pretraining from scratch.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, energy。Sparse computation can scale the parametric capacity of LLMs without proportionally increasing active computation, but pretraining...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "efficient",
+        "energy",
+        "llm",
+        "serving",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-08T18:21:17Z",
+      "url": "https://arxiv.org/abs/2610.12599",
+      "pdfUrl": "https://arxiv.org/pdf/2610.12599v1"
+    },
+    {
+      "id": "arxiv-2610.12582",
+      "title": "One Model to Loop Them All: Elastic Latent Recurrence for Language Models",
+      "authors": [
+        "Faisal Ladhak",
+        "Shantanu Acharya",
+        "Santiago Akle Serano",
+        "Simeng Sun",
+        "Boris Ginsburg",
+        "Krishna C Puvvada"
+      ],
+      "summary": "A latent recurrent language model applies a shared block of layers repeatedly, so one checkpoint can trade inference compute for accuracy by changing the loop count. At one loop, however, such models typically fall well short of a non-recurrent model of the same size, a one-loop tax that makes a separate non-recurrent model the better choice whenever latency matters. We present Elastic Latent Recurrence (ELR), a recipe for training looped language models without this tax. At one loop, an ELR model costs the same to serve as a non-recurrent model of the same size and, trained on the same data, reaches similar accuracy. Each additional loop then buys more accuracy for more inference compute. Three choices make this work: a gated state update with a learned step size, loop counts mixed within each optimizer update, and conditioning each pass on its loop index and budget. The first two preserve one-loop accuracy, and the third lowers loss at every additional loop. Mixed depths can be introduced late in pretraining to limit the added training cost, and with zero-initialized conditioning added at the switch, this late schedule reaches lower loss than mixed-depth training from scratch. In MoE models, reusing first-loop expert routes on later loops cuts mixed-depth update time by 11.7% with no measurable change in accuracy. At inference, keeping only the last loop's attention KV cache holds attention KV memory at its one-loop level while retaining most of the gain from additional loops. On 4B dense and 30B-A3B MoE hybrid models, ELR at one loop is 0.52 points below and 1.04 points above its matched baseline on a ten-task average, and four loops add 7.25 and 4.75 points. Carried through post-training, the recipe yields Koi-4B, a single checkpoint that scores an estimated 18 on the Artificial Analysis Intelligence Index at one loop, matching Qwen3.5-4B, and 29 at four loops.",
+      "reason": "近 30 天；关键词：cs.CL, inference, kv-cache。A latent recurrent language model applies a shared block of layers repeatedly, so one checkpoint can trade inference compute for a...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "inference",
+        "kv-cache",
+        "latency"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-08T18:05:42Z",
+      "url": "https://arxiv.org/abs/2610.12582",
+      "pdfUrl": "https://arxiv.org/pdf/2610.12582v1"
+    }
+  ]
 }
