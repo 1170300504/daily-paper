@@ -1,108 +1,267 @@
 {
-  "generatedAt": "2026-10-15T08:10:32.804058+08:00",
+  "generatedAt": "2026-10-16T07:57:30.101421+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2610.17368",
-      "title": "HASTE: Hierarchical and Attribute-aware Supervision for Generative Recommendation",
+      "id": "arxiv-2610.20587",
+      "title": "Price of Anarchy of First-Price Auctions in Agentic Markets",
       "authors": [
-        "Tripti Shukla",
-        "Shwetha Somasundaram",
-        "Akshat Gupta",
-        "Rohit Garg",
-        "Paul Duff",
-        "Ian Anderson"
+        "Shubhendu Trivedi",
+        "Jacob Eisenstein",
+        "Alekh Agarwal",
+        "Ian Gemp",
+        "Michael Kaisers",
+        "Adam Fisch"
       ],
-      "summary": "Generative recommendation models have shown promising results by representing items as semantic IDs and generating these IDs autoregressively. We introduce an approach showing that explicitly incorporating hierarchical and attribute-level supervision into generative recommendation can simultaneously improve training efficiency and long-tail recommendation performance. Existing approaches typically optimize semantic ID prediction with a standard causal cross-entropy objective, which does not explicitly exploit the hierarchical structure of semantic IDs and can require substantial training to learn effective item representations. Moreover, data-sparse tail items often suffer from poor representations due to limited supervision, resulting in weaker long-tail recommendation performance. We address these challenges with HASTE (Hierarchical and Attribute-aware Supervision for generaTive rEcommendation), a unified training framework that introduces hierarchical and attribute-specific supervision. HASTE's Hierarchical Loss explicitly exploits the multi-level structure of semantic IDs, providing supervision at each level of the item hierarchy and substantially accelerating training convergence. Its Attribute-Specific Losses encourage the model to preserve fine-grained item attributes, leveraging the language model's inherent semantic knowledge to improve representations and recommendations for tail items. We extensively evaluate HASTE on a fashion recommendation benchmark and across multiple domains of the Amazon dataset. HASTE improves recommendation performance across datasets and item-frequency regimes. Notably, the Hierarchical Loss achieves approximately 2x faster convergence than the standard causal cross-entropy objective, substantially improving training efficiency while maintaining strong recommendation quality.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Generative recommendation models have shown promising results by representing items as semantic IDs and generating these IDs autor...",
+      "summary": "An agentic market is a decentralized serving-time market where AI agents bid to claim each user prompt. An agent's bid is based on its expected value for the prompt, which is the expectation of the reward for its response minus its inference costs. First-price auctions (FPAs), in which the highest bidder pays its bid and receives the prompt, are a natural way to allocate prompts in such a market, since they are simple and transparent to run, and do not require central knowledge of private capabilities and costs. However, FPAs are not truthful: participants may bid less than their true value in the hope of a larger profit, and the prompt may then be allocated to someone other than the bidder who values it the most. This welfare loss is quantified by the $\\textit{price-of-anarchy}$ (PoA). In this paper, we argue that agentic markets are likely to possess features that reduce the price-of-anarchy. The first is a $\\textit{competitive floor}$, which occurs when multiple bidders usually value the prompt above some baseline share of the optimal welfare (e.g., because the best models are often distilled into cheaper alternatives, which perform similarly). We show that competition among them then limits the welfare loss, which can be driven to zero as the floor rises. The second feature is $\\textit{near-independence}$ of values after conditioning on the prompt, which occurs when most of the predictable variation in the expected value is determined by the difficulty of the prompt. As the value distribution approaches conditional independence, we can derive an efficiency guarantee that approaches a factor of $1 - 1/e^2$ of the optimal welfare. Thus, both features give rise to welfare lower bounds that are significantly better than the well-known general case of $1 - 1/e$. We validate these results empirically using auctions with strategic bidders simulated on the EmbedLLM prompt routing dataset.",
+      "reason": "近 30 天；关键词：cs.GT, dataset, inference。An agentic market is a decentralized serving-time market where AI agents bid to claim each user prompt. An agent's bid is based on...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.GT",
+        "dataset",
+        "inference",
+        "llm",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-14T17:57:57Z",
+      "url": "https://arxiv.org/abs/2610.20587",
+      "pdfUrl": "https://arxiv.org/pdf/2610.20587v1"
+    },
+    {
+      "id": "arxiv-2610.20503",
+      "title": "ReaDy: Recurrent States as Dynamic Context for Speculative Drafting in Hybrid Linear Attention Large Language Models",
+      "authors": [
+        "Bohan Sun",
+        "Zunhai Su",
+        "Xialie Zhuang",
+        "Jianjin Li",
+        "Ngai Wong",
+        "Chuan-Wei Kuo"
+      ],
+      "summary": "Speculative decoding accelerates autoregressive generation by drafting multiple tokens per step, yet feature-based drafters rely on target hidden features whose contextual emphasis may not align with the needs of subsequent draft positions. Hybrid linear attention (HLA) models maintain compact recurrent states that accumulate historical associations, offering an efficient source of complementary context for speculative drafting. We introduce ReaDy, the first speculative decoding method, to the best of our knowledge, to leverage HLA recurrent states for position-specific context retrieval during drafting. ReaDy equips each draft position with a learned query to retrieve supplementary context directly from the target's committed recurrent states. A lightweight state reader integrates this context into draft representations through residual updates, while low-rank state reads and fused operators keep additional computation and I/O overhead low. Building on DSpark's parallel backbone and sequential prediction head, ReaDy employs a lightweight two-stage adaptation strategy, with reader capacity, state sources, and residual placement examined through ablation studies. Across seven benchmarks spanning mathematics, code generation, and dialogue, ReaDy achieves an average $3.16\\times$ decoding speedup over autoregressive decoding with Qwen3.8-27B on a single NVIDIA B200 GPU. It outperforms DSpark on every benchmark, improving throughput by 7.97% and acceptance length by 8.50% on average. Our code is available at https://github.com/StartLuxLabs/ReaDy.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, efficient。Speculative decoding accelerates autoregressive generation by drafting multiple tokens per step, yet feature-based drafters rely o...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.CL",
+        "efficient",
+        "retrieval",
+        "speculative",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-10-14T17:08:52Z",
+      "url": "https://arxiv.org/abs/2610.20503",
+      "pdfUrl": "https://arxiv.org/pdf/2610.20503v1"
+    },
+    {
+      "id": "arxiv-2610.20136",
+      "title": "Seeing at the Edge: Energy Characterization of Vision-Language Model Inference on Edge Platforms",
+      "authors": [
+        "Junlin Liao",
+        "Harshit Kondle",
+        "Di Liu",
+        "Zonghua Gu"
+      ],
+      "summary": "Vision-language models (VLMs) are moving onto edge devices, but little is known about how much energy they draw on single-board computers with NPU or GPU accelerators, or where that energy goes. We measure total-system energy, latency, and thermal behavior of Qwen2-VL-2B-Instruct and its text-only sibling on a Raspberry Pi 5 with a Hailo-10H NPU and on a Jetson Orin Nano Super, on both CPU and accelerator, and separate the fixed energy of each request from the energy that grows with output length. Because the accelerators use different quantization and serving software, we compare deployment stacks rather than silicon. Three findings stand out. First, NPU offloading makes the Pi a much more efficient VLM platform: it cuts energy per generated token by about two-thirds, leaves the host CPU largely free, and avoids the thermal throttling that the CPU backend reaches in sustained use. Second, an image adds both fixed and per-token energy, but at typical response lengths generating the answer costs far more than processing the image. Third, the Jetson GPU favors short responses through its lower fixed cost per request, whereas the Pi NPU favors longer ones through its lower cost per output token; their energy curves cross near 40 output tokens.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, energy。Vision-language models (VLMs) are moving onto edge devices, but little is known about how much energy they draw on single-board co...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "efficient",
+        "energy",
+        "inference",
+        "latency",
+        "quantization",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-14T12:55:12Z",
+      "url": "https://arxiv.org/abs/2610.20136",
+      "pdfUrl": "https://arxiv.org/pdf/2610.20136v1"
+    },
+    {
+      "id": "arxiv-2610.19819",
+      "title": "The Cost of Context: Profiling the Energy Footprint of Input Tokens in Large Language Models",
+      "authors": [
+        "Boris Ruf",
+        "Marcin Detyniecki"
+      ],
+      "summary": "The rapid adoption of Retrieval-Augmented Generation (RAG) and long-context LLMs has shifted the computational burden toward the prefill phase---the initial stage where the model processes all input tokens in parallel before generating a response---yet its energy impact remains poorly characterised. We investigate the contradiction between massive hardware-level power spikes and the sub-linear marginal cost of input tokens reported in system-level studies. Through high-resolution telemetry of Llama-3.1 and Qwen-2 models on NVIDIA A100 hardware, we identify the efficiency threshold where $O(n^2)$ attention complexity overcomes GPU parallelisation. Our results quantify how optimised memory orchestration (PagedAttention) delays this scaling bottleneck across three orders of context scaling, yielding up to an 8.9$\\times$ energy efficiency advantage at 112,000 tokens compared to standard baselines. Furthermore, we characterise the energy disparity between input and output tokens, demonstrating that optimised serving (vLLM) causes this ratio to narrow (from $\\approx$850$\\times$ to 750$\\times$) as context scales due to high decode efficiency, whereas unoptimised baselines show a much smaller, roughly constant gap ($\\approx$150--230$\\times$) because their prefill is itself expensive. This work establishes context-scaling laws that differentiate engine-level optimisations from inherent model constraints, providing an empirical framework for sustainable LLM deployment.",
+      "reason": "近 30 天；公司信号：Alibaba, Meta, NVIDIA；关键词：alibaba, meta, nvidia。The rapid adoption of Retrieval-Augmented Generation (RAG) and long-context LLMs has shifted the computational burden toward the p...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "alibaba",
+        "meta",
+        "nvidia",
+        "cs.DC",
+        "energy",
+        "llm",
+        "pagedattention"
+      ],
+      "signal": 99,
+      "source": "Alibaba/Meta/arXiv",
+      "publishedAt": "2026-10-14T08:58:57Z",
+      "url": "https://arxiv.org/abs/2610.19819",
+      "pdfUrl": "https://arxiv.org/pdf/2610.19819v1"
+    },
+    {
+      "id": "arxiv-2610.19801",
+      "title": "Delta Tokenizer: Reference-Identical Tokenization of Session Deltas and Segment-Parallelism for Long Prompts on Multicore CPUs",
+      "authors": [
+        "Zhenyu Zhang",
+        "Zhichao Cao"
+      ],
+      "summary": "An agent that drives an LLM sends the model the same conversation again and again, and each turn adds only a little text at the end. Inference engines reuse the KV cache of the shared prefix, so only the new tokens pass through the model. However, tokenization has no such shortcut. The CPU front end of the serving engine converts every request back into token IDs from its first character, which lengthens the time to first token (TTFT) and consumes CPU on every turn. We present Delta Tokenizer, a CPU tokenization front end that tokenizes only the delta between a request and the previous request of the same session. It retains the earlier token sequence, encodes again only the appended text and the short tail whose tokens the append could affect, and joins the two only at a position the tokenizer's splitting rules themselves cannot move, which keeps the result exact. For long requests with no state to reuse, it cuts the text where practical tokenizers already keep neighboring pieces independent, encodes the pieces on several cores at once, and concatenates the outputs into the reference encoding, exactly. A shared CPU pool schedules these chunks together with the short incremental updates, so an update runs between two chunks rather than behind an entire long job. The incremental path shortens the tokenization of a session turn by roughly 40x relative to the Hugging Face reference tokenizer, and on 16 cores the chunk-parallel path encodes a four-million-character request 8.2x faster than a serial encode and 1.6-2.1x faster than LoPT. Inside SGLang, Delta Tokenizer reduces the median TTFT through the chat interface by 59% at 100K tokens and brings the P99 TTFT of agent sessions down 9.5x under load and 23x when long requests tie up the front end. Every output we checked matches the reference, among them 41.8 billion documents encoded by its fast encoder.",
+      "reason": "近 30 天；关键词：cs.CL, inference, kv-cache。An agent that drives an LLM sends the model the same conversation again and again, and each turn adds only a little text at the en...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "inference",
+        "kv-cache",
+        "llm",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-14T08:44:46Z",
+      "url": "https://arxiv.org/abs/2610.19801",
+      "pdfUrl": "https://arxiv.org/pdf/2610.19801v1"
+    },
+    {
+      "id": "arxiv-2610.19605",
+      "title": "PN-Mix: Pair-Norm Guided Mixed-Precision Key Cache Quantization for Efficient Long-Output LLM Inference",
+      "authors": [
+        "Gil Jae Song",
+        "Sungjoo Yoo"
+      ],
+      "summary": "Long-output inference in large language models suffers from severe KV cache memory and bandwidth bottlenecks. While KV cache quantization alleviates this issue, low-bit quantization (e.g., 2-bit) severely degrades model accuracy. Recent mixed-precision key-cache quantization methods mitigate this degradation by allocating higher precision to important key channels, but estimate channel saliency using only key statistics. Through attention logit perturbation analysis at the RoPE channel-pair level, we show that quantization errors in channel pairs with large query--key pair-norm products contribute significantly to logit variation. Based on this insight, we propose PN-Mix, a mixed-precision key-cache quantization method for RoPE-based decoder-only LLMs, which allocates higher precision to salient channel pairs identified once during the prefill stage and reused throughout decoding. Across standard reasoning, code-generation, and AIME benchmarks, PN-Mix with 2.26-bit average precision achieves comparable or better average accuracy than prior mixed-precision methods using 2.32--2.39 bits. Furthermore, in our Pareto sweep, PN-Mix degrades gracefully down to 1.5 bits, whereas the compared baselines exhibit sharper performance drops below 2.25 bits.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Long-output inference in large language models suffers from severe KV cache memory and bandwidth bottlenecks. While KV cache quant...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "efficient",
+        "inference",
+        "kv-cache",
+        "llm",
+        "pareto",
+        "prefill"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-14T05:29:08Z",
+      "url": "https://arxiv.org/abs/2610.19605",
+      "pdfUrl": "https://arxiv.org/pdf/2610.19605v1"
+    },
+    {
+      "id": "arxiv-2610.19492",
+      "title": "Towards Efficient Simultaneous Inverse Text Normalization with Pretrained Text-to-Text Language Model and Read-Tag-Write Policy",
+      "authors": [
+        "Kiet Anh Hoang",
+        "Khanh Le",
+        "Bao Nguyen",
+        "Linh Pham",
+        "Dung Vo",
+        "Thai Tran",
+        "Mai Nguyen",
+        "Tri Nguyen",
+        "Vu Le"
+      ],
+      "summary": "Streaming Inverse Text Normalization (ITN) is vital for converting spoken-form outputs from streaming Automatic Speech Recognition into formatted written text. Existing streaming ITN methods rely on hybrid systems combining neural tagging with expert-crafted finite-state transducer rules, limiting scalability across domains and languages. While end-to-end models offer superior scalability by learning directly from data, standard encoder-decoder architectures are inherently non-streaming due to global attention. In this paper, we propose an efficient streaming end-to-end ITN system, adapting a pretrained text-to-text model to leverage its robust linguistic knowledge. To enable streaming, we introduce architectural adaptations, a specialized training strategy, a Read-Tag-Write decoding policy, and inference optimizations. Experiments on Vietnamese datasets show accuracy comparable to non-streaming baselines, outperforming hybrid methods while satisfying real-time latency requirements.",
+      "reason": "近 30 天；关键词：cs.CL, dataset, efficient。Streaming Inverse Text Normalization (ITN) is vital for converting spoken-form outputs from streaming Automatic Speech Recognition...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "dataset",
+        "efficient",
+        "inference",
+        "latency"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-14T03:13:23Z",
+      "url": "https://arxiv.org/abs/2610.19492",
+      "pdfUrl": "https://arxiv.org/pdf/2610.19492v1"
+    },
+    {
+      "id": "arxiv-2610.19405",
+      "title": "Scaling LLM Inference via Parallelism: Throughput-Latency Trade-off",
+      "authors": [
+        "Javad Mirzaei",
+        "Jeebak Mitra"
+      ],
+      "summary": "Large Language Model (LLM) serving systems must balance latency and throughput while efficiently utilizing distributed GPU resources. This challenge arises because inference consists of two fundamentally different phases: prefill, which determines time-to-first-token (TTFT), and decode, which determines inter-token latency (ITL). The use of tensor parallelism (TP), pipeline parallelism (PP), and hybrid configurations exposes different trade-offs between these latency dimensions, making the optimal parallelism configuration highly dependent on workload characteristics, latency requirements, and context length. Moreover, despite the widespread adoption of distributed inference, there is still limited understanding of how parallelism configurations should be selected under varying workload conditions and service-level objectives (SLO). In this paper, we develop a systematic framework for characterizing LLM inference parallelism via throughput-latency trade-offs, SLO-aware serving, and long-context scalability. We introduce the notion of parallelism operating regions by constructing TTFT-ITL feasible sets and Pareto frontiers across different workload compositions, thereby revealing a systematic transition from TP-dominant to PP-dominant configurations as workloads become increasingly prefill-heavy. We further formulate SLO-aware parallelism selection using goodput, showing that stringent TTFT requirements favor PP-dominated configurations, whereas relaxed latency constraints progressively shift the optimality toward TP-dominated configurations with higher serving capacity. Finally, we demonstrate that increasing context length fundamentally changes the relative advantages of parallelism configurations, with PP-dominant configurations exhibiting more favorable scalability and SLO attainment in the long-context regime.",
+      "reason": "近 30 天；关键词：cs.DC, efficient, inference。Large Language Model (LLM) serving systems must balance latency and throughput while efficiently utilizing distributed GPU resourc...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "efficient",
+        "inference",
+        "latency",
+        "llm",
+        "pareto",
+        "prefill"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-14T01:53:24Z",
+      "url": "https://arxiv.org/abs/2610.19405",
+      "pdfUrl": "https://arxiv.org/pdf/2610.19405v1"
+    },
+    {
+      "id": "arxiv-2610.19210",
+      "title": "Titan-Llama: Retrofitting Pre-trained LLMs with External Neural Memory Modules",
+      "authors": [
+        "Sarah Pan",
+        "Ali Behrouz"
+      ],
+      "summary": "Transformers are efficient to pre-train at scale because attention permits parallel computation across sequence positions, but long-context inference requires increasingly large KV caches. Efficient recurrent alternatives reduce the asymptotic complexity of inference, but their sequential dependence limits token-wise parallelism during training, making them harder to scale. Further, the current paradigm of extending long context tasks creates competing notions of retaining information precisely and keeping long-context inference efficient. To address this gap, we introduce Titan-Llama, a post-training method for retrofitting attention-based language models with a hierarchical memory architecture that updates parameters at test-time. Titan-Llama applies a blockwise attention mask and preserves full-fidelity attention over recent tokens while compressing historical context into recurrent, fixed-size neural memory modules (NMMs). Our formulation allows pre-trained attention layers to be replaced without training a new language model from scratch. On Llama-3.2-1B-Instruct, Titan-Llama raises accuracy over segmented attention windows from 23.87\\% to 40.51\\% on QuALITY and from 14.50\\% to 40.75\\% on LongHealth. Inference benchmarks show more than 20\\% faster prefill, 37\\% faster decode at medium context lengths, and 24\\% lower steady-state decode memory usage in the evaluated configurations. Together, these results demonstrate that incorporating memory architecture mechanisms that utilize test-time training effectively modulates long-context behavior of pre-trained models, offering a practical route to adapting pre-trained transformers for efficient long-context inference. Our code is released on Github \\href{https://github.com/sarahpannn/titans-pytorch/tree/main}{GitHub}",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, efficient。Transformers are efficient to pre-train at scale because attention permits parallel computation across sequence positions, but lon...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "meta",
+        "cs.CL",
+        "efficient",
+        "inference",
+        "kv-cache",
+        "llm",
+        "prefill"
+      ],
+      "signal": 99,
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-10-13T21:23:58Z",
+      "url": "https://arxiv.org/abs/2610.19210",
+      "pdfUrl": "https://arxiv.org/pdf/2610.19210v1"
+    },
+    {
+      "id": "arxiv-2610.19065",
+      "title": "Revisiting Generative vs. Dense Retrieval: A Static Value Prior Reverses the Gap",
+      "authors": [
+        "Renbo Tu",
+        "Yang Liu",
+        "Shuying Sun"
+      ],
+      "summary": "Generative retrieval (GR) has emerged as a strong candidate generator for sequential recommendation as language models and semantic-item identifiers have improved. However, GR is not a uniformly stronger replacement of dense retrieval (DR) in online retail candidate generation. We examine their differences on two Amazon Toys datasets under different metrics. GR leads on best relevant item value among users both methods cover, while DR leads on exact-target recall and relevant value across the ranked list. With deep analysis, we find that popularity contributes the most to GR's measured value lead. Adding the same static item value to DR in one reranking step reverses this lead and keeps recall above GR. Finally, on an industrial-scale internal e-commerce dataset with LLM-judged relevance, we show that a 14B SID-LLM still underperforms a $47\\times$ smaller dense encoder.",
+      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Generative retrieval (GR) has emerged as a strong candidate generator for sequential recommendation as language models and semanti...",
       "area": "推荐算法",
       "tags": [
         "amazon",
         "cs.IR",
         "dataset",
-        "generative-recommendation",
-        "recommendation",
-        "semantic-id"
+        "industrial",
+        "llm",
+        "ranking",
+        "recommendation"
       ],
       "signal": 99,
       "source": "Amazon/arXiv",
-      "publishedAt": "2026-10-12T20:25:50Z",
-      "url": "https://arxiv.org/abs/2610.17368",
-      "pdfUrl": "https://arxiv.org/pdf/2610.17368v1"
-    },
-    {
-      "id": "arxiv-2610.16979",
-      "title": "WeGR: Unified Generative Retrieval for Industrial Search Systems in WeChat",
-      "authors": [
-        "Jiajun Han",
-        "Guoxin Ma",
-        "Felix",
-        "Liangsheng Xu",
-        "Ruiqi Yu",
-        "Yingdi Guo",
-        "Zongbing Wang",
-        "Xinhua Ye",
-        "Chenyan Hua",
-        "Xin Xie",
-        "Pengcheng Yang",
-        "Haijun Wu"
-      ],
-      "summary": "Generative retrieval (GR) offers a promising paradigm for industrial search by unifying candidate generation within an autoregressive framework. However, its effectiveness is limited by two key challenges. First, existing Semantic ID (SID) tokenizers struggle to incorporate collaborative signals while maintaining effective codebook utilization, limiting their ability to distinguish items and achieve high-quality retrieval. Second, existing reinforcement learning (RL) methods suffer from severe reward sparsity under exact SID matching, leaving many sampled trajectories without effective learning signals and hindering preference optimization. To address these challenges, we propose WeGR, a unified generative retrieval framework consisting of two complementary components. Specifically, the Collaborative and Collapse-free Tokenizer (CoCo-VAE) incorporates query-to-item and item-to-item collaborative signals while mitigating codebook collapse through codebook refresh and complementary regularization, enabling more informative and balanced SID representations. Building upon these SIDs, Dynamic Horizon Policy Optimization (DHPO) progressively expands both reward evaluation and policy optimization horizons, reducing learning difficulty while leveraging behavioral reward signals at different levels of the SID hierarchy, without relying on auxiliary reward models. Extensive offline experiments demonstrate the effectiveness of WeGR in improving retrieval and ranking performance. Moreover, a two-month online A/B test in WeChat E-commerce Search demonstrates relative improvements of 2.539% in orders, 1.508% in click-through rate, and 1.381% in conversion rate, while reducing online CPU and GPU usage by 25.5% and 26.1%, respectively. The system has been successfully deployed across multiple search scenarios in WeChat, serving billions of users, generating tens of millions of PVs daily.",
-      "reason": "近 30 天；公司信号：Tencent；推荐/排序/广告方向；关键词：tencent, cs.IR, click-through。Generative retrieval (GR) offers a promising paradigm for industrial search by unifying candidate generation within an autoregress...",
-      "area": "推荐算法",
-      "tags": [
-        "tencent",
-        "cs.IR",
-        "click-through",
-        "conversion",
-        "deployed",
-        "industrial",
-        "online-a/b"
-      ],
-      "signal": 99,
-      "source": "Tencent/arXiv",
-      "publishedAt": "2026-10-12T15:38:47Z",
-      "url": "https://arxiv.org/abs/2610.16979",
-      "pdfUrl": "https://arxiv.org/pdf/2610.16979v1"
-    },
-    {
-      "id": "arxiv-2610.17670",
-      "title": "Cowork-Gym: Synthesizing Interactive Work Environments at Scale",
-      "authors": [
-        "Anni Zou",
-        "Cheng Chen",
-        "Jiaji Deng",
-        "Weikang Zhou",
-        "Xinji Mai",
-        "Yue Wu",
-        "Jianing Lin",
-        "Lipeng Xie",
-        "Lixiong Qin",
-        "Qingyue Zhao",
-        "Que Shen",
-        "Shuchang Tao",
-        "Xuchen Pan",
-        "Yaliang Li",
-        "Yunpeng Zhai",
-        "Yushuo Chen",
-        "Zhihai Wang",
-        "Zhuo Zhang",
-        "Zhaoyang Liu",
-        "Bolin Ding",
-        "Jingren Zhou"
-      ],
-      "summary": "Cowork agents navigate dependencies across tools and files while adapting to changing user requirements and edits to shared workspaces. Scaling such environments requires maintaining consistency among task objectives, executable resources, user behavior, and success criteria. We introduce Cowork-Gym, a framework that synthesizes Cowork environments through a build-execute-revise loop that uses execution evidence and review feedback to validate and repair generated environments. To capture realistic Cowork dynamics, a stateful user simulator responds to the agent's actions through dialogue and direct edits to the shared workspace. We synthesize 64.9K environments across 14 application scenarios and use them to post-train 9B, 27B, and 35B-A3B Qwen models with supervised fine-tuning, reinforcement learning, and on-policy distillation. Averaged across six agentic benchmarks, these models outperform their corresponding base checkpoints by 8.7, 6.4, and 4.1 points, respectively. Ours-27B ranks second overall among the evaluated models and achieves the highest average scores on PawBench and ClawEval, outperforming models with over 100B total parameters on both benchmarks.",
-      "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.AI。Cowork agents navigate dependencies across tools and files while adapting to changing user requirements and edits to shared worksp...",
-      "area": "推荐算法",
-      "tags": [
-        "alibaba",
-        "cs.AI"
-      ],
-      "signal": 96,
-      "source": "Alibaba/arXiv",
-      "publishedAt": "2026-10-13T03:56:58Z",
-      "url": "https://arxiv.org/abs/2610.17670",
-      "pdfUrl": "https://arxiv.org/pdf/2610.17670v1"
+      "publishedAt": "2026-10-13T19:02:30Z",
+      "url": "https://arxiv.org/abs/2610.19065",
+      "pdfUrl": "https://arxiv.org/pdf/2610.19065v1"
     }
   ]
 }
