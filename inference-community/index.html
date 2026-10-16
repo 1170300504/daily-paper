@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="LLM 推理优化社区精选：分类整理知乎、Hacker News、技术论坛的优质帖子，附阅读建议、原帖和热度依据。" />
+    <meta name="color-scheme" content="light dark" />
+    <title>LLM 推理优化 · 社区精选</title>
+    <link rel="stylesheet" href="../practice/styles.css?v=daily-20261016" />
+    <link rel="stylesheet" href="styles.css?v=20261016" />
+  </head>
+  <body>
+    <a class="skip-link" href="#postLibrary">跳到帖子目录</a>
+    <div class="community-shell">
+      <header class="community-topbar">
+        <a class="brand" href="../"><span class="brand-mark" aria-hidden="true">读</span><span class="brand-copy"><strong>论文每日一读</strong><small>INFERENCE / COMMUNITY</small></span></a>
+        <nav class="community-nav" aria-label="站点导航"><a href="../">论文</a><a href="../practice/">刷题</a><a href="../practice/daily/">每日小测</a><a href="./" aria-current="page">社区精选</a><button id="themeToggle" type="button" aria-label="切换深浅主题">◐</button></nav>
+      </header>
+
+      <main>
+        <section class="community-hero" aria-labelledby="communityHeading">
+          <div>
+            <p class="community-eyebrow"><span></span> LLM INFERENCE / COMMUNITY PICKS</p>
+            <h1 id="communityHeading">把值得读的讨论，<br /><em>留在一个地方。</em></h1>
+            <p class="community-lede">从知乎长文到技术论坛，把推理优化的原理拆解、工程实测与实现讨论分门别类。先看推荐理由，再带着问题读原帖。</p>
+            <div class="hero-links"><a href="#postLibrary">浏览全部精选 ↓</a><a href="#selectionPolicy">查看收录标准 ↗</a></div>
+          </div>
+          <aside class="community-ledger" aria-label="收录概览">
+            <p>THE READING LEDGER <span>01</span></p>
+            <div><strong id="postCount">—</strong><span>篇帖子<small>原帖直达 · 中文导读</small></span></div>
+            <div class="ledger-meta"><span><b id="platformCount">—</b> 个社区</span><span><b>6</b> 个主题</span></div>
+            <footer>本期核验 <time id="checkedDate">2026-10-16</time></footer>
+          </aside>
+        </section>
+
+        <section class="start-reading" id="startReading" aria-labelledby="startHeading" hidden>
+          <header><span class="section-kicker">EDITOR'S ROUTE</span><h2 id="startHeading">不知道从哪篇开始？</h2><p>先建立性能直觉，再进入缓存管理和实际部署。</p></header>
+          <div class="start-grid" id="featuredPosts"></div>
+        </section>
+
+        <div class="library-layout" id="postLibrary">
+          <aside class="category-sidebar">
+            <p class="section-kicker">按主题查找</p>
+            <nav id="categoryFilters" aria-label="帖子主题分类"></nav>
+            <div class="sidebar-note"><span>READ → UNDERSTAND → BUILD</span><p>读完一篇，去小测和编程题里验证理解。</p><a href="../practice/daily/">打开每日小测 ↗</a></div>
+          </aside>
+          <section class="library-main" aria-labelledby="libraryHeading">
+            <header class="library-heading"><div><p class="section-kicker">CURATED DISCUSSIONS</p><h2 id="libraryHeading">精选帖子目录</h2></div><span id="resultCount" role="status" aria-live="polite">正在整理帖子…</span></header>
+            <p class="category-description" id="categoryDescription">从性能模型、缓存和调度，到量化、Kernel 与解码加速。</p>
+            <div class="library-controls">
+              <label class="community-search" for="postSearch"><span aria-hidden="true">⌕</span><input id="postSearch" type="search" placeholder="搜索帖子、作者、标签，如 KV / vLLM" autocomplete="off" aria-label="搜索帖子、作者和标签" /><kbd>/</kbd></label>
+              <div class="library-selects">
+                <label>社区<select id="platformFilter" aria-label="社区"><option value="all">全部社区</option></select></label>
+                <label>难度<select id="levelFilter" aria-label="难度"><option value="all">全部难度</option><option>入门</option><option>进阶</option><option>深入</option></select></label>
+                <label>排序<select id="sortFilter" aria-label="排序"><option value="curated">精选顺序</option><option value="newest">较新发布</option><option value="heat" id="heatSortOption" disabled>站内热度（先选社区）</option></select></label>
+              </div>
+            </div>
+            <div class="library-tabs" role="group" aria-label="阅读状态筛选"><button data-reading="all" aria-pressed="true" type="button">全部精选</button><button data-reading="saved" aria-pressed="false" type="button">我的待读 <span id="savedCount">0</span></button><button data-reading="read" aria-pressed="false" type="button">已读 <span id="readCount">0</span></button><label class="heat-toggle"><input id="numericHeat" type="checkbox" />有数值热度</label></div>
+            <p class="heat-explanation">热度为核验时的快照。赞同、points、votes 和回复数口径不同；选定社区后可按站内热度排序。</p>
+            <div id="loadError" class="community-notice" role="alert" hidden></div>
+            <div id="postList" class="post-grid"></div>
+            <div id="emptyState" class="community-empty" hidden><span>∅</span><h3>这一组暂时没有帖子</h3><p>换一个关键词或筛选条件；也可以先把喜欢的帖子加入待读。</p><button id="clearFilters" type="button">查看全部精选</button></div>
+            <p class="storage-note" id="storageNote" role="status">待读和已读状态仅保存在当前浏览器。</p>
+          </section>
+        </div>
+
+        <section class="selection-policy" id="selectionPolicy" aria-labelledby="policyHeading">
+          <div><p class="section-kicker">HOW WE PICK</p><h2 id="policyHeading">热度是线索，<br />内容要经得起细读。</h2></div>
+          <div class="policy-grid"><article><span>01 / 有内容</span><h3>看推导、代码和实验条件</h3><p>优先有原理说明、可复现配置、实现细节或实测数据的帖子。每篇附具体阅读建议。</p></article><article><span>02 / 有依据</span><h3>热度能说明出处</h3><p>可见数值会注明计数来源和核验日期。搜索索引数据与原帖实时计数分开标明，未核验的热度留空。</p></article><article><span>03 / 有边界</span><h3>保留平台和版本语境</h3><p>标记登录限制、原文入口和发布时间。旧帖适合学习方法，性能结论仍要结合自己的硬件、模型与版本复测。</p></article></div>
+        </section>
+      </main>
+      <footer class="community-footer"><span>LLM 推理优化 / 社区精选 · 人工整理，按期核验</span><a href="../practice/">去动手实现 ↗</a></footer>
+    </div>
+    <noscript><p class="community-notice">请启用 JavaScript 来读取帖子目录、筛选和保存阅读进度。</p></noscript>
+    <script src="engine.js?v=20261016" defer></script>
+    <script src="app.js?v=20261016" defer></script>
+  </body>
+</html>

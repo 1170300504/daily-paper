@@ -1,0 +1,1002 @@
+{
+  "meta": {
+    "title": "LLM 推理优化 · 社区精选",
+    "checkedAt": "2026-10-16",
+    "version": 1,
+    "selection": "人工筛选高互动讨论与有明确技术价值的长文。热度按原平台和核验来源标注；未核验项不参与点赞排序。"
+  },
+  "categories": [
+    {
+      "id": "foundations",
+      "title": "性能基础与成本",
+      "description": "从 Prefill / Decode、带宽和算力，到参数、FLOPs 与显存预算，先建立性能模型。"
+    },
+    {
+      "id": "kv-attention",
+      "title": "KV 缓存与注意力",
+      "description": "弄清历史 K/V 的复用、分页缓存、长上下文与注意力计算的实际代价。"
+    },
+    {
+      "id": "serving",
+      "title": "推理引擎与调度",
+      "description": "把 vLLM、连续批处理、请求生命周期和真实部署放在同一条服务链路中理解。"
+    },
+    {
+      "id": "quantization",
+      "title": "量化与本地部署",
+      "description": "比较位宽、模型质量和显存占用，读懂 EXL2、KV 量化与量化实验的条件。"
+    },
+    {
+      "id": "kernels-parallel",
+      "title": "GPU Kernel 与并行",
+      "description": "从 FlashAttention、CUDA 实现到多机专家并行，沿硬件约束寻找优化空间。"
+    },
+    {
+      "id": "speculative",
+      "title": "投机解码与采样",
+      "description": "理解草稿、验证、接受率与额外开销，比较算法解释、实现讨论和实测结果。"
+    }
+  ],
+  "featured": [
+    {
+      "postId": "hn-37140013",
+      "title": "建立性能直觉",
+      "reason": "从 llama.cpp 为什么能跑起来入手，理解权重、内存带宽与低 batch 推理的关系。"
+    },
+    {
+      "postId": "zhihu-illustrated-kv-cache",
+      "title": "理解缓存复用",
+      "reason": "沿着图解看逐 token 生成，分清缓存省掉的重复计算与新增的存储开销。"
+    },
+    {
+      "postId": "hn-44407058",
+      "title": "串起完整服务",
+      "reason": "跟随一次 vLLM V1 请求，连接调度、KV 分配、执行和输出处理。"
+    }
+  ],
+  "posts": [
+    {
+      "id": "zhihu-transformer-cost-analysis",
+      "title": "分析transformer模型的参数量、计算量、中间激活、KV cache",
+      "url": "https://zhuanlan.zhihu.com/p/624740065",
+      "platform": "zhihu",
+      "platformLabel": "知乎",
+      "author": "回旋托马斯x",
+      "publishedAt": "",
+      "category": "foundations",
+      "tags": [
+        "成本建模",
+        "FLOPs",
+        "显存估算",
+        "KV Cache"
+      ],
+      "summary": "逐项拆解 Transformer 参数、计算和显存开销。将训练激活与推理 KV Cache 分开估算，适合建立性能分析基线。",
+      "whyRead": "先学会估算模型开销，再判断优化是否击中瓶颈；公开课程和多篇技术文章均引用这篇分析。",
+      "level": "进阶",
+      "minutes": 35,
+      "heat": {
+        "likes": 3815,
+        "comments": 360,
+        "label": "3815 赞同 · 6197 收藏 · 360 评论",
+        "basis": "知乎原帖可见计数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://zhuanlan.zhihu.com/p/624740065",
+        "collections": 6197
+      },
+      "access": "login",
+      "qualitySignals": [
+        "按模型组件推导参数量、FLOPs和缓存占用",
+        "原文被 AI 芯片设计课程讲义及开发者文章引用"
+      ],
+      "evidenceNote": "已核对原帖正文、作者、3815赞同、360评论和6197收藏。文中训练状态字节数与FLOPs为特定实现和近似假设，评论包含纠错；阅读时区分训练激活与推理KV缓存。页面显示编辑于2024-01-01，首次发布时间未单独核验。",
+      "rank": 1,
+      "categoryTitle": "性能基础与成本",
+      "updatedAt": "2024-01-01"
+    },
+    {
+      "id": "hn-37140013",
+      "title": "How Is LLaMa.cpp Possible?",
+      "url": "https://news.ycombinator.com/item?id=37140013",
+      "relatedUrl": "https://finbarr.ca/how-is-llama-cpp-possible/",
+      "platform": "hn",
+      "platformLabel": "Hacker News",
+      "author": "birriel（HN 提交者）",
+      "publishedAt": "2023-08-15",
+      "access": "public",
+      "category": "foundations",
+      "tags": [
+        "llama.cpp",
+        "CPU 推理",
+        "Memory bandwidth",
+        "Roofline"
+      ],
+      "summary": "从单用户解码的权重读取量、KV cache 和算力估算，解释普通 CPU 为什么能运行 LLaMA；评论补充 prefill、批处理与 GPU offload 的差异。",
+      "whyRead": "建立带宽决定解码上限的直觉，同时学习辨别单用户和多请求服务结论。",
+      "level": "入门",
+      "minutes": 15,
+      "qualitySignals": [
+        "用模型参数量、精度和带宽推导速度上限",
+        "评论具体补充 prefill、量化质量和模型拆分"
+      ],
+      "evidenceNote": "已阅读原文与 HN 讨论；官方 Firebase 核验计数。原作者标明这是 2023 年历史解释，不能当作当前 llama.cpp 实现说明。发布日期取 HN API 提交时间（UTC）。",
+      "heat": {
+        "likes": 685,
+        "comments": 227,
+        "label": "685 points · 227 条讨论",
+        "basis": "HN 公开计数，points 不是赞同数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://hacker-news.firebaseio.com/v0/item/37140013.json"
+      },
+      "rank": 2,
+      "categoryTitle": "性能基础与成本"
+    },
+    {
+      "id": "hn-44407058",
+      "title": "Life of an inference request (vLLM V1): How LLMs are served efficiently at scale",
+      "url": "https://news.ycombinator.com/item?id=44407058",
+      "relatedUrl": "https://www.ubicloud.com/blog/life-of-an-inference-request-vllm-v1",
+      "platform": "hn",
+      "platformLabel": "Hacker News",
+      "author": "samaysharma（HN 提交者）",
+      "publishedAt": "2025-06-28",
+      "access": "public",
+      "category": "serving",
+      "tags": [
+        "vLLM V1",
+        "Continuous batching",
+        "Scheduler",
+        "CUDA Graph",
+        "KV cache"
+      ],
+      "summary": "跟踪一个请求从 API、AsyncLLM、EngineCore 进入调度和 GPU 执行，再流式返回 token 的完整路径，并解释 token 预算与 KV 分块。",
+      "whyRead": "把服务框架组件和源码入口连接起来，适合读 vLLM 代码之前建立全局地图。",
+      "level": "进阶",
+      "minutes": 25,
+      "qualitySignals": [
+        "逐组件链接到源码并有调度时间线示例",
+        "作者在评论中回应并补充 PagedAttention 说明"
+      ],
+      "evidenceNote": "已阅读原文请求生命周期与讨论；官方 Firebase 核验计数。源码接口和执行后端随 vLLM 版本变化，按文章对应版本阅读。发布日期取 HN API 提交时间（UTC）。",
+      "heat": {
+        "likes": 175,
+        "comments": 21,
+        "label": "175 points · 21 条讨论",
+        "basis": "HN 公开计数，points 不是赞同数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://hacker-news.firebaseio.com/v0/item/44407058.json"
+      },
+      "rank": 3,
+      "categoryTitle": "推理引擎与调度"
+    },
+    {
+      "id": "zhihu-illustrated-kv-cache",
+      "title": "大模型推理加速：看图学KV Cache",
+      "url": "https://zhuanlan.zhihu.com/p/662498827",
+      "platform": "zhihu",
+      "platformLabel": "知乎",
+      "author": "Chaos AI Studio",
+      "publishedAt": "",
+      "category": "kv-attention",
+      "tags": [
+        "KV Cache",
+        "自回归解码",
+        "图解",
+        "入门必读"
+      ],
+      "summary": "沿逐 token 生成过程画出 Attention 中可复用的计算。用图说明为什么保存历史 K、V 能减少重复计算。",
+      "whyRead": "图示被多篇独立学习笔记引用，适合从公式过渡到缓存实现前阅读。",
+      "level": "入门",
+      "minutes": 15,
+      "heat": {
+        "likes": 2401,
+        "comments": 181,
+        "label": "2401 赞同 · 3659 收藏 · 181 评论",
+        "basis": "知乎原帖可见计数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://zhuanlan.zhihu.com/p/662498827",
+        "collections": 3659
+      },
+      "access": "login",
+      "qualitySignals": [
+        "原帖按生成步骤绘制缓存前后的Attention过程",
+        "原帖2401赞同、3659收藏，图解被多篇独立笔记引用"
+      ],
+      "evidenceNote": "已核对原帖正文、当前作者署名Chaos AI Studio、2401赞同、181评论和3659收藏。标题中的“看图学”不是作者名。图解以因果自回归解码为背景，缩放项按原文说明暂略。页面显示编辑于2025-07-26。",
+      "rank": 4,
+      "categoryTitle": "KV 缓存与注意力",
+      "updatedAt": "2025-07-26"
+    },
+    {
+      "id": "csdn-july-flashattention",
+      "title": "通透理解FlashAttention(含其2代和第3代)：全面降低显存读写、加快计算速度",
+      "url": "https://blog.csdn.net/v_JULY_v/article/details/133619540",
+      "platform": "csdn",
+      "platformLabel": "CSDN",
+      "author": "v_JULY_v",
+      "publishedAt": "2023-10-06",
+      "category": "kernels-parallel",
+      "tags": [
+        "FlashAttention",
+        "Online Softmax",
+        "公式推导",
+        "高赞长文"
+      ],
+      "summary": "从 Transformer 时空开销推到分块注意力与在线归一化。结合公式、图和版本演进分析减少显存读写的方式。",
+      "whyRead": "617赞、1.2k收藏、10万+阅读的原创长文，适合需要逐步推导的读者。",
+      "level": "深入",
+      "minutes": 60,
+      "heat": {
+        "likes": 617,
+        "comments": null,
+        "label": "617赞 · 1.2k收藏 · 10万+阅读",
+        "basis": "原帖公开HTML正文与meta description明确标注",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://blog.csdn.net/v_JULY_v/article/details/133619540"
+      },
+      "access": "public",
+      "qualitySignals": [
+        "原帖标明原创并记录多轮修订",
+        "包含分块softmax公式与FlashAttention版本对比"
+      ],
+      "evidenceNote": "2026-10-16打开原帖并读取公开HTML，meta description写明“点赞617次，收藏1.2k次”，正文标明10w+阅读；首次发布2023-10-06，最近修改时间显示2024-12-04。热度是本次访问快照，评论数未核验。",
+      "rank": 5,
+      "categoryTitle": "GPU Kernel 与并行"
+    },
+    {
+      "id": "hn-41105881",
+      "title": "A Visual Guide to LLM Quantization",
+      "url": "https://news.ycombinator.com/item?id=41105881",
+      "relatedUrl": "https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization",
+      "platform": "hn",
+      "platformLabel": "Hacker News",
+      "author": "raymond_goo（HN 提交者）",
+      "publishedAt": "2024-07-30",
+      "access": "public",
+      "category": "quantization",
+      "tags": [
+        "INT8",
+        "GPTQ",
+        "GGUF",
+        "数值精度"
+      ],
+      "summary": "用大量图示讲解量化、数值格式和误差，延伸到 GPTQ 等方法；讨论补充对称量化、打包实现错误和动态范围的细节。",
+      "whyRead": "把位宽、显存节省和精度损失串起来，并结合评论检查入门教程的简化说法。",
+      "level": "入门",
+      "minutes": 30,
+      "qualitySignals": [
+        "原文包含 50 多幅自制图与论文参考",
+        "评论提出 GPTQ 实现 bug 与数值范围解释的具体纠正"
+      ],
+      "evidenceNote": "已阅读原文量化基础、GPTQ 部分及 HN 讨论；官方 Firebase 核验计数。GGUF 是文件格式，不能把原文对 GGUF 的概括当成单一量化算法。发布日期取 HN API 提交时间（UTC）。",
+      "heat": {
+        "likes": 310,
+        "comments": 18,
+        "label": "310 points · 18 条讨论",
+        "basis": "HN 公开计数，points 不是赞同数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://hacker-news.firebaseio.com/v0/item/41105881.json"
+      },
+      "rank": 6,
+      "categoryTitle": "量化与本地部署"
+    },
+    {
+      "id": "github-llamacpp-cuda-scoreboard",
+      "title": "Performance of llama.cpp on Nvidia CUDA",
+      "url": "https://github.com/ggml-org/llama.cpp/discussions/15013",
+      "platform": "github",
+      "platformLabel": "GitHub · llama.cpp Discussions",
+      "author": "olegshulyakov",
+      "publishedAt": "2025-08-01",
+      "category": "kernels-parallel",
+      "tags": [
+        "CUDA",
+        "llama-bench",
+        "GPU 对比",
+        "prefill",
+        "decode"
+      ],
+      "summary": "社区用统一的 Llama 2 7B Q4_0 和 llama-bench 收集 NVIDIA GPU 实测，分别记录 prefill、decode、提交哈希与 Flash Attention 结果。",
+      "whyRead": "比单个 tok/s 更适合学习硬件性能比较：统一模型和负载，同时保留软件提交与测试条件供追溯。",
+      "level": "进阶",
+      "minutes": 15,
+      "heat": {
+        "likes": null,
+        "comments": 128,
+        "label": "128 条讨论 · 105 条嵌套回复",
+        "basis": "GitHub Discussion 页面顶部显示 128 comments · 105 replies；未核验点赞数。",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://github.com/ggml-org/llama.cpp/discussions/15013"
+      },
+      "access": "public",
+      "qualitySignals": [
+        "固定基准模型、量化格式、pp512/tg128 和 Flash Attention 开关。",
+        "要求提交 llama-bench 输出、Git commit 和 CUDA 信息，并维护多 GPU 榜单。"
+      ],
+      "evidenceNote": "原帖公开可读，已核验标题、作者、日期、基准命令及页面讨论计数。讨论与嵌套回复是 GitHub 分开的两个口径，不相加为点赞；榜单包含不同提交版本，需结合条件比较。",
+      "rank": 7,
+      "categoryTitle": "GPU Kernel 与并行"
+    },
+    {
+      "id": "hn-40938577",
+      "title": "FlashAttention-3: Fast and Accurate Attention with Asynchrony and Low-Precision",
+      "url": "https://news.ycombinator.com/item?id=40938577",
+      "relatedUrl": "https://www.together.ai/blog/flashattention-3",
+      "platform": "hn",
+      "platformLabel": "Hacker News",
+      "author": "jhshah（HN 提交者）",
+      "publishedAt": "2024-07-11",
+      "access": "public",
+      "category": "kernels-parallel",
+      "tags": [
+        "FlashAttention-3",
+        "Hopper",
+        "TMA",
+        "WGMMA",
+        "FP8"
+      ],
+      "summary": "FlashAttention-3 的技术文章与讨论：利用 Hopper 异步指令、warp 分工、GEMM/softmax 重叠和 FP8 来提高注意力执行效率。",
+      "whyRead": "从硬件指令看 kernel 优化，理解少搬数据、隐藏延迟与低精度各自贡献。",
+      "level": "深入",
+      "minutes": 30,
+      "qualitySignals": [
+        "技术团队原文给出 WGMMA、TMA 与 FP8 的机制解释",
+        "提供与 FA2、Triton、cuDNN 的特定硬件基准比较"
+      ],
+      "evidenceNote": "已阅读技术原文与讨论开篇；官方 Firebase 核验计数。性能数字针对 Hopper 注意力 kernel，不能直接当作端到端 decode 加速比。发布日期取 HN API 提交时间（UTC）。",
+      "heat": {
+        "likes": 287,
+        "comments": 60,
+        "label": "287 points · 60 条讨论",
+        "basis": "HN 公开计数，points 不是赞同数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://hacker-news.firebaseio.com/v0/item/40938577.json"
+      },
+      "rank": 8,
+      "categoryTitle": "GPU Kernel 与并行"
+    },
+    {
+      "id": "hn-37509659",
+      "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+      "url": "https://news.ycombinator.com/item?id=37509659",
+      "relatedUrl": "https://arxiv.org/abs/2309.06180",
+      "platform": "hn",
+      "platformLabel": "Hacker News",
+      "author": "jmorgan（HN 提交者）",
+      "publishedAt": "2023-09-14",
+      "access": "public",
+      "category": "kv-attention",
+      "tags": [
+        "PagedAttention",
+        "KV cache",
+        "vLLM",
+        "Continuous batching"
+      ],
+      "summary": "围绕 PagedAttention 论文讨论 KV 分页、前缀共享和连续批处理。评论明确区分注意力 kernel 开销与整体服务吞吐收益。",
+      "whyRead": "理解为什么单个 attention kernel 可能变慢，系统吞吐却能因显存利用率提高而上升。",
+      "level": "进阶",
+      "minutes": 20,
+      "qualitySignals": [
+        "链接 SOSP 2023 原始论文和公开实现",
+        "讨论解释分页、动态批处理与单用户 CPU 场景的适用边界"
+      ],
+      "evidenceNote": "已阅读论文摘要与完整短讨论；官方 Firebase 核验计数。2–4 倍吞吐是原论文特定基线与工作负载结果，非所有部署保证。发布日期取 HN API 提交时间（UTC）。",
+      "heat": {
+        "likes": 102,
+        "comments": 16,
+        "label": "102 points · 16 条讨论",
+        "basis": "HN 公开计数，points 不是赞同数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://hacker-news.firebaseio.com/v0/item/37509659.json"
+      },
+      "rank": 9,
+      "categoryTitle": "KV 缓存与注意力"
+    },
+    {
+      "id": "reddit-llamacpp-exllama-speed",
+      "title": "Result: llama.cpp & exllamav2 prompt processing & generation speed vs prompt length, Flash Attention, offloading cache and layers...",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1dfvp4y/result_llamacpp_exllamav2_prompt_processing/",
+      "relatedUrl": "https://github.com/matt-c1/llama-cpp-speed-measurements/",
+      "platform": "reddit",
+      "platformLabel": "Reddit · r/LocalLLaMA",
+      "author": "mO4GV9eywMPMw3Xr",
+      "publishedAt": "2024-06-14",
+      "category": "kv-attention",
+      "tags": [
+        "llama.cpp",
+        "ExLlamaV2",
+        "FlashAttention",
+        "KV offload",
+        "基准陷阱"
+      ],
+      "summary": "作者比较 prompt 长度、Flash Attention、KV 与层卸载对 prefill/decode 的影响。评论区开发者进一步讨论 batch/ubatch、公平比较与端到端计时。",
+      "whyRead": "评论中的复测和开发者质疑很有价值，能学到为何默认参数、包装层开销和显存位置会让性能结论相反。",
+      "level": "深入",
+      "minutes": 20,
+      "heat": {
+        "likes": 45,
+        "comments": null,
+        "label": "45 votes（索引快照）",
+        "basis": "Reddit 原帖搜索索引展示 [+45 votes]；正文未返回当前评分。",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1dfvp4y/"
+      },
+      "access": "public",
+      "qualitySignals": [
+        "附完整测量仓库，并分开观察 prompt processing 与 token generation。",
+        "llama.cpp CUDA 开发者参与讨论，作者随后补充直接 CLI 的对照命令和复测。"
+      ],
+      "evidenceNote": "已核验正文、作者和测量仓库；评分来自搜索索引快照。原帖结论存在硬件、版本和方法争议，推荐连同评论阅读，不把其中某框架更快当成当前定论。",
+      "rank": 10,
+      "categoryTitle": "KV 缓存与注意力"
+    },
+    {
+      "id": "v2ex-amd-serving-frameworks",
+      "title": "消费级显卡(16G A 卡)是不是不适合运行 vllm 和 sglang，好像使用 transformer 推理都比这两个框架快，并且占用显存低",
+      "url": "https://www.v2ex.com/t/1216752",
+      "platform": "v2ex",
+      "platformLabel": "V2EX",
+      "author": "zhengfan2016",
+      "publishedAt": "2026-05-31",
+      "category": "serving",
+      "tags": [
+        "ROCm",
+        "vLLM",
+        "SGLang",
+        "消费级GPU",
+        "实战排障"
+      ],
+      "summary": "围绕16GB AMD显卡上的速度、显存与兼容性展开讨论。回复补充 llama.cpp、上下文长度和KV缓存放置的实际体验。",
+      "whyRead": "20条回复展示了服务框架收益的硬件前提；适合带着具体设备对照排障。",
+      "level": "进阶",
+      "minutes": 15,
+      "heat": {
+        "likes": null,
+        "comments": 20,
+        "label": "20回复 · 4085阅读",
+        "basis": "原帖公开显示20 replies和4085 views",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://www.v2ex.com/t/1216752"
+      },
+      "access": "public",
+      "qualitySignals": [
+        "提问交代WSL、ROCm和16GB显存等约束",
+        "回复包含上下文长度、KV位置与速度之间的具体经验"
+      ],
+      "evidenceNote": "原帖可公开读取，作者、20条回复及4085 views已核对。该帖属于设备经验讨论，回复速度来自个人环境，未独立复测，不能推广成所有AMD或所有服务框架的性能结论；未显示帖子总点赞。",
+      "rank": 11,
+      "categoryTitle": "推理引擎与调度"
+    },
+    {
+      "id": "reddit-vllm-concurrency-3090",
+      "title": "vLLM is a monster!",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1gtumyc/vllm_is_a_monster/",
+      "relatedUrl": "https://github.com/vllm-project/vllm/issues/10411",
+      "platform": "reddit",
+      "platformLabel": "Reddit · r/LocalLLaMA",
+      "author": "phazei",
+      "publishedAt": "2024-11-18",
+      "category": "serving",
+      "tags": [
+        "vLLM",
+        "连续批处理",
+        "RTX 3090",
+        "吞吐与延迟",
+        "GGUF"
+      ],
+      "summary": "作者用 RTX 3090 跑 Qwen2.5-7B GGUF，展示多并发日志、Docker 命令及与 llama.cpp 的尝试，直观区分服务总吞吐与单请求速度。",
+      "whyRead": "30 并发下总吞吐虽高，每个请求仍约 10 tok/s；适合理解 batching 的收益与交互延迟的关系。",
+      "level": "入门",
+      "minutes": 12,
+      "heat": {
+        "likes": 367,
+        "comments": null,
+        "label": "367 votes（索引快照）",
+        "basis": "Reddit 原帖搜索索引展示 [+367 votes]；当前正文未返回实时评分或总回复数。",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1gtumyc/"
+      },
+      "access": "public",
+      "qualitySignals": [
+        "公开 GPU、模型、量化、Docker 命令与包含 Running 请求数的吞吐日志。",
+        "同时解释总吞吐与每请求速度，并记录 FP8 KV 输出异常及相关 issue。"
+      ],
+      "evidenceNote": "已打开原帖核验作者、正文、命令和日志；votes 来自搜索索引快照。此为 2024 年个人非严格基准，模型、长度与计时条件未完全统一；不把框架对比或旧版 FP8 故障当成当前定论。",
+      "rank": 12,
+      "categoryTitle": "推理引擎与调度"
+    },
+    {
+      "id": "reddit-ktransformers-multi-concurrency",
+      "title": "KTransformers Now Supports Multi-Concurrency and Runs 40 Tokens/s of DeepSeek-R1 Q4/FP8 on MRDIMM-8800",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1jpi0n9/ktransformers_now_supports_multiconcurrency_and/",
+      "relatedUrl": "https://github.com/kvcache-ai/ktransformers/blob/main/doc/en/balance-serve.md",
+      "platform": "reddit",
+      "platformLabel": "Reddit · r/LocalLLaMA",
+      "author": "CombinationNo780（项目团队发布）",
+      "publishedAt": "2025-04-02",
+      "category": "serving",
+      "tags": [
+        "KTransformers",
+        "CPU/GPU 协同",
+        "continuous batching",
+        "chunked prefill",
+        "DeepSeek-R1"
+      ],
+      "summary": "项目团队介绍 v0.2.4 的多并发调度，在 Xeon6、MRDIMM-8800 与 RTX 4090D 平台展示吞吐变化，并链接架构、安装与服务参数文档。",
+      "whyRead": "能把 continuous batching、chunked prefill 与真实 CPU/GPU 混合部署联系起来；配套文档说明缓存与批大小约束。",
+      "level": "进阶",
+      "minutes": 15,
+      "heat": {
+        "likes": 230,
+        "comments": null,
+        "label": "230 votes（索引快照）",
+        "basis": "Reddit 原帖搜索索引展示 [+230 votes]；未取得实时评分或总回复计数。",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1jpi0n9/"
+      },
+      "access": "public",
+      "qualitySignals": [
+        "作者团队披露具体版本、CPU/内存/GPU 平台及提高并发前后的总吞吐。",
+        "配套项目文档提供部署命令、调度架构和 max_batch_size/cache_lens 等参数约束。"
+      ],
+      "evidenceNote": "已打开 Reddit 原帖和官方 balance-serve 文档，核验作者、日期、平台、17→40 tok/s 描述与参数说明；230 votes 为搜索索引快照。团队自测而非独立评测，历史版本结果不代表当前性能；文档中的四并发吞吐不是单请求速度。",
+      "rank": 13,
+      "categoryTitle": "推理引擎与调度"
+    },
+    {
+      "id": "zhihu-kv-cache-quantization",
+      "title": "大模型推理优化技术-KV Cache量化",
+      "url": "https://zhuanlan.zhihu.com/p/4335176084",
+      "platform": "zhihu",
+      "platformLabel": "知乎",
+      "author": "吃果冻不吐果冻皮",
+      "publishedAt": "",
+      "category": "quantization",
+      "tags": [
+        "KV量化",
+        "KVQuant",
+        "KIVI",
+        "LMDeploy"
+      ],
+      "summary": "从 KV Cache 容量与带宽压力切入量化。介绍异常值分布、量化维度和推理框架中的缓存量化实践。",
+      "whyRead": "将量化论文与LMDeploy等框架接口放在一起，适合把原理转成可尝试的配置。",
+      "level": "进阶",
+      "minutes": 35,
+      "heat": {
+        "likes": 99,
+        "comments": 3,
+        "label": "99 赞同 · 210 收藏 · 3 评论",
+        "basis": "知乎原帖可见计数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://zhuanlan.zhihu.com/p/4335176084",
+        "collections": 210
+      },
+      "access": "login",
+      "qualitySignals": [
+        "包括缓存大小公式、量化维度和异常值分析",
+        "属于动手学大模型系列并提供llm-action配套代码入口"
+      ],
+      "evidenceNote": "已核对原帖正文、作者、99赞同、3评论和210收藏，涵盖KIVI、KVQuant及多个框架示例。框架接口和缓存兼容性随版本变化，使用配置前对照对应版本文档。页面显示编辑于2026-06-06。",
+      "rank": 14,
+      "categoryTitle": "量化与本地部署",
+      "updatedAt": "2026-06-06"
+    },
+    {
+      "id": "reddit-exl2-humaneval",
+      "title": "HumanEval benchmark of EXL2 quants of popular local LLMs (2.5 through 8.0 bpw covered)",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1gsyp7q/humaneval_benchmark_of_exl2_quants_of_popular/",
+      "relatedUrl": "https://docs.google.com/spreadsheets/d/1MinL0TdVoJph6vQOUfXr8kQ6yavu8Ae_mO9MEdSE-8I/edit?usp=sharing",
+      "platform": "reddit",
+      "platformLabel": "Reddit · r/LocalLLaMA",
+      "author": "Ok_Mine189",
+      "publishedAt": "2024-11-16",
+      "category": "quantization",
+      "tags": [
+        "EXL2",
+        "HumanEval",
+        "量化精度",
+        "RTX 4070 Ti Super",
+        "原始数据"
+      ],
+      "summary": "作者以 exllamav2 0.2.2 测试多种本地模型在 2.5—8.0 bpw 下的 HumanEval 表现，提供数据表，并标出 Mistral prompt 模板导致的评测偏差。",
+      "whyRead": "适合观察同一模型随位宽下降的能力变化；作者公开了工具版本、数据与已知偏差，便于交叉验证。",
+      "level": "进阶",
+      "minutes": 12,
+      "heat": {
+        "likes": 98,
+        "comments": null,
+        "label": "98 votes（索引快照）",
+        "basis": "Reddit 原帖搜索索引展示 [+98 votes]；当前正文未暴露评分或总回复数。",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1gsyp7q/"
+      },
+      "access": "public",
+      "qualitySignals": [
+        "列出量化工具版本、GPU 和 2.5—8.0 bpw 扫描范围。",
+        "附作者 Google Sheets 原始数据，并主动披露部分模型 prompt 模板问题。"
+      ],
+      "evidenceNote": "已核验原帖作者、正文与原始表格链接；评分来自搜索索引快照，非当前实时值。旧模型、HumanEval 数据集和模板限制均需保留，不能据此直接给当前模型排名。",
+      "rank": 15,
+      "categoryTitle": "量化与本地部署"
+    },
+    {
+      "id": "reddit-405b-long-context-quants",
+      "title": "Llama 3.1 405B EXL2 quant results",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1efg2wv/llama_31_405b_exl2_quant_results/",
+      "relatedUrl": "",
+      "platform": "reddit",
+      "platformLabel": "Reddit · r/LocalLLaMA",
+      "author": "Grimulkan",
+      "publishedAt": "2024-07-30",
+      "category": "quantization",
+      "tags": [
+        "EXL2",
+        "长上下文",
+        "PPL",
+        "KV Cache",
+        "Llama 3.1"
+      ],
+      "summary": "作者将不同位宽的 405B、70B 等模型放到多种上下文长度下测 PPL，指出短上下文看似可用的低位宽量化，在长上下文下可能明显退化。",
+      "whyRead": "展示量化评测不能只看短文本；同时明确 4-bit KV、measurement length 与旧版 KV head 配置等控制条件。",
+      "level": "深入",
+      "minutes": 18,
+      "heat": {
+        "likes": 110,
+        "comments": null,
+        "label": "110 votes（索引快照）",
+        "basis": "Reddit 原帖搜索索引展示 [+110 votes]；未拿到当前实时评分。",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1efg2wv/"
+      },
+      "access": "public",
+      "qualitySignals": [
+        "把 PPL 同时按 BPW、上下文长度和模型权重体积比较。",
+        "说明 4-bit KV、测量长度、16 KV heads 旧模型版本及 wikitext 数据局限。"
+      ],
+      "evidenceNote": "已核验原帖作者、正文、控制条件与作者修订；评分来自搜索索引快照。关于 70B 是蒸馏模型的早期说法作者已注明未证实，本站不采用该判断。",
+      "rank": 16,
+      "categoryTitle": "量化与本地部署"
+    },
+    {
+      "id": "zhihu-austin-flashattention",
+      "title": "FlashAttention图解（如何加速Attention）",
+      "url": "https://zhuanlan.zhihu.com/p/626079753",
+      "platform": "zhihu",
+      "platformLabel": "知乎",
+      "author": "Austin",
+      "publishedAt": "",
+      "category": "kernels-parallel",
+      "tags": [
+        "FlashAttention",
+        "HBM/SRAM",
+        "IO-aware",
+        "图解"
+      ],
+      "summary": "从 HBM 与 SRAM 的带宽差异解释 Attention 为什么慢。结合分块流程图理解如何减少中间矩阵读写。",
+      "whyRead": "GiantPandaCV收录的经典图解，适合把论文中的分块算法与GPU访存联系起来。",
+      "level": "进阶",
+      "minutes": 25,
+      "heat": {
+        "likes": 828,
+        "comments": 75,
+        "label": "828 赞同 · 1483 收藏 · 75 评论",
+        "basis": "知乎原帖可见计数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://zhuanlan.zhihu.com/p/626079753",
+        "collections": 1483
+      },
+      "access": "login",
+      "qualitySignals": [
+        "从硬件层次到分块计算流程逐步展开",
+        "GiantPandaCV与极市技术社区均收录或引用该文"
+      ],
+      "evidenceNote": "已核对Austin原帖正文、828赞同、75评论和1483收藏。包含硬件访存、分块Attention与在线Softmax图解；不要把Attention kernel收益直接当成端到端服务加速。页面显示编辑于2023-12-10。",
+      "rank": 17,
+      "categoryTitle": "GPU Kernel 与并行",
+      "updatedAt": "2023-12-10"
+    },
+    {
+      "id": "zhihu-austin-flashattention2",
+      "title": "FlashAttention2详解（性能比FlashAttention提升200%）",
+      "url": "https://zhuanlan.zhihu.com/p/645376942",
+      "platform": "zhihu",
+      "platformLabel": "知乎",
+      "author": "Austin",
+      "publishedAt": "",
+      "category": "kernels-parallel",
+      "tags": [
+        "FlashAttention-2",
+        "Warp",
+        "序列并行",
+        "Kernel优化"
+      ],
+      "summary": "梳理 FlashAttention-2 的非矩阵运算、线程块和 warp 工作分配。说明并行划分为何影响GPU利用率。",
+      "whyRead": "与作者V1图解连读，能分清减少访存和改善并行分工这两类优化。",
+      "level": "深入",
+      "minutes": 30,
+      "heat": {
+        "likes": 582,
+        "comments": 62,
+        "label": "582 赞同 · 1085 收藏 · 62 评论",
+        "basis": "知乎原帖可见计数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://zhuanlan.zhihu.com/p/645376942",
+        "collections": 1085
+      },
+      "access": "login",
+      "qualitySignals": [
+        "具体讨论非matmul FLOPs与warp间通信",
+        "与V1和Flash-Decoding形成连续学习系列"
+      ],
+      "evidenceNote": "已核对Austin原帖正文、582赞同、62评论和1085收藏。标题“提升200%”保留原帖措辞，具体收益依赖论文配置，本站未独立复测。页面显示编辑于2023-11-07。",
+      "rank": 18,
+      "categoryTitle": "GPU Kernel 与并行",
+      "updatedAt": "2023-11-07"
+    },
+    {
+      "id": "hn-42417857",
+      "title": "Fast LLM Inference From Scratch (using CUDA)",
+      "url": "https://news.ycombinator.com/item?id=42417857",
+      "relatedUrl": "https://andrewkchan.dev/posts/yalm.html",
+      "platform": "hn",
+      "platformLabel": "Hacker News",
+      "author": "homarp（HN 提交者）",
+      "publishedAt": "2024-12-14",
+      "access": "public",
+      "category": "kernels-parallel",
+      "tags": [
+        "CUDA",
+        "Profiling",
+        "Coalescing",
+        "Kernel fusion",
+        "llama.cpp"
+      ],
+      "summary": "作者从朴素 CPU 实现写到 CUDA 推理，用 nsys/ncu 定位矩阵运算与访存问题，逐步调整精度、合并运算和长上下文注意力。",
+      "whyRead": "沿真实 profile 练习诊断瓶颈，比直接背优化清单更容易理解每一步收益。",
+      "level": "深入",
+      "minutes": 50,
+      "qualitySignals": [
+        "公开代码、逐步 benchmark 和 profiler 数据可对照",
+        "作者在讨论中回应反馈，评论提出 CUDA Graph 等后续方向"
+      ],
+      "evidenceNote": "已阅读原文实现路线、带宽估算、fusion 和长上下文分析，及讨论开篇；官方 Firebase 核验计数。实验主要面向特定硬件与单请求解码。发布日期取 HN API 提交时间（UTC）。",
+      "heat": {
+        "likes": 344,
+        "comments": 57,
+        "label": "344 points · 57 条讨论",
+        "basis": "HN 公开计数，points 不是赞同数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://hacker-news.firebaseio.com/v0/item/42417857.json"
+      },
+      "rank": 19,
+      "categoryTitle": "GPU Kernel 与并行"
+    },
+    {
+      "id": "hn-46602737",
+      "title": "vLLM large scale serving: DeepSeek 2.2k tok/s/h200 with wide-ep",
+      "url": "https://news.ycombinator.com/item?id=46602737",
+      "relatedUrl": "https://blog.vllm.ai/2025/12/17/large-scale-serving.html",
+      "platform": "hn",
+      "platformLabel": "Hacker News",
+      "author": "robertnishihara（HN 提交者）",
+      "publishedAt": "2026-01-13",
+      "access": "public",
+      "category": "kernels-parallel",
+      "tags": [
+        "Expert parallelism",
+        "MoE",
+        "P/D disaggregation",
+        "EPLB",
+        "DBO"
+      ],
+      "summary": "围绕 DeepSeek 的大规模部署，解释 Wide-EP、双 batch 重叠、专家负载均衡与 prefill/decode 分离；讨论纠正每卡与整机吞吐的误读。",
+      "whyRead": "理解多机 MoE 推理如何同时受通信、专家分布和 KV cache 约束，学会核对 benchmark 单位。",
+      "level": "深入",
+      "minutes": 25,
+      "qualitySignals": [
+        "vLLM 团队给出实现开关、部署路径和可复现基准链接",
+        "讨论具体澄清 tok/s/GPU、整组 GPU 与成本计算"
+      ],
+      "evidenceNote": "已阅读原文核心组件与 HN 讨论；官方 Firebase 核验计数。标题 2.2k tok/s/H200 是特定多机集群每卡吞吐，不是单请求生成速度。发布日期取 HN API 提交时间（UTC）。",
+      "heat": {
+        "likes": 147,
+        "comments": 54,
+        "label": "147 points · 54 条讨论",
+        "basis": "HN 公开计数，points 不是赞同数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://hacker-news.firebaseio.com/v0/item/46602737.json"
+      },
+      "rank": 20,
+      "categoryTitle": "GPU Kernel 与并行"
+    },
+    {
+      "id": "zhihu-speculative-fang",
+      "title": "大模型推理妙招—投机采样（Speculative Decoding）",
+      "url": "https://zhuanlan.zhihu.com/p/651359908",
+      "platform": "zhihu",
+      "platformLabel": "知乎",
+      "author": "方佳瑞",
+      "publishedAt": "",
+      "category": "speculative",
+      "tags": [
+        "Speculative Decoding",
+        "草稿模型",
+        "采样",
+        "经典阅读"
+      ],
+      "summary": "解释草稿模型提出候选、目标模型验证和拒绝校正的流程。附分布等价推导与可运行的开源演示。",
+      "whyRead": "1456赞同的中文长文，能把接受率、分布等价与实际实现连起来；适合边读边跑demo。",
+      "level": "进阶",
+      "minutes": 25,
+      "heat": {
+        "likes": 1456,
+        "comments": 122,
+        "label": "1456 赞同 · 1814 收藏 · 122 评论",
+        "basis": "知乎原帖可见计数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://zhuanlan.zhihu.com/p/651359908",
+        "collections": 1814
+      },
+      "access": "login",
+      "qualitySignals": [
+        "包含采样分布等价推导与加速实验",
+        "作者提供LLMSpeculativeSampling配套代码"
+      ],
+      "evidenceNote": "已核对方佳瑞原帖正文、开源demo链接、1456赞同、122评论和1814收藏。原帖包含分布等价推导与加速实验，实际增益依赖草稿接受率、模型和硬件，不采用原帖关于GPT-4内部实现的未证实转述。页面显示编辑于2023-08-21。",
+      "rank": 21,
+      "categoryTitle": "投机解码与采样",
+      "updatedAt": "2023-08-21",
+      "relatedUrl": "https://github.com/feifeibear/LLMSpeculativeSampling"
+    },
+    {
+      "id": "hn-49596054",
+      "title": "Speculative Decoding in vLLM on AMD GPUs",
+      "url": "https://news.ycombinator.com/item?id=49596054",
+      "relatedUrl": "https://vllm.ai/blog/2026-08-23-speculative-decoding-amd-gpus",
+      "platform": "hn",
+      "platformLabel": "Hacker News",
+      "author": "ankitg12（HN 提交者）",
+      "publishedAt": "2026-09-07",
+      "access": "public",
+      "category": "speculative",
+      "tags": [
+        "Speculative decoding",
+        "EAGLE-3",
+        "DFlash",
+        "MTP",
+        "AMD ROCm"
+      ],
+      "summary": "对比多种草稿生成方式，给出 AMD GPU 上 vLLM 投机解码配置和实验；强调提议长度、接受率与真实负载决定收益，也可能慢于基线。",
+      "whyRead": "从验证机制走到可观测指标与实测，避免把投机解码理解为固定倍速开关。",
+      "level": "深入",
+      "minutes": 40,
+      "qualitySignals": [
+        "vLLM 团队原文提供方法比较、实验配置与性能边界",
+        "明确报告低于非投机基线的配置与 proposal 长度调优"
+      ],
+      "evidenceNote": "已阅读原文方法对比、结论、硬件软件配置及 HN 讨论开篇；官方 Firebase 核验计数。具体倍速只适用于文中模型、硬件和负载。发布日期取 HN API 提交时间（UTC）。",
+      "heat": {
+        "likes": 145,
+        "comments": 53,
+        "label": "145 points · 53 条讨论",
+        "basis": "HN 公开计数，points 不是赞同数",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://hacker-news.firebaseio.com/v0/item/49596054.json"
+      },
+      "rank": 22,
+      "categoryTitle": "投机解码与采样"
+    },
+    {
+      "id": "reddit-gemma4-speculative",
+      "title": "Speculative Decoding works great for Gemma 4 31B with E2B draft (+29% avg, +50% on code)",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1sjct6a/speculative_decoding_works_great_for_gemma_4_31b/",
+      "relatedUrl": "",
+      "platform": "reddit",
+      "platformLabel": "Reddit · r/LocalLLaMA",
+      "author": "PerceptionGrouchy187",
+      "publishedAt": "2026-04-12",
+      "category": "speculative",
+      "tags": [
+        "llama.cpp",
+        "投机解码",
+        "RTX 5090",
+        "接受率",
+        "复现实测"
+      ],
+      "summary": "作者在 RTX 5090 上对比 Gemma 4 31B 与 E2B 草稿模型，记录不同任务和 draft-max 的表现，并定位 GGUF tokenizer 元数据不一致导致的性能下降。",
+      "whyRead": "既有接受率与吞吐表，也有 tokenizer 兼容性和并发 KV 分配的排障过程，可参考其对照实验设计。",
+      "level": "进阶",
+      "minutes": 15,
+      "heat": {
+        "likes": 321,
+        "comments": null,
+        "label": "321 votes（索引快照）",
+        "basis": "Reddit 原帖搜索索引展示 [+321 votes]；当前正文没有返回实时评分。",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1sjct6a/speculative_decoding_works_great_for_gemma_4_31b/"
+      },
+      "access": "public",
+      "qualitySignals": [
+        "明确硬件、操作系统、量化、128K 上下文、采样与预热设置。",
+        "包含 draft-max 2/4/8/16 扫描及 tokenizer 元数据故障的修复过程。"
+      ],
+      "evidenceNote": "已核验原帖正文、作者和实验参数；评分来自搜索索引快照，非当前实时值。性能只代表原帖版本、fork、硬件与样本，不宜照搬为通用增益。",
+      "rank": 23,
+      "categoryTitle": "投机解码与采样"
+    },
+    {
+      "id": "github-async-speculative",
+      "title": "async/parallel speculative execution",
+      "url": "https://github.com/ggml-org/llama.cpp/discussions/6853",
+      "relatedUrl": "https://github.com/okuvshynov/llama_duo",
+      "platform": "github",
+      "platformLabel": "GitHub · llama.cpp Discussions",
+      "author": "okuvshynov",
+      "publishedAt": "2024-04-23",
+      "category": "speculative",
+      "tags": [
+        "CPU/GPU 并行",
+        "Apple Silicon",
+        "投机解码",
+        "KV 回滚",
+        "原型"
+      ],
+      "summary": "作者在 M2 Ultra 上把主模型放 GPU、草稿模型放 CPU 并行执行，展示序列与 KV 对齐方法，以及带宽争用、无复用与有复用的对照实验。",
+      "whyRead": "能从实现细节理解异步投机：谁维护正确序列、何时丢弃草稿和清理 KV，以及共享带宽为何可能抵消收益。",
+      "level": "深入",
+      "minutes": 20,
+      "heat": {
+        "likes": null,
+        "comments": 6,
+        "label": "6 条讨论 · 10 条嵌套回复",
+        "basis": "GitHub Discussion 顶部显示 6 comments · 10 replies；反应类型未完整解析，未记作点赞。",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://github.com/ggml-org/llama.cpp/discussions/6853"
+      },
+      "access": "public",
+      "qualitySignals": [
+        "给出主模型/草稿模型、CPU/GPU 分配和构建执行命令。",
+        "有 83s/95s/64s 对照，项目维护者参与讨论共享带宽与草稿验证。"
+      ],
+      "evidenceNote": "已核验作者、日期、原型说明和 GitHub 讨论计数；这是旧版原型实验，非当前 llama.cpp 功能或吞吐保证。计数中的 comments 与 replies 保持原平台口径。",
+      "rank": 24,
+      "categoryTitle": "投机解码与采样"
+    },
+    {
+      "id": "hf-assisted-model-pairs",
+      "title": "What model-pairs are supported by the assistant decoding generation in Huggingface AutoModelForCausalLM?",
+      "url": "https://discuss.huggingface.co/t/what-model-pairs-are-supported-by-the-assistant-decoding-generation-in-huggingface-automodelforcausallm/77311",
+      "relatedUrl": "https://github.com/huggingface/transformers/pull/22211",
+      "platform": "huggingface",
+      "platformLabel": "Hugging Face Forums",
+      "author": "alvations",
+      "publishedAt": "2024-03-13",
+      "category": "speculative",
+      "tags": [
+        "Transformers",
+        "assisted generation",
+        "Pythia",
+        "tokenizer"
+      ],
+      "summary": "作者公开 Pythia 主模型与草稿模型的最小 generate 示例，并对比不同模型组合的成功与报错情况，适合作为 assisted generation 的历史入门案例。",
+      "whyRead": "可从几十行代码辨认目标模型、草稿模型和 tokenizer 的关系；应结合当前官方文档确认兼容范围。",
+      "level": "入门",
+      "minutes": 8,
+      "heat": {
+        "likes": null,
+        "comments": null,
+        "label": "热度未核验",
+        "basis": "论坛正文可读，但未返回可靠的点赞与总回复计数。",
+        "verifiedAt": "2026-10-16",
+        "evidenceUrl": "https://discuss.huggingface.co/t/what-model-pairs-are-supported-by-the-assistant-decoding-generation-in-huggingface-automodelforcausallm/77311"
+      },
+      "access": "public",
+      "qualitySignals": [
+        "有作者亲测成功的 Pythia 组合与完整最小示例。",
+        "链接最初 assisted generation 实现 PR，并记录失败组合和报错。"
+      ],
+      "evidenceNote": "已核验原帖标题、作者、日期与代码；未核验热度，因此不标为高赞。帖子反映 2024 年实现，模型/tokenizer 限制不能直接当作当前 Transformers 的完整支持范围。",
+      "rank": 25,
+      "categoryTitle": "投机解码与采样"
+    }
+  ]
+}

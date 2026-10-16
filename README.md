@@ -16,6 +16,8 @@ python3 -m http.server 4173
 
 ## 浏览器刷题
 
+[LLM 推理优化社区精选](inference-community/) 按六个主题整理知乎、Hacker News、Reddit、GitHub Discussions、Hugging Face Forums、CSDN 和 V2EX 帖子。每篇包含中文导读、推荐理由、原帖链接、热度核验来源与时间，以及实验或版本限制。支持关键词、主题、社区、难度筛选，同社区热度排序和本地待读/已读记录。内容保存在 `inference-community/posts.json`，以人工精选为主；核验日期和受限信息随条目标注。运行 `node --test inference-community/engine.test.cjs` 检查目录筛选与数据结构。
+
 [LLM 推理优化每日小测](practice/daily/) 按日期收录 15 道题：10 道单选、2 道编程、3 道问答。首期为北京时间 2026-10-16，涵盖延迟指标、KV 缓存、注意力与请求调度。选择题自动判分，编程题接入现有 Python 工作台并同步通过状态，问答提交后按参考要点自评；作答保存在当前浏览器。满分 100 分，三类题分别占 30、40、30 分。
 
 后续小测追加到 `practice/daily-quizzes.js`，按日期选择和回看；每日内容需收录后才会展示。新增编程题同时写入题库扩展并在 `practice/index.html` 中加载。小测状态与评分校验运行 `node --test practice/daily-quiz-engine.test.cjs`。
