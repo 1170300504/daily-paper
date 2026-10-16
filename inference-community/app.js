@@ -19,7 +19,7 @@
 
   try {
     if (!engine) throw new Error("目录组件未载入");
-    const response = await fetch("posts.json?v=20261016");
+    const response = await fetch("posts.json?v=20261016-2");
     if (!response.ok) throw new Error("帖子目录未载入");
     data = await response.json();
     if (!Array.isArray(data.posts) || !Array.isArray(data.categories)) throw new Error("目录格式异常");

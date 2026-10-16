@@ -2,7 +2,7 @@
   "meta": {
     "title": "LLM 推理优化 · 社区精选",
     "checkedAt": "2026-10-16",
-    "version": 1,
+    "version": 2,
     "selection": "人工筛选高互动讨论与有明确技术价值的长文。热度按原平台和核验来源标注；未核验项不参与点赞排序。"
   },
   "categories": [
@@ -205,42 +205,6 @@
       "rank": 4,
       "categoryTitle": "KV 缓存与注意力",
       "updatedAt": "2025-07-26"
-    },
-    {
-      "id": "csdn-july-flashattention",
-      "title": "通透理解FlashAttention(含其2代和第3代)：全面降低显存读写、加快计算速度",
-      "url": "https://blog.csdn.net/v_JULY_v/article/details/133619540",
-      "platform": "csdn",
-      "platformLabel": "CSDN",
-      "author": "v_JULY_v",
-      "publishedAt": "2023-10-06",
-      "category": "kernels-parallel",
-      "tags": [
-        "FlashAttention",
-        "Online Softmax",
-        "公式推导",
-        "高赞长文"
-      ],
-      "summary": "从 Transformer 时空开销推到分块注意力与在线归一化。结合公式、图和版本演进分析减少显存读写的方式。",
-      "whyRead": "617赞、1.2k收藏、10万+阅读的原创长文，适合需要逐步推导的读者。",
-      "level": "深入",
-      "minutes": 60,
-      "heat": {
-        "likes": 617,
-        "comments": null,
-        "label": "617赞 · 1.2k收藏 · 10万+阅读",
-        "basis": "原帖公开HTML正文与meta description明确标注",
-        "verifiedAt": "2026-10-16",
-        "evidenceUrl": "https://blog.csdn.net/v_JULY_v/article/details/133619540"
-      },
-      "access": "public",
-      "qualitySignals": [
-        "原帖标明原创并记录多轮修订",
-        "包含分块softmax公式与FlashAttention版本对比"
-      ],
-      "evidenceNote": "2026-10-16打开原帖并读取公开HTML，meta description写明“点赞617次，收藏1.2k次”，正文标明10w+阅读；首次发布2023-10-06，最近修改时间显示2024-12-04。热度是本次访问快照，评论数未核验。",
-      "rank": 5,
-      "categoryTitle": "GPU Kernel 与并行"
     },
     {
       "id": "hn-41105881",
