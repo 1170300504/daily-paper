@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="AI 实现练习场：54 道 Python/NumPy 题，新增手撕 Transformer、FlashAttention 与 PagedAttention 核心模块。"
+      content="AI 实现练习场：56 道 Python/NumPy 题，含 LLM 推理优化每日小测、Transformer、FlashAttention 与 PagedAttention 核心模块。"
     />
     <meta name="color-scheme" content="light dark" />
     <title>AI 实现练习场 · 经典教材导读</title>
-    <link rel="stylesheet" href="styles.css?v=systems-20260919" />
+    <link rel="stylesheet" href="styles.css?v=daily-20261016" />
   </head>
   <body>
     <a class="skip-link" href="#catalogMain">跳到主要内容</a>
@@ -103,6 +103,16 @@
               <small>guided tracks</small>
             </div>
           </dl>
+
+          <section class="daily-quiz-entry" aria-labelledby="dailyQuizEntryTitle">
+            <div>
+              <p class="section-kicker">LLM inference · Daily quiz</p>
+              <h2 id="dailyQuizEntryTitle">LLM 推理优化 · 每日小测</h2>
+              <p>15 道题，把性能分析、缓存管理与调度串起来。10 道选择、2 道编程、3 道问答，支持自动保存、判分与解析。</p>
+              <span>首期 · 2026-10-16 · 建议 45 分钟</span>
+            </div>
+            <a class="primary-link" href="daily/"><span>进入每日小测</span><i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+          </section>
 
           <section class="systems-tracks" aria-labelledby="systemsTracksTitle">
             <header>
@@ -252,6 +262,7 @@
         </div>
 
         <div class="workspace-actions">
+          <a id="dailyQuizBack" class="workspace-button" href="daily/" hidden>返回每日小测</a>
           <div id="workspaceProgress" class="workspace-progress" title="练习进度">
             <span id="progressText">0 / 0</span>
             <span class="progress-track" aria-hidden="true"><i id="progressBar"></i></span>
@@ -521,8 +532,9 @@
     <script src="problems-transformer-systems.js" defer></script>
     <script src="problems-flash-attention.js" defer></script>
     <script src="problems-paged-attention.js" defer></script>
+    <script src="problems-daily-inference.js?v=20261016" defer></script>
     <script src="completion-engine.js?v=completion-20260919" defer></script>
     <script src="code-completion.js?v=completion-20260919" defer></script>
-    <script src="app.js?v=completion-20260919" defer></script>
+    <script src="app.js?v=daily-20261016" defer></script>
   </body>
 </html>

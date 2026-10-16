@@ -251,6 +251,13 @@
     state.leftTab = "description";
     state.bottomTab = "tests";
     state.mobilePanel = "description";
+    const quizDate = new URL(window.location.href).searchParams.get("quiz");
+    const quizBack = document.getElementById("dailyQuizBack");
+    if (quizBack) {
+      const fromQuiz = /^\d{4}-\d{2}-\d{2}$/.test(quizDate || "");
+      quizBack.hidden = !fromQuiz;
+      if (fromQuiz) quizBack.href = `daily/?date=${encodeURIComponent(quizDate)}`;
+    }
     renderWorkspace(problem);
     if (els.workspaceLoading) els.workspaceLoading.hidden = true;
     setLeftTab("description");

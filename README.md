@@ -2,7 +2,7 @@
 
 一个可以直接部署到 GitHub Pages 的静态学习站。首页论文面板优先读取 `data/history.json`，支持按日期回看、搜索、领域筛选、排序和本地收藏；站内还包含经典教材导读与可在浏览器中运行的 Python/NumPy 刷题场。
 
-一级导航分为“论文”“经典教材导读”和“刷题”：论文面板保留在根目录；[经典教材导读](textbooks/) 收录 [CSAPP Codebook](csapp/)、[算法导读](algorithms/)、[CS224n NLP Lab](cs224n/) 与 [CS336 LM Forge](cs336/)；[AI 实现练习场](practice/) 提供 54 道 AI 系统实现题、十二条学习路径、浏览器内判题、本地草稿和进度记录。
+一级导航分为“论文”“经典教材导读”和“刷题”：论文面板保留在根目录；[经典教材导读](textbooks/) 收录 [CSAPP Codebook](csapp/)、[算法导读](algorithms/)、[CS224n NLP Lab](cs224n/) 与 [CS336 LM Forge](cs336/)；[AI 实现练习场](practice/) 提供 56 道 AI 系统实现题、十二条学习路径、浏览器内判题、本地草稿和进度记录。
 
 [Context Parallel 专题](context-parallel/) 包含 GPT Image 总流程图、可切换 GPU 与分片方式的因果注意力矩阵，以及前向通信、softmax 合并、反向传播和 TorchTitan 接入详解。专题直接从首页进入，交互部分使用本地 JavaScript，不依赖外部运行时。
 
@@ -15,6 +15,10 @@ python3 -m http.server 4173
 然后打开 `http://localhost:4173`；经典教材导读在 `http://localhost:4173/textbooks/`，刷题场在 `http://localhost:4173/practice/`。第一次运行代码时会从 CDN 下载 Pyodide 与 NumPy，后续由浏览器缓存。
 
 ## 浏览器刷题
+
+[LLM 推理优化每日小测](practice/daily/) 按日期收录 15 道题：10 道单选、2 道编程、3 道问答。首期为北京时间 2026-10-16，涵盖延迟指标、KV 缓存、注意力与请求调度。选择题自动判分，编程题接入现有 Python 工作台并同步通过状态，问答提交后按参考要点自评；作答保存在当前浏览器。满分 100 分，三类题分别占 30、40、30 分。
+
+后续小测追加到 `practice/daily-quizzes.js`，按日期选择和回看；每日内容需收录后才会展示。新增编程题同时写入题库扩展并在 `practice/index.html` 中加载。小测状态与评分校验运行 `node --test practice/daily-quiz-engine.test.cjs`。
 
 `practice/` 借鉴 [Pyre Code](https://github.com/whwangovo/pyre-code) 的题库、学习路径和分栏工作台形式，并针对纯静态 GitHub Pages 改写为浏览器 NumPy 版。`运行` 执行两条公开样例，`提交` 执行全部测试；代码、进度与最近提交只保存在当前设备。原项目及 TorchCode 的 MIT 许可说明见 `practice/LICENSE-pyre-code.txt`。
 
@@ -90,6 +94,14 @@ python3 -m http.server 4173
 │   ├── problems-transformer-systems.js
 │   ├── problems-flash-attention.js
 │   ├── problems-paged-attention.js
+│   ├── problems-daily-inference.js
+│   ├── daily-quizzes.js
+│   ├── daily-quiz-engine.js
+│   ├── daily-quiz-engine.test.cjs
+│   ├── daily/
+│   │   ├── index.html
+│   │   ├── styles.css
+│   │   └── app.js
 │   ├── runner-worker.js
 │   └── LICENSE-pyre-code.txt
 ├── cs224n/

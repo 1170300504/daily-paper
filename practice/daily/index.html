@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="LLM 推理优化每日小测：10 道选择、2 道 Python 编程、3 道问答，作答自动保存在当前浏览器。" />
+    <meta name="color-scheme" content="light dark" />
+    <title>每日小测 · LLM 推理优化</title>
+    <link rel="stylesheet" href="../styles.css?v=daily-20261016" />
+    <link rel="stylesheet" href="styles.css?v=daily-20261016" />
+  </head>
+  <body>
+    <a class="skip-link" href="#quizMain">跳到小测</a>
+    <div class="quiz-shell">
+      <header class="quiz-topbar">
+        <a class="brand" href="../"><span class="brand-mark" aria-hidden="true">{ }</span><span class="brand-copy"><strong>AI 实现练习</strong><small>DAILY INFERENCE QUIZ</small></span></a>
+        <nav class="quiz-toplinks" aria-label="站点导航">
+          <a href="../../">论文</a><a href="../">返回题库</a>
+          <button id="quizTheme" class="quiz-theme" type="button" aria-label="切换深浅主题">切换主题</button>
+        </nav>
+      </header>
+
+      <main id="quizMain">
+        <section class="quiz-hero" aria-labelledby="quizHeading">
+          <div>
+            <p class="section-kicker">LLM 推理优化 · 每日小测</p>
+            <h1 id="quizHeading">用 15 道题，<br /><em>检验今天的理解。</em></h1>
+            <p id="quizSubtitle" class="quiz-lede">正在读取小测…</p>
+            <div class="quiz-meta"><label for="quizDate">小测日期</label><select id="quizDate" aria-describedby="quizDateNote"></select><span id="quizDuration"></span></div>
+            <p id="quizDateNote" class="quiz-date-note"></p>
+          </div>
+          <aside class="quiz-outline" aria-label="题型与分值">
+            <span class="quiz-edition" id="quizEdition">DAILY / 01</span>
+            <div><b>10</b><span>单项选择<small>每题 3 分 · 自动判分</small></span></div>
+            <div><b>02</b><span>Python 编程<small>每题 20 分 · 全部测试通过得分</small></span></div>
+            <div><b>03</b><span>简答与分析<small>每题 10 分 · 按要点自评</small></span></div>
+          </aside>
+        </section>
+
+        <div id="quizError" class="quiz-notice" role="alert" hidden></div>
+        <div class="quiz-workspace" id="quizWorkspace" hidden>
+          <aside class="quiz-sidebar">
+            <div class="quiz-sidebar-inner">
+              <span class="section-kicker">答题进度</span>
+              <p class="quiz-progress"><strong id="quizProgress">0</strong><span>/ 15 题</span></p>
+              <progress id="quizProgressBar" max="15" value="0" aria-label="已作答题目"></progress>
+              <nav class="quiz-question-nav" id="quizQuestionNav" aria-label="按题号跳转"></nav>
+              <p class="quiz-save-note" id="quizSaveNote" role="status">答案自动保存在当前浏览器</p>
+              <div id="quizScore" class="quiz-score" aria-live="polite" hidden></div>
+              <button class="quiz-submit" type="submit" form="quizForm" id="quizSubmit">提交并查看解析</button>
+              <p class="quiz-score-note">总分 100 分。选择 30 分 + 编程 40 分 + 问答自评 30 分；可分次完成。</p>
+            </div>
+          </aside>
+
+          <form id="quizForm" class="quiz-form">
+            <section aria-labelledby="choicesHeading"><header class="quiz-section-heading"><span>PART 01 / 30 分</span><h2 id="choicesHeading">单项选择</h2><p>每题只有一个正确答案，提交后显示解析。</p></header><div id="quizChoices"></div></section>
+            <section aria-labelledby="codingHeading"><header class="quiz-section-heading"><span>PART 02 / 40 分</span><h2 id="codingHeading">动手编程</h2><p>在 Python 工作台完成代码并提交全部测试，通过后自动同步到小测。</p></header><div id="quizCoding"></div></section>
+            <section aria-labelledby="writtenHeading"><header class="quiz-section-heading"><span>PART 03 / 30 分</span><h2 id="writtenHeading">简答与分析</h2><p>先写下推导，再提交查看参考答案，按命中的要点数量自评。</p></header><div id="quizWritten"></div></section>
+            <section id="quizSources" class="quiz-sources" aria-labelledby="sourcesHeading" hidden><h2 id="sourcesHeading">延伸阅读与题目依据</h2><ul id="quizSourceList"></ul></section>
+          </form>
+        </div>
+      </main>
+      <footer class="quiz-footer"><span>LLM 推理优化 · 每天多理解一点</span><a href="../">回到刷题场 ↗</a></footer>
+    </div>
+    <noscript><p class="quiz-notice">请启用 JavaScript 来载入小测、保存答案和判分。</p></noscript>
+    <script src="../daily-quizzes.js?v=20261016" defer></script>
+    <script src="../daily-quiz-engine.js?v=20261016" defer></script>
+    <script src="app.js?v=20261016" defer></script>
+  </body>
+</html>
