@@ -1,7 +1,273 @@
 {
-  "generatedAt": "2026-10-19T07:47:26.439271+08:00",
+  "generatedAt": "2026-10-20T08:47:35.449798+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-10-20",
+      "generatedAt": "2026-10-20T08:47:35.449798+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2610.23787",
+          "title": "DLite: History-free Speculative Decoding for Agentic AI",
+          "authors": [
+            "Jiaming Xu",
+            "Hanzhen Wang",
+            "Tianlang Zhao",
+            "Jiewen Xiao",
+            "Chengze Yuan",
+            "Jiayi Pan",
+            "Yongkang Zhou",
+            "Jiancai Ye",
+            "Yu Wang",
+            "Guohao Dai"
+          ],
+          "summary": "Speculative decoding has become a mainstream technique for accelerating large language model (LLM) inference by using a lightweight draft model to generate candidate tokens that are subsequently verified by the target model. However, agentic workloads introduce long and continuously evolving contexts and frequent multi-turn interactions. Under such workloads, we observe that existing draft models suffer from up to an 80% degradation in acceptance length, while maintaining their historical KV cache introduces substantial system overhead. In this paper, we identify the growing historical context as a common source of both problems and introduce DLite, a history-free speculative decoding framework for agentic AI. DLite directly reuses contextual hidden states from the target model and performs local speculative prediction without explicitly maintaining the historical context, transforming an increasingly complex modeling problem into local simple prediction problem. A lightweight sequential head further restores intra-block causal dependencies with low overhead. To effectively train this heterogeneous history-free architecture, we introduce a tailored two-stage training strategy. Experiments on general-purpose, long-context and agentic workloads show that DLite achieves 2-6 acceptance length and outperforms the state-of-the-art speculative decoding method, DSpark, up to 70%.",
+          "reason": "近 30 天；关键词：cs.CL, inference, kv-cache。Speculative decoding has become a mainstream technique for accelerating large language model (LLM) inference by using a lightweigh...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "inference",
+            "kv-cache",
+            "llm",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-16T17:18:54Z",
+          "url": "https://arxiv.org/abs/2610.23787",
+          "pdfUrl": "https://arxiv.org/pdf/2610.23787v1"
+        },
+        {
+          "id": "arxiv-2610.23638",
+          "title": "Deep LLM layers expose passage-level context in EEG during silent reading",
+          "authors": [
+            "Ingo Marquardt",
+            "Anthilia Alchanat",
+            "Priyanka Jain"
+          ],
+          "summary": "In a previous report we showed that a decoder can recover open-vocabulary word-level information from 19-channel EEG recorded during silent reading, by aligning short EEG windows with hidden-state embeddings of the presented word taken from a large language model (LLM). That analysis contrasted two of the model's 33 layers: the context-free input embedding and one mid-depth layer. Here we ask how EEG-decodable structure is distributed over the full depth of the language model. We trained one decoder per layer of Llama-3.1-8B, with and without a causal transformer over the sequence of EEG windows. We distinguish word-level decodability from a context-tracking component. Word-level decodability peaks in early layers and declines steadily towards the last layer. In contrast, the context-tracking component of the retrieval gain rises with depth, both with and without a causal transformer. Unexpectedly, a decoder that sees a single 0.5-s window at a time tracks the text passage too. Two new controls dissect this component. A target-geometry control, a synthetic predictor made of the true target plus noise calibrated to each decoder's word-level accuracy, shows that context tracking is not a by-product of word decoding and target geometry. A control that permutes predictions across runs from either the same or from different sessions shows that most of the observed context-tracking is not caused by an EEG recording session signature. Instead, context tracking mostly follows the text. A single EEG window therefore carries passage-level information that a contextual target can absorb. The results locate word identity in the early layers of the language model, discourse state in the deeper layers, and make the choice of target layer a design dial for EEG language decoders.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, llm。In a previous report we showed that a decoder can recover open-vocabulary word-level information from 19-channel EEG recorded duri...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "llm",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-10-16T15:41:19Z",
+          "url": "https://arxiv.org/abs/2610.23638",
+          "pdfUrl": "https://arxiv.org/pdf/2610.23638v1"
+        },
+        {
+          "id": "arxiv-2610.23625",
+          "title": "PresenceBench: An Exploratory Evaluation of Large Language Model Adaptation to User State",
+          "authors": [
+            "Peña Arroyo Gallego",
+            "Mauro Ruiz Moreno",
+            "Alejandro Acien",
+            "Sergio Romero-Tapiador",
+            "Teresa Arroyo-Gallego"
+          ],
+          "summary": "Presence-aware intelligence is the capacity of an AI system's intelligence layer to adapt appropriately to the functional state of the person it serves (here readiness, flow, and stability) while preserving task quality and safety. We introduce PresenceBench, an instrument for measuring it. PresenceBench evaluates how the intelligence layer uses a supplied state, not how that state is sensed, and breaks the capability into measurable properties. Two are tested here. Receptivity: does the model take up the state and give a better response than with no signal? Specificity: does any improvement depend on the correct state, rather than on extra structured context? A third, adaptation across states, is a required endpoint not measured in this release. A five-arm causal design answers both questions, against each model's own baseline and an equally structured mismatched-state control, scored by a correctness-gated human paired comparison. The exploratory evaluation covered four models across eighteen single-turn, six fixed three-turn and six simulated natural-conversation scenarios. Supplying a synthetic state, raw or translated into a response policy, gave human-preference point estimates above 0.5 for all four models (Claude Sonnet 5, DeepSeek V4 Pro, Gemini 3.6 Flash, GPT-5.6 Terra), with three of eight 95% intervals excluding chance. Specificity was not resolved: no per-model interval excluded chance, and the design cannot yet separate the state values from a generic instruction to adapt. Policy delivery reduced priced cost and output tokens against each model's baseline; these are resource-use changes, not efficiency gains, because correctness non-inferiority was not established. Safety-floor failures were rare (13 of 360 cases), with a non-significant excess under policy delivery. We report the instrument, the frozen results, and the controls a confirmatory study needs.",
+          "reason": "近 30 天；公司信号：Anthropic, Google；关键词：anthropic, google, cs.HC。Presence-aware intelligence is the capacity of an AI system's intelligence layer to adapt appropriately to the functional state of...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "anthropic",
+            "google",
+            "cs.HC",
+            "lora",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Anthropic/Google/arXiv",
+          "publishedAt": "2026-10-16T15:33:04Z",
+          "url": "https://arxiv.org/abs/2610.23625",
+          "pdfUrl": "https://arxiv.org/pdf/2610.23625v1"
+        },
+        {
+          "id": "arxiv-2610.23086",
+          "title": "PairSight: Characterizing and Predicting Operator-Level Interference in GPU Sharing for DNN Inference",
+          "authors": [
+            "Xiao Liu",
+            "Yujia Fu",
+            "Yue Yu",
+            "Dan Huang"
+          ],
+          "summary": "Serving DNN inference is costly, yet a single task seldom saturates both the compute units and the memory bandwidth of a GPU. GPU sharing raises utilization by co-locating several tasks on one GPU, at the cost of interference among them. Existing systems estimate this interference with binary compute-memory rules, standalone scaling curves, or model-level predictors. However, these estimates rest on a limited understanding of interference. They leave the software and hardware properties of co-located operators largely unexplored and give no slowdown prediction that is both interpretable and accurate. We conduct an operator-level study of interference under SM partitioning and use hardware counters to trace it to contention on the shared memory path, where the slowdown depends jointly on both co-located operators. Based on these findings, we propose PairSight, a hardware-aware interference predictor that learns how the hardware behaviors of co-located tasks interact and predicts the latency of each task before co-location. On six DNN models including LLMs, PairSight predicts latency under sharing with 4.3% mean error, against 19.0% for a compute-memory intensity rule, and adapts to unseen models and inputs with a few samples.",
+          "reason": "近 30 天；关键词：cs.PF, inference, latency。Serving DNN inference is costly, yet a single task seldom saturates both the compute units and the memory bandwidth of a GPU. GPU...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.PF",
+            "inference",
+            "latency",
+            "llm",
+            "serving",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-16T07:56:36Z",
+          "url": "https://arxiv.org/abs/2610.23086",
+          "pdfUrl": "https://arxiv.org/pdf/2610.23086v1"
+        },
+        {
+          "id": "arxiv-2610.22985",
+          "title": "Prism Attention: Proposal-Refined Index Sharing Mechanism for Efficient LLMs Inference",
+          "authors": [
+            "Zhenxu Tian",
+            "Kebin Liu",
+            "Zhengwu Yang",
+            "Yi Su",
+            "Qingqing Dang",
+            "Yanlin Sha",
+            "Kaipeng Deng",
+            "Dianhai Yu",
+            "Yanjun Ma",
+            "Juntao Li",
+            "Min Zhang"
+          ],
+          "summary": "Long-context decoding in large language models (LLMs) is increasingly bottlenecked by the memory and computation required to attend over an ever-growing Key-Value (KV) cache at each autoregressive step. Although token-level sparse attention reduces this burden by restricting computation to a small subset of relevant past tokens, its practical gains are often offset by repeatedly recomputing layer-wise sparse indices as the context grows. A common remedy is to share sparse indices across layers by computing them only at designated anchor layers, but such static reuse ignores the layer-wise evolution of attention patterns, causing the reused indices to progressively deviate from the layer-specific optima and incur substantial attention loss. By revisiting cross-layer sparsity from the perspective of attention dynamics, we find that inter-layer salient token shift is highly localized: although the exact top-$κ$ indices differ across layers, the core high-attention tokens remain stable, with changes concentrated near the expanded boundary of previously selected regions. Motivated by this, we propose Prism Attention, a proposal-refined sparse attention framework. It replaces rigid cross-layer index reuse with a coarse-to-fine strategy, preserving layer-wise adaptability while retaining the efficiency benefits of cross-layer sharing. Extensive experiments show that Prism Attention achieves state-of-the-art performance among mainstream sparse attention methods on both reasoning and long-context benchmarks, while attaining a $3.4\\times$ end-to-end decoding speedup over FlashAttention at 128K context length.",
+          "reason": "近 30 天；关键词：cs.CL, efficient, inference。Long-context decoding in large language models (LLMs) is increasingly bottlenecked by the memory and computation required to atten...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "efficient",
+            "inference",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-16T06:11:20Z",
+          "url": "https://arxiv.org/abs/2610.22985",
+          "pdfUrl": "https://arxiv.org/pdf/2610.22985v1"
+        },
+        {
+          "id": "arxiv-2610.22731",
+          "title": "Accelerated Dataflow: scaling inference in streaming data analytics with efficiency",
+          "authors": [
+            "RuiLong Jiang",
+            "Dustin Rhodes",
+            "Danny McCormick",
+            "Yuta Labur",
+            "Reza Rokni"
+          ],
+          "summary": "Streaming data analytics helps businesses identify opportunities and spot risks in a timely fashion. As large language model (LLM) usage grows, people are exploring incorporating agents or LLMs in streaming data pipelines to help find patterns in datasets without supervision or interpret natural languages for content moderation. However, most streaming systems are currently optimized for data movement and perform poorly on GPU intensive workloads such as performing inference with LLMs. We introduce a system on Google Cloud Dataflow designed to tackle hybrid streaming machine learning workloads with co-designed autoscaling on heterogeneous worker pools and prefix-aware batching. This increases throughput 1.5x to 2x for streaming pipelines using LLMs while maintaining similar latency with up to 75% peak resource savings and 84% lower peak tail latency compared with existing streaming data processing systems.",
+          "reason": "近 30 天；公司信号：Google；关键词：google, cs.DC, batching。Streaming data analytics helps businesses identify opportunities and spot risks in a timely fashion. As large language model (LLM)...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "google",
+            "cs.DC",
+            "batching",
+            "dataset",
+            "inference",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "Google/arXiv",
+          "publishedAt": "2026-10-15T23:04:55Z",
+          "url": "https://arxiv.org/abs/2610.22731",
+          "pdfUrl": "https://arxiv.org/pdf/2610.22731v1"
+        },
+        {
+          "id": "arxiv-2610.22539",
+          "title": "Don't Retrain, Remix: Adaptation of Web Agents using Mixture Hypernetworks",
+          "authors": [
+            "Md Farhan Ishmam",
+            "Minh Pham Dinh",
+            "Kenneth Marino"
+          ],
+          "summary": "The web is not static or uniform. Websites that serve the same purpose can look and navigate very differently. Even within a single site, successive redesigns can change how familiar features are presented and accessed. Humans adapt to this by recognizing familiar interaction patterns and reusing what they already know. We give web agents a similar ability with WebMix, a mixture hypernetwork that adapts them to unseen interfaces by composing previously trained low-rank adapters. WebMix begins with a bank of adapters trained on source interfaces. At deployment, a scout agent explores the target interface and summarizes its observations into a compact manual. A lightweight router uses this manual to predict mixing coefficients over the adapter bank, which combine the existing adapters into a new one for inference. Adapting to a new interface takes only a scouting run and a forward pass, without gradient updates on the target. With Qwen and Llama models, we evaluate domain transfer on TimeWarp and WebArena-Lite-v2, and version transfer on TimeWarp. In all three settings, WebMix matches or outperforms in-context learning and LoRA baselines, often matching the average success of specialists trained directly on those interfaces. On TimeWarp domain transfer, it gains about 8 percentage points on average over the best baseline with both models. These gains do not come at the cost of seen interfaces, where WebMix keeps its lead, and extend to version transfer. Adapting to a new interface can therefore rely on exploration and composition instead of retraining.",
+          "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.LG。The web is not static or uniform. Websites that serve the same purpose can look and navigate very differently. Even within a singl...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "alibaba",
+            "meta",
+            "cs.LG",
+            "efficient",
+            "inference",
+            "lora"
+          ],
+          "signal": 99,
+          "source": "Alibaba/Meta/arXiv",
+          "publishedAt": "2026-10-15T18:37:41Z",
+          "url": "https://arxiv.org/abs/2610.22539",
+          "pdfUrl": "https://arxiv.org/pdf/2610.22539v1"
+        },
+        {
+          "id": "arxiv-2610.22529",
+          "title": "Pearl-Chat: Engineering a native Luganda language model from first principles in JAX and Flax NNX",
+          "authors": [
+            "Wesley Kambale",
+            "Roland Sankara"
+          ],
+          "summary": "Autoregressive foundation language models predominantly target high-resource Indo-European languages, imposing computational and morphological penalties on under-represented African languages. Generic multilingual tokenizers routinely exceed fertility rates of 3.2 tokens per word on agglutinative Bantu languages, degrading context efficiency and inflating latency. We present Pearl-Chat, an 8,473,122-parameter ($\\sim$8.5M) causal decoder-only transformer engineered for Luganda (Oluganda, ISO 639-2: lg), a low-resource Niger-Congo Bantu language spoken by over 10 million people in East Africa. Built from first mathematical principles in JAX and Flax NNX, Pearl-Chat uses explicit functional state decomposition (nnx.split and nnx.merge), deterministic resumable data streaming via Google Grain, and SPMD tensor parallelism using jax.sharding.Mesh. We introduce a byte-level byte-pair encoding (BPE) subword tokenizer trained from scratch on curated Luganda corpora ($V = 8,192$), achieving 4.88 characters per token compression and 1.60 tokens per word fertility, a two-fold compression improvement over LLaMA-3 (128K) and Gemma (256K). The model is trained with a two-stage curriculum: Stage 1 pre-training on 59,501 sequences across parallel, biblical, encyclopedic, and journalistic corpora, and Stage 2 instruction fine-tuning on 510 dialogues with assistant-only loss masking. Across 4,000 optimization steps, validation cross-entropy loss drops monotonically from 9.4695 (perplexity: 12,958.98) to 0.1818 (perplexity: 1.20), a decrease of 9.2877 nats. On a three-tier held-out diagnostic benchmark, Pearl-Chat achieves 0.9792 ROUGE-L and 0.9405 BLEU while maintaining concordial agreement across Bantu noun classes. We provide a Python Server-Sent Events (SSE) streaming runtime and open-source all weights, tokenizers, and code.",
+          "reason": "近 30 天；公司信号：Google, Meta；关键词：google, meta, cs.CL。Autoregressive foundation language models predominantly target high-resource Indo-European languages, imposing computational and m...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "google",
+            "meta",
+            "cs.CL",
+            "latency"
+          ],
+          "signal": 99,
+          "source": "Google/Meta/arXiv",
+          "publishedAt": "2026-10-15T18:22:15Z",
+          "url": "https://arxiv.org/abs/2610.22529",
+          "pdfUrl": "https://arxiv.org/pdf/2610.22529v1"
+        },
+        {
+          "id": "arxiv-2610.23724",
+          "title": "Agentic AI for Heterogeneous System Design Across Chip, Scale-Up, and Scale-Out Domains",
+          "authors": [
+            "Murali Emani",
+            "Kashyap R Manjusha"
+          ],
+          "summary": "The design space of modern AI/HPC systems has expanded rapidly across compute architectures, including GPUs, dataflow processors, and RISC-V accelerators; memory tech- nologies, including HBM, GDDR, and SRAM; and interconnects such as NVLink, UALink, Infinity Fabric, InfiniBand, Slingshot, and Ultra Ethernet. No single architecture is optimal across LLM training, LLM serving, and AI-coupled HPC workloads, while the resulting combinatorial design space is too large for manual exploration. We present ArchAgent, a hierarchical multi- agent framework in which an LLM-based planner decomposes system design into chip, scale-up, and scale-out subproblems, each handled by specialist agents. A deterministic analytical evaluator closes the loop, ensuring that all performance estimates are derived from analytical models rather than generated by the LLM. On a mixed AI+HPC workload under a 1 MW power budget, ArchAgent discovers heterogeneous designs that achieve a 1.93x weighted geometric mean speedup over a homogeneous GPU baseline, while requiring only 18 evaluations compared with 100 evaluations for hill climbing, which achieves 1.65x speedup.",
+          "reason": "近 30 天；关键词：cs.AR, llm, lora。The design space of modern AI/HPC systems has expanded rapidly across compute architectures, including GPUs, dataflow processors,...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AR",
+            "llm",
+            "lora",
+            "serving"
+          ],
+          "signal": 98,
+          "source": "arXiv",
+          "publishedAt": "2026-10-16T16:42:18Z",
+          "url": "https://arxiv.org/abs/2610.23724",
+          "pdfUrl": "https://arxiv.org/pdf/2610.23724v1"
+        },
+        {
+          "id": "arxiv-2610.22543",
+          "title": "On the SPOT: Enhancing Speculative Decoding for Diffusion Language Models via Commit-Order Prediction",
+          "authors": [
+            "Eliezer Shlomi",
+            "Eliron Rahimi",
+            "Avi Mendelson",
+            "Chaim Baskin"
+          ],
+          "summary": "Diffusion language models (DLMs) promise parallel text generation, but in practice face an unresolved speed-quality trade-off. Exact decoding fills in only one masked position per model pass, while faster multi-token decoding schemes are lossy. Speculative decoding is the standard lossless acceleration for autoregressive models. However, it does not transfer directly to DLMs, which must choose both what to generate and where. We show that this order is the missing piece: the model's own predictions from the previous pass already give the right token at 92-100% of positions, but not which position comes next. Based on this observation, we introduce Speculating Positions Order Trajectory (SPOT), which learns to predict this order. A 0.62M-parameter model reads only the target's output distributions and proposes a tree of candidate continuations, and the target verifies all of them in a single pass by checking whether each equals its own next state. On the verification side, our analysis shows that prior block-diffusion verification approaches either assume $T=0$ or a sequential proposal interface. To support tree-based speculation at any temperature, we propose using coupled-noise match verification for diffusion blocks, following shared-Gumbel-noise coupling approaches. Our comprehensive experiments show that SPOT cuts target passes by up to 6.8x and reaches up to 3.2x the throughput of standard decoding, beating the calibrated and training-free drafting baselines in every task and budget at $T=0$ and $T=1$. In addition, we show that the learned drafter transfers across models, demonstrating successful transfer across six different DLMs. Project page: https://eliezer318.github.io/SPOT-dLLM/",
+          "reason": "近 30 天；关键词：cs.LG, llm, speculative。Diffusion language models (DLMs) promise parallel text generation, but in practice face an unresolved speed-quality trade-off. Exa...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "llm",
+            "speculative",
+            "throughput"
+          ],
+          "signal": 98,
+          "source": "arXiv",
+          "publishedAt": "2026-10-15T18:40:42Z",
+          "url": "https://arxiv.org/abs/2610.22543",
+          "pdfUrl": "https://arxiv.org/pdf/2610.22543v1"
+        }
+      ]
+    },
     {
       "date": "2026-10-19",
       "generatedAt": "2026-10-19T07:47:26.439271+08:00",
@@ -19156,277 +19422,6 @@
           "publishedAt": "2026-07-01T12:18:12Z",
           "url": "https://arxiv.org/abs/2607.00852",
           "pdfUrl": "https://arxiv.org/pdf/2607.00852v1"
-        }
-      ]
-    },
-    {
-      "date": "2026-07-04",
-      "generatedAt": "2026-07-04T06:54:15.126768+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2607.02043",
-          "title": "Towards Load-Aware Prefill Deflection for Disaggregated LLM Serving",
-          "authors": [
-            "Shrikara Arun",
-            "Anjaly Parayil",
-            "Srikant Bharadwaj",
-            "Renee St. Amant",
-            "Victor Rühle"
-          ],
-          "summary": "Disaggregated LLM serving runs prefill and decode on separate GPU pools to keep the two phases from interfering. In practice, this creates a new asymmetry: under bursty, heavy-tailed workloads prefill nodes saturate while decode nodes have compute underutilized, and on a production-style A100 cluster with 2 prefill and 2 decode nodes (2P2D), we find that prefill execution accounts for only 2-23% of P95 Time-to-First-Token (TTFT). Queuing and inter-node GPU-GPU KV-cache transfer account for the rest. We present a proactive prefill-deflecting scheduler that lets decode nodes serve prefill phase of requests as chunked-prefill steps interleaved with their in-flight decode batches. For each queued request, we estimate the TTFT it would see on the prefill node, and on every decode node, search for the largest chunk schedule that keeps in-flight decodes within their Time-Between-Tokens (TBT) SLO and deflect when the decode path helps tail latency. Because the prefill phase of deflected requests runs in place on the decode node, the inter-node KV transfer is eliminated. Implemented on vLLM and evaluated on production-style traces with DeepSeek-V2-Lite, our approach reduces P95 TTFT by upto 81% and raises SLO attainment by upto 79% over state-of-the-art disaggregated schedulers, at sub-millisecond per-request routing cost.",
-          "reason": "近 30 天；关键词：cs.DC, latency, llm。Disaggregated LLM serving runs prefill and decode on separate GPU pools to keep the two phases from interfering. In practice, this...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.DC",
-            "latency",
-            "llm",
-            "prefill",
-            "production",
-            "serving",
-            "slo"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-02T11:10:05Z",
-          "url": "https://arxiv.org/abs/2607.02043",
-          "pdfUrl": "https://arxiv.org/pdf/2607.02043v1"
-        },
-        {
-          "id": "arxiv-2607.01831",
-          "title": "Lynx: Progressive Speculative Quantization for accelerating KV Transfer in Long-Context Inference",
-          "authors": [
-            "Wenchen Han",
-            "Gingfung Matthew Yeung",
-            "Marco Barletta",
-            "William Toner",
-            "Amory Hoste",
-            "Adam Barker"
-          ],
-          "summary": "Long-context inference is increasingly common in large language model (LLM) serving, driven by retrieval-augmented generation and agentic systems. In disaggregated inference, these workloads require transferring large Key-Value (KV) caches across the network, where decoding cannot begin until the transfer completes. Recent KV quantization techniques reduce data volume and alleviate this bottleneck, but existing schemes fail to achieve both low network-exposed latency and high inference accuracy. We challenge the assumption that the KV cache is an indivisible unit that must be fully received before use. We leverage the observation that different bits in the KV cache contribute unequally to attention computation and inference precision: the most significant bits capture the coarse structure of attention and the least significant bits refine precision. This property enables partial use of the KV cache during decoding. We present Lynx, a system that enables progressive, split-stream KV transfer by partitioning the KV cache into a high-priority Anchor stream carrying the most significant bits and a low-priority Residual stream carrying remaining precision. Decoding begins upon receipt of the Anchor stream and proceeds speculatively while the Residual stream is transferred concurrently, followed by verification that ensures equivalence to higher-precision decoding. Across multiple models and serving workloads, Lynx achieves Time-to-First-Token (TTFT) comparable to aggressive 4-bit KV quantization, while matching the accuracy of high-precision (BF16) inference, improving TTFT over standard 8-bit KV quantization by up to $1.43\\times$ and improving accuracy over state-of-the-art by up to $5.1\\%$.",
-          "reason": "近 30 天；关键词：cs.DC, inference, kv-cache。Long-context inference is increasingly common in large language model (LLM) serving, driven by retrieval-augmented generation and...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.DC",
-            "inference",
-            "kv-cache",
-            "latency",
-            "llm",
-            "quantization",
-            "retrieval"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-02T07:52:43Z",
-          "url": "https://arxiv.org/abs/2607.01831",
-          "pdfUrl": "https://arxiv.org/pdf/2607.01831v1"
-        },
-        {
-          "id": "arxiv-2607.01792",
-          "title": "PARTREP: Learning What to Repeat for Decoder-only LLMs",
-          "authors": [
-            "Andikawati P Widjaja",
-            "Yongjun Kim",
-            "Hyounghun Kim",
-            "Jaeho Lee"
-          ],
-          "summary": "While decoder-only LLMs excel at a vast array of natural language tasks, it suffers from an asymmetric information flow induced by causal attention: later tokens are richer in contextual grounding than earlier ones. A simple and effective remedy is prompt repetition -- just appending a second copy of prompt before generation can redistribute grounding across positions and improve reasoning performance. However, full repetition of the original prompt doubles the KV cache footprint and quadruples attention cost during prefill, making it impractical for long-context settings. We propose PartRep, a selective augmentation method that appends only the most informative tokens -- rather than the entire prompt. We use token-wise negative log-likelihood (NLL) as a selection signal, motivated by the hypothesis that less predictable tokens are less recoverable from surrounding context and therefore benefit more from late-position repetition. To avoid the heavy cost of a full forward pass for scoring, we train a lightweight gate that predicts high-NLL tokens from early-layer hidden states, enabling token selection during mid-prefill via early exit. Across eight benchmarks (including MMLU, GSM8K, and RULER) and three model families (Qwen2.5, Llama3.2, Gemma4), PartRep retains most of the gains of full repetition while using only 59.4\\% of its KV cache and 79.0\\% of its prefill FLOPs.",
-          "reason": "近 30 天；关键词：cs.CL, kv-cache, llm。While decoder-only LLMs excel at a vast array of natural language tasks, it suffers from an asymmetric information flow induced by...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "kv-cache",
-            "llm",
-            "prefill"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-02T07:07:28Z",
-          "url": "https://arxiv.org/abs/2607.01792",
-          "pdfUrl": "https://arxiv.org/pdf/2607.01792v1"
-        },
-        {
-          "id": "arxiv-2607.01581",
-          "title": "Beyond Skepticism: Evaluating LLMs Pedagogical Intent Reasoning with the Adaptive Pedagogical Vigilance Framework",
-          "authors": [
-            "Minghao Chen",
-            "Ruihan Zhou",
-            "Jiayi Tang",
-            "Zihan Xu",
-            "Bowen Huang",
-            "Yuxin Liu"
-          ],
-          "summary": "The capacity of Large Language Models (LLMs) to reason about pedagogical intent within instructional communication remains underexplored, particularly in educational domains such as translation pedagogy. To address this, we propose the \\textbf{Adaptive Pedagogical Vigilance (APV)} framework, a novel computational formalism that reframes communicative vigilance as an adaptive mechanism for optimizing learning through intent inference. APV formalizes the problem via a Bayesian Pedagogical Intent Inference Engine (PIIE), which models how instructors select content to maximize pedagogical utility and how vigilant learners should inversely reason about latent instructional configurations -- encompassing genre, stance, and incentives. We evaluate APV through a three-tier hierarchy: distinguishing instructional genre, reasoning about structured pedagogical setups, and generalizing to authentic educational discourse. Experiments on leading LLMs (e.g., GPT-4o, Claude 3.5) show that APV substantially improves model vigilance. It achieves the strongest discrimination between pedagogical and exposure-based content, correlates highly with human judgments ($r=0.958$), and maintains robust performance on naturalistic data where baseline methods degrade. This work establishes a unified framework for assessing and enhancing LLMs' understanding of pedagogical motives, advancing the development of more reliable AI-assisted learning systems.",
-          "reason": "近 30 天；公司信号：Anthropic；关键词：anthropic, cs.CL, inference。The capacity of Large Language Models (LLMs) to reason about pedagogical intent within instructional communication remains underex...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "anthropic",
-            "cs.CL",
-            "inference",
-            "llm"
-          ],
-          "signal": 99,
-          "source": "Anthropic/arXiv",
-          "publishedAt": "2026-07-02T01:26:09Z",
-          "url": "https://arxiv.org/abs/2607.01581",
-          "pdfUrl": "https://arxiv.org/pdf/2607.01581v1"
-        },
-        {
-          "id": "arxiv-2607.01579",
-          "title": "OmniPilot: An Uncertainty-Aware LLM Inference Advisor for Heterogeneous GPU Clusters",
-          "authors": [
-            "D. Balamurugan",
-            "Thomas W. Bush"
-          ],
-          "summary": "Serving large language models (LLMs) on a shared, heterogeneous GPU cluster requires users and operators to select the GPU type, tensor-parallel degree, and precision before committing valuable node-hours. Making these choices is challenging because effective throughput, launch-success rates, and cluster demand and utilization continuously fluctuate. Furthermore, static configuration recipes miss critical interactions: quantization effects depend heavily on the model family, key-value cache pressure creates size-by-precision trade-offs, and failure rates vary by more than twofold across different tensor-parallel degrees. Additionally, cluster resources are frequently constrained by unpredictable hardware failures. To address these challenges, we present \\textbf{OmniPilot}, a launch advisor that predicts serving costs for feasible configurations and abstains when requests fall outside its measured support envelope. OmniPilot pairs a conformally calibrated quantile cost model (spanning eight serving targets) with an out-of-distribution (OOD) abstention layer. It ranks configurations using an economic utility metric calibrated to an operator's revealed preferences. In evaluations across 460 benchmark runs on A100, H100, and H200 hardware across four precisions, OmniPilot predicts aggregate throughput with a 6.2\\% mean absolute percentage error (MAPE) and a log-space $R^2=0.92$. The advisor achieves 95\\% top-1 accuracy with a mean utility regret of just 0.003. When tested on an OOD holdout of unsupported cells, prediction error climbs to 24-46\\% and conformal intervals cover 0 of 5 points; however, the abstention layer successfully flags all five as low-confidence. Over time, these OOD scenarios will be integrated into the training dataset to continuously expand the advisor's support envelope.",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, dataset。Serving large language models (LLMs) on a shared, heterogeneous GPU cluster requires users and operators to select the GPU type, t...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.DC",
-            "dataset",
-            "inference",
-            "llm",
-            "quantization",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-02T01:23:02Z",
-          "url": "https://arxiv.org/abs/2607.01579",
-          "pdfUrl": "https://arxiv.org/pdf/2607.01579v1"
-        },
-        {
-          "id": "arxiv-2607.01520",
-          "title": "The risk of KV cache compression",
-          "authors": [
-            "Lukas Haverbeck",
-            "Carmen Amo Alonso",
-            "Andres Felipe Posada-Moreno",
-            "Sebastian Trimpe",
-            "Marco Pavone"
-          ],
-          "summary": "Transformer inference on long sequences is expensive because softmax attention repeatedly reads from a large KV cache. The prevalent approach to this bottleneck is KV cache compression, which replaces the full cache with a compact summary. Despite its practical importance, the design of such summaries is largely driven by empirical experimentation. On the theoretical side, existing results show that KV cache compression can be impossible in the worst case, but offer little systematic guidance for designing algorithms in regimes where accurate compression is possible. We bridge this gap by characterizing the minimax risk of KV cache compression in terms of the intrinsic compressibility of a cache, revealing when and how accurate compression is possible. These results yield novel design principles for KV cache compression under causal masking that map efficiently to prefill and autoregressive decoding while achieving minimax-optimal risk. We instantiate these principles in a practical algorithm and report promising performance on LongBench in targeted experiments. Overall, our results provide a principled avenue for practical KV cache compression with theoretical guarantees.",
-          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Transformer inference on long sequences is expensive because softmax attention repeatedly reads from a large KV cache. The prevale...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "efficient",
-            "inference",
-            "kv-cache",
-            "prefill"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-01T22:36:21Z",
-          "url": "https://arxiv.org/abs/2607.01520",
-          "pdfUrl": "https://arxiv.org/pdf/2607.01520v1"
-        },
-        {
-          "id": "arxiv-2607.01299",
-          "title": "HYPIC: Accelerating Hybrid-Attention LLM Serving with Position-Independent Caching",
-          "authors": [
-            "Yifei Liu",
-            "Juntong Wu",
-            "Yang Liu",
-            "Junhao Hu",
-            "Minghao Li",
-            "Xiaoxu Chen",
-            "Weihang Chen"
-          ],
-          "summary": "In retrieval augmented generation (RAG) and agentic LLM serving, prompts are assembled from independent segments into long contexts, making the prefill stage dominate the per-request computation cost. To this cost, two directions have emerged in parallel: position-independent caching (PIC) admits KV reuse for non-contiguous segments shared across different requests, while hybrid-attention models reduce computation complexity by replacing most full-attention layers with linear attention. However, they cannot coexist: applying PIC to hybrid-attention models breaks down because per-token KV-cache reuse primitives do not transfer to the per-request recurrent state. In this work, we present Hypic, the first serving system for hybrid-attention LLMs with position-independent caching. For linear-attention layers, we identify the segment-cumulative transition operator as the missing algebraic primitive, and cache it alongside each segment's zero-start end-state, enabling near-exact and constant-time state composition of independently cached segments. For the remaining full-attention layers, existing PIC methods also fail as linear layers do not expose the per-token hidden states for selective recomputation. We show that the most significant attention deviation concentrates at segment boundaries, so recomputing only a small seam window at each boundary suffices to restore cross-segment lookback. Finally, Hypic exploits segment-level self-containment to parallelize cache-miss prefill across instances, turning long cold requests -- a major tail-latency contributor under both prefix caching and prior PIC -- into an accelerable workload. Evaluated across four hybrid-attention models and five workloads, Hypic reduces time-to-first-token (TTFT) by 2.45x on average and improves peak throughput by up to 2.0x over existing systems, while staying within 3.3 points of full-recompute accuracy.",
-          "reason": "近 30 天；关键词：cs.DC, latency, llm。In retrieval augmented generation (RAG) and agentic LLM serving, prompts are assembled from independent segments into long context...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.DC",
-            "latency",
-            "llm",
-            "prefill",
-            "retrieval",
-            "serving",
-            "throughput"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-01T14:03:56Z",
-          "url": "https://arxiv.org/abs/2607.01299",
-          "pdfUrl": "https://arxiv.org/pdf/2607.01299v1"
-        },
-        {
-          "id": "arxiv-2607.00208",
-          "title": "SLIM-RL: Risk-Budgeted Random-Masking RL for Diffusion LLMs Without Trajectory Slicing",
-          "authors": [
-            "Ruikang Zhao",
-            "Zhenting Wang",
-            "Han Gao",
-            "Ligong Han"
-          ],
-          "summary": "Reinforcement learning for diffusion large language models (dLLMs) has largely moved to trajectory-aware methods. The current state of the art, TraceRL, holds that random masking is mismatched with the model's inference trajectory, and it reconstructs that trajectory during training by slicing each rollout into up to K/s trajectory-aligned training samples, a cost that grows with the block size K. We show that this mismatch can be mitigated without reconstructing the trajectory. Our method, SLIM-RL, bounds the commit risk of each rollout step with a tau-budget decoder, reducing aggregate commit risk in the training data. During optimization, SLIM-RL trains on these risk-controlled rollouts with a trace-free random-masking objective that adapts variance-reduction tools, combining sequence-level importance sampling, deterministic quadrature over masking levels under a mean-preserving, monotonically decreasing per-block mask schedule that we introduce. On SDAR-4B, SLIM-RL matches TraceRL's best MATH500 accuracy on only 0.46x its training samples at block size 16, improving over TraceRL by 6.32% on MATH500 and 11.05% on GSM8K under matched dynamic sampling. At block size 4, the 4B SLIM-RL surpasses the larger LLaDA-8B and Dream-7B dLLMs on math, exceeding LLaDA-8B by 10.76% on MATH500 while staying below the autoregressive Qwen2.5-7B. On code, it improves over TraceRL by 4.20% on MBPP and 3.65% on HumanEval. The tau-budget decoder transfers training-free across LLaDA, Dream, and SDAR. The source code is available at https://github.com/laolaorkkkkk/SLIM-RL .",
-          "reason": "近 30 天；关键词：cs.CL, inference, llm。Reinforcement learning for diffusion large language models (dLLMs) has largely moved to trajectory-aware methods. The current stat...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "inference",
-            "llm",
-            "serving"
-          ],
-          "signal": 98,
-          "source": "arXiv",
-          "publishedAt": "2026-06-30T21:38:46Z",
-          "url": "https://arxiv.org/abs/2607.00208",
-          "pdfUrl": "https://arxiv.org/pdf/2607.00208v1"
-        },
-        {
-          "id": "arxiv-2607.01775",
-          "title": "Set Diffusion: Interpolating Token Orderings Between Autoregression and Diffusion for Fast and Flexible Decoding",
-          "authors": [
-            "Marianne Arriola",
-            "Volodymyr Kuleshov"
-          ],
-          "summary": "Discrete diffusion models have steadily improved in quality relative to autoregressive (AR) models. However, these models are normally constrained to fixed-length generation and do not support key-value (KV) caching. Block diffusion partially bridges diffusion and AR by generating token blocks left-to-right, but its fixed-size sequential blocks limit decoding flexibility and parallelism. Here, we present a new class of language models, set diffusion, comprised of (i) a likelihood parameterization that factorizes over flexible-position, flexible-length token sets and (ii) a set-causal diffusion architecture that supports KV cache updates after every inference step. By factorizing over token sets instead of fixed-size blocks, tokens can be decoded in arbitrarily-ordered sets, including sliding-window sets, enabling faster inference and support for any-order decoding. Set diffusion achieves better speed-quality tradeoffs on mathematical reasoning, summarization, and unconditional generation compared to prior diffusion language models while offering stronger infilling performance than block diffusion. We provide the code, along with the model weights and blog post on the project page: https://m-arriola.com/setdlms/",
-          "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。Discrete diffusion models have steadily improved in quality relative to autoregressive (AR) models. However, these models are norm...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "inference",
-            "kv-cache"
-          ],
-          "signal": 92,
-          "source": "arXiv",
-          "publishedAt": "2026-07-02T06:45:43Z",
-          "url": "https://arxiv.org/abs/2607.01775",
-          "pdfUrl": "https://arxiv.org/pdf/2607.01775v1"
-        },
-        {
-          "id": "arxiv-2607.02089",
-          "title": "ESC: Emotional Self-Correction for Reliable Vision-Language Models",
-          "authors": [
-            "Tien-Huy Nguyen",
-            "Minh-Nhat Nguyen",
-            "Nguyen Nhat Huy",
-            "Hung Viet Nguyen",
-            "Huy Nguyen Minh Nhat",
-            "Thanh-Huy Nguyen",
-            "Cuong Tuan Nguyen",
-            "Hoang M. Le",
-            "Dat Nguyen",
-            "Phat Kim Huynh",
-            "Min Xu",
-            "Ulas Bagci"
-          ],
-          "summary": "Vision-language models (VLMs) have achieved strong performance across diverse multimodal tasks, yet they remain vulnerable to unreliable reasoning. Existing self-correction methods mitigate these issues but typically rely on post-training or carefully engineered feedback, incurring high computational cost. In this work, we revisit this challenge through the lens of emotional cues, asking whether they can activate latent self-correction behaviors in VLMs without additional training. \\textbf{We find that emotional signals serve as an effective trigger for self-correction, encouraging more cautious and reflective reasoning}. Motivated by this finding, we propose \\escabstract (\\textbf{\\underline{E}}motional \\textbf{\\underline{S}}elf-\\textbf{\\underline{C}}orrection), a training-free self-correction framework. ESC introduces an external verifier that detects potentially incorrect initial responses and injects emotional feedback to encourage model to reflect, and produce a better revised response without additional training. Extensive experiments across safety, hallucination, vision-centric perception, and multimodal reasoning benchmarks show that ESC consistently improves reliability while preserving overall model utility. These results suggest that emotion can function not only as an ability to be recognized, but also as a practical control signal for scalable self-correction in VLMs. \\textbf{We therefore believe that ESC provides a strong foundation for a new reliable human-like, emotion-integrated research direction.} Our project is publicly available at \\textcolor{red}{https://genai4e.github.io/ESC/}.",
-          "reason": "近 30 天；关键词：cs.CV, multimodal, serving。Vision-language models (VLMs) have achieved strong performance across diverse multimodal tasks, yet they remain vulnerable to unre...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CV",
-            "multimodal",
-            "serving"
-          ],
-          "signal": 90,
-          "source": "arXiv",
-          "publishedAt": "2026-07-01T14:25:43Z",
-          "url": "https://arxiv.org/abs/2607.02089",
-          "pdfUrl": "https://arxiv.org/pdf/2607.02089v1"
         }
       ]
     }

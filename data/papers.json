@@ -1,265 +1,265 @@
 {
-  "generatedAt": "2026-10-19T07:47:26.439271+08:00",
+  "generatedAt": "2026-10-20T08:47:35.449798+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2610.21257",
-      "title": "Fractional Power-of-Two Quantization for Efficient and Effective Multiplier-Free LLM Inference",
+      "id": "arxiv-2610.23787",
+      "title": "DLite: History-free Speculative Decoding for Agentic AI",
       "authors": [
-        "Sunghyun Wee",
-        "Geunjae Choi",
-        "Hyeonjin Kim",
-        "Suyoung Kim",
-        "Nojun Kwak"
+        "Jiaming Xu",
+        "Hanzhen Wang",
+        "Tianlang Zhao",
+        "Jiewen Xiao",
+        "Chengze Yuan",
+        "Jiayi Pan",
+        "Yongkang Zhou",
+        "Jiancai Ye",
+        "Yu Wang",
+        "Guohao Dai"
       ],
-      "summary": "Large Language Models (LLMs) demand efficient inference, where the multiply-accumulate (MAC) operations in linear projections dominate compute and energy cost. Post-training quantization (PTQ) reduces this cost by mapping weights and activations to low-bit integers. Power-of-Two (PoT) weight quantization promises efficient multiplier-free LLM inference via shift-add logic, but suffers significant accuracy degradation at low bitwidths due to its coarse base-2 quantization grid. We introduce Fractional PoT (FPoT), a base-$\\sqrt{2}$ (half-octave) fractional PoT grid that achieves practical 4-bit weight quantization while preserving a fully integer shift-add datapath. The method combines (i) the base-$\\sqrt{2}$ weight grid with uniform integer activations, (ii) a calibration-time grid-alignment refinement absorbed into the static per-channel scale, and (iii) a lightweight 1-adder $\\sqrt{2}$ approximation whose error is absorbed during weight calibration via approximate-grid quantization, yielding a processing element (PE) with significantly fewer gates than a 4-bit integer multiplier. On Llama-3-8B with 4-bit weight and activation quantization, FPoT improves zero-shot commonsense reasoning performance by 8.72% relative to the PoT baseline, while maintaining performance close to the uniform integer baseline, with only a negligible 0.4%p degradation. These results hold across various configurations spanning seven models and three bit-widths. Furthermore, FPoT can be integrated with state-of-the-art LLM PTQ methods, demonstrating framework-agnostic applicability.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, alignment。Large Language Models (LLMs) demand efficient inference, where the multiply-accumulate (MAC) operations in linear projections domi...",
+      "summary": "Speculative decoding has become a mainstream technique for accelerating large language model (LLM) inference by using a lightweight draft model to generate candidate tokens that are subsequently verified by the target model. However, agentic workloads introduce long and continuously evolving contexts and frequent multi-turn interactions. Under such workloads, we observe that existing draft models suffer from up to an 80% degradation in acceptance length, while maintaining their historical KV cache introduces substantial system overhead. In this paper, we identify the growing historical context as a common source of both problems and introduce DLite, a history-free speculative decoding framework for agentic AI. DLite directly reuses contextual hidden states from the target model and performs local speculative prediction without explicitly maintaining the historical context, transforming an increasingly complex modeling problem into local simple prediction problem. A lightweight sequential head further restores intra-block causal dependencies with low overhead. To effectively train this heterogeneous history-free architecture, we introduce a tailored two-stage training strategy. Experiments on general-purpose, long-context and agentic workloads show that DLite achieves 2-6 acceptance length and outperforms the state-of-the-art speculative decoding method, DSpark, up to 70%.",
+      "reason": "近 30 天；关键词：cs.CL, inference, kv-cache。Speculative decoding has become a mainstream technique for accelerating large language model (LLM) inference by using a lightweigh...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "inference",
+        "kv-cache",
+        "llm",
+        "speculative"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-16T17:18:54Z",
+      "url": "https://arxiv.org/abs/2610.23787",
+      "pdfUrl": "https://arxiv.org/pdf/2610.23787v1"
+    },
+    {
+      "id": "arxiv-2610.23638",
+      "title": "Deep LLM layers expose passage-level context in EEG during silent reading",
+      "authors": [
+        "Ingo Marquardt",
+        "Anthilia Alchanat",
+        "Priyanka Jain"
+      ],
+      "summary": "In a previous report we showed that a decoder can recover open-vocabulary word-level information from 19-channel EEG recorded during silent reading, by aligning short EEG windows with hidden-state embeddings of the presented word taken from a large language model (LLM). That analysis contrasted two of the model's 33 layers: the context-free input embedding and one mid-depth layer. Here we ask how EEG-decodable structure is distributed over the full depth of the language model. We trained one decoder per layer of Llama-3.1-8B, with and without a causal transformer over the sequence of EEG windows. We distinguish word-level decodability from a context-tracking component. Word-level decodability peaks in early layers and declines steadily towards the last layer. In contrast, the context-tracking component of the retrieval gain rises with depth, both with and without a causal transformer. Unexpectedly, a decoder that sees a single 0.5-s window at a time tracks the text passage too. Two new controls dissect this component. A target-geometry control, a synthetic predictor made of the true target plus noise calibrated to each decoder's word-level accuracy, shows that context tracking is not a by-product of word decoding and target geometry. A control that permutes predictions across runs from either the same or from different sessions shows that most of the observed context-tracking is not caused by an EEG recording session signature. Instead, context tracking mostly follows the text. A single EEG window therefore carries passage-level information that a contextual target can absorb. The results locate word identity in the early layers of the language model, discourse state in the deeper layers, and make the choice of target layer a design dial for EEG language decoders.",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, llm。In a previous report we showed that a decoder can recover open-vocabulary word-level information from 19-channel EEG recorded duri...",
       "area": "LLM 推理优化",
       "tags": [
         "meta",
         "cs.LG",
-        "alignment",
-        "efficient",
-        "energy",
+        "llm",
+        "retrieval"
+      ],
+      "signal": 99,
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-10-16T15:41:19Z",
+      "url": "https://arxiv.org/abs/2610.23638",
+      "pdfUrl": "https://arxiv.org/pdf/2610.23638v1"
+    },
+    {
+      "id": "arxiv-2610.23625",
+      "title": "PresenceBench: An Exploratory Evaluation of Large Language Model Adaptation to User State",
+      "authors": [
+        "Peña Arroyo Gallego",
+        "Mauro Ruiz Moreno",
+        "Alejandro Acien",
+        "Sergio Romero-Tapiador",
+        "Teresa Arroyo-Gallego"
+      ],
+      "summary": "Presence-aware intelligence is the capacity of an AI system's intelligence layer to adapt appropriately to the functional state of the person it serves (here readiness, flow, and stability) while preserving task quality and safety. We introduce PresenceBench, an instrument for measuring it. PresenceBench evaluates how the intelligence layer uses a supplied state, not how that state is sensed, and breaks the capability into measurable properties. Two are tested here. Receptivity: does the model take up the state and give a better response than with no signal? Specificity: does any improvement depend on the correct state, rather than on extra structured context? A third, adaptation across states, is a required endpoint not measured in this release. A five-arm causal design answers both questions, against each model's own baseline and an equally structured mismatched-state control, scored by a correctness-gated human paired comparison. The exploratory evaluation covered four models across eighteen single-turn, six fixed three-turn and six simulated natural-conversation scenarios. Supplying a synthetic state, raw or translated into a response policy, gave human-preference point estimates above 0.5 for all four models (Claude Sonnet 5, DeepSeek V4 Pro, Gemini 3.6 Flash, GPT-5.6 Terra), with three of eight 95% intervals excluding chance. Specificity was not resolved: no per-model interval excluded chance, and the design cannot yet separate the state values from a generic instruction to adapt. Policy delivery reduced priced cost and output tokens against each model's baseline; these are resource-use changes, not efficiency gains, because correctness non-inferiority was not established. Safety-floor failures were rare (13 of 360 cases), with a non-significant excess under policy delivery. We report the instrument, the frozen results, and the controls a confirmatory study needs.",
+      "reason": "近 30 天；公司信号：Anthropic, Google；关键词：anthropic, google, cs.HC。Presence-aware intelligence is the capacity of an AI system's intelligence layer to adapt appropriately to the functional state of...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "anthropic",
+        "google",
+        "cs.HC",
+        "lora",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "Anthropic/Google/arXiv",
+      "publishedAt": "2026-10-16T15:33:04Z",
+      "url": "https://arxiv.org/abs/2610.23625",
+      "pdfUrl": "https://arxiv.org/pdf/2610.23625v1"
+    },
+    {
+      "id": "arxiv-2610.23086",
+      "title": "PairSight: Characterizing and Predicting Operator-Level Interference in GPU Sharing for DNN Inference",
+      "authors": [
+        "Xiao Liu",
+        "Yujia Fu",
+        "Yue Yu",
+        "Dan Huang"
+      ],
+      "summary": "Serving DNN inference is costly, yet a single task seldom saturates both the compute units and the memory bandwidth of a GPU. GPU sharing raises utilization by co-locating several tasks on one GPU, at the cost of interference among them. Existing systems estimate this interference with binary compute-memory rules, standalone scaling curves, or model-level predictors. However, these estimates rest on a limited understanding of interference. They leave the software and hardware properties of co-located operators largely unexplored and give no slowdown prediction that is both interpretable and accurate. We conduct an operator-level study of interference under SM partitioning and use hardware counters to trace it to contention on the shared memory path, where the slowdown depends jointly on both co-located operators. Based on these findings, we propose PairSight, a hardware-aware interference predictor that learns how the hardware behaviors of co-located tasks interact and predicts the latency of each task before co-location. On six DNN models including LLMs, PairSight predicts latency under sharing with 4.3% mean error, against 19.0% for a compute-memory intensity rule, and adapts to unseen models and inputs with a few samples.",
+      "reason": "近 30 天；关键词：cs.PF, inference, latency。Serving DNN inference is costly, yet a single task seldom saturates both the compute units and the memory bandwidth of a GPU. GPU...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.PF",
         "inference",
+        "latency",
+        "llm",
+        "serving",
+        "slo"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-16T07:56:36Z",
+      "url": "https://arxiv.org/abs/2610.23086",
+      "pdfUrl": "https://arxiv.org/pdf/2610.23086v1"
+    },
+    {
+      "id": "arxiv-2610.22985",
+      "title": "Prism Attention: Proposal-Refined Index Sharing Mechanism for Efficient LLMs Inference",
+      "authors": [
+        "Zhenxu Tian",
+        "Kebin Liu",
+        "Zhengwu Yang",
+        "Yi Su",
+        "Qingqing Dang",
+        "Yanlin Sha",
+        "Kaipeng Deng",
+        "Dianhai Yu",
+        "Yanjun Ma",
+        "Juntao Li",
+        "Min Zhang"
+      ],
+      "summary": "Long-context decoding in large language models (LLMs) is increasingly bottlenecked by the memory and computation required to attend over an ever-growing Key-Value (KV) cache at each autoregressive step. Although token-level sparse attention reduces this burden by restricting computation to a small subset of relevant past tokens, its practical gains are often offset by repeatedly recomputing layer-wise sparse indices as the context grows. A common remedy is to share sparse indices across layers by computing them only at designated anchor layers, but such static reuse ignores the layer-wise evolution of attention patterns, causing the reused indices to progressively deviate from the layer-specific optima and incur substantial attention loss. By revisiting cross-layer sparsity from the perspective of attention dynamics, we find that inter-layer salient token shift is highly localized: although the exact top-$κ$ indices differ across layers, the core high-attention tokens remain stable, with changes concentrated near the expanded boundary of previously selected regions. Motivated by this, we propose Prism Attention, a proposal-refined sparse attention framework. It replaces rigid cross-layer index reuse with a coarse-to-fine strategy, preserving layer-wise adaptability while retaining the efficiency benefits of cross-layer sharing. Extensive experiments show that Prism Attention achieves state-of-the-art performance among mainstream sparse attention methods on both reasoning and long-context benchmarks, while attaining a $3.4\\times$ end-to-end decoding speedup over FlashAttention at 128K context length.",
+      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Long-context decoding in large language models (LLMs) is increasingly bottlenecked by the memory and computation required to atten...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "efficient",
+        "inference",
+        "llm",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-16T06:11:20Z",
+      "url": "https://arxiv.org/abs/2610.22985",
+      "pdfUrl": "https://arxiv.org/pdf/2610.22985v1"
+    },
+    {
+      "id": "arxiv-2610.22731",
+      "title": "Accelerated Dataflow: scaling inference in streaming data analytics with efficiency",
+      "authors": [
+        "RuiLong Jiang",
+        "Dustin Rhodes",
+        "Danny McCormick",
+        "Yuta Labur",
+        "Reza Rokni"
+      ],
+      "summary": "Streaming data analytics helps businesses identify opportunities and spot risks in a timely fashion. As large language model (LLM) usage grows, people are exploring incorporating agents or LLMs in streaming data pipelines to help find patterns in datasets without supervision or interpret natural languages for content moderation. However, most streaming systems are currently optimized for data movement and perform poorly on GPU intensive workloads such as performing inference with LLMs. We introduce a system on Google Cloud Dataflow designed to tackle hybrid streaming machine learning workloads with co-designed autoscaling on heterogeneous worker pools and prefix-aware batching. This increases throughput 1.5x to 2x for streaming pipelines using LLMs while maintaining similar latency with up to 75% peak resource savings and 84% lower peak tail latency compared with existing streaming data processing systems.",
+      "reason": "近 30 天；公司信号：Google；关键词：google, cs.DC, batching。Streaming data analytics helps businesses identify opportunities and spot risks in a timely fashion. As large language model (LLM)...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "google",
+        "cs.DC",
+        "batching",
+        "dataset",
+        "inference",
+        "latency",
         "llm"
       ],
       "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-10-15T04:50:03Z",
-      "url": "https://arxiv.org/abs/2610.21257",
-      "pdfUrl": "https://arxiv.org/pdf/2610.21257v1"
+      "source": "Google/arXiv",
+      "publishedAt": "2026-10-15T23:04:55Z",
+      "url": "https://arxiv.org/abs/2610.22731",
+      "pdfUrl": "https://arxiv.org/pdf/2610.22731v1"
     },
     {
-      "id": "arxiv-2610.21249",
-      "title": "Characterizing Predictability-Latency Trade-offs of KV-Cache SSD Offloading in LMCache for LLM Serving Systems",
+      "id": "arxiv-2610.22539",
+      "title": "Don't Retrain, Remix: Adaptation of Web Agents using Mixture Hypernetworks",
       "authors": [
-        "Ying He",
-        "Dingsen Shi",
-        "Yanbo Dai",
-        "Donger Chen",
-        "Harry Fu",
-        "Chris Tsu",
-        "Wang Feng",
-        "Song Fu"
+        "Md Farhan Ishmam",
+        "Minh Pham Dinh",
+        "Kenneth Marino"
       ],
-      "summary": "KV-cache offload is widely used to stretch GPU memory for LLM serving, but its storage behavior has not been characterized at the block-device level. In this paper, we study LMCache through realworld multi-session workloads that span same/different context x same/different prompt, using over 100 stateless requests per workload. Our comparison is observational rather than factorial: it contrasts two realizable deployment snapshots -- LMCache 0.3.0 with buffered I/O and the kernel page cache, and LMCache 0.3.16 with prefix-aware deduplication and O_DIRECT. Key findings define the paper. First, the legacy stack appears almost read-free at the SSD layer in all four workloads, but a flush_ram experiment shows that this is conditional on page-cache warmth: once the cache is evicted, the same path issues about 1 GB of sequential reads in 683 ms. Second, deduplication delivers a dramatic write reduction only for the exact-repeat workload: one set collapses from 1.62 GB to 11.75 MB of writes, while the other three sets remain in the 2-5 GB range. Third, O_DIRECT converts a hidden and bimodal read cost into an explicit and stable one: on one set, warm TTFT rises from 27 ms to 93 ms because each of the 99 warm requests re-reads the same ~12 MB partial chunk from SSD. The main conclusion is therefore not \"newer is better,\" but a system trade-off: predictability versus average-case latency.",
-      "reason": "近 30 天；关键词：cs.OS, latency, llm。KV-cache offload is widely used to stretch GPU memory for LLM serving, but its storage behavior has not been characterized at the...",
+      "summary": "The web is not static or uniform. Websites that serve the same purpose can look and navigate very differently. Even within a single site, successive redesigns can change how familiar features are presented and accessed. Humans adapt to this by recognizing familiar interaction patterns and reusing what they already know. We give web agents a similar ability with WebMix, a mixture hypernetwork that adapts them to unseen interfaces by composing previously trained low-rank adapters. WebMix begins with a bank of adapters trained on source interfaces. At deployment, a scout agent explores the target interface and summarizes its observations into a compact manual. A lightweight router uses this manual to predict mixing coefficients over the adapter bank, which combine the existing adapters into a new one for inference. Adapting to a new interface takes only a scouting run and a forward pass, without gradient updates on the target. With Qwen and Llama models, we evaluate domain transfer on TimeWarp and WebArena-Lite-v2, and version transfer on TimeWarp. In all three settings, WebMix matches or outperforms in-context learning and LoRA baselines, often matching the average success of specialists trained directly on those interfaces. On TimeWarp domain transfer, it gains about 8 percentage points on average over the best baseline with both models. These gains do not come at the cost of seen interfaces, where WebMix keeps its lead, and extend to version transfer. Adapting to a new interface can therefore rely on exploration and composition instead of retraining.",
+      "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.LG。The web is not static or uniform. Websites that serve the same purpose can look and navigate very differently. Even within a singl...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.OS",
-        "latency",
-        "llm",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-15T04:44:12Z",
-      "url": "https://arxiv.org/abs/2610.21249",
-      "pdfUrl": "https://arxiv.org/pdf/2610.21249v1"
-    },
-    {
-      "id": "arxiv-2610.21241",
-      "title": "Range: Decoupling KV-Cache Reuse Granularity from Storage Work",
-      "authors": [
-        "Dingsen Shi",
-        "Jiahao Zhang",
-        "Liqiang Lv",
-        "Boming Huang",
-        "Yanbo Dai",
-        "Ying He",
-        "Donger Chen",
-        "Harry Fu",
-        "Wang Feng",
-        "Song Fu"
-      ],
-      "summary": "LLM serving reuses cached key-value (KV) state to skip prefill, and growing contexts push that state past GPU HBM and CPU DRAM onto NVMe SSDs, placing prefix restore on the critical path of time-to-first-token (TTFT). We find that on a well-configured host-issued path the SSD is not the bottleneck: restoring the same 6 GiB of KV takes 2.1 s as 192 objects but 3.0 s as 6,144 objects, and more under layerwise loading, because every layer of the storage stack - lookup, allocation, I/O submission, GPU delivery, store, index - charges per logical object while the bytes stay the same. This cost grows with the KV footprint: longer contexts, deeper models under layerwise loading, and tensor parallelism each multiply the object count. Prior systems move this per-object work from the CPU to the GPU; the work remains per object. This paper presents Range, a KV-cache storage engine for vLLM and LMCache built on one principle: every cost on the storage path scales with bytes or physical batches, never with logical objects. Range tickets replace per-key lookup and ownership with token metadata and physical leases; byte stripes make the on-media layout independent of reuse granularity; completion-owned GPU transfer banks batch delivery and extraction and release each layer to attention as it lands. Range keeps the kernel cuFile path and changes four lines of vLLM. On a fixed 6 GiB restore, Range's median TTFT stays at 1.79-1.80 s across a 32x range of object counts and under layerwise delivery, within 70 ms of the prefix already being resident in GPU memory, while tuned in-process LMCache rises from 2.12 s to 3.01 s. Range improves on the fastest multiprocess DRAM-bounced path by 0.44 s at coarse granularity while moving no payload through host memory, and holds layerwise reuse at the cost of coarse-grained reuse, where the best stock path takes 2.24 s.",
-      "reason": "近 30 天；关键词：cs.OS, llm, prefill。LLM serving reuses cached key-value (KV) state to skip prefill, and growing contexts push that state past GPU HBM and CPU DRAM ont...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.OS",
-        "llm",
-        "prefill",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-15T04:37:55Z",
-      "url": "https://arxiv.org/abs/2610.21241",
-      "pdfUrl": "https://arxiv.org/pdf/2610.21241v1"
-    },
-    {
-      "id": "arxiv-2610.21165",
-      "title": "From Long Context to Selective Memory:A Survey of Memory-Centric Compression for Large Language Models",
-      "authors": [
-        "Chaogui Gou"
-      ],
-      "summary": "Long-context capability has become essential for large language models (LLMs) to handle complex tasks, yet continuously expanding the context window does not remove the computational, storage, and information-selection pressures incurred at inference time. Existing work on prompt compression, KV-cache management, efficient serving, retrieval augmentation, and agent memory is usually discussed in isolation, leaving the flow of information between storage and computation insufficiently understood. This survey reframes long-context compression as a memory-management problem for allocating inference-time resources. We distinguish compute-active memory, which directly participates in model computation, from compute-inactive memory, which lies outside the computation path but can be stored, retrieved, updated, or forgotten, and we characterize offloaded KV caches, persistent prefix caches, and precomputed KV states as intermediate states on the activation path. On this basis, we formulate writing, offloading, recall, retrieval-and-injection, materialization, eviction, consolidation, and forgetting as state transitions within an information lifecycle, and introduce a budgeted cost model that places these operations in a single cost account. The resulting framework unifies short-term context compression, long-term memory management, and the transitions between them, and shows that the central challenge is not merely reducing information volume but deciding which information should participate in costly inference, when, and in what form. We further summarize evaluation dimensions, benchmark gaps, and open challenges, and argue that future research should move from static, pointwise compression toward dynamic, governable, lifecycle-aware memory management.",
-      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Long-context capability has become essential for large language models (LLMs) to handle complex tasks, yet continuously expanding...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
+        "alibaba",
+        "meta",
+        "cs.LG",
         "efficient",
         "inference",
-        "kv-cache",
-        "llm",
-        "retrieval",
-        "serving"
+        "lora"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-15T03:24:36Z",
-      "url": "https://arxiv.org/abs/2610.21165",
-      "pdfUrl": "https://arxiv.org/pdf/2610.21165v1"
+      "source": "Alibaba/Meta/arXiv",
+      "publishedAt": "2026-10-15T18:37:41Z",
+      "url": "https://arxiv.org/abs/2610.22539",
+      "pdfUrl": "https://arxiv.org/pdf/2610.22539v1"
     },
     {
-      "id": "arxiv-2610.21126",
-      "title": "Compression Does Not End at Selection: Post-Selection Positional Geometry for Sparse KV Caches",
+      "id": "arxiv-2610.22529",
+      "title": "Pearl-Chat: Engineering a native Luganda language model from first principles in JAX and Flax NNX",
       "authors": [
-        "Wanyang Hong",
-        "Zhaoning Zhang"
+        "Wesley Kambale",
+        "Roland Sankara"
       ],
-      "summary": "Sparse KV compression reduces long-context inference costs by retaining selected historical states, yet these states typically keep their coordinates from the full history. Under Rotary Position Embedding (RoPE), gaps left by evicted tokens continue to affect query-key matching, potentially limiting the use of retained evidence. We study post-selection positional geometry on a fixed selector-produced cache, examining how positional organization affects the use of retained information and which coordinate and continuation rules improve answer quality. To reorganize this geometry, we propose RoPERelay, which assigns compact, order-preserving RoPE coordinates, relocates cached key phases through inverse rotation and re-rotation, and synchronizes the current query and subsequent generation. It reuses existing K/V without renewed selection, historical re-prefill, or additional cache budget. Across 36 comparisons spanning two models, six sparse selectors, and three long-term memory tasks, RoPERelay improves answer quality in 32 cases. For Llama-3.1-8B-Instruct with BM25 on LongMemEval-S, accuracy increases from 23.6% to 35.4%. Measured complete-request time overhead is approximately 1%-3% in the evaluated configurations. These findings establish positional organization as a distinct optimization dimension for sparse KV caches after content selection.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, inference。Sparse KV compression reduces long-context inference costs by retaining selected historical states, yet these states typically kee...",
+      "summary": "Autoregressive foundation language models predominantly target high-resource Indo-European languages, imposing computational and morphological penalties on under-represented African languages. Generic multilingual tokenizers routinely exceed fertility rates of 3.2 tokens per word on agglutinative Bantu languages, degrading context efficiency and inflating latency. We present Pearl-Chat, an 8,473,122-parameter ($\\sim$8.5M) causal decoder-only transformer engineered for Luganda (Oluganda, ISO 639-2: lg), a low-resource Niger-Congo Bantu language spoken by over 10 million people in East Africa. Built from first mathematical principles in JAX and Flax NNX, Pearl-Chat uses explicit functional state decomposition (nnx.split and nnx.merge), deterministic resumable data streaming via Google Grain, and SPMD tensor parallelism using jax.sharding.Mesh. We introduce a byte-level byte-pair encoding (BPE) subword tokenizer trained from scratch on curated Luganda corpora ($V = 8,192$), achieving 4.88 characters per token compression and 1.60 tokens per word fertility, a two-fold compression improvement over LLaMA-3 (128K) and Gemma (256K). The model is trained with a two-stage curriculum: Stage 1 pre-training on 59,501 sequences across parallel, biblical, encyclopedic, and journalistic corpora, and Stage 2 instruction fine-tuning on 510 dialogues with assistant-only loss masking. Across 4,000 optimization steps, validation cross-entropy loss drops monotonically from 9.4695 (perplexity: 12,958.98) to 0.1818 (perplexity: 1.20), a decrease of 9.2877 nats. On a three-tier held-out diagnostic benchmark, Pearl-Chat achieves 0.9792 ROUGE-L and 0.9405 BLEU while maintaining concordial agreement across Bantu noun classes. We provide a Python Server-Sent Events (SSE) streaming runtime and open-source all weights, tokenizers, and code.",
+      "reason": "近 30 天；公司信号：Google, Meta；关键词：google, meta, cs.CL。Autoregressive foundation language models predominantly target high-resource Indo-European languages, imposing computational and m...",
       "area": "LLM 推理优化",
       "tags": [
+        "google",
         "meta",
         "cs.CL",
-        "inference",
-        "kv-cache",
-        "prefill",
-        "serving"
+        "latency"
       ],
       "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-10-15T02:30:27Z",
-      "url": "https://arxiv.org/abs/2610.21126",
-      "pdfUrl": "https://arxiv.org/pdf/2610.21126v1"
+      "source": "Google/Meta/arXiv",
+      "publishedAt": "2026-10-15T18:22:15Z",
+      "url": "https://arxiv.org/abs/2610.22529",
+      "pdfUrl": "https://arxiv.org/pdf/2610.22529v1"
     },
     {
-      "id": "arxiv-2610.20980",
-      "title": "How to Train Your Little Dragon: Teaching a Small Language Model to Construct and Refine GPU Optimization Scripts",
+      "id": "arxiv-2610.23724",
+      "title": "Agentic AI for Heterogeneous System Design Across Chip, Scale-Up, and Scale-Out Domains",
       "authors": [
-        "Annabelle Sujun Tang",
-        "Wei Tang",
-        "Songyao Jiang",
-        "Tianhui Li",
-        "Shengzhe Xu",
-        "Jiin Woo",
-        "Kaan Ozkara",
-        "Youngsuk Park",
-        "Zhen Jia",
-        "Hadi Esmaeilzadeh"
+        "Murali Emani",
+        "Kashyap R Manjusha"
       ],
-      "summary": "Compiler transformations interact, making GPU kernel optimization a search for combinations that preserve the computation while improving performance. We introduce HOW TO TRAIN YOUR LITTLE DRAGON, a training method that teaches a small language model both to construct complete optimization scripts and to improve existing ones. Instead of ranking candidates or generating kernel code, our model generates optimization scripts. We devise a compact, lossless representation whose deterministic decoding reconstructs the exact compiler trace, preserving its transformation parameters and dependencies. We use a compiler framework TVM MetaSchedule to build training data on 54,116 distinct workloads, and construct 108,594 examples in two training sets: 60,236 teach the model to generate an optimized script from an unoptimized kernel, while 48,358 teach it to produce a better script given the kernel and a somewhat optimized script. Supervised fine-tuning teaches the model to construct and improve optimization scripts from these search-derived examples. We then add reinforcement learning with a shaped reward that combines correctness with measured performance, awarding a latency-based bonus only to numerically correct kernels. We apply this training method to a model with 8 billion parameters. After supervised fine-tuning and reinforcement learning, the model achieves per-attempt correctness of 91.27% for construction and 92.01% for refinement, while reinforcement learning produces faster kernels than supervised training on 88 of 102 construction tasks and 145 of 170 refinement prompts. With only 8B parameters, our LITTLE DRAGON achieves higher per-attempt correctness and better kernel performance than six frontier LLMs: GPT-6 Astra, Opus 5, Kimi-K3, and GLM-5.3 among them, each with hundreds of billions to trillions of parameters, for which task-specific training is unavailable or expensive.",
-      "reason": "近 30 天；关键词：cs.LG, latency, llm。Compiler transformations interact, making GPU kernel optimization a search for combinations that preserve the computation while im...",
+      "summary": "The design space of modern AI/HPC systems has expanded rapidly across compute architectures, including GPUs, dataflow processors, and RISC-V accelerators; memory tech- nologies, including HBM, GDDR, and SRAM; and interconnects such as NVLink, UALink, Infinity Fabric, InfiniBand, Slingshot, and Ultra Ethernet. No single architecture is optimal across LLM training, LLM serving, and AI-coupled HPC workloads, while the resulting combinatorial design space is too large for manual exploration. We present ArchAgent, a hierarchical multi- agent framework in which an LLM-based planner decomposes system design into chip, scale-up, and scale-out subproblems, each handled by specialist agents. A deterministic analytical evaluator closes the loop, ensuring that all performance estimates are derived from analytical models rather than generated by the LLM. On a mixed AI+HPC workload under a 1 MW power budget, ArchAgent discovers heterogeneous designs that achieve a 1.93x weighted geometric mean speedup over a homogeneous GPU baseline, while requiring only 18 evaluations compared with 100 evaluations for hill climbing, which achieves 1.65x speedup.",
+      "reason": "近 30 天；关键词：cs.AR, llm, lora。The design space of modern AI/HPC systems has expanded rapidly across compute architectures, including GPUs, dataflow processors,...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.LG",
-        "latency",
+        "cs.AR",
         "llm",
-        "ranking",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-14T21:49:24Z",
-      "url": "https://arxiv.org/abs/2610.20980",
-      "pdfUrl": "https://arxiv.org/pdf/2610.20980v1"
-    },
-    {
-      "id": "arxiv-2610.21300",
-      "title": "Making every stage of medical device document assessment with large language models deterministic",
-      "authors": [
-        "Ryosuke Suzuki"
-      ],
-      "summary": "To show that a medical device complies with regulation, experts judge whether documents and records meet each requirement and record the judgment for others to verify. For each assessment item that experts define, large language models could prepare a preliminary assessment: a label such as Satisfied or Not satisfied, a reason and quoted evidence. We sent fourteen commercial deployments of such models (seven models from three providers, through six routes) the same request repeatedly, with the deterministic sampling settings each accepted; every deployment returned differing assessments for at least one request, and in twelve the label changed. Reducing reasoning where the interface allows it did not reduce the variation, and prompts of retrieved passages removed it only for the smallest models. The same open-weight model was reproducible or not depending only on how it was served. A pipeline we built to be deterministic at every stage -- text extraction and optical character recognition (OCR), chunking, embedding, indexing, retrieval and inference -- returned byte-identical output at each stage across reruns, interruptions, edits, machines of one graphics processing unit (GPU) model and days, for blood glucose meter and infusion pump documents. OCR, embedding and approximate retrieval varied when their own serving was not made invariant, and outputs changed with the GPU model and with the inference engine's scheduling settings, which therefore belong in the recorded configuration. End-to-end determinism is achievable and gives a testable basis for audit and change control.",
-      "reason": "近 30 天；关键词：cs.CL, inference, retrieval。To show that a medical device complies with regulation, experts judge whether documents and records meet each requirement and reco...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "inference",
-        "retrieval",
+        "lora",
         "serving"
       ],
       "signal": 98,
       "source": "arXiv",
-      "publishedAt": "2026-10-15T05:45:20Z",
-      "url": "https://arxiv.org/abs/2610.21300",
-      "pdfUrl": "https://arxiv.org/pdf/2610.21300v1"
+      "publishedAt": "2026-10-16T16:42:18Z",
+      "url": "https://arxiv.org/abs/2610.23724",
+      "pdfUrl": "https://arxiv.org/pdf/2610.23724v1"
     },
     {
-      "id": "arxiv-2610.20865",
-      "title": "Long-Context Drafting Does Not Require Long-Context Drafters",
+      "id": "arxiv-2610.22543",
+      "title": "On the SPOT: Enhancing Speculative Decoding for Diffusion Language Models via Commit-Order Prediction",
       "authors": [
-        "Aref Jafari",
-        "Vansh Bhatia",
-        "Matt Qin",
-        "Subhajit Dutta Chowdhury",
-        "Ben Lee",
-        "Vikram Appia",
-        "Ali Ghodsi",
-        "Mehdi Rezagholizadeh"
+        "Eliezer Shlomi",
+        "Eliron Rahimi",
+        "Avi Mendelson",
+        "Chaim Baskin"
       ],
-      "summary": "Speculative decoding pairs a cheap drafter with parallel verification against the target. At ultra-long context it stops paying, because a drafter that attends over the full prefix inherits the target's context-dependent cost, so the speedup it was meant to provide first erodes and then reverses. The standard response is to build a long-context drafter, by training or fine-tuning one, or by using a multi-token-prediction head shipped inside the target checkpoint. We argue this is unnecessary, because the drafters in use are target-conditioned, reading hidden states the target computed over the entire prefix, so distant context already reaches them without their own attention, and verification corrects what they miss. We therefore freeze released short-context drafters and run them far past their training length under two inference-time mechanisms, one bounding the attention cache they see, which fixes their cost, and one re-basing their rotary position indices into the trained range. No weight is touched and the only tunable saturates early, so one vLLM-side configuration spans 4k to two million tokens, costing at most 0.16x of speedup at short length. We prove when a common index shift leaves the drafter's computation exactly unchanged, and decompose acceptance into two measurable gaps with sharp bounds. Whatever speedup a frozen drafter delivers at short context, it retains out to two million tokens, across three target-drafter pairs and five corpora. The claim concerns the flatness rather than the multiple, and removing either mechanism eliminates it. The gain is conditional on the speculative cost per emitted token staying below the matched target-only cost.",
-      "reason": "近 30 天；关键词：cs.LG, inference, llm。Speculative decoding pairs a cheap drafter with parallel verification against the target. At ultra-long context it stops paying, b...",
+      "summary": "Diffusion language models (DLMs) promise parallel text generation, but in practice face an unresolved speed-quality trade-off. Exact decoding fills in only one masked position per model pass, while faster multi-token decoding schemes are lossy. Speculative decoding is the standard lossless acceleration for autoregressive models. However, it does not transfer directly to DLMs, which must choose both what to generate and where. We show that this order is the missing piece: the model's own predictions from the previous pass already give the right token at 92-100% of positions, but not which position comes next. Based on this observation, we introduce Speculating Positions Order Trajectory (SPOT), which learns to predict this order. A 0.62M-parameter model reads only the target's output distributions and proposes a tree of candidate continuations, and the target verifies all of them in a single pass by checking whether each equals its own next state. On the verification side, our analysis shows that prior block-diffusion verification approaches either assume $T=0$ or a sequential proposal interface. To support tree-based speculation at any temperature, we propose using coupled-noise match verification for diffusion blocks, following shared-Gumbel-noise coupling approaches. Our comprehensive experiments show that SPOT cuts target passes by up to 6.8x and reaches up to 3.2x the throughput of standard decoding, beating the calibrated and training-free drafting baselines in every task and budget at $T=0$ and $T=1$. In addition, we show that the learned drafter transfers across models, demonstrating successful transfer across six different DLMs. Project page: https://eliezer318.github.io/SPOT-dLLM/",
+      "reason": "近 30 天；关键词：cs.LG, llm, speculative。Diffusion language models (DLMs) promise parallel text generation, but in practice face an unresolved speed-quality trade-off. Exa...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
-        "inference",
         "llm",
-        "speculative"
+        "speculative",
+        "throughput"
       ],
-      "signal": 97,
+      "signal": 98,
       "source": "arXiv",
-      "publishedAt": "2026-10-14T19:54:59Z",
-      "url": "https://arxiv.org/abs/2610.20865",
-      "pdfUrl": "https://arxiv.org/pdf/2610.20865v1"
-    },
-    {
-      "id": "arxiv-2610.22016",
-      "title": "Close Enough is Nowhere Near: Fidelity-Consumability Decoupling in KV Caches",
-      "authors": [
-        "Adam Deng",
-        "Shicheng Liu",
-        "Yada Zhu"
-      ],
-      "summary": "Multi-agent LLM systems communicate in text, which is lossy and wasteful: the sender throws away the reading it already did. A growing literature instead transmits the KV cache, the natural carrier of that reading. We study the most appealing form of the idea: both models stay frozen and the sender's cache is substituted for the reader's with nothing trained. It does not work, and the obstruction belongs to the reader. A frozen transformer reads only caches close to the one it would have written itself, a region we call its tolerable set. We show that geometric similarity to that cache does not predict whether the reader can use it, and the failure is not gradual, so a more faithful substitute is not the remedy it appears to be. We explain this phenomenon with competitive attention. Experimentally, we test eight diverse substitution methods against two measured anchors: an uninformative cache baseline and the reader's own accuracy from having read the passage. All sit at the baseline. That turns a long tail of separate negative results into one outcome with a stated condition for overturning it. A different design does work: if the reader keeps its own cache and attends over the sender's as extra context, adapting only its queries, it beats its own baseline, and also clears the baseline with eight senders pooled where undirected attention over the same union falls below it. We offer this as a characterization on one probe, not a leaderboard claim. Our central contribution is a redirection: pursuing faithful substitute caches is the wrong target; adding a cache to what the reader already has is the promising one.",
-      "reason": "近 30 天；关键词：cs.LG, kv-cache, llm。Multi-agent LLM systems communicate in text, which is lossy and wasteful: the sender throws away the reading it already did. A gro...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "kv-cache",
-        "llm"
-      ],
-      "signal": 90,
-      "source": "arXiv",
-      "publishedAt": "2026-10-15T14:56:53Z",
-      "url": "https://arxiv.org/abs/2610.22016",
-      "pdfUrl": "https://arxiv.org/pdf/2610.22016v1"
-    },
-    {
-      "id": "arxiv-2610.20582",
-      "title": "Latent Compaction with Test-Time Training",
-      "authors": [
-        "Yingfa Chen",
-        "Xingyu Shen",
-        "Chaojun Xiao",
-        "Xu Han"
-      ],
-      "summary": "Long contexts enlarge key--value (KV) caches, increasing memory use and attention costs during generation. Compressing these caches must preserve information for unseen questions. We introduce **Latent Compaction**, which learns a compact document-specific cache through test-time training. We initialize cache entries using reconstruction importance, teacher attention, and key-space diversity. Training first fits attention outputs and log-normalizers to those of the full cache, with reconstruction-selected entries held fixed. It then jointly optimizes the entire cache through end-to-end distillation from the full-cache model. Model weights remain frozen throughout, and training uses only generic prompts about the document, without access to downstream questions or answers. Experiments on RULER, LongBench, and Phonebook Lookup demonstrate substantial gains over budget-matched compression baselines. On a RULER, for example, our method achieves 96.7% accuracy at 32$\\times$ compression, compared with 40.0% for KVZip+. The method also transfers across model scales and families, with retrieval gains on both Qwen3 and MiniCPM5. These results show that treating the KV cache as a neural network and optimizing it with test-time training can preserve retrieval accuracy under aggressive compression. The code is released at https://www.github.com/THUNLP/latent-compaction",
-      "reason": "近 30 天；关键词：cs.CL, kv-cache, retrieval。Long contexts enlarge key--value (KV) caches, increasing memory use and attention costs during generation. Compressing these cache...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "kv-cache",
-        "retrieval"
-      ],
-      "signal": 90,
-      "source": "arXiv",
-      "publishedAt": "2026-10-14T17:57:01Z",
-      "url": "https://arxiv.org/abs/2610.20582",
-      "pdfUrl": "https://arxiv.org/pdf/2610.20582v1"
+      "publishedAt": "2026-10-15T18:40:42Z",
+      "url": "https://arxiv.org/abs/2610.22543",
+      "pdfUrl": "https://arxiv.org/pdf/2610.22543v1"
     }
   ]
 }
