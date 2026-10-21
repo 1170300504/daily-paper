@@ -1,265 +1,329 @@
 {
-  "generatedAt": "2026-10-20T08:47:35.449798+08:00",
+  "generatedAt": "2026-10-21T08:13:15.585858+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2610.23787",
-      "title": "DLite: History-free Speculative Decoding for Agentic AI",
+      "id": "arxiv-2610.26825",
+      "title": "MemT-1.0: Towards Memory-Native Evolution",
       "authors": [
-        "Jiaming Xu",
-        "Hanzhen Wang",
-        "Tianlang Zhao",
-        "Jiewen Xiao",
-        "Chengze Yuan",
-        "Jiayi Pan",
-        "Yongkang Zhou",
-        "Jiancai Ye",
-        "Yu Wang",
-        "Guohao Dai"
+        "Zhiyu Li",
+        "Zeyu Zhang",
+        "Linyun Liu",
+        "Yiwei Bu",
+        "Chenyang Xi",
+        "Xichong Zhang",
+        "Yi Yu",
+        "Yu Yu",
+        "Zhichen Liu",
+        "Yuxiao Yi",
+        "Chunyu Li",
+        "Haoran Liu",
+        "Zhenkai Ding",
+        "Le Zhou",
+        "Juncheng Zhang",
+        "Boyu Chen",
+        "Zehao Lin",
+        "Guorui Li",
+        "Renyu Fu",
+        "Ji Li",
+        "Youyang Xia",
+        "Jiajun Shen",
+        "Harvey Li",
+        "Jingsong Zhou",
+        "Helan Hu",
+        "Tong Shen",
+        "Tianxiao Xu",
+        "Chenye Han",
+        "Weijie Li",
+        "Zhongquan Zhou",
+        "Hongming Xu",
+        "Yuekeng Li",
+        "Erenkai Zhu",
+        "Peng Yu",
+        "Wenhao Li",
+        "Jingyi Kang",
+        "Xixuan Hao",
+        "Xuzhou Zhu",
+        "Can Chen",
+        "Jiawei Liu",
+        "Chen Jiang",
+        "Tao Jiang",
+        "Fangwei Xiang",
+        "Zepeng Yao",
+        "Kai Chen",
+        "Guang Yang",
+        "Mingfei Lu",
+        "Chunhui Li",
+        "Zhengxuan Jiang",
+        "Bo Tang",
+        "Shiyu Zhan",
+        "Yihang Sun",
+        "Jie Chu",
+        "Wenjun Xiong",
+        "Zhenxiang Hua",
+        "Chen Lin",
+        "Detong Su",
+        "Dongyu Deng",
+        "Qiuping Ding",
+        "Guofeng Ding",
+        "Si Chen",
+        "Guohua Wen",
+        "Xu Chen",
+        "Zhi-Qin John Xu",
+        "Ying-Cong Chen",
+        "Ningyu Zhang",
+        "Haofen Wang",
+        "Muning Wen",
+        "Haotian Chen",
+        "Wentao Zhang",
+        "Xuanhe Zhou",
+        "Rita Zhang",
+        "Junchi Yan",
+        "Feiyu Xiong"
       ],
-      "summary": "Speculative decoding has become a mainstream technique for accelerating large language model (LLM) inference by using a lightweight draft model to generate candidate tokens that are subsequently verified by the target model. However, agentic workloads introduce long and continuously evolving contexts and frequent multi-turn interactions. Under such workloads, we observe that existing draft models suffer from up to an 80% degradation in acceptance length, while maintaining their historical KV cache introduces substantial system overhead. In this paper, we identify the growing historical context as a common source of both problems and introduce DLite, a history-free speculative decoding framework for agentic AI. DLite directly reuses contextual hidden states from the target model and performs local speculative prediction without explicitly maintaining the historical context, transforming an increasingly complex modeling problem into local simple prediction problem. A lightweight sequential head further restores intra-block causal dependencies with low overhead. To effectively train this heterogeneous history-free architecture, we introduce a tailored two-stage training strategy. Experiments on general-purpose, long-context and agentic workloads show that DLite achieves 2-6 acceptance length and outperforms the state-of-the-art speculative decoding method, DSpark, up to 70%.",
-      "reason": "近 30 天；关键词：cs.CL, inference, kv-cache。Speculative decoding has become a mainstream technique for accelerating large language model (LLM) inference by using a lightweigh...",
+      "summary": "Memory-native evolution requires making memory an intrinsic capability of foundation models, enabling them to continuously accumulate and utilize information. To this end, we introduce MemT-1.0, a new architecture of memory foundation models that internalize memory as part of model computation. Building on Metis, MemT-1.0 employs Gated DeltaNet-2 with a stable token-level memory update mechanism within each turn. We further introduce Mixture-of-Storage to scale native memory capacity. Following a deliberate backbone preparation, we develop a two-stage training pipeline consisting of continued pre-training and post-training, supported by 34B tokens of training data and efficient training and inference infrastructure. We release a model family comprising MemT-1.0-Nano and MemT-1.0-Flash, and conduct a comprehensive evaluation of memory and general capabilities. The results show that they outperform the parametric memory baselines on average and remain competitive with retrieval-augmented methods, while largely preserving general capabilities. At a history length of 128K tokens, MemT-1.0-Nano achieves approximately $1.86\\times$ end-to-end inference speedup and a $66\\times$ reduction in persistent storage relative to full context KV cache. By internalizing retrieved procedural experience, MemT-1.0 improves task success on agentic tasks, providing a practical step toward memory-native evolution.",
+      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Memory-native evolution requires making memory an intrinsic capability of foundation models, enabling them to continuously accumul...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.CL",
+        "efficient",
         "inference",
         "kv-cache",
-        "llm",
-        "speculative"
+        "retrieval",
+        "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-16T17:18:54Z",
-      "url": "https://arxiv.org/abs/2610.23787",
-      "pdfUrl": "https://arxiv.org/pdf/2610.23787v1"
+      "publishedAt": "2026-10-19T17:54:35Z",
+      "url": "https://arxiv.org/abs/2610.26825",
+      "pdfUrl": "https://arxiv.org/pdf/2610.26825v1"
     },
     {
-      "id": "arxiv-2610.23638",
-      "title": "Deep LLM layers expose passage-level context in EEG during silent reading",
+      "id": "arxiv-2610.26199",
+      "title": "TaQFormer: A Treatment-as-Query Transformer with Data-Fusion for Multidimensional Treatment Modeling in Coupon Allocation",
       "authors": [
-        "Ingo Marquardt",
-        "Anthilia Alchanat",
-        "Priyanka Jain"
+        "Jiahong Li",
+        "Zeqin Yang",
+        "Yu Xiang",
+        "Zhifan Jiang",
+        "Jingqi Ma",
+        "Enzheng Hua",
+        "Jixing Xu",
+        "Jun Wu",
+        "Fei Wang",
+        "Enyun Yu",
+        "Jiecheng Guo"
       ],
-      "summary": "In a previous report we showed that a decoder can recover open-vocabulary word-level information from 19-channel EEG recorded during silent reading, by aligning short EEG windows with hidden-state embeddings of the presented word taken from a large language model (LLM). That analysis contrasted two of the model's 33 layers: the context-free input embedding and one mid-depth layer. Here we ask how EEG-decodable structure is distributed over the full depth of the language model. We trained one decoder per layer of Llama-3.1-8B, with and without a causal transformer over the sequence of EEG windows. We distinguish word-level decodability from a context-tracking component. Word-level decodability peaks in early layers and declines steadily towards the last layer. In contrast, the context-tracking component of the retrieval gain rises with depth, both with and without a causal transformer. Unexpectedly, a decoder that sees a single 0.5-s window at a time tracks the text passage too. Two new controls dissect this component. A target-geometry control, a synthetic predictor made of the true target plus noise calibrated to each decoder's word-level accuracy, shows that context tracking is not a by-product of word decoding and target geometry. A control that permutes predictions across runs from either the same or from different sessions shows that most of the observed context-tracking is not caused by an EEG recording session signature. Instead, context tracking mostly follows the text. A single EEG window therefore carries passage-level information that a contextual target can absorb. The results locate word identity in the early layers of the language model, discourse state in the deeper layers, and make the choice of target layer a design dial for EEG language decoders.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, llm。In a previous report we showed that a decoder can recover open-vocabulary word-level information from 19-channel EEG recorded duri...",
+      "summary": "We study coupon allocation on an online marketplace offering multiple service categories. Issuing coupons requires choosing a vector of category-specific discounts, accounting for both their direct effects and cross-category demand shifts. We present TaQFormer, a treatment-as-query Transformer for this multidimensional treatment setting. Each treatment coordinate is represented as a query token, allowing cross-attention to estimate the response to the full treatment vector. To combine large but policy-biased observational logs with a smaller stream of randomized controlled trial data, we use a two-stage pipeline: observational pretraining learns general outcome patterns, followed by LoRA fine-tuning on RCT data with a request-specific fusion gate. We evaluate the resulting system through the checks required for production, including offline uplift metrics, treatment-parallel serving, latency monitoring, and a 14-day online A/B test. At essentially the same subsidy cost rate, \\model increases business value per user by 1.26\\% over the production baseline and significantly outperforms both the production baseline and the RCT-only model, while meeting the latency budget. It was subsequently rolled out to all marketplace traffic and has operated at full scale for several months as of October 2026. The deployment illustrates how multidimensional treatment modeling and observational pretraining, combined with adaptation using RCT data, can support effective joint discount decisions in production.",
+      "reason": "近 30 天；关键词：cs.LG, latency, lora。We study coupon allocation on an online marketplace offering multiple service categories. Issuing coupons requires choosing a vect...",
       "area": "LLM 推理优化",
       "tags": [
-        "meta",
         "cs.LG",
-        "llm",
-        "retrieval"
+        "latency",
+        "lora",
+        "online-a/b",
+        "production",
+        "serving"
       ],
       "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-10-16T15:41:19Z",
-      "url": "https://arxiv.org/abs/2610.23638",
-      "pdfUrl": "https://arxiv.org/pdf/2610.23638v1"
+      "source": "arXiv",
+      "publishedAt": "2026-10-19T11:27:46Z",
+      "url": "https://arxiv.org/abs/2610.26199",
+      "pdfUrl": "https://arxiv.org/pdf/2610.26199v1"
     },
     {
-      "id": "arxiv-2610.23625",
-      "title": "PresenceBench: An Exploratory Evaluation of Large Language Model Adaptation to User State",
+      "id": "arxiv-2610.26040",
+      "title": "Balance-Aware Pivot Selection for Parallel Diffusion LLM Decoding",
       "authors": [
-        "Peña Arroyo Gallego",
-        "Mauro Ruiz Moreno",
-        "Alejandro Acien",
-        "Sergio Romero-Tapiador",
-        "Teresa Arroyo-Gallego"
+        "Yejin Lee",
+        "Hyundong Jin",
+        "Yo-Sub Han"
       ],
-      "summary": "Presence-aware intelligence is the capacity of an AI system's intelligence layer to adapt appropriately to the functional state of the person it serves (here readiness, flow, and stability) while preserving task quality and safety. We introduce PresenceBench, an instrument for measuring it. PresenceBench evaluates how the intelligence layer uses a supplied state, not how that state is sensed, and breaks the capability into measurable properties. Two are tested here. Receptivity: does the model take up the state and give a better response than with no signal? Specificity: does any improvement depend on the correct state, rather than on extra structured context? A third, adaptation across states, is a required endpoint not measured in this release. A five-arm causal design answers both questions, against each model's own baseline and an equally structured mismatched-state control, scored by a correctness-gated human paired comparison. The exploratory evaluation covered four models across eighteen single-turn, six fixed three-turn and six simulated natural-conversation scenarios. Supplying a synthetic state, raw or translated into a response policy, gave human-preference point estimates above 0.5 for all four models (Claude Sonnet 5, DeepSeek V4 Pro, Gemini 3.6 Flash, GPT-5.6 Terra), with three of eight 95% intervals excluding chance. Specificity was not resolved: no per-model interval excluded chance, and the design cannot yet separate the state values from a generic instruction to adapt. Policy delivery reduced priced cost and output tokens against each model's baseline; these are resource-use changes, not efficiency gains, because correctness non-inferiority was not established. Safety-floor failures were rare (13 of 360 cases), with a non-significant excess under policy delivery. We report the instrument, the frozen results, and the controls a confirmatory study needs.",
-      "reason": "近 30 天；公司信号：Anthropic, Google；关键词：anthropic, google, cs.HC。Presence-aware intelligence is the capacity of an AI system's intelligence layer to adapt appropriately to the functional state of...",
+      "summary": "Diffusion language models enable parallel token generation, offering a promising alternative to sequential autoregressive decoding. Existing acceleration methods use predictive confidence to enable parallel token commitment while preserving generation quality. However, confidence-based selection prioritizes reliable token predictions without explicitly considering how token positions shape the remaining decoding schedule. Moreover, such ordering does not always reflect inter-token dependencies, suggesting that confidence need not be the sole criterion for token selection. Motivated by this limitation, we propose Balance-Aware Pivot Decoding (BPD), which favors central pivots within contiguous masked intervals and decodes the selected positions in parallel. Balanced pivots yield logarithmic decoding depth in the interval length. Our practical method accounts for model uncertainty by combining confidence-based prefilling with confidence-thresholded center selection. We evaluate the resulting quality-efficiency tradeoff on LLaDA and Dream across five mathematical reasoning, code generation, and instruction-following benchmarks. Our implementation is available at: https://anonymous.4open.science/r/DLM_random_pivot-EE62/",
+      "reason": "近 30 天；关键词：cs.CL, llm, prefill。Diffusion language models enable parallel token generation, offering a promising alternative to sequential autoregressive decoding...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "llm",
+        "prefill",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-19T09:01:24Z",
+      "url": "https://arxiv.org/abs/2610.26040",
+      "pdfUrl": "https://arxiv.org/pdf/2610.26040v1"
+    },
+    {
+      "id": "arxiv-2610.25551",
+      "title": "StreamAhead: Real-Time Streaming Video Question Answering via Adaptive Precomputation",
+      "authors": [
+        "Haoyang Fan",
+        "Dhruv Parikh",
+        "Rajgopal Kannan",
+        "Viktor Prasanna"
+      ],
+      "summary": "Real-time streaming video question answering with vision-language models must answer queries that arrive at any time with low latency while sustaining the video-processing rate required by the application. Existing systems construct key-value (KV) caches for the entire video as it arrives, although a query typically uses only a few of the preceding frames as evidence. This highlights a fundamental trade-off: performing more computation as video arrives reduces query-time computation but can increase processing lag, whereas deferring computation can increase the video-processing rate but requires additional query-time computation for retrieved content. We present StreamAhead, an algorithm-system co-design that exploits this trade-off through adaptive precomputation: dynamically controlling how much computation to complete for each video segment before a query arrives. StreamAhead encodes video segments independently and lets each remain at a different representation level, from inexpensive visual features to costly KV caches, completing KV caches only for the retrieved segments when a query arrives. StreamAhead profiles offline the cost of advancing a segment to each representation level. Its runtime uses these profiles to schedule segment computation concurrently with query execution, pipelining it across heterogeneous CPU and GPU resources while maintaining the required video-processing rate. StreamAhead achieves accuracy competitive with state-of-the-art methods with up to 10.4x lower time-to-first-token (TTFT), and up to 5.9x lower TTFT than state-of-the-art streaming systems. It sustains 30 FPS with P95 TTFT under 0.5 s, and up to 57 FPS with P95 TTFT under 2 s. To our knowledge, StreamAhead is the first real-time streaming video QA system with competitive accuracy, setting a new Pareto frontier between video-processing rate and TTFT.",
+      "reason": "近 30 天；关键词：cs.DC, kv-cache, latency。Real-time streaming video question answering with vision-language models must answer queries that arrive at any time with low late...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "kv-cache",
+        "latency",
+        "pareto"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-18T21:48:59Z",
+      "url": "https://arxiv.org/abs/2610.25551",
+      "pdfUrl": "https://arxiv.org/pdf/2610.25551v1"
+    },
+    {
+      "id": "arxiv-2610.25503",
+      "title": "From Seeing to Reporting: A Theory of Reliable Visual Set Generation in Vision-Language Models",
+      "authors": [
+        "Junzhe Shi",
+        "Yuan Gan",
+        "Shida Jiang"
+      ],
+      "summary": "Vision-language models (VLMs) are asked to report what they see: to count objects, box them, parse a screen or pick a click target (GUI grounding). We argue that reporting is part of the visual task, not merely its formatting. In a dense scene with 173 shapes, GPT-6.1 lists 173 records that match every shape, yet the counts it states in the same response sum to 188. From Seeing to Reporting (FSR) is a theory of visual reporting and a set of inference-time procedures that improve the reports of frozen VLMs. It models reporting as a chain from responses to decoded records, constructed sets and task answers, linked by task-compatible matching. The chain gives exact relations for deleting records, averaging their coordinates and switching readouts, and it splits the error of one answer chosen among several calls into missing candidates, lost representatives and wrong choices. These relations guide procedures for counting, detection, document layout, screen parsing and GUI grounding that use the task specification and a shipped configuration, without requiring labels from the target task. On 50 dense synthetic scenes, a one-call reporting-and-decoding protocol cuts per-type count error by 85.2% for GPT-6.1 and 98.8% for Claude Sonnet 5.5. On 600 ScreenSpot-Pro items, a GUI-grounding tier that combines three models lowers the miss rate from 13.67% for GPT-6.1's two-stage zoom to 9.33%, against 12.67% for three such zooms combined by a cluster vote at about the same cost. A plain vote over the same three models misses 12.33%: the other models supply the candidates, and selecting among them turns those candidates into fewer misses. We release the protocols, the stored responses and the analysis code.",
+      "reason": "近 30 天；公司信号：Anthropic；关键词：anthropic, cs.CV, inference。Vision-language models (VLMs) are asked to report what they see: to count objects, box them, parse a screen or pick a click target...",
       "area": "LLM 推理优化",
       "tags": [
         "anthropic",
-        "google",
-        "cs.HC",
-        "lora",
-        "serving"
+        "cs.CV",
+        "inference"
       ],
       "signal": 99,
-      "source": "Anthropic/Google/arXiv",
-      "publishedAt": "2026-10-16T15:33:04Z",
-      "url": "https://arxiv.org/abs/2610.23625",
-      "pdfUrl": "https://arxiv.org/pdf/2610.23625v1"
+      "source": "Anthropic/arXiv",
+      "publishedAt": "2026-10-18T19:43:28Z",
+      "url": "https://arxiv.org/abs/2610.25503",
+      "pdfUrl": "https://arxiv.org/pdf/2610.25503v1"
     },
     {
-      "id": "arxiv-2610.23086",
-      "title": "PairSight: Characterizing and Predicting Operator-Level Interference in GPU Sharing for DNN Inference",
+      "id": "arxiv-2610.25470",
+      "title": "A failure of Imagination: VLMs fail to use visual representations for text, but self-distillation can help",
       "authors": [
-        "Xiao Liu",
-        "Yujia Fu",
-        "Yue Yu",
-        "Dan Huang"
+        "Shashwat Singh",
+        "He He",
+        "Tal Linzen"
       ],
-      "summary": "Serving DNN inference is costly, yet a single task seldom saturates both the compute units and the memory bandwidth of a GPU. GPU sharing raises utilization by co-locating several tasks on one GPU, at the cost of interference among them. Existing systems estimate this interference with binary compute-memory rules, standalone scaling curves, or model-level predictors. However, these estimates rest on a limited understanding of interference. They leave the software and hardware properties of co-located operators largely unexplored and give no slowdown prediction that is both interpretable and accurate. We conduct an operator-level study of interference under SM partitioning and use hardware counters to trace it to contention on the shared memory path, where the slowdown depends jointly on both co-located operators. Based on these findings, we propose PairSight, a hardware-aware interference predictor that learns how the hardware behaviors of co-located tasks interact and predicts the latency of each task before co-location. On six DNN models including LLMs, PairSight predicts latency under sharing with 4.3% mean error, against 19.0% for a compute-memory intensity rule, and adapts to unseen models and inputs with a few samples.",
-      "reason": "近 30 天；关键词：cs.PF, inference, latency。Serving DNN inference is costly, yet a single task seldom saturates both the compute units and the memory bandwidth of a GPU. GPU...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.PF",
-        "inference",
-        "latency",
-        "llm",
-        "serving",
-        "slo"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-16T07:56:36Z",
-      "url": "https://arxiv.org/abs/2610.23086",
-      "pdfUrl": "https://arxiv.org/pdf/2610.23086v1"
-    },
-    {
-      "id": "arxiv-2610.22985",
-      "title": "Prism Attention: Proposal-Refined Index Sharing Mechanism for Efficient LLMs Inference",
-      "authors": [
-        "Zhenxu Tian",
-        "Kebin Liu",
-        "Zhengwu Yang",
-        "Yi Su",
-        "Qingqing Dang",
-        "Yanlin Sha",
-        "Kaipeng Deng",
-        "Dianhai Yu",
-        "Yanjun Ma",
-        "Juntao Li",
-        "Min Zhang"
-      ],
-      "summary": "Long-context decoding in large language models (LLMs) is increasingly bottlenecked by the memory and computation required to attend over an ever-growing Key-Value (KV) cache at each autoregressive step. Although token-level sparse attention reduces this burden by restricting computation to a small subset of relevant past tokens, its practical gains are often offset by repeatedly recomputing layer-wise sparse indices as the context grows. A common remedy is to share sparse indices across layers by computing them only at designated anchor layers, but such static reuse ignores the layer-wise evolution of attention patterns, causing the reused indices to progressively deviate from the layer-specific optima and incur substantial attention loss. By revisiting cross-layer sparsity from the perspective of attention dynamics, we find that inter-layer salient token shift is highly localized: although the exact top-$κ$ indices differ across layers, the core high-attention tokens remain stable, with changes concentrated near the expanded boundary of previously selected regions. Motivated by this, we propose Prism Attention, a proposal-refined sparse attention framework. It replaces rigid cross-layer index reuse with a coarse-to-fine strategy, preserving layer-wise adaptability while retaining the efficiency benefits of cross-layer sharing. Extensive experiments show that Prism Attention achieves state-of-the-art performance among mainstream sparse attention methods on both reasoning and long-context benchmarks, while attaining a $3.4\\times$ end-to-end decoding speedup over FlashAttention at 128K context length.",
-      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Long-context decoding in large language models (LLMs) is increasingly bottlenecked by the memory and computation required to atten...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "efficient",
-        "inference",
-        "llm",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-16T06:11:20Z",
-      "url": "https://arxiv.org/abs/2610.22985",
-      "pdfUrl": "https://arxiv.org/pdf/2610.22985v1"
-    },
-    {
-      "id": "arxiv-2610.22731",
-      "title": "Accelerated Dataflow: scaling inference in streaming data analytics with efficiency",
-      "authors": [
-        "RuiLong Jiang",
-        "Dustin Rhodes",
-        "Danny McCormick",
-        "Yuta Labur",
-        "Reza Rokni"
-      ],
-      "summary": "Streaming data analytics helps businesses identify opportunities and spot risks in a timely fashion. As large language model (LLM) usage grows, people are exploring incorporating agents or LLMs in streaming data pipelines to help find patterns in datasets without supervision or interpret natural languages for content moderation. However, most streaming systems are currently optimized for data movement and perform poorly on GPU intensive workloads such as performing inference with LLMs. We introduce a system on Google Cloud Dataflow designed to tackle hybrid streaming machine learning workloads with co-designed autoscaling on heterogeneous worker pools and prefix-aware batching. This increases throughput 1.5x to 2x for streaming pipelines using LLMs while maintaining similar latency with up to 75% peak resource savings and 84% lower peak tail latency compared with existing streaming data processing systems.",
-      "reason": "近 30 天；公司信号：Google；关键词：google, cs.DC, batching。Streaming data analytics helps businesses identify opportunities and spot risks in a timely fashion. As large language model (LLM)...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "google",
-        "cs.DC",
-        "batching",
-        "dataset",
-        "inference",
-        "latency",
-        "llm"
-      ],
-      "signal": 99,
-      "source": "Google/arXiv",
-      "publishedAt": "2026-10-15T23:04:55Z",
-      "url": "https://arxiv.org/abs/2610.22731",
-      "pdfUrl": "https://arxiv.org/pdf/2610.22731v1"
-    },
-    {
-      "id": "arxiv-2610.22539",
-      "title": "Don't Retrain, Remix: Adaptation of Web Agents using Mixture Hypernetworks",
-      "authors": [
-        "Md Farhan Ishmam",
-        "Minh Pham Dinh",
-        "Kenneth Marino"
-      ],
-      "summary": "The web is not static or uniform. Websites that serve the same purpose can look and navigate very differently. Even within a single site, successive redesigns can change how familiar features are presented and accessed. Humans adapt to this by recognizing familiar interaction patterns and reusing what they already know. We give web agents a similar ability with WebMix, a mixture hypernetwork that adapts them to unseen interfaces by composing previously trained low-rank adapters. WebMix begins with a bank of adapters trained on source interfaces. At deployment, a scout agent explores the target interface and summarizes its observations into a compact manual. A lightweight router uses this manual to predict mixing coefficients over the adapter bank, which combine the existing adapters into a new one for inference. Adapting to a new interface takes only a scouting run and a forward pass, without gradient updates on the target. With Qwen and Llama models, we evaluate domain transfer on TimeWarp and WebArena-Lite-v2, and version transfer on TimeWarp. In all three settings, WebMix matches or outperforms in-context learning and LoRA baselines, often matching the average success of specialists trained directly on those interfaces. On TimeWarp domain transfer, it gains about 8 percentage points on average over the best baseline with both models. These gains do not come at the cost of seen interfaces, where WebMix keeps its lead, and extend to version transfer. Adapting to a new interface can therefore rely on exploration and composition instead of retraining.",
-      "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.LG。The web is not static or uniform. Websites that serve the same purpose can look and navigate very differently. Even within a singl...",
+      "summary": "Vision-language (VL) models are typically built by fine-tuning a language model to attend to visual features in service of a Visual Question-Answering objective. We ask whether this alignment changes how language models represent text---especially on tasks where visualization would help, like geometry questions posed in words. We distinguish weak multimodality (the model can answer questions about an input image) from strong multimodality (the model's text representations themselves become vision-aligned, improving performance on text-only tasks with latent visual structure). To test for strong multimodality, we construct a task of shape-counting problems with paired equivalent text and image specifications. This task is trivial when the image is provided, but requires visualization when specified in text as line coordinates. We compare instruction-tuned Qwen-2.5 and Mistral models against their vision-aligned counterparts on the text variant of the task. We find that the multimodal models do no better in this setting, despite strong performance on the image version of the task. Probing experiments corroborate this: vision-aligned decoder embeddings carry no more visual structure than their text-only counterparts. Finally, we provide an optimization objective that distills in-context visual embeddings into text embeddings. This alignment induces gains on the text variant of the task without explicit task supervision, even on samples more complex than seen during alignment. This suggests that VQA-style alignment leaves available cross-modal transfer untapped.",
+      "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.AI, alignment。Vision-language (VL) models are typically built by fine-tuning a language model to attend to visual features in service of a Visua...",
       "area": "LLM 推理优化",
       "tags": [
         "alibaba",
-        "meta",
-        "cs.LG",
-        "efficient",
-        "inference",
+        "cs.AI",
+        "alignment",
+        "multimodal"
+      ],
+      "signal": 99,
+      "source": "Alibaba/arXiv",
+      "publishedAt": "2026-10-18T18:53:18Z",
+      "url": "https://arxiv.org/abs/2610.25470",
+      "pdfUrl": "https://arxiv.org/pdf/2610.25470v1"
+    },
+    {
+      "id": "arxiv-2610.25456",
+      "title": "System X: An LLM Decision Model That Replies from Its Own KV Cache",
+      "authors": [
+        "Syed Usama Khalid Bukhari",
+        "Syed Safwan Khalid",
+        "Muhammad Aamir"
+      ],
+      "summary": "Decision models return probabilities over supplied options, but a deployed agent may also need to reply in words. The present study introduces System X, a large language model (LLM) decision model that adds a text-reply option to the LLM-as-Jev readout. When this option wins, or confidence is low, the same model continues from the decision's key-value (KV) cache, avoiding a repeated prompt prefill. Qwen3-0.6B has been fine-tuned with LoRA on Reason-9k and Bitext reply rows. JevBench accuracy shows no statistically significant change (55.4% to 54.5%, p=0.87), while expected calibration error falls from 0.292 to 0.169. Held-out Bitext routing accuracy reaches 98.3%. Cache reuse saves 15-37% of latency on an Apple M4 Pro, with token-identical replies in the FP32 demonstration cases. Scoring options on copies of the prompt cache matches full-sequence scoring to within 1.4e-6 in probability. Adding dialogue, industry and complaint data (System X+) improves support-task results but lowers IFEval accuracy from 55.5% to 45.0%. System X v4 uses Qwen3-1.7B, rebalanced data and teacher-rewritten reply targets. Against its base LLM, JevBench accuracy rises from 55.0% to 61.0% (p=0.04), with no statistically significant IFEval change (p=0.71). A matched latency test on unadapted Qwen3-1.7B saves 17-39%. One LLM judge prefers v4 replies to an unadapted 1.7B second call (31 to 11 pairs, p=0.003); the other's preference is not significant. These reply comparisons also differ in prompts and generation limits. State conflicts and unsupported reply details remain failure modes. Further studies with several seeds, human raters and real support data are recommended.",
+      "reason": "近 30 天；公司信号：Apple；关键词：apple, cs.AI, deployed。Decision models return probabilities over supplied options, but a deployed agent may also need to reply in words. The present stud...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "apple",
+        "cs.AI",
+        "deployed",
+        "kv-cache",
+        "latency",
+        "llm",
         "lora"
       ],
       "signal": 99,
-      "source": "Alibaba/Meta/arXiv",
-      "publishedAt": "2026-10-15T18:37:41Z",
-      "url": "https://arxiv.org/abs/2610.22539",
-      "pdfUrl": "https://arxiv.org/pdf/2610.22539v1"
+      "source": "Apple/arXiv",
+      "publishedAt": "2026-10-18T18:40:50Z",
+      "url": "https://arxiv.org/abs/2610.25456",
+      "pdfUrl": "https://arxiv.org/pdf/2610.25456v1"
     },
     {
-      "id": "arxiv-2610.22529",
-      "title": "Pearl-Chat: Engineering a native Luganda language model from first principles in JAX and Flax NNX",
+      "id": "arxiv-2610.25431",
+      "title": "MOSAIC: Multi-Objective Search for Allocating Inference Cache Across LLM Decoder Layers",
       "authors": [
-        "Wesley Kambale",
-        "Roland Sankara"
+        "Sravanth Kodavanti",
+        "Manjunath Arveti"
       ],
-      "summary": "Autoregressive foundation language models predominantly target high-resource Indo-European languages, imposing computational and morphological penalties on under-represented African languages. Generic multilingual tokenizers routinely exceed fertility rates of 3.2 tokens per word on agglutinative Bantu languages, degrading context efficiency and inflating latency. We present Pearl-Chat, an 8,473,122-parameter ($\\sim$8.5M) causal decoder-only transformer engineered for Luganda (Oluganda, ISO 639-2: lg), a low-resource Niger-Congo Bantu language spoken by over 10 million people in East Africa. Built from first mathematical principles in JAX and Flax NNX, Pearl-Chat uses explicit functional state decomposition (nnx.split and nnx.merge), deterministic resumable data streaming via Google Grain, and SPMD tensor parallelism using jax.sharding.Mesh. We introduce a byte-level byte-pair encoding (BPE) subword tokenizer trained from scratch on curated Luganda corpora ($V = 8,192$), achieving 4.88 characters per token compression and 1.60 tokens per word fertility, a two-fold compression improvement over LLaMA-3 (128K) and Gemma (256K). The model is trained with a two-stage curriculum: Stage 1 pre-training on 59,501 sequences across parallel, biblical, encyclopedic, and journalistic corpora, and Stage 2 instruction fine-tuning on 510 dialogues with assistant-only loss masking. Across 4,000 optimization steps, validation cross-entropy loss drops monotonically from 9.4695 (perplexity: 12,958.98) to 0.1818 (perplexity: 1.20), a decrease of 9.2877 nats. On a three-tier held-out diagnostic benchmark, Pearl-Chat achieves 0.9792 ROUGE-L and 0.9405 BLEU while maintaining concordial agreement across Bantu noun classes. We provide a Python Server-Sent Events (SSE) streaming runtime and open-source all weights, tokenizers, and code.",
-      "reason": "近 30 天；公司信号：Google, Meta；关键词：google, meta, cs.CL。Autoregressive foundation language models predominantly target high-resource Indo-European languages, imposing computational and m...",
+      "summary": "The Key-Value (KV) cache is the main memory bottleneck of long-context LLM inference. Token eviction methods such as SnapKV, H2O, AdaKV and L2Norm shrink it, but they give every transformer layer the same budget, although layers differ in which tokens they need. We present MOSAIC, a multi-objective neural architecture search that learns per-layer KV-cache budgets for any eviction method. One search maps the trade-off between average budget and task score; its best allocation transfers to every target budget without further search, and an optional budget-constrained search refines it. Across four eviction methods on Llama-3-8B-Instruct and Mistral-7B-Instruct-v0.2, MOSAIC beats uniform allocation in 146 of 154 (task, method, budget) settings, by up to +48 points on RULER and +11.9 on LongBench (LCC). On both models, it reaches the score of uniform allocation with up to 4x less KV cache (75% smaller). Against EvolKV, MOSAIC explores a ~10^40 x larger search space with 4x fewer evaluations and 18% fewer GPU-hours per budget, and scores higher in 5 of 6 settings. The learned allocations consistently favour a small set of middle layers.",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, inference。The Key-Value (KV) cache is the main memory bottleneck of long-context LLM inference. Token eviction methods such as SnapKV, H2O,...",
       "area": "LLM 推理优化",
       "tags": [
-        "google",
         "meta",
-        "cs.CL",
-        "latency"
+        "cs.LG",
+        "inference",
+        "kv-cache",
+        "llm"
       ],
       "signal": 99,
-      "source": "Google/Meta/arXiv",
-      "publishedAt": "2026-10-15T18:22:15Z",
-      "url": "https://arxiv.org/abs/2610.22529",
-      "pdfUrl": "https://arxiv.org/pdf/2610.22529v1"
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-10-18T17:51:14Z",
+      "url": "https://arxiv.org/abs/2610.25431",
+      "pdfUrl": "https://arxiv.org/pdf/2610.25431v1"
     },
     {
-      "id": "arxiv-2610.23724",
-      "title": "Agentic AI for Heterogeneous System Design Across Chip, Scale-Up, and Scale-Out Domains",
+      "id": "arxiv-2610.25250",
+      "title": "Improving the Expressive Power of Hybrid Sequence Models via Multi-Hop Retrieval",
       "authors": [
-        "Murali Emani",
-        "Kashyap R Manjusha"
+        "Yam Eitan",
+        "Gilad Yehudai",
+        "Haggai Maron"
       ],
-      "summary": "The design space of modern AI/HPC systems has expanded rapidly across compute architectures, including GPUs, dataflow processors, and RISC-V accelerators; memory tech- nologies, including HBM, GDDR, and SRAM; and interconnects such as NVLink, UALink, Infinity Fabric, InfiniBand, Slingshot, and Ultra Ethernet. No single architecture is optimal across LLM training, LLM serving, and AI-coupled HPC workloads, while the resulting combinatorial design space is too large for manual exploration. We present ArchAgent, a hierarchical multi- agent framework in which an LLM-based planner decomposes system design into chip, scale-up, and scale-out subproblems, each handled by specialist agents. A deterministic analytical evaluator closes the loop, ensuring that all performance estimates are derived from analytical models rather than generated by the LLM. On a mixed AI+HPC workload under a 1 MW power budget, ArchAgent discovers heterogeneous designs that achieve a 1.93x weighted geometric mean speedup over a homogeneous GPU baseline, while requiring only 18 evaluations compared with 100 evaluations for hill climbing, which achieves 1.65x speedup.",
-      "reason": "近 30 天；关键词：cs.AR, llm, lora。The design space of modern AI/HPC systems has expanded rapidly across compute architectures, including GPUs, dataflow processors,...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.AR",
-        "llm",
-        "lora",
-        "serving"
-      ],
-      "signal": 98,
-      "source": "arXiv",
-      "publishedAt": "2026-10-16T16:42:18Z",
-      "url": "https://arxiv.org/abs/2610.23724",
-      "pdfUrl": "https://arxiv.org/pdf/2610.23724v1"
-    },
-    {
-      "id": "arxiv-2610.22543",
-      "title": "On the SPOT: Enhancing Speculative Decoding for Diffusion Language Models via Commit-Order Prediction",
-      "authors": [
-        "Eliezer Shlomi",
-        "Eliron Rahimi",
-        "Avi Mendelson",
-        "Chaim Baskin"
-      ],
-      "summary": "Diffusion language models (DLMs) promise parallel text generation, but in practice face an unresolved speed-quality trade-off. Exact decoding fills in only one masked position per model pass, while faster multi-token decoding schemes are lossy. Speculative decoding is the standard lossless acceleration for autoregressive models. However, it does not transfer directly to DLMs, which must choose both what to generate and where. We show that this order is the missing piece: the model's own predictions from the previous pass already give the right token at 92-100% of positions, but not which position comes next. Based on this observation, we introduce Speculating Positions Order Trajectory (SPOT), which learns to predict this order. A 0.62M-parameter model reads only the target's output distributions and proposes a tree of candidate continuations, and the target verifies all of them in a single pass by checking whether each equals its own next state. On the verification side, our analysis shows that prior block-diffusion verification approaches either assume $T=0$ or a sequential proposal interface. To support tree-based speculation at any temperature, we propose using coupled-noise match verification for diffusion blocks, following shared-Gumbel-noise coupling approaches. Our comprehensive experiments show that SPOT cuts target passes by up to 6.8x and reaches up to 3.2x the throughput of standard decoding, beating the calibrated and training-free drafting baselines in every task and budget at $T=0$ and $T=1$. In addition, we show that the learned drafter transfers across models, demonstrating successful transfer across six different DLMs. Project page: https://eliezer318.github.io/SPOT-dLLM/",
-      "reason": "近 30 天；关键词：cs.LG, llm, speculative。Diffusion language models (DLMs) promise parallel text generation, but in practice face an unresolved speed-quality trade-off. Exa...",
+      "summary": "Hybrid architectures offer a promising approach to efficient language modeling by combining a small number of full-attention layers with a larger number of efficient sequence layers, such as sparse attention and recurrent layers. While full-attention layers maintain a KV cache that grows linearly with sequence length, efficient layers typically rely on separate, fixed-size states rather than accessing this richer existing memory. Recent work has begun exploring ways to allow efficient layers access to the KV cache, but the theoretical benefits of such access, and the extent to which existing approaches can realize them remain poorly understood. We investigate these questions by analyzing the expressive power of individual hybrid blocks on function composition, a well-studied task in sequence-model expressivity associated with multi-hop reasoning. We first establish that both conventional hybrid blocks and those with top-$κ$ KV-cache access require $Ω(\\sqrt{n})$ capacity to compute even two-function composition over a domain of size $n$. To overcome this limitation, we introduce the \\emph{Multi-hop Retrieval Attention} (MuRA) hybrid block, a simple architecture that enables multi-hop retrieval from a shared KV cache while preserving asymptotic computational and memory efficiency. We prove that a single fixed size $m$-hop MuRA block can compute $m$-function composition, whereas computing $(m+1)$-function composition with the same retrieval depth requires polynomial model size, establishing a strict expressivity hierarchy in retrieval depth. Synthetic experiments support this hierarchy, showing that increasing retrieval depth enables learning progressively deeper compositions, substantially outperforming existing hybrid architectures. Together, our results identify multi-hop retrieval as a promising mechanism for improving the expressive power of efficient hybrid architectures.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, kv-cache。Hybrid architectures offer a promising approach to efficient language modeling by combining a small number of full-attention layer...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
+        "efficient",
+        "kv-cache",
+        "retrieval",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-18T13:10:43Z",
+      "url": "https://arxiv.org/abs/2610.25250",
+      "pdfUrl": "https://arxiv.org/pdf/2610.25250v1"
+    },
+    {
+      "id": "arxiv-2610.25219",
+      "title": "gKSM: GPU Memory Deduplication at Driver Layer for Serverless LLM Inference",
+      "authors": [
+        "Shuheng Gao",
+        "Fan Guo",
+        "Yongkun Li",
+        "Ziye Yue",
+        "Yinlong Xu",
+        "John C. S. Lui"
+      ],
+      "summary": "In serverless LLM inference, cloud providers commonly locate multiple instances on a single GPU to improve utilization. However, each instance independently maintains its model weights and runtime state, making duplicate GPU memory the primary bottleneck. Memory deduplication is a widely-used technique for eliminating duplicate data in CPU systems, but extending it to GPU memory faces fundamental challenges. Effective GPU memory deduplication must avoid redundant data movement between CPU and GPU while preserving write isolation for shared pages without native copy-on-write (COW) support. This paper presents gKSM, a transparent GPU memory deduplication framework for serverless LLM inference. gKSM addresses these challenges through CPU-GPU collaborative hash management that offloads hash computation to GPU kernels, zero-copy model weight deduplication that eliminates duplication before model weight transfer, and a cross-privilege page fault handler that combines a lightweight kernel hook and CUDA Virtual Memory Management (VMM) remapping in the user space. gKSM also designs a stable page scanning algorithm and a reuse-aware placement policy in cluster scale. Experiments show that gKSM reduces GPU memory usage by 59.8% while maintaining high throughput compared to ServerlessLLM. Under memory constrained workloads, gKSM improves aggregate throughput by 2.15X and supports five instances concurrently. In cluster level simulation, gKSM achieves a service rate of 99.97%, compared to 78.2% for SLInfer and 26.9% for ServerlessLLM.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.OS, copy-on-write。In serverless LLM inference, cloud providers commonly locate multiple instances on a single GPU to improve utilization. However, e...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.OS",
+        "copy-on-write",
+        "inference",
         "llm",
-        "speculative",
+        "serving",
         "throughput"
       ],
-      "signal": 98,
-      "source": "arXiv",
-      "publishedAt": "2026-10-15T18:40:42Z",
-      "url": "https://arxiv.org/abs/2610.22543",
-      "pdfUrl": "https://arxiv.org/pdf/2610.22543v1"
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-10-18T12:27:22Z",
+      "url": "https://arxiv.org/abs/2610.25219",
+      "pdfUrl": "https://arxiv.org/pdf/2610.25219v1"
     }
   ]
 }
