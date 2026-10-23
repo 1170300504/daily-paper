@@ -1,329 +1,260 @@
 {
-  "generatedAt": "2026-10-21T08:13:15.585858+08:00",
+  "generatedAt": "2026-10-23T08:14:11.891582+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2610.26825",
-      "title": "MemT-1.0: Towards Memory-Native Evolution",
+      "id": "arxiv-2610.29873",
+      "title": "HAWK: Heterogeneity-Aware KV Cache Transfer for Efficient GPU-NPU Phase-Disaggregated LLM Inference",
       "authors": [
-        "Zhiyu Li",
-        "Zeyu Zhang",
-        "Linyun Liu",
-        "Yiwei Bu",
-        "Chenyang Xi",
-        "Xichong Zhang",
-        "Yi Yu",
-        "Yu Yu",
-        "Zhichen Liu",
-        "Yuxiao Yi",
-        "Chunyu Li",
-        "Haoran Liu",
-        "Zhenkai Ding",
-        "Le Zhou",
-        "Juncheng Zhang",
-        "Boyu Chen",
-        "Zehao Lin",
-        "Guorui Li",
-        "Renyu Fu",
-        "Ji Li",
-        "Youyang Xia",
-        "Jiajun Shen",
-        "Harvey Li",
-        "Jingsong Zhou",
-        "Helan Hu",
-        "Tong Shen",
-        "Tianxiao Xu",
-        "Chenye Han",
-        "Weijie Li",
-        "Zhongquan Zhou",
-        "Hongming Xu",
-        "Yuekeng Li",
-        "Erenkai Zhu",
-        "Peng Yu",
-        "Wenhao Li",
-        "Jingyi Kang",
-        "Xixuan Hao",
-        "Xuzhou Zhu",
-        "Can Chen",
-        "Jiawei Liu",
-        "Chen Jiang",
-        "Tao Jiang",
-        "Fangwei Xiang",
-        "Zepeng Yao",
-        "Kai Chen",
-        "Guang Yang",
-        "Mingfei Lu",
-        "Chunhui Li",
-        "Zhengxuan Jiang",
-        "Bo Tang",
-        "Shiyu Zhan",
-        "Yihang Sun",
-        "Jie Chu",
-        "Wenjun Xiong",
-        "Zhenxiang Hua",
-        "Chen Lin",
-        "Detong Su",
-        "Dongyu Deng",
-        "Qiuping Ding",
-        "Guofeng Ding",
-        "Si Chen",
-        "Guohua Wen",
-        "Xu Chen",
-        "Zhi-Qin John Xu",
-        "Ying-Cong Chen",
-        "Ningyu Zhang",
-        "Haofen Wang",
-        "Muning Wen",
-        "Haotian Chen",
-        "Wentao Zhang",
-        "Xuanhe Zhou",
-        "Rita Zhang",
-        "Junchi Yan",
-        "Feiyu Xiong"
+        "Junhyeok Park",
+        "Jungeun Yoon",
+        "Kyungmin Kim",
+        "Hunsoon Lee",
+        "Shinyoung Ahn",
+        "Kangho Kim"
       ],
-      "summary": "Memory-native evolution requires making memory an intrinsic capability of foundation models, enabling them to continuously accumulate and utilize information. To this end, we introduce MemT-1.0, a new architecture of memory foundation models that internalize memory as part of model computation. Building on Metis, MemT-1.0 employs Gated DeltaNet-2 with a stable token-level memory update mechanism within each turn. We further introduce Mixture-of-Storage to scale native memory capacity. Following a deliberate backbone preparation, we develop a two-stage training pipeline consisting of continued pre-training and post-training, supported by 34B tokens of training data and efficient training and inference infrastructure. We release a model family comprising MemT-1.0-Nano and MemT-1.0-Flash, and conduct a comprehensive evaluation of memory and general capabilities. The results show that they outperform the parametric memory baselines on average and remain competitive with retrieval-augmented methods, while largely preserving general capabilities. At a history length of 128K tokens, MemT-1.0-Nano achieves approximately $1.86\\times$ end-to-end inference speedup and a $66\\times$ reduction in persistent storage relative to full context KV cache. By internalizing retrieved procedural experience, MemT-1.0 improves task success on agentic tasks, providing a practical step toward memory-native evolution.",
-      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Memory-native evolution requires making memory an intrinsic capability of foundation models, enabling them to continuously accumul...",
+      "summary": "Large language model (LLM) inference exhibits distinct computational characteristics across its two phases: prefill is compute-intensive, whereas decode is more memory-bound. As a result, AI accelerators achieve varying levels of efficiency across the two phases. GPUs are well suited to prefill, but are often underutilized during decode. By contrast, NPUs can utilize their compute resources more effectively during decode. Motivated by this observation, we explore a heterogeneous architecture that integrates GPUs and NPUs, mapping prefill to GPUs and decode to NPUs to achieve high performance and efficiency. However, realizing such heterogeneous integration is challenging because LLM phase disaggregation requires KV cache transfer from prefill to decode (that is, from GPUs to NPUs), which is complicated by differences in inter-device communication mechanisms and KV cache tensor layouts. To address this, we propose HAWK, a transfer mechanism that enables rapid KV cache transfer across heterogeneous devices. HAWK establishes a remote direct memory access (RDMA) path for direct cross-device transfers while handling inter-device tensor layout discrepancies as part of the transfer process. In particular, HAWK allocates tensor-layout-aware RDMA buffers on the NPU side to match the target tensor layout. Leveraging these buffers, HAWK orchestrates data transfer from a conventional contiguous GPU RDMA buffer to the corresponding NPU buffers, allowing transferred tensors to be consumed directly without additional data rearrangement while maintaining transfer efficiency. We implement and evaluate HAWK on a system built with commercially available GPUs and NPUs, demonstrating performance within 7.88% of a GPU-only system under the same SLO constraints while achieving up to 1.26$\\times$ higher power efficiency and 1.72$\\times$ higher cost efficiency.",
+      "reason": "近 30 天；关键词：cs.AR, efficient, inference。Large language model (LLM) inference exhibits distinct computational characteristics across its two phases: prefill is compute-int...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL",
+        "cs.AR",
         "efficient",
         "inference",
         "kv-cache",
-        "retrieval",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-19T17:54:35Z",
-      "url": "https://arxiv.org/abs/2610.26825",
-      "pdfUrl": "https://arxiv.org/pdf/2610.26825v1"
-    },
-    {
-      "id": "arxiv-2610.26199",
-      "title": "TaQFormer: A Treatment-as-Query Transformer with Data-Fusion for Multidimensional Treatment Modeling in Coupon Allocation",
-      "authors": [
-        "Jiahong Li",
-        "Zeqin Yang",
-        "Yu Xiang",
-        "Zhifan Jiang",
-        "Jingqi Ma",
-        "Enzheng Hua",
-        "Jixing Xu",
-        "Jun Wu",
-        "Fei Wang",
-        "Enyun Yu",
-        "Jiecheng Guo"
-      ],
-      "summary": "We study coupon allocation on an online marketplace offering multiple service categories. Issuing coupons requires choosing a vector of category-specific discounts, accounting for both their direct effects and cross-category demand shifts. We present TaQFormer, a treatment-as-query Transformer for this multidimensional treatment setting. Each treatment coordinate is represented as a query token, allowing cross-attention to estimate the response to the full treatment vector. To combine large but policy-biased observational logs with a smaller stream of randomized controlled trial data, we use a two-stage pipeline: observational pretraining learns general outcome patterns, followed by LoRA fine-tuning on RCT data with a request-specific fusion gate. We evaluate the resulting system through the checks required for production, including offline uplift metrics, treatment-parallel serving, latency monitoring, and a 14-day online A/B test. At essentially the same subsidy cost rate, \\model increases business value per user by 1.26\\% over the production baseline and significantly outperforms both the production baseline and the RCT-only model, while meeting the latency budget. It was subsequently rolled out to all marketplace traffic and has operated at full scale for several months as of October 2026. The deployment illustrates how multidimensional treatment modeling and observational pretraining, combined with adaptation using RCT data, can support effective joint discount decisions in production.",
-      "reason": "近 30 天；关键词：cs.LG, latency, lora。We study coupon allocation on an online marketplace offering multiple service categories. Issuing coupons requires choosing a vect...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "latency",
-        "lora",
-        "online-a/b",
-        "production",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-19T11:27:46Z",
-      "url": "https://arxiv.org/abs/2610.26199",
-      "pdfUrl": "https://arxiv.org/pdf/2610.26199v1"
-    },
-    {
-      "id": "arxiv-2610.26040",
-      "title": "Balance-Aware Pivot Selection for Parallel Diffusion LLM Decoding",
-      "authors": [
-        "Yejin Lee",
-        "Hyundong Jin",
-        "Yo-Sub Han"
-      ],
-      "summary": "Diffusion language models enable parallel token generation, offering a promising alternative to sequential autoregressive decoding. Existing acceleration methods use predictive confidence to enable parallel token commitment while preserving generation quality. However, confidence-based selection prioritizes reliable token predictions without explicitly considering how token positions shape the remaining decoding schedule. Moreover, such ordering does not always reflect inter-token dependencies, suggesting that confidence need not be the sole criterion for token selection. Motivated by this limitation, we propose Balance-Aware Pivot Decoding (BPD), which favors central pivots within contiguous masked intervals and decodes the selected positions in parallel. Balanced pivots yield logarithmic decoding depth in the interval length. Our practical method accounts for model uncertainty by combining confidence-based prefilling with confidence-thresholded center selection. We evaluate the resulting quality-efficiency tradeoff on LLaDA and Dream across five mathematical reasoning, code generation, and instruction-following benchmarks. Our implementation is available at: https://anonymous.4open.science/r/DLM_random_pivot-EE62/",
-      "reason": "近 30 天；关键词：cs.CL, llm, prefill。Diffusion language models enable parallel token generation, offering a promising alternative to sequential autoregressive decoding...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
         "llm",
         "prefill",
-        "serving"
+        "slo"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-19T09:01:24Z",
-      "url": "https://arxiv.org/abs/2610.26040",
-      "pdfUrl": "https://arxiv.org/pdf/2610.26040v1"
+      "publishedAt": "2026-10-21T15:25:35Z",
+      "url": "https://arxiv.org/abs/2610.29873",
+      "pdfUrl": "https://arxiv.org/pdf/2610.29873v1"
     },
     {
-      "id": "arxiv-2610.25551",
-      "title": "StreamAhead: Real-Time Streaming Video Question Answering via Adaptive Precomputation",
+      "id": "arxiv-2610.29820",
+      "title": "UlaCache: Unified Logical Addressing for Sparse LLM Serving",
       "authors": [
-        "Haoyang Fan",
-        "Dhruv Parikh",
-        "Rajgopal Kannan",
-        "Viktor Prasanna"
+        "Isaac Zhu",
+        "Alan Cao",
+        "Hugh Yin",
+        "Rocky Wang",
+        "Orion Wang",
+        "Hscos Zhang",
+        "Jack Li",
+        "Jason Zhao"
       ],
-      "summary": "Real-time streaming video question answering with vision-language models must answer queries that arrive at any time with low latency while sustaining the video-processing rate required by the application. Existing systems construct key-value (KV) caches for the entire video as it arrives, although a query typically uses only a few of the preceding frames as evidence. This highlights a fundamental trade-off: performing more computation as video arrives reduces query-time computation but can increase processing lag, whereas deferring computation can increase the video-processing rate but requires additional query-time computation for retrieved content. We present StreamAhead, an algorithm-system co-design that exploits this trade-off through adaptive precomputation: dynamically controlling how much computation to complete for each video segment before a query arrives. StreamAhead encodes video segments independently and lets each remain at a different representation level, from inexpensive visual features to costly KV caches, completing KV caches only for the retrieved segments when a query arrives. StreamAhead profiles offline the cost of advancing a segment to each representation level. Its runtime uses these profiles to schedule segment computation concurrently with query execution, pipelining it across heterogeneous CPU and GPU resources while maintaining the required video-processing rate. StreamAhead achieves accuracy competitive with state-of-the-art methods with up to 10.4x lower time-to-first-token (TTFT), and up to 5.9x lower TTFT than state-of-the-art streaming systems. It sustains 30 FPS with P95 TTFT under 0.5 s, and up to 57 FPS with P95 TTFT under 2 s. To our knowledge, StreamAhead is the first real-time streaming video QA system with competitive accuracy, setting a new Pareto frontier between video-processing rate and TTFT.",
-      "reason": "近 30 天；关键词：cs.DC, kv-cache, latency。Real-time streaming video question answering with vision-language models must answer queries that arrive at any time with low late...",
+      "summary": "Long contexts increase the memory cost of the key-value (KV) cache in large language model (LLM) inference. Sparse attention reduces attention computation and memory traffic by selecting historical tokens, but the retained KV cache must remain available for later decoding steps. We present UlaCache, a KV cache management system built around a unified logical address space spanning GPU KV pools and optional CPU memory. Stable logical references let the inference engine allocate and select KV independently of physical placement. Common allocation and sparse-access interfaces support data-parallel (DP) and tensor-parallel (TP) attention. For distributed storage, local GPU buffers retain selected KV across decoding steps, so only missing entries require transfers. When CPU storage is enabled, Parallel Bucketed LRU (PB-LRU) manages a GPU pool shared across requests. It updates recency metadata and selects eviction victims in parallel. UlaCache transfers KV and then updates the address mappings. With speculative decoding enabled under matched CPU and GPU memory budgets, UlaCache achieves peak decoding throughput speedups of 1.16 $\\times$ (DP) and 1.70 $\\times$ (TP) on H200, and 1.73 $\\times$ (DP) and 2.51 $\\times$ (TP) on B300, compared with the state-of-the-art baseline.",
+      "reason": "近 30 天；关键词：cs.DC, inference, kv-cache。Long contexts increase the memory cost of the key-value (KV) cache in large language model (LLM) inference. Sparse attention reduc...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.DC",
+        "inference",
         "kv-cache",
-        "latency",
-        "pareto"
+        "llm",
+        "serving",
+        "speculative",
+        "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-18T21:48:59Z",
-      "url": "https://arxiv.org/abs/2610.25551",
-      "pdfUrl": "https://arxiv.org/pdf/2610.25551v1"
+      "publishedAt": "2026-10-21T14:46:11Z",
+      "url": "https://arxiv.org/abs/2610.29820",
+      "pdfUrl": "https://arxiv.org/pdf/2610.29820v1"
     },
     {
-      "id": "arxiv-2610.25503",
-      "title": "From Seeing to Reporting: A Theory of Reliable Visual Set Generation in Vision-Language Models",
+      "id": "arxiv-2610.29545",
+      "title": "PACE: Periodic and Channel-Aligned Encoding of Four-Bit Recurrent States",
       "authors": [
-        "Junzhe Shi",
-        "Yuan Gan",
-        "Shida Jiang"
+        "Patrick Haller",
+        "Filipe Laitenberger",
+        "Alan Akbik"
       ],
-      "summary": "Vision-language models (VLMs) are asked to report what they see: to count objects, box them, parse a screen or pick a click target (GUI grounding). We argue that reporting is part of the visual task, not merely its formatting. In a dense scene with 173 shapes, GPT-6.1 lists 173 records that match every shape, yet the counts it states in the same response sum to 188. From Seeing to Reporting (FSR) is a theory of visual reporting and a set of inference-time procedures that improve the reports of frozen VLMs. It models reporting as a chain from responses to decoded records, constructed sets and task answers, linked by task-compatible matching. The chain gives exact relations for deleting records, averaging their coordinates and switching readouts, and it splits the error of one answer chosen among several calls into missing candidates, lost representatives and wrong choices. These relations guide procedures for counting, detection, document layout, screen parsing and GUI grounding that use the task specification and a shipped configuration, without requiring labels from the target task. On 50 dense synthetic scenes, a one-call reporting-and-decoding protocol cuts per-type count error by 85.2% for GPT-6.1 and 98.8% for Claude Sonnet 5.5. On 600 ScreenSpot-Pro items, a GUI-grounding tier that combines three models lowers the miss rate from 13.67% for GPT-6.1's two-stage zoom to 9.33%, against 12.67% for three such zooms combined by a cluster vote at about the same cost. A plain vote over the same three models misses 12.33%: the other models supply the candidates, and selecting among them turns those candidates into fewer misses. We release the protocols, the stored responses and the analysis code.",
-      "reason": "近 30 天；公司信号：Anthropic；关键词：anthropic, cs.CV, inference。Vision-language models (VLMs) are asked to report what they see: to count objects, box them, parse a screen or pick a click target...",
+      "summary": "Linear-attention language models keep their context in a recurrent state of fixed size, where an inference system stores one copy of this state for every sequence it decodes at the same time. Storing the state at lower precision therefore lets more sequences share an accelerator. Existing state quantizers round the state after every generated token and report that four bits lose accuracy unless the bit width is raised or the model is fine-tuned.\\par We introduce PACE, a post-hoc four-bit state quantizer. PACE rounds the state only once every few generated tokens, as chunked kernels already do once per chunk during prefill, and keeps the tokens generated in between in a small buffer. Rounding less often reduces the error that accumulates in the state. Additionally, we find that the large entries of the gated-delta state gather in columns, because some channels of the update written at each token remain large across many tokens. PACE therefore shares each quantization scale within one column. It also keeps the heads that retain rounding error longest at eight bits. On four hybrid models from 4B to 35B parameters, PACE with mixed four- and eight-bit heads is competitive with eight-bit DAMP on the three larger models at about two thirds of its memory, PACE with four-bit heads throughout scores higher than Q-Mamba at equal memory, and rounding every few tokens preserves the decoding speedup of the buffer.",
+      "reason": "近 30 天；关键词：cs.CL, inference, prefill。Linear-attention language models keep their context in a recurrent state of fixed size, where an inference system stores one copy...",
       "area": "LLM 推理优化",
       "tags": [
-        "anthropic",
-        "cs.CV",
-        "inference"
+        "cs.CL",
+        "inference",
+        "prefill",
+        "quantization"
       ],
       "signal": 99,
-      "source": "Anthropic/arXiv",
-      "publishedAt": "2026-10-18T19:43:28Z",
-      "url": "https://arxiv.org/abs/2610.25503",
-      "pdfUrl": "https://arxiv.org/pdf/2610.25503v1"
+      "source": "arXiv",
+      "publishedAt": "2026-10-21T10:31:52Z",
+      "url": "https://arxiv.org/abs/2610.29545",
+      "pdfUrl": "https://arxiv.org/pdf/2610.29545v1"
     },
     {
-      "id": "arxiv-2610.25470",
-      "title": "A failure of Imagination: VLMs fail to use visual representations for text, but self-distillation can help",
+      "id": "arxiv-2610.29544",
+      "title": "RISK-KV: Quality-Aware Selective KV Cache Reconstruction for Distributed LLM Inference",
       "authors": [
-        "Shashwat Singh",
-        "He He",
-        "Tal Linzen"
+        "Wang Yuekai"
       ],
-      "summary": "Vision-language (VL) models are typically built by fine-tuning a language model to attend to visual features in service of a Visual Question-Answering objective. We ask whether this alignment changes how language models represent text---especially on tasks where visualization would help, like geometry questions posed in words. We distinguish weak multimodality (the model can answer questions about an input image) from strong multimodality (the model's text representations themselves become vision-aligned, improving performance on text-only tasks with latent visual structure). To test for strong multimodality, we construct a task of shape-counting problems with paired equivalent text and image specifications. This task is trivial when the image is provided, but requires visualization when specified in text as line coordinates. We compare instruction-tuned Qwen-2.5 and Mistral models against their vision-aligned counterparts on the text variant of the task. We find that the multimodal models do no better in this setting, despite strong performance on the image version of the task. Probing experiments corroborate this: vision-aligned decoder embeddings carry no more visual structure than their text-only counterparts. Finally, we provide an optimization objective that distills in-context visual embeddings into text embeddings. This alignment induces gains on the text variant of the task without explicit task supervision, even on samples more complex than seen during alignment. This suggests that VQA-style alignment leaves available cross-modal transfer untapped.",
-      "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.AI, alignment。Vision-language (VL) models are typically built by fine-tuning a language model to attend to visual features in service of a Visua...",
+      "summary": "Request migration and interruption recovery in distributed large language model (LLM) inference rely on historical key-value (KV) caches. Retaining or transferring a complete cache incurs substantial state overhead, whereas replaying historical tokens requires additional computation. This paper proposes RISK-KV, a quality-aware method for selective historical KV reconstruction in pretrained models. RISK-KV uses exact KV states on both sides of a target layer and cross-layer ridge regression to predict the missing layer's attention-projection input; it then folds in the original model's KV projection matrices to reduce predictor storage. Reconstruction risk is measured by the change in negative log-likelihood (NLL) caused by actual reconstruction, and low-overhead topology search with quality gating selects the layer groups to reconstruct. Independent tests on three language models show that representative recovery configurations omit 18.2 percent to 33.3 percent of historical KV, with perplexity changes below 0.5 percent. In a local request-recovery experiment with a 512-token history, RISK-KV achieves a 1.51 to 3.31 times speedup over full Token Replay. These results indicate that selective KV reconstruction can reduce historical cache overhead with small changes in predictive quality and improve request-recovery efficiency under the evaluated deployment conditions.",
+      "reason": "近 30 天；关键词：cs.DC, inference, kv-cache。Request migration and interruption recovery in distributed large language model (LLM) inference rely on historical key-value (KV)...",
       "area": "LLM 推理优化",
       "tags": [
-        "alibaba",
-        "cs.AI",
-        "alignment",
-        "multimodal"
-      ],
-      "signal": 99,
-      "source": "Alibaba/arXiv",
-      "publishedAt": "2026-10-18T18:53:18Z",
-      "url": "https://arxiv.org/abs/2610.25470",
-      "pdfUrl": "https://arxiv.org/pdf/2610.25470v1"
-    },
-    {
-      "id": "arxiv-2610.25456",
-      "title": "System X: An LLM Decision Model That Replies from Its Own KV Cache",
-      "authors": [
-        "Syed Usama Khalid Bukhari",
-        "Syed Safwan Khalid",
-        "Muhammad Aamir"
-      ],
-      "summary": "Decision models return probabilities over supplied options, but a deployed agent may also need to reply in words. The present study introduces System X, a large language model (LLM) decision model that adds a text-reply option to the LLM-as-Jev readout. When this option wins, or confidence is low, the same model continues from the decision's key-value (KV) cache, avoiding a repeated prompt prefill. Qwen3-0.6B has been fine-tuned with LoRA on Reason-9k and Bitext reply rows. JevBench accuracy shows no statistically significant change (55.4% to 54.5%, p=0.87), while expected calibration error falls from 0.292 to 0.169. Held-out Bitext routing accuracy reaches 98.3%. Cache reuse saves 15-37% of latency on an Apple M4 Pro, with token-identical replies in the FP32 demonstration cases. Scoring options on copies of the prompt cache matches full-sequence scoring to within 1.4e-6 in probability. Adding dialogue, industry and complaint data (System X+) improves support-task results but lowers IFEval accuracy from 55.5% to 45.0%. System X v4 uses Qwen3-1.7B, rebalanced data and teacher-rewritten reply targets. Against its base LLM, JevBench accuracy rises from 55.0% to 61.0% (p=0.04), with no statistically significant IFEval change (p=0.71). A matched latency test on unadapted Qwen3-1.7B saves 17-39%. One LLM judge prefers v4 replies to an unadapted 1.7B second call (31 to 11 pairs, p=0.003); the other's preference is not significant. These reply comparisons also differ in prompts and generation limits. State conflicts and unsupported reply details remain failure modes. Further studies with several seeds, human raters and real support data are recommended.",
-      "reason": "近 30 天；公司信号：Apple；关键词：apple, cs.AI, deployed。Decision models return probabilities over supplied options, but a deployed agent may also need to reply in words. The present stud...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "apple",
-        "cs.AI",
-        "deployed",
-        "kv-cache",
-        "latency",
-        "llm",
-        "lora"
-      ],
-      "signal": 99,
-      "source": "Apple/arXiv",
-      "publishedAt": "2026-10-18T18:40:50Z",
-      "url": "https://arxiv.org/abs/2610.25456",
-      "pdfUrl": "https://arxiv.org/pdf/2610.25456v1"
-    },
-    {
-      "id": "arxiv-2610.25431",
-      "title": "MOSAIC: Multi-Objective Search for Allocating Inference Cache Across LLM Decoder Layers",
-      "authors": [
-        "Sravanth Kodavanti",
-        "Manjunath Arveti"
-      ],
-      "summary": "The Key-Value (KV) cache is the main memory bottleneck of long-context LLM inference. Token eviction methods such as SnapKV, H2O, AdaKV and L2Norm shrink it, but they give every transformer layer the same budget, although layers differ in which tokens they need. We present MOSAIC, a multi-objective neural architecture search that learns per-layer KV-cache budgets for any eviction method. One search maps the trade-off between average budget and task score; its best allocation transfers to every target budget without further search, and an optional budget-constrained search refines it. Across four eviction methods on Llama-3-8B-Instruct and Mistral-7B-Instruct-v0.2, MOSAIC beats uniform allocation in 146 of 154 (task, method, budget) settings, by up to +48 points on RULER and +11.9 on LongBench (LCC). On both models, it reaches the score of uniform allocation with up to 4x less KV cache (75% smaller). Against EvolKV, MOSAIC explores a ~10^40 x larger search space with 4x fewer evaluations and 18% fewer GPU-hours per budget, and scores higher in 5 of 6 settings. The learned allocations consistently favour a small set of middle layers.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, inference。The Key-Value (KV) cache is the main memory bottleneck of long-context LLM inference. Token eviction methods such as SnapKV, H2O,...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "cs.LG",
+        "cs.DC",
         "inference",
         "kv-cache",
         "llm"
       ],
       "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-10-18T17:51:14Z",
-      "url": "https://arxiv.org/abs/2610.25431",
-      "pdfUrl": "https://arxiv.org/pdf/2610.25431v1"
+      "source": "arXiv",
+      "publishedAt": "2026-10-21T10:30:46Z",
+      "url": "https://arxiv.org/abs/2610.29544",
+      "pdfUrl": "https://arxiv.org/pdf/2610.29544v1"
     },
     {
-      "id": "arxiv-2610.25250",
-      "title": "Improving the Expressive Power of Hybrid Sequence Models via Multi-Hop Retrieval",
+      "id": "arxiv-2610.29229",
+      "title": "Cache Locally, Recompute Selectively for Streaming Video Understanding",
       "authors": [
-        "Yam Eitan",
-        "Gilad Yehudai",
-        "Haggai Maron"
+        "Junhyeok Lee",
+        "Sangyoon Lee",
+        "Jaeho Lee"
       ],
-      "summary": "Hybrid architectures offer a promising approach to efficient language modeling by combining a small number of full-attention layers with a larger number of efficient sequence layers, such as sparse attention and recurrent layers. While full-attention layers maintain a KV cache that grows linearly with sequence length, efficient layers typically rely on separate, fixed-size states rather than accessing this richer existing memory. Recent work has begun exploring ways to allow efficient layers access to the KV cache, but the theoretical benefits of such access, and the extent to which existing approaches can realize them remain poorly understood. We investigate these questions by analyzing the expressive power of individual hybrid blocks on function composition, a well-studied task in sequence-model expressivity associated with multi-hop reasoning. We first establish that both conventional hybrid blocks and those with top-$κ$ KV-cache access require $Ω(\\sqrt{n})$ capacity to compute even two-function composition over a domain of size $n$. To overcome this limitation, we introduce the \\emph{Multi-hop Retrieval Attention} (MuRA) hybrid block, a simple architecture that enables multi-hop retrieval from a shared KV cache while preserving asymptotic computational and memory efficiency. We prove that a single fixed size $m$-hop MuRA block can compute $m$-function composition, whereas computing $(m+1)$-function composition with the same retrieval depth requires polynomial model size, establishing a strict expressivity hierarchy in retrieval depth. Synthetic experiments support this hierarchy, showing that increasing retrieval depth enables learning progressively deeper compositions, substantially outperforming existing hybrid architectures. Together, our results identify multi-hop retrieval as a promising mechanism for improving the expressive power of efficient hybrid architectures.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, kv-cache。Hybrid architectures offer a promising approach to efficient language modeling by combining a small number of full-attention layer...",
+      "summary": "Streaming video understanding (SVU) requires video-LLMs to process incoming video continuously while answering user queries with low latency. Recent methods reduce query-time cost by prefilling frames into KV caches during idle time and reusing the cached KVs at query time. To bound per-frame computation over unbounded video streams, these methods restrict the context available during prefill. This creates a fundamental context mismatch: the restricted context may omit information needed to properly contextualize video tokens, yet, still contain information irrelevant to the eventual query, which is unknown during prefill. We propose FrameBlend, a simple yet effective plug-and-play method to address this mismatch through selective KV recomputation, without requiring any additional training. At query time, FrameBlend re-prefills selected video tokens using query-relevant context and replaces their cached KVs with recomputed ones. Crucially, this recomputation enables shorter attention windows during idle-time prefill, substantially reducing prefill cost while improving accuracy. Experiments across three SVU frameworks and five streaming and offline benchmarks demonstrate accuracy gains of up to 3.9 pp. On RVS-Ego, FrameBlend reduces per-frame prefill FLOPs by over 20% and total processing time by 14-59% for retrieval-based frameworks, including the cost of query-time recomputation. These results demonstrate that a simple change in how contextualization is distributed between idle time and query time can improve the accuracy-efficiency trade-off for SVU.",
+      "reason": "近 30 天；关键词：cs.CV, kv-cache, latency。Streaming video understanding (SVU) requires video-LLMs to process incoming video continuously while answering user queries with l...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CV",
+        "kv-cache",
+        "latency",
+        "llm",
+        "prefill",
+        "retrieval"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-21T05:39:35Z",
+      "url": "https://arxiv.org/abs/2610.29229",
+      "pdfUrl": "https://arxiv.org/pdf/2610.29229v1"
+    },
+    {
+      "id": "arxiv-2610.29183",
+      "title": "Resuming Vision-Language Inference across Onboard Interruptions",
+      "authors": [
+        "Xiaolong Huang",
+        "Yinyuan Zhang",
+        "Daliang Xu",
+        "Yun Ma",
+        "Qing Li",
+        "Mengwei Xu",
+        "Shangguang Wang",
+        "Gang Huang",
+        "Xuanzhe Liu"
+      ],
+      "summary": "Executing vision-language models (VLMs) aboard low-Earth orbit satellites enables flexible processing of observation data without first downlinking it to the ground. On commercial off-the-shelf payloads, however, a request may span multiple execution windows: power and thermal constraints, fault-triggered reboots, and competing payload demands can interrupt inference before it completes. Each shutdown discards volatile activations and KV caches, forcing an unprotected request to repeat work after restart. We present OrbitWeaver, a framework that preserves VLM inference progress across onboard interruptions through coordinated checkpointing and recovery. Its phase-aware checkpointing selects recovery boundaries according to the state lifetimes and computational characteristics of vision encoding, language-model prefill, and decoding, balancing storage traffic against recomputation. Its dependency-aware dynamic recovery schedules restoration from partially completed states across the layer and token-chunk dimensions. By overlapping checkpoint and weight reads with recomputation, it reduces restart latency; the recovery planner computes an optimal execution order under its scheduling model within 100 ms. Experiments on satellite payload hardware using on-orbit telemetry traces show up to a 4.07-fold end-to-end speedup and a 3.56-fold reduction in SSD write volume over the evaluated baselines. A 72-hour deployment on two low-Earth orbit satellites demonstrates that OrbitWeaver retains inference progress and resumes execution across repeated bus-enforced shutdowns.",
+      "reason": "近 30 天；关键词：cs.DC, inference, kv-cache。Executing vision-language models (VLMs) aboard low-Earth orbit satellites enables flexible processing of observation data without...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "inference",
+        "kv-cache",
+        "latency",
+        "prefill"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-21T04:14:43Z",
+      "url": "https://arxiv.org/abs/2610.29183",
+      "pdfUrl": "https://arxiv.org/pdf/2610.29183v1"
+    },
+    {
+      "id": "arxiv-2610.29052",
+      "title": "Our Own Jev: Typed Decisions in One Forward Pass, from an In-House Judge to Open LoRA Models",
+      "authors": [
+        "Yuchuan Weng",
+        "Chi Liu",
+        "Xin Chen",
+        "Srinivasan Manoharan"
+      ],
+      "summary": "A typed decision maps evidence, a question and a fixed set of options to a probability for every option, computed in one forward pass, by reading a language model's logits or a small head over its hidden states, instead of generating and parsing text. The commercial system Jev popularised this System~1 interface, and open reproductions have followed. We report two uses of the pattern. \\emph{Part I} describes an in-house System~1 judge that triages about 148K agentic coding session records for a training corpus. It replaces a frontier LLM judge that cost on the order of \\$1,000 per pass and whose stored labels matched a fresh two-judge consensus on only 26.9\\% of the sessions where the two judges agreed; a self-hosted frozen backbone with a rank-16 LoRA adapter and a pointer head answers three typed questions in one forward pass, judges 1,000 sessions in about three minutes of one GPU, about \\$0.06 at a reference rate and roughly 1\\% of the frontier judge's cost, and keeps every session inside the organisation. \\emph{Part II} asks whether a readout that adds no parameters can be competitive and whether training one helps. Applying the public Eikos recipe and corpus of about 25K decisions to three further backbones (1B, 2B and 35B), we read the frozen output layer of a LoRA-adapted decoder. On the 111 public hard items of JevBench our single-seed 35B, developed with those items in view, scores 79.3\\%, not significantly different from the commercial reference (73.0\\%, unadjusted $p=0.12$) and ahead of five open systems after Holm--Bonferroni correction; our 2B is ahead of all four kev checkpoints on the leaderboard. A single-seed ablation finds no detectable benefit from training the 26 letter rows of the output layer, and a retrain on a later corpus release moves the 2B's hard-tier accuracy by 11.7 points, which shows how little small evaluations resolve.",
+      "reason": "近 30 天；关键词：cs.CL, llm, lora。A typed decision maps evidence, a question and a fixed set of options to a probability for every option, computed in one forward p...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "llm",
+        "lora",
+        "production"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-21T01:28:58Z",
+      "url": "https://arxiv.org/abs/2610.29052",
+      "pdfUrl": "https://arxiv.org/pdf/2610.29052v1"
+    },
+    {
+      "id": "arxiv-2610.28998",
+      "title": "FlashNext-RL: A System Optimization Study for Long-Horizon Agentic RL of Qwen3.8-Flash-Next",
+      "authors": [
+        "Zhewei Yao",
+        "Yuxiong He"
+      ],
+      "summary": "Long-horizon agentic reinforcement learning (RL) requires both efficient rollout generation and training on long sequences. However, the memory requirements and model-specific operators of Qwen3.8-Flash-Next make this difficult with existing open-source implementations. To resolve these limitations, we introduce FlashNext-RL, a model-specific RL training optimization framework based on prime-rl, with vLLM for software engineering (SWE) rollout generation. Our main focus is BF16 training of the full 48-layer model on a single 8xB200 node, with the first two layers, the n-gram table, the sparse-attention indexer and the multi-token prediction head frozen. We optimize host offload, gradient accumulation and the kernels for mixture-of-experts, sparse attention and the gated residual stream. In the full-model development study, non-padding training throughput increases from approximately 395 tokens/s/GPU in the initial 32K-token configuration to 4,438 tokens/s/GPU in the optimized 131K-token configuration, with hardware matmul throughput (aka without considering the cost of attention components) increasing from approximately 20 to 213 TFLOPs/GPU. A controlled cumulative study on an 8-layer model further quantifies the contributions of individual optimizations. Together with three inference nodes, the system supports a live SWE RL run with a target batch of 1,024 trainable rollouts and a 131,072-token context limit. Over steps 5-15, an iteration takes 22.4 minutes on average, with bounded entropy and trainer-sampler mismatch KL. These results highlight the importance of tailoring RL training to the model's architecture, memory layout and kernel requirements, rather than relying only on general-purpose RL infrastructure.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Long-horizon agentic reinforcement learning (RL) requires both efficient rollout generation and training on long sequences. Howeve...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
         "efficient",
-        "kv-cache",
-        "retrieval",
-        "serving"
+        "inference",
+        "llm",
+        "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-18T13:10:43Z",
-      "url": "https://arxiv.org/abs/2610.25250",
-      "pdfUrl": "https://arxiv.org/pdf/2610.25250v1"
+      "publishedAt": "2026-10-20T23:53:09Z",
+      "url": "https://arxiv.org/abs/2610.28998",
+      "pdfUrl": "https://arxiv.org/pdf/2610.28998v1"
     },
     {
-      "id": "arxiv-2610.25219",
-      "title": "gKSM: GPU Memory Deduplication at Driver Layer for Serverless LLM Inference",
+      "id": "arxiv-2610.28947",
+      "title": "Is 2:4 Sparsity Still Worth It? Semi-Structured Sparsity versus Quantization in LLM Inference",
       "authors": [
-        "Shuheng Gao",
-        "Fan Guo",
-        "Yongkun Li",
-        "Ziye Yue",
-        "Yinlong Xu",
-        "John C. S. Lui"
+        "Xiuyi Qin"
       ],
-      "summary": "In serverless LLM inference, cloud providers commonly locate multiple instances on a single GPU to improve utilization. However, each instance independently maintains its model weights and runtime state, making duplicate GPU memory the primary bottleneck. Memory deduplication is a widely-used technique for eliminating duplicate data in CPU systems, but extending it to GPU memory faces fundamental challenges. Effective GPU memory deduplication must avoid redundant data movement between CPU and GPU while preserving write isolation for shared pages without native copy-on-write (COW) support. This paper presents gKSM, a transparent GPU memory deduplication framework for serverless LLM inference. gKSM addresses these challenges through CPU-GPU collaborative hash management that offloads hash computation to GPU kernels, zero-copy model weight deduplication that eliminates duplication before model weight transfer, and a cross-privilege page fault handler that combines a lightweight kernel hook and CUDA Virtual Memory Management (VMM) remapping in the user space. gKSM also designs a stable page scanning algorithm and a reuse-aware placement policy in cluster scale. Experiments show that gKSM reduces GPU memory usage by 59.8% while maintaining high throughput compared to ServerlessLLM. Under memory constrained workloads, gKSM improves aggregate throughput by 2.15X and supports five instances concurrently. In cluster level simulation, gKSM achieves a service rate of 99.97%, compared to 78.2% for SLInfer and 26.9% for ServerlessLLM.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.OS, copy-on-write。In serverless LLM inference, cloud providers commonly locate multiple instances on a single GPU to improve utilization. However, e...",
+      "summary": "NVIDIA tensor cores have supported 2:4 semi-structured sparsity since Ampere, and the pattern composes with quantization. When the two are combined, the practical question is which step to take next: from a given precision, add 2:4 sparsity or drop to the next lower precision? We compare the two at equal bits, with sparsity metadata counted, and at equal nominal tensor-core tiers, over all six GEMM operands of a transformer layer, with kernels measured on three GPU generations and online pruning and quantization included. Our results show that as long as a lower precision is available, adding 2:4 is the worse step, both less accurate and slower, because the energy that 2:4 discards from each group of four along the hardware-forced axis does not shrink with bits, while quantization error does. Once quantization reaches the lowest precision the hardware supports, 2:4 still speeds up linear layers by 1.3--1.7\\x{}, and on an H100 a retrained 2:4 model served in FP8 by vLLM reaches 27\\% higher prefill throughput than the dense FP8 model, with GSM8K accuracy on par. Its quality has to be won back by retraining, however, which restores perplexity long before reasoning; on Blackwell, whose sparse FP4 uses a pairwise 4:8 pattern, the loss is larger and our retraining budget did not recover it.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, energy。NVIDIA tensor cores have supported 2:4 semi-structured sparsity since Ampere, and the pattern composes with quantization. When the...",
       "area": "LLM 推理优化",
       "tags": [
         "nvidia",
-        "cs.OS",
-        "copy-on-write",
+        "cs.LG",
+        "energy",
         "inference",
         "llm",
+        "prefill",
+        "quantization"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-10-20T21:48:45Z",
+      "url": "https://arxiv.org/abs/2610.28947",
+      "pdfUrl": "https://arxiv.org/pdf/2610.28947v1"
+    },
+    {
+      "id": "arxiv-2610.28937",
+      "title": "Auditing Conformal Prediction for Language Models Under Inference-Time Model Shift",
+      "authors": [
+        "Achref Doula",
+        "Max Mühlhäuser"
+      ],
+      "summary": "Conformal prediction (CP) for language models is typically evaluated under a matched protocol, in which calibration and deployment use the same post-training inference configuration, such as quantization mode and inference temperature. In deployment, these choices often differ from those used at calibration to meet memory or throughput constraints or serving policies. We argue that this exposes a limitation in current CP evaluation protocols for language models. We formalize the underlying phenomenon as inference-time model shift: a change in the conformal score distribution induced by inference configuration rather than by the input--label distribution, and theoretically characterize how it breaks split-conformal exchangeability even when the task distribution and trained model are unchanged. We then evaluate its consequences across 8 language models, 4 finite-label benchmarks, and 12 inference configurations. We find that matched evaluation can substantially overstate deployment-time coverage, and that the effect is heterogeneous across models and datasets. We argue that inference configuration should be reported as a first-class experimental axis in CP evaluations for language-model systems.",
+      "reason": "近 30 天；关键词：cs.LG, dataset, inference。Conformal prediction (CP) for language models is typically evaluated under a matched protocol, in which calibration and deployment...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "dataset",
+        "inference",
+        "quantization",
         "serving",
         "throughput"
       ],
       "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-10-18T12:27:22Z",
-      "url": "https://arxiv.org/abs/2610.25219",
-      "pdfUrl": "https://arxiv.org/pdf/2610.25219v1"
+      "source": "arXiv",
+      "publishedAt": "2026-10-20T21:30:43Z",
+      "url": "https://arxiv.org/abs/2610.28937",
+      "pdfUrl": "https://arxiv.org/pdf/2610.28937v1"
     }
   ]
 }
