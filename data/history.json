@@ -1,7 +1,308 @@
 {
-  "generatedAt": "2026-10-23T08:14:11.891582+08:00",
+  "generatedAt": "2026-10-24T08:07:31.402713+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-10-24",
+      "generatedAt": "2026-10-24T08:07:31.402713+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2610.31479",
+          "title": "Evaluating the Applicability of LLM Inference Optimizations on Apple Silicon",
+          "authors": [
+            "Kyrylo Yemets",
+            "Andrii Yaroshevych",
+            "Victor Muryn",
+            "Ostap Khomenko",
+            "Pavlo Kryven",
+            "Maksym Kmet",
+            "Maksym Shamrai",
+            "Mariya Hirna"
+          ],
+          "summary": "Apple Silicon is among the most widely used platforms for local LLM inference, yet nearly all inference optimizations are designed and validated on server-class NVIDIA GPUs under batched serving workloads. Which optimizations retain their benefits when moved to Apple Silicon, and what determines their applicability? We evaluate four optimization families: KV-cache pruning, speculative decoding, ported GPU kernels, and post-training quantization. Experiments span four Apple machines under a common single-request decode workload, with matched RTX 4090 comparisons where possible. KV-cache pruning can reach up to 1.75 times end-to-end throughput on Apple but can reduce throughput on desktop NVIDIA GPUs. Under the common benchmark, all evaluated speculative decoding methods reduce throughput on Apple, despite reported 2-6 times gains on server GPUs. CUDA kernel designs transfer only partially: public Metal lacks asynchronous copy, and batch-one decode makes several serving-oriented mechanisms inapplicable, although transferable components yield up to 1.20 times decode throughput. Quantization gains vary by machine. Across four families, a reported speedup is not a portable property of a technique alone but a joint function of technique, runtime, hardware contract, and workload regime.",
+          "reason": "近 30 天；公司信号：Apple, NVIDIA；关键词：apple, nvidia, cs.LG。Apple Silicon is among the most widely used platforms for local LLM inference, yet nearly all inference optimizations are designed...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "apple",
+            "nvidia",
+            "cs.LG",
+            "inference",
+            "llm",
+            "quantization",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Apple/NVIDIA/arXiv",
+          "publishedAt": "2026-10-22T16:04:40Z",
+          "url": "https://arxiv.org/abs/2610.31479",
+          "pdfUrl": "https://arxiv.org/pdf/2610.31479v1"
+        },
+        {
+          "id": "arxiv-2610.31433",
+          "title": "Drift Says When, Budget Says How Much: Rate-Controlled KV Re-selection for Long-Form Multimodal Generation",
+          "authors": [
+            "Bin Hu",
+            "Yingbo Xiao"
+          ],
+          "summary": "KV cache compression for multimodal LLMs usually selects the visual tokens to keep once, at prefill, and reuses that selection for the whole generation. We show that this one-shot selection is severely limited on long-form generation: on detailed image description, even an oracle that selects with the attention of the uncompressed answer reaches only 0.44-0.52 ROUGE-L agreement with the uncompressed output, because the evidence the model reads moves as the description unfolds. Re-selecting whenever attention drifts out of the kept set is the natural remedy, but we find that a fixed drift threshold fails systematically: drift magnitudes are not comparable across samples, so low-drift samples are almost never refreshed although they benefit the most. We propose Rate-Controlled Refresh (RCR), which lets drift decide when and where to re-select while a per-sample controller regulates how often, combined with a low-rank drift detector, candidate-restricted re-selection, and a decision that stays on the GPU. With one setting for all models and tasks, RCR outperforms the per-step retrieval method InfiniGen by 1.6-3.8 ROUGE-L points on five of six model-task settings with no significant difference on the sixth, while staying within 1.7 points of exact per-step re-selection, with comparable estimated data movement per step and a 4x smaller GPU-resident detector. On DetailCaps, drift-chosen timing beats random timing at the same refresh rate and periodic timing even at a higher rate, by 2.0-5.0 points. On pre-registered video description, where drift is homogeneous across samples, RCR is on par with InfiniGen on Qwen2-VL and exceeds it on Qwen3-VL but no longer beats a fixed threshold at the nearest tested rates, consistent with the diagnosis; object-level evaluation shows that RCR achieves higher object F1 against the uncompressed output than InfiniGen on two of three models.",
+          "reason": "近 30 天；关键词：cs.LG, kv-cache, llm。KV cache compression for multimodal LLMs usually selects the visual tokens to keep once, at prefill, and reuses that selection for...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "kv-cache",
+            "llm",
+            "multimodal",
+            "prefill",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T15:30:48Z",
+          "url": "https://arxiv.org/abs/2610.31433",
+          "pdfUrl": "https://arxiv.org/pdf/2610.31433v1"
+        },
+        {
+          "id": "arxiv-2610.31309",
+          "title": "Extreme Compression of Per-Layer Embeddings via Cross-Layer Latent Vector Quantization",
+          "authors": [
+            "Jiacheng Liu",
+            "Yaxin Luo",
+            "Xiaohan Zhao",
+            "Peng Sun",
+            "Xinyi Shang",
+            "Jiacheng Cui",
+            "Yonina C. Eldar",
+            "Zhiqiang Shen"
+          ],
+          "summary": "Scaling embedding capacity alongside Transformer computation is an emerging trend in language models. This trend makes high compression rates increasingly useful. Hence, we study extreme compression of Per-Layer Embeddings (PLE), which follow this trend and account for 35.2% of the parameters of Gemma 4 E4B. At such rates, conventional quantizers give each token-layer vector its own code of only a few bytes. We instead develop OPTIC (Output-Path-fitted, Token-shared Indexed Codes), which stores one quantized code tuple per token and decodes it at every layer with a layer-specific affine decoder. Codes and decoders are fitted to the PLE output path rather than to the stored vectors. At about $100\\times$ PLE compression of bfloat16 (BF16) E4B, OPTIC retains an aggregate 97.8% of the uncompressed model's performance across seven benchmarks, whereas product quantization, the strongest of six conventional baselines, retains 66.3%. At $594\\times$ and $1,002\\times$ PLE compression of BF16 E4B, OPTIC retains 90.5% and 84.1%. On the official E4B release with 4-bit linear weights and 16-bit activations (W4A16), OPTIC retains 96.9% at about $100\\times$ PLE compression. During inference at about $100\\times$ PLE compression, BF16 E4B uses 29.7% less GPU memory than with uncompressed PLE at the same key-value cache size, while running at most 0.40% slower.",
+          "reason": "近 30 天；关键词：cs.LG, inference, quantization。Scaling embedding capacity alongside Transformer computation is an emerging trend in language models. This trend makes high compre...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "quantization",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T14:07:01Z",
+          "url": "https://arxiv.org/abs/2610.31309",
+          "pdfUrl": "https://arxiv.org/pdf/2610.31309v1"
+        },
+        {
+          "id": "arxiv-2610.31305",
+          "title": "Cola2: Co-Adaptive Hierarchical Language Modeling with Continuous Semantic Compression and Balanced Discrete Generation",
+          "authors": [
+            "Hongcan Guo",
+            "Yian Zhao",
+            "Feng Wang",
+            "Shen Nie",
+            "Guoqiang Wei",
+            "Yan Zeng",
+            "Hengshuang Zhao"
+          ],
+          "summary": "Hierarchical language generation separates continuous semantic modeling from discrete text realization, but its effectiveness depends on what the latent space compresses and how the discrete generator uses it. We propose Cola2, a framework that jointly studies continuous semantic compression, the balance between reconstruction and generation, and continuous-discrete co-adaptation. Cola2 dynamically segments text into semantic spans, controls the compression rate through auxiliary-loss-free negative feedback, and combines reconstruction and generation supervision to learn compact, predictive latent representations. A block-causal masked diffusion decoder is trained with clean, noisy, and dropped latent conditions, while classifier-free guidance adjusts the balance between semantic reconstruction and autonomous generation. Token-prediction gradients update the encoder through the latents, whereas Flow Matching prior learning is decoupled from representation learning by stop-gradient. During inference, generated text is re-encoded under a fixed span layout to keep the latent history consistent with the actual text context. Experiments on five downstream tasks with about 210 billion training tokens validate the core designs and show competitive, unsaturated scaling. With 346.03 billion source tokens, an unconverged checkpoint reaches a 60.10 average across eight tasks and surpasses Llama-3-8B on HellaSwag and StoryCloze despite its reported pretraining budget being over 43 times larger. These results demonstrate the potential of continuous-latent hierarchical language generation.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, inference。Hierarchical language generation separates continuous semantic modeling from discrete text realization, but its effectiveness depe...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.CL",
+            "inference"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-10-22T14:04:07Z",
+          "url": "https://arxiv.org/abs/2610.31305",
+          "pdfUrl": "https://arxiv.org/pdf/2610.31305v1"
+        },
+        {
+          "id": "arxiv-2610.31169",
+          "title": "SARIA: Persistence-Aware KV Caching with Coordinated DRAM--SSD Reload for LLM Agents",
+          "authors": [
+            "Hui Li",
+            "Qihui Zhou",
+            "Xiao Yan",
+            "Shumeng Zhang",
+            "Zijie Dai",
+            "Zequn Gong",
+            "Mingcong Song",
+            "Guoping Long",
+            "Hongjie Si",
+            "James Cheng"
+          ],
+          "summary": "Multi-turn LLM agents usually reuse long context prefixes, making key value (KV) caching crucial for reducing prefill latency. SSDs provide a low-cost extension to limited DRAM capacity but introduce two key challenges. Eagerly persisting all KV cache blocks incurs substantial write traffic and rapidly consumes finite SSD endurance. Meanwhile, the small number of SSDs provisioned in typical GPU servers limits aggregate reload bandwidth, making SSD-resident KV cache much slower to retrieve than that in DRAM and inflating prefill latency. We present \\textsc{Saria} (Selective Admission and Reload for Inference Acceleration), a KV caching system that jointly manages DRAM and SSD by exploiting the session-level temporal locality of LLM agents to reduce SSD writes and accelerate cache reload. On the write path, \\textsc{Saria} uses eviction and reuse history to selectively persist KV cache blocks that exhibit reuse opportunities beyond their DRAM residency, avoiding unnecessary writes for KV cache already hosted in DRAM. On the read path, \\textsc{Saria} promotes selected SSD-hit KV cache blocks from GPU memory into DRAM after prefill, allowing subsequent reuse within the same session to reduce SSD read traffic while limiting DRAM contention. A transfer coordinator paces DRAM reads while SSD transfers are active, allowing both paths to make progress and efficiently share GPU ingress bandwidth. We implement \\textsc{Saria} on LMCache MP and evaluate it using workloads from TraceLab and WEKA, covering both full-attention and hybrid-attention models. The results show that \\textsc{Saria} reduces SSD writes by 57.1--58.9\\% compared with popular full duplicate caching and the mean time to first token (TTFT) by 42.3--79.7\\% over DRAM-only caching.",
+          "reason": "近 30 天；关键词：cs.OS, efficient, inference。Multi-turn LLM agents usually reuse long context prefixes, making key value (KV) caching crucial for reducing prefill latency. SSD...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.OS",
+            "efficient",
+            "inference",
+            "kv-cache",
+            "latency",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T12:25:27Z",
+          "url": "https://arxiv.org/abs/2610.31169",
+          "pdfUrl": "https://arxiv.org/pdf/2610.31169v1"
+        },
+        {
+          "id": "arxiv-2610.31098",
+          "title": "RIFT: KV Cache Compression for Draft Models with Complementary Compressibility Training",
+          "authors": [
+            "Dor Tsur",
+            "Maor Ashkenazi",
+            "Maximilian Golub",
+            "Peter Hicks",
+            "Yaniv Galron",
+            "Talor Abramovich",
+            "Yoav Miron",
+            "Tiyasa Mitra",
+            "Bita Darvish Rouhani",
+            "Ran Zilberstein"
+          ],
+          "summary": "Speculative decoding is a popular decode acceleration method. As such, it is particularly relevant to long-output generation, which requires an increasingly large KV cache. KV cache compression offers a way to constrain costs in long-context drafting. However, compression methods that focus on prefill information can lose relevance as the output length grows. We term this phenomenon decode staleness and show that it degrades draft model accuracy under selection-based KV cache compression. We introduce RIFT, a family of selection-based KV cache compression strategies that balance prefill information and recent generated tokens. We show that refreshing the KV cache selection during token generation significantly improves the drafter's quality at the cost of additional decode latency. To alleviate the refresh costs, we propose an adaptive KV refresh strategy that reduces the number of score calculations while retaining the drafter's quality. We further demonstrate how a compressibility-driven drafter training phase, based on sparse attention masks, can improve the drafter's quality under a compressed KV cache. Combined with compressibility training, RIFT enables Qwen3.5-4B, drafting for Qwen3.5-122B, to retain over 98% of its full-cache acceptance length on 32K-token inputs, 4K-token outputs, and an 8K-token KV cache budget.",
+          "reason": "近 30 天；关键词：cs.CL, kv-cache, latency。Speculative decoding is a popular decode acceleration method. As such, it is particularly relevant to long-output generation, whic...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "kv-cache",
+            "latency",
+            "prefill",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T11:12:23Z",
+          "url": "https://arxiv.org/abs/2610.31098",
+          "pdfUrl": "https://arxiv.org/pdf/2610.31098v1"
+        },
+        {
+          "id": "arxiv-2610.30947",
+          "title": "RetiJev: Fast and Source-Grounded Ophthalmic Decision Models",
+          "authors": [
+            "Bo Liu",
+            "Lianyu Wang",
+            "Meng Wang",
+            "Ching-Yu Cheng",
+            "Huazhu Fu"
+          ],
+          "summary": "Ophthalmic clinical decision support requires fast, accurate, and privacy-preserving inference, yet autoregressive large language models (LLMs) incur substantial latency and computational overhead for decisions among predefined actions. We therefore investigate a decision-oriented alternative to generative reasoning. Specifically, we first introduce RetiJev-Data, a source-grounded ophthalmology corpus comprising 78,158 clinical-decision and diagnosis questions derived from articles in PubMed Central and a MeSH vocabulary covering 531 eye diseases, and 50,074 guideline-grading questions spanning 11 grading systems, along with a 24,662-question evaluation benchmark. Based on this, we develop RetiJev, a family of 0.8B-9B decision models that directly score candidate answers without autoregressive decoding. Across all model sizes, RetiJev outperforms both a 27B LLM and the commercial Jev 1.13 decision model on guideline grading by 10.4-23.0 points. RetiJev-9B further achieves the highest accuracy on clinical decisions, improving over both baselines by 5.4-6.5 points while matching them on diagnosis. It answers a case in 158 ms on one GPU, 3.5x faster than LLM generation and 470x faster than reasoning. Models are released at https://github.com/Awenbocc/RetiJev.",
+          "reason": "近 30 天；关键词：cs.CL, inference, latency。Ophthalmic clinical decision support requires fast, accurate, and privacy-preserving inference, yet autoregressive large language...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "inference",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T08:59:47Z",
+          "url": "https://arxiv.org/abs/2610.30947",
+          "pdfUrl": "https://arxiv.org/pdf/2610.30947v1"
+        },
+        {
+          "id": "arxiv-2610.30941",
+          "title": "PAIR: Preference-Aligned Intent Retrieval for Premium People Recommendation at LinkedIn",
+          "authors": [
+            "Zhongkai Shangguan",
+            "Yanbin Kang",
+            "Yihan Cao",
+            "Ruijie Jiang",
+            "Qiannan Yin",
+            "Chang Yue",
+            "Zijian Zhou",
+            "Girish Kathalagiri",
+            "Changshuai Wei",
+            "Zhengming Xing"
+          ],
+          "summary": "General-purpose embeddings trained on profile similarity often misrank candidates in professional networks, where relevance is inherently complementary rather than symmetric. For example, job seekers usually engage with recruiters rather than peers with similar credentials. Current user recommendation systems are often built on profile similarity or social signals such as shared connections, which are effective in friend-oriented social networks where users tend to connect with similar people or within existing social circles. However, this does not hold in professional platforms like LinkedIn, where interactions are often goal-driven and cross-role interactions, requiring matching based on complementary intents rather than similarity or social proximity. In this paper, we propose Preference-Aligned Intent Retrieval, a retrieval framework that is designed to model user intent preference instead of profile similarity. Our approach is inspired by the preference-learning perspective of Direct Preference Optimization, but instantiates preference learning as an exposure-conditioned multi-negative contrastive objective over embeddings. This formulation simplifies training and scales efficiently to large candidate sets without requiring an explicit reference model. Furthermore, we incorporate user interaction history by aggregating click histories with positional encoding to capture temporal order, which enables constant-cost updates of user representations over a fixed history window, allowing new interactions to be incorporated without re-encoding history. As a result, personalization can be updated efficiently using lightweight CPU operations without repeated LLM inference during serving. We evaluate PAIR on LinkedIn's Premium retrieval task. A 0.6B parameter model achieves a MAR@100 of 0.45.",
+          "reason": "近 30 天；关键词：cs.IR, efficient, inference。General-purpose embeddings trained on profile similarity often misrank candidates in professional networks, where relevance is inh...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.IR",
+            "efficient",
+            "inference",
+            "llm",
+            "recommendation",
+            "retrieval",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T08:57:58Z",
+          "url": "https://arxiv.org/abs/2610.30941",
+          "pdfUrl": "https://arxiv.org/pdf/2610.30941v1"
+        },
+        {
+          "id": "arxiv-2610.30798",
+          "title": "Amplifying Latency and Cost of LLM Inference via Rowhammer Attack",
+          "authors": [
+            "Mrityunjay Shukla",
+            "Shubham Roy",
+            "Biswabandan Panda"
+          ],
+          "summary": "Large language models (LLMs) achieve high inference efficiency using optimized GPU kernels generated by just-in-time (JIT) compilation frameworks such as Triton. Triton compiles GPU kernels through an MLIR/LLVM-based pipeline. We investigate whether a Rowhammer-induced bit-flip in the CPU's DRAM can degrade GPU-based LLM inference performance while preserving output correctness. We present LLVMhammer, the first Rowhammer attack that causes LLM inference slowdown by inducing a bit-flip in Triton's compilation pipeline. A bit-flip in a performance-critical optimization pass causes Triton to generate a functionally identical but suboptimal GPU kernel. Since Triton caches the generated kernel on disk, a single successful bit-flip causes persistent slowdown across subsequent inference executions. Triton's target-independent stages are shared across GPU vendors, which makes our attack GPU vendor-agnostic. To identify exploitable bit-flip locations without manual inspection, we build Karnage, a tool that isolates useful bit-flip locations in Triton's target-independent compilation pipeline. We evaluate LLVMHammer across a diverse set of LLMs, including Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct, Mistral-7B-Instruct-v0.3, and Deepseek-llm-7B-chat, across NVIDIA RTX 4090 and AMD RX 7900 XTX GPUs. LLVMhammer increases inference latency of an LLM inference server running on a single GPU by 4-16\\%, which, in turn, can translate into additional annual operating costs at the scale of multi-GPU deployments. We further show that LLVMhammer can also corrupt LLM outputs across different GPU vendors, reducing BERTScore to as low as 25\\%, illustrating the broader security implications of bit-flips in Triton's compilation pipeline.",
+          "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.CR。Large language models (LLMs) achieve high inference efficiency using optimized GPU kernels generated by just-in-time (JIT) compila...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "nvidia",
+            "cs.CR",
+            "inference",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Meta/NVIDIA/arXiv",
+          "publishedAt": "2026-10-22T06:24:35Z",
+          "url": "https://arxiv.org/abs/2610.30798",
+          "pdfUrl": "https://arxiv.org/pdf/2610.30798v1"
+        },
+        {
+          "id": "arxiv-2610.30675",
+          "title": "OneLatent: Latent Reasoning for Efficient Foundation Recommendation Models",
+          "authors": [
+            "Hao Jiang",
+            "Peiru Du",
+            "Pengfei Yao",
+            "Mengting Li",
+            "Siyuan Lou",
+            "Kuo Cai",
+            "Sheng Yu",
+            "Qiang Luo",
+            "Jian Liang",
+            "Ruiming Tang",
+            "Fei Pan",
+            "Peng Jiang",
+            "Wenwu Ou"
+          ],
+          "summary": "Large language models (LLMs) have demonstrated strong reasoning capabilities, motivating their use as the backbone of foundation recommendation models (FRMs). Existing methods enhance recommendations through explicit Chain-of-Thought (CoT) reasoning under a Think-then-Answer paradigm. However, explicit CoT incurs substantial inference overhead by generating lengthy reasoning traces and relies on manually designed templates that struggle to capture diverse, dynamic user interests. We propose OneLatent, an efficient latent reasoning framework that compresses explicit reasoning traces into several learnable latent tokens, enabling Latent-Reason-then-Answer inference without generating verbose traces. OneLatent first introduces Multi-View Adaptive CoT (MV-ACoT), which creates diverse, high-quality teacher-generated supervision by exploring user interests from multiple perspectives and automatically adapting reasoning complexity to each instance. Building on pretrained FRMs, it then uses a three-stage latent-token alignment paradigm to progressively internalize CoT traces into learnable latent tokens. Finally, a multistage curriculum-based post-training strategy activates latent-token reasoning for downstream recommendation tasks. Experiments on an industrial-scale Kuaishou dataset and the public Kuaishou LLM-Rec benchmark show that OneLatent consistently outperforms explicit CoT-based methods and traditional baselines. Compared with the Think and No-Think variants of FRMs, OneLatent improves SID@64 by 17.44% and 9.33%, respectively, while achieving over 17x higher online inference throughput. We further develop a production serving system for scalable, real-time FRM inference. An online A/B test in Kuaishou's local-services advertising scenario shows that deploying OneLatent with this system yields an estimated 9.6% revenue lift over strong online baselines, including OneRec and OneReason.",
+          "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, advertising。Large language models (LLMs) have demonstrated strong reasoning capabilities, motivating their use as the backbone of foundation r...",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "cs.IR",
+            "advertising",
+            "alignment",
+            "dataset",
+            "efficient",
+            "inference"
+          ],
+          "signal": 99,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-10-22T03:39:38Z",
+          "url": "https://arxiv.org/abs/2610.30675",
+          "pdfUrl": "https://arxiv.org/pdf/2610.30675v1"
+        }
+      ]
+    },
     {
       "date": "2026-10-23",
       "generatedAt": "2026-10-23T08:14:11.891582+08:00",
@@ -19952,12 +20253,6 @@
           "pdfUrl": "https://arxiv.org/pdf/2607.03362v1"
         }
       ]
-    },
-    {
-      "date": "2026-07-07",
-      "generatedAt": "2026-07-07T06:56:43.922590+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": []
     }
   ]
 }
