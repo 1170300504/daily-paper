@@ -1,7 +1,208 @@
 {
-  "generatedAt": "2026-10-25T07:50:57.355998+08:00",
+  "generatedAt": "2026-10-26T07:40:09.772944+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-10-26",
+      "generatedAt": "2026-10-26T07:40:09.772944+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2610.30067",
+          "title": "GoiBERT: Compact Vietnamese Language Models via Two-Stage Knowledge Distillation",
+          "authors": [
+            "Quang Anh Kiet Tran",
+            "Nam Anh Tran",
+            "Manh Hung Trinh",
+            "Thanh Danh Le",
+            "Khang Nhat Hoang Vo",
+            "Huynh Dai Nhan Tran"
+          ],
+          "summary": "Vietnamese pre-trained encoders have improved rapidly, but the strongest ones are large, multilingual-vocabulary models or depend on external word segmentation, which makes them costly to deploy. We present GoiBERT, a family of two compact Vietnamese encoders with 26M and 49M parameters that operate directly on raw text. GoiBERT learns from two complementary teachers. A same-tokenizer Vietnamese encoder first teaches general-purpose representations. A much larger teacher then provides task-level guidance through soft labels that are generated without ever labeling its own training data. Across eight benchmarks covering text classification, aspect-based sentiment analysis, natural language inference, and named entity recognition, GoiBERT-large achieves the highest average score among non-teacher models. It does so with fewer than half the parameters of the strongest compact baseline and twice its throughput. GoiBERT-base retains 99% of that baseline's performance at a quarter of its size. Our analysis shows that compression is nearly lossless for sentiment and classification tasks but remains costly for inference and entity recognition, which points to clear directions for future work. Our code and models are available at: https://github.com/Nhantran65/GoiBERT.git",
+          "reason": "近 30 天；关键词：cs.CL, inference, throughput。Vietnamese pre-trained encoders have improved rapidly, but the strongest ones are large, multilingual-vocabulary models or depend...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "inference",
+            "throughput"
+          ],
+          "signal": 89,
+          "source": "arXiv",
+          "publishedAt": "2026-10-21T17:24:36Z",
+          "url": "https://arxiv.org/abs/2610.30067",
+          "pdfUrl": "https://arxiv.org/pdf/2610.30067v2"
+        },
+        {
+          "id": "arxiv-2610.29477",
+          "title": "TenetBench: A Clause-Anchored Russian Corpus for Evaluating Language Models against Professional Codes of Ethics",
+          "authors": [
+            "Yegor Anichkov",
+            "Valery Vinogradov",
+            "Andrey Furov",
+            "Marina Polukoshko",
+            "Sergey Bolovtsov"
+          ],
+          "summary": "Codes of professional ethics guide and restrict specialists, who increasingly work with assistants built on large language models. Such an assistant can breach the user's code, or help the user breach it, without the user noticing. Evaluations reporting broad categories of harm cannot show how often this happens or which provision is breached. TenetBench pairs 3,433 requests conflicting with clauses of fifteen Russian-language professional codes with benign twins that differ only in the legitimacy of what is asked. An automated pipeline generates the tasks from the text of a code, so the corpus grows with every code added and a provision yields new tasks on every run. It also produced tasks and human-validated verdicts from two English codes of other jurisdictions. In human validation of the frozen pipeline, specialists rated 0.995 of the conflicting tasks plausible, and the model judge agreed with the adjudicated label at Gwet's AC1 of at least 0.894 on 1,860 elements. We evaluated fourteen model and reasoning-mode combinations on whether they produce the conflicting text, decline or warn. Eleven of the fourteen produce conflicting content on most such requests, mostly without a warning, and nearly three warnings in four accompany conflicting content. The models that conform more do so by declining while still serving the legitimate twin, and enabling reasoning halved the refusals of two models. We hope the dataset and pipeline will help evaluate how language models observe professional norms and let diagnostic datasets be built for particular professions and organisations.",
+          "reason": "近 30 天；关键词：cs.CL, dataset, serving。Codes of professional ethics guide and restrict specialists, who increasingly work with assistants built on large language models....",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "dataset",
+            "serving"
+          ],
+          "signal": 89,
+          "source": "arXiv",
+          "publishedAt": "2026-10-21T09:32:23Z",
+          "url": "https://arxiv.org/abs/2610.29477",
+          "pdfUrl": "https://arxiv.org/pdf/2610.29477v1"
+        },
+        {
+          "id": "arxiv-2610.30980",
+          "title": "Diagnostic Loss: Asymmetric Supervision for Radiology Report Generation",
+          "authors": [
+            "Ignacy Kolton",
+            "Wenxuan Li",
+            "Zongwei Zhou",
+            "Jarosław B. Ćwikła",
+            "Arkadiusz Sitek",
+            "Pedro R. A. S. Bassi",
+            "Szymon Płotka"
+          ],
+          "summary": "Automated radiology report generation requires models to do more than produce fluent clinical narratives: they must explicitly state supported diagnoses while avoiding unsupported ones. However, existing medical vision-language models (MedVLMs) are typically trained with token-level maximum likelihood objectives, which prioritize text agreement over diagnostically critical terms. As a result, models can miss key diagnoses and introduce wrong ones. We identify this as an objective misalignment between conventional language modeling and the asymmetric diagnostic requirements of radiology reporting. To encode these requirements, we introduce Diagnostic Loss (DLoss), a differentiable, architecture-agnostic objective that operates directly on decoder token probabilities. DLoss separately aggregates probability mass over vocabularies associated with diagnoses supported by the reference report and with unsupported alternatives. Using asymmetric pooling across token positions in the report, it encourages supported diagnoses to receive sufficient probability in at least one position while suppressing spurious probability spikes for unsupported diagnoses across all positions during training. The loss can be applied to existing 3D MedVLMs without modifying their vision backbones, language decoders, or inference procedures, and introduces no additional inference-time computation. We train and evaluate DLoss on 50,000 abdominal CT scans across several 3D MedVLM architectures on both in-distribution and out-of-distribution report-generation benchmarks. Across these settings, DLoss improves diagnostic faithfulness while maintaining competitive performance on conventional language-generation metrics, showing the value of asymmetric sequence-level supervision for radiology report generation. The code for DLoss is available at https://github.com/gmum/DLoss.",
+          "reason": "近 30 天；关键词：cs.CV, alignment, inference。Automated radiology report generation requires models to do more than produce fluent clinical narratives: they must explicitly sta...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CV",
+            "alignment",
+            "inference"
+          ],
+          "signal": 87,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T09:26:17Z",
+          "url": "https://arxiv.org/abs/2610.30980",
+          "pdfUrl": "https://arxiv.org/pdf/2610.30980v1"
+        },
+        {
+          "id": "arxiv-2610.30663",
+          "title": "Group Relative Policy Optimisation Improves Multilingual Speech Recognition in Low-Resource Languages",
+          "authors": [
+            "Tim Wenjie Hu",
+            "Evelyn Nafula Ouma",
+            "Benjamin Akera",
+            "John A. Quinn"
+          ],
+          "summary": "Autoregressive encoder-decoder speech recognition models trained with teacher forcing can suffer from exposure bias, limiting their ability to recover from their own prediction errors at inference time. Recent work has shown that reinforcement learning with Group Relative Policy Optimisation (GRPO) improves speech recognition in major languages with LLM-based models. We extend this line of work to smaller, non-LLM encoder-decoder ASR models, using Whisper-large-v3 as a case study across 51 African languages. The benefits of this approach are most pronounced when training data is scarce or when input audio is noisy or degraded. Our resulting model, SunflowerASR, achieves the best published macro-averaged WER on the AfriVox-v2 (0.227) and SimbaBench (0.372) benchmarks, and is publicly available.",
+          "reason": "近 30 天；关键词：cs.AI, inference, llm。Autoregressive encoder-decoder speech recognition models trained with teacher forcing can suffer from exposure bias, limiting thei...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AI",
+            "inference",
+            "llm"
+          ],
+          "signal": 86,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T03:24:38Z",
+          "url": "https://arxiv.org/abs/2610.30663",
+          "pdfUrl": "https://arxiv.org/pdf/2610.30663v1"
+        },
+        {
+          "id": "arxiv-2610.29727",
+          "title": "Accept or Repair: Preserving Passage-Supported Answers in Contrastive Decoding",
+          "authors": [
+            "Jungseob Lee",
+            "Seungyoon Lee",
+            "Hyeonseok Moon",
+            "Seongtae Hong",
+            "Suhyune Son",
+            "Sugyeong Eo",
+            "Minhyuk Kim",
+            "Chanjun Park",
+            "Jaehyung Seo"
+          ],
+          "summary": "Large language models often answer from knowledge learned during training, even when a provided passage contradicts that knowledge. To address this problem, contrastive decoding contrasts the predictions under the full and a modified prompt at every token, but it also alters correct answers that the passage supports. We show that checking answers against the passage removes this trade-off. Based on this observation, we propose Accept-or-Repair (AoR), a training-free procedure. AoR keeps a sampled answer if the passage supports it. Otherwise, it tries up to two replacements with contrastive decoding, returning one as soon as it passes this check. It rejects replacements that repeat the answer generated without the passage when the passage favors another answer. Our experiments show that AoR raises the score over sampling by 12.5 points on counterfactual passages and 2.3 on ordinary ones, surpassing eight contrastive and prompting baselines on both, including when each receives the same rejection rule. Replacing only initial answers that the passage does not support improves the average score of every decoder. These results suggest that models can follow passages that contradict their knowledge while preserving accuracy on passages that agree with it. Code will be released at https://github.com/js-lee-AI/AoR.",
+          "reason": "近 30 天；关键词：cs.CL, serving。Large language models often answer from knowledge learned during training, even when a provided passage contradicts that knowledge...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "serving"
+          ],
+          "signal": 82,
+          "source": "arXiv",
+          "publishedAt": "2026-10-21T13:32:29Z",
+          "url": "https://arxiv.org/abs/2610.29727",
+          "pdfUrl": "https://arxiv.org/pdf/2610.29727v1"
+        },
+        {
+          "id": "arxiv-2610.31529",
+          "title": "An Empirical Study of Recent Large Language Models for Knowledge Graph to Text Generation on Standard Benchmarks",
+          "authors": [
+            "Priyanka",
+            "Renaud Delbru",
+            "Souhail Bakkali",
+            "Mickaël Coustaty",
+            "Antoine Doucet"
+          ],
+          "summary": "Knowledge graph-to-text (KG-to-text) generation verbalizes a set of knowledge graph triples into fluent natural language. While fine-tuned encoder-decoder models have long been the standard approach, recent LLMs are becoming increasingly competitive. We benchmark recent LLMs against fine-tuned encoder-decoder models, using reference-based metrics and graph-grounded reference-free LLM-based evaluation validated against human annotations. We observed that recent LLMs substantially narrow, and in several settings close, the gap with fine-tuned models on reference-based metrics, while performing better on graph-grounded metrics. LLM-based evaluation scores show limited correlation with reference-based metrics, suggesting that the two approaches capture different aspects of generation quality. Graph-grounded evaluation reveals that prompted models produce fewer contradictions and triple omissions than fine-tuned models, and these errors increase more rapidly with graph size for fine-tuned models, highlighting differences between the two approaches that reference-based metrics may not fully capture.",
+          "reason": "近 30 天；关键词：cs.CL, llm。Knowledge graph-to-text (KG-to-text) generation verbalizes a set of knowledge graph triples into fluent natural language. While fi...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm"
+          ],
+          "signal": 77,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T16:36:35Z",
+          "url": "https://arxiv.org/abs/2610.31529",
+          "pdfUrl": "https://arxiv.org/pdf/2610.31529v1"
+        },
+        {
+          "id": "arxiv-2610.31415",
+          "title": "SyRA-CS: Synthetic-to-Real Adaptation for Code-Switched ASR with Meta-Learning",
+          "authors": [
+            "Fadel Thior",
+            "Ahmer Tabassum",
+            "Haania Siddiqui",
+            "Hanan Aldarmaki",
+            "Thamar Solorio"
+          ],
+          "summary": "Code-switched (CS) automatic speech recognition (ASR) remains difficult because real CS speech is scarce and synthetic speech does not fully match it. We investigate whether synthetic CS speech is more useful for learning an adaptation-friendly initialization than for ordinary continual fine-tuning. We propose SyRA-CS, a pair-specific synthetic-to-real adaptation framework based on Reptile meta-learning. For each language pair and pretrained model, we meta-train on the corresponding synthetic CS-FLEURS subset and then adapt using one hour of labeled real target speech. We evaluate four architectural settings: Encoder-CTC, FastConformer-RNN-T, Attention Encoder-Decoder (AED) and Speech-LLM. Experiments cover on Arabic-, French-, German-, and Hindi-English, against synthetic-only transfer, real-only fine-tuning, and continual fine-tuning. SyRA-CS improves over continual fine-tuning on WER in all 16 model-pair comparisons and on CER in 15 of 16, with relative macro WER reductions of 17.7% for XLS-R and 5.3-5.8% for the other three models. The gains hold across the tested models but vary in size across architectures, language pairs and metrics.",
+          "reason": "近 30 天；关键词：cs.CL, llm。Code-switched (CS) automatic speech recognition (ASR) remains difficult because real CS speech is scarce and synthetic speech does...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm"
+          ],
+          "signal": 77,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T15:17:10Z",
+          "url": "https://arxiv.org/abs/2610.31415",
+          "pdfUrl": "https://arxiv.org/pdf/2610.31415v1"
+        },
+        {
+          "id": "arxiv-2610.30516",
+          "title": "Beyond End-to-End Recovery: Towards a Better Understanding of LLM Steganography via Rolewise Decomposition",
+          "authors": [
+            "Om Tailor",
+            "Yucheng Pan",
+            "Solaleh Mohammadi",
+            "Xinyan Liu",
+            "Kaiqing Zhang"
+          ],
+          "summary": "In large language model (LLM) steganography, an encoder hides a private message in an otherwise ordinary response, as text transmitted to a decoder, who attempts to recover it. The success of this private-message transmission is commonly measured through end-to-end (E2E) recovery, which checks whether the decoder correctly reconstructs the private message. However, E2E recovery cannot distinguish encoding failures from decoding failures or reveal how the private message is represented in the encoder's transmitted text. To address these limitations, we introduce a rolewise decomposition framework that separately examines how private messages are represented in encoder transmitted texts, what decoders recover, and what deterministic verification can establish. Across 7,200 encoder responses, we identify 168 verifiable encodings missed by decoders and 706 responses containing private messages reconstructed through word-length or token-initial patterns not explicitly specified in the encoder's instructions. These findings demonstrate that E2E recovery alone may obscure important distinctions between encoding and decoding, motivating their separate evaluation to better understand and mitigate the safety issues caused by LLM steganography.",
+          "reason": "近 30 天；关键词：cs.CR, llm。In large language model (LLM) steganography, an encoder hides a private message in an otherwise ordinary response, as text transmi...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CR",
+            "llm"
+          ],
+          "signal": 77,
+          "source": "arXiv",
+          "publishedAt": "2026-10-21T22:52:40Z",
+          "url": "https://arxiv.org/abs/2610.30516",
+          "pdfUrl": "https://arxiv.org/pdf/2610.30516v1"
+        }
+      ]
+    },
     {
       "date": "2026-10-25",
       "generatedAt": "2026-10-25T07:50:57.355998+08:00",
@@ -19903,292 +20104,6 @@
           "publishedAt": "2026-07-07T01:09:54Z",
           "url": "https://arxiv.org/abs/2607.05722",
           "pdfUrl": "https://arxiv.org/pdf/2607.05722v1"
-        }
-      ]
-    },
-    {
-      "date": "2026-07-09",
-      "generatedAt": "2026-07-09T06:55:00.089402+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2607.06202",
-          "title": "UBEP: Re-architecting Expert Parallelism Communication Library for Production Superpods",
-          "authors": [
-            "Yipeng Liu",
-            "Chang Liu",
-            "Si Shen",
-            "Jiaqi Zheng",
-            "Mingfan Li",
-            "Yuyang Yang",
-            "Guanhua Li",
-            "Yuquan Zhang",
-            "Yimeng Xu",
-            "Zhongzhe Hu",
-            "Zhiyuan Huang",
-            "Qihang Duan",
-            "Junsong Wang",
-            "Wenkai Ling",
-            "Baochuan Yang",
-            "Xianzhi Yu",
-            "Han Bao",
-            "Yijie Chen",
-            "Guihai Chen"
-          ],
-          "summary": "The deployment of Mixture-of-Experts (MoE) models on production high-bandwidth superpods, such as NVIDIA's NVL72/576 and Huawei's CloudMatrix384, introduces critical challenges beyond raw interconnect bandwidth. While these systems provide unified global address spaces and high-bandwidth fabrics, their full potential for sparse MoE communication is hindered by three fundamental bottlenecks: (1) Strict execution serialization imposed by coarse-grained Bulk Synchronous Parallel (BSP) orchestration of interdependent communication phases; (2) Prohibitive synchronization overhead that fails to scale alongside high interconnect bandwidth; and (3) Severe load imbalance resulting from distance-agnostic scheduling of irregular token traffic. To eliminate these bottlenecks, we introduce UBEP (Unified-Bus Expert Parallelism), a production-ready communication library that rethinks MoE's All-to-All primitives for modern superpod architectures. Through large scale experiments, UBEP reduces All-to-All latency by up to 52.4% and MoE inference Time Per Output Token (TPOT) by up to 11.1%.",
-          "reason": "近 30 天；公司信号：Huawei, NVIDIA；关键词：huawei, nvidia, cs.DC。The deployment of Mixture-of-Experts (MoE) models on production high-bandwidth superpods, such as NVIDIA's NVL72/576 and Huawei's...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "huawei",
-            "nvidia",
-            "cs.DC",
-            "inference",
-            "latency",
-            "production"
-          ],
-          "signal": 99,
-          "source": "Huawei/NVIDIA/arXiv",
-          "publishedAt": "2026-07-07T12:25:16Z",
-          "url": "https://arxiv.org/abs/2607.06202",
-          "pdfUrl": "https://arxiv.org/pdf/2607.06202v1"
-        },
-        {
-          "id": "arxiv-2607.05968",
-          "title": "InfluMatch: Frontier-Quality KOL Search at 4B-Model Cost",
-          "authors": [
-            "Krittanon Kaewtawee",
-            "Petmongkon Pornpichitsuwan",
-            "Natchaya Temyingyong",
-            "Nutnicha Laplamoon",
-            "Wachiravit Modecrua",
-            "Krittin Pachtrachai",
-            "Touchapon Kraisingkorn"
-          ],
-          "summary": "Matching influencers (KOLs) to free-form, multi-part Thai marketing criteria is today served either by keyword search over structured profiles, which misses semantic fit, or by prompting frontier LLMs over every candidate, which is accurate but slow and expensive. We present InfluMatch, a low-cost three-stage cascade -- retrieval $\\rightarrow$ rerank $\\rightarrow$ reason -- built entirely from small open-weight models: dense retrieval returns 50 candidates, a 4B pointwise reranker scores each by the log-probability of a single Yes token and keeps 10, and a 4B reasoner grades the shortlist per criterion on a rubric with a Thai rationale. The cascade is designed for cost: reasoning over a filtered top-10 halves token spend versus reasoning over all 50 while scoring 14 points higher. End-to-end against human relevance labels on an 11-query set with all 50 candidates labeled, the full cascade reaches 94.1% P@5, versus a retrieval-only baseline near random; it matches the frontier model Kimi-K2.6 (91.8%) while emitting ${\\sim}35\\times$ fewer output tokens and serving a 50-KOL query in ${\\sim}20$ s on one A100. Notably, the only fine-tuning that pays off is pairwise: a SimPO-tuned reranker matches the frontier baseline's best-pick accuracy (78.0 EM), whereas fine-tuning the reasoner on pointwise per-criterion labels improves offline scores yet degrades end-to-end ranking -- an inversion we trace to the design of the absolute labeling task -- leaving the untuned base model as the strongest deployed reasoner. The result is a deployable, explainable KOL search system at a small fraction of frontier serving cost.",
-          "reason": "近 30 天；关键词：cs.CL, deployed, llm。Matching influencers (KOLs) to free-form, multi-part Thai marketing criteria is today served either by keyword search over structu...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "deployed",
-            "llm",
-            "ranking",
-            "retrieval",
-            "serving",
-            "slo"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-07T08:04:05Z",
-          "url": "https://arxiv.org/abs/2607.05968",
-          "pdfUrl": "https://arxiv.org/pdf/2607.05968v1"
-        },
-        {
-          "id": "arxiv-2607.05933",
-          "title": "Energy-Efficient GPU DVFS for Fine-Tuning of SLMs on Resource-constrained Embedded Devices",
-          "authors": [
-            "Jurn-Gyu Park",
-            "Sanzhar Zholdybayev",
-            "Aidar Amangeldi",
-            "Ademi Zhanuzakova"
-          ],
-          "summary": "Dynamic Voltage Frequency Scaling (DVFS) on resource-constrained embedded GPU platforms is essential for energy-efficient small language model (SLM) fine-tuning, as privacy- and personalization-driven adaptation increasingly requires local execution and involves repeated forward-backward optimization over many mini-batches, making it substantially more time- and energy-intensive than single-pass inference. To this end, 1) we first characterize the fine-tuning behavior of representative encoder-only SLMs of BERT variants, and autoregressive decoder-only SLMs of Pythia variants on GLUE benchmarks. In addition to the characterizations, 2) we propose a simple yet effective ML-based model selection that selects energy-optimal GPU DVFS settings on resource-constrained embedded platforms. Our results on NVIDIA Jetson AGX Orin demonstrate average 13.11% energy savings (up to 26.73%) over MAXN Mode 0, which has no explicit power cap.",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.PF, efficient。Dynamic Voltage Frequency Scaling (DVFS) on resource-constrained embedded GPU platforms is essential for energy-efficient small la...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.PF",
-            "efficient",
-            "energy",
-            "inference"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-07T07:34:56Z",
-          "url": "https://arxiv.org/abs/2607.05933",
-          "pdfUrl": "https://arxiv.org/pdf/2607.05933v1"
-        },
-        {
-          "id": "arxiv-2607.05876",
-          "title": "Think Before You Grid-Search: Floor-First Triage for LLM Serving",
-          "authors": [
-            "Yihua Liu"
-          ],
-          "summary": "LLM serving optimization typically benchmarks many configurations and reaches for heavy profilers when latency targets are missed. We argue for the reverse discipline: estimation is the analytical layer of profiling -- without it, optimization degenerates to grid search. Floor First is a residual-driven triage workflow. Each decode step is modeled as a five-dimensional resource vector (HBM bytes, FLOPs, network bytes, network messages, KV capacity); summing within a resource and maximizing across resources gives an optimistic floor, the plain sum a pessimistic one. Where a measurement lands inside this [max, sum] interval reads out overlap quality before any profiler is opened, and profilers escalate only on residuals above a stated threshold. Deployment alternatives are compared by wall ordering -- which resource wall binds first as load grows -- rather than by point benchmarks. The account is compositional: new attention or state-space variants enter by declaring one module, and the workflow ships as a zero-dependency calculator plus an agent skill that enforces the discipline in agentic optimization loops. As a case study we analyze a DeepSeek-V3.2-style 671B MoE/MLA model on 16 NVIDIA H20 GPUs, whose ridge point of ~74 FLOP/byte (vs ~590 for H100) makes it an extreme decode-oriented part. The floors show TP16 decoding is KV-capacity-limited to ~70 concurrent 8K requests; sparse attention removes the KV-bandwidth term but not the capacity wall; an EP16+DP-attention layout accepts slightly worse same-batch weight traffic for an order-of-magnitude higher capacity wall (~644) -- while single-stream latency favors TP by 2.4x. The layout judgment is thus a computable function of the operating point, explaining why production deployments on identical hardware have shipped opposite attention layouts.",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.PF, latency。LLM serving optimization typically benchmarks many configurations and reaches for heavy profilers when latency targets are missed....",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.PF",
-            "latency",
-            "llm",
-            "production",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-07T06:11:54Z",
-          "url": "https://arxiv.org/abs/2607.05876",
-          "pdfUrl": "https://arxiv.org/pdf/2607.05876v1"
-        },
-        {
-          "id": "arxiv-2607.05711",
-          "title": "FourTune: Towards Fully 4-Bit Efficient Post-Training for Diffusion Models",
-          "authors": [
-            "Bowen Xue",
-            "Zihan Min",
-            "Xingyang Li",
-            "Zhekai Zhang",
-            "Haocheng Xi",
-            "Lvmin Zhang",
-            "Maneesh Agrawala",
-            "Jun-Yan Zhu",
-            "Song Han",
-            "Yujun Lin",
-            "Muyang Li"
-          ],
-          "summary": "Diffusion models have become a dominant paradigm for high-quality generative modeling, while post-training is essential for adapting them to diverse downstream applications. However, post-training of large diffusion models is still challenging due to the prohibitive memory footprints and slow training speed, which existing parameter-efficient fine-tuning methods only partially address. To overcome these limitations, we propose FourTune, an efficient post-training framework for diffusion models based on an end-to-end W4A4G4 paradigm. FourTune introduces a triple-branch hybrid pipeline that augments the standard LoRA architecture with a frozen numerical stabilizer to isolate quantization-sensitive outliers, enabling stable training under native 4-bit computation. In addition, FourTune employs hardware-efficient block-wise quantization and customized fused kernels to support efficient quantized backpropagation and reduce memory bandwidth overhead. Across customization, reinforcement learning, and distillation tasks, FourTune matches the quality of full-precision fine-tuning. On FLUX.1-dev (12B), FourTune reduces memory overhead by 2.25$\\times$ and increases end-to-end training throughput by 2.27$\\times$ compared to BF16 LoRA.",
-          "reason": "近 30 天；关键词：cs.LG, efficient, lora。Diffusion models have become a dominant paradigm for high-quality generative modeling, while post-training is essential for adapti...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "efficient",
-            "lora",
-            "quantization",
-            "slo",
-            "throughput"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-07T00:34:30Z",
-          "url": "https://arxiv.org/abs/2607.05711",
-          "pdfUrl": "https://arxiv.org/pdf/2607.05711v1"
-        },
-        {
-          "id": "arxiv-2607.05721",
-          "title": "SpanUQ: Span-Level Uncertainty Quantification for Large Language Model Generation",
-          "authors": [
-            "Yimeng Zhang",
-            "Yingying Zhuang",
-            "Ziyi Wang",
-            "Yuxuan Lu",
-            "Pei Chen",
-            "Aman Gupta",
-            "Zhe Su",
-            "Ming Tan",
-            "Zhilin Zhang",
-            "Qun Liu",
-            "Manikandarajan Ramanathan",
-            "Rajashekar Maragoud",
-            "Edward Vul",
-            "Jing Huang",
-            "Dakuo Wang"
-          ],
-          "summary": "Uncertainty estimation is essential not only for the trustworthy deployment of large language models (LLMs) but also as a foundation for self-refinement in LLM generation. However, existing approaches operate at suboptimal granularities: token-level scores lack semantic coherence, while sequence-level scores fail to localize errors. We formalize Span-Level Uncertainty Estimation (SLUE), a new task that targets the natural granularity for uncertainty: semantically coherent text spans, each conveying a single assessable unit of meaning. To address this task, we introduce SPANUQ, a lightweight probe that distills the uncertainty knowledge from expensive multi-sample inference into a single forward pass over LLM hidden states. SPANUQ employs a DETR-style span decoder to simultaneously detect spans and estimate their uncertainty via a Mixture of Beta distribution, trained with a principled combination of Beta NLL regression and contrastive ranking objectives. We construct SPANUQ-BENCH, the first span-level uncertainty benchmark comprising 20K prompts, 293K annotated spans, and continuous soft labels derived from multi-sample claim verification. Experiments on five LLM backbones show that SPANUQ consistently achieves the best span-level uncertainty quality, outperforming the strongest probe baseline and all sampling-based methods while being 10-20x faster. Its DETR-based span detector attains 0.910 F1, surpassing the best heuristic by 39.4%, enabling precise error localization that sequence-level methods cannot provide. The framework generalizes across five LLMs spanning two model families.",
-          "reason": "近 30 天；关键词：cs.CL, inference, llm。Uncertainty estimation is essential not only for the trustworthy deployment of large language models (LLMs) but also as a foundati...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "inference",
-            "llm",
-            "ranking"
-          ],
-          "signal": 97,
-          "source": "arXiv",
-          "publishedAt": "2026-07-07T01:09:46Z",
-          "url": "https://arxiv.org/abs/2607.05721",
-          "pdfUrl": "https://arxiv.org/pdf/2607.05721v1"
-        },
-        {
-          "id": "arxiv-2607.05061",
-          "title": "KVpop -- Key-Value Cache Compression with Predictive Online Pruning",
-          "authors": [
-            "Lukas Hauzenberger",
-            "Niklas Schmidinger",
-            "Anamaria-Roberta Hartl",
-            "David Stap",
-            "Thomas Schmied",
-            "Sebastian Böck",
-            "Günter Klambauer",
-            "Sepp Hochreiter"
-          ],
-          "summary": "Key-value (KV) cache growth is a major bottleneck in autoregressive decoding, as memory and bandwidth scale linearly with context length. Existing KV eviction methods often rely on static heuristics or proxy scores, which poorly track future token utility and cause brittle eviction as relevance shifts. To address this, we introduce KVpop, which learns a fixed-budget KV eviction policy by directly supervising the keep-or-drop decision. The scorer is trained against a novel future-attention target, computed efficiently without materializing dense attention maps. We further introduce a delayed memory-based scorer that, uniquely among learned eviction methods, defers scoring for a fixed number of steps to exploit near-future context. On AIME and HMMT mathematical reasoning, KVpop retains 98% of full-attention performance on Qwen3-4B at 75% KV cache compression and 97% at 88% compression, consistently outperforming established eviction baselines. Qwen3-8B shows even stronger results, reaching near-full teacher performance. These results show that supervising eviction with future-attention signals cuts memory costs while maintaining quality.",
-          "reason": "近 30 天；关键词：cs.LG, efficient, kv-cache。Key-value (KV) cache growth is a major bottleneck in autoregressive decoding, as memory and bandwidth scale linearly with context...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "efficient",
-            "kv-cache"
-          ],
-          "signal": 91,
-          "source": "arXiv",
-          "publishedAt": "2026-07-06T13:32:34Z",
-          "url": "https://arxiv.org/abs/2607.05061",
-          "pdfUrl": "https://arxiv.org/pdf/2607.05061v1"
-        },
-        {
-          "id": "arxiv-2607.05583",
-          "title": "ResonatorLM: Causal Resonant Field Mixing for Efficient Long-Context Language Modelin",
-          "authors": [
-            "Archie Chaudhury"
-          ],
-          "summary": "Contemporary language models are dominated by the transformer architecture, which leverages self-attention mechanisms to enable more efficient, parallelized training across a wide set of documents and corpora. This has allowed transformers to effectively model data across a wide range of modalities and contexts. However, transformers, along with their conventional counterparts such as recurrent neural networks (RNNs) and convolutional neural networks (CNNs), often struggle to maintain efficiency when processing long contexts. We introduce ResonatorLM, a new mechanism that replaces attention with a physics-derived alternative. ResonatorLM treats token sequences as a single, driven one-dimensional latent field and replaces attention dot products with causal functions of damped resonators. We implement ResonatorLM on a traditional network architecture and test it on standard long-context modeling tasks. We find that in a small, 6M matched setting, training and prefill speedups increase with sequence length, decode speed reaches 6.47x compared to that of a standard, optimized transformer at 32K tokens, and accuracy reaches 61.31 percent (compared to 55.32 percent) on WikiText.",
-          "reason": "近 30 天；关键词：cs.CL, efficient, prefill。Contemporary language models are dominated by the transformer architecture, which leverages self-attention mechanisms to enable mo...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "efficient",
-            "prefill"
-          ],
-          "signal": 88,
-          "source": "arXiv",
-          "publishedAt": "2026-07-06T19:28:40Z",
-          "url": "https://arxiv.org/abs/2607.05583",
-          "pdfUrl": "https://arxiv.org/pdf/2607.05583v1"
-        },
-        {
-          "id": "arxiv-2607.05353",
-          "title": "Selective Disclosure Watermarking for Large Language Models",
-          "authors": [
-            "Xuyang Chen",
-            "Xiang Li",
-            "Yangxinyu Xie",
-            "Qi Long"
-          ],
-          "summary": "Watermarking methods embed imperceptible and verifiable signals into text generated by large language models (LLMs). Existing approaches include zero-bit schemes for distinguishing synthetic text from human writing and multi-bit schemes for embedding metadata. However, current multi-bit watermarking methods do not allow selective disclosure: verifying any part of the watermark requires revealing the entire embedded message. This lack of control leads to unnecessary information exposure and raises privacy concerns. We propose Hierarchical Vocabulary Routing (HeRo), a watermarking framework that enables selective disclosure of embedded metadata. The method recursively partitions the vocabulary and distributes watermark information across hierarchical layers, so that different verifiers can decode only the portions of the payload corresponding to their access level. We show that the proposed scheme preserves the unbiasedness of the underlying sampling process and thus maintains text quality. Experiments demonstrate that our framework supports fine-grained access control while achieving high detection accuracy and low latency. Code is available at https://github.com/xuyangc03/hero-watermark.",
-          "reason": "近 30 天；关键词：cs.CR, latency, llm。Watermarking methods embed imperceptible and verifiable signals into text generated by large language models (LLMs). Existing appr...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CR",
-            "latency",
-            "llm"
-          ],
-          "signal": 87,
-          "source": "arXiv",
-          "publishedAt": "2026-07-06T17:32:01Z",
-          "url": "https://arxiv.org/abs/2607.05353",
-          "pdfUrl": "https://arxiv.org/pdf/2607.05353v1"
-        },
-        {
-          "id": "arxiv-2607.04428",
-          "title": "dOPSD: On-Policy Self-Distillation for Diffusion Language Models",
-          "authors": [
-            "Phuong Tuan Dat",
-            "Qi Li",
-            "Xinchao Wang"
-          ],
-          "summary": "Diffusion large language models (dLLMs) generate text by iteratively denoising a masked sequence, offering a parallel alternative to autoregressive models, but eliciting strong reasoning through post-training remains difficult: supervised fine-tuning is off-policy and suffers from exposure bias, while reinforcement learning gives only sparse, sequence-level rewards and is hard to apply without tractable sequence likelihoods. On-policy self-distillation (OPSD) offers a promising alternative, using one model as both student and teacher to provide dense, token-level, on-policy supervision, but its effectiveness hinges on giving the teacher privileged information (PI) - typically an instance-specific ground-truth reference unavailable at inference - so the student ends up distilling a weak PI-free consensus policy that yields little improvement on dLLM reasoning. We introduce dOPSD, which instead derives the teacher's privilege directly from the student's own denoising trajectory, evaluating masked positions using later, more-decoded steps of that same trajectory rather than an external label, so the teacher's advantage emerges from the model's own decoding process; on Dream and LLaDA, dOPSD improves both in-domain math reasoning and out-of-domain code generation, outperforming supervised and on-policy baselines.",
-          "reason": "近 30 天；关键词：cs.CL, inference, llm。Diffusion large language models (dLLMs) generate text by iteratively denoising a masked sequence, offering a parallel alternative...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "inference",
-            "llm"
-          ],
-          "signal": 86,
-          "source": "arXiv",
-          "publishedAt": "2026-07-05T17:47:29Z",
-          "url": "https://arxiv.org/abs/2607.04428",
-          "pdfUrl": "https://arxiv.org/pdf/2607.04428v1"
         }
       ]
     }
