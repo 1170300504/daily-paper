@@ -1,200 +1,288 @@
 {
-  "generatedAt": "2026-10-26T07:40:09.772944+08:00",
+  "generatedAt": "2026-10-27T08:58:56.166475+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2610.30067",
-      "title": "GoiBERT: Compact Vietnamese Language Models via Two-Stage Knowledge Distillation",
+      "id": "arxiv-2610.32951",
+      "title": "Where Rounding Happens Matters: Rounding-Location Alignment Stabilizes LLM Reinforcement Learning",
       "authors": [
-        "Quang Anh Kiet Tran",
-        "Nam Anh Tran",
-        "Manh Hung Trinh",
-        "Thanh Danh Le",
-        "Khang Nhat Hoang Vo",
-        "Huynh Dai Nhan Tran"
+        "Yijing Ke",
+        "Tianle Cai",
+        "Ruosong Wang"
       ],
-      "summary": "Vietnamese pre-trained encoders have improved rapidly, but the strongest ones are large, multilingual-vocabulary models or depend on external word segmentation, which makes them costly to deploy. We present GoiBERT, a family of two compact Vietnamese encoders with 26M and 49M parameters that operate directly on raw text. GoiBERT learns from two complementary teachers. A same-tokenizer Vietnamese encoder first teaches general-purpose representations. A much larger teacher then provides task-level guidance through soft labels that are generated without ever labeling its own training data. Across eight benchmarks covering text classification, aspect-based sentiment analysis, natural language inference, and named entity recognition, GoiBERT-large achieves the highest average score among non-teacher models. It does so with fewer than half the parameters of the strongest compact baseline and twice its throughput. GoiBERT-base retains 99% of that baseline's performance at a quarter of its size. Our analysis shows that compression is nearly lossless for sentiment and classification tasks but remains costly for inference and entity recognition, which points to clear directions for future work. Our code and models are available at: https://github.com/Nhantran65/GoiBERT.git",
-      "reason": "近 30 天；关键词：cs.CL, inference, throughput。Vietnamese pre-trained encoders have improved rapidly, but the strongest ones are large, multilingual-vocabulary models or depend...",
+      "summary": "Reinforcement learning for large language models often uses separate systems for inference and training. Even with identical weights and BF16 tensors, implementation differences can make an intended on-policy update off-policy and destabilize training. Existing remedies align the entire inference and training stacks, change global precision, or modify the learning algorithm. We ask whether aligning selected parts of the execution stack can stabilize BF16 RL while other implementation differences remain. We align training-side rounding locations with inference in three regions---RoPE, SwiGLU, and residual RMSNorm---by retaining selected intermediates in FP32 until their BF16 outputs. Across four Qwen-family models, aligning all three regions prevents the collapse observed under the default BF16 baseline; RoPE-path alignment alone also suffices in the studied runs, despite remaining numerical discrepancies. The interventions keep the inference engine, matrix-multiplication and attention kernels, and learning objective unchanged.",
+      "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.LG, alignment。Reinforcement learning for large language models often uses separate systems for inference and training. Even with identical weigh...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL",
+        "alibaba",
+        "cs.LG",
+        "alignment",
         "inference",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "Alibaba/arXiv",
+      "publishedAt": "2026-10-23T17:45:03Z",
+      "url": "https://arxiv.org/abs/2610.32951",
+      "pdfUrl": "https://arxiv.org/pdf/2610.32951v1"
+    },
+    {
+      "id": "arxiv-2610.32638",
+      "title": "InferSlice: A Reference Architecture for SLO-driven LLM Inference over a Telco Wide-Area Network",
+      "authors": [
+        "Juan Parra-Ullauri",
+        "Anthony Chiu",
+        "Hari Madhukumar",
+        "Zhaozhou Wu",
+        "Anderson Bravalheri",
+        "Alex Healing",
+        "Andy Corston-Petrie",
+        "Dimitra Simeonidou",
+        "Nektaria Efthymiou"
+      ],
+      "summary": "LLM inference is increasingly deployed as a core service for enterprise and interactive applications, but sovereignty, compliance, latency and resource-locality requirements can limit the suitability of centralised cloud deployments. Telco operators offer geographically distributed compute and network infrastructure for addressing these constraints. However, existing LLM serving frameworks are designed for tightly coupled data centres and provide limited support for coordinating geographically distributed and heterogeneous resources. We present InferSlice, a reference architecture for Service-Level Objective (SLO)-driven LLM inference over a telco infrastructure, integrating network slicing, GPU partitioning, elastic serving and observability. Led by BT in collaboration with the University of Bristol and NVIDIA, and realised on the JOINER UK national-scale wide-area network (WAN), InferSlice is evaluated on service differentiation across tiers, elastic scale-out, client-edge bandwidth as a bottleneck, and the reach of tensor, pipeline, data parallelism, and prefill/decode disaggregation over the WAN. Our results show that, on a general-purpose telco network, tiers yield distinct latency-throughput regimes, and weight streaming shortens scale-out time. Replication is placement-insensitive but memory-bound; pipeline parallelism tolerates near- and mid-cross-site hops, while tensor parallelism and disaggregation fail beyond a single subnet hop. We share practical insights from operating SLO-driven inference on a telco network, lessons learned and open questions, and hope to encourage further research on distributed and heterogeneous LLM inference systems.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, deployed。LLM inference is increasingly deployed as a core service for enterprise and interactive applications, but sovereignty, compliance,...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.DC",
+        "deployed",
+        "inference",
+        "latency",
+        "llm",
+        "prefill"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-10-23T13:51:02Z",
+      "url": "https://arxiv.org/abs/2610.32638",
+      "pdfUrl": "https://arxiv.org/pdf/2610.32638v1"
+    },
+    {
+      "id": "arxiv-2610.32632",
+      "title": "Toward Open ISA Supercomputing: A Comparative Study of RISC-V, Arm, and x86 Architectures on HPC Workloads",
+      "authors": [
+        "Emanuele Venieri",
+        "Giacomo Madella",
+        "Gabriele Ceccolini",
+        "Simone Manoni",
+        "Federico Ficarelli",
+        "Filippo Barbari",
+        "Jenny Lynn Almerol",
+        "Elisabetta Boella",
+        "Nitin Shukla",
+        "Simone Bnà",
+        "Luca Benini",
+        "Andrea bartolini"
+      ],
+      "summary": "RISC-V is emerging as a candidate architecture for high-performance computing (HPC), but its competitiveness against established x86 and Arm processors remains difficult to assess because existing studies use different platforms, workloads, and methodologies, and rarely consider energy efficiency. Our work provides an evaluation of contemporary HPC RISC-V, Arm, and x86 processors using a common software stack and methodology. We characterize the Sophgo SG2044 and compare it with the NVIDIA Grace CPU Superchip and Intel Xeon Platinum 8480+ across four HPC benchmarks (STREAM, HPL, HPL-MxP, and HPCG) and four representative applications (iPIC3D, PLUTO, OpenFOAM, and llama.cpp). The version of HPL-MxP linked to OpenBLAS built and used for this work is made available as open-source software. The SG2044 reaches 8.02 GFLOP/s of FP64 performance and 7.8 GB/s of memory bandwidth per core, increasing to 294 GFLOP/s and 107 GB/s at 64 cores. L2-cache-aware process placement enables near-linear scaling up to 16 cores, beyond which memory-bandwidth saturation limits further gains. Across generations of RISC-V hardware, in the context of the Monte Cimone (MC) project, the SG2044-based MCv3 doubles both single-core performance and peak memory bandwidth relative to MCv2, while improving memory bandwidth, node-level FP64 performance, and energy efficiency by approximately 100x, 158x, and 10x, over MCv1. Against the Arm and x86 systems, the SG2044 shows 8-15x less absolute performance, reflecting its narrower vector resources and less advanced technology node, but delivers competitive scaling and energy efficiency on several workloads. Its most notable result is LLM decode, where 64-core execution provides the highest relative scaling and energy efficiency among the evaluated platforms while exceeding Intel in throughput. Our results show that RISC-V processors are closing the gap with the competition.",
+      "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.DC。RISC-V is emerging as a candidate architecture for high-performance computing (HPC), but its competitiveness against established x...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "meta",
+        "nvidia",
+        "cs.DC",
+        "energy",
+        "llm",
         "throughput"
       ],
-      "signal": 89,
-      "source": "arXiv",
-      "publishedAt": "2026-10-21T17:24:36Z",
-      "url": "https://arxiv.org/abs/2610.30067",
-      "pdfUrl": "https://arxiv.org/pdf/2610.30067v2"
+      "signal": 99,
+      "source": "Meta/NVIDIA/arXiv",
+      "publishedAt": "2026-10-23T13:43:38Z",
+      "url": "https://arxiv.org/abs/2610.32632",
+      "pdfUrl": "https://arxiv.org/pdf/2610.32632v1"
     },
     {
-      "id": "arxiv-2610.29477",
-      "title": "TenetBench: A Clause-Anchored Russian Corpus for Evaluating Language Models against Professional Codes of Ethics",
+      "id": "arxiv-2610.32417",
+      "title": "Measuring the Energy Cost of Completing Tasks with Quantized Language-Model Agents",
       "authors": [
-        "Yegor Anichkov",
-        "Valery Vinogradov",
-        "Andrey Furov",
-        "Marina Polukoshko",
-        "Sergey Bolovtsov"
+        "Stephen Abkin",
+        "Aldric Yang",
+        "Alex Flesher",
+        "Nitheesh Kodarapu",
+        "Deepak Panigrahy",
+        "Aakash Tyagi",
+        "David Kebo Houngninou"
       ],
-      "summary": "Codes of professional ethics guide and restrict specialists, who increasingly work with assistants built on large language models. Such an assistant can breach the user's code, or help the user breach it, without the user noticing. Evaluations reporting broad categories of harm cannot show how often this happens or which provision is breached. TenetBench pairs 3,433 requests conflicting with clauses of fifteen Russian-language professional codes with benign twins that differ only in the legitimacy of what is asked. An automated pipeline generates the tasks from the text of a code, so the corpus grows with every code added and a provision yields new tasks on every run. It also produced tasks and human-validated verdicts from two English codes of other jurisdictions. In human validation of the frozen pipeline, specialists rated 0.995 of the conflicting tasks plausible, and the model judge agreed with the adjudicated label at Gwet's AC1 of at least 0.894 on 1,860 elements. We evaluated fourteen model and reasoning-mode combinations on whether they produce the conflicting text, decline or warn. Eleven of the fourteen produce conflicting content on most such requests, mostly without a warning, and nearly three warnings in four accompany conflicting content. The models that conform more do so by declining while still serving the legitimate twin, and enabling reasoning halved the refusals of two models. We hope the dataset and pipeline will help evaluate how language models observe professional norms and let diagnostic datasets be built for particular professions and organisations.",
-      "reason": "近 30 天；关键词：cs.CL, dataset, serving。Codes of professional ethics guide and restrict specialists, who increasingly work with assistants built on large language models....",
+      "summary": "Quantization reduces the memory and energy needed to serve large language models (LLMs) and AI agents for coding and data analysis can now run on locally hosted LLMs. In practice, this benefit is commonly benchmarked per output token. Yet an agent calls its model repeatedly, runs tools, and revises its work, and quantization can change both how much the agent generates and whether it succeeds. Existing energy studies either compare quantized models on single requests or measure agents at one fixed precision, overlooking how a change in precision plays out across a complete agent task. To address this gap, this paper presents the first characterization of the task-level energy trade-offs of model quantization in locally hosted agents. We develop 29 agent tasks with automatic pass/fail checks in six families, ranging from single-answer SQL analytics to multi-step repository bug fixing, and measure CPU and GPU energy per output token and per completed task for 4-bit and 8-bit versions of two open-weight models on bare-metal NVIDIA A100 nodes with llama.cpp. Our findings reveal that 4-bit precision generally saves energy per token, though whether it saves energy per completed task is task dependent and changes with the model and the execution budget (i.e., limits on turns, tokens, and time). We trace this discrepancy to the extra tokens needed to complete a task in full, which translates into using up to 3.5 times as much energy per completed task. These findings offer actionable guidance for developers and operators choosing model precision for agents, showing how tokens per completed task, set against the per-token saving, reveal whether lower precision completes the work with less energy.",
+      "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.PF。Quantization reduces the memory and energy needed to serve large language models (LLMs) and AI agents for coding and data analysis...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "meta",
+        "nvidia",
+        "cs.PF",
+        "energy",
+        "llm",
+        "quantization"
+      ],
+      "signal": 99,
+      "source": "Meta/NVIDIA/arXiv",
+      "publishedAt": "2026-10-23T09:48:03Z",
+      "url": "https://arxiv.org/abs/2610.32417",
+      "pdfUrl": "https://arxiv.org/pdf/2610.32417v1"
+    },
+    {
+      "id": "arxiv-2610.32389",
+      "title": "KnitTrans: Coordinated Trajectory Transfer for Effective and Efficient LLM Reinforcement Learning",
+      "authors": [
+        "Bangjun Xiao",
+        "Chiheng Lou",
+        "Xiaodong Ji",
+        "Xiangwei Deng",
+        "Yikai Zhao",
+        "Gang Huang",
+        "Hailin Zhang"
+      ],
+      "summary": "Trajectory transfer from rollout to training affects both learning quality and system efficiency in large language model reinforcement learning (RL). Enforcing batch-wide training requirements can delay the admission of completed trajectories, resulting in higher architectural staleness: the additional parameter-version gap from disaggregated pipelining relative to colocated execution. Beyond admission, misalignment between data access and training consumption causes redundant movement and unnecessary waiting when transferring large trajectory payloads. We present KnitTrans, a system that coordinates the rollout-to-training path through three designs. First, constraint-preserving mini-batch admission allows flexibility in early mini-batch composition, while checking that enough capacity remains to satisfy the remaining quotas. Second, on-demand trajectory data access matches storage units to consumer assignments and overlaps micro-batch data preparation with computation. Third, multimodal encoding deduplication supports reuse across a mini-batch while preserving gradient contributions from all backbone micro-batches. Experiments show up to 93% lower architectural staleness than with train-batch admission, narrowing the learning-quality gap between disaggregated execution and colocated execution. On multimodal workloads, KnitTrans reduces transfer latency by two orders of magnitude and achieves a speedup of up to 5.8 times in transfer plus training over the baseline.",
+      "reason": "近 30 天；关键词：cs.DC, alignment, efficient。Trajectory transfer from rollout to training affects both learning quality and system efficiency in large language model reinforce...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "alignment",
+        "efficient",
+        "latency",
+        "llm",
+        "multimodal",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-23T09:15:44Z",
+      "url": "https://arxiv.org/abs/2610.32389",
+      "pdfUrl": "https://arxiv.org/pdf/2610.32389v1"
+    },
+    {
+      "id": "arxiv-2610.32326",
+      "title": "TGR-EvoDAG: A DAG-based Multi-Agent Code Evolution Framework for Generative Recommendation on Tencent",
+      "authors": [
+        "Junlin He",
+        "Junzhang Zhu",
+        "Yudong Li",
+        "Yihong Tang",
+        "Xuefeng Jiang",
+        "Wei Ma",
+        "Chengxiang Zhuo",
+        "Zang Li"
+      ],
+      "summary": "Large Language Model (LLM) agents have enabled automated code evolution for algorithm discovery. However, current recursive self-improvement (RSI) research for sequential recommendation faces a dilemma: general-purpose frameworks lack domain-specific feedback, while recommender-specific frameworks rely on linear evolution. Crucially, naively integrating them fails when applied to Generative Recommendation (GR). Unlike end-to-end models, GR relies on a module-cascaded pipeline (tokenization, pre-training, and alignment). In this paradigm, existing evolution methods suffer from: i) cost blindness, squandering budgets by ignoring stage-asymmetric retraining overheads; and ii) short-sighted evaluation, discarding promising upstream innovations that temporarily regress metrics before downstream adaptation. To bridge these gaps, we propose TGR-EvoDAG, a multi-agent code evolution framework tailored for GR. TGR-EvoDAG models code evolution as a Directed Acyclic Graph (DAG) to maintain multiple evolution branches and merge complementary innovations, unifying advanced search with rich GR diagnostic feedback. We further introduce stage-aware cost planning to optimize GPU-hour budgets, and active downstream co-adaptation to navigate temporary regressions and unlock cross-stage gains. On public Amazon datasets, TGR-EvoDAG enables the first autonomous evolution of a complete GR pipeline, improving offline metrics by up to 37.4% and Agent4Rec simulated user satisfaction by 19.7% over the strongest baseline. Furthermore, in industrial deployment on Tencent's large-scale commercial media platform, the evolved GR achieves a 12.16% relative improvement in offline Hit@1 and a statistically significant 0.40% increase in online click-through rate (CTR).",
+      "reason": "近 30 天；公司信号：Amazon, Tencent；推荐/排序/广告方向；关键词：amazon, tencent, cs.AI。Large Language Model (LLM) agents have enabled automated code evolution for algorithm discovery. However, current recursive self-i...",
+      "area": "推荐算法",
+      "tags": [
+        "amazon",
+        "tencent",
+        "cs.AI",
+        "alignment",
+        "click-through",
+        "dataset",
+        "generative-recommendation"
+      ],
+      "signal": 99,
+      "source": "Amazon/Tencent/arXiv",
+      "publishedAt": "2026-10-23T08:23:42Z",
+      "url": "https://arxiv.org/abs/2610.32326",
+      "pdfUrl": "https://arxiv.org/pdf/2610.32326v1"
+    },
+    {
+      "id": "arxiv-2610.31827",
+      "title": "KVStream: Adaptive Parallel Storage Management for KV Caching in Large-Scale LLM Serving",
+      "authors": [
+        "Avinash Maurya",
+        "Jaiaid Mobin",
+        "Jie Ye",
+        "M. Mustafa Rafique",
+        "Franck Cappello",
+        "Bogdan Nicolae"
+      ],
+      "summary": "Long-context LLM serving for agentic, coding, and document workloads reuses prefixes whose key-value (KV) cache outgrows GPU and host memory, putting storage I/O on the critical path of the inference step for retrieving prefixes. A single node-local NVMe absorbs all retrievals, while the parallel file system or cloud file store that nodes already mount carries almost no inference traffic. We cast prefix retrieval as aggregate-bandwidth scheduling across these tiers and present KVStream, a KV cache engine that batches a step's reads, defers writes behind the forward pass, replicates each chunk on every tier, and lets each tier adaptively claim the next unread chunks once it is free. Our performance model shows this routing attains the aggregate-bandwidth bound without prediction or tuning, whereas any static split misses it by a margin that grows as per-tier bandwidths drift or fluctuate. It also predicts that the time-to-first-token (TTFT) gain grows with load, as faster retrieval drains the queue, and disappears when host memory or arrival order keeps reuse in cache. Plugged into LMCache and evaluated on four models, six datasets, and up to 128 GPUs, KVStream retrieves within 5% of the bound, delivers up to 1.49$\\times$ higher offline throughput than LMCache, and lowers mean TTFT by up to 6.1$\\times$ under bursty arrivals.",
+      "reason": "近 30 天；关键词：cs.DC, dataset, inference。Long-context LLM serving for agentic, coding, and document workloads reuses prefixes whose key-value (KV) cache outgrows GPU and h...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "dataset",
+        "inference",
+        "kv-cache",
+        "llm",
+        "retrieval",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-22T19:05:39Z",
+      "url": "https://arxiv.org/abs/2610.31827",
+      "pdfUrl": "https://arxiv.org/pdf/2610.31827v1"
+    },
+    {
+      "id": "arxiv-2610.31819",
+      "title": "Speculative Diffusion is a Tale of Two Tradeoffs",
+      "authors": [
+        "Aaron Zorel",
+        "Guy Van den Broeck",
+        "Aditya Grover",
+        "Daniel Israel"
+      ],
+      "summary": "Speculative decoding is a technique that accelerates the inference speed of autoregressive large language models (LLMs) by sampling from a faster, lower quality draft model. Traditionally, a fundamental characteristic of speculative decoding is that it is lossless with respect to the verifier distribution, guaranteeing speed without sacrificing quality. This differs from recently developed diffusion LLMs (dLLMs), which are notably able to achieve substantial speedups by degrading the quality of their outputs with less diffusion effort. Because diffusion models are able to sample faster than autoregressive models by generating tokens in parallel, they are considered strong candidates for draft models in speculative diffusion. While it is widely understood that diffusion models can sacrifice quality for speed, speculative decoding itself can also be generalized to generate lossy samples faster using more lenient acceptance criteria with respect to the verifier distribution. Presented with the two parameters of diffusion effort and speculative decoding leniency, this paper explores the full achievable Pareto frontier via joint variations of these parameters. Our experiments show that jointly varying diffusion effort and acceptance leniency can extend the speed-quality Pareto frontier over single step diffusion drafting.",
+      "reason": "近 30 天；关键词：cs.LG, inference, llm。Speculative decoding is a technique that accelerates the inference speed of autoregressive large language models (LLMs) by samplin...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "llm",
+        "pareto",
+        "speculative"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-22T18:56:50Z",
+      "url": "https://arxiv.org/abs/2610.31819",
+      "pdfUrl": "https://arxiv.org/pdf/2610.31819v1"
+    },
+    {
+      "id": "arxiv-2610.32871",
+      "title": "J-Comm: Jacobian-Guided Latent Communication between LLM Agents",
+      "authors": [
+        "Xiangwei Wang",
+        "Wei Wang",
+        "Sachith Seneviratne",
+        "Ken Chen",
+        "Yu Xia",
+        "Peng Wang",
+        "Saman Halgamuge"
+      ],
+      "summary": "Latent communication requires both an effective continuous reasoning process and an interface through which an external model can leverage its intermediate computation. We present J-Comm, a framework comprising two core components. First, a training-free Geometric Agreement for Latent Reasoning (GEAR) reweights token candidates over existing model embeddings, which monotonically optimizes geometric consensus among candidate tokens in embedding space at each step. Second, we introduce an H+J (Hidden-and-Jacobian) communication interface that gives the Receiver two complementary views of the Sender's reasoning. The H channel supplies continuous inputs derived from feedback distributions, while the J channel conveys intermediate-state cues in vocabulary-indexed Jacobian-lens coordinates. Intuitively, H provides inputs for the Receiver to reason from, while J offers additional guidance within its computation. The Receiver reconstructs these cues using its own dictionary and injects them into intermediate layers during prefill, enabling communication without sharing key-value caches or requiring identical model widths. In Qwen3-8B to Qwen3-4B communication, J-Comm achieves the highest mean score across seven benchmarks, including 94.80% on MATH500, 54.55% on GPQA-Diamond, 73.33% on AIME2024+2025, and 62.93% success on ALFWorld. Compared with TextMAS, it improves performance by 1.29-8.59 percentage points and reduces generated text tokens by 19.2-74.8%.",
+      "reason": "近 30 天；关键词：cs.CL, llm, prefill。Latent communication requires both an effective continuous reasoning process and an interface through which an external model can...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.CL",
-        "dataset",
-        "serving"
-      ],
-      "signal": 89,
-      "source": "arXiv",
-      "publishedAt": "2026-10-21T09:32:23Z",
-      "url": "https://arxiv.org/abs/2610.29477",
-      "pdfUrl": "https://arxiv.org/pdf/2610.29477v1"
-    },
-    {
-      "id": "arxiv-2610.30980",
-      "title": "Diagnostic Loss: Asymmetric Supervision for Radiology Report Generation",
-      "authors": [
-        "Ignacy Kolton",
-        "Wenxuan Li",
-        "Zongwei Zhou",
-        "Jarosław B. Ćwikła",
-        "Arkadiusz Sitek",
-        "Pedro R. A. S. Bassi",
-        "Szymon Płotka"
-      ],
-      "summary": "Automated radiology report generation requires models to do more than produce fluent clinical narratives: they must explicitly state supported diagnoses while avoiding unsupported ones. However, existing medical vision-language models (MedVLMs) are typically trained with token-level maximum likelihood objectives, which prioritize text agreement over diagnostically critical terms. As a result, models can miss key diagnoses and introduce wrong ones. We identify this as an objective misalignment between conventional language modeling and the asymmetric diagnostic requirements of radiology reporting. To encode these requirements, we introduce Diagnostic Loss (DLoss), a differentiable, architecture-agnostic objective that operates directly on decoder token probabilities. DLoss separately aggregates probability mass over vocabularies associated with diagnoses supported by the reference report and with unsupported alternatives. Using asymmetric pooling across token positions in the report, it encourages supported diagnoses to receive sufficient probability in at least one position while suppressing spurious probability spikes for unsupported diagnoses across all positions during training. The loss can be applied to existing 3D MedVLMs without modifying their vision backbones, language decoders, or inference procedures, and introduces no additional inference-time computation. We train and evaluate DLoss on 50,000 abdominal CT scans across several 3D MedVLM architectures on both in-distribution and out-of-distribution report-generation benchmarks. Across these settings, DLoss improves diagnostic faithfulness while maintaining competitive performance on conventional language-generation metrics, showing the value of asymmetric sequence-level supervision for radiology report generation. The code for DLoss is available at https://github.com/gmum/DLoss.",
-      "reason": "近 30 天；关键词：cs.CV, alignment, inference。Automated radiology report generation requires models to do more than produce fluent clinical narratives: they must explicitly sta...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CV",
-        "alignment",
-        "inference"
+        "llm",
+        "prefill"
       ],
       "signal": 87,
       "source": "arXiv",
-      "publishedAt": "2026-10-22T09:26:17Z",
-      "url": "https://arxiv.org/abs/2610.30980",
-      "pdfUrl": "https://arxiv.org/pdf/2610.30980v1"
+      "publishedAt": "2026-10-23T16:42:38Z",
+      "url": "https://arxiv.org/abs/2610.32871",
+      "pdfUrl": "https://arxiv.org/pdf/2610.32871v1"
     },
     {
-      "id": "arxiv-2610.30663",
-      "title": "Group Relative Policy Optimisation Improves Multilingual Speech Recognition in Low-Resource Languages",
+      "id": "arxiv-2610.31911",
+      "title": "LazyFlash: Forward-Dense, Backward-Sparse Attention for Accelerated Long-Context Fine-Tuning",
       "authors": [
-        "Tim Wenjie Hu",
-        "Evelyn Nafula Ouma",
-        "Benjamin Akera",
-        "John A. Quinn"
+        "Keqi Deng",
+        "Ruchao Fan",
+        "Jinyu Li"
       ],
-      "summary": "Autoregressive encoder-decoder speech recognition models trained with teacher forcing can suffer from exposure bias, limiting their ability to recover from their own prediction errors at inference time. Recent work has shown that reinforcement learning with Group Relative Policy Optimisation (GRPO) improves speech recognition in major languages with LLM-based models. We extend this line of work to smaller, non-LLM encoder-decoder ASR models, using Whisper-large-v3 as a case study across 51 African languages. The benefits of this approach are most pronounced when training data is scarce or when input audio is noisy or degraded. Our resulting model, SunflowerASR, achieves the best published macro-averaged WER on the AfriVox-v2 (0.227) and SimbaBench (0.372) benchmarks, and is publicly available.",
-      "reason": "近 30 天；关键词：cs.AI, inference, llm。Autoregressive encoder-decoder speech recognition models trained with teacher forcing can suffer from exposure bias, limiting thei...",
+      "summary": "As large language models (LLMs) process increasingly long sequences, attention becomes a major computational bottleneck. Sparse attention mostly targets inference, yet many methods still train densely or cannot support sparse training, and their added complexity makes sparsity hard to turn into wall-clock speedups, leaving dense attention widely used in practice. This paper introduces LazyFlash, a forward-dense, backward-sparse attention method built on the observation that attention training is dominated by the backward pass. LazyFlash keeps the forward pass exactly dense, so the trained model remains a standard dense model that existing systems such as vLLM can serve without any change. For the backward pass, LazyFlash proposes a gradient-aware block sparsification design that ranks query blocks by their attention-output gradient norms and skips those contributing negligibly to parameter updates, turning the dense backward into a block-sparse one. A gradient-mass budget adapts the amount of skipped computation to each head and training step, while importance sampling preserves the dense gradient in expectation. These designs are implemented inside the tiled FlashAttention backward kernel, where skipped blocks are never loaded or computed, translating gradient sparsity into real wall-clock acceleration. Experiments on long-context text and speech LLMs show that LazyFlash maintains downstream performance while achieving up to 5.7x attention-backward speedup over FlashAttention and 1.7x end-to-end training speedup.",
+      "reason": "近 30 天；关键词：cs.CL, inference, llm。As large language models (LLMs) process increasingly long sequences, attention becomes a major computational bottleneck. Sparse at...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.AI",
+        "cs.CL",
         "inference",
         "llm"
       ],
       "signal": 86,
       "source": "arXiv",
-      "publishedAt": "2026-10-22T03:24:38Z",
-      "url": "https://arxiv.org/abs/2610.30663",
-      "pdfUrl": "https://arxiv.org/pdf/2610.30663v1"
-    },
-    {
-      "id": "arxiv-2610.29727",
-      "title": "Accept or Repair: Preserving Passage-Supported Answers in Contrastive Decoding",
-      "authors": [
-        "Jungseob Lee",
-        "Seungyoon Lee",
-        "Hyeonseok Moon",
-        "Seongtae Hong",
-        "Suhyune Son",
-        "Sugyeong Eo",
-        "Minhyuk Kim",
-        "Chanjun Park",
-        "Jaehyung Seo"
-      ],
-      "summary": "Large language models often answer from knowledge learned during training, even when a provided passage contradicts that knowledge. To address this problem, contrastive decoding contrasts the predictions under the full and a modified prompt at every token, but it also alters correct answers that the passage supports. We show that checking answers against the passage removes this trade-off. Based on this observation, we propose Accept-or-Repair (AoR), a training-free procedure. AoR keeps a sampled answer if the passage supports it. Otherwise, it tries up to two replacements with contrastive decoding, returning one as soon as it passes this check. It rejects replacements that repeat the answer generated without the passage when the passage favors another answer. Our experiments show that AoR raises the score over sampling by 12.5 points on counterfactual passages and 2.3 on ordinary ones, surpassing eight contrastive and prompting baselines on both, including when each receives the same rejection rule. Replacing only initial answers that the passage does not support improves the average score of every decoder. These results suggest that models can follow passages that contradict their knowledge while preserving accuracy on passages that agree with it. Code will be released at https://github.com/js-lee-AI/AoR.",
-      "reason": "近 30 天；关键词：cs.CL, serving。Large language models often answer from knowledge learned during training, even when a provided passage contradicts that knowledge...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "serving"
-      ],
-      "signal": 82,
-      "source": "arXiv",
-      "publishedAt": "2026-10-21T13:32:29Z",
-      "url": "https://arxiv.org/abs/2610.29727",
-      "pdfUrl": "https://arxiv.org/pdf/2610.29727v1"
-    },
-    {
-      "id": "arxiv-2610.31529",
-      "title": "An Empirical Study of Recent Large Language Models for Knowledge Graph to Text Generation on Standard Benchmarks",
-      "authors": [
-        "Priyanka",
-        "Renaud Delbru",
-        "Souhail Bakkali",
-        "Mickaël Coustaty",
-        "Antoine Doucet"
-      ],
-      "summary": "Knowledge graph-to-text (KG-to-text) generation verbalizes a set of knowledge graph triples into fluent natural language. While fine-tuned encoder-decoder models have long been the standard approach, recent LLMs are becoming increasingly competitive. We benchmark recent LLMs against fine-tuned encoder-decoder models, using reference-based metrics and graph-grounded reference-free LLM-based evaluation validated against human annotations. We observed that recent LLMs substantially narrow, and in several settings close, the gap with fine-tuned models on reference-based metrics, while performing better on graph-grounded metrics. LLM-based evaluation scores show limited correlation with reference-based metrics, suggesting that the two approaches capture different aspects of generation quality. Graph-grounded evaluation reveals that prompted models produce fewer contradictions and triple omissions than fine-tuned models, and these errors increase more rapidly with graph size for fine-tuned models, highlighting differences between the two approaches that reference-based metrics may not fully capture.",
-      "reason": "近 30 天；关键词：cs.CL, llm。Knowledge graph-to-text (KG-to-text) generation verbalizes a set of knowledge graph triples into fluent natural language. While fi...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "llm"
-      ],
-      "signal": 77,
-      "source": "arXiv",
-      "publishedAt": "2026-10-22T16:36:35Z",
-      "url": "https://arxiv.org/abs/2610.31529",
-      "pdfUrl": "https://arxiv.org/pdf/2610.31529v1"
-    },
-    {
-      "id": "arxiv-2610.31415",
-      "title": "SyRA-CS: Synthetic-to-Real Adaptation for Code-Switched ASR with Meta-Learning",
-      "authors": [
-        "Fadel Thior",
-        "Ahmer Tabassum",
-        "Haania Siddiqui",
-        "Hanan Aldarmaki",
-        "Thamar Solorio"
-      ],
-      "summary": "Code-switched (CS) automatic speech recognition (ASR) remains difficult because real CS speech is scarce and synthetic speech does not fully match it. We investigate whether synthetic CS speech is more useful for learning an adaptation-friendly initialization than for ordinary continual fine-tuning. We propose SyRA-CS, a pair-specific synthetic-to-real adaptation framework based on Reptile meta-learning. For each language pair and pretrained model, we meta-train on the corresponding synthetic CS-FLEURS subset and then adapt using one hour of labeled real target speech. We evaluate four architectural settings: Encoder-CTC, FastConformer-RNN-T, Attention Encoder-Decoder (AED) and Speech-LLM. Experiments cover on Arabic-, French-, German-, and Hindi-English, against synthetic-only transfer, real-only fine-tuning, and continual fine-tuning. SyRA-CS improves over continual fine-tuning on WER in all 16 model-pair comparisons and on CER in 15 of 16, with relative macro WER reductions of 17.7% for XLS-R and 5.3-5.8% for the other three models. The gains hold across the tested models but vary in size across architectures, language pairs and metrics.",
-      "reason": "近 30 天；关键词：cs.CL, llm。Code-switched (CS) automatic speech recognition (ASR) remains difficult because real CS speech is scarce and synthetic speech does...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "llm"
-      ],
-      "signal": 77,
-      "source": "arXiv",
-      "publishedAt": "2026-10-22T15:17:10Z",
-      "url": "https://arxiv.org/abs/2610.31415",
-      "pdfUrl": "https://arxiv.org/pdf/2610.31415v1"
-    },
-    {
-      "id": "arxiv-2610.30516",
-      "title": "Beyond End-to-End Recovery: Towards a Better Understanding of LLM Steganography via Rolewise Decomposition",
-      "authors": [
-        "Om Tailor",
-        "Yucheng Pan",
-        "Solaleh Mohammadi",
-        "Xinyan Liu",
-        "Kaiqing Zhang"
-      ],
-      "summary": "In large language model (LLM) steganography, an encoder hides a private message in an otherwise ordinary response, as text transmitted to a decoder, who attempts to recover it. The success of this private-message transmission is commonly measured through end-to-end (E2E) recovery, which checks whether the decoder correctly reconstructs the private message. However, E2E recovery cannot distinguish encoding failures from decoding failures or reveal how the private message is represented in the encoder's transmitted text. To address these limitations, we introduce a rolewise decomposition framework that separately examines how private messages are represented in encoder transmitted texts, what decoders recover, and what deterministic verification can establish. Across 7,200 encoder responses, we identify 168 verifiable encodings missed by decoders and 706 responses containing private messages reconstructed through word-length or token-initial patterns not explicitly specified in the encoder's instructions. These findings demonstrate that E2E recovery alone may obscure important distinctions between encoding and decoding, motivating their separate evaluation to better understand and mitigate the safety issues caused by LLM steganography.",
-      "reason": "近 30 天；关键词：cs.CR, llm。In large language model (LLM) steganography, an encoder hides a private message in an otherwise ordinary response, as text transmi...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CR",
-        "llm"
-      ],
-      "signal": 77,
-      "source": "arXiv",
-      "publishedAt": "2026-10-21T22:52:40Z",
-      "url": "https://arxiv.org/abs/2610.30516",
-      "pdfUrl": "https://arxiv.org/pdf/2610.30516v1"
+      "publishedAt": "2026-10-22T21:04:07Z",
+      "url": "https://arxiv.org/abs/2610.31911",
+      "pdfUrl": "https://arxiv.org/pdf/2610.31911v1"
     }
   ]
 }

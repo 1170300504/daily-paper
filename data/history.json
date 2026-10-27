@@ -1,7 +1,296 @@
 {
-  "generatedAt": "2026-10-26T07:40:09.772944+08:00",
+  "generatedAt": "2026-10-27T08:58:56.166475+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-10-27",
+      "generatedAt": "2026-10-27T08:58:56.166475+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2610.32951",
+          "title": "Where Rounding Happens Matters: Rounding-Location Alignment Stabilizes LLM Reinforcement Learning",
+          "authors": [
+            "Yijing Ke",
+            "Tianle Cai",
+            "Ruosong Wang"
+          ],
+          "summary": "Reinforcement learning for large language models often uses separate systems for inference and training. Even with identical weights and BF16 tensors, implementation differences can make an intended on-policy update off-policy and destabilize training. Existing remedies align the entire inference and training stacks, change global precision, or modify the learning algorithm. We ask whether aligning selected parts of the execution stack can stabilize BF16 RL while other implementation differences remain. We align training-side rounding locations with inference in three regions---RoPE, SwiGLU, and residual RMSNorm---by retaining selected intermediates in FP32 until their BF16 outputs. Across four Qwen-family models, aligning all three regions prevents the collapse observed under the default BF16 baseline; RoPE-path alignment alone also suffices in the studied runs, despite remaining numerical discrepancies. The interventions keep the inference engine, matrix-multiplication and attention kernels, and learning objective unchanged.",
+          "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.LG, alignment。Reinforcement learning for large language models often uses separate systems for inference and training. Even with identical weigh...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "alibaba",
+            "cs.LG",
+            "alignment",
+            "inference",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-10-23T17:45:03Z",
+          "url": "https://arxiv.org/abs/2610.32951",
+          "pdfUrl": "https://arxiv.org/pdf/2610.32951v1"
+        },
+        {
+          "id": "arxiv-2610.32638",
+          "title": "InferSlice: A Reference Architecture for SLO-driven LLM Inference over a Telco Wide-Area Network",
+          "authors": [
+            "Juan Parra-Ullauri",
+            "Anthony Chiu",
+            "Hari Madhukumar",
+            "Zhaozhou Wu",
+            "Anderson Bravalheri",
+            "Alex Healing",
+            "Andy Corston-Petrie",
+            "Dimitra Simeonidou",
+            "Nektaria Efthymiou"
+          ],
+          "summary": "LLM inference is increasingly deployed as a core service for enterprise and interactive applications, but sovereignty, compliance, latency and resource-locality requirements can limit the suitability of centralised cloud deployments. Telco operators offer geographically distributed compute and network infrastructure for addressing these constraints. However, existing LLM serving frameworks are designed for tightly coupled data centres and provide limited support for coordinating geographically distributed and heterogeneous resources. We present InferSlice, a reference architecture for Service-Level Objective (SLO)-driven LLM inference over a telco infrastructure, integrating network slicing, GPU partitioning, elastic serving and observability. Led by BT in collaboration with the University of Bristol and NVIDIA, and realised on the JOINER UK national-scale wide-area network (WAN), InferSlice is evaluated on service differentiation across tiers, elastic scale-out, client-edge bandwidth as a bottleneck, and the reach of tensor, pipeline, data parallelism, and prefill/decode disaggregation over the WAN. Our results show that, on a general-purpose telco network, tiers yield distinct latency-throughput regimes, and weight streaming shortens scale-out time. Replication is placement-insensitive but memory-bound; pipeline parallelism tolerates near- and mid-cross-site hops, while tensor parallelism and disaggregation fail beyond a single subnet hop. We share practical insights from operating SLO-driven inference on a telco network, lessons learned and open questions, and hope to encourage further research on distributed and heterogeneous LLM inference systems.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, deployed。LLM inference is increasingly deployed as a core service for enterprise and interactive applications, but sovereignty, compliance,...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.DC",
+            "deployed",
+            "inference",
+            "latency",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-10-23T13:51:02Z",
+          "url": "https://arxiv.org/abs/2610.32638",
+          "pdfUrl": "https://arxiv.org/pdf/2610.32638v1"
+        },
+        {
+          "id": "arxiv-2610.32632",
+          "title": "Toward Open ISA Supercomputing: A Comparative Study of RISC-V, Arm, and x86 Architectures on HPC Workloads",
+          "authors": [
+            "Emanuele Venieri",
+            "Giacomo Madella",
+            "Gabriele Ceccolini",
+            "Simone Manoni",
+            "Federico Ficarelli",
+            "Filippo Barbari",
+            "Jenny Lynn Almerol",
+            "Elisabetta Boella",
+            "Nitin Shukla",
+            "Simone Bnà",
+            "Luca Benini",
+            "Andrea bartolini"
+          ],
+          "summary": "RISC-V is emerging as a candidate architecture for high-performance computing (HPC), but its competitiveness against established x86 and Arm processors remains difficult to assess because existing studies use different platforms, workloads, and methodologies, and rarely consider energy efficiency. Our work provides an evaluation of contemporary HPC RISC-V, Arm, and x86 processors using a common software stack and methodology. We characterize the Sophgo SG2044 and compare it with the NVIDIA Grace CPU Superchip and Intel Xeon Platinum 8480+ across four HPC benchmarks (STREAM, HPL, HPL-MxP, and HPCG) and four representative applications (iPIC3D, PLUTO, OpenFOAM, and llama.cpp). The version of HPL-MxP linked to OpenBLAS built and used for this work is made available as open-source software. The SG2044 reaches 8.02 GFLOP/s of FP64 performance and 7.8 GB/s of memory bandwidth per core, increasing to 294 GFLOP/s and 107 GB/s at 64 cores. L2-cache-aware process placement enables near-linear scaling up to 16 cores, beyond which memory-bandwidth saturation limits further gains. Across generations of RISC-V hardware, in the context of the Monte Cimone (MC) project, the SG2044-based MCv3 doubles both single-core performance and peak memory bandwidth relative to MCv2, while improving memory bandwidth, node-level FP64 performance, and energy efficiency by approximately 100x, 158x, and 10x, over MCv1. Against the Arm and x86 systems, the SG2044 shows 8-15x less absolute performance, reflecting its narrower vector resources and less advanced technology node, but delivers competitive scaling and energy efficiency on several workloads. Its most notable result is LLM decode, where 64-core execution provides the highest relative scaling and energy efficiency among the evaluated platforms while exceeding Intel in throughput. Our results show that RISC-V processors are closing the gap with the competition.",
+          "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.DC。RISC-V is emerging as a candidate architecture for high-performance computing (HPC), but its competitiveness against established x...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "nvidia",
+            "cs.DC",
+            "energy",
+            "llm",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "Meta/NVIDIA/arXiv",
+          "publishedAt": "2026-10-23T13:43:38Z",
+          "url": "https://arxiv.org/abs/2610.32632",
+          "pdfUrl": "https://arxiv.org/pdf/2610.32632v1"
+        },
+        {
+          "id": "arxiv-2610.32417",
+          "title": "Measuring the Energy Cost of Completing Tasks with Quantized Language-Model Agents",
+          "authors": [
+            "Stephen Abkin",
+            "Aldric Yang",
+            "Alex Flesher",
+            "Nitheesh Kodarapu",
+            "Deepak Panigrahy",
+            "Aakash Tyagi",
+            "David Kebo Houngninou"
+          ],
+          "summary": "Quantization reduces the memory and energy needed to serve large language models (LLMs) and AI agents for coding and data analysis can now run on locally hosted LLMs. In practice, this benefit is commonly benchmarked per output token. Yet an agent calls its model repeatedly, runs tools, and revises its work, and quantization can change both how much the agent generates and whether it succeeds. Existing energy studies either compare quantized models on single requests or measure agents at one fixed precision, overlooking how a change in precision plays out across a complete agent task. To address this gap, this paper presents the first characterization of the task-level energy trade-offs of model quantization in locally hosted agents. We develop 29 agent tasks with automatic pass/fail checks in six families, ranging from single-answer SQL analytics to multi-step repository bug fixing, and measure CPU and GPU energy per output token and per completed task for 4-bit and 8-bit versions of two open-weight models on bare-metal NVIDIA A100 nodes with llama.cpp. Our findings reveal that 4-bit precision generally saves energy per token, though whether it saves energy per completed task is task dependent and changes with the model and the execution budget (i.e., limits on turns, tokens, and time). We trace this discrepancy to the extra tokens needed to complete a task in full, which translates into using up to 3.5 times as much energy per completed task. These findings offer actionable guidance for developers and operators choosing model precision for agents, showing how tokens per completed task, set against the per-token saving, reveal whether lower precision completes the work with less energy.",
+          "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.PF。Quantization reduces the memory and energy needed to serve large language models (LLMs) and AI agents for coding and data analysis...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "nvidia",
+            "cs.PF",
+            "energy",
+            "llm",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "Meta/NVIDIA/arXiv",
+          "publishedAt": "2026-10-23T09:48:03Z",
+          "url": "https://arxiv.org/abs/2610.32417",
+          "pdfUrl": "https://arxiv.org/pdf/2610.32417v1"
+        },
+        {
+          "id": "arxiv-2610.32389",
+          "title": "KnitTrans: Coordinated Trajectory Transfer for Effective and Efficient LLM Reinforcement Learning",
+          "authors": [
+            "Bangjun Xiao",
+            "Chiheng Lou",
+            "Xiaodong Ji",
+            "Xiangwei Deng",
+            "Yikai Zhao",
+            "Gang Huang",
+            "Hailin Zhang"
+          ],
+          "summary": "Trajectory transfer from rollout to training affects both learning quality and system efficiency in large language model reinforcement learning (RL). Enforcing batch-wide training requirements can delay the admission of completed trajectories, resulting in higher architectural staleness: the additional parameter-version gap from disaggregated pipelining relative to colocated execution. Beyond admission, misalignment between data access and training consumption causes redundant movement and unnecessary waiting when transferring large trajectory payloads. We present KnitTrans, a system that coordinates the rollout-to-training path through three designs. First, constraint-preserving mini-batch admission allows flexibility in early mini-batch composition, while checking that enough capacity remains to satisfy the remaining quotas. Second, on-demand trajectory data access matches storage units to consumer assignments and overlaps micro-batch data preparation with computation. Third, multimodal encoding deduplication supports reuse across a mini-batch while preserving gradient contributions from all backbone micro-batches. Experiments show up to 93% lower architectural staleness than with train-batch admission, narrowing the learning-quality gap between disaggregated execution and colocated execution. On multimodal workloads, KnitTrans reduces transfer latency by two orders of magnitude and achieves a speedup of up to 5.8 times in transfer plus training over the baseline.",
+          "reason": "近 30 天；关键词：cs.DC, alignment, efficient。Trajectory transfer from rollout to training affects both learning quality and system efficiency in large language model reinforce...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "alignment",
+            "efficient",
+            "latency",
+            "llm",
+            "multimodal",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-23T09:15:44Z",
+          "url": "https://arxiv.org/abs/2610.32389",
+          "pdfUrl": "https://arxiv.org/pdf/2610.32389v1"
+        },
+        {
+          "id": "arxiv-2610.32326",
+          "title": "TGR-EvoDAG: A DAG-based Multi-Agent Code Evolution Framework for Generative Recommendation on Tencent",
+          "authors": [
+            "Junlin He",
+            "Junzhang Zhu",
+            "Yudong Li",
+            "Yihong Tang",
+            "Xuefeng Jiang",
+            "Wei Ma",
+            "Chengxiang Zhuo",
+            "Zang Li"
+          ],
+          "summary": "Large Language Model (LLM) agents have enabled automated code evolution for algorithm discovery. However, current recursive self-improvement (RSI) research for sequential recommendation faces a dilemma: general-purpose frameworks lack domain-specific feedback, while recommender-specific frameworks rely on linear evolution. Crucially, naively integrating them fails when applied to Generative Recommendation (GR). Unlike end-to-end models, GR relies on a module-cascaded pipeline (tokenization, pre-training, and alignment). In this paradigm, existing evolution methods suffer from: i) cost blindness, squandering budgets by ignoring stage-asymmetric retraining overheads; and ii) short-sighted evaluation, discarding promising upstream innovations that temporarily regress metrics before downstream adaptation. To bridge these gaps, we propose TGR-EvoDAG, a multi-agent code evolution framework tailored for GR. TGR-EvoDAG models code evolution as a Directed Acyclic Graph (DAG) to maintain multiple evolution branches and merge complementary innovations, unifying advanced search with rich GR diagnostic feedback. We further introduce stage-aware cost planning to optimize GPU-hour budgets, and active downstream co-adaptation to navigate temporary regressions and unlock cross-stage gains. On public Amazon datasets, TGR-EvoDAG enables the first autonomous evolution of a complete GR pipeline, improving offline metrics by up to 37.4% and Agent4Rec simulated user satisfaction by 19.7% over the strongest baseline. Furthermore, in industrial deployment on Tencent's large-scale commercial media platform, the evolved GR achieves a 12.16% relative improvement in offline Hit@1 and a statistically significant 0.40% increase in online click-through rate (CTR).",
+          "reason": "近 30 天；公司信号：Amazon, Tencent；推荐/排序/广告方向；关键词：amazon, tencent, cs.AI。Large Language Model (LLM) agents have enabled automated code evolution for algorithm discovery. However, current recursive self-i...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "tencent",
+            "cs.AI",
+            "alignment",
+            "click-through",
+            "dataset",
+            "generative-recommendation"
+          ],
+          "signal": 99,
+          "source": "Amazon/Tencent/arXiv",
+          "publishedAt": "2026-10-23T08:23:42Z",
+          "url": "https://arxiv.org/abs/2610.32326",
+          "pdfUrl": "https://arxiv.org/pdf/2610.32326v1"
+        },
+        {
+          "id": "arxiv-2610.31827",
+          "title": "KVStream: Adaptive Parallel Storage Management for KV Caching in Large-Scale LLM Serving",
+          "authors": [
+            "Avinash Maurya",
+            "Jaiaid Mobin",
+            "Jie Ye",
+            "M. Mustafa Rafique",
+            "Franck Cappello",
+            "Bogdan Nicolae"
+          ],
+          "summary": "Long-context LLM serving for agentic, coding, and document workloads reuses prefixes whose key-value (KV) cache outgrows GPU and host memory, putting storage I/O on the critical path of the inference step for retrieving prefixes. A single node-local NVMe absorbs all retrievals, while the parallel file system or cloud file store that nodes already mount carries almost no inference traffic. We cast prefix retrieval as aggregate-bandwidth scheduling across these tiers and present KVStream, a KV cache engine that batches a step's reads, defers writes behind the forward pass, replicates each chunk on every tier, and lets each tier adaptively claim the next unread chunks once it is free. Our performance model shows this routing attains the aggregate-bandwidth bound without prediction or tuning, whereas any static split misses it by a margin that grows as per-tier bandwidths drift or fluctuate. It also predicts that the time-to-first-token (TTFT) gain grows with load, as faster retrieval drains the queue, and disappears when host memory or arrival order keeps reuse in cache. Plugged into LMCache and evaluated on four models, six datasets, and up to 128 GPUs, KVStream retrieves within 5% of the bound, delivers up to 1.49$\\times$ higher offline throughput than LMCache, and lowers mean TTFT by up to 6.1$\\times$ under bursty arrivals.",
+          "reason": "近 30 天；关键词：cs.DC, dataset, inference。Long-context LLM serving for agentic, coding, and document workloads reuses prefixes whose key-value (KV) cache outgrows GPU and h...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "dataset",
+            "inference",
+            "kv-cache",
+            "llm",
+            "retrieval",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T19:05:39Z",
+          "url": "https://arxiv.org/abs/2610.31827",
+          "pdfUrl": "https://arxiv.org/pdf/2610.31827v1"
+        },
+        {
+          "id": "arxiv-2610.31819",
+          "title": "Speculative Diffusion is a Tale of Two Tradeoffs",
+          "authors": [
+            "Aaron Zorel",
+            "Guy Van den Broeck",
+            "Aditya Grover",
+            "Daniel Israel"
+          ],
+          "summary": "Speculative decoding is a technique that accelerates the inference speed of autoregressive large language models (LLMs) by sampling from a faster, lower quality draft model. Traditionally, a fundamental characteristic of speculative decoding is that it is lossless with respect to the verifier distribution, guaranteeing speed without sacrificing quality. This differs from recently developed diffusion LLMs (dLLMs), which are notably able to achieve substantial speedups by degrading the quality of their outputs with less diffusion effort. Because diffusion models are able to sample faster than autoregressive models by generating tokens in parallel, they are considered strong candidates for draft models in speculative diffusion. While it is widely understood that diffusion models can sacrifice quality for speed, speculative decoding itself can also be generalized to generate lossy samples faster using more lenient acceptance criteria with respect to the verifier distribution. Presented with the two parameters of diffusion effort and speculative decoding leniency, this paper explores the full achievable Pareto frontier via joint variations of these parameters. Our experiments show that jointly varying diffusion effort and acceptance leniency can extend the speed-quality Pareto frontier over single step diffusion drafting.",
+          "reason": "近 30 天；关键词：cs.LG, inference, llm。Speculative decoding is a technique that accelerates the inference speed of autoregressive large language models (LLMs) by samplin...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "llm",
+            "pareto",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T18:56:50Z",
+          "url": "https://arxiv.org/abs/2610.31819",
+          "pdfUrl": "https://arxiv.org/pdf/2610.31819v1"
+        },
+        {
+          "id": "arxiv-2610.32871",
+          "title": "J-Comm: Jacobian-Guided Latent Communication between LLM Agents",
+          "authors": [
+            "Xiangwei Wang",
+            "Wei Wang",
+            "Sachith Seneviratne",
+            "Ken Chen",
+            "Yu Xia",
+            "Peng Wang",
+            "Saman Halgamuge"
+          ],
+          "summary": "Latent communication requires both an effective continuous reasoning process and an interface through which an external model can leverage its intermediate computation. We present J-Comm, a framework comprising two core components. First, a training-free Geometric Agreement for Latent Reasoning (GEAR) reweights token candidates over existing model embeddings, which monotonically optimizes geometric consensus among candidate tokens in embedding space at each step. Second, we introduce an H+J (Hidden-and-Jacobian) communication interface that gives the Receiver two complementary views of the Sender's reasoning. The H channel supplies continuous inputs derived from feedback distributions, while the J channel conveys intermediate-state cues in vocabulary-indexed Jacobian-lens coordinates. Intuitively, H provides inputs for the Receiver to reason from, while J offers additional guidance within its computation. The Receiver reconstructs these cues using its own dictionary and injects them into intermediate layers during prefill, enabling communication without sharing key-value caches or requiring identical model widths. In Qwen3-8B to Qwen3-4B communication, J-Comm achieves the highest mean score across seven benchmarks, including 94.80% on MATH500, 54.55% on GPQA-Diamond, 73.33% on AIME2024+2025, and 62.93% success on ALFWorld. Compared with TextMAS, it improves performance by 1.29-8.59 percentage points and reduces generated text tokens by 19.2-74.8%.",
+          "reason": "近 30 天；关键词：cs.CL, llm, prefill。Latent communication requires both an effective continuous reasoning process and an interface through which an external model can...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "llm",
+            "prefill"
+          ],
+          "signal": 87,
+          "source": "arXiv",
+          "publishedAt": "2026-10-23T16:42:38Z",
+          "url": "https://arxiv.org/abs/2610.32871",
+          "pdfUrl": "https://arxiv.org/pdf/2610.32871v1"
+        },
+        {
+          "id": "arxiv-2610.31911",
+          "title": "LazyFlash: Forward-Dense, Backward-Sparse Attention for Accelerated Long-Context Fine-Tuning",
+          "authors": [
+            "Keqi Deng",
+            "Ruchao Fan",
+            "Jinyu Li"
+          ],
+          "summary": "As large language models (LLMs) process increasingly long sequences, attention becomes a major computational bottleneck. Sparse attention mostly targets inference, yet many methods still train densely or cannot support sparse training, and their added complexity makes sparsity hard to turn into wall-clock speedups, leaving dense attention widely used in practice. This paper introduces LazyFlash, a forward-dense, backward-sparse attention method built on the observation that attention training is dominated by the backward pass. LazyFlash keeps the forward pass exactly dense, so the trained model remains a standard dense model that existing systems such as vLLM can serve without any change. For the backward pass, LazyFlash proposes a gradient-aware block sparsification design that ranks query blocks by their attention-output gradient norms and skips those contributing negligibly to parameter updates, turning the dense backward into a block-sparse one. A gradient-mass budget adapts the amount of skipped computation to each head and training step, while importance sampling preserves the dense gradient in expectation. These designs are implemented inside the tiled FlashAttention backward kernel, where skipped blocks are never loaded or computed, translating gradient sparsity into real wall-clock acceleration. Experiments on long-context text and speech LLMs show that LazyFlash maintains downstream performance while achieving up to 5.7x attention-backward speedup over FlashAttention and 1.7x end-to-end training speedup.",
+          "reason": "近 30 天；关键词：cs.CL, inference, llm。As large language models (LLMs) process increasingly long sequences, attention becomes a major computational bottleneck. Sparse at...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "inference",
+            "llm"
+          ],
+          "signal": 86,
+          "source": "arXiv",
+          "publishedAt": "2026-10-22T21:04:07Z",
+          "url": "https://arxiv.org/abs/2610.31911",
+          "pdfUrl": "https://arxiv.org/pdf/2610.31911v1"
+        }
+      ]
+    },
     {
       "date": "2026-10-26",
       "generatedAt": "2026-10-26T07:40:09.772944+08:00",
@@ -19834,276 +20123,6 @@
           "publishedAt": "2026-07-08T18:54:08Z",
           "url": "https://arxiv.org/abs/2607.07862",
           "pdfUrl": "https://arxiv.org/pdf/2607.07862v1"
-        }
-      ]
-    },
-    {
-      "date": "2026-07-10",
-      "generatedAt": "2026-07-10T07:01:43.851905+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2607.07388",
-          "title": "TF-Engram: A Train-Free Engram with SSD-Backed Memory for Large Language Models",
-          "authors": [
-            "Yutang Ma",
-            "Kecheng Huang",
-            "Xikun Jiang",
-            "Zili Shao"
-          ],
-          "summary": "Large Language Models (LLMs) store factual knowledge and domain-specific patterns implicitly in dense Transformer parameters, making knowledge expansion costly through pretraining, fine-tuning, retrieval augmentation, or longer contexts. Engram-style memory offers a compact hidden-state injection pathway, but existing GPU-resident designs often rely on hash-based compression, causing unrelated phrases to collide in shared slots and weakening phrase-level semantic fidelity. We present TF-Engram, a train-free Engram system that constructs phrase-specific semantic memory offline from external corpora, stores large memory tables across a GPU--DRAM--SSD hierarchy, and uses Early-Exit Guided Predictive Prefetching to hide external-memory latency during autoregressive decoding. On Qwen3-0.6B, TF-Engram improves the average downstream score from 57.6 to 59.4, outperforming both the frozen backbone and a parameter-matched LoRA baseline. System evaluation shows that large TF-Engram tables can be built with moderate offline cost, SSD-backed storage substantially reduces GPU memory demand, and predictive prefetching recovers much of the throughput loss caused by external memory access. These results demonstrate that static phrase memory can be integrated into LLM inference as a scalable, train-free, and low-overhead system component.",
-          "reason": "近 30 天；关键词：cs.CL, inference, latency。Large Language Models (LLMs) store factual knowledge and domain-specific patterns implicitly in dense Transformer parameters, maki...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "inference",
-            "latency",
-            "llm",
-            "lora",
-            "retrieval",
-            "slo"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-08T13:19:52Z",
-          "url": "https://arxiv.org/abs/2607.07388",
-          "pdfUrl": "https://arxiv.org/pdf/2607.07388v1"
-        },
-        {
-          "id": "arxiv-2607.07144",
-          "title": "Fractal KV-Cache Archives: Lossless Symbolic Storage with In-Place Retrieval for Long-Context LLM Inference",
-          "authors": [
-            "Vladimir Gusev"
-          ],
-          "summary": "The key-value (KV) cache dominates the memory cost of long-context autoregressive inference, and a growing body of work compresses it through quantization, eviction, or offloading. We study a complementary question: once a position's KV state has been quantized to codebook indices, how should the resulting symbol stream be stored, and can the storage layer do more than store? A family of contractive iterated-map codes that serialize a symbol sequence into a sequence of low-dimensional real vectors is revisited, and it is shown that they form a natural archive format for a quantized KV cache with the following features. The method provides exactly the access pattern a growing cache requires. It is lossless, it runs in linear time, and supports O(1) random access and O(1) amortized append. A controlled study of the quantizer feeding this archive is conducted on GPT-2 with 1024-token contexts. Keeping a small exact window (4 attention sinks + 32 recent tokens) and archiving the rest, per-head residual vector quantization reduces the archived cache by 36-54x relative to an fp16 cache at a perplexity cost of 11-15%, and we quantify a sharp key/value asymmetry -- quantizing keys is roughly 4x more damaging than quantizing values, consistent with prior low-bit KV work -- and use it to allocate bits in a hybrid scheme. Finally, we show the archive is simultaneously a search index: approximate substring queries execute directly on the stored vectors, and matched context is decoded from the matched vector without ever materializing the surrounding text. We release all code; every number reproduces from a single command on a laptop CPU.",
-          "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。The key-value (KV) cache dominates the memory cost of long-context autoregressive inference, and a growing body of work compresses...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "inference",
-            "kv-cache",
-            "llm",
-            "quantization",
-            "retrieval"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-08T08:37:49Z",
-          "url": "https://arxiv.org/abs/2607.07144",
-          "pdfUrl": "https://arxiv.org/pdf/2607.07144v1"
-        },
-        {
-          "id": "arxiv-2607.07046",
-          "title": "Voltron: Enabling Elastic Multi-Device Execution of LLM Inference for Empowered Edge Intelligence",
-          "authors": [
-            "Chanwoo Cho",
-            "Wooseok Kim",
-            "Yonglak Son",
-            "Young Seo Lee",
-            "Young Geun Kim"
-          ],
-          "summary": "Large language models (LLMs) are widely used in intelligent services due to their remarkable capability in generative tasks. Typically, LLM-based services process the inference requests of the users in a centralized data center. Unfortunately, such centralized execution has limitations for end-users, such as increased response latency with communication overhead and privacy leakage risk. To alleviate the aforementioned limitations, there have been increasing pushes to execute LLM inference locally on user-end devices. However, the limited resources of a single edge device impose restrictions on achievable accuracy of LLMs. To overcome the issue, we first propose to leverage multiple user-end devices available at the edge for LLM inference, enabling the execution of larger models. Specifically, we propose Voltron, a novel on-device LLM inference framework that elastically utilizes multiple user-end devices for LLM inference execution while adapting to diverse real-world edge environments. In our evaluation, Voltron achieves up to 16.5% higher accuracy than state-of-the-art LLMs that can be executed on a single edge device, satisfying user QoS requirements.",
-          "reason": "近 30 天；关键词：cs.DC, inference, latency。Large language models (LLMs) are widely used in intelligent services due to their remarkable capability in generative tasks. Typic...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.DC",
-            "inference",
-            "latency",
-            "llm",
-            "qos"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-08T06:23:04Z",
-          "url": "https://arxiv.org/abs/2607.07046",
-          "pdfUrl": "https://arxiv.org/pdf/2607.07046v1"
-        },
-        {
-          "id": "arxiv-2607.07026",
-          "title": "Constrained Decoding for Diffusion Language Models via Efficient Inference over Finite Automata",
-          "authors": [
-            "Meihua Dang",
-            "Stefano Ermon"
-          ],
-          "summary": "Constrained decoding is essential for serving LLMs, ensuring that generated outputs follow specific structures such as JSON schema-formatted function calls. Existing systems are designed for autoregressive models and assume left-to-right generation, masking out invalid next tokens at each step. Diffusion language models, however, break this assumption: they sample multiple positions simultaneously from a fully-factorized mean-field distribution at each denoising step. In this paper, we present an exact and tractable algorithm for sampling from the constrained mean-field posterior under any constraint expressible as a finite automaton. Viewing finite automata as graphical models, we obtain tractable representations of the constrained distribution that enable efficient inference. The approach guarantees constraint satisfaction by construction, supports both greedy and sampling-based decoding, and is compatible with parallel and block-wise decoding under arbitrary remasking schedules. Applying depth-reduction techniques from arithmetic circuit theory, we further reduce sampling depth from linear to logarithmic in the sequence length. Empirical evaluations on Dream-7B and LLaDA-8B show substantial accuracy gains across various tasks including function calling (xLAM, BFCL), planning (Sudoku, Countdown), text-to-SQL (Spider), and math reasoning (GSM-Symbolic), with little inference overhead relative to unconstrained decoding. For example, on BFCL-Live, our approach improves Dream-7B's greedy decoding accuracy from 63.9% to 71.5%, and stochastic sampling accuracy from 22.3% to 69.0%, where the unconstrained baseline collapses, with under 5% wall-clock overhead.",
-          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Constrained decoding is essential for serving LLMs, ensuring that generated outputs follow specific structures such as JSON schema...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "efficient",
-            "inference",
-            "llm",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-08T05:48:57Z",
-          "url": "https://arxiv.org/abs/2607.07026",
-          "pdfUrl": "https://arxiv.org/pdf/2607.07026v1"
-        },
-        {
-          "id": "arxiv-2607.06979",
-          "title": "Robust Federated Learning Under Real-World Client Churn",
-          "authors": [
-            "Dhruv Garg",
-            "Neha Lakhani",
-            "Debopam Sanyal",
-            "Myungjin Lee",
-            "Alexey Tumanov",
-            "Ada Gavrilovska"
-          ],
-          "summary": "Federated Learning (FL) enables training shared models on private, on-device data, but production deployments remain constrained to slow, multi-day refresh cycles due to the complexity of coordinating massive client populations. For applications such as feed ranking, ad targeting, and personalized recommendation, model freshness: the ability to rapidly adapt to new user-local data is critical for maximizing objectives like click-through rate. This lag leaves models stale and unresponsive to volatile data distributions driven by viral trends and shifting user intent. Bridging this gap requires addressing three challenges overlooked by existing FL systems: transient client availability, dynamic data heterogeneity, and delays between model predictions and observable outcomes. We present FeLiX, an FL orchestration framework that minimizes wall-clock time-to-target accuracy on live interaction streams. FeLiX introduces three primitives: (i) streaming-aware availability tiers that leverage lightweight telemetry to identify ready clients at scale; (ii) fresh-utility selection, a dual-tier mechanism that prioritizes statistically valuable updates from devices able to meet tight refresh deadlines; and (iii) informativeness-aware, delay-robust aggregation that incorporates late, high-value updates containing ground-truth outcomes without biasing the global model toward stale distributions. Unlike prior systems that rely on unrealistic oracular knowledge of client availability, FeLiX achieves near-oracular performance in real-world settings. Across CIFAR-10, Google Speech, and realistic low-availability traces, FeLiX reduces wall-clock time-to-target accuracy by up to 2.37X while reducing communication bandwidth by 1.30X compared to state-of-the-art synchronous and asynchronous FL baselines.",
-          "reason": "近 30 天；公司信号：Google；推荐/排序/广告方向；关键词：google, cs.LG, click-through。Federated Learning (FL) enables training shared models on private, on-device data, but production deployments remain constrained t...",
-          "area": "推荐算法",
-          "tags": [
-            "google",
-            "cs.LG",
-            "click-through",
-            "deadline",
-            "production",
-            "ranking",
-            "recommendation"
-          ],
-          "signal": 99,
-          "source": "Google/arXiv",
-          "publishedAt": "2026-07-08T04:02:43Z",
-          "url": "https://arxiv.org/abs/2607.06979",
-          "pdfUrl": "https://arxiv.org/pdf/2607.06979v1"
-        },
-        {
-          "id": "arxiv-2607.06763",
-          "title": "Trees from Marginals: Autoregressive drafting with factorized priors",
-          "authors": [
-            "Yuma Oda",
-            "Ryan Mathieu",
-            "Roman Knyazhitskiy",
-            "Artur Chakhvadze"
-          ],
-          "summary": "Speculative decoding greatly increases the interactivity of autoregressive language models by trading off computation for extra tokens generated in a single forward pass. Factorized draft models are especially efficient because they predict future-token marginals in parallel, but their independence assumption causes acceptance rates to degrade sharply as the speculative budget grows. We analyze this limitation and introduce Weaver, a lightweight autoregressive adapter that constructs proposal trees from the top-K marginals of a factorized drafter. Weaver restores conditional dependencies between proposed tokens while avoiding a full-vocabulary projection. To support fast verification for models with Gated Delta Net layers, we derive a rollback-free tree-verification algorithm and implement optimized CUDA kernels in SGLang. By combining these model and systems contributions we achieve a 4.37-fold speedup over autoregressive decoding, and outperform a highly optimized DFlash baseline by 24.7%.",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, efficient。Speculative decoding greatly increases the interactivity of autoregressive language models by trading off computation for extra to...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.LG",
-            "efficient",
-            "speculative"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-07T19:48:36Z",
-          "url": "https://arxiv.org/abs/2607.06763",
-          "pdfUrl": "https://arxiv.org/pdf/2607.06763v1"
-        },
-        {
-          "id": "arxiv-2607.06601",
-          "title": "TriRoute: Unified Learned Routing for Joint Adaptive Attention, Experts, and KV-Cache Allocation",
-          "authors": [
-            "Andrii Balashov",
-            "Olena Ponomarova"
-          ],
-          "summary": "Conditional computation can decouple language model quality from per-token inference cost, yet leading techniques act on a single axis in isolation: Mixture-of-Experts (MoE) sparsifies the FFN, Mixture-of-Depths (MoD) skips whole transformer blocks, and KV-cache quantization compresses attention memory. We argue these three decisions (attention resolution, expert selection, and cache bit-width) are strongly coupled and should be made jointly: a token rare enough to warrant full attention may also need high-precision caching regardless of which expert processes it. We introduce TriRoute, a single lightweight controller shared across all three axes that, for every token at every layer, emits a coordinated policy: (i) an attention mode (skip/local/full), (ii) a sparse set of FFN experts (with a null expert recovering MoD), and (iii) a KV-cache bit-width. The controller trains end-to-end via a heterogeneous relaxation (Gumbel-Softmax with straight-through estimation for categorical decisions and load-balanced top-k gating for experts) under a Lagrangian budget constraint that turns the average compute and memory cost into a controllable knob. We identify a cross-axis routing-collapse cascade in naive joint training, where collapse on one axis propagates to the others, and address it with per-axis normalization and a coupling-aware balancing loss. On decoder-only models from 160M to 1.3B parameters at compute-optimal token counts, TriRoute Pareto-dominates the best independent MoD+MoE+KV-quantization combination at matched inference FLOPs and memory, while better preserving tail-case robustness on rare entities, code, and arithmetic that pure perplexity optimization erodes. Post-hoc analysis reveals interpretable structure: the controller allocates full attention and high-precision cache to sentence-initial positions, rare subwords, and named entities, while cheaply routing function words.",
-          "reason": "近 30 天；关键词：cs.LG, inference, pareto。Conditional computation can decouple language model quality from per-token inference cost, yet leading techniques act on a single...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "inference",
-            "pareto",
-            "quantization",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-07T00:12:46Z",
-          "url": "https://arxiv.org/abs/2607.06601",
-          "pdfUrl": "https://arxiv.org/pdf/2607.06601v1"
-        },
-        {
-          "id": "arxiv-2607.07409",
-          "title": "DeLS-Spec: Decoupled Long-Short Contexts for Parallel Speculative Drafting",
-          "authors": [
-            "Hong-Kai Zheng",
-            "Piji Li"
-          ],
-          "summary": "Speculative decoding accelerates LLM inference by drafting multiple tokens and verifying them in parallel. Block-parallel drafters such as DFlash further improve drafting efficiency by predicting an entire block in one pass, but their position-wise predictions lack explicit intra-block causal conditioning. Recent methods such as Domino and DSpark attempt to introduce such causality into block-parallel drafting, but they require training the draft model from scratch, which limits their flexibility and increases training cost. We propose DeLS-Spec, a decoupled long-short context speculative decoding method. DeLS-Spec treats the fixed DFlash model as a long-context expert and introduces a lightweight local head as a short-context expert. The local head can be trained independently with a standard next-token prediction objective, without joint training with the target model or the DFlash backbone, leading to extremely low training cost. At inference time, DeLS-Spec combines long-context and short-context logits, and the local head is not tied to a specific DFlash checkpoint, making the method more modular and flexible. Experiments on Qwen3 models show that DeLS-Spec consistently improves speedup and average acceptance length over DFlash across math, code, and dialogue benchmarks.",
-          "reason": "近 30 天；关键词：cs.CL, inference, llm。Speculative decoding accelerates LLM inference by drafting multiple tokens and verifying them in parallel. Block-parallel drafters...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "inference",
-            "llm",
-            "speculative"
-          ],
-          "signal": 97,
-          "source": "arXiv",
-          "publishedAt": "2026-07-08T13:41:52Z",
-          "url": "https://arxiv.org/abs/2607.07409",
-          "pdfUrl": "https://arxiv.org/pdf/2607.07409v1"
-        },
-        {
-          "id": "arxiv-2607.06831",
-          "title": "Gradient-Based Speech-to-Text Alignment for Any ASR Model: From CTC to Speech LLMs",
-          "authors": [
-            "Albert Zeyer",
-            "Ralf Schlüter",
-            "Hermann Ney"
-          ],
-          "summary": "Speech-to-text alignment means finding the temporal boundaries of each word in the audio. Some models provide such an alignment directly and others do not. Connectionist temporal classification (CTC) and transducer models have an alignment by construction, whereas attention-based encoder-decoders (AED) and speech large language models (LLMs) do not, and their word timings are usually read off the attention weights instead. All of these signals live on the encoder frame grid, which bounds their temporal precision. We study a generic gradient-based alignment that applies to any differentiable ASR model. We take the gradient of each teacher-forced token log probability with respect to the input, reduce it to a per-frame saliency, and decode the resulting matrix into word boundaries with a single dynamic-programming pass. The method needs no training, no model modification and no alignment heads, works across all model families including the speech LLMs, and aligns on the input grid rather than on the coarser encoder grid. We evaluate it on sixteen models from four families, on read (TIMIT) and spontaneous (Buckeye) speech, each against the model's own native or attention-based alignment. We find that the gradient yields a usable alignment for every model, that it is usually somewhat behind a strong native aligner but better where the native alignment is weak, as for the streaming models, and that its main disadvantage is the cost of one backward pass per token.",
-          "reason": "近 30 天；关键词：cs.CL, alignment, llm。Speech-to-text alignment means finding the temporal boundaries of each word in the audio. Some models provide such an alignment di...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "alignment",
-            "llm"
-          ],
-          "signal": 85,
-          "source": "arXiv",
-          "publishedAt": "2026-07-07T21:57:54Z",
-          "url": "https://arxiv.org/abs/2607.06831",
-          "pdfUrl": "https://arxiv.org/pdf/2607.06831v1"
-        },
-        {
-          "id": "arxiv-2607.05722",
-          "title": "Nemotron-Labs-Diffusion: A Tri-Mode Language Model Unifying Autoregressive, Diffusion, and Self-Speculation Decoding",
-          "authors": [
-            "Yonggan Fu",
-            "Lexington Whalen",
-            "Abhinav Garg",
-            "Chengyue Wu",
-            "Maksim Khadkevich",
-            "Nicolai Oswald",
-            "Enze Xie",
-            "Daniel Egert",
-            "Sharath Turuvekere Sreenivas",
-            "Shizhe Diao",
-            "Chenhan Yu",
-            "Ye Yu",
-            "Weijia Chen",
-            "Sajad Norouzi",
-            "Jingyu Liu",
-            "Shiyi Lan",
-            "Ligeng Zhu",
-            "Jin Wang",
-            "Jindong Jiang",
-            "Morteza Mardani",
-            "Mehran Maghoumi",
-            "Song Han",
-            "Ante Jukić",
-            "Nima Tajbakhsh",
-            "Jan Kautz",
-            "Pavlo Molchanov"
-          ],
-          "summary": "We introduce Nemotron-Labs-Diffusion, a tri-mode language model (LM) that unifies AR, diffusion, and self-speculation decoding within a single architecture. Trained with a joint AR-diffusion objective, Nemotron-Labs-Diffusion can switch modes to sustain high throughput across deployment settings and concurrency levels. Our study shows that (1) AR and diffusion objectives are complementary: diffusion improves lookahead planning, while AR provides left-to-right linguistic priors. (2) In self-speculation mode, diffusion drafts while AR verifies, outperforming multi-token prediction (MTP) methods in both acceptance rate and real-device efficiency. (3) A speed-of-light analysis further demonstrates diffusion's long-term potential, with up to 76.5% more tokens per forward pass than self-speculation under an optimal sampler. Scaling to 3B, 8B, and 14B parameters, our Nemotron-Labs-Diffusion family, including base, instruct, and vision-language models, consistently outperforms state-of-the-art open-source AR and diffusion LMs in both accuracy and speed. For example, Nemotron-Labs-Diffusion-8B decodes 6x more tokens per forward than Qwen3-8B with comparable accuracy, translating to 4x higher throughput on SPEED-Bench with SGLang on a GB200 GPU.",
-          "reason": "近 30 天；关键词：cs.CL, throughput。We introduce Nemotron-Labs-Diffusion, a tri-mode language model (LM) that unifies AR, diffusion, and self-speculation decoding wit...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "throughput"
-          ],
-          "signal": 80,
-          "source": "arXiv",
-          "publishedAt": "2026-07-07T01:09:54Z",
-          "url": "https://arxiv.org/abs/2607.05722",
-          "pdfUrl": "https://arxiv.org/pdf/2607.05722v1"
         }
       ]
     }
