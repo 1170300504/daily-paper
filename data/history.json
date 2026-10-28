@@ -1,7 +1,279 @@
 {
-  "generatedAt": "2026-10-27T08:58:56.166475+08:00",
+  "generatedAt": "2026-10-28T08:48:45.453936+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-10-28",
+      "generatedAt": "2026-10-28T08:48:45.453936+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2610.35303",
+          "title": "InterQ-RL: Interaction-Aware Correction of Execution Mismatch in Quantized Agentic RL",
+          "authors": [
+            "Yingbo Hao",
+            "Song Liu",
+            "Guanghua Yu",
+            "Zhaojing Zhou",
+            "Jianchen Zhu",
+            "Yi Zou"
+          ],
+          "summary": "Multi-turn agent reinforcement learning (RL) relies on long closed-loop rollouts, making generation and KV-cache costs a major bottleneck. Quantized rollout reduces these costs, but its low-precision executor also serves as the behavior policy and can induce execution mismatch with the learner. Existing quantized-RL methods are designed primarily for single-turn generation. They align the learner forward with quantized rollout or correct the current-token rollout-learner ratio, without modeling the policy history that produces each agent state. Even after quantization alignment, residual rollout-learner mismatch accumulates along the state-reaching policy history, so a current action may look locally aligned despite a mismatched history. We introduce InterQ-RL (Interaction-aware Quantized Reinforcement Learning) to correct this post-alignment mismatch. It applies bounded execution-prefix correction over the state-reaching policy history, allocates correction strength across action segments by effective support under a fixed displacement budget, and requires no additional model forward pass. We evaluate dense and mixture-of-experts (MoE) backbones from 4B to 30B on ALFWorld, WebShop, and ScienceWorld, with all quantized arms sharing the same rollout with 8-bit weights, activations, and KV cache (W8A8-KV8). Across four environment-backbone settings, InterQ-RL achieves the strongest quantized endpoint result, matching BF16 to within 0.7 points and exceeding it in two settings. It matches or exceeds the learning speed of alignment alone while avoiding its late performance regression.",
+          "reason": "近 30 天；关键词：cs.LG, alignment, kv-cache。Multi-turn agent reinforcement learning (RL) relies on long closed-loop rollouts, making generation and KV-cache costs a major bot...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "alignment",
+            "kv-cache",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-26T12:08:44Z",
+          "url": "https://arxiv.org/abs/2610.35303",
+          "pdfUrl": "https://arxiv.org/pdf/2610.35303v1"
+        },
+        {
+          "id": "arxiv-2610.35230",
+          "title": "Context Is Not Free: Carbon-Aware LLM Routing for Multi-Turn LLM Web Services across Geo-Distributed Data Centers",
+          "authors": [
+            "Xiaoyang Zhang",
+            "Yuejun Yan",
+            "Qingang Zhang",
+            "Yonggang Wen"
+          ],
+          "summary": "The sustainability of the Web has drawn growing attention, as large language model (LLM)-based web services leave a substantial carbon footprint. These services typically run in geo-distributed data centers whose grid carbon intensity varies across regions and over time, so routing each query to a cleaner region or a smaller model can reduce emissions. A conversation, however, is a stateful web session: each turn reuses the key--value (KV) cache of its history, which resides only where earlier turns were served. Serving a turn on another deployment requires recomputing this history, whose carbon cost grows with the conversation and can outweigh the saving of the move. Existing carbon-aware LLM routers treat a conversation's queries as independent and ignore this cost. We present CarbonRouter, an online framework that jointly selects the model, GPU type, and region for each query to minimize carbon emissions. CarbonRouter introduces a cache-aware carbon cost model, which charges history recomputation to every candidate deployment using cached-token counts from the serving backends, and uses a lightweight gate that keeps a session on its cached deployment when it would likely move back at the next turn and rebuild its history again. We evaluate CarbonRouter in trace-driven experiments on two real-world conversation datasets with five LLMs, three GPU types, and four regions, where it achieves the lowest carbon of all policies. CarbonRouter reduces CO$_2$ by 16.1\\% on average relative to FairCarbon, a state-of-the-art carbon-aware router with the same action space, while also improving predicted answer quality and estimated latency. Moreover, the saving rises further to 23.1\\% for sessions longer than 30 turns.",
+          "reason": "近 30 天；关键词：cs.DC, dataset, latency。The sustainability of the Web has drawn growing attention, as large language model (LLM)-based web services leave a substantial ca...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "dataset",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-26T11:20:26Z",
+          "url": "https://arxiv.org/abs/2610.35230",
+          "pdfUrl": "https://arxiv.org/pdf/2610.35230v1"
+        },
+        {
+          "id": "arxiv-2610.35042",
+          "title": "SimPOTrans: Self-Adaptation for Offline-to-Simultaneous Speech Translation via Reinforcement Learning",
+          "authors": [
+            "Haotian Tan",
+            "Hiroki Ouchi",
+            "Sakriani Sakti"
+          ],
+          "summary": "Simultaneous speech translation (SimulST) aims to translate ongoing speech with low latency while preserving translation quality. Recent studies have adopted large language models (LLMs) for SimulST and formulated it as a multi-turn dialogue task for efficient generation, achieving state-of-the-art performance. However, existing dialogue-style SimulST approaches typically rely on specialized training schemes to acquire simultaneous translation behavior, either using synthesized read/write trajectories, which may provide suboptimal training signals, or jointly optimizing translation quality and latency, whose competing objectives may cause optimization instability. In this paper, we introduce SimPOTrans, a reinforcement learning (RL) framework that enables offline speech translation models to self-adapt to dialogue-style SimulST. Through a simple two-stage RL post-training pipeline, SimPOTrans rewards an offline model for exhibiting translation behaviors beneficial to simultaneous scenarios when given partial speech inputs, thereby enabling offline-to-simultaneous self-adaptation without synthesized read/write trajectories or explicit latency optimization. At inference time, SimPOTrans requires no external decision policy and enables flexible quality--latency control by simply adjusting the chunk size of speech input. Experiments on the ACL 60/60 and MCIF benchmarks across three language directions (En$\\rightarrow$De, En$\\rightarrow$Zh, and En$\\rightarrow$Ja) demonstrate that SimPOTrans outperforms several strong baselines, achieving a superior quality--latency trade-off.",
+          "reason": "近 30 天；关键词：cs.CL, efficient, inference。Simultaneous speech translation (SimulST) aims to translate ongoing speech with low latency while preserving translation quality....",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "efficient",
+            "inference",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-26T08:54:00Z",
+          "url": "https://arxiv.org/abs/2610.35042",
+          "pdfUrl": "https://arxiv.org/pdf/2610.35042v1"
+        },
+        {
+          "id": "arxiv-2610.35023",
+          "title": "BellowsKV: One Latent for Many Layers, Expanded on Demand",
+          "authors": [
+            "Jiamu Zhang",
+            "Hanjie Chen"
+          ],
+          "summary": "Large language models (LLMs) now serve as the backbone of agents that reason over many turns, call tools, and pursue long-horizon tasks. To avoid recomputation, a model stores the attention keys and values of all past tokens in a key-value (KV) cache. Each layer maintains its own cache, so KV-cache memory can become the main bottleneck for GPU serving. Most compression methods operate within a single layer, by quantizing the cache entries, reducing the channel dimension, or evicting less important tokens. All three lose substantial accuracy at high compression ratios. Cross-layer methods share one compressed cache across adjacent layers to go beyond this limit. However, these methods also degrade sharply at high compression ratios. We find that the KV-cache representations of adjacent layers are quite different, whereas the input hidden states of adjacent layers are highly similar. We also find that, under the same memory budget, reducing the dimension of this shared latent loses far more accuracy than quantizing it. Based on these findings, we propose BellowsKV, a training-free method that maps the hidden states of n adjacent layers to one shared latent per token. At inference time, each layer reads its own keys and values from this latent through a layer-specific projection. We keep the latent at full dimension and compress it in two other ways: BellowsKV-Quant stores the latent at low precision, which is nearly lossless because the latent has no dominant outlier channels; BellowsKV-Evict makes one shared eviction decision per block, because the layers rank token importance very similarly. Across Llama-3.1-8B, Mistral-7B and Qwen2.5-7B, BellowsKV-Quant retains about 99% of full-cache accuracy at 3.6x compression and 97-98% at 13-14x, where the strongest cross-layer method retains at most 84% at 16x. Code: https://github.com/MorrisZJ/BellowsKV",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, inference。Large language models (LLMs) now serve as the backbone of agents that reason over many turns, call tools, and pursue long-horizon...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "inference",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-10-26T08:35:59Z",
+          "url": "https://arxiv.org/abs/2610.35023",
+          "pdfUrl": "https://arxiv.org/pdf/2610.35023v1"
+        },
+        {
+          "id": "arxiv-2610.34915",
+          "title": "End-to-End MXFP8 Reinforcement Learning on Blackwell: What Matching Buys, When It Pays Off, and How It Fails",
+          "authors": [
+            "Wengee Zhang"
+          ],
+          "summary": "Low-precision arithmetic can make reinforcement learning (RL) for large language models cheaper, but RL requires the sampler and the learner to agree. Several frameworks now run FP8 on both sides. We implement end-to-end MXFP8 RL in verl (Megatron/Transformer Engine training; vLLM and SGLang rollout; dense and MoE models) and measure on B200 GPUs, with Qwen3-8B and Qwen3-30B-A3B, what this design buys, when it is faster, and how it fails. (1) Matching. For an MXFP8 learner, a sampler on the learner's grid is more consistent than a higher-precision BF16 sampler: in one engine at fixed weights, train-rollout KL is 11% lower with half of the sampler's linear layers on the grid and 16% lower with all of them, and the synchronized weights we checked equal the learner's FP8 forward weights byte for byte. On the MoE model, an FP8 pipeline whose sampler uses another grid has twice the shared-grid pipeline's KL from the first step. Without a quantized KV cache, BF16 end to end remains 2.5-10x more consistent. (2) Speed. MXFP8 training adds a fixed cost per micro-batch and saves a per-token cost, so in our dense setting it pays off only above about 4.5k tokens per micro-batch; a micro-batch sweep on identical data confirms the per-micro-batch cost, and a trace shows the GPU waiting for the host for most of the added time. End to end, MXFP8 cuts MoE step time by 10.7% and generation time by 24%, and slows a short-sequence dense workload by 5%. (3) Correctness. We state seven conditions every weight synchronization must preserve and checks that test them against the live engine. Each of the seven failures we met on hardware broke one condition, five silently; the checks caught two at their first opportunity, each missed by the other checks, and CPU fault-injection tests reproduce five. All runs are single-seed and at most 60 steps long; we make no claim about final model quality.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, kv-cache。Low-precision arithmetic can make reinforcement learning (RL) for large language models cheaper, but RL requires the sampler and t...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.LG",
+            "kv-cache",
+            "llm",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-10-26T06:41:16Z",
+          "url": "https://arxiv.org/abs/2610.34915",
+          "pdfUrl": "https://arxiv.org/pdf/2610.34915v1"
+        },
+        {
+          "id": "arxiv-2610.34890",
+          "title": "AIPC: Evidence-Guided Agent Workflows for PyTorch Project Deployment",
+          "authors": [
+            "Zhanwei Wu",
+            "Jianhao Su",
+            "Brian Zhang",
+            "ShengTing Huang",
+            "Weidong Feng",
+            "Gang Liu",
+            "Zhiguo Li",
+            "Wei Huang",
+            "Li Tan",
+            "Wanjun Li",
+            "Zejiong Teng",
+            "Changgeng Zhong",
+            "Guanping Wu",
+            "Han-Hsing Tu"
+          ],
+          "summary": "Deploying and optimizing a PyTorch inference project on a dedicated accelerator, especially an on-device NPU, requires more than using a framework device API as with CUDA. The project must be converted into hardware-runtime artifacts and adapted to the target toolchain and application interface. Differences in model formats, quantization flows, operator support, and toolchain interfaces create cross-layer problems spanning PyTorch/ONNX models, toolchains, runtimes, and device execution. LLM Agents can invoke tools to address such problems, but may drift because of insufficient domain knowledge, large configuration and repair spaces, or poor path selection. We propose AIPC (AI Porting & Conversion), an Agent method for deploying PyTorch inference projects. AIPC combines structured Skills with toolchain, runtime, and profiling evidence to drive cross-layer diagnosis and repair, organizing model adaptation, artifact building, on-target execution, accuracy repair, and performance optimization into one deployment flow. We evaluate AIPC on the on-device NPU path of Qualcomm QAIRT across vision, speech, LLM, and diffusion models. In two optimization cases, 6/7 Skill-arm Whisper-Small runs meet predefined accuracy and latency criteria versus 0/6 control runs, while YOLO-Worldv2 achieves a 2.791x end-to-end speedup versus 1.599x for the control. Under a pre-fixed deployment contract, Skill, tool permissions, and check conditions, some runs achieve zero in-run human intervention (0-HITL). We also examine Qwen3.8-27B as a locally deployable model for driving an Agent workflow.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.SE, conversion。Deploying and optimizing a PyTorch inference project on a dedicated accelerator, especially an on-device NPU, requires more than u...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.SE",
+            "conversion",
+            "inference",
+            "latency",
+            "llm",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-10-26T06:10:01Z",
+          "url": "https://arxiv.org/abs/2610.34890",
+          "pdfUrl": "https://arxiv.org/pdf/2610.34890v1"
+        },
+        {
+          "id": "arxiv-2610.34844",
+          "title": "HiLO: Towards Product-Level Graceful Degradation with a Quality-Aware, Load-Aware Control Framework",
+          "authors": [
+            "Knut Magne Risvik",
+            "Zhuowei Li",
+            "Nirupam Purushothama",
+            "Hunter Su",
+            "Greg Dunham",
+            "Yan Reznikov"
+          ],
+          "summary": "Graceful degradation is a key mechanism employed by large-scale systems to handle overload conditions. Its importance has grown further as GPU-intensive LLM inference introduces persistent capacity constraints that cannot be addressed through provisioning alone. Common degradation approaches rely on service-level mechanisms such as load shedding and circuit breakers, or on feature-level switches (some manually controlled) to preserve availability and quality. While effective at protecting services, such approaches lead to untestable product states and thereby unpredictable product quality. We present HiLO (High Load Optimizer), an automated product-level degradation system designed to handle graceful degradation at scale. HiLO maps observed load to a product state lattice: a small set of pre-validated product states, partially ordered by degradation severity. Dependencies are resolved at design time enabling deterministic and continuous control without requiring runtime dependency discovery. The same abstraction applies unchanged across heterogeneous services, including GPU-intensive deep models, LLMs and their serving layers. At Microsoft, HiLO is deployed in Bing (serving over a billion monthly active users), where it manages on average two traffic surges per week across all datacenters, bounding OneDCG (relevance) drop to under 0.5 points (the operational target) even under sustained load exceeding 2$\\times$ baseline peak. HiLO complements existing service-level protections with product-level coordination and makes product quality measurable, testable and predictable.",
+          "reason": "近 30 天；公司信号：Microsoft；关键词：microsoft, cs.DC, deployed。Graceful degradation is a key mechanism employed by large-scale systems to handle overload conditions. Its importance has grown fu...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "microsoft",
+            "cs.DC",
+            "deployed",
+            "inference",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Microsoft/arXiv",
+          "publishedAt": "2026-10-26T04:51:33Z",
+          "url": "https://arxiv.org/abs/2610.34844",
+          "pdfUrl": "https://arxiv.org/pdf/2610.34844v1"
+        },
+        {
+          "id": "arxiv-2610.34764",
+          "title": "SLIDE: Search-to-List Item Distillation for Single-Rollout Generative Retrieval",
+          "authors": [
+            "Tianyu Zhan",
+            "Gui Ling",
+            "Ran Tao",
+            "Kunhai Lin",
+            "Tong Xiong",
+            "Wang Yang",
+            "Kaixuan Zhang",
+            "Zhihong Chen",
+            "Yuliang Yan",
+            "Dan Ou",
+            "Shengyu Zhang",
+            "Haihong Tang"
+          ],
+          "summary": "Generative retrieval (GR) typically relies on item-level beam search to retrieve candidates, leaving cross-item dependencies unmodeled and limiting direct optimization of list-level objectives. A natural alternative is to generate the entire list within a single autoregressive trajectory. However, greedy decoding with directly trained list-wise models substantially underperforms beam search. We identify two contributing factors: the broader search space explored by beam search and the positional bias of scarce positive signals, which deprives later positions of adequate supervision. To address these challenges, we propose $\\textbf{SLIDE}$, a search-to-list item distillation framework that decouples offline search from online list generation. A teacher model retrieves high-quality candidates through offline item-level beam search, providing additional conversion-relevant supervision beyond sparse behavioral labels. Their Semantic IDs (SIDs) are then concatenated in beam-score order to form list-wise distillation targets. This search-to-list conversion transforms candidates retrieved along separate search paths into sequential item-generation targets within a single trajectory. Trained on these targets, the student generates the Top-$K$ list in a single greedy pass, also decoupling teacher scaling from online deployment. Experiments on FORGE and Taobao Search show that SLIDE substantially improves retrieval quality under single greedy decoding and, with stronger offline teachers, surpasses the beam-search reference. Supplementary RL experiments support the effectiveness of list-level generation.",
+          "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, conversion。Generative retrieval (GR) typically relies on item-level beam search to retrieve candidates, leaving cross-item dependencies unmod...",
+          "area": "推荐算法",
+          "tags": [
+            "alibaba",
+            "cs.IR",
+            "conversion",
+            "retrieval",
+            "semantic-id"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-10-26T03:08:18Z",
+          "url": "https://arxiv.org/abs/2610.34764",
+          "pdfUrl": "https://arxiv.org/pdf/2610.34764v1"
+        },
+        {
+          "id": "arxiv-2610.34673",
+          "title": "Agent Memory as Recommendation: Recommender-System Design for Long-Term Memory of LLM Agents",
+          "authors": [
+            "Xinyu Zhang",
+            "Weiwei Sun"
+          ],
+          "summary": "Large language model (LLM) agents that serve users across many sessions must choose, for every request, the few stored memories that enter a limited context window. This choice largely decides whether the agent answers correctly, and it runs on every request at Web scale. This selection faces three challenges: a large and growing store, a per-request cost budget, and multi-session questions that need all of their evidence. Many memory systems build notes or graphs with hundreds to thousands of LLM calls per history, and each is designed on its own, so it is unclear which component yields the accuracy. These challenges mirror the properties of recommendation, so we formalize agent memory as budgeted slate recommendation, with the request as the user, stored memories as items and the context window as a slate. The formalization places memory systems in one design space of recommender cascades and factorizes accuracy into the completeness that each stage controls. Guided by it, we propose AgentMemRec, which adapts candidate generation, learning to rank and slate construction from recommender systems and selects memories without any LLM call. On multi-session questions of LongMemEval, AgentMemRec outperforms memory and context-selection methods, including A-Mem, HippoRAG 2, DynamicRAG and T-Mem, by 10 to 31 points of accuracy. It matches an LLM reranker that makes 64 calls per query at 3.2 times lower serving cost, and on LoCoMo it outperforms Mem0 and Zep without any LLM call at write time. The factorization attributes the gains to slates that more often hold all of the evidence, so recommender-system design offers an effective and efficient foundation for the long-term memory of LLM agents.",
+          "reason": "近 30 天；关键词：cs.IR, efficient, llm。Large language model (LLM) agents that serve users across many sessions must choose, for every request, the few stored memories th...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.IR",
+            "efficient",
+            "llm",
+            "recommendation",
+            "recommender",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-26T01:05:20Z",
+          "url": "https://arxiv.org/abs/2610.34673",
+          "pdfUrl": "https://arxiv.org/pdf/2610.34673v1"
+        },
+        {
+          "id": "arxiv-2610.34440",
+          "title": "Speculative Decoding for Mixture-of-Experts Models: Expert Bytes, Kernel Bandwidth and the Best Draft Length",
+          "authors": [
+            "Yuzheng Lan"
+          ],
+          "summary": "Speculative decoding checks several drafted tokens in one verification pass. On a mixture-of-experts (MoE) model, consecutive tokens often select the same experts. A deduplicating engine reads each selected expert once per pass, so it requests fewer bytes than a per-slot engine, which reads it once per token. We write a step's time as the bytes each kernel requests over its effective bandwidth, plus fixed time. Under geometric acceptance, we derive from this step time when speculation is faster than plain decoding. The best draft length is a monotone staircase in the acceptance rate. We bound how a bandwidth error moves each result, and we check the main steps in Lean. Deduplication is faster exactly where its share $\\bar u(n)$ of the per-slot bytes is below its ratio $r(n)$ of the per-slot bandwidth. On llama.cpp Metal, MLX-LM and llama.cpp CUDA, which we modified to deduplicate, the per-slot kernel has the higher effective bandwidth (r = 0.32 to 0.75). Thus deduplication is faster only from 5 to 8 tokens per pass, or never. We fit the bandwidths on one layer's expert operation, run alone, in under an hour per model. Bytes from routing traces over these bandwidths predict the time that deduplication saves. The measured saving lies inside its error bound at every point on CUDA and MLX-LM and at 36 of 48 points on Metal. The crossover is the first pass size at which deduplication is faster. The prediction places it within one pass size in 10 of 12 configurations of engine, model and depth. We computed these predictions after the measurements. On DeepSeek-V2-Lite, operation times measured before its speculative runs give the best draft length on CUDA within one at all 22 acceptance values.",
+          "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.LG。Speculative decoding checks several drafted tokens in one verification pass. On a mixture-of-experts (MoE) model, consecutive toke...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "nvidia",
+            "cs.LG",
+            "slo",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "Meta/NVIDIA/arXiv",
+          "publishedAt": "2026-10-25T16:55:48Z",
+          "url": "https://arxiv.org/abs/2610.34440",
+          "pdfUrl": "https://arxiv.org/pdf/2610.34440v1"
+        }
+      ]
+    },
     {
       "date": "2026-10-27",
       "generatedAt": "2026-10-27T08:58:56.166475+08:00",
@@ -19855,274 +20127,6 @@
           "publishedAt": "2026-07-07T11:12:44Z",
           "url": "https://arxiv.org/abs/2607.06145",
           "pdfUrl": "https://arxiv.org/pdf/2607.06145v1"
-        }
-      ]
-    },
-    {
-      "date": "2026-07-11",
-      "generatedAt": "2026-07-11T06:50:20.192381+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2607.08665",
-          "title": "Resample or Reroute? Budget-Aware Test-Time Model Selection for Large Language Models",
-          "authors": [
-            "Teng-Ruei Chen"
-          ],
-          "summary": "Routing among large language models (LLMs) trades response quality against serving cost, motivated by the reported gap between deployed routers and a per-instance oracle. Recent analysis shows that test-time resampling can recover per-instance selection headroom that no single-commit router captures; however, that guarantee holds only under an idealized oracle equipped with correctness labels and an unconstrained budget, neither of which a deployed system has. To the best of our knowledge, no previous work treats resampling the committed model and rerouting to an alternative model as competing uses of a single per-query cost budget. Therefore, this work formulates budget-aware test-time model selection: given a per-query budget and an imperfect verifier, allocate each unit of budget between resampling and rerouting so that expected correctness is maximized. An online resample-or-reroute (RoR) allocation policy driven by estimated marginal correctness per unit cost is proposed, and its behavior is grounded in the recoverability asymmetry between selection and sampling. Replay experiments on newly regenerated multi-draw correctness tensors from an eleven-model open-weight pool over four benchmarks of differing difficulty show that the proposed RoR policy attains a favorable cost-quality Pareto front relative to single-route, one-commit-router, budget-aware best-of-K, cascade, and random-allocation baselines for the tested pools, with the largest gains on the most heterogeneous benchmark; an ablation further shows the gains are verifier-gated, shrinking as verifier quality degrades, and robustness replays under a provider price vector and a label-free agreement verifier delineate where the conclusions carry over.",
-          "reason": "近 30 天；关键词：cs.LG, deployed, llm。Routing among large language models (LLMs) trades response quality against serving cost, motivated by the reported gap between dep...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "deployed",
-            "llm",
-            "pareto",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-09T16:34:15Z",
-          "url": "https://arxiv.org/abs/2607.08665",
-          "pdfUrl": "https://arxiv.org/pdf/2607.08665v1"
-        },
-        {
-          "id": "arxiv-2607.08643",
-          "title": "BiSCo-LLM: Lookup-Free Binary Spherical Coding for Extreme Low-Bit Large Language Model Compression",
-          "authors": [
-            "Yuantian Shao",
-            "Peisong Wang",
-            "Zhilei Liu",
-            "Chuangyi Li",
-            "Yuanteng Chen",
-            "Pengcheng Xie",
-            "Yiwu Yao",
-            "Zhihui Wei",
-            "Jian Cheng"
-          ],
-          "summary": "Large language models (LLMs) are increasingly constrained by memory capacity, weight bandwidth, and checkpoint storage during deployment. Existing low-bit compression methods mainly follow two directions. Scalar or group-wise quantization is simple and compatible with efficient low-precision kernels, but its representation capacity becomes limited when the target budget approaches 2 bits per weight. Vector-quantized weight compression provides a richer block-level representation, but usually introduces explicit codebooks, index lookup, and additional storage accounting. This paper presents BiSCo-LLM, a codebook-free binary spherical coding framework for extreme low-bit LLM weight compression. The core pipeline is built on three components. First, local weight chunks are mapped onto a unit hypersphere and binarized into compact spherical codes, so that the main payload is a bit-packed sign stream rather than explicit VQ centroids. Second, a residual BSQ stage encodes the reconstruction error left by the base spherical codec, providing an explicit rate-distortion path without stored codebooks. Third, category-wise recovery distillation is performed after replacing each Transformer module category, reducing the mismatch between local weight reconstruction and assembled model behavior. A small 8-bit protected-channel path is used as an auxiliary stabilization mechanism for sensitive channels and is counted separately from the BSQ payload. The reported storage budget includes binary codes, neural decoders, protected-channel payloads, LoRA adapters, and metadata.",
-          "reason": "近 30 天；关键词：cs.LG, efficient, llm。Large language models (LLMs) are increasingly constrained by memory capacity, weight bandwidth, and checkpoint storage during depl...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "efficient",
-            "llm",
-            "lora",
-            "quantization"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-09T16:17:10Z",
-          "url": "https://arxiv.org/abs/2607.08643",
-          "pdfUrl": "https://arxiv.org/pdf/2607.08643v1"
-        },
-        {
-          "id": "arxiv-2607.08642",
-          "title": "DominoTree: Conditional Tree-Structured Drafting with Domino for Speculative Decoding",
-          "authors": [
-            "Saw S. Lin",
-            "Jyh-Shing Roger Jang"
-          ],
-          "summary": "Speculative decoding accelerates LLM inference by drafting several tokens and verifying them in parallel. Block-diffusion drafters such as DFlash produce a draft block in one pass but model only per-position marginals; best-first tree methods such as DDTree expand candidate trees from those marginals. The released Domino drafter adds a GRU-based causal correction that makes each draft token's distribution path-dependent, a structure DDTree's factorized formulation cannot represent. We introduce DominoTree, a training-free best-first draft tree scored by Domino's conditional, non-factorized correction along each root-to-node path, made practical by restricting the per-node correction to a candidate top-M. On Qwen3-4B across eight benchmarks, DominoTree reaches up to 6.6x speedup over autoregressive decoding and the highest mean accept length of any evaluated method, up to 10.7 tokens per round, at every temperature we test. DominoTree constructs its tree with a GPU-native, CUDA-graph builder that is bit-identical to a reference Python implementation, so acceptance is unchanged, while keeping per-round tree construction cheap. With this builder as default, DominoTree wins throughput over the released Domino decoder at every temperature, 9-10% overall on Qwen3-4B and up to +22% on Alpaca, and over DDTree/CaDDTree at every temperature we test. On Qwen3- 8B, DominoTree keeps the highest accepted length at every temperature and adds a decisive throughput win at T=0, +24% over DDTree; at higher temperature that edge over DDTree/CaDDTree narrows to a tie and a small loss, while its Overall aggregate wins over DFlash and Domino persist.",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, inference。Speculative decoding accelerates LLM inference by drafting several tokens and verifying them in parallel. Block-diffusion drafters...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.CL",
-            "inference",
-            "llm",
-            "speculative",
-            "throughput"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-09T16:16:35Z",
-          "url": "https://arxiv.org/abs/2607.08642",
-          "pdfUrl": "https://arxiv.org/pdf/2607.08642v1"
-        },
-        {
-          "id": "arxiv-2607.08565",
-          "title": "SMetric: Rethink LLM Scheduling for Serving Agents with Balanced Session-centric Scheduling",
-          "authors": [
-            "Jiahao Wang",
-            "Kaizhan Lin",
-            "Kaixi Zhang",
-            "Jinbo Han",
-            "Xingda Wei",
-            "Sijie Shen",
-            "Chenguang Fang",
-            "Wenyuan Yu",
-            "Rong Chen",
-            "Haibo Chen"
-          ],
-          "summary": "LLM scheduling is critical to serving, yet it remains unclear how well existing designs fit agentic serving--with LLM requests issued by agents instead of humans. This shifts the workload in two ways: (1) agents act only on complete responses, making the cluster's tokens per second (TPS) the primary goal and relaxing--not eliminating--per-token latency requirements; and (2) requests share much of their KV\\$-reuse exceeds 80% of request tokens in a production trace from BAILIAN, versus 54-62% in chat. This paper first contributes a systematic study of request scheduling for agents on two real-world traces. We find that to increase KV\\$ reuse, existing schedulers overly prioritize routing requests to instances caching their KV\\$, overloading a few while leaving the rest idle, capping TPS. We thus present two key insights: (1) load balance need not sacrifice all KV\\$ reuse, thanks to the global-tier KV\\$ store and (2) by utilizing the workload's intra-session locality, balancing a small fraction of requests--the first request in each agent session--suffices to balance the cluster without sacrificing most KV\\$ reuse on local instances. SMETRIC realizes these insights with balanced session-centric scheduling: it routes each session's first request purely for load balance and its follow-up requests in a cache-aware manner, preserving load balance and local reuse while keeping demand on the global tier low. Using the session turn information as the scheduling metric is deliberate: it is derived efficiently and accurately from the user inputs alone, so the scheduler stays clean and stateless. SMETRIC improves cluster TPS by 10-16% under prefill-decode colocation with a global store and prefill TPS by 2-34% under disaggregation over state-of-the-art schedulers, also with a better per-token latency.",
-          "reason": "近 30 天；关键词：cs.DC, efficient, latency。LLM scheduling is critical to serving, yet it remains unclear how well existing designs fit agentic serving--with LLM requests iss...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.DC",
-            "efficient",
-            "latency",
-            "llm",
-            "prefill",
-            "production",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-09T14:55:02Z",
-          "url": "https://arxiv.org/abs/2607.08565",
-          "pdfUrl": "https://arxiv.org/pdf/2607.08565v1"
-        },
-        {
-          "id": "arxiv-2607.08215",
-          "title": "On the Limitations of Non-GPU AI Accelerators for Large-Model Inference: A Field Study of MoE and Multimodal Serving on Huawei Ascend",
-          "authors": [
-            "Zheng Yu"
-          ],
-          "summary": "Non-GPU AI accelerators are increasingly adopted as alternatives to general-purpose GPUs for large-model inference, but the real engineering cost of migrating demanding workloads beyond CUDA remains poorly documented. We present a field study of deploying two large inference workloads on a 16-device Huawei Ascend 910 system using CANN and vLLM-Ascend: an LLM-as-a-judge safety and alignment evaluation pipeline based on a W8A8 MoE judge model, DeepSeek-V4-Flash, and a multimodal medical vision--language benchmark based on DeepSeek-V4-Flash-Vision for MMMU and MMMU-Pro. Making these workloads reliable required twelve source-level patches to the vendor inference plugin, disabling several high-throughput features to preserve numerical correctness, and adding operational safeguards for recurring device-level failures. We summarize the main platform limitations in eight categories: incomplete operator and feature support, fragile parallelism, numerical faults in low-level kernels, immature graph compilation, unstable advanced features, limited scalability, weak observability, and ecosystem fragmentation. For each category, we report the symptoms, evidence, and likely causes. We also quantify the integration effort, concurrency behavior, and benchmark quality to show that both workloads were served correctly. Our study provides a reproducible reference for teams evaluating or operating non-GPU accelerators for large-model inference.",
-          "reason": "近 30 天；公司信号：Huawei, NVIDIA；关键词：huawei, nvidia, cs.DC。Non-GPU AI accelerators are increasingly adopted as alternatives to general-purpose GPUs for large-model inference, but the real e...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "huawei",
-            "nvidia",
-            "cs.DC",
-            "alignment",
-            "inference",
-            "llm",
-            "multimodal"
-          ],
-          "signal": 99,
-          "source": "Huawei/NVIDIA/arXiv",
-          "publishedAt": "2026-07-09T08:12:15Z",
-          "url": "https://arxiv.org/abs/2607.08215",
-          "pdfUrl": "https://arxiv.org/pdf/2607.08215v1"
-        },
-        {
-          "id": "arxiv-2607.08208",
-          "title": "Diarization-Guided Qwen-ASR Adaptation for Multilingual Two-Speaker Conversational Speech",
-          "authors": [
-            "Hao Wu",
-            "RongQi Han",
-            "Zhen Wang",
-            "Wei Liang",
-            "Wei Xu"
-          ],
-          "summary": "This paper describes our self-designed system for Task 1 of the MLC-SLM 2026 Challenge for multilingual two-speaker conversational speech. The system combines a modular speaker diarization front end with a challenge-adapted Qwen3-ASR-1.7B recognizer. The diarization front end performs voice activity detection, subsegment generation, CAMPPlus speaker embedding extraction, two-speaker spectral clustering, and RTTM-based audio segmentation. The resulting speaker-attributed segments are grouped by language or region and decoded by the adapted ASR model. For ASR adaptation, we first perform supervised full fine-tuning on the official training data, then apply LoRA fine-tuning with synthetic speech generated by a three-pipeline TTS-based synthetic speech augmentation framework, and finally refine the model using GRPO reinforcement learning with rewards based on WER/CER and penalties for hallucination, repetition, and length deviation. On the official development set, the full system achieves an average tcpMER of 23.70, reducing the error rate by 6.83 absolute points relative to the released Qwen-ASR-1.7B performance. On the final evaluation set, the system achieves an average tcpMER of 17.97. Ablation results show that supervised fine-tuning provides the largest gain, while synthetic-speech LoRA adaptation and reinforcement learning further improve robustness.",
-          "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.CL, lora。This paper describes our self-designed system for Task 1 of the MLC-SLM 2026 Challenge for multilingual two-speaker conversational...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "alibaba",
-            "cs.CL",
-            "lora"
-          ],
-          "signal": 99,
-          "source": "Alibaba/arXiv",
-          "publishedAt": "2026-07-09T08:07:34Z",
-          "url": "https://arxiv.org/abs/2607.08208",
-          "pdfUrl": "https://arxiv.org/pdf/2607.08208v1"
-        },
-        {
-          "id": "arxiv-2607.08057",
-          "title": "Towards Efficient Large Language Model Serving: A Survey on System-Aware KV Cache Optimization",
-          "authors": [
-            "Jiantong Jiang",
-            "Peiyu Yang",
-            "Rui Zhang",
-            "Feng Liu"
-          ],
-          "summary": "Despite the rapid advancements of large language models (LLMs), LLM serving systems remain memory-intensive and costly. The key-value (KV) cache, which stores KV tensors during autoregressive decoding, is crucial for enabling low-latency, high-throughput LLM inference serving. In this survey, we focus on system-aware KV infrastructure for serving LLMs (abbreviated as sKis). We revisit recent work from a system behavior perspective, organizing existing efforts into three dimensions: execution and scheduling (temporal), placement and migration (spatial), and representation and retention (structural). Furthermore, we analyze cross-behavior co-design affinity and behavior-objective links, highlighting future opportunities. Our work systematizes a rapidly evolving area, providing a foundation for understanding and innovating KV cache designs in modern LLM serving infrastructure.",
-          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Despite the rapid advancements of large language models (LLMs), LLM serving systems remain memory-intensive and costly. The key-va...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "efficient",
-            "inference",
-            "kv-cache",
-            "latency",
-            "llm",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-09T02:11:18Z",
-          "url": "https://arxiv.org/abs/2607.08057",
-          "pdfUrl": "https://arxiv.org/pdf/2607.08057v1"
-        },
-        {
-          "id": "arxiv-2607.08032",
-          "title": "What to Keep, What to Forget: A Rate--Distortion View of Memory Compaction in LLMs and Agents",
-          "authors": [
-            "Ashwin Gerard Colaco",
-            "Nada Lahjouji"
-          ],
-          "summary": "Large language models, and the agents built on them, spend an ever-growing share of their compute and memory on remembering: caching attention keys and values, carrying long prompts, maintaining recurrent state, and storing what happened in previous turns and sessions. Because none of this memory is free, four largely separate research communities have each learned to compact it. They evict or quantize the KV cache, prune or distill prompts, bound architectural state, and consolidate agent memory. We argue that these are instances of one problem: a rate--distortion decision about what context-derived information to retain versus discard, at what fidelity, under a resource budget, so as to preserve downstream task utility. We make this lens precise with a single compaction objective and a layer-agnostic lower bound, use it to build a seven-axis taxonomy that classifies methods from across the stack uniformly, and use it to transfer mechanisms between layers that have never been connected, from serving-stack KV management to agent long-term memory. Two patterns hold across the survey. At every layer the signal that decides what to keep is attention magnitude or recency, and it fails in the same way everywhere, by discarding, before the query is known and with no way to undo it, information the query later needs. And while compression is measured carefully on single-turn long context, the repeated compaction that agents actually perform is almost never measured, and no benchmark holds one budget axis across all the layers at once. We turn both observations into a benchmark proposal, a small reference experiment, and a set of compaction-aware design principles, and we map the open problems.",
-          "reason": "近 30 天；关键词：cs.LG, kv-cache, llm。Large language models, and the agents built on them, spend an ever-growing share of their compute and memory on remembering: cachi...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "kv-cache",
-            "llm",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-09T01:15:03Z",
-          "url": "https://arxiv.org/abs/2607.08032",
-          "pdfUrl": "https://arxiv.org/pdf/2607.08032v1"
-        },
-        {
-          "id": "arxiv-2607.08029",
-          "title": "Rethinking Small VLM Quantization: From Component-Wise Analysis to Hardware-Aware Edge Deployment",
-          "authors": [
-            "Hyeju Shin",
-            "Chorwon Kim",
-            "Ryangsoo Kim",
-            "Hark Yoo",
-            "Jaein Kim"
-          ],
-          "summary": "The emergence of vision language models with fewer than 3 billion parameters has accelerated the implementation of on-device multimodal intelligence. However, a detailed understanding of component-wise quantization remains a bottleneck for optimal deployment. This paper presents a systematic evaluation framework for empirically validating five hypotheses across six quantization configurations on the Jetson Orin NX and AGX. By separating the vision encoder, projector, and large language model backbone yields the following results: (1) Quantization sensitivity is governed by the structural paradigm (MoE vs. dense) rather than scale alone, with MoE backbones mitigating INT4 noise where dense backbones degrade; (2) SigLIP encoders incur disproportionate INT8 latency on Jetson Ampere--a deployment-specific encoder-kernel-hardware interaction, not a SigLIP flaw; (3) Although INT4 quantization of LLMs greatly reduces VRAM consumption, it also causes slower token generation due to dequantization overhead; (4) Composite quantization errors are largely additive, except along the modality-alignment path, which is architecture-dependent; (5) The intelligence-per-joule profile varies significantly across platforms owing to memory bandwidth constraints.",
-          "reason": "近 30 天；关键词：cs.LG, alignment, latency。The emergence of vision language models with fewer than 3 billion parameters has accelerated the implementation of on-device multi...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "alignment",
-            "latency",
-            "llm",
-            "multimodal",
-            "quantization",
-            "slo"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-09T01:13:18Z",
-          "url": "https://arxiv.org/abs/2607.08029",
-          "pdfUrl": "https://arxiv.org/pdf/2607.08029v1"
-        },
-        {
-          "id": "arxiv-2607.07862",
-          "title": "CTA-Pipelining: A Latency-Oriented Spatial Scaling Method for Multi-GPU Systems",
-          "authors": [
-            "Tingkai Liu",
-            "Muralidhar Andoorveedu",
-            "Sanjoy Das",
-            "Sanjay Patel",
-            "Volodymyr Kindratenko"
-          ],
-          "summary": "The evolution of compute infrastructure has transformed multi-GPU systems into tightly integrated shared-memory structures. However, current software still mostly treats these coherent interconnects simply as high-speed networks. Simultaneously, the demand for serving Large Language Models under latency constraints has shifted GPU workload optimization from being throughput-driven to latency-bound, necessitating latency-oriented scaling methods beyond Tensor Parallelism (TP). Thus, we introduce CTA-pipelining, an execution paradigm designed to exploit shared-memory multi-GPU systems. As a latency-oriented spatial scaling technique, CTA-pipelining leverages dependencies at the Cooperative Thread Array level, enabling concurrent execution of dependent kernels across GPUs. We demonstrate its capability using CUTLASS, cuBLAS, and NCCL libraries on 8-GPU H200 and B200 systems. Results show on 2-layer GEMM, representing the MLP operation, CTA-pipelining reduces latency by up to 31.8% compared to micro-batching, and 29.6% compared to TP. It can also be combined with TP as an orthogonal scaling dimension to further push the latency boundary.",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, batching。The evolution of compute infrastructure has transformed multi-GPU systems into tightly integrated shared-memory structures. Howeve...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.DC",
-            "batching",
-            "latency",
-            "serving",
-            "throughput"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-08T18:54:08Z",
-          "url": "https://arxiv.org/abs/2607.07862",
-          "pdfUrl": "https://arxiv.org/pdf/2607.07862v1"
         }
       ]
     }
