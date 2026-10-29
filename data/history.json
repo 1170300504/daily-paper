@@ -1,7 +1,301 @@
 {
-  "generatedAt": "2026-10-28T08:48:45.453936+08:00",
+  "generatedAt": "2026-10-29T09:21:47.024603+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-10-29",
+      "generatedAt": "2026-10-29T09:21:47.024603+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2610.37442",
+          "title": "CRISP: Co-designing Pruning and Scheduling for Efficient MoE Inference on Edge Servers",
+          "authors": [
+            "Congwei Zhang",
+            "Youming Tao",
+            "Yifei Zou",
+            "Yu Yang",
+            "Ruirui Zhang",
+            "Xiaoyu Zhang",
+            "Falko Dressler",
+            "Xiuzhen Cheng",
+            "Dongxiao Yu"
+          ],
+          "summary": "Mixture-of-Experts (MoE) inference on memory-constrained edge platforms is often dominated by expert-weight movement rather than computation. Although each token activates only a small subset of experts, routing is input-dependent, so all experts must remain accessible and memory movement dominates latency. Existing approaches such as uniform pruning and expert dropping overlook two properties of MoE execution: expert combinations are highly skewed in frequency, and experts contribute asymmetrically within each combination. We present CRISP, a combination-aware framework that co-designs pruning and runtime scheduling for efficient MoE serving on memory-constrained edge platforms. CRISP reorders neurons by importance so one stored expert can support multiple execution widths, assigns differentiated execution to hot, warm, and cold combinations based on frequency and expert role, and exploits heterogeneous widths to overlap expert loading with computation. Across Mixtral-8x7B and DeepSeek-MoE-16B, CRISP improves throughput by up to $2.1\\times$ at the same memory budget while limiting accuracy loss to 3.6\\% relative to full-width inference. Our results highlight that efficient edge MoE serving requires jointly optimizing which expert capacity is preserved and how expert execution is scheduled.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Mixture-of-Experts (MoE) inference on memory-constrained edge platforms is often dominated by expert-weight movement rather than c...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "inference",
+            "latency",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-27T15:51:14Z",
+          "url": "https://arxiv.org/abs/2610.37442",
+          "pdfUrl": "https://arxiv.org/pdf/2610.37442v1"
+        },
+        {
+          "id": "arxiv-2610.37432",
+          "title": "Request-Adaptive Execution for Efficient Hybrid LLM Inference",
+          "authors": [
+            "Fahao Chen",
+            "Xuzhe Yan",
+            "Qi Zhang",
+            "Peng Li",
+            "Dongxiao Yu",
+            "Song Guo"
+          ],
+          "summary": "Hybrid large language models (LLMs) have emerged as a promising way to combine the modeling capability of the Attention mechanism with the efficiency of state space models (SSMs). However, most existing hybrid LLMs still inherit a static design philosophy: once the Attention-to-SSM layout is chosen, every request must follow the same hybrid execution. This one-layout-fits-all design is inefficient for real-world serving workloads, where different requests rely on contextual information in different ways. This paper presents Morph, a serving system that co-designs the model architecture and runtime for request-adaptive hybrid LLM inference. Its model architecture pairs Attention and SSM layers within each block and uses prefill-oriented gating to select a request-specific layout that remains fixed throughout decoding. Its serving runtime preserves batching efficiency under divergent layer choices through selective batching and enables correct prefix reuse through hybrid-aware context caching. Experiments on six datasets show that Morph achieves a better quality-efficiency trade-off than existing static hybrid baselines. System-level evaluation further shows that Morph improves the serving throughput by up to 3.87x over baselines while substantially reducing inference latency.",
+          "reason": "近 30 天；关键词：cs.DC, batching, dataset。Hybrid large language models (LLMs) have emerged as a promising way to combine the modeling capability of the Attention mechanism...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "batching",
+            "dataset",
+            "efficient",
+            "inference",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-27T15:43:30Z",
+          "url": "https://arxiv.org/abs/2610.37432",
+          "pdfUrl": "https://arxiv.org/pdf/2610.37432v1"
+        },
+        {
+          "id": "arxiv-2610.37409",
+          "title": "Can Complementary Signals Bridge Similarity Islands? Manifold-Augmented Graph Embedding for Multimodal Recommendation",
+          "authors": [
+            "Zhenye Yang",
+            "Jinpeng Chen",
+            "Wenbo Fu",
+            "Jun Ma",
+            "Huan Li",
+            "Qimin Zhou",
+            "Tao Wang",
+            "Li Sun",
+            "Senzhang Wang"
+          ],
+          "summary": "Multimodal Recommender Systems (MMRS) leverage rich item features to mitigate data sparsity, yet similarity-driven graph construction and propagation can favor semantically similar substitutes over functionally related complements. When behavioral associations connect semantically distant items, complementary signals can remain geometrically isolated, yielding fragmented \"Similarity Islands\" and semantic drift when standard propagation is applied. To overcome these limitations, we propose MAGE (Manifold-Augmented Graph Embedding), a framework for personalized multimodal ranking that decouples complementarity modeling into offline geometric warping and online topological propagation. The offline phase enhances item representations by extracting complement-aware residual directions via a Soft Conceptor mechanism and injecting them under a local gap-preserving constraint, incorporating co-purchase evidence while controlling the magnitude of geometric perturbation. Synergistically, the online phase employs an asymmetric dual-stream GNN that treats visual features as stable anchors and augmented textual features as flexible probes, fused through a self-calibrated cross-modal mechanism to reconcile shared semantics and modality-specific residual cues. Extensive experiments on four Amazon datasets show that MAGE yields consistent improvements over strong multimodal recommendation baselines. Together with the supporting analyses in the appendix, these results suggest that geometry-aware augmentation can alleviate the semantic mismatch that arises in complementary recommendation settings. Our code is available at https://github.com/Alex-bupt/mage.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Multimodal Recommender Systems (MMRS) leverage rich item features to mitigate data sparsity, yet similarity-driven graph construct...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "dataset",
+            "multimodal",
+            "ranking",
+            "recommendation",
+            "recommender"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-10-27T15:26:40Z",
+          "url": "https://arxiv.org/abs/2610.37409",
+          "pdfUrl": "https://arxiv.org/pdf/2610.37409v1"
+        },
+        {
+          "id": "arxiv-2610.37307",
+          "title": "EdgePace: Deadline- and Freshness-Aware LLM Scheduling on Unified-Memory Platforms",
+          "authors": [
+            "Teng Mei",
+            "Chengxuan Pei",
+            "Weijun Wang",
+            "Jie Wu",
+            "Marco Canini",
+            "Yunming Xiao"
+          ],
+          "summary": "Large language models (LLMs) increasingly run on edge devices alongside tasks that continuously process sensor data. In many applications, these foreground tasks prepare observations as inputs to the LLM, whose outputs guide subsequent processing or actions. The observations must be processed by foreground deadlines, and LLM feedback must arrive while its source observations remain useful. Yet the CPU and accelerators share a unified-memory system, so LLM inference can delay foreground processing through memory-bandwidth contention even when compute resources remain available. We present EdgePace, a bandwidth-aware runtime that protects foreground deadlines while sustaining timely LLM feedback. EdgePace creates safe suspension points across prefill and decode, monitors foreground memory demand and stalls at low cost, and schedules inference according to contention risk, deadline slack, and output freshness. We evaluate EdgePace on a OnePlus 13 and three NVIDIA Jetson platforms using multi-camera processing and robotic target tracking. Relative to unmanaged inference, it reduces foreground deadline misses by 24.1%--96.1% while retaining 64.9%--98.5% of LLM throughput. All measured LLM outputs arrive within their task-defined freshness windows. On OnePlus 13, for example, camera deadline misses fall by 91.3% while 90.4% of LLM throughput is retained.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.PF, deadline。Large language models (LLMs) increasingly run on edge devices alongside tasks that continuously process sensor data. In many appli...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.PF",
+            "deadline",
+            "inference",
+            "llm",
+            "prefill",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-10-27T14:26:16Z",
+          "url": "https://arxiv.org/abs/2610.37307",
+          "pdfUrl": "https://arxiv.org/pdf/2610.37307v1"
+        },
+        {
+          "id": "arxiv-2610.37230",
+          "title": "TAO: Tool-Aware Joint Scheduling for LLM-Based Agentic Serving",
+          "authors": [
+            "Shuhuai Li",
+            "Shengdong Ye",
+            "Dongdong Ge",
+            "Yinyu Ye",
+            "Jianghao Lin"
+          ],
+          "summary": "Agentic services alternate between model inference on clustered GPUs and external tools on distributed CPUs. In this scenario, existing systems (1) overlook tool-return readiness in service evaluation, wasting limited resources, and (2) use heuristic strategies to decide admission and placement on GPUs, resulting in suboptimal scheduling decisions. To bridge this gap, we present TAO, a tool-aware joint scheduling framework for LLM-based agentic serving. Its value interface combines near-term tool readiness, node-specific cache credit with time-aware decay, and token footprint; a dynamic program jointly selects and places waiting sessions under capacity constraints. Across the 12 reported model-workload-concurrency settings, TAO reduces latency by up to 26.8%, reduces mean time to first token (TTFT) by up to 36.3%, and increases decode throughput by up to 29.5% relative to the best evaluated state-of-the-art baseline for each metric.",
+          "reason": "近 30 天；关键词：cs.DC, inference, latency。Agentic services alternate between model inference on clustered GPUs and external tools on distributed CPUs. In this scenario, exi...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "inference",
+            "latency",
+            "llm",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-27T13:38:44Z",
+          "url": "https://arxiv.org/abs/2610.37230",
+          "pdfUrl": "https://arxiv.org/pdf/2610.37230v1"
+        },
+        {
+          "id": "arxiv-2610.37005",
+          "title": "Compote: Collapse-Resistant Multiple Hypothesis Learning For Sequential Recommendation",
+          "authors": [
+            "Louis Castres Saint Martin",
+            "Clement Calauzenes",
+            "Alain Rakotomamonjy",
+            "Patrick Gallinari"
+          ],
+          "summary": "Next-item prediction is inherently ambiguous: a single interaction history often admits multiple plausible continuations across distinct catalogue regions. Standard sequential recommenders compress these alternatives into a single prediction, conflating user intents. We introduce COllapse-resistant Multiple hyPOThesis lEarning (COMPOTE), a multi-hypothesis transformer trained with an annealed objective that transitions from uniform supervision to a winner-takes-all assignment. This mechanism forces hypotheses to specialize into distinct catalogue regions, while inference relies on an efficient, normalizer-free max-similarity rule. Theoretically, we show that in the population case, the optimal solutions partition the conditional next-item distribution according to a max-entropy quantization principle, while pooled scores preserve the Bayes-optimal ranking. We also prove a generalization bound scaling logarithmically with the number of hypotheses. Across three Amazon Reviews 2023 benchmarks, COMPOTE outperforms strong ID-based, generative, and multi-interest baselines using item IDs alone. Matched-capacity ablations confirm that performance gains stem directly from the annealed objective, preventing the head collapse observed in conventional multi-head architectures, rather than added capacity, ensembling, or routing.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.LG, efficient。Next-item prediction is inherently ambiguous: a single interaction history often admits multiple plausible continuations across di...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.LG",
+            "efficient",
+            "inference",
+            "quantization",
+            "ranking",
+            "recommendation"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-10-27T10:50:08Z",
+          "url": "https://arxiv.org/abs/2610.37005",
+          "pdfUrl": "https://arxiv.org/pdf/2610.37005v1"
+        },
+        {
+          "id": "arxiv-2610.36958",
+          "title": "PailitaoMMSearch2.0 Technical Report: Scaling Generative Retrieval to Unified End-to-End Multimodal Search",
+          "authors": [
+            "Xiaohan Ye",
+            "Zihan Gong",
+            "Jingqian Zhao",
+            "Lianyu Du",
+            "Yunmeng Shu",
+            "Xu Chen",
+            "Zesheng Zhou",
+            "Renchun You",
+            "Bocheng Chen",
+            "Jinsong Lan",
+            "Haihong Tang",
+            "Bo Zheng"
+          ],
+          "summary": "Generative retrieval models have been increasingly adopted in search and recommendation systems. However, industrial generative retrieval models are commonly specialized to a fixed online scenario: they learn from scenario-specific interactions, support a narrow set of query forms and retrieval objectives. We study how to remove these couplings and build a unified end-to-end multimodal search system for open-ended image--text queries, heterogeneous shopping intents, and online scenarios with different resource constraints. We present \\textbf{PailitaoMMSearch}, which directly generates product Semantic IDs from a raw query image and free-form instruction and scales along three dimensions. \\textbf{Data scaling} uses a reusable toolset that can be composed into intent- and lifecycle-specific workflows for cold-start synthesis, quality control, real-traffic refinement, and continuous data production. \\textbf{Intent scaling} progressively equips one model with e-commerce product knowledge, multiple retrieval relations, and adjustable reasoning budgets through continual pre-training (CPT), mixed-budget supervised fine-tuning (SFT), and unified reinforcement learning (RL). The RL stage combines intent-balanced optimization and Sample--Beam rollouts aligned with multi-candidate serving. \\textbf{Scenario scaling} exposes quality--cost operating points across model capacity and reasoning budget. The system is deployed in multimodal search applications on Taobao Pailitao. A controlled online A/B test reports statistically significant improvements, including item page views $\\textbf{+17.90\\%}$, transactions $\\textbf{+27.04\\%}$, and gross merchandise value $\\textbf{+8.94\\%}$.",
+          "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, deployed。Generative retrieval models have been increasingly adopted in search and recommendation systems. However, industrial generative re...",
+          "area": "推荐算法",
+          "tags": [
+            "alibaba",
+            "cs.IR",
+            "deployed",
+            "industrial",
+            "multimodal",
+            "online-a/b",
+            "production"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-10-27T10:17:33Z",
+          "url": "https://arxiv.org/abs/2610.36958",
+          "pdfUrl": "https://arxiv.org/pdf/2610.36958v1"
+        },
+        {
+          "id": "arxiv-2610.36896",
+          "title": "PREEN: Exemplar-Based Color Style Transfer with Smartphone Editor Presets",
+          "authors": [
+            "Beomjin Ahn"
+          ],
+          "summary": "We present PREEN (Preset Regression via an Exemplar-based Editor Network), which casts color style transfer as regression onto the 29 parameters of a deterministic image editor. Given a content image and a style reference, PREEN predicts a preset, a vector of editor slider values that is interpretable and editor-consumable, not a raster image. The key obstacle is supervision, since an arbitrary real reference lacks a preset ground truth. We therefore supervise with a style-transfer teacher, whose target looks we invert into the editor's parameter space as pseudo-presets, then pretrain a CLIP-conditioned regressor and refine it with LoRA under an image-level CIELAB loss. On the human-curated PST50 benchmark, PREEN applies the reference's color while preserving structural fidelity, leading the baselines on pixel- and perceptual-fidelity metrics. The preset is compact and predicted at sub-second on-device latency. The low-dimensional subspace also exposes a single inference-time strength knob that traces a continuous default-to-vivid trajectory in one forward pass, with every intermediate state a valid editor preset. A two-axis human study shows that raters prefer the vivid end for matching the reference but the default as a standalone photo, a trade-off the knob spans without retraining.",
+          "reason": "近 30 天；关键词：cs.CV, inference, latency。We present PREEN (Preset Regression via an Exemplar-based Editor Network), which casts color style transfer as regression onto the...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CV",
+            "inference",
+            "latency",
+            "lora",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-27T09:30:35Z",
+          "url": "https://arxiv.org/abs/2610.36896",
+          "pdfUrl": "https://arxiv.org/pdf/2610.36896v1"
+        },
+        {
+          "id": "arxiv-2610.36836",
+          "title": "DuTri: Dual-Branch Modeling with Triadic Factorization for Multimodal Multi-Scenario Recommendation",
+          "authors": [
+            "Jintao Huang",
+            "Chaohua Yang",
+            "Kailiang Hao",
+            "Dugang Liu",
+            "Xing Tang",
+            "Zhong Ming"
+          ],
+          "summary": "As recommendation scenarios become increasingly diverse and multimodal information grows more prevalent, effectively modeling cross-scenario user preferences and multimodal semantics has become a critical challenge in recommender systems. When incorporating multimodal information, existing multi-scenario recommendation (MSR) methods typically treat textual and visual representations as generic input features and directly feed them into their original parameter-sharing architectures. However, this extension may not fully accommodate the different modeling requirements of collaborative and multimodal information and may not be the best modeling paradigm. Our controlled experiments show that directly adopting these architectures is not the optimal modeling approach. To this end, we propose Dual-Branch Modeling with Triadic Factorization (DuTri), a framework for multimodal multi-scenario recommendation comprising a collaborative branch and a multimodal branch. Specifically, the collaborative branch learns structured collaborative preference representations through CANDECOMP/PARAFAC (CP) decomposition of user-scenario-item interactions and residual quantization, thereby capturing cross-scenario commonalities and scenario-specific differences. The multimodal branch leverages the learned user and scenario preferences to guide adaptive modality fusion; additionally, item-level contrastive learning aligns collaborative item preference representations with multimodal representations to facilitate effective collaboration between the two branches. Extensive experiments on two real-world datasets, AntM$^2$C and Amazon, demonstrate that DuTri outperforms existing multimodal and multi-scenario recommendation baselines in overall recommendation performance, validating the effectiveness of the proposed framework.",
+          "reason": "近 30 天；公司信号：Amazon, Microsoft；推荐/排序/广告方向；关键词：amazon, microsoft, cs.IR。As recommendation scenarios become increasingly diverse and multimodal information grows more prevalent, effectively modeling cros...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "microsoft",
+            "cs.IR",
+            "dataset",
+            "multimodal",
+            "quantization",
+            "recommendation"
+          ],
+          "signal": 99,
+          "source": "Amazon/Microsoft/arXiv",
+          "publishedAt": "2026-10-27T08:35:11Z",
+          "url": "https://arxiv.org/abs/2610.36836",
+          "pdfUrl": "https://arxiv.org/pdf/2610.36836v1"
+        },
+        {
+          "id": "arxiv-2610.36589",
+          "title": "InfraDev: Can Coding Agents Develop AI Infrastructure, and How Can We Tell?",
+          "authors": [
+            "Yangshen Deng",
+            "Jiaqi Ruan",
+            "Yeqi Huang",
+            "Nick Lau",
+            "Guangming Sheng",
+            "Luo Mai"
+          ],
+          "summary": "Coding agents are beginning to develop the production-grade AI infrastructure that trains and serves large models, yet existing benchmarks cover only single kernels or single-GPU tasks, and grade with tests and prompts that misjudge both correct and incorrect patches. We introduce InfraDev, a benchmark of 36 tasks built from real-world pull requests to Megatron-LM, vLLM, and verl, covering infrastructure development for training, inference, and reinforcement learning. Each task asks an agent to reimplement a real change that spans many files and must run correctly across many GPUs. To grade such changes, we jointly synthesize hidden probes, which enforce the requirements the original tests leave unchecked, and a prompt that states every interface the probes call without revealing the solution. We also design a shared execution environment that reuses dependencies and artifacts across tasks, cutting storage by 52-57% and build time by 13-14% on Megatron-LM and vLLM. Across six frontier models, the best resolves only 38.9% of the tasks; the probes reject 32% of the submissions that pass every official test, and with the original pull request descriptions as prompts, no model resolves a single task. Failure analysis shows that structural and state errors dominate and that agents' own tests rarely check memory, time, or traffic. Turning these findings into an agent skill raises the resolved rate of a frontier model on the Megatron-LM tasks by 10.5%.",
+          "reason": "近 30 天；关键词：cs.AI, inference, llm。Coding agents are beginning to develop the production-grade AI infrastructure that trains and serves large models, yet existing be...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AI",
+            "inference",
+            "llm",
+            "production"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-27T03:47:47Z",
+          "url": "https://arxiv.org/abs/2610.36589",
+          "pdfUrl": "https://arxiv.org/pdf/2610.36589v1"
+        }
+      ]
+    },
     {
       "date": "2026-10-28",
       "generatedAt": "2026-10-28T08:48:45.453936+08:00",
@@ -19991,144 +20285,6 @@
       "generatedAt": "2026-07-13T06:36:55.446960+08:00",
       "source": "curated industry radar + arXiv API",
       "papers": []
-    },
-    {
-      "date": "2026-07-12",
-      "generatedAt": "2026-07-12T06:36:40.532519+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2607.07779",
-          "title": "From Solvers to Research: Large Language Model-Driven Formal Mathematics at the Research Frontier",
-          "authors": [
-            "Eric Jiang",
-            "Xiao Liang",
-            "Yikai Zhang",
-            "Yingjia Wan",
-            "Mengting Li",
-            "Haikang Deng",
-            "Alexander K. Taylor",
-            "Justin Baker",
-            "Rushil Raghavan",
-            "Junyi Zhang",
-            "Ying Nian Wu",
-            "Andrea L. Bertozzi",
-            "Kai-Wei Chang",
-            "Raghu Meka",
-            "Matthew Sottile",
-            "Nanyun Peng",
-            "Amit Sahai",
-            "Terence Tao",
-            "Wei Wang"
-          ],
-          "summary": "Recent developments in AI for Mathematics (AI4Math), especially Large Language Model (LLM)-driven theorem provers, has achieved remarkable success in formal proof generation for well-defined mathematical problems through Interactive Theorem Proving (ITP) languages. However, current systems remain fundamentally limited in tackling frontier research mathematics, such as discovering new theorems or resolving open conjectures, which are often open-ended, under-specified, and involve multiple layers of abstraction. We argue that the next leap in AI4Math systems requires a decisive shift from predefined problem-solvers to research agents that can address frontier mathematical challenges with rigorous formal mathematical reasoning. In this position paper, we provide a systematic review of the field, covering datasets, auto-formalization, and proof synthesis. More importantly, we identify core limitations of existing systems in serving as mathematical research agents, examining issues across datasets, relational structure, mathematical exploration, tool ecosystem, and human-AI collaboration, outlining a strategic road-map for the future of AI4Math.",
-          "reason": "近 30 天；关键词：cs.CL, dataset, llm。Recent developments in AI for Mathematics (AI4Math), especially Large Language Model (LLM)-driven theorem provers, has achieved re...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "dataset",
-            "llm",
-            "lora",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-08T17:46:36Z",
-          "url": "https://arxiv.org/abs/2607.07779",
-          "pdfUrl": "https://arxiv.org/pdf/2607.07779v1"
-        },
-        {
-          "id": "arxiv-2607.07740",
-          "title": "Jet-Long: Efficient Long-Context Extension with Dynamic Bifocal RoPE",
-          "authors": [
-            "Haozhan Tang",
-            "Zerui Wang",
-            "Yuxian Gu",
-            "Song Han",
-            "Han Cai"
-          ],
-          "summary": "Modern LLMs are increasingly deployed in long-context applications such as retrieval-augmented generation, repository-level coding, and agentic workflows whose accumulated reasoning and tool traces routinely push the input an order of magnitude past the pretraining window, making zero-shot context extension the dominant deployment path for open-weight checkpoints. Most existing zero-shot methods fix a single rescaling factor up front, so an aggressive factor sacrifices short-context fidelity while a conservative one breaks down at long contexts. We propose Jet-Long, a tuning-free zero-shot method that pairs a local RoPE-faithful window with a long-range window whose rescaling factor adapts dynamically to the current sequence length, recovering the base model exactly at short inputs while extrapolating cleanly at long ones. An inclusion-exclusion attention merge and an on-the-fly RoPE correction rotation make the bifocal construction essentially free at inference; fused into a single CuTe kernel, long-context prefill reaches up to $1.39\\times$ FA2 throughput on H100 (approaching the Hopper-only FA4), and single-batch generation incurs $\\le 4\\%$ overhead at every length. On Qwen3-1.7B/4B/8B up to 128K context, Jet-Long leads RULER by $+4.79$/$+2.18$/$+2.03$~pp over the strongest baseline at 1.7B/4B/8B, achieves the best overall accuracy on HELMET-RAG (a benchmark identified by HELMET as the most efficient predictor of downstream long-context performance) and attains the lowest PG-19 perplexity. Jet-Long also generalizes to hybrid attention architectures such as Jet-Nemotron for further long-context improvement without retraining, and remains hyperparameter-resilient for ease of deployment.",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, deployed。Modern LLMs are increasingly deployed in long-context applications such as retrieval-augmented generation, repository-level coding...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.LG",
-            "deployed",
-            "efficient",
-            "inference",
-            "llm",
-            "prefill"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-08T06:23:42Z",
-          "url": "https://arxiv.org/abs/2607.07740",
-          "pdfUrl": "https://arxiv.org/pdf/2607.07740v1"
-        },
-        {
-          "id": "arxiv-2607.08017",
-          "title": "Can We Trust LLM's Logic? Quantifying Uncertainty, Coherence, and Robustness via a Graph-Based Framework",
-          "authors": [
-            "Riccardo Revalor",
-            "Jalees Rehman",
-            "Debjit Pal"
-          ],
-          "summary": "Large-Language Models (LLMs) can be prone to flawed and unfaithful reasoning that decoding strategies like Self-Consistency (SC) fail to detect as they evaluate only final-answer agreement while ignoring the logical validity of intermediate steps. This raises three fundamental questions: How can we reliably quantify uncertainty in LLM reasoning? Can semantic, structural, and causal awareness select more faithful reasoning compared to naïve majority voting? and How robust is reasoning topology under adversarial conditions? To address these questions, we introduce GRAPHEVAL, a graph-based reasoning framework that re-frames uncertainty quantification (UQ) as a holistic reasoning fidelity problem. We propose a novel UQ metric, Graph Reasoning Coherence Score (GRCS), that quantifies semantic-structural consensus of the reasoning space and captures pathological mode collapse and confident hallucinations. We find that GRCS is the only metric that is consistently negatively correlated with reasoning faithfulness across both more capable and smaller models. Additionally, we introduce Graph Self-Consistency (GSC), a medoid-based decoding strategy that trades nominal accuracy for reasoning fidelity, exposing the degree to which SC is inflated by unfaithful lucky guesses in smaller models, while preserving or improving accuracy in more capable ones. Finally, through adversarial medoid ablation, we demonstrate that the GSC-selected path acts as a \"load-bearing path\" and forcing models away from it degrades reasoning faithfulness and, in targeted cases, causes drops in accuracy.",
-          "reason": "近 30 天；关键词：cs.CL, llm, serving。Large-Language Models (LLMs) can be prone to flawed and unfaithful reasoning that decoding strategies like Self-Consistency (SC) f...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "llm",
-            "serving"
-          ],
-          "signal": 89,
-          "source": "arXiv",
-          "publishedAt": "2026-07-09T00:45:26Z",
-          "url": "https://arxiv.org/abs/2607.08017",
-          "pdfUrl": "https://arxiv.org/pdf/2607.08017v1"
-        },
-        {
-          "id": "arxiv-2607.08690",
-          "title": "A Practical Investigation of Training-free Relaxed Speculative Decoding",
-          "authors": [
-            "Guoxuan Xia",
-            "Luka Ribar",
-            "Paul Balanca"
-          ],
-          "summary": "Speculative decoding accelerates sampling from an autoregressive LLM by using a faster auxiliary model to draft tokens which are then verified in parallel by the LLM. Standard speculative decoding is lossless: its rejection and resampling steps exactly preserve the LLM's sampling distribution. Recent work argues that relaxing this strict guarantee can yield further speed-ups, controlled capability-speed trade-offs, or even capability gains. We practically investigate training-free relaxed speculative decoding techniques, unify existing approaches within a shared framework, benchmark them on contemporary settings, and distil takeaways and empirical findings for practitioners. Important takeaways include: relaxation can require considerable capability evaluation unlike lossless speculative decoding, and many relaxed approaches rely on a drafter that is a good language model, making them unsuited for lightweight dedicated multi-token-prediction drafters.",
-          "reason": "近 30 天；关键词：cs.LG, llm, speculative。Speculative decoding accelerates sampling from an autoregressive LLM by using a faster auxiliary model to draft tokens which are t...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "llm",
-            "speculative"
-          ],
-          "signal": 88,
-          "source": "arXiv",
-          "publishedAt": "2026-07-09T16:50:41Z",
-          "url": "https://arxiv.org/abs/2607.08690",
-          "pdfUrl": "https://arxiv.org/pdf/2607.08690v1"
-        },
-        {
-          "id": "arxiv-2607.06145",
-          "title": "Prompting Complexity: Shortest Prompts for Texts and Behaviors in LLMs",
-          "authors": [
-            "Adrian Cosma"
-          ],
-          "summary": "In this paper, we define the quantity of prompting complexity: for a fixed instruction-tuned language model, what is the shortest plausible prompt that makes deterministic decoding produce a target text? It is an LM-relative analogue of resource-bounded Kolmogorov complexity: the prompt is a program, the model interface is the interpreter, and information omitted from the prompt is supplied by the model's weights, training distribution, tokenizer, template, and decoding rule. Unlike classical Kolmogorov complexity, this measure is intentionally non-universal. In the finite-context setting it is computable by enumeration, but there is no model-independent invariance theorem; the same text may be cheap for one model and inaccessible or expensive for another. To keep the search space aligned with prompt engineering, we restrict programs to plausible human-readable texts rather than arbitrary token strings. We extend the exact definition to soft prompting complexity for approximate outputs, yielding a lossy notion of model-relative text compression and a formal target for prompt optimization. We also define prompting distance by comparing shortest generating prompts, and behavioral prompting complexity for reaching any output satisfying a specification. Based on these formulations, we define a research agenda for empirically studying which texts and behaviors are accessible from short plausible prompts under a fixed LM interface.",
-          "reason": "近 30 天；关键词：cs.CL, llm。In this paper, we define the quantity of prompting complexity: for a fixed instruction-tuned language model, what is the shortest...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "llm"
-          ],
-          "signal": 77,
-          "source": "arXiv",
-          "publishedAt": "2026-07-07T11:12:44Z",
-          "url": "https://arxiv.org/abs/2607.06145",
-          "pdfUrl": "https://arxiv.org/pdf/2607.06145v1"
-        }
-      ]
     }
   ]
 }
