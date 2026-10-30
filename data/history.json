@@ -1,7 +1,279 @@
 {
-  "generatedAt": "2026-10-29T09:21:47.024603+08:00",
+  "generatedAt": "2026-10-30T09:25:18.958492+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-10-30",
+      "generatedAt": "2026-10-30T09:25:18.958492+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2610.37921",
+          "title": "FAD-KV: Adaptive Dictionary KV Caching for Efficient Reasoning Decoding",
+          "authors": [
+            "Yuxuan Zhu",
+            "David H. Yang",
+            "Parisa Shiravani",
+            "Mohammad Mohammadi Amiri",
+            "Tejaswini Pedapati",
+            "Subhajit Chaudhury",
+            "Keerthiram Murugesan",
+            "Pin-Yu Chen"
+          ],
+          "summary": "Key-value (KV) caching is a core mechanism in large language models, where intermediate key and value representations are stored to accelerate autoregressive decoding. As generation length increases, KV cache memory and computation grow linearly, making compression critical for efficient long-output reasoning. Dictionary-based sparse KV compression is appealing because it represents each token's KV states as a sparse combination of learned basis elements (atoms) in a dictionary, preserving token-level structure without enforcing a global low-rank constraint. However, existing dictionary-based methods face two practical limitations during decoding: iterative sparse coding methods such as Orthogonal Matching Pursuit add decoding-time overhead, and static dictionaries may mismatch evolving KV distributions under test-time generation. While adaptive dictionary updates can reduce this mismatch, naive append-only strategies lead to dictionary growth during generation. We propose FAD-KV, a \\textbf{F}ast \\textbf{A}daptive \\textbf{D}ictionary KV caching framework for efficient reasoning decoding. FAD-KV integrates (i) a screening-based sparse coding scheme, where a one-shot Top-\\(n\\) selection identifies a small candidate pool followed by lightweight coefficient refinement, and (ii) a fixed-size dictionary adaptation mechanism that reuses inactive atoms instead of expanding the dictionary. By controlling both sparse coding cost and adaptive dictionary growth, FAD-KV provides a memory-bounded and computation-efficient KV compression framework for long reasoning workloads. Experiments on reasoning and long-context benchmarks show that FAD-KV achieves a strong quality-efficiency trade-off while avoiding unbounded dictionary growth during decoding.",
+          "reason": "近 30 天；关键词：cs.CL, efficient, kv-cache。Key-value (KV) caching is a core mechanism in large language models, where intermediate key and value representations are stored t...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "efficient",
+            "kv-cache",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-27T20:05:31Z",
+          "url": "https://arxiv.org/abs/2610.37921",
+          "pdfUrl": "https://arxiv.org/pdf/2610.37921v1"
+        },
+        {
+          "id": "arxiv-2610.37810",
+          "title": "ConfluxServe: Reconciling Resource Utilization and Parallelism Efficiency across Prefill and Decode in LLM Serving",
+          "authors": [
+            "Wenhao Chen",
+            "Hong Zhang"
+          ],
+          "summary": "Prefill and decode are complementary in resource usage, but often divergent in parallelism preferences. Executing the two phases separately preserves their preferred parallelism but leaves complementary resources underutilized, while co-batching improves utilization but often requires a uniform parallel configuration that hurts execution efficiency. To resolve this utilization-efficiency dilemma, we propose Conflux Parallelism (XP), a parallel execution abstraction that co-executes prefill and decode with different parallelism within the same batch. Conflux Parallelism exploits operator-level Transformer structure to construct a heterogeneous execution path with different batching and parallelism strategies across operators, combining the best of co-batching and phase-specific execution. Building on Conflux Parallelism, we design ConfluxServe, an SLO-aware serving system that maximizes cluster goodput under TTFT and TBT constraints. Evaluation on production workloads shows that ConfluxServe improves serving goodput by 1.26-1.62x over the strongest baselines.",
+          "reason": "近 30 天；关键词：cs.DC, batching, llm。Prefill and decode are complementary in resource usage, but often divergent in parallelism preferences. Executing the two phases s...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "batching",
+            "llm",
+            "prefill",
+            "production",
+            "serving",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-27T18:28:03Z",
+          "url": "https://arxiv.org/abs/2610.37810",
+          "pdfUrl": "https://arxiv.org/pdf/2610.37810v1"
+        },
+        {
+          "id": "arxiv-2610.37778",
+          "title": "Multi-Draft On-Policy Distillation for Diffusion Drafters",
+          "authors": [
+            "Petr Molodyk",
+            "Yuchen Zhu",
+            "Jaemoo Choi",
+            "Molei Tao",
+            "Yongxin Chen"
+          ],
+          "summary": "Speculative decoding is used to reduce the inference cost of language models. One-step diffusion drafters propose a block of multiple tokens in parallel, reducing the sequential cost of speculative decoding. On-policy distillation trains these drafters using verifier feedback on their own proposals. However, parallel drafting makes this feedback difficult to use: the drafter predicts each token without observing the preceding tokens sampled within the same block, while the verifier conditions its prediction on those tokens. Different sampled prefixes therefore give different verifier targets for the same drafter prediction. We show that distilling against these targets separately can suppress tokens that are plausible after some prefixes but unlikely after others, harming draft acceptance. We explain the effects of this mismatch and introduce Multi-Draft On-Policy Distillation (MDraft), a new parallel drafter distillation method which samples several draft blocks from the same context and aggregates the verifier's full-vocabulary conditionals across their prefixes. We use all the drafts to collect information from the verifier, allowing support from alternative prefixes to influence the training target. The resulting algorithm improves the acceptance length of a parallel drafter beyond the level of pre-training, and alleviates the effects of the distributional mismatch. MDraft changes only training, retaining the drafter's architecture and inference procedure, allowing the resulting drafter to be used as-is in place of the pretrained checkpoint. Experiments on a suite of mathematical, coding, and conversational tasks show longer accepted drafts than prior distillation methods.",
+          "reason": "近 30 天；关键词：cs.CL, inference, serving。Speculative decoding is used to reduce the inference cost of language models. One-step diffusion drafters propose a block of multi...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "inference",
+            "serving",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-27T18:02:08Z",
+          "url": "https://arxiv.org/abs/2610.37778",
+          "pdfUrl": "https://arxiv.org/pdf/2610.37778v1"
+        },
+        {
+          "id": "arxiv-2610.36587",
+          "title": "Efficient Quantization Training with Stochastic Rounding via Structured Subspace Randomness",
+          "authors": [
+            "Zeyu Wang",
+            "Yiheng Duan",
+            "Tao Chen",
+            "Donghyun Koo",
+            "Sihan Liu",
+            "Wenbo Zhang",
+            "Chuan He",
+            "Liang Liu"
+          ],
+          "summary": "Low-precision training often relies on stochastic rounding (SR) to keep quantized gradients unbiased and prevent small updates from rounding to zero. Standard SR draws an independent random threshold for every gradient element. However, accelerators generate random numbers on vector units whose throughput lags far behind their matrix units. Drawing one threshold per element saturates the vector unit and can make INT8 training with SR slower than BF16 training. Sharing random thresholds across tensor elements removes this cost but forces those elements to round in the same direction and shifts their rounding errors by a common offset. We find that this offset degrades training primarily through the activation gradient, which propagates the error backward into earlier layers. Because earlier layers cannot cancel an incoming offset using their own local rounding errors, the offset must be removed at the layer where it originates. We propose Structured Subspace Stochastic Rounding (S3R), which quantizes each upstream gradient once for both the activation and weight gradient matrix multiplications and shares a single threshold per token across the hidden dimension. Its error correction, S3R-EC, subtracts the structured mean rounding error from the activation and weight gradients while leaving the optimizer unchanged. In LLM pre-training experiments, uncorrected threshold sharing degrades convergence, whereas S3R-EC eliminates this degradation and matches the validation loss of independent SR. Furthermore, S3R-EC accelerates full INT8 training steps of dense LLMs on TPU v5p by 1.24x to 1.32x over BF16 and by 1.11x over independent SR.",
+          "reason": "近 30 天；公司信号：Google；关键词：google, cs.LG, efficient。Low-precision training often relies on stochastic rounding (SR) to keep quantized gradients unbiased and prevent small updates fro...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "google",
+            "cs.LG",
+            "efficient",
+            "llm",
+            "quantization",
+            "slo",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "Google/arXiv",
+          "publishedAt": "2026-10-27T03:46:24Z",
+          "url": "https://arxiv.org/abs/2610.36587",
+          "pdfUrl": "https://arxiv.org/pdf/2610.36587v1"
+        },
+        {
+          "id": "arxiv-2610.36564",
+          "title": "DeepInfer-Mac: Running a 750B-Class MoE on a 24 GB Laptop",
+          "authors": [
+            "Haorui Li"
+          ],
+          "summary": "DeepInfer-Mac runs the 750B-class DeepSeek-V4.1-Flash model on a MacBook Air with 24 GB of unified memory. A mixed low-bit conversion occupies 338 GiB on the internal SSD. About 7.6 GiB of weights remain resident; routed experts and Engram rows are loaded when needed. This separation makes the model executable, but it leaves each generated token waiting for a succession of storage reads. We organize expert weights so that reads fill reusable GPU buffers directly, and couple cache allocation with the lifetime of those buffers. In end-to-end runs, the system generates English, Chinese and code at 0.21-0.72 tokens per second, with a largest sampled process footprint of 16.73 GiB across the tested requests. Matched decode comparisons show a 21.0% throughput gain from next-layer prefetching over resident-expert overlap alone, at the cost of additional reads. Longer prompts remain costly. We describe the design, provide the implementation and measurement scripts, and identify the limits of this operating point: a model far larger than memory can run locally, while storage and prefill still govern the user's wait.",
+          "reason": "近 30 天；关键词：cs.PF, conversion, prefill。DeepInfer-Mac runs the 750B-class DeepSeek-V4.1-Flash model on a MacBook Air with 24 GB of unified memory. A mixed low-bit convers...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.PF",
+            "conversion",
+            "prefill",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-27T03:14:07Z",
+          "url": "https://arxiv.org/abs/2610.36564",
+          "pdfUrl": "https://arxiv.org/pdf/2610.36564v1"
+        },
+        {
+          "id": "arxiv-2610.36520",
+          "title": "Folding Attention Biases into Keys Makes Compacted KV Caches Run on Standard Kernels",
+          "authors": [
+            "Utkarsh Kanwat"
+          ],
+          "summary": "Attention Matching (AM) compacts a KV cache by keeping some keys per head, refitting their values and adding a bias to each kept key's logit. FlashAttention and vLLM's paged caches have no input for it. We fold the bias into the keys along one closed-form direction per head, fitted on context queries, giving a plain cache with AM's size and head dimension and the model's own query path; the output error is bounded by how far each query's projection on that direction is from 1. With equal per-head budgets, unmodified vLLM serves folded caches through a KV connector, matching Hugging Face's answers on all 51 Qwen3-4B questions and its greedy output on 180 of 200 Qwen3-14B LongBench samples. With equal budgets on QuALITY (Qwen3-1.7B, 4B, 8B, Llama-3.1-8B) and LongHealth (three Qwen3 models), the fold is within noise of AM's accuracy in 13 of 14 settings, with lower KL to the full cache than dropping the bias in all 12 where both ran. Under the published per-head budgets, on Qwen3-4B, its Instruct-2507 variant and Llama-3.1-8B, it is within noise of AM in 9 of 10, no longer beats dropping the bias in KL, and the two each win once in accuracy.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, kv-cache。Attention Matching (AM) compacts a KV cache by keeping some keys per head, refitting their values and adding a bias to each kept k...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "kv-cache",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-10-27T02:22:37Z",
+          "url": "https://arxiv.org/abs/2610.36520",
+          "pdfUrl": "https://arxiv.org/pdf/2610.36520v1"
+        },
+        {
+          "id": "arxiv-2610.36383",
+          "title": "From Generation to Scoring: Scaling LLM-Based Semantic Labeling at LinkedIn",
+          "authors": [
+            "Jian Sheng",
+            "Sriram Vasudevan",
+            "Sundara Raman Ramachandran",
+            "Yang Hu",
+            "Junyu Zhou",
+            "Xiaojing Ma",
+            "Haolan Qin",
+            "Tiffany Zhou",
+            "Vedant Vipul Jhaveri",
+            "Ashwini Bhingare",
+            "Chinmay Kini",
+            "Qing Lan",
+            "Xiaoqing Wang",
+            "Suleyman Cetintas",
+            "Fedor Borisyuk"
+          ],
+          "summary": "For efficiency, industrial large language model (LLM) labelers often pack many candidate labels into one prompt and generate a YES/NO answer for each, even when each decision depends only on the entity and one candidate. Generating these independent decisions as one answer list couples them, spends decoding on the list, and relies on the list being well-formed. In this paper, we present an end-to-end recipe that reformulates the labeler as semantic scoring, fine-tuning it on single-candidate prompts to return each decision as one answer-token score from a prefill-only pass. We also adapt Multiple-Item Scoring (MIS) to score hundreds of candidates in one sequence with attention masked between them. Deployed for profile qualification labeling at LinkedIn, semantic scoring changes at most 0.01% of decisions when candidates are reordered and matches the agreement with reference labels that packed generation reaches only with about 4.7x as many training pairs. The MIS-based stack raises throughput over the deployed stack by 1.24x offline and 1.9x in model serving under a one-second p99 latency target. For offline batch inference, we implement MIS-based scoring as a reusable, model-agnostic Ray Data API proposed for upstream adoption. Model serving uses MIS support contributed to SGLang.",
+          "reason": "近 30 天；关键词：cs.LG, deployed, inference。For efficiency, industrial large language model (LLM) labelers often pack many candidate labels into one prompt and generate a YES...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "deployed",
+            "inference",
+            "industrial",
+            "latency",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-26T22:59:10Z",
+          "url": "https://arxiv.org/abs/2610.36383",
+          "pdfUrl": "https://arxiv.org/pdf/2610.36383v1"
+        },
+        {
+          "id": "arxiv-2610.36339",
+          "title": "INC-MoE: Overlapping In-Network Collectives and Expert Computation for Expert-Parallel Mixture-of-Experts Inference",
+          "authors": [
+            "John Stephan",
+            "Razvan Puscasu",
+            "Xu Yong",
+            "Ding Jiutao",
+            "Guan Zixuan"
+          ],
+          "summary": "In expert-parallel mixture-of-experts (MoE) serving, dispatch moves tokens to the accelerators hosting their selected experts, and combine returns expert outputs to each token's owner. Both operations lie on the critical path and can dominate MoE layer latency in multi-node deployments. We present INC-MoE, an expert-parallel MoE layer that offloads dispatch and combine to the network switch and overlaps both collectives with each other and with expert computation. Dispatch uses in-network AllGather through switch-side multicast, while combine uses in-network ReduceScatter through switch-side reduction. Both collectives use message semantics between the end hosts and the switch. Because the in-network collectives load opposite directions of each link, executing them concurrently reduces bandwidth-bound communication time by $(N-2)/(2(N-1))$ relative to concurrent ring-based collectives: 33% for four ranks and 43% for eight. INC-MoE partitions tokens into bands and processes them through a three-stage AllGather-feed-forward network (FFN)-ReduceScatter pipeline inside a single persistent kernel. At steady state, role-specialized thread blocks gather the next band, compute the current band, and reduce the previous band concurrently, overlapping both collectives with each other and with computation using device-side synchronization. INC-MoE integrates as a drop-in replacement for the MoE layer of vLLM. We evaluate it in an emulated four-node scale-out deployment with a dedicated accelerator emulating an in-network computing (INC) switch. On OLMoE prefill with four-way expert parallelism, INC-MoE reduces time to first token (TTFT) by up to 33% and increases throughput by up to 50% relative to vLLM's default collective path, while matching its outputs.",
+          "reason": "近 30 天；关键词：cs.DC, inference, latency。In expert-parallel mixture-of-experts (MoE) serving, dispatch moves tokens to the accelerators hosting their selected experts, and...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "inference",
+            "latency",
+            "llm",
+            "prefill",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-10-26T22:08:01Z",
+          "url": "https://arxiv.org/abs/2610.36339",
+          "pdfUrl": "https://arxiv.org/pdf/2610.36339v1"
+        },
+        {
+          "id": "arxiv-2610.36849",
+          "title": "When All Rollouts Fail: Policy-Compatible Joint Decoding for Hard-Problem Reasoning",
+          "authors": [
+            "Zehao Wang",
+            "Hanzhu Chen",
+            "Runquan Gui",
+            "Zhe Wang",
+            "Lin Yang"
+          ],
+          "summary": "Reinforcement Learning with Verifiable Rewards (RLVR) derives its learning signal from binary rewards via on-policy exploration and becomes a powerful paradigm for improving the reasoning of large language models. Yet it faces a learning cliff on problems beyond model's current ability: when every rollout fails, the samples reveal nothing about a correct solution, and group-relative estimators (e.g., GRPO, RLOO) collapse the update to zero advantage. Expert trajectories offer a remedy, but they are incompatible with the current policy and often lie in the student's low-probability regions, so the surviving updates demand large parameter shifts and decay into surface-level imitation rather than transferable reasoning. We argue that a useful learning signal on hard problems must be both verifiably correct and sufficiently compatible with the current policy. We propose Policy-Compatible Reinforcement Learning (PICO), which performs distribution-constrained joint decoding: expert data guides decoding at the token level while preserving the student's relative token probabilities, and a dynamic top-k mechanism confines the sampling distribution under a finite divergence budget, yielding trajectories that are verified and policy-compatible by construction. These trajectories are optimized jointly with on-policy rollouts under a mixed-behavior objective that mitigates their distribution mismatch via importance sampling. Experiments across reasoning diverse datasets and agentic benchmarks demonstrate that PICO consistently outperforms standard RLVR and prior off-policy baselines.",
+          "reason": "近 30 天；关键词：cs.LG, dataset, lora。Reinforcement Learning with Verifiable Rewards (RLVR) derives its learning signal from binary rewards via on-policy exploration an...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "dataset",
+            "lora",
+            "serving"
+          ],
+          "signal": 98,
+          "source": "arXiv",
+          "publishedAt": "2026-10-27T08:47:35Z",
+          "url": "https://arxiv.org/abs/2610.36849",
+          "pdfUrl": "https://arxiv.org/pdf/2610.36849v1"
+        },
+        {
+          "id": "arxiv-2610.37375",
+          "title": "Agent-Conditioned Routing: Diverse Reasoning Paths Within One Frozen Model",
+          "authors": [
+            "Ananth Kalyanasundaram",
+            "Ankush Kadu",
+            "Athira Gopal",
+            "Aswanth Krishnan"
+          ],
+          "summary": "Generating several solutions can expose alternative methods, but additional trajectories often paraphrase one dominant approach. We investigate whether the conditional capacity of a frozen sparse mixture-of-experts (MoE) model can provide such diversity from one problem prompt, without user-assigned roles, prescribed methods, fine-tuning, or model copies. Agent-Conditioned Routing (ACR) assigns $m$ parallel trajectories persistent, untrained shared/private expert-eligibility masks while preserving the learned, input-dependent token router. On a screened 126-question multi-mode mathematics and physics benchmark, with model judges reading the reported derivations in full, we count the number of problems yielding at least two distinct primary methods among soft-correct solutions in four trajectories. ACR reaches approximately twice as many such problems as the strongest temperature setting under GLM 5.3 (37.3 versus 18.7), and 1.67 times as many under GPT-5.6 Sol (45.00 versus 27.00), at matched output budgets. A blinded four-expert audit on a stratified sample of 30 problems also finds more multi-method solutions with ACR on both backbones, with lower correctness. Matched-eligibility ablations show modest multi-method count advantages for ACR, while token-resampled masks attain higher correctness. An informed sequential prompt elicits more diversity still, using previous solutions and explicit requests for alternative methods. ACR adds about 160 KiB of mask state. In a three-problem microbenchmark capped at 1,024 tokens, its latency and peak VRAM usage remain within 3% of batched temperature sampling.",
+          "reason": "近 30 天；关键词：cs.AI, latency, serving。Generating several solutions can expose alternative methods, but additional trajectories often paraphrase one dominant approach. W...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AI",
+            "latency",
+            "serving"
+          ],
+          "signal": 92,
+          "source": "arXiv",
+          "publishedAt": "2026-10-27T15:06:29Z",
+          "url": "https://arxiv.org/abs/2610.37375",
+          "pdfUrl": "https://arxiv.org/pdf/2610.37375v1"
+        }
+      ]
+    },
     {
       "date": "2026-10-29",
       "generatedAt": "2026-10-29T09:21:47.024603+08:00",
@@ -20279,12 +20551,6 @@
           "pdfUrl": "https://arxiv.org/pdf/2607.09207v1"
         }
       ]
-    },
-    {
-      "date": "2026-07-13",
-      "generatedAt": "2026-07-13T06:36:55.446960+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": []
     }
   ]
 }
