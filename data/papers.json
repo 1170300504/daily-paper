@@ -1,291 +1,271 @@
 {
-  "generatedAt": "2026-10-31T09:12:52.435133+08:00",
+  "generatedAt": "2026-11-01T08:32:11.080639+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2610.40613",
-      "title": "TextSeal2: Distortion-Free LLM Watermarking with Copula Mixing and Memoryless Races",
+      "id": "arxiv-2610.39853",
+      "title": "KV Cache Quantization for Diffusion Language Models",
       "authors": [
-        "Tom Sander",
-        "Pierre Fernandez",
-        "Itai Gat",
-        "Haiming Bao",
-        "Jiaxin Shi",
-        "Jason Park",
-        "Valeriu Lacatusu",
-        "Sylvestre-Alvise Rebuffi",
-        "Hongyan Chang",
-        "Hady Elsahar",
-        "Tomáš Souček",
-        "Tuan Tran",
-        "Surya Parimi",
-        "Alexandre Mourachko"
+        "Yan Tai",
+        "Yunan Ding",
+        "Guangzhao Li",
+        "Siqi Luo",
+        "Chaoyang Zhang",
+        "Guangtao Zhai",
+        "Guodong Guo",
+        "Xiaohong Liu"
       ],
-      "summary": "We present TextSeal2, a distortion-free watermark for large language models that keeps its signal under speculative decoding: tokens that replace rejected drafts remain watermarked with the same keys, and the acceptance rate is unchanged. It also preserves output diversity and adds no measurable inference latency. Its predecessor, TextSeal, restores diversity in the Gumbel-max scheme by routing each token to one of two keys via a coin flip. This is suboptimal because the detector averages the scores from both keys without knowing which key was used. TextSeal2 instead merges two or more keys into a single virtual key and couples it to fresh noise through AutoMark's Gaussian copula. Any number of keys, including publicly shared keys, can be merged this way without diluting detection. Under speculative decoding, TextSeal2 verifies keyed drafts with one more exponential race, run on the leftovers of the draft races. By memorylessness, this race reproduces block verification, so the output follows the target model exactly. We evaluate TextSeal2 on three LLMs. At equal output token diversity, TextSeal2 detects 8 to 22 percentage points more 100-token answers than TextSeal at a false-positive rate of $10^{-3}$, and is comparable to textGrain while requiring no post-logits optimization. Under speculative decoding, it detects 18 and 22 percentage points more 200-token answers than TextSeal and textGrain, respectively, at the same acceptance rate.",
-      "reason": "近 30 天；关键词：cs.CR, inference, latency。We present TextSeal2, a distortion-free watermark for large language models that keeps its signal under speculative decoding: toke...",
+      "summary": "KV cache quantization is well studied for autoregressive language models, where cached prefix states are exact under causal attention and quantization is mainly a cache reconstruction problem. Diffusion language models (dLLMs) break this assumption. Fast dLLM inference reuses KV states across denoising steps, but bidirectional token representations can change as masked tokens are revealed, so the reused cache may already differ from full recomputation before quantization is applied. We study KV cache quantization under this cache-reuse error. We adapt KIVI and KVQuant to Fast-dLLM-style prefix and dual cache reuse, and introduce TRACE and dLLM-KVQ. TRACE reconstructs feasible dLLM reveal trajectories from prompt-answer pairs, providing calibration states that match iterative masked decoding. dLLM-KVQ uses these trajectories to choose per-layer K-cache entries that remain in high precision according to output- and attention-level behavior metrics, while applying standard low-bit value quantization. Across LLaDA and Dream evaluations on GSM8K, HumanEval, MATH, and MBPP, dLLM-KVQ achieves the highest average score among quantized methods across the reported 4-bit and 2-bit prefix/dual cache settings.",
+      "reason": "近 30 天；关键词：cs.CL, inference, kv-cache。KV cache quantization is well studied for autoregressive language models, where cached prefix states are exact under causal attent...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CR",
+        "cs.CL",
+        "inference",
+        "kv-cache",
+        "llm",
+        "quantization"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-29T11:31:41Z",
+      "url": "https://arxiv.org/abs/2610.39853",
+      "pdfUrl": "https://arxiv.org/pdf/2610.39853v1"
+    },
+    {
+      "id": "arxiv-2610.39852",
+      "title": "DWISE: Denoising Workload-Informed Scheduling Engine",
+      "authors": [
+        "Lie Li",
+        "Wen Li",
+        "Junxiao Shen",
+        "Jindong Gu",
+        "Guosheng Hu"
+      ],
+      "summary": "Unlike autoregressive large language models (AR-LLMs), diffusion LLMs (dLLMs) generate text by iteratively denoising many tokens in parallel, offering a promising path to efficient inference. Existing serving frameworks, however, schedule dLLM requests with policies designed for AR models, namely first-come-first-served (FCFS) admission and prefill priority. We find that both policies are ill-suited to dLLMs, wasting much of their speed. FCFS ignores that a dLLM request's decoding cost is highly heterogeneous and unknown at arrival, causing severe head-of-line blocking. Prefill priority, widely used in AR-LLM serving to keep time-to-first-token low, sharply cuts dLLM efficiency, as rounds that run only prompts leave most of the batch idle. We present DWISE, a Denoising Workload-Informed Scheduling Engine for efficient dLLM serving. DWISE schedules requests by their remaining work, measured in a block-level unit shared by prefill and denoising, so both phases share a round. To predict the unknown denoising workload, DWISE combines a lightweight prompt-based predictor at admission with a single refinement from the first denoising round's hidden states, which capture model-specific information absent from the prompt and require no additional model execution. Implemented in SGLang and evaluated on five models from three dLLM families under bursty workloads, DWISE reduces mean end-to-end latency over SGLang by 5.4$\\times$ on average and up to 14.9$\\times$ while preserving task accuracy. The code will be released publicly.",
+      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Unlike autoregressive large language models (AR-LLMs), diffusion LLMs (dLLMs) generate text by iteratively denoising many tokens i...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "efficient",
         "inference",
         "latency",
         "llm",
-        "speculative"
+        "prefill",
+        "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-29T17:54:12Z",
-      "url": "https://arxiv.org/abs/2610.40613",
-      "pdfUrl": "https://arxiv.org/pdf/2610.40613v1"
+      "publishedAt": "2026-10-29T11:31:25Z",
+      "url": "https://arxiv.org/abs/2610.39852",
+      "pdfUrl": "https://arxiv.org/pdf/2610.39852v1"
     },
     {
-      "id": "arxiv-2610.40541",
-      "title": "On the Fundamental Limits of Prefill-Based Decoding Length Prediction",
+      "id": "arxiv-2610.39562",
+      "title": "Raincheck: Deferred Multimodal Prefill for Efficient Multi-Turn MLLM Inference",
       "authors": [
-        "Haowen Shi",
-        "Xuzhe Yan",
-        "Fahao Chen",
-        "Peng Li"
+        "Wenjie Huang",
+        "Jun Zhang",
+        "Hongyaoxing Gu",
+        "Haoyang Huang",
+        "Tianqi Xu",
+        "Xinyue Hao",
+        "Xinyi Hu",
+        "Xinle Du",
+        "Jun Dai",
+        "Shuang Ge",
+        "Chen Lei",
+        "Yue Li",
+        "Mingcheng Wan"
       ],
-      "summary": "Predicting how many tokens a large language model (LLM) will decode, using only prefill-phase hidden states, is a key primitive for inference scheduling. We show that current benchmarks conflate predictor quality with task hardness: when the target model, dataset, or sampling configuration changes, reported accuracy collapses even though the predictor is unchanged. We trace this instability to an overlooked error source---the inherent stochasticity of autoregressive decoding---and derive bounds that every prefill-side method must obey. Our analysis treats decoding as a stopped stochastic process. The per-step stopping probability of a response is not constant but ramps up over hundreds of steps, so the decode length inherits a central limit theorem from the many local decisions that determine where a response ends; this yields per-prompt normality with an explicit error term, together with an affine variance law $σ=αμ+b$ whose slope is the coefficient of variation of the number of response segments. Empirically, the normal law reproduces the per-prompt MAE and the central mass of the decode-length distribution to within a few percent, and the residual departures from normality (mild right skew, slight excess kurtosis) are the ones predicted by the sampling-noise correction. Under fixed model, data, and sampling conditions, a broad design space of predictors (MLP, EGTP, FiLM, soft-label, and Mixture-of-Experts variants) converges to similar performance close to the bound, confirming that \\emph{system error dominates model error}. We argue for a benchmarking protocol that fixes the model, data, and sampling parameters and that reports relative-error metrics alongside absolute ones. Code and analysis tools are available at https://github.com/ShwStone/DecodingPredict.",
-      "reason": "近 30 天；关键词：cs.AI, dataset, efficient。Predicting how many tokens a large language model (LLM) will decode, using only prefill-phase hidden states, is a key primitive fo...",
+      "summary": "Multi-turn conversations with multimodal large language models (MLLMs) reuse input context, but long multimodal inputs increase time to first token (TTFT). Query-aware hard pruning reduces prefill tokens but permanently excludes information that later questions may require. We propose Raincheck, a framework for deferred multimodal prefill that decouples initial token selection from later information availability. An existing pruning method selects tokens for initial prefill; Raincheck preserves and progressively prefills unselected tokens in source order using unused compute capacity during decode. Unfinished prefill continues after answer return during available scheduling gaps. Attention visibility control and affine state mapping enable context updates after generation begins in full-attention and hybrid recurrent models. Prefill-decode fusion reduces repeated weight reads. We evaluate Qwen3-VL-8B and Qwen3.5-9B with 30% initial multimodal-token retention. Across both models and four pruning methods, Raincheck recovers on average 77.7% and 60.4% of the quality lost to matched hard pruning on MultiVerse and ConvBench, respectively. On MultiVerse, the SGLang implementation reduces mean first-turn TTFT by up to 24.1% relative to full prefill, with less than 0.5% increase in mean time per output token (TPOT).",
+      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Multi-turn conversations with multimodal large language models (MLLMs) reuse input context, but long multimodal inputs increase ti...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.AI",
-        "dataset",
+        "cs.CL",
         "efficient",
         "inference",
         "llm",
-        "prefill",
-        "slo"
+        "multimodal",
+        "prefill"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-29T17:36:01Z",
-      "url": "https://arxiv.org/abs/2610.40541",
-      "pdfUrl": "https://arxiv.org/pdf/2610.40541v1"
+      "publishedAt": "2026-10-29T08:01:02Z",
+      "url": "https://arxiv.org/abs/2610.39562",
+      "pdfUrl": "https://arxiv.org/pdf/2610.39562v1"
     },
     {
-      "id": "arxiv-2610.40305",
-      "title": "Rimuru: Unified Memory Management for Modern LLM Serving via Elastic Expert Offloading",
+      "id": "arxiv-2610.39418",
+      "title": "LinQuant: Functional Invariances for Low-Precision Linear Recurrences",
       "authors": [
-        "Zhiyuan Fang",
-        "Dingyang Li",
-        "Jianfeng Zhong",
-        "Bin Wang",
-        "Weixi Zhu",
-        "Cunshu Ni",
-        "Zicong Hong",
-        "Wuhui Chen",
-        "Zibin Zheng"
+        "Neehal Tumma",
+        "Philipp Nazari",
+        "Rohan Cherukuri",
+        "Daniela Rus",
+        "T. Konstantin Rusch"
       ],
-      "summary": "Modern LLMs strain device memory through large model weights and attention states, particularly in resource-constrained scenarios. Existing systems separately provision memory for model weights and attention states, imposing fixed fixed boundaries that cannot adapt to the changing memory demands of workloads. Under heavy workloads, insufficient state capacity limits request concurrency and reduces throughput; under light workloads, idle memory in one region cannot be reallocated to another, wasting device memory. Meanwhile, modern LLM architectures introduce heterogeneous tensors with diverse layouts and lifetimes, further complicating memory management. These problems motivate unified memory management for heterogeneous tensors. However, a shared pool alone does not make memory directly reusable across tensors with different allocation granularities and execution layouts. This paper presents Rimuru, a modern LLM serving system that unifies memory management through elastic expert offloading. Rimuru establishes a shared page pool to enables elastic memory sharing across heterogeneous tensors. To accommodate different allocation granularities, Rimuru introduces memory views that allow each tensor type to interpret the shared memory space using its own page size and page table. Furthermore, Rimuru combines huge-page alignment with a multi-level page allocator that splits and merges pages, enabling cross-type capacity reuse. A page-table-aware fused MoE kernel directly accesses non-contiguous expert weights, avoiding copy overhead. Building on these mechanisms, Rimuru employs a workload-aware adjuster that dynamically reallocates pages across tensor types according to runtime demands. Implemented on top of vLLM, Rimuru remains compatible with modern LLMs. Evaluations show that Rimuru achieves up to 19.03x baseline throughput and reduces TTFT by 98.1% on average.",
-      "reason": "近 30 天；关键词：cs.OS, alignment, llm。Modern LLMs strain device memory through large model weights and attention states, particularly in resource-constrained scenarios....",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.OS",
-        "alignment",
-        "llm",
-        "serving",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-29T15:47:19Z",
-      "url": "https://arxiv.org/abs/2610.40305",
-      "pdfUrl": "https://arxiv.org/pdf/2610.40305v1"
-    },
-    {
-      "id": "arxiv-2610.40292",
-      "title": "DolphinRouting: Cluster-Level Binary Routing for Disaggregated LLM Inference Serving",
-      "authors": [
-        "Yishuo Yuan",
-        "Shaoyu Yang",
-        "Chunrong Fang"
-      ],
-      "summary": "Prefill-decode (PD) disaggregation isolates the two phases of large language model serving, but request-level path selection must account for prefill work, cache reuse, and decode demand. We present DolphinRouting, which learns this choice from end-to-end SLO feedback under a given P/D resource allocation. Requests are clustered by raw prompt length, cache-adjusted input lengths on both worker pools, and output-length information. Offline policy search learns one binary action per cluster. Online feature extraction, cluster assignment, and table lookup select local or remote prefill. We evaluate DolphinRouting on a real PD-disaggregated cluster using three public benchmarks, a mixed workload, and real data. Across the mixed workload and real data, DolphinRouting with $k$-means reduces P90 TTFT by 5.7--7.9\\% and P90 TPOT by 2.6--10.1\\% relative to Dynamo.",
-      "reason": "近 30 天；关键词：cs.LG, inference, llm。Prefill-decode (PD) disaggregation isolates the two phases of large language model serving, but request-level path selection must...",
+      "summary": "Linear recurrences are emerging as practical alternatives to softmax attention in large language models, appearing in both standalone and hybrid architectures. However, despite their rapid emergence, low-precision inference remains much less developed for these models than for softmax attention. During prefill, chunkwise-parallel algorithms cast much of the recurrence as dense matrix multiplications, suggesting a natural path to low-precision execution. Simply quantizing these operations in their native form, however, can be fragile. In this work, we identify functional invariances that preserve the full-precision computation while making the operands more amenable to quantization. Building on this observation, we introduce LinQuant, a framework for low-precision recurrent prefill based on seven such invariances, including rotations, diagonal rescalings, and alternative placements of recurrent decay and write factors. We derive when these transformations remain valid across common recurrence families spanning linear, gated, and delta-rule updates, and show that they provide complementary degrees of freedom for improving low-precision accuracy. Finally, we translate this framework to production by augmenting SSDi8, an existing low-precision prefill pipeline for Mamba-2, with the applicable invariances. LinQuant improves perplexity at matched latency on Mamba-2 1.3B, 2.7B, and 8B and Nemotron-H 8B, demonstrating the practical utility of invariance-based quantization for recurrent models.",
+      "reason": "近 30 天；关键词：cs.LG, inference, latency。Linear recurrences are emerging as practical alternatives to softmax attention in large language models, appearing in both standal...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
         "inference",
-        "llm",
+        "latency",
         "prefill",
-        "serving",
-        "slo"
+        "production",
+        "quantization"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-29T15:42:05Z",
-      "url": "https://arxiv.org/abs/2610.40292",
-      "pdfUrl": "https://arxiv.org/pdf/2610.40292v1"
+      "publishedAt": "2026-10-29T05:59:51Z",
+      "url": "https://arxiv.org/abs/2610.39418",
+      "pdfUrl": "https://arxiv.org/pdf/2610.39418v1"
     },
     {
-      "id": "arxiv-2610.40287",
-      "title": "Only Accepted Tokens Count: An Energy Accounting of Speculative Decoding Under Latency Targets",
+      "id": "arxiv-2610.39372",
+      "title": "Cord: Confidence-Anchored Order Residual Decoding for Masked Diffusion Language Models",
       "authors": [
-        "Bole Ma",
-        "Ayesha Afzal",
-        "Jan Eitzinger",
-        "Harald Koestler",
-        "Gerhard Wellein"
+        "Chengwei Zhou",
+        "Zhaoyan Jia",
+        "Massoud Pedram",
+        "Gourav Datta"
       ],
-      "summary": "Large language model serving is limited by facility power. Energy per token determines how many tokens a datacenter can serve, while a latency target bounds how quickly each user receives them. During decode, every weight is read from memory for every generated token. Batching amortizes this read across users but makes no individual user faster. Speculative decoding does: a drafter proposes several future tokens, and the target model verifies them in a single forward pass that reuses the same weight read. Because every drafted token must be verified whether or not it is accepted, the energy speculation saves depends on how many drafted tokens are accepted. This saving is hard to pin down. It varies across target models from different attention families and across drafting schemes, and it depends on the text being served. Every drafter we evaluate accepts fewer tokens on conversation than on code, and every trained drafter accepts fewer on Romansh, a low-resource language, than on English. We measure speculative decoding under production serving conditions (SGLang, CUDA graphs enabled) on H100 and H200 GPUs, at batch sizes up to 64 across 5 corpora. On dense models, verification, not drafting, dominates the energy cost. The saving shrinks as the batch grows, because batching has already shared the weight read that speculation would divide among the accepted tokens. At large batch sizes, block drafters push verification past the balance point between arithmetic and memory traffic into the compute-bound regime, where the saving becomes a loss, and a drafter with low acceptance raises energy per token. Meeting a tighter latency target with speculation then costs additional energy. Larger batches lower energy per token without speculation. Speculation adds to that saving only when acceptance is high, and on the model we tested it leaves little headroom for latency-preserving DVFS.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, batching。Large language model serving is limited by facility power. Energy per token determines how many tokens a datacenter can serve, whi...",
+      "summary": "The decoding order of masked diffusion language models (dLLMs) can substantially affect generation quality, yet common decoders typically apply the same reveal rule throughout generation. Confidence provides a strong default, but it measures how decisively a position can be predicted now, not how useful revealing that position will be for subsequent decoding. We propose Cord, a lightweight prompt-conditioned policy that retains confidence decoding as a stable reference and learns when and how to depart from it through geometric residuals over generation direction, proximity to revealed context, and two-sided infilling. The residuals adapt to both the prompt and the evolving partial response. Rather than sampling a new policy action at every decoding step, Cord samples a single low-dimensional coefficient matrix per rollout, which induces an entire state-dependent reveal trajectory. This yields a contextual-bandit formulation trained directly from sequence-level rewards, without step-level credit assignment or backbone updates. Across three dLLMs and five reasoning, code, and constraint-satisfaction benchmarks, Cord improves average task success from 32.0% under confidence decoding to 48.2%, and further improves over the best per-domain fixed residual. Behavioral audits show that the learned residuals induce substantial, task-dependent changes in reveal locality and two-sided infilling. Cord adds only $0.53$M trainable parameters, requires no additional backbone forward passes, and incurs only 5.39% inference latency overhead.",
+      "reason": "近 30 天；关键词：cs.CL, efficient, inference。The decoding order of masked diffusion language models (dLLMs) can substantially affect generation quality, yet common decoders ty...",
       "area": "LLM 推理优化",
       "tags": [
-        "nvidia",
+        "cs.CL",
+        "efficient",
+        "inference",
+        "latency",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-10-29T05:03:29Z",
+      "url": "https://arxiv.org/abs/2610.39372",
+      "pdfUrl": "https://arxiv.org/pdf/2610.39372v1"
+    },
+    {
+      "id": "arxiv-2610.39216",
+      "title": "PDScope: Breaking the Prefill-Decode Seesaw for Memory-Bound MoE Inference",
+      "authors": [
+        "Enda Yu",
+        "Dezun Dong",
+        "Zhaoning Zhang",
+        "Xiaojian Yang",
+        "Weiling Yang",
+        "Shaonan Ma",
+        "Dongsheng Li",
+        "Yongwei Wu",
+        "Xiangke Liao"
+      ],
+      "summary": "Local deployment of MoE-based LLMs on CPU-GPU nodes is attractive for cost and privacy reasons, yet limited GPU memory forces most experts into CPU memory. Prefill is then compute-bound and benefits from aggressive GPU loading, while decode is I/O-bound and requires conservative PCIe transfers. These demands cannot be amortized under low batching---typical of local assistants and document tools---forcing phase-agnostic schedulers into a seesaw: favoring prefill's aggressive loading injects unmaskable I/O that stalls decode, while favoring decode's conservative transfers starves prefill's GPU of work. We observe that expert routing is predictable in phase-specific ways, allowing us to decouple the two phases and optimize prediction, scheduling, and execution independently for each phase. PDScope predicts expert activations to guide placement and prefetching, adapts these policies to each phase's bottleneck via cross-layer cost modeling, and compiles decisions into overhead-free pipelines using a static computation graph, cache prefetching, and zero-copy asynchronous I/O. On mainstream MoE models, PDScope achieves 2.5-10.3x higher prefill throughput and 2.1-6.1x higher decode throughput than existing systems, showing that phase-aware co-design unlocks efficient MoE inference under memory constraints and extends naturally to multi-batch settings.",
+      "reason": "近 30 天；关键词：cs.DC, batching, efficient。Local deployment of MoE-based LLMs on CPU-GPU nodes is attractive for cost and privacy reasons, yet limited GPU memory forces most...",
+      "area": "LLM 推理优化",
+      "tags": [
         "cs.DC",
         "batching",
-        "energy",
-        "latency",
-        "production",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-10-29T15:37:45Z",
-      "url": "https://arxiv.org/abs/2610.40287",
-      "pdfUrl": "https://arxiv.org/pdf/2610.40287v1"
-    },
-    {
-      "id": "arxiv-2610.40278",
-      "title": "Neighborhood Elites: Quality-Diversity Search for Uncertainty Quantification in Question Answering",
-      "authors": [
-        "Mesut Ceylan",
-        "Arda Baris Basaran",
-        "Elgar Fleisch",
-        "Filipe Barata"
-      ],
-      "summary": "Large language models (LLMs) are increasingly capable, yet they produce wrong answers indistinguishable from correct ones. In question answering (QA), such an error propagates unnoticed into downstream tasks. Perturbation-based uncertainty quantification (UQ) addresses this by probing a model over a set of input rewrites and reading uncertainty from how much its predictions vary. Yet this set is usually built generically, by free paraphrasing, token-level perturbation, or adversarial search. Such rewrites leave two things uncontrolled that matter in QA: what kind of change is made to the context, and how explicitly the context supports the answer. When neither is controlled, the composition of the set is determined by the generator rather than by design, and the estimate inherits whatever that generator happens to produce. Quality-diversity (QD) search is built to cover a predefined exploration space, so we recast input perturbation as a QD problem and propose \\emph{neighborhood elites (NE)}, a neighborhood constructor that spreads answer-preserving rewrites across two axes, the kind of edit and the explicitness of support. We compare NE against three other neighborhood constructors, holding the editor, QA model, uncertainty measure and search objective fixed, and against three scores read from the original context. Across five extractive-QA datasets and five instruction-tuned LLMs, NE improves failure detection against every other constructor in at least 24 of the 25 dataset-model pairs, reaching 0.726 AUROC and 0.211 AUPRC lift over the base rate. Additionally, NE detects failure better than semantic entropy computed over decoder samples, by 0.074 AUROC and 0.062 AUPRC lift, and this advantage widens as the neighborhood grows.",
-      "reason": "近 30 天；关键词：cs.AI, dataset, llm。Large language models (LLMs) are increasingly capable, yet they produce wrong answers indistinguishable from correct ones. In ques...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.AI",
-        "dataset",
+        "efficient",
+        "inference",
         "llm",
-        "lora",
-        "serving"
+        "prefill",
+        "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-10-29T15:32:57Z",
-      "url": "https://arxiv.org/abs/2610.40278",
-      "pdfUrl": "https://arxiv.org/pdf/2610.40278v1"
+      "publishedAt": "2026-10-29T02:37:09Z",
+      "url": "https://arxiv.org/abs/2610.39216",
+      "pdfUrl": "https://arxiv.org/pdf/2610.39216v1"
     },
     {
-      "id": "arxiv-2610.39999",
-      "title": "PhOSv1: Efficient Scaling of Model Sleeping on a Single Server for Autoscaling with GPU-Context Deduplication",
+      "id": "arxiv-2610.38981",
+      "title": "Why Speculative Decoding Works Better Than Predicted on Sparse MoE Models",
       "authors": [
-        "Tianle Sun",
-        "Xingda Wei",
-        "Rong Chen"
+        "Ekagra Ranjan",
+        "Komal K. Teru",
+        "Bharat Venkitesh",
+        "Acyr Locatelli"
       ],
-      "summary": "Autoscaling is a key mechanism in model-as-a-service systems, where fast scale-up is essential because the scale-up time directly determines how long a model service remains overloaded, which in turn governs serving quality. The state-of-the-art approach, model sleeping, adopted by mainstream serving engines including vLLM and SGLang, achieves near-zero-cost scale-up by pausing pre-spawned engines on the GPU. However, sleeping is not a free lunch: each sleeping model must keep its GPU context resident, and this cost grows linearly with the number of models, degrading serving performance. Because providers must support many models, they face a dilemma between fast scale-up for all models and high service performance. In this paper, we show that a single server can keep many models asleep without paying this GPU context tax. The key observation is that the contexts of sleeping models are largely duplicated: the driver (CUDA) context can be shared across models, and their GPU kernel binaries overlap heavily due to common operators and libraries. PhOSv1 deduplicates this context by transparently delegating each engine's GPU context allocation to a central daemon through API remoting; therefore, a single server can keep far more models asleep than current engines allow. Our evaluation shows that PhOSv1 matches the scale-up time of vanilla vLLM sleep mode while substantially reducing the GPU memory footprint, improving end-to-end multi-model serving performance.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, efficient。Autoscaling is a key mechanism in model-as-a-service systems, where fast scale-up is essential because the scale-up time directly...",
+      "summary": "Speculative decoding (SD) accelerates autoregressive inference by leveraging the memory bound nature of decoding, verifying multiple draft tokens in a single forward pass. For mixture-of-experts (MoE) models, prior work predicts a concave speedup-batch size relationship, with gains peaking at intermediate batch sizes due to expert saturation. We evaluate this across 10 sparse MoE models (30B--1T parameters, 8--512 experts) and find recent fine-grained models break this trend, showing higher speedup at low batch size. We find verification cost is governed not only by activated-expert bytes, but also by temporal overlap across draft tokens and GPU execution dynamics. At low batch size, MoE layers in fine-grained models account for a much smaller share of runtime than of weights; on H100, kernel profiling attributes this mainly to higher bandwidth utilization of MoE kernels relative to attention, with L2 absorbing repeated reads of co-routed experts. Across draft tokens, routing overlap further reduces the unique experts activated during verification relative to independence assumptions. We model this effect using a maximum-entropy Iterative Proportional Fitting (IPF) framework that predicts unique expert counts from routing-overlap statistics with less than 4\\% error, and substantially narrows the gap to real-model curves and captures the qualitative low-batch trend from synthetic routing.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, inference。Speculative decoding (SD) accelerates autoregressive inference by leveraging the memory bound nature of decoding, verifying multip...",
       "area": "LLM 推理优化",
       "tags": [
         "nvidia",
-        "cs.DC",
-        "efficient",
-        "llm",
-        "serving"
+        "cs.LG",
+        "inference",
+        "speculative"
       ],
       "signal": 99,
       "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-10-29T13:19:00Z",
-      "url": "https://arxiv.org/abs/2610.39999",
-      "pdfUrl": "https://arxiv.org/pdf/2610.39999v1"
+      "publishedAt": "2026-10-28T22:04:53Z",
+      "url": "https://arxiv.org/abs/2610.38981",
+      "pdfUrl": "https://arxiv.org/pdf/2610.38981v1"
     },
     {
-      "id": "arxiv-2610.39426",
-      "title": "UGR: Unified Generative Ranking for Heterogeneous E-commerce Recommendation",
+      "id": "arxiv-2610.38809",
+      "title": "Causal Attention on CPU: A Cache-Aware and Load-Balanced Scheduling Kernel for Prefill",
       "authors": [
-        "Zonghe Shao",
-        "Huabin Chen",
-        "Sitong Lu",
-        "Fangmei Zhu",
-        "Yingcai Ma",
-        "Ge Fan",
-        "Jinguo Gao",
-        "Wei Shi",
-        "Yanfang Liu",
-        "Huiping Chu"
+        "Kwun Fung Lau",
+        "Frost Mitchell",
+        "Kanya Mo",
+        "Emani Ashok"
       ],
-      "summary": "List-wise ranking in e-commerce recommendation must balance user utility and commercial value across organic content, ads, and candidates from other businesses, while modeling candidate interactions and sequential dependencies. Existing generative ranking methods typically learn from logged exposure sequences and operate on truncated candidate sets from a single business. Exposure-sequence learning may not fully exploit post-exposure feedback signals. Meanwhile, generative ranking over heterogeneous, multi-business candidates remains less explored, particularly when recommendation scores and advertising value must be jointly modeled under generalized second-price (GSP) auctions. We propose Unified Generative Ranking (UGR), which performs generative ranking over the full request-level multi-business heterogeneous candidate set, typically comprising around a thousand candidates in production, and directly generates multi-business ranking lists through candidate-aware autoregressive decoding. To go beyond exposure-sequence imitation, UGR introduces complementary feedback supervision through weighted supervised fine-tuning and permutation preference optimization, which respectively leverage observed post-exposure feedback and feedback-derived preferences among permutations. UGR uses a training-time advertising debiasing tower to model historical ad exposure effects and incorporates current ad value during serving while preserving the existing allocation and GSP pricing rules. Multi-value sequence retrieval produces candidate ranking lists, and the existing downstream evaluator selects the final list for exposure. Offline experiments demonstrate consistent gains in ranking quality, while online A/B tests on Taobao's Guess You Like recommendation service yield improvements of 1.76% in Core IPV, 3.29% in Transaction Volume, and 2.10% in GMV over the production baseline.",
-      "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, advertising。List-wise ranking in e-commerce recommendation must balance user utility and commercial value across organic content, ads, and can...",
-      "area": "推荐算法",
+      "summary": "Agentic AI drives significant productivity gains across diverse domains, but concurrent long-context prefills from multiple agents can saturate GPU compute resources. Although CPUs offer a viable alternative, existing CPU attention kernels fall short in adapting to multi-tier cache hierarchies and lack effective thread scheduling. To address this, we introduce CACPU, a high-performance attention kernel featuring tiered cache blocking and an in-kernel task dispatching mechanism designed for causal full-sequence prefilling. CACPU achieves up to a 2.01x speedup over PyTorch SDPA, FlexAttention, and SGLang attention kernels. Integrated into SGLang, it reduces Time to First Token (TTFT) of Llama-3.1-8B by up to 1.74x while preserving model accuracy.",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, prefill。Agentic AI drives significant productivity gains across diverse domains, but concurrent long-context prefills from multiple agents...",
+      "area": "LLM 推理优化",
       "tags": [
-        "alibaba",
-        "cs.IR",
-        "advertising",
-        "multi-business",
-        "online-a/b",
-        "production",
-        "ranking"
+        "meta",
+        "cs.LG",
+        "prefill",
+        "serving"
       ],
       "signal": 99,
-      "source": "Alibaba/arXiv",
-      "publishedAt": "2026-10-29T06:05:08Z",
-      "url": "https://arxiv.org/abs/2610.39426",
-      "pdfUrl": "https://arxiv.org/pdf/2610.39426v1"
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-10-28T20:08:51Z",
+      "url": "https://arxiv.org/abs/2610.38809",
+      "pdfUrl": "https://arxiv.org/pdf/2610.38809v1"
     },
     {
-      "id": "arxiv-2610.39352",
-      "title": "Try Before You Evolve: Ranking-Scored Trials for Recursive Self-Improvement of Recommender Systems",
+      "id": "arxiv-2610.39380",
+      "title": "Learning to Formulate: Agentic Hardware-Software Co-Design of AI Infrastructure through Progressive Optimization and Verification",
       "authors": [
-        "Xu Huang",
-        "Jiawei Feng",
-        "Jiancan Wu"
+        "Yi Ding",
+        "Li Shang"
       ],
-      "summary": "Recommenders on Web platforms such as e-commerce and music streaming need their training recipes re-tuned for each dataset. Large language model (LLM) agents can now rewrite these recipes, enabling recursive self-improvement (RSI) of recommender systems. Existing agents propose one edit per round, fully retrain the recommender, and keep the edit only if its ranking quality improves. Unlike programs or patches that can be scored by execution, a recommender edit changes how the model is trained, which raises two challenges. First, ranking feedback is delayed: an edit's ranking quality is known only after full retraining, so much of the retraining budget goes to edits that are later discarded. Second, the signals available before retraining are unreliable: sampled training losses can look solved while full-ranking performance remains poor, and they are not comparable across edits that change the loss or sampler. We propose RecRSI, which generates diverse candidate edits from a diagnosis of the current model and selects one for full retraining using early ranking feedback: each candidate receives a short trial, the first steps of its full training run, scored by full-ranking NDCG@10 on held-out probe users. With two sequential recommenders on three datasets and the same number of full retrainings, RecRSI significantly outperforms existing self-evolving agents in every setting, and on both Amazon datasets reaches in its first round a ranking quality that none of them reaches in five.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Recommenders on Web platforms such as e-commerce and music streaming need their training recipes re-tuned for each dataset. Large...",
-      "area": "推荐算法",
+      "summary": "AI infrastructure, the chips and software that train and serve AI models, is designed in layers. Layers make the system manageable, but they also fix which choices an optimizer can consider. Gains that need the chip and its software to change together are excluded before optimization begins: the formulation leaves them out. Language-model agents make it possible to revisit these boundaries, but an agent's proposal cannot show by itself that a design is correct or optimal. We present Formulaic, a flow that divides the work. The agent writes the formulation, a mathematical solver optimizes within it, and verification and measurement check its assumptions and results. The agent refines the problem step by step, from the computation graph toward the chip. Each step is a template: a family of programs with the conditions under which they are correct. Wall relaxation searches the chip by pricing the hardware limits that bind the software. This paper takes a first step, through separate studies rather than one end-to-end run. On NVIDIA GB10, templates the agent wrote run complete Qwen3-8B layers $1.075\\times$ faster than SGLang. In a simulated Ventus GPU study, joint design cuts the worst-scenario cycles of Qwen2.5-0.5B to 0.428 of the reference, against 0.934 for software alone. On a five-step GEMM refinement chain, reusing proofs makes checking $2.51\\times$ faster.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.AR。AI infrastructure, the chips and software that train and serve AI models, is designed in layers. Layers make the system manageable...",
+      "area": "LLM 推理优化",
       "tags": [
-        "amazon",
-        "cs.IR",
+        "nvidia",
+        "cs.AR"
+      ],
+      "signal": 90,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-10-29T05:15:00Z",
+      "url": "https://arxiv.org/abs/2610.39380",
+      "pdfUrl": "https://arxiv.org/pdf/2610.39380v1"
+    },
+    {
+      "id": "arxiv-2610.39891",
+      "title": "TACFormer: Transformer-Based Generative Model for Target-Conditioned De Novo PROTAC Design",
+      "authors": [
+        "Yossra Gharbi",
+        "Rocío Mercado"
+      ],
+      "summary": "Targeted protein degradation (TPD) represents a fundamental shift in drug discovery, moving beyond traditional target inhibition toward the event-driven removal of disease-causing proteins. A prominent strategy for TPD is the use of proteolysis-targeting chimeras (PROTACs), heterobifunctional molecules that selectively route a protein of interest (POI) to the ubiquitin-proteasome system for degradation. While PROTAC design still relies heavily on trial-and-error synthesis and experimental testing, deep generative models offer a promising means to explore PROTAC chemical space in silico and generate novel molecules. However, many existing generative methods formulate PROTAC design primarily as a linker-generation problem, with POI-binding (warhead) and E3-ligase-binding components fixed in advance. This restricts exploration of the full PROTAC chemical space and often leaves the POI implicit through the predefined warhead, rather than using protein-level information as an explicit conditioning signal during generation. To address these limitations, we propose TACFormer: a transformer-based generative model for target-aware de novo PROTAC design. The model conditions a GPT-style molecular decoder on pretrained ESM-2 representations of POI sequences, allowing POI-level information to steer full-molecule generation. Our results show that TACFormer generates highly novel and chemically diverse PROTACs while showing consistent POI-dependent shifts in generated chemical space. In particular, molecules generated under specific target conditions preferentially populate chemical neighborhoods associated with POIs in the held-out dataset, while extrapolating to novel chemotypes. By natively integrating biological context into the generative process, TACFormer moves PROTAC design toward a more biology-informed exploration of degrader chemical space.",
+      "reason": "近 30 天；关键词：cs.LG, dataset, lora。Targeted protein degradation (TPD) represents a fundamental shift in drug discovery, moving beyond traditional target inhibition t...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
         "dataset",
-        "llm",
-        "ranking",
-        "recommender"
+        "lora"
       ],
-      "signal": 99,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-10-29T04:45:19Z",
-      "url": "https://arxiv.org/abs/2610.39352",
-      "pdfUrl": "https://arxiv.org/pdf/2610.39352v1"
-    },
-    {
-      "id": "arxiv-2610.38378",
-      "title": "Towards Reliable, Scalable, and Value-Aligned Generative Recommendation for Large-Scale Advertising",
-      "authors": [
-        "Yatong Xiao",
-        "Yibo Sheng",
-        "Lixiang Wang",
-        "Mingjie Sun",
-        "Yunhao Sha",
-        "Pengfei Zhang",
-        "Shengyu Wang",
-        "Peng Wang",
-        "Wenjin Wu",
-        "Peng Jiang"
-      ],
-      "summary": "Generative recommendation (GR) reformulates item retrieval as autoregressive generation of discrete semantic identifiers (SIDs), offering a unified paradigm for personalized recommendation. GR4AD, as an industrial generative recommendation framework, has greatly improved advertising revenue while enabling efficient real-time serving in Kuaishou.However, continued deployment has exposed three limitations: deterministic SID assignment remains sensitive to semantic boundaries; conventional backbone scaling provides diminishing revenue gains under strict serving constraints; and sequence-level value optimization provides limited credit assignment to intermediate SID decisions, causing likelihood-based beam search to prematurely prune potentially high-value candidates. We present GR4AD-X, which addresses these limitations through reliable SID construction, serving-efficient capacity scaling, and unified value alignment. Specifically, GR4AD-X improves SID reliability through Multi-Path assignment. It expands model capacity along multiple complementary dimensions rather than relying solely on wider or deeper backbones, achieving a better effectiveness-efficiency trade-off under strict serving constraints. Finally, Unified Value-Guided Generation and Discrimination (UniVGD) aligns generation with commercial value through prefix-level reward optimization, value-guided beam pruning, and discriminative reranking within a unified model. Large-scale online A/B tests on the Kuaishou advertising platform demonstrate that GR4AD-X achieves a cumulative revenue improvement of 3.07% over the deployed GR4AD baseline while satisfying strict latency and throughput constraints.",
-      "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, advertising。Generative recommendation (GR) reformulates item retrieval as autoregressive generation of discrete semantic identifiers (SIDs), o...",
-      "area": "推荐算法",
-      "tags": [
-        "kuaishou",
-        "cs.IR",
-        "advertising",
-        "alignment",
-        "deployed",
-        "efficient",
-        "generative-recommendation"
-      ],
-      "signal": 99,
-      "source": "Kuaishou/arXiv",
-      "publishedAt": "2026-10-28T07:17:24Z",
-      "url": "https://arxiv.org/abs/2610.38378",
-      "pdfUrl": "https://arxiv.org/pdf/2610.38378v1"
+      "signal": 86,
+      "source": "arXiv",
+      "publishedAt": "2026-10-29T12:05:44Z",
+      "url": "https://arxiv.org/abs/2610.39891",
+      "pdfUrl": "https://arxiv.org/pdf/2610.39891v1"
     }
   ]
 }
