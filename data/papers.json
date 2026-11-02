@@ -1,271 +1,141 @@
 {
-  "generatedAt": "2026-11-01T08:32:11.080639+08:00",
+  "generatedAt": "2026-11-02T09:06:28.947589+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2610.39853",
-      "title": "KV Cache Quantization for Diffusion Language Models",
+      "id": "arxiv-2610.39293",
+      "title": "Unlocking Any-Order Generation in Pretrained Autoregressive Image Models",
       "authors": [
-        "Yan Tai",
-        "Yunan Ding",
-        "Guangzhao Li",
-        "Siqi Luo",
-        "Chaoyang Zhang",
-        "Guangtao Zhai",
-        "Guodong Guo",
-        "Xiaohong Liu"
+        "Rishav Pramanik",
+        "Marco Pedersoli",
+        "Zhaozheng Yin"
       ],
-      "summary": "KV cache quantization is well studied for autoregressive language models, where cached prefix states are exact under causal attention and quantization is mainly a cache reconstruction problem. Diffusion language models (dLLMs) break this assumption. Fast dLLM inference reuses KV states across denoising steps, but bidirectional token representations can change as masked tokens are revealed, so the reused cache may already differ from full recomputation before quantization is applied. We study KV cache quantization under this cache-reuse error. We adapt KIVI and KVQuant to Fast-dLLM-style prefix and dual cache reuse, and introduce TRACE and dLLM-KVQ. TRACE reconstructs feasible dLLM reveal trajectories from prompt-answer pairs, providing calibration states that match iterative masked decoding. dLLM-KVQ uses these trajectories to choose per-layer K-cache entries that remain in high precision according to output- and attention-level behavior metrics, while applying standard low-bit value quantization. Across LLaDA and Dream evaluations on GSM8K, HumanEval, MATH, and MBPP, dLLM-KVQ achieves the highest average score among quantized methods across the reported 4-bit and 2-bit prefix/dual cache settings.",
-      "reason": "近 30 天；关键词：cs.CL, inference, kv-cache。KV cache quantization is well studied for autoregressive language models, where cached prefix states are exact under causal attent...",
+      "summary": "Autoregressive (AR) image generators are powerful in principle but inflexible in practice: training with a fixed raster-scan order hardcodes a single factorization of the image distribution into the model, leaving it unable to inpaint, outpaint, or edit at inference time. Existing solutions, including the modern discrete-diffusion family, train from scratch on a mixture of token orderings, paying roughly 3x the compute of standard raster-scan training; discrete diffusion further sacrifices compatibility with the AR inference ecosystem (KV caching, vLLM) by construction. We argue that this cost is unnecessary. A pretrained raster-scan AR model has already learned the joint distribution over image tokens; what it lacks is not knowledge but the ability to express that knowledge through non-sequential conditional pathways. We propose a recipe for adapting pretrained raster-scan models into any-order generators using two components: future-aware positional embeddings that resolve a target-position identifiability problem at negligible overhead, and an ordering curriculum that traces a stable optimization path from the pretrained solution to a good any-order basin. Applied to four base models across two architectures and two scales (LlamaGen-L/XL, RAR-L/XL), the recipe substantially outperforms MaskGIT on ImageNet inpainting (FID 6.21 vs. 10.44) and outpainting, is competitive with MAR-L, trades a 1.2-1.9 increase in class-conditional FID for this flexibility, and costs 13-33% additional compute beyond pretraining, while leaving the standard AR inference stack untouched. Inpainting, outpainting, and editing, our results suggest, need not be added to autoregressive image models. They can be unlocked from the ones that exist. Code is available at https://github.com/Ordered-AR/unlockedadaptation.",
+      "reason": "近 30 天；关键词：cs.CV, inference, llm。Autoregressive (AR) image generators are powerful in principle but inflexible in practice: training with a fixed raster-scan order...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL",
+        "cs.CV",
         "inference",
-        "kv-cache",
-        "llm",
-        "quantization"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-29T11:31:41Z",
-      "url": "https://arxiv.org/abs/2610.39853",
-      "pdfUrl": "https://arxiv.org/pdf/2610.39853v1"
-    },
-    {
-      "id": "arxiv-2610.39852",
-      "title": "DWISE: Denoising Workload-Informed Scheduling Engine",
-      "authors": [
-        "Lie Li",
-        "Wen Li",
-        "Junxiao Shen",
-        "Jindong Gu",
-        "Guosheng Hu"
-      ],
-      "summary": "Unlike autoregressive large language models (AR-LLMs), diffusion LLMs (dLLMs) generate text by iteratively denoising many tokens in parallel, offering a promising path to efficient inference. Existing serving frameworks, however, schedule dLLM requests with policies designed for AR models, namely first-come-first-served (FCFS) admission and prefill priority. We find that both policies are ill-suited to dLLMs, wasting much of their speed. FCFS ignores that a dLLM request's decoding cost is highly heterogeneous and unknown at arrival, causing severe head-of-line blocking. Prefill priority, widely used in AR-LLM serving to keep time-to-first-token low, sharply cuts dLLM efficiency, as rounds that run only prompts leave most of the batch idle. We present DWISE, a Denoising Workload-Informed Scheduling Engine for efficient dLLM serving. DWISE schedules requests by their remaining work, measured in a block-level unit shared by prefill and denoising, so both phases share a round. To predict the unknown denoising workload, DWISE combines a lightweight prompt-based predictor at admission with a single refinement from the first denoising round's hidden states, which capture model-specific information absent from the prompt and require no additional model execution. Implemented in SGLang and evaluated on five models from three dLLM families under bursty workloads, DWISE reduces mean end-to-end latency over SGLang by 5.4$\\times$ on average and up to 14.9$\\times$ while preserving task accuracy. The code will be released publicly.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Unlike autoregressive large language models (AR-LLMs), diffusion LLMs (dLLMs) generate text by iteratively denoising many tokens i...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "efficient",
-        "inference",
-        "latency",
-        "llm",
-        "prefill",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-29T11:31:25Z",
-      "url": "https://arxiv.org/abs/2610.39852",
-      "pdfUrl": "https://arxiv.org/pdf/2610.39852v1"
-    },
-    {
-      "id": "arxiv-2610.39562",
-      "title": "Raincheck: Deferred Multimodal Prefill for Efficient Multi-Turn MLLM Inference",
-      "authors": [
-        "Wenjie Huang",
-        "Jun Zhang",
-        "Hongyaoxing Gu",
-        "Haoyang Huang",
-        "Tianqi Xu",
-        "Xinyue Hao",
-        "Xinyi Hu",
-        "Xinle Du",
-        "Jun Dai",
-        "Shuang Ge",
-        "Chen Lei",
-        "Yue Li",
-        "Mingcheng Wan"
-      ],
-      "summary": "Multi-turn conversations with multimodal large language models (MLLMs) reuse input context, but long multimodal inputs increase time to first token (TTFT). Query-aware hard pruning reduces prefill tokens but permanently excludes information that later questions may require. We propose Raincheck, a framework for deferred multimodal prefill that decouples initial token selection from later information availability. An existing pruning method selects tokens for initial prefill; Raincheck preserves and progressively prefills unselected tokens in source order using unused compute capacity during decode. Unfinished prefill continues after answer return during available scheduling gaps. Attention visibility control and affine state mapping enable context updates after generation begins in full-attention and hybrid recurrent models. Prefill-decode fusion reduces repeated weight reads. We evaluate Qwen3-VL-8B and Qwen3.5-9B with 30% initial multimodal-token retention. Across both models and four pruning methods, Raincheck recovers on average 77.7% and 60.4% of the quality lost to matched hard pruning on MultiVerse and ConvBench, respectively. On MultiVerse, the SGLang implementation reduces mean first-turn TTFT by up to 24.1% relative to full prefill, with less than 0.5% increase in mean time per output token (TPOT).",
-      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Multi-turn conversations with multimodal large language models (MLLMs) reuse input context, but long multimodal inputs increase ti...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "efficient",
-        "inference",
-        "llm",
-        "multimodal",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-29T08:01:02Z",
-      "url": "https://arxiv.org/abs/2610.39562",
-      "pdfUrl": "https://arxiv.org/pdf/2610.39562v1"
-    },
-    {
-      "id": "arxiv-2610.39418",
-      "title": "LinQuant: Functional Invariances for Low-Precision Linear Recurrences",
-      "authors": [
-        "Neehal Tumma",
-        "Philipp Nazari",
-        "Rohan Cherukuri",
-        "Daniela Rus",
-        "T. Konstantin Rusch"
-      ],
-      "summary": "Linear recurrences are emerging as practical alternatives to softmax attention in large language models, appearing in both standalone and hybrid architectures. However, despite their rapid emergence, low-precision inference remains much less developed for these models than for softmax attention. During prefill, chunkwise-parallel algorithms cast much of the recurrence as dense matrix multiplications, suggesting a natural path to low-precision execution. Simply quantizing these operations in their native form, however, can be fragile. In this work, we identify functional invariances that preserve the full-precision computation while making the operands more amenable to quantization. Building on this observation, we introduce LinQuant, a framework for low-precision recurrent prefill based on seven such invariances, including rotations, diagonal rescalings, and alternative placements of recurrent decay and write factors. We derive when these transformations remain valid across common recurrence families spanning linear, gated, and delta-rule updates, and show that they provide complementary degrees of freedom for improving low-precision accuracy. Finally, we translate this framework to production by augmenting SSDi8, an existing low-precision prefill pipeline for Mamba-2, with the applicable invariances. LinQuant improves perplexity at matched latency on Mamba-2 1.3B, 2.7B, and 8B and Nemotron-H 8B, demonstrating the practical utility of invariance-based quantization for recurrent models.",
-      "reason": "近 30 天；关键词：cs.LG, inference, latency。Linear recurrences are emerging as practical alternatives to softmax attention in large language models, appearing in both standal...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "inference",
-        "latency",
-        "prefill",
-        "production",
-        "quantization"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-29T05:59:51Z",
-      "url": "https://arxiv.org/abs/2610.39418",
-      "pdfUrl": "https://arxiv.org/pdf/2610.39418v1"
-    },
-    {
-      "id": "arxiv-2610.39372",
-      "title": "Cord: Confidence-Anchored Order Residual Decoding for Masked Diffusion Language Models",
-      "authors": [
-        "Chengwei Zhou",
-        "Zhaoyan Jia",
-        "Massoud Pedram",
-        "Gourav Datta"
-      ],
-      "summary": "The decoding order of masked diffusion language models (dLLMs) can substantially affect generation quality, yet common decoders typically apply the same reveal rule throughout generation. Confidence provides a strong default, but it measures how decisively a position can be predicted now, not how useful revealing that position will be for subsequent decoding. We propose Cord, a lightweight prompt-conditioned policy that retains confidence decoding as a stable reference and learns when and how to depart from it through geometric residuals over generation direction, proximity to revealed context, and two-sided infilling. The residuals adapt to both the prompt and the evolving partial response. Rather than sampling a new policy action at every decoding step, Cord samples a single low-dimensional coefficient matrix per rollout, which induces an entire state-dependent reveal trajectory. This yields a contextual-bandit formulation trained directly from sequence-level rewards, without step-level credit assignment or backbone updates. Across three dLLMs and five reasoning, code, and constraint-satisfaction benchmarks, Cord improves average task success from 32.0% under confidence decoding to 48.2%, and further improves over the best per-domain fixed residual. Behavioral audits show that the learned residuals induce substantial, task-dependent changes in reveal locality and two-sided infilling. Cord adds only $0.53$M trainable parameters, requires no additional backbone forward passes, and incurs only 5.39% inference latency overhead.",
-      "reason": "近 30 天；关键词：cs.CL, efficient, inference。The decoding order of masked diffusion language models (dLLMs) can substantially affect generation quality, yet common decoders ty...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "efficient",
-        "inference",
-        "latency",
         "llm"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-29T05:03:29Z",
-      "url": "https://arxiv.org/abs/2610.39372",
-      "pdfUrl": "https://arxiv.org/pdf/2610.39372v1"
-    },
-    {
-      "id": "arxiv-2610.39216",
-      "title": "PDScope: Breaking the Prefill-Decode Seesaw for Memory-Bound MoE Inference",
-      "authors": [
-        "Enda Yu",
-        "Dezun Dong",
-        "Zhaoning Zhang",
-        "Xiaojian Yang",
-        "Weiling Yang",
-        "Shaonan Ma",
-        "Dongsheng Li",
-        "Yongwei Wu",
-        "Xiangke Liao"
-      ],
-      "summary": "Local deployment of MoE-based LLMs on CPU-GPU nodes is attractive for cost and privacy reasons, yet limited GPU memory forces most experts into CPU memory. Prefill is then compute-bound and benefits from aggressive GPU loading, while decode is I/O-bound and requires conservative PCIe transfers. These demands cannot be amortized under low batching---typical of local assistants and document tools---forcing phase-agnostic schedulers into a seesaw: favoring prefill's aggressive loading injects unmaskable I/O that stalls decode, while favoring decode's conservative transfers starves prefill's GPU of work. We observe that expert routing is predictable in phase-specific ways, allowing us to decouple the two phases and optimize prediction, scheduling, and execution independently for each phase. PDScope predicts expert activations to guide placement and prefetching, adapts these policies to each phase's bottleneck via cross-layer cost modeling, and compiles decisions into overhead-free pipelines using a static computation graph, cache prefetching, and zero-copy asynchronous I/O. On mainstream MoE models, PDScope achieves 2.5-10.3x higher prefill throughput and 2.1-6.1x higher decode throughput than existing systems, showing that phase-aware co-design unlocks efficient MoE inference under memory constraints and extends naturally to multi-batch settings.",
-      "reason": "近 30 天；关键词：cs.DC, batching, efficient。Local deployment of MoE-based LLMs on CPU-GPU nodes is attractive for cost and privacy reasons, yet limited GPU memory forces most...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "batching",
-        "efficient",
-        "inference",
-        "llm",
-        "prefill",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-10-29T02:37:09Z",
-      "url": "https://arxiv.org/abs/2610.39216",
-      "pdfUrl": "https://arxiv.org/pdf/2610.39216v1"
-    },
-    {
-      "id": "arxiv-2610.38981",
-      "title": "Why Speculative Decoding Works Better Than Predicted on Sparse MoE Models",
-      "authors": [
-        "Ekagra Ranjan",
-        "Komal K. Teru",
-        "Bharat Venkitesh",
-        "Acyr Locatelli"
-      ],
-      "summary": "Speculative decoding (SD) accelerates autoregressive inference by leveraging the memory bound nature of decoding, verifying multiple draft tokens in a single forward pass. For mixture-of-experts (MoE) models, prior work predicts a concave speedup-batch size relationship, with gains peaking at intermediate batch sizes due to expert saturation. We evaluate this across 10 sparse MoE models (30B--1T parameters, 8--512 experts) and find recent fine-grained models break this trend, showing higher speedup at low batch size. We find verification cost is governed not only by activated-expert bytes, but also by temporal overlap across draft tokens and GPU execution dynamics. At low batch size, MoE layers in fine-grained models account for a much smaller share of runtime than of weights; on H100, kernel profiling attributes this mainly to higher bandwidth utilization of MoE kernels relative to attention, with L2 absorbing repeated reads of co-routed experts. Across draft tokens, routing overlap further reduces the unique experts activated during verification relative to independence assumptions. We model this effect using a maximum-entropy Iterative Proportional Fitting (IPF) framework that predicts unique expert counts from routing-overlap statistics with less than 4\\% error, and substantially narrows the gap to real-model curves and captures the qualitative low-batch trend from synthetic routing.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, inference。Speculative decoding (SD) accelerates autoregressive inference by leveraging the memory bound nature of decoding, verifying multip...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
-        "cs.LG",
-        "inference",
-        "speculative"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-10-28T22:04:53Z",
-      "url": "https://arxiv.org/abs/2610.38981",
-      "pdfUrl": "https://arxiv.org/pdf/2610.38981v1"
-    },
-    {
-      "id": "arxiv-2610.38809",
-      "title": "Causal Attention on CPU: A Cache-Aware and Load-Balanced Scheduling Kernel for Prefill",
-      "authors": [
-        "Kwun Fung Lau",
-        "Frost Mitchell",
-        "Kanya Mo",
-        "Emani Ashok"
-      ],
-      "summary": "Agentic AI drives significant productivity gains across diverse domains, but concurrent long-context prefills from multiple agents can saturate GPU compute resources. Although CPUs offer a viable alternative, existing CPU attention kernels fall short in adapting to multi-tier cache hierarchies and lack effective thread scheduling. To address this, we introduce CACPU, a high-performance attention kernel featuring tiered cache blocking and an in-kernel task dispatching mechanism designed for causal full-sequence prefilling. CACPU achieves up to a 2.01x speedup over PyTorch SDPA, FlexAttention, and SGLang attention kernels. Integrated into SGLang, it reduces Time to First Token (TTFT) of Llama-3.1-8B by up to 1.74x while preserving model accuracy.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, prefill。Agentic AI drives significant productivity gains across diverse domains, but concurrent long-context prefills from multiple agents...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "cs.LG",
-        "prefill",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-10-28T20:08:51Z",
-      "url": "https://arxiv.org/abs/2610.38809",
-      "pdfUrl": "https://arxiv.org/pdf/2610.38809v1"
-    },
-    {
-      "id": "arxiv-2610.39380",
-      "title": "Learning to Formulate: Agentic Hardware-Software Co-Design of AI Infrastructure through Progressive Optimization and Verification",
-      "authors": [
-        "Yi Ding",
-        "Li Shang"
-      ],
-      "summary": "AI infrastructure, the chips and software that train and serve AI models, is designed in layers. Layers make the system manageable, but they also fix which choices an optimizer can consider. Gains that need the chip and its software to change together are excluded before optimization begins: the formulation leaves them out. Language-model agents make it possible to revisit these boundaries, but an agent's proposal cannot show by itself that a design is correct or optimal. We present Formulaic, a flow that divides the work. The agent writes the formulation, a mathematical solver optimizes within it, and verification and measurement check its assumptions and results. The agent refines the problem step by step, from the computation graph toward the chip. Each step is a template: a family of programs with the conditions under which they are correct. Wall relaxation searches the chip by pricing the hardware limits that bind the software. This paper takes a first step, through separate studies rather than one end-to-end run. On NVIDIA GB10, templates the agent wrote run complete Qwen3-8B layers $1.075\\times$ faster than SGLang. In a simulated Ventus GPU study, joint design cuts the worst-scenario cycles of Qwen2.5-0.5B to 0.428 of the reference, against 0.934 for software alone. On a five-step GEMM refinement chain, reusing proofs makes checking $2.51\\times$ faster.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.AR。AI infrastructure, the chips and software that train and serve AI models, is designed in layers. Layers make the system manageable...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
-        "cs.AR"
-      ],
-      "signal": 90,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-10-29T05:15:00Z",
-      "url": "https://arxiv.org/abs/2610.39380",
-      "pdfUrl": "https://arxiv.org/pdf/2610.39380v1"
-    },
-    {
-      "id": "arxiv-2610.39891",
-      "title": "TACFormer: Transformer-Based Generative Model for Target-Conditioned De Novo PROTAC Design",
-      "authors": [
-        "Yossra Gharbi",
-        "Rocío Mercado"
-      ],
-      "summary": "Targeted protein degradation (TPD) represents a fundamental shift in drug discovery, moving beyond traditional target inhibition toward the event-driven removal of disease-causing proteins. A prominent strategy for TPD is the use of proteolysis-targeting chimeras (PROTACs), heterobifunctional molecules that selectively route a protein of interest (POI) to the ubiquitin-proteasome system for degradation. While PROTAC design still relies heavily on trial-and-error synthesis and experimental testing, deep generative models offer a promising means to explore PROTAC chemical space in silico and generate novel molecules. However, many existing generative methods formulate PROTAC design primarily as a linker-generation problem, with POI-binding (warhead) and E3-ligase-binding components fixed in advance. This restricts exploration of the full PROTAC chemical space and often leaves the POI implicit through the predefined warhead, rather than using protein-level information as an explicit conditioning signal during generation. To address these limitations, we propose TACFormer: a transformer-based generative model for target-aware de novo PROTAC design. The model conditions a GPT-style molecular decoder on pretrained ESM-2 representations of POI sequences, allowing POI-level information to steer full-molecule generation. Our results show that TACFormer generates highly novel and chemically diverse PROTACs while showing consistent POI-dependent shifts in generated chemical space. In particular, molecules generated under specific target conditions preferentially populate chemical neighborhoods associated with POIs in the held-out dataset, while extrapolating to novel chemotypes. By natively integrating biological context into the generative process, TACFormer moves PROTAC design toward a more biology-informed exploration of degrader chemical space.",
-      "reason": "近 30 天；关键词：cs.LG, dataset, lora。Targeted protein degradation (TPD) represents a fundamental shift in drug discovery, moving beyond traditional target inhibition t...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "dataset",
-        "lora"
       ],
       "signal": 86,
       "source": "arXiv",
-      "publishedAt": "2026-10-29T12:05:44Z",
-      "url": "https://arxiv.org/abs/2610.39891",
-      "pdfUrl": "https://arxiv.org/pdf/2610.39891v1"
+      "publishedAt": "2026-10-29T03:42:22Z",
+      "url": "https://arxiv.org/abs/2610.39293",
+      "pdfUrl": "https://arxiv.org/pdf/2610.39293v1"
+    },
+    {
+      "id": "arxiv-2610.38732",
+      "title": "Adversarial Self-Distillation",
+      "authors": [
+        "Mohammad Sadegh Akhondzadeh",
+        "Soroush H. Zargarbashi",
+        "Aleksandar Bojchevski"
+      ],
+      "summary": "Even though current safety-aligned language models are able to refuse harmful requests, their guard can still be bypassed by adversarial perturbations. As in other domains, adversarial training is considered a standard defense. However, due to the autoregressive nature of language generation, supervised finetuning on template refusals does not necessarily teach the model to refuse. Evidence of this is that the adversarially trained model still complies when the attacker injects a compliant prefill. We propose Adversarial Self-Distillation (ASD), which extends a model's own safe behavior to the space of adversarial perturbations. The teacher (the model itself given the clean prompt) can refuse the harmful request by default, or with the help of an additional instruction in its context. ASD distills this knowledge to the student (which is the same model under attack) at the prefixes that the student visits (due to on-policy sampling). These potentially include compliant openings. ASD achieves lower attack success than state-of-the-art defenses with little loss in multiple-choice accuracy, and it becomes able to recover a refusal even after a compliant opening.",
+      "reason": "近 30 天；关键词：cs.LG, prefill。Even though current safety-aligned language models are able to refuse harmful requests, their guard can still be bypassed by adver...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "prefill"
+      ],
+      "signal": 80,
+      "source": "arXiv",
+      "publishedAt": "2026-10-28T19:26:43Z",
+      "url": "https://arxiv.org/abs/2610.38732",
+      "pdfUrl": "https://arxiv.org/pdf/2610.38732v1"
+    },
+    {
+      "id": "arxiv-2610.40649",
+      "title": "Rethinking Neural Thickets Without Weight Perturbations",
+      "authors": [
+        "Nicolas Dufour",
+        "Elouan Gardès",
+        "Amil Dravid",
+        "Patrick Pérez",
+        "Loic Landrieu"
+      ],
+      "summary": "The Neural Thickets hypothesis posits that pretrained language models lie in dense neighborhoods of task-specific experts in weight space, which random Gaussian perturbations can uncover. We reproduce the reported gains, but show that they do not require this geometric explanation. Perturbing a single decoder block already recovers much of the improvement, while keeping the model entirely frozen and adding a random bias to its output logits matches or exceeds full-weight perturbations on most reasoning tasks. This suggests an alternative explanation based on output diversity, validation-based selection, and voting. We formalize this view as Perturb-Select-Vote (PSV), a general procedure that generates perturbed predictors, selects high-performing members on a small validation set, and aggregates their predictions. This interpretation connects Neural Thickets to established inference-time methods, including sampling, self-consistency, and verifier-guided selection. A first-order analysis further shows that small weight perturbations act primarily through their induced logit shifts. We extend this analysis to vision, where logit PSV substantially improves performance under domain shift, including on Earth observation, while full-weight perturbations provide little additional benefit. Together, these results suggest that the gains attributed to nearby weight-space experts can instead be obtained through output diversity, selection, and voting. Logit PSV realizes these benefits with a fully frozen model, providing a simple, training-free alternative to full-weight perturbation ensembles across language and vision.",
+      "reason": "近 30 天；关键词：cs.LG, inference。The Neural Thickets hypothesis posits that pretrained language models lie in dense neighborhoods of task-specific experts in weigh...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference"
+      ],
+      "signal": 79,
+      "source": "arXiv",
+      "publishedAt": "2026-10-29T17:59:29Z",
+      "url": "https://arxiv.org/abs/2610.40649",
+      "pdfUrl": "https://arxiv.org/pdf/2610.40649v1"
+    },
+    {
+      "id": "arxiv-2610.38719",
+      "title": "Learning Scientific Trajectories to Predict Future Biomedical Discoveries",
+      "authors": [
+        "Chia-Hsuan Chang",
+        "Brian Ondov",
+        "Jiang Lv",
+        "Lan Jiang",
+        "Yunmai Wang",
+        "Haerin Song",
+        "Xueqing Peng",
+        "Qiaozhu Mei",
+        "Xiaolei Su",
+        "Hua Xu"
+      ],
+      "summary": "AI co-scientists have expanded the use of large language models for generating scientific hypotheses and guiding experimental investigation. Here we investigate whether temporal patterns in the semantic representations of complete biomedical conclusions can guide hypothesis generation. We introduce ForeSCITE, a framework that identifies thematic clusters of published conclusions, estimates a direction separating earlier from more recent findings within each cluster, and projects existing conclusion embeddings along these directions. An embedding language model trained to reconstruct conclusions decodes the projected coordinates into natural-language hypotheses. Across 407 clusters derived from approximately three million pre-cutoff conclusions, we identify temporal structure and illustrate its retention after decoding. In retrospective, time-sliced evaluations, ForeSCITE increases semantic coverage beyond the historical corpus, biomedical entity-pair novelty and post-cutoff pair re-observation relative to five prompt-based and retrieval-augmented baselines. Expert review of prioritized CAR-T hypotheses identified 37 candidates as both novel and biologically plausible, and expert justifications for five selected hypotheses illustrate their biological rationale and subsequent literature support where available. These findings support temporal guidance in semantic space as a scalable mechanism for proposing biomedical hypotheses for subsequent scientific evaluation.",
+      "reason": "近 30 天；关键词：cs.CL, retrieval。AI co-scientists have expanded the use of large language models for generating scientific hypotheses and guiding experimental inve...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "retrieval"
+      ],
+      "signal": 77,
+      "source": "arXiv",
+      "publishedAt": "2026-10-28T19:15:38Z",
+      "url": "https://arxiv.org/abs/2610.38719",
+      "pdfUrl": "https://arxiv.org/pdf/2610.38719v1"
+    },
+    {
+      "id": "arxiv-2610.38595",
+      "title": "Rethinking LLM Jailbreak Evaluation: Continuous Risk Landscapes Beyond Binary Outcomes",
+      "authors": [
+        "Yukai Zhou",
+        "Wenjie Wang"
+      ],
+      "summary": "A binary success indicator is a natural representation for discriminative tasks such as image classification under adversarial perturbations, where each input is mapped to a single prediction. However, generative tasks are fundamentally different: an LLM jailbreak prompt induces a distribution over open-ended trajectories, while a sampled response reveals only one path. Yet LLM jailbreak evaluation typically retains the binary response indicator underlying attack success rate, obscuring the surrounding structure of possible generations. We introduce a continuous, context-conditioned risk landscape over first-token branches, estimated by fixing candidate openings and repeatedly sampling their continuations. This continuous risk-landscape perspective reveals two complementary properties: current decoder exposure and safe rerouting capacity, which have been obscured by binary-indicator-based ASR. The resulting representation also provides a common basis for comparing clean prompts, attacked variants, and attack strength against a known adaptive defense. Across multiple target models and jailbreak attacks, we uncover risky branches beneath apparently safe outputs, identify qualitatively different ways attacks reshape the model's opening distribution, and show that attacks strongest before a defense do not necessarily remain the strongest after the adaptive defense reacts. These findings recast jailbreaks as deformations of the surrounding continuation-risk landscape, establishing a more informative foundation for understanding jailbreak behavior and developing safer language models.",
+      "reason": "近 30 天；关键词：cs.LG, llm。A binary success indicator is a natural representation for discriminative tasks such as image classification under adversarial per...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "llm"
+      ],
+      "signal": 77,
+      "source": "arXiv",
+      "publishedAt": "2026-10-28T10:23:27Z",
+      "url": "https://arxiv.org/abs/2610.38595",
+      "pdfUrl": "https://arxiv.org/pdf/2610.38595v1"
+    },
+    {
+      "id": "arxiv-2610.38570",
+      "title": "Do Audio LLMs HEAR Pain? Tracing Acoustic Evidence from Speech to Language Reasoning",
+      "authors": [
+        "Wenqi Li",
+        "Xiangjue Dong",
+        "Sulaiman Vesal"
+      ],
+      "summary": "Large audio language models (LALMs) can process speech directly, but it remains unclear how well they use the non-lexical acoustic information that speech carries. We study this question through pain, using TAME-Pain, which contains pain-neutral Harvard sentences and spoken pain ratings recorded at different self-reported pain levels. We introduce HEAR, a four-stage diagnostic framework that traces pain-related information from the speech signal to the model's prediction, and apply it to seven closed-source and open-weight LALMs. On the Harvard sentences, where pain can only be inferred from the voice, all models perform at chance level, and same-speaker references or few-shot examples improve balanced accuracy by no more than six points. On the spoken ratings, the same models reach 87.5-99.7% balanced accuracy. Layer-wise probing of open-weight LALMs shows that pain can be decoded from early audio representations (74.1% balanced accuracy for binary prediction and 45.0% for three-class severity), but that this information, along with most pain-associated acoustic cues, decreases in deeper layers. In an acoustic perception test, weaker models cannot distinguish even large changes in these cues, whereas stronger models can but still fail to infer pain. Finally, we recover pain-related acoustic cues and directly reinject them as structured text into the prompt, which improves pairwise pain prediction by up to 32 points. These results indicate that current LALMs encode paralinguistic information in early layers that is largely unavailable when the model produces its answer.",
+      "reason": "近 30 天；关键词：cs.CL, llm。Large audio language models (LALMs) can process speech directly, but it remains unclear how well they use the non-lexical acoustic...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "llm"
+      ],
+      "signal": 77,
+      "source": "arXiv",
+      "publishedAt": "2026-10-28T10:05:41Z",
+      "url": "https://arxiv.org/abs/2610.38570",
+      "pdfUrl": "https://arxiv.org/pdf/2610.38570v1"
     }
   ]
 }
