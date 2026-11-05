@@ -1,7 +1,294 @@
 {
-  "generatedAt": "2026-11-04T09:44:59.267847+08:00",
+  "generatedAt": "2026-11-05T09:52:57.522209+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-11-05",
+      "generatedAt": "2026-11-05T09:52:57.522209+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2611.05304",
+          "title": "LoopVQ: Sub 1-bit KV Cache Quantization for Looped Transformers",
+          "authors": [
+            "Minsoo Cheong",
+            "Sungjoo Yoo"
+          ],
+          "summary": "Looped transformers are a parameter-efficient alternative to standard transformers for language modeling. By reapplying the same layers across multiple loop steps, recent looped language models match the performance of non-looped models several times their size. While this architecture effectively reduces parameter memory, each loop step still stores its own keys and values, so the key-value (KV) cache grows linearly with the number of loop steps and becomes the main memory bottleneck. We observe that the KV cache of looped models is highly redundant along the loop axis and that the loop steps differ substantially in their sensitivity to quantization. Based on these observations, we propose $\\textbf{LoopVQ}$, a KV cache vector quantization method for looped transformers that codes channels of multiple loop steps jointly, and fine-tunes the codebooks to match the output of the full-precision model. At 0.5 bits per element, LoopVQ outperforms existing KV cache vector quantization methods for standard LLMs on general, long chain-of-thought reasoning, and long-context retrieval tasks with Ouro and Huginn models. Its design is orthogonal to these methods, and combined with TaSQ, it retains much of the BF16 accuracy even at 0.25 bits per element. We also implement LoopVQ in SGLang, where it nearly halves the decode latency at a 32K-token context and raises the peak serving throughput by up to $4.3\\times$ and $6.1\\times$ on the 1.4B and 2.6B Ouro models compared to the BF16 baseline.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, kv-cache。Looped transformers are a parameter-efficient alternative to standard transformers for language modeling. By reapplying the same l...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "kv-cache",
+            "latency",
+            "llm",
+            "quantization",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-03T18:16:29Z",
+          "url": "https://arxiv.org/abs/2611.05304",
+          "pdfUrl": "https://arxiv.org/pdf/2611.05304v1"
+        },
+        {
+          "id": "arxiv-2611.05150",
+          "title": "What Sets the Serving Speed of Looped Language Models? Measurements and Optimizations Graded by Exactness",
+          "authors": [
+            "Dezhen Lu",
+            "Runguo Li",
+            "Zixiang Ni",
+            "Yuchen Tang",
+            "Xingquan Kong",
+            "Jiaxing Yang",
+            "Jiarui Guo",
+            "Lingxiang Gao"
+          ],
+          "summary": "Looped language models apply one block of layers many times per token, so a serving engine pays every per-layer overhead once per loop; we measure serving for Ouro and Huginn-0125 in an open-source looped-model engine and grade our optimizations from bitwise-identical changes to those that require an accuracy check. At batch 1, fusing all loop submissions leaves Ouro throughput at 0.99x; the 5689 small kernels per token are the real cost, and fusing them behind rounding fences raises throughput 1.11-1.59x while 1014/1014 requests remain identical. An approximate fusion is no faster and misses a one-point GSM8K rule on 87 questions (61 and 62 correct versus 64), so we do not ship it. Huginn's released defaults avoid dead KV slots, reuse prefix-cache pages, and serve 1.77-3.16x faster than the base engine; Ouro reaches 1.65-2.15x and agent sessions 1.91-3.21x, while Huginn's noise and prefix-reuse changes stay within one point on all 1319 Huginn test questions; Huginn's packed prefill, -0.61 points on the same questions, meets that rule only on its point estimate. Position-keyed noise makes CPU cache reuse exact but still leaves 20 of 128 GPU full hits different, while loop fusion delays prefill admission and a 64-graph cache prevents eager fallbacks. Under prefill-decode disaggregation ExactLoop reaches up to 3.3x the base throughput with peer error handling disabled, and 3.1x in two of three runs with it enabled. Its transfer budget, sized to hold one request's KV in flight, cuts the commit tail from about one second under the earlier budget to 16 ms (base: 2.8 s), removing the polling rounds that the engine's interval would otherwise impose.",
+          "reason": "近 30 天；关键词：cs.DC, prefill, serving。Looped language models apply one block of layers many times per token, so a serving engine pays every per-layer overhead once per...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "prefill",
+            "serving",
+            "slo",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-03T16:25:43Z",
+          "url": "https://arxiv.org/abs/2611.05150",
+          "pdfUrl": "https://arxiv.org/pdf/2611.05150v1"
+        },
+        {
+          "id": "arxiv-2611.05104",
+          "title": "Workload-Static Optical Circuit Switching For Scalable LLM Inference Decode",
+          "authors": [
+            "Maximilian Thürmer",
+            "Nicolas Scotto di Perto",
+            "Eloise Stein",
+            "Natanijel Vasic",
+            "Mikaeil Bagherli",
+            "Zhenguo Wu",
+            "Benjamin Klenk",
+            "Holger Fröning",
+            "Johannes Feldmann"
+          ],
+          "summary": "LLM inference decode executes fine-grained collectives whose latency directly limits per-user interactivity, yet scale-up fabrics are still built from electronic packet switches designed for training. We observe that, for a given model deployment and parallelization, the communication structure of decode is fixed, and propose workload-static optical circuit switching (OCS): circuits are configured once per deployment, co-designed with model parallelism and with topology-aware collective schedules that turn spare accelerator ports into fewer communication phases or higher bandwidth. We evaluate this design with GXNET, a graph-based workload emulator coupled to analytical and flit-level network models grounded in hardware measurements. In a 576-accelerator scale-up domain serving 5T-parameter MoE models with up to 5M tokens of context, all-OCS fabrics improve interactivity by up to 65% and energy efficiency by up to 119% over 4:1 oversubscribed packet-switched fabrics.",
+          "reason": "近 30 天；关键词：cs.DC, energy, inference。LLM inference decode executes fine-grained collectives whose latency directly limits per-user interactivity, yet scale-up fabrics...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "energy",
+            "inference",
+            "latency",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-03T16:00:07Z",
+          "url": "https://arxiv.org/abs/2611.05104",
+          "pdfUrl": "https://arxiv.org/pdf/2611.05104v1"
+        },
+        {
+          "id": "arxiv-2611.04794",
+          "title": "Accelerating Offloading-Based MoE Inference by Interleaving Concurrent Requests",
+          "authors": [
+            "Hongseung Yu",
+            "In Gim",
+            "Kyunghan Lee",
+            "Lin Zhong"
+          ],
+          "summary": "Expert offloading enables large mixture-of-experts (MoE) language models to run locally, but conventional batching stalls the GPU while missing experts are fetched. A popular remedy, known as prefetching, is to predict what experts will be needed soon and fetch them using idle link bandwidth. Imprecise prediction, however, wastes bandwidth and GPU memory on fetching unnecessary experts. Our key finding is that prefetching can be harmful when there is an expert cache in GPU memory. This is because as the cache includes more necessary experts, expert prediction becomes less precise. Our key insight is that proper request scheduling beats prefetching. Building on this insight, we present Bevy, an MoE inference system based on runahead inference for concurrent requests. A request whose experts are available can run ahead to later layers while other requests wait for fetches, revealing the experts it needs next. Bevy can then fetch the missing experts so identified while computing ready requests, overlapping computation and fetching without predicting expert selections. Running requests separately, however, repeats reads of shared weights in GPU memory and increases compute time. To limit this cost, Bevy's self-balancing scheduler batches ready requests at each layer and prioritizes lagging requests, adapting their grouping as expert availability changes. Across two local platforms, Bevy delivers up to 3.46$\\times$ the decode throughput of llama.cpp and up to 1.55$\\times$ that of the fastest prefetching baseline.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.DC, batching。Expert offloading enables large mixture-of-experts (MoE) language models to run locally, but conventional batching stalls the GPU...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.DC",
+            "batching",
+            "inference",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-11-03T12:30:30Z",
+          "url": "https://arxiv.org/abs/2611.04794",
+          "pdfUrl": "https://arxiv.org/pdf/2611.04794v1"
+        },
+        {
+          "id": "arxiv-2611.04775",
+          "title": "Learning to Rank Explanations for Recommendation with Language Models",
+          "authors": [
+            "Ben Kabongo",
+            "Vincent Guigue"
+          ],
+          "summary": "Recommender systems are ubiquitous on the Web, making understandable explanations essential for users. Although large language models (LLMs) increasingly generate natural-language justifications, evaluating their factual grounding and personalized relevance remains challenging. Statement-level ranking offers an alternative by selecting concise, review-derived explanations, enabling fine-grained and reproducible evaluation using established ranking metrics. However, existing statement ranking methods largely rely on collaborative representations, while semantic enhancements often fail to outperform simple user-history popularity baselines. Moreover, directly adapting language models for personalized statement ranking remains largely unexplored. In this work, we introduce LMStaR (Language Models for Statement Ranking), a fully text-based framework that formulates personalized explanation ranking as dense retrieval. A query encoder represents the user's interaction history and target-item metadata, while a statement encoder maps candidate explanations into a shared embedding space. Both encoders are jointly adapted through multi-positive contrastive learning to learn personalized relevance. Experiments on Amazon Beauty, Amazon Toys, and Yelp show that LMStaR achieves the highest NDCG@1 across all three domains, outperforming CLER by 1.06--8.25 points (+11.8--65.9%). It also leads top-five ranking on both Amazon datasets, although CLER remains stronger on Yelp. Task-specific adaptation improves all five evaluated backbones and transfers across domains without target-domain fine-tuning. Counterfactual analyses further reveal the importance of user-specific histories. These findings highlight the potential of task-adapted language models for personalized explanation ranking.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Recommender systems are ubiquitous on the Web, making understandable explanations essential for users. Although large language mod...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "dataset",
+            "llm",
+            "ranking",
+            "recommendation",
+            "recommender"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-11-03T12:15:07Z",
+          "url": "https://arxiv.org/abs/2611.04775",
+          "pdfUrl": "https://arxiv.org/pdf/2611.04775v1"
+        },
+        {
+          "id": "arxiv-2611.04715",
+          "title": "ZeroGR: Filtering-First Constrained Decoding for Generative Recommendation",
+          "authors": [
+            "Xiangrui Yang",
+            "Jiawei Yang",
+            "Liang Zeng",
+            "Daqian Ding",
+            "Ziqian Liu",
+            "Bing Tian",
+            "Cheng Peng",
+            "Yunfeng Zhao",
+            "Fangyu Zhang",
+            "Jiaqiang Liu",
+            "Xiao Liang",
+            "Yiming Qiu"
+          ],
+          "summary": "Generative recommendation is gaining traction in production, retrieving items by generating their identifiers one token at a time. The generated sequences must identify relevant catalog items, so constrained decoding couples relevance scoring with validity filtering. Because most possible sequences are invalid, scoring before filtering wastes computation on candidates that will be discarded. Our evaluation shows that filtering first can avoid this work with negligible impact on recommendation quality. We present ZeroGR, a filtering-first constrained decoding system for generative recommendation. ZeroGR uses a step-sliced filtering index to reduce GPU memory use by tailoring data representations to each decoding step. Its execution engine adopts shared-slot execution to accelerate data exchange across stages and hybrid projection to adapt computation to workload patterns, thereby reducing execution overhead. During index refreshes, ZeroGR applies layout-guided streaming construction to speed up updates and limit serving interference. Extensive evaluation shows that ZeroGR accelerates the filtering and scoring pipeline by up to $9.9\\times$ over representative baselines while reducing GPU index memory use and accelerating index reconstruction.",
+          "reason": "近 30 天；公司信号：Microsoft；推荐/排序/广告方向；关键词：microsoft, cs.DB, generative-recommendation。Generative recommendation is gaining traction in production, retrieving items by generating their identifiers one token at a time....",
+          "area": "推荐算法",
+          "tags": [
+            "microsoft",
+            "cs.DB",
+            "generative-recommendation",
+            "production",
+            "recommendation",
+            "serving",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "Microsoft/arXiv",
+          "publishedAt": "2026-11-03T11:36:55Z",
+          "url": "https://arxiv.org/abs/2611.04715",
+          "pdfUrl": "https://arxiv.org/pdf/2611.04715v1"
+        },
+        {
+          "id": "arxiv-2611.04671",
+          "title": "LeanSparse: Memory-Efficient Serving for Native Sparse-Attention LLMs",
+          "authors": [
+            "Zaifeng Pan",
+            "Chris Wu",
+            "Xinwei Qiang",
+            "Zhengding Hu",
+            "Zhongkai Yu",
+            "Yufei Ding"
+          ],
+          "summary": "Sparse attention limits the history read by each query, but serving long contexts still requires substantial GPU memory. Existing KV offloading systems retain the full history of indexer keys on GPU, limiting decode concurrency. Prefill's temporary memory demand can further delay admission even when enough memory remains for the same request's subsequent decode. We present LeanSparse, a serving system that reduces both decode's persistent memory use and prefill's temporary memory demand. Our design exploits two observations: prefill consumes historical data one layer at a time, and decode can identify promising candidates before comparing their original indexer scores. During prefill, LeanSparse streams layer histories through two reusable GPU buffers, overlapping next-layer loading with ongoing model computation. During decode, coarse-to-fine indexing searches compact representations and retrieves original indexer keys only for candidate refinement. Separate indexer key and KV caches reuse data across generation steps. We implement LeanSparse in SGLang and evaluate it on DeepSeek-V4-Flash. At 950K context length, LeanSparse supports 2.95$\\times$ as many concurrent requests and achieves 2.14$\\times$ decode throughput over HiSparse. On multi-turn Open-SWE traces, it reduces median time to first token from 21.6 to 0.6s and median session completion time by 17.7% relative to ECHO.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, kv-cache。Sparse attention limits the history read by each query, but serving long contexts still requires substantial GPU memory. Existing...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "kv-cache",
+            "llm",
+            "prefill",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-03T10:55:47Z",
+          "url": "https://arxiv.org/abs/2611.04671",
+          "pdfUrl": "https://arxiv.org/pdf/2611.04671v1"
+        },
+        {
+          "id": "arxiv-2611.04474",
+          "title": "Hierarchical Intelligent Evolutionary Optimization for UAV-Assisted NOMA-MEC Systems",
+          "authors": [
+            "Yaxuan Jiao",
+            "Jiaxuan Lv",
+            "Jyoti Sahni",
+            "Wuyungerile Li",
+            "Winston K. G. Seah"
+          ],
+          "summary": "The integration of unmanned aerial vehicles (UAVs), mobile edge computing (MEC) and non-orthogonal multiple access (NOMA) provides an effective solution for computation-intensive and latency-sensitive services in infrastructure-deficient environments. However, the joint optimization of UAV trajectories, task offloading, communication and computing resources under heterogeneous task priorities results in a highly coupled mixed-integer non-convex problem. To address these challenges, this paper proposes a Hierarchical Intelligent Evolutionary Algorithm (HIEA) for priority-aware multi-UAV cooperative NOMA-MEC networks, which integrates multi-head deep Q-network (MH-DQN)-based intelligent decision generation, communication-aware initialization, adaptive evolutionary exploration and successive convex approximation (SCA)-based precision refinement. Specifically, a novel communication-aware initialization mechanism, termed Channel Quality Indicator (CQI)-guided Load-Aware Trajectory Initialization (CQI-LATI), is designed to incorporate CQI and task workload characteristics into evolutionary population construction, generating high-quality and diversity-preserving initial populations. Theoretical analysis characterizes HIEA's search-space reduction, the quality-diversity trade-off of CQI-guided initialization, and the accuracy-efficiency trade-off of SCA refinement, and extensive simulations demonstrate that HIEA outperforms benchmark schemes, with gains of up to 6.5% in throughput, 13.6% in task completion rate and 15.3% in energy efficiency.",
+          "reason": "近 30 天；关键词：cs.NI, energy, latency。The integration of unmanned aerial vehicles (UAVs), mobile edge computing (MEC) and non-orthogonal multiple access (NOMA) provides...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.NI",
+            "energy",
+            "latency",
+            "lora",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-03T08:04:55Z",
+          "url": "https://arxiv.org/abs/2611.04474",
+          "pdfUrl": "https://arxiv.org/pdf/2611.04474v1"
+        },
+        {
+          "id": "arxiv-2611.04439",
+          "title": "DualEvolve: Dual-Level Self-Evolution of Mechanism and Orchestration for Recommendation",
+          "authors": [
+            "Tianqi Gao",
+            "Chenxu Wang",
+            "Wenxuan Yang",
+            "Yueqi Mou",
+            "Biao Tang",
+            "Ming Liu",
+            "Peng Yan"
+          ],
+          "summary": "Recommender systems are widely used in e-commerce and content platforms, where improvement requires repeated model design, training optimization, and experimental validation. Large language model (LLM) agents increasingly automate this development cycle. Sustained autonomous improvement requires agents to improve both recommendation models and their development workflows. However, task-performance-driven approaches select updates mainly by candidates' final scores, without a separate optimization signal for experimentation quality. We therefore present DualEvolve, a dual-level framework that co-evolves recommendation mechanisms and agent orchestration toward recursive self-improvement. Inner evolution revises model and training code using task feedback to improve recommendation performance. Outer evolution scores the inner-loop experimental process, updates harness and skill rules using these scores and execution traces, and adjusts orchestration choices based on next-round scores to improve the quality of subsequent experiments. Experiments on MovieLens-1M and three Amazon Reviews 2023 subsets cover four recommendation methods and 16 settings. DualEvolve achieves higher test means than Base, OpenEvolve, and DeepEvolve in all 64 setting-metric comparisons, with macro-averaged relative gains over DeepEvolve of 7.6% (HR@5) and 9.0% (NDCG@5).",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, llm。Recommender systems are widely used in e-commerce and content platforms, where improvement requires repeated model design, trainin...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "llm",
+            "recommendation",
+            "recommender"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-11-03T07:32:10Z",
+          "url": "https://arxiv.org/abs/2611.04439",
+          "pdfUrl": "https://arxiv.org/pdf/2611.04439v1"
+        },
+        {
+          "id": "arxiv-2611.04203",
+          "title": "Toward User-Centered Agentic Recommendation: When Does Platform Competition Benefit Users?",
+          "authors": [
+            "Kehan Zheng",
+            "Deyao Hong",
+            "Qian Li",
+            "Jun Zhang",
+            "Jie Jiang",
+            "Hongning Wang"
+          ],
+          "summary": "Conventional recommender systems operate within platform-specific catalogs, limiting access to potentially valuable resources across platforms. We propose user-centered agentic recommendation, a paradigm in which user agents compare recommendations from competing platform agents, and formalize their interaction as a repeated game. Platforms strategically modify descriptions without changing intrinsic item value, while each user agent assesses platform credibility using feedback from consumed items only. Our analysis shows that expanded resource access need not improve user welfare: strategic misrepresentation and limited verification can offset the benefits of platform competition. We quantify when platform credibility assessment allows users to benefit from broader access despite strategic exaggeration. Our analysis identifies resource and reporting conditions that guarantee higher average welfare than the original platform with an interaction budget linear in platform count. Experiments on synthetic and Amazon-grounded markets show that credibility assessment can improve finite-horizon utility, while its benefits depend on market size and mechanism parameters.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.AI, recommendation。Conventional recommender systems operate within platform-specific catalogs, limiting access to potentially valuable resources acro...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.AI",
+            "recommendation",
+            "recommender"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-11-03T02:41:49Z",
+          "url": "https://arxiv.org/abs/2611.04203",
+          "pdfUrl": "https://arxiv.org/pdf/2611.04203v1"
+        }
+      ]
+    },
     {
       "date": "2026-11-04",
       "generatedAt": "2026-11-04T09:44:59.267847+08:00",
@@ -20456,38 +20743,6 @@
       "generatedAt": "2026-07-20T06:40:42.284669+08:00",
       "source": "curated industry radar + arXiv API",
       "papers": []
-    },
-    {
-      "date": "2026-07-19",
-      "generatedAt": "2026-07-19T06:37:32.949287+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2607.14191",
-          "title": "TEDDY: A Pediatric Foundation Model for Risk Forewarning from ICD-Coded Diagnostic Histories",
-          "authors": [
-            "Matthew Brady Neeley",
-            "Jorge Botas",
-            "Johnathan Jia",
-            "Lin Yao",
-            "Daniel Palacios",
-            "Benjamin Choi",
-            "Zhandong Liu",
-            "Hyun-Hwan Jeong"
-          ],
-          "summary": "Pediatric electronic health records capture developmentally structured clinical trajectories, yet their potential for generative healthcare foundation models remains largely unexplored. Here we present TEDDY (Temporal Event Decoder for Disease in Youth), a 1.84-million-parameter decoder transformer trained on approximately 73 million ICD-10 diagnoses from 1.6 million children at a single pediatric institution. TEDDY models longitudinal diagnosis trajectories and visit timing. Predictions were made before visit codes were revealed, limited to first occurrences, and evaluated against sex- and age-matched controls. Across 797 disease-onset prediction tasks spanning 16 ICD-10 chapters, TEDDY achieved a median AUC of 72.0%, outperforming same-data DenseNet (50.0%), CNN (57.2%), RNN (60.1%), and LSTM (62.7%) baselines on 96-99% of tasks. Performance held across sex and age and was strongest among lower-prevalence diagnoses; 202 of the 225 rarest conditions (90%) had 95% confidence intervals above chance. Predictive signal remained detectable more than two years before first recorded diagnosis, with median AUCs of 59.7% in the unrestricted analysis and 64.4% in a fixed-cohort sensitivity analysis. In asthma and attention-deficit/hyperactivity disorder benchmarks, AUCs were 79.3% and 84.7%, compared with 62.7% and 71.7% for the strongest comparators, including a general-purpose language model three orders of magnitude larger. Visit-timing predictions had a 3.0-day mean absolute restricted mean survival-time error over 365 days, although median and long-tail return intervals remained miscalibrated. Together, these results establish pediatric diagnostic histories as a substrate for compact generative models supporting broad, rare-disease, and long-horizon risk forecasting without population-scale data or billion-parameter models.",
-          "reason": "近 30 天；关键词：cs.LG。Pediatric electronic health records capture developmentally structured clinical trajectories, yet their potential for generative h...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG"
-          ],
-          "signal": 70,
-          "source": "arXiv",
-          "publishedAt": "2026-07-15T16:17:28Z",
-          "url": "https://arxiv.org/abs/2607.14191",
-          "pdfUrl": "https://arxiv.org/pdf/2607.14191v1"
-        }
-      ]
     }
   ]
 }
