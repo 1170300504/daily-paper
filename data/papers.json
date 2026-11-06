@@ -1,286 +1,279 @@
 {
-  "generatedAt": "2026-11-05T09:52:57.522209+08:00",
+  "generatedAt": "2026-11-06T09:53:45.445585+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2611.05304",
-      "title": "LoopVQ: Sub 1-bit KV Cache Quantization for Looped Transformers",
+      "id": "arxiv-2611.06501",
+      "title": "CRESiST: Self-Enhancing Explorative Policy Learning for Simultaneous Speech Translation",
       "authors": [
-        "Minsoo Cheong",
-        "Sungjoo Yoo"
+        "Chenyang Le",
+        "Pei Zhang",
+        "Yuxiang Chen",
+        "Bing Han",
+        "Derek F. Wong",
+        "Baosong Yang",
+        "Yanmin Qian"
       ],
-      "summary": "Looped transformers are a parameter-efficient alternative to standard transformers for language modeling. By reapplying the same layers across multiple loop steps, recent looped language models match the performance of non-looped models several times their size. While this architecture effectively reduces parameter memory, each loop step still stores its own keys and values, so the key-value (KV) cache grows linearly with the number of loop steps and becomes the main memory bottleneck. We observe that the KV cache of looped models is highly redundant along the loop axis and that the loop steps differ substantially in their sensitivity to quantization. Based on these observations, we propose $\\textbf{LoopVQ}$, a KV cache vector quantization method for looped transformers that codes channels of multiple loop steps jointly, and fine-tunes the codebooks to match the output of the full-precision model. At 0.5 bits per element, LoopVQ outperforms existing KV cache vector quantization methods for standard LLMs on general, long chain-of-thought reasoning, and long-context retrieval tasks with Ouro and Huginn models. Its design is orthogonal to these methods, and combined with TaSQ, it retains much of the BF16 accuracy even at 0.25 bits per element. We also implement LoopVQ in SGLang, where it nearly halves the decode latency at a 32K-token context and raises the peak serving throughput by up to $4.3\\times$ and $6.1\\times$ on the 1.4B and 2.6B Ouro models compared to the BF16 baseline.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, kv-cache。Looped transformers are a parameter-efficient alternative to standard transformers for language modeling. By reapplying the same l...",
+      "summary": "Simultaneous Speech Translation (SimulST) requires balancing translation quality and latency. While Large Language Models (LLMs) excel in offline translation, current LLM-based SimulST systems predominantly rely on prefix-incremental generation. This paradigm suffers from redundant Key-Value cache recomputation and necessitates external Voice Activity Detection to process unbounded streams. To overcome these bottlenecks, we propose an end-to-end interleaved read-write framework built upon an omni-modal LLM. By interleaving speech chunks and text tokens, our architecture achieves full KV cache reuse, natively supporting segmentation-free, infinite-length inference. Furthermore, to learn optimal streaming policies without rigid offline alignments, we introduce a novel Actor-Critic self-enhancement pipeline. An RNN-T Actor dynamically samples read-write trajectories, while an LLM-based Critic evaluates these paths via intrinsic semantic and latency rewards, distilling the optimal policy back to the Actor. Extensive experiments on sentence-level (FLEURS, CoVoST2) and document-level (MuST-C, ACL 60/60) benchmarks demonstrate that our model establishes new state-of-the-art quality-latency Pareto frontiers, substantially outperforming existing cascaded and static-alignment baselines.",
+      "reason": "近 30 天；公司信号：Microsoft；关键词：microsoft, cs.CL, alignment。Simultaneous Speech Translation (SimulST) requires balancing translation quality and latency. While Large Language Models (LLMs) e...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.LG",
-        "efficient",
+        "microsoft",
+        "cs.CL",
+        "alignment",
+        "inference",
         "kv-cache",
         "latency",
-        "llm",
-        "quantization",
-        "retrieval"
+        "llm"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-03T18:16:29Z",
-      "url": "https://arxiv.org/abs/2611.05304",
-      "pdfUrl": "https://arxiv.org/pdf/2611.05304v1"
+      "source": "Microsoft/arXiv",
+      "publishedAt": "2026-11-04T13:32:57Z",
+      "url": "https://arxiv.org/abs/2611.06501",
+      "pdfUrl": "https://arxiv.org/pdf/2611.06501v1"
     },
     {
-      "id": "arxiv-2611.05150",
-      "title": "What Sets the Serving Speed of Looped Language Models? Measurements and Optimizations Graded by Exactness",
+      "id": "arxiv-2611.06380",
+      "title": "Does Context Compression Preserve Refusal Alignment?",
       "authors": [
-        "Dezhen Lu",
-        "Runguo Li",
-        "Zixiang Ni",
-        "Yuchen Tang",
-        "Xingquan Kong",
-        "Jiaxing Yang",
-        "Jiarui Guo",
-        "Lingxiang Gao"
+        "Anthony Nguyen",
+        "Wenjun Lin"
       ],
-      "summary": "Looped language models apply one block of layers many times per token, so a serving engine pays every per-layer overhead once per loop; we measure serving for Ouro and Huginn-0125 in an open-source looped-model engine and grade our optimizations from bitwise-identical changes to those that require an accuracy check. At batch 1, fusing all loop submissions leaves Ouro throughput at 0.99x; the 5689 small kernels per token are the real cost, and fusing them behind rounding fences raises throughput 1.11-1.59x while 1014/1014 requests remain identical. An approximate fusion is no faster and misses a one-point GSM8K rule on 87 questions (61 and 62 correct versus 64), so we do not ship it. Huginn's released defaults avoid dead KV slots, reuse prefix-cache pages, and serve 1.77-3.16x faster than the base engine; Ouro reaches 1.65-2.15x and agent sessions 1.91-3.21x, while Huginn's noise and prefix-reuse changes stay within one point on all 1319 Huginn test questions; Huginn's packed prefill, -0.61 points on the same questions, meets that rule only on its point estimate. Position-keyed noise makes CPU cache reuse exact but still leaves 20 of 128 GPU full hits different, while loop fusion delays prefill admission and a 64-graph cache prevents eager fallbacks. Under prefill-decode disaggregation ExactLoop reaches up to 3.3x the base throughput with peer error handling disabled, and 3.1x in two of three runs with it enabled. Its transfer budget, sized to hold one request's KV in flight, cuts the commit tail from about one second under the earlier budget to 16 ms (base: 2.8 s), removing the polling rounds that the engine's interval would otherwise impose.",
-      "reason": "近 30 天；关键词：cs.DC, prefill, serving。Looped language models apply one block of layers many times per token, so a serving engine pays every per-layer overhead once per...",
+      "summary": "Context compression reduces inference cost by encoding inputs into compact representations while preserving semantic content. An open question is whether semantic preservation alone is sufficient to maintain downstream behaviours such as refusal alignment. We investigate this question and find that encoder-based compression systematically weakens refusal behaviour in instruction-tuned language models, despite high reconstruction fidelity. This effect persists across model families and compression architectures. Mechanistic analysis shows that compression attenuates activation along the decoder's learned refusal direction. We further explore Memory Steering, a lightweight inference-time intervention that restores refusal rates to near-baseline levels without retraining and operates entirely in compressed representation space. These results demonstrate that semantic preservation does not guarantee behavioural preservation under compression, highlighting the need to explicitly preserve alignment-relevant features in compression-aware systems.",
+      "reason": "近 30 天；关键词：cs.AI, alignment, inference。Context compression reduces inference cost by encoding inputs into compact representations while preserving semantic content. An o...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.DC",
-        "prefill",
-        "serving",
-        "slo",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-03T16:25:43Z",
-      "url": "https://arxiv.org/abs/2611.05150",
-      "pdfUrl": "https://arxiv.org/pdf/2611.05150v1"
-    },
-    {
-      "id": "arxiv-2611.05104",
-      "title": "Workload-Static Optical Circuit Switching For Scalable LLM Inference Decode",
-      "authors": [
-        "Maximilian Thürmer",
-        "Nicolas Scotto di Perto",
-        "Eloise Stein",
-        "Natanijel Vasic",
-        "Mikaeil Bagherli",
-        "Zhenguo Wu",
-        "Benjamin Klenk",
-        "Holger Fröning",
-        "Johannes Feldmann"
-      ],
-      "summary": "LLM inference decode executes fine-grained collectives whose latency directly limits per-user interactivity, yet scale-up fabrics are still built from electronic packet switches designed for training. We observe that, for a given model deployment and parallelization, the communication structure of decode is fixed, and propose workload-static optical circuit switching (OCS): circuits are configured once per deployment, co-designed with model parallelism and with topology-aware collective schedules that turn spare accelerator ports into fewer communication phases or higher bandwidth. We evaluate this design with GXNET, a graph-based workload emulator coupled to analytical and flit-level network models grounded in hardware measurements. In a 576-accelerator scale-up domain serving 5T-parameter MoE models with up to 5M tokens of context, all-OCS fabrics improve interactivity by up to 65% and energy efficiency by up to 119% over 4:1 oversubscribed packet-switched fabrics.",
-      "reason": "近 30 天；关键词：cs.DC, energy, inference。LLM inference decode executes fine-grained collectives whose latency directly limits per-user interactivity, yet scale-up fabrics...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "energy",
+        "cs.AI",
+        "alignment",
         "inference",
-        "latency",
-        "llm",
         "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-03T16:00:07Z",
-      "url": "https://arxiv.org/abs/2611.05104",
-      "pdfUrl": "https://arxiv.org/pdf/2611.05104v1"
+      "publishedAt": "2026-11-04T11:42:42Z",
+      "url": "https://arxiv.org/abs/2611.06380",
+      "pdfUrl": "https://arxiv.org/pdf/2611.06380v1"
     },
     {
-      "id": "arxiv-2611.04794",
-      "title": "Accelerating Offloading-Based MoE Inference by Interleaving Concurrent Requests",
+      "id": "arxiv-2611.06169",
+      "title": "CARE-FL: Federated Fine-Tuning of Multimodal LLMs in Resource-Constrained Edge Networks",
       "authors": [
-        "Hongseung Yu",
-        "In Gim",
-        "Kyunghan Lee",
-        "Lin Zhong"
+        "Tianqi Zong",
+        "Baosheng Li",
+        "Nuocheng Yang",
+        "Binbin Chen",
+        "Marie Siew"
       ],
-      "summary": "Expert offloading enables large mixture-of-experts (MoE) language models to run locally, but conventional batching stalls the GPU while missing experts are fetched. A popular remedy, known as prefetching, is to predict what experts will be needed soon and fetch them using idle link bandwidth. Imprecise prediction, however, wastes bandwidth and GPU memory on fetching unnecessary experts. Our key finding is that prefetching can be harmful when there is an expert cache in GPU memory. This is because as the cache includes more necessary experts, expert prediction becomes less precise. Our key insight is that proper request scheduling beats prefetching. Building on this insight, we present Bevy, an MoE inference system based on runahead inference for concurrent requests. A request whose experts are available can run ahead to later layers while other requests wait for fetches, revealing the experts it needs next. Bevy can then fetch the missing experts so identified while computing ready requests, overlapping computation and fetching without predicting expert selections. Running requests separately, however, repeats reads of shared weights in GPU memory and increases compute time. To limit this cost, Bevy's self-balancing scheduler batches ready requests at each layer and prioritizes lagging requests, adapting their grouping as expert availability changes. Across two local platforms, Bevy delivers up to 3.46$\\times$ the decode throughput of llama.cpp and up to 1.55$\\times$ that of the fastest prefetching baseline.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.DC, batching。Expert offloading enables large mixture-of-experts (MoE) language models to run locally, but conventional batching stalls the GPU...",
+      "summary": "Domain-specific adaptation of Multimodal Large Language Models (MLLMs) in privacy-sensitive edge environments requires federated fine-tuning, yet client selection remains challenging due to heterogeneous multimodal data and modality availability, dynamic system conditions, and evolving client utility during training. We propose Constraint-Aware Reinforcement Learning for Efficient Federated Fine-Tuning (CARE-FL), a constrained online client-selection framework for federated MLLM Low-Rank Adaptation (LoRA) fine-tuning. CARE-FL formulates client participation as a sequential decision process and employs Q-value decomposition to address the large combinatorial joint action space through scalable client-level long-term utility estimation. These utilities are learned online using a modified Double Deep Q-Learning (DDQL) scheme, while constraint-aware $ε$-greedy execution selects feasible client subsets under per-round latency and bandwidth constraints. Complementing client selection, an adaptive aggregation mechanism further controls potentially unstable global updates and places greater weight on the previous model when needed. Experiments on the CrisisMMD disaster-response task in emulated heterogeneous wireless edge environments show that CARE-FL achieves higher and more stable test accuracy than the compared client-selection baselines across different system settings, while satisfying the imposed latency and bandwidth constraints.",
+      "reason": "近 30 天；关键词：cs.DC, efficient, latency。Domain-specific adaptation of Multimodal Large Language Models (MLLMs) in privacy-sensitive edge environments requires federated f...",
       "area": "LLM 推理优化",
       "tags": [
-        "meta",
         "cs.DC",
-        "batching",
-        "inference",
+        "efficient",
+        "latency",
+        "llm",
+        "lora",
+        "multimodal"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-04T08:48:41Z",
+      "url": "https://arxiv.org/abs/2611.06169",
+      "pdfUrl": "https://arxiv.org/pdf/2611.06169v1"
+    },
+    {
+      "id": "arxiv-2611.06084",
+      "title": "Shallow Encoding Emits Deep Memories",
+      "authors": [
+        "Mingyuan Ma",
+        "Yangmin Li",
+        "Harris Nover",
+        "Zheyu Fu",
+        "Po-Han Huang",
+        "Alex Settle",
+        "Ashwin Nanjappa"
+      ],
+      "summary": "Hybrid language models interleave a few softmax-attention layers with many linear-attention or state-space layers, so every layer keeps a memory of earlier tokens: a key-value cache or a fixed-size recurrent state. Serving them spends more compute and high-bandwidth memory on these memories than the output requires. The prefill runs every layer for every prompt token, and every decode step loads and stores whole recurrent states, which on Qwen3.8-Flash-Next take as many bytes per request as the attention cache of thousands of tokens. We find two properties of trained hybrids that locate this excess. First, writes are easier than reads: writing a deep layer's memory of a token needs little of the deep computation that predicting the next token needs. Trained copies of the deep layers' write paths, which we call emitters, therefore write a prompt's deep memories from the residual stream of a shallower anchor layer, and all prompt tokens but the last run as few as 63% of the layers. Second, recurrent states have a state sink: most of their energy lies in a rank-one term along a fixed direction of each head, and the rest is a low-rank working memory. SEED builds on both: it makes the prefill shallow in depth and the decode state shallow in representation. Each recurrent state is stored as its sink plus low-rank factors, which the Gated DeltaNet, Kimi Delta Attention and Mamba-2 updates extend exactly; we prove that the open-loop error of the periodic compressions back to low rank is bounded independently of their number. SEED keeps the original weights frozen, compresses no attention cache, and runs all layers for every generated token. On six checkpoints of five production hybrids of 30B to over 300B parameters, it is nearly lossless on eleven official exams. Served with SGLang on NVIDIA GB300 GPUs on an agentic-coding trace, it raises the per-GPU throughput of Qwen3.8-Flash-Next 1.2-1.4x.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, energy。Hybrid language models interleave a few softmax-attention layers with many linear-attention or state-space layers, so every layer...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.LG",
+        "energy",
+        "prefill",
+        "production",
+        "serving",
         "throughput"
       ],
       "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-11-03T12:30:30Z",
-      "url": "https://arxiv.org/abs/2611.04794",
-      "pdfUrl": "https://arxiv.org/pdf/2611.04794v1"
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-11-04T07:26:32Z",
+      "url": "https://arxiv.org/abs/2611.06084",
+      "pdfUrl": "https://arxiv.org/pdf/2611.06084v1"
     },
     {
-      "id": "arxiv-2611.04775",
-      "title": "Learning to Rank Explanations for Recommendation with Language Models",
+      "id": "arxiv-2611.05997",
+      "title": "From Waste to Discovery: Recycling High-Scored Unexposed Candidates in Taobao Feed Recommendation",
       "authors": [
-        "Ben Kabongo",
-        "Vincent Guigue"
+        "Ge Fan",
+        "Kai Meng",
+        "Huiping Chu",
+        "Yuning Jiang",
+        "Han Zhu",
+        "Bo Zheng"
       ],
-      "summary": "Recommender systems are ubiquitous on the Web, making understandable explanations essential for users. Although large language models (LLMs) increasingly generate natural-language justifications, evaluating their factual grounding and personalized relevance remains challenging. Statement-level ranking offers an alternative by selecting concise, review-derived explanations, enabling fine-grained and reproducible evaluation using established ranking metrics. However, existing statement ranking methods largely rely on collaborative representations, while semantic enhancements often fail to outperform simple user-history popularity baselines. Moreover, directly adapting language models for personalized statement ranking remains largely unexplored. In this work, we introduce LMStaR (Language Models for Statement Ranking), a fully text-based framework that formulates personalized explanation ranking as dense retrieval. A query encoder represents the user's interaction history and target-item metadata, while a statement encoder maps candidate explanations into a shared embedding space. Both encoders are jointly adapted through multi-positive contrastive learning to learn personalized relevance. Experiments on Amazon Beauty, Amazon Toys, and Yelp show that LMStaR achieves the highest NDCG@1 across all three domains, outperforming CLER by 1.06--8.25 points (+11.8--65.9%). It also leads top-five ranking on both Amazon datasets, although CLER remains stronger on Yelp. Task-specific adaptation improves all five evaluated backbones and transfers across domains without target-domain fine-tuning. Counterfactual analyses further reveal the importance of user-specific histories. These findings highlight the potential of task-adapted language models for personalized explanation ranking.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Recommender systems are ubiquitous on the Web, making understandable explanations essential for users. Although large language mod...",
+      "summary": "Helping users discover new interests is vital to the long-term health of industrial recommender systems, yet the usual remedy, boosting exposure of under-explored (discovery) content, often backfires in production. We report URED (Unexposed Recycling for Efficient Discovery), a training-free recall-stage system serving Taobao feed recommendation at Alibaba for over six months to tens of millions of daily active users. It rests on a production-validated insight: naive boosting fails because it injects cold, information-poor candidates that rankers systematically over-estimate, buying no discovery gain while risking engagement. Items scored highly but never exposed (signals industrial pipelines routinely discard) form a pool that is both relevant and reliably predictable. Over a 30-day horizon URED aggregates them and re-injects at recall time through a lightweight pipeline spanning offline storage, distributed aggregation, and low-latency online serving, adding under 1% latency via a single O(1) lookup per request with no model retraining. Online A/B tests show +3.47% discovered categories and +8.47% content richness with engagement preserved: completion video views rise significantly (+2.62%) and total views move positive (+0.36%, not significant). Ablations confirm both design pillars are necessary: a one-day window collapses the discovery gain to +0.55% (not significant), and random injection without score filtering yields no gain while trending negative on engagement (-0.17%). Across production recall channels, URED reaches 13.9x the platform-average discovery rate (6.3x the strongest nearline baseline) at engagement quality on par with the platform average. We share deployment details and lessons for practitioners facing the exploration-exploitation dilemma under tight resource constraints.",
+      "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.AI, efficient。Helping users discover new interests is vital to the long-term health of industrial recommender systems, yet the usual remedy, boo...",
+      "area": "推荐算法",
+      "tags": [
+        "alibaba",
+        "cs.AI",
+        "efficient",
+        "industrial",
+        "latency",
+        "lora",
+        "online-a/b"
+      ],
+      "signal": 99,
+      "source": "Alibaba/arXiv",
+      "publishedAt": "2026-11-04T05:45:30Z",
+      "url": "https://arxiv.org/abs/2611.05997",
+      "pdfUrl": "https://arxiv.org/pdf/2611.05997v1"
+    },
+    {
+      "id": "arxiv-2611.05991",
+      "title": "A Controlled Experimental Evaluation of Configuration and Cache Architecture in LLM Serving Engines",
+      "authors": [
+        "Muhammad Faizan Anwar",
+        "Sina Keshvadi"
+      ],
+      "summary": "Multi-agent LLM applications repeat most of their prompt tokens across requests, and serving engines reuse the cached state of shared prefixes. vLLM and SGLang reuse it at different granularities, and benchmarks of their default deployments report large performance gaps, usually credited to the cache. Such comparisons rarely control for other configuration differences. One of them, whether a long prompt is prefilled in chunks, is set by each engine's defaults from the hardware and the release, and it confounds the comparison. We built a reproducible testbed on Kubernetes and a seeded multi-agent workload generator, and compared the two engines under vendor defaults and with chunked prefill matched. SGLang's configuration is the same in both arms, which makes it an internal control across independently provisioned deployments. Under defaults, vLLM's median time to first token is up to 64x SGLang's. Matching one setting removes 78% of the capacity gap where that gap is largest and 30 to 67% of the latency gap. Near saturation the remaining latency gap reflects queue growth. A fluid queue model driven only by a 4.4% throughput shortfall reproduces it, and shows that such a gap scales with the length of the benchmark run. What survives matching is a tail-latency advantage of 2.4 to 6.4x at equal throughput, consistent with cache-aware ordering of waiting requests. We derive six recommendations for comparing serving engines.",
+      "reason": "近 30 天；关键词：cs.DC, latency, llm。Multi-agent LLM applications repeat most of their prompt tokens across requests, and serving engines reuse the cached state of sha...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "latency",
+        "llm",
+        "prefill",
+        "recommendation",
+        "serving",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-04T05:37:14Z",
+      "url": "https://arxiv.org/abs/2611.05991",
+      "pdfUrl": "https://arxiv.org/pdf/2611.05991v1"
+    },
+    {
+      "id": "arxiv-2611.05927",
+      "title": "Modality-Aware Expert Pruning for MoE-Based Multimodal Large Language Models",
+      "authors": [
+        "Donggeun Kim"
+      ],
+      "summary": "Mixture-of-Experts (MoE) enables multimodal large language models (MLLMs) to scale capacity efficiently, but expert parameters dominate memory even though only a few experts are activated per token: they account for over 90% of model size in modern MoE-MLLMs (e.g., 54 GB out of about 58 GB in BF16 for InternVL3.5-30B-A3B and Qwen3-VL-30B-A3B). Expert pruning has emerged as an effective compression strategy, but existing methods aggregate importance uniformly across tokens, ignoring that the same expert may serve different roles for vision versus language processing. To address this, we propose MAEP (Modality-Aware Expert Pruning), a training-free framework that decomposes expert importance by modality in a single forward pass. MAEP introduces (1) Delta-H Output ($ΔH$), a redistribution-aware metric measuring the MoE output change when an expert is removed, and (2) low-attention vision tokens as a vision-side pruning signal that is dataset-stable: its expert-importance ranking remains stable across different datasets. Text-side importance serves as a preservation signal while vision-side importance serves as a pruning signal, and experts are ranked globally across layers. Experiments on three MoE-based MLLMs across multimodal and text benchmarks show that MAEP outperforms modality-agnostic baselines on the majority of multimodal benchmarks while remaining competitive on text-only tasks, reducing the BF16 expert weight footprint by about 27 GB (about 47% of total memory) so that the full weight footprint of an approximately 58 GB model fits within a single 40 GB GPU. Code is available at https://github.com/nota-github/MAEP.",
+      "reason": "近 30 天；关键词：cs.CV, dataset, efficient。Mixture-of-Experts (MoE) enables multimodal large language models (MLLMs) to scale capacity efficiently, but expert parameters dom...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CV",
+        "dataset",
+        "efficient",
+        "llm",
+        "multimodal",
+        "ranking"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-04T04:16:48Z",
+      "url": "https://arxiv.org/abs/2611.05927",
+      "pdfUrl": "https://arxiv.org/pdf/2611.05927v1"
+    },
+    {
+      "id": "arxiv-2611.05799",
+      "title": "Item Representations Matter: Bridging Hard Semantic IDs and Soft Prototype Mixtures for Generative Retrieval",
+      "authors": [
+        "Vicente Balmaseda",
+        "Dongqi Fu",
+        "Jiarui Feng",
+        "Ren chen",
+        "Hanqing Zeng",
+        "Tianxin Wei",
+        "Yinglong Xia",
+        "Tianbao Yang",
+        "Hong Li"
+      ],
+      "summary": "Modern recommender systems rely on generative retrieval techniques to predict the next item either as discrete codes or as a continuous vector. On the one hand, Semantic IDs (SIDs) give discrete models shared parameters and pretrained semantic structure, but discretizing items into hard codes discards some information from the original content embeddings. On the other hand, continuous models avoid quantization, yet typically use flat item lookup tables with no explicit parameter tying across items. We ask whether a continuous recommender can introduce shared structure without making it a discrete bottleneck. We propose CAP-Mix, a flow recommender that represents each item as a soft mixture of shared prototypes plus an item-specific vector. The assignments, prototypes, and item vectors are trained jointly, and the soft representation is retained at inference. Pretrained information is optional: SID responsibilities can serve as a prior over assignments, while a full content embedding can initialize the item-specific vector without changing the initial flat table. In matched comparisons on three datasets, CAP-Mix improves over a flat table on the two sparse Amazon datasets and yields a small gain on Steam when trained without pretrained information. Given only an offline SID, it outperforms a hard table built from the same tokenizer by 4.45-14.90% in HR@5. Given the full content embedding, it matches or improves a strong flat table while hard assignments regress on the sparse Amazon datasets. Overall, averaged across six benchmarks, CAP-Mix improves HR@5 and NDCG@5 by 6.9% and 13.6% relative to the best evaluated baseline for each dataset and metric, while delivering 1.4-161x the inference throughput of the discrete baselines in our experiments.",
+      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Modern recommender systems rely on generative retrieval techniques to predict the next item either as discrete codes or as a conti...",
       "area": "推荐算法",
       "tags": [
         "amazon",
         "cs.IR",
         "dataset",
-        "llm",
-        "ranking",
-        "recommendation",
-        "recommender"
+        "inference",
+        "quantization",
+        "recommender",
+        "retrieval"
       ],
       "signal": 99,
       "source": "Amazon/arXiv",
-      "publishedAt": "2026-11-03T12:15:07Z",
-      "url": "https://arxiv.org/abs/2611.04775",
-      "pdfUrl": "https://arxiv.org/pdf/2611.04775v1"
+      "publishedAt": "2026-11-04T01:14:01Z",
+      "url": "https://arxiv.org/abs/2611.05799",
+      "pdfUrl": "https://arxiv.org/pdf/2611.05799v1"
     },
     {
-      "id": "arxiv-2611.04715",
-      "title": "ZeroGR: Filtering-First Constrained Decoding for Generative Recommendation",
+      "id": "arxiv-2611.05748",
+      "title": "Energy-Efficient Reinforcement Learning for Large Language Models",
       "authors": [
-        "Xiangrui Yang",
-        "Jiawei Yang",
-        "Liang Zeng",
-        "Daqian Ding",
-        "Ziqian Liu",
-        "Bing Tian",
-        "Cheng Peng",
-        "Yunfeng Zhao",
-        "Fangyu Zhang",
-        "Jiaqiang Liu",
-        "Xiao Liang",
-        "Yiming Qiu"
+        "Rahul Sharma",
+        "Nitin Vegesna",
+        "Yanxin Zhang"
       ],
-      "summary": "Generative recommendation is gaining traction in production, retrieving items by generating their identifiers one token at a time. The generated sequences must identify relevant catalog items, so constrained decoding couples relevance scoring with validity filtering. Because most possible sequences are invalid, scoring before filtering wastes computation on candidates that will be discarded. Our evaluation shows that filtering first can avoid this work with negligible impact on recommendation quality. We present ZeroGR, a filtering-first constrained decoding system for generative recommendation. ZeroGR uses a step-sliced filtering index to reduce GPU memory use by tailoring data representations to each decoding step. Its execution engine adopts shared-slot execution to accelerate data exchange across stages and hybrid projection to adapt computation to workload patterns, thereby reducing execution overhead. During index refreshes, ZeroGR applies layout-guided streaming construction to speed up updates and limit serving interference. Extensive evaluation shows that ZeroGR accelerates the filtering and scoring pipeline by up to $9.9\\times$ over representative baselines while reducing GPU index memory use and accelerating index reconstruction.",
-      "reason": "近 30 天；公司信号：Microsoft；推荐/排序/广告方向；关键词：microsoft, cs.DB, generative-recommendation。Generative recommendation is gaining traction in production, retrieving items by generating their identifiers one token at a time....",
-      "area": "推荐算法",
-      "tags": [
-        "microsoft",
-        "cs.DB",
-        "generative-recommendation",
-        "production",
-        "recommendation",
-        "serving",
-        "slo"
-      ],
-      "signal": 99,
-      "source": "Microsoft/arXiv",
-      "publishedAt": "2026-11-03T11:36:55Z",
-      "url": "https://arxiv.org/abs/2611.04715",
-      "pdfUrl": "https://arxiv.org/pdf/2611.04715v1"
-    },
-    {
-      "id": "arxiv-2611.04671",
-      "title": "LeanSparse: Memory-Efficient Serving for Native Sparse-Attention LLMs",
-      "authors": [
-        "Zaifeng Pan",
-        "Chris Wu",
-        "Xinwei Qiang",
-        "Zhengding Hu",
-        "Zhongkai Yu",
-        "Yufei Ding"
-      ],
-      "summary": "Sparse attention limits the history read by each query, but serving long contexts still requires substantial GPU memory. Existing KV offloading systems retain the full history of indexer keys on GPU, limiting decode concurrency. Prefill's temporary memory demand can further delay admission even when enough memory remains for the same request's subsequent decode. We present LeanSparse, a serving system that reduces both decode's persistent memory use and prefill's temporary memory demand. Our design exploits two observations: prefill consumes historical data one layer at a time, and decode can identify promising candidates before comparing their original indexer scores. During prefill, LeanSparse streams layer histories through two reusable GPU buffers, overlapping next-layer loading with ongoing model computation. During decode, coarse-to-fine indexing searches compact representations and retrieves original indexer keys only for candidate refinement. Separate indexer key and KV caches reuse data across generation steps. We implement LeanSparse in SGLang and evaluate it on DeepSeek-V4-Flash. At 950K context length, LeanSparse supports 2.95$\\times$ as many concurrent requests and achieves 2.14$\\times$ decode throughput over HiSparse. On multi-turn Open-SWE traces, it reduces median time to first token from 21.6 to 0.6s and median session completion time by 17.7% relative to ECHO.",
-      "reason": "近 30 天；关键词：cs.DC, efficient, kv-cache。Sparse attention limits the history read by each query, but serving long contexts still requires substantial GPU memory. Existing...",
+      "summary": "Reinforcement learning for language models alternates between generating responses and training the policy. These stages place different demands on GPUs, creating opportunities to reduce clock frequency with little loss in throughput. Selecting frequencies online is difficult because response lengths change and frequency trials themselves consume time and energy. We present EE-RL (energy-efficient RL), an online controller that selects separate frequencies for generation and training during RL execution. It compares candidate settings with a prediction of the default GPU governor on the same token workload, and keeps the most energy-efficient setting that meets a throughput threshold. The controller then monitors throughput and energy and adjusts frequencies as the workload changes. Fixed-frequency sweeps on H100 and GB200 show GPU energy savings of up to 28.2% per valid training token across synchronous and asynchronous execution, while largely preserving throughput. EE-RL turns this headroom into online savings, reducing GPU energy per valid training token by up to 16.9% at a modest throughput cost.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, efficient。Reinforcement learning for language models alternates between generating responses and training the policy. These stages place dif...",
       "area": "LLM 推理优化",
       "tags": [
+        "nvidia",
         "cs.DC",
         "efficient",
-        "kv-cache",
-        "llm",
-        "prefill",
+        "energy",
         "serving",
         "throughput"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-03T10:55:47Z",
-      "url": "https://arxiv.org/abs/2611.04671",
-      "pdfUrl": "https://arxiv.org/pdf/2611.04671v1"
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-11-03T23:37:53Z",
+      "url": "https://arxiv.org/abs/2611.05748",
+      "pdfUrl": "https://arxiv.org/pdf/2611.05748v1"
     },
     {
-      "id": "arxiv-2611.04474",
-      "title": "Hierarchical Intelligent Evolutionary Optimization for UAV-Assisted NOMA-MEC Systems",
+      "id": "arxiv-2611.05724",
+      "title": "Give the Drafter a Second Chance to Guess: Parallel Reconsideration for Speculative Decoding",
       "authors": [
-        "Yaxuan Jiao",
-        "Jiaxuan Lv",
-        "Jyoti Sahni",
-        "Wuyungerile Li",
-        "Winston K. G. Seah"
+        "Hoang Anh Duy Le",
+        "Huibing Dong",
+        "Alireza Khadem",
+        "Ziteng Sun",
+        "Xiang Song",
+        "Yizheng Huang",
+        "Soroush Radpour",
+        "Anshumali Shrivastava",
+        "Ye He"
       ],
-      "summary": "The integration of unmanned aerial vehicles (UAVs), mobile edge computing (MEC) and non-orthogonal multiple access (NOMA) provides an effective solution for computation-intensive and latency-sensitive services in infrastructure-deficient environments. However, the joint optimization of UAV trajectories, task offloading, communication and computing resources under heterogeneous task priorities results in a highly coupled mixed-integer non-convex problem. To address these challenges, this paper proposes a Hierarchical Intelligent Evolutionary Algorithm (HIEA) for priority-aware multi-UAV cooperative NOMA-MEC networks, which integrates multi-head deep Q-network (MH-DQN)-based intelligent decision generation, communication-aware initialization, adaptive evolutionary exploration and successive convex approximation (SCA)-based precision refinement. Specifically, a novel communication-aware initialization mechanism, termed Channel Quality Indicator (CQI)-guided Load-Aware Trajectory Initialization (CQI-LATI), is designed to incorporate CQI and task workload characteristics into evolutionary population construction, generating high-quality and diversity-preserving initial populations. Theoretical analysis characterizes HIEA's search-space reduction, the quality-diversity trade-off of CQI-guided initialization, and the accuracy-efficiency trade-off of SCA refinement, and extensive simulations demonstrate that HIEA outperforms benchmark schemes, with gains of up to 6.5% in throughput, 13.6% in task completion rate and 15.3% in energy efficiency.",
-      "reason": "近 30 天；关键词：cs.NI, energy, latency。The integration of unmanned aerial vehicles (UAVs), mobile edge computing (MEC) and non-orthogonal multiple access (NOMA) provides...",
+      "summary": "Speculative decoding accelerates large language model inference with a small drafter, whose per-guess acceptance rate determines the achievable speedup. Feature-level drafters share a design choice: every token, easy or hard, is drafted under a single forward pass. Many of the tokens the target rejects are ones the drafter is itself unsure about yet the target answers decisively. To address this, we introduce Parallel Reconsideration: guided by its own uncertainty, the drafter reconsiders its hesitant guesses with extra passes that run in parallel with the one-pass draft, adding negligible latency. A co-designed training recipe and serving-time drafting algorithm append these reconsidered guesses to the original draft tree as refined candidates. Across models and benchmarks, on average, Parallel Reconsideration improves over the baselines by 5.3% to 10.2% on acceptance length and by 3.5% to 9.2% on speedup.",
+      "reason": "近 30 天；关键词：cs.LG, inference, latency。Speculative decoding accelerates large language model inference with a small drafter, whose per-guess acceptance rate determines t...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.NI",
-        "energy",
+        "cs.LG",
+        "inference",
         "latency",
-        "lora",
         "serving",
-        "throughput"
+        "speculative"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-03T08:04:55Z",
-      "url": "https://arxiv.org/abs/2611.04474",
-      "pdfUrl": "https://arxiv.org/pdf/2611.04474v1"
-    },
-    {
-      "id": "arxiv-2611.04439",
-      "title": "DualEvolve: Dual-Level Self-Evolution of Mechanism and Orchestration for Recommendation",
-      "authors": [
-        "Tianqi Gao",
-        "Chenxu Wang",
-        "Wenxuan Yang",
-        "Yueqi Mou",
-        "Biao Tang",
-        "Ming Liu",
-        "Peng Yan"
-      ],
-      "summary": "Recommender systems are widely used in e-commerce and content platforms, where improvement requires repeated model design, training optimization, and experimental validation. Large language model (LLM) agents increasingly automate this development cycle. Sustained autonomous improvement requires agents to improve both recommendation models and their development workflows. However, task-performance-driven approaches select updates mainly by candidates' final scores, without a separate optimization signal for experimentation quality. We therefore present DualEvolve, a dual-level framework that co-evolves recommendation mechanisms and agent orchestration toward recursive self-improvement. Inner evolution revises model and training code using task feedback to improve recommendation performance. Outer evolution scores the inner-loop experimental process, updates harness and skill rules using these scores and execution traces, and adjusts orchestration choices based on next-round scores to improve the quality of subsequent experiments. Experiments on MovieLens-1M and three Amazon Reviews 2023 subsets cover four recommendation methods and 16 settings. DualEvolve achieves higher test means than Base, OpenEvolve, and DeepEvolve in all 64 setting-metric comparisons, with macro-averaged relative gains over DeepEvolve of 7.6% (HR@5) and 9.0% (NDCG@5).",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, llm。Recommender systems are widely used in e-commerce and content platforms, where improvement requires repeated model design, trainin...",
-      "area": "推荐算法",
-      "tags": [
-        "amazon",
-        "cs.IR",
-        "llm",
-        "recommendation",
-        "recommender"
-      ],
-      "signal": 99,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-11-03T07:32:10Z",
-      "url": "https://arxiv.org/abs/2611.04439",
-      "pdfUrl": "https://arxiv.org/pdf/2611.04439v1"
-    },
-    {
-      "id": "arxiv-2611.04203",
-      "title": "Toward User-Centered Agentic Recommendation: When Does Platform Competition Benefit Users?",
-      "authors": [
-        "Kehan Zheng",
-        "Deyao Hong",
-        "Qian Li",
-        "Jun Zhang",
-        "Jie Jiang",
-        "Hongning Wang"
-      ],
-      "summary": "Conventional recommender systems operate within platform-specific catalogs, limiting access to potentially valuable resources across platforms. We propose user-centered agentic recommendation, a paradigm in which user agents compare recommendations from competing platform agents, and formalize their interaction as a repeated game. Platforms strategically modify descriptions without changing intrinsic item value, while each user agent assesses platform credibility using feedback from consumed items only. Our analysis shows that expanded resource access need not improve user welfare: strategic misrepresentation and limited verification can offset the benefits of platform competition. We quantify when platform credibility assessment allows users to benefit from broader access despite strategic exaggeration. Our analysis identifies resource and reporting conditions that guarantee higher average welfare than the original platform with an interaction budget linear in platform count. Experiments on synthetic and Amazon-grounded markets show that credibility assessment can improve finite-horizon utility, while its benefits depend on market size and mechanism parameters.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.AI, recommendation。Conventional recommender systems operate within platform-specific catalogs, limiting access to potentially valuable resources acro...",
-      "area": "推荐算法",
-      "tags": [
-        "amazon",
-        "cs.AI",
-        "recommendation",
-        "recommender"
-      ],
-      "signal": 99,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-11-03T02:41:49Z",
-      "url": "https://arxiv.org/abs/2611.04203",
-      "pdfUrl": "https://arxiv.org/pdf/2611.04203v1"
+      "publishedAt": "2026-11-03T22:52:34Z",
+      "url": "https://arxiv.org/abs/2611.05724",
+      "pdfUrl": "https://arxiv.org/pdf/2611.05724v1"
     }
   ]
 }
