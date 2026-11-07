@@ -1,279 +1,284 @@
 {
-  "generatedAt": "2026-11-06T09:53:45.445585+08:00",
+  "generatedAt": "2026-11-07T09:25:29.985802+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2611.06501",
-      "title": "CRESiST: Self-Enhancing Explorative Policy Learning for Simultaneous Speech Translation",
+      "id": "arxiv-2611.08363",
+      "title": "StrataFlux: Memory-Hierarchy-Native Low-Bit LLM Inference",
       "authors": [
-        "Chenyang Le",
-        "Pei Zhang",
-        "Yuxiang Chen",
-        "Bing Han",
-        "Derek F. Wong",
-        "Baosong Yang",
-        "Yanmin Qian"
+        "Jake Hyun",
+        "Ziyu Zhao",
+        "Jae-sun Seo",
+        "Mohamed S. Abdelfattah"
       ],
-      "summary": "Simultaneous Speech Translation (SimulST) requires balancing translation quality and latency. While Large Language Models (LLMs) excel in offline translation, current LLM-based SimulST systems predominantly rely on prefix-incremental generation. This paradigm suffers from redundant Key-Value cache recomputation and necessitates external Voice Activity Detection to process unbounded streams. To overcome these bottlenecks, we propose an end-to-end interleaved read-write framework built upon an omni-modal LLM. By interleaving speech chunks and text tokens, our architecture achieves full KV cache reuse, natively supporting segmentation-free, infinite-length inference. Furthermore, to learn optimal streaming policies without rigid offline alignments, we introduce a novel Actor-Critic self-enhancement pipeline. An RNN-T Actor dynamically samples read-write trajectories, while an LLM-based Critic evaluates these paths via intrinsic semantic and latency rewards, distilling the optimal policy back to the Actor. Extensive experiments on sentence-level (FLEURS, CoVoST2) and document-level (MuST-C, ACL 60/60) benchmarks demonstrate that our model establishes new state-of-the-art quality-latency Pareto frontiers, substantially outperforming existing cascaded and static-alignment baselines.",
-      "reason": "近 30 天；公司信号：Microsoft；关键词：microsoft, cs.CL, alignment。Simultaneous Speech Translation (SimulST) requires balancing translation quality and latency. While Large Language Models (LLMs) e...",
+      "summary": "Quantization reduces the memory and bandwidth demands of large language model (LLM) inference but can degrade accuracy; offloading higher-precision data can instead stall generation. We introduce StrataFlux, a framework that challenges this tradeoff by recovering accuracy lost to low-bit weight and key-value (KV) cache quantization while retaining quantization's memory and speed advantages. StrataFlux co-designs refinement representation, selection, and delivery to make host RAM and solid-state drives useful sources of additional precision. Its selective precision streaming reduces transfer volume, overlaps delivery with computation, and reuses fetched precision across decoding steps so generation need not wait for every transfer. We evaluate 2-4-bit weights and 2-3-bit KV-cache on dedicated GPUs and unified-memory platforms. For 2-bit Llama-3.1-8B-Instruct weights, StrataFlux reduces WikiText-2 perplexity from 9.46 to 8.40 while maintaining 95.4% of the quantized base's throughput on RTX 5090. With 2-bit weights and KV, StrataFlux raises Qwen3-8B's AIME 2024/2025 accuracy from 11.0% to 47.1% at unchanged GPU memory use. At 128K context, Llama-3.1-8B-Instruct with 3-bit weights and 2-bit KV achieves comparable perplexity and speed to vLLM's 4-bit AWQ weights and 8-bit KV on RTX 5090, using approximately half the GPU memory. These results show that GPU-resident precision need not set the accuracy ceiling, nor offloading-tier latency dictate decoding speed.",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, inference。Quantization reduces the memory and bandwidth demands of large language model (LLM) inference but can degrade accuracy; offloading...",
       "area": "LLM 推理优化",
       "tags": [
-        "microsoft",
-        "cs.CL",
-        "alignment",
+        "meta",
+        "cs.LG",
         "inference",
-        "kv-cache",
-        "latency",
-        "llm"
-      ],
-      "signal": 99,
-      "source": "Microsoft/arXiv",
-      "publishedAt": "2026-11-04T13:32:57Z",
-      "url": "https://arxiv.org/abs/2611.06501",
-      "pdfUrl": "https://arxiv.org/pdf/2611.06501v1"
-    },
-    {
-      "id": "arxiv-2611.06380",
-      "title": "Does Context Compression Preserve Refusal Alignment?",
-      "authors": [
-        "Anthony Nguyen",
-        "Wenjun Lin"
-      ],
-      "summary": "Context compression reduces inference cost by encoding inputs into compact representations while preserving semantic content. An open question is whether semantic preservation alone is sufficient to maintain downstream behaviours such as refusal alignment. We investigate this question and find that encoder-based compression systematically weakens refusal behaviour in instruction-tuned language models, despite high reconstruction fidelity. This effect persists across model families and compression architectures. Mechanistic analysis shows that compression attenuates activation along the decoder's learned refusal direction. We further explore Memory Steering, a lightweight inference-time intervention that restores refusal rates to near-baseline levels without retraining and operates entirely in compressed representation space. These results demonstrate that semantic preservation does not guarantee behavioural preservation under compression, highlighting the need to explicitly preserve alignment-relevant features in compression-aware systems.",
-      "reason": "近 30 天；关键词：cs.AI, alignment, inference。Context compression reduces inference cost by encoding inputs into compact representations while preserving semantic content. An o...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.AI",
-        "alignment",
-        "inference",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-04T11:42:42Z",
-      "url": "https://arxiv.org/abs/2611.06380",
-      "pdfUrl": "https://arxiv.org/pdf/2611.06380v1"
-    },
-    {
-      "id": "arxiv-2611.06169",
-      "title": "CARE-FL: Federated Fine-Tuning of Multimodal LLMs in Resource-Constrained Edge Networks",
-      "authors": [
-        "Tianqi Zong",
-        "Baosheng Li",
-        "Nuocheng Yang",
-        "Binbin Chen",
-        "Marie Siew"
-      ],
-      "summary": "Domain-specific adaptation of Multimodal Large Language Models (MLLMs) in privacy-sensitive edge environments requires federated fine-tuning, yet client selection remains challenging due to heterogeneous multimodal data and modality availability, dynamic system conditions, and evolving client utility during training. We propose Constraint-Aware Reinforcement Learning for Efficient Federated Fine-Tuning (CARE-FL), a constrained online client-selection framework for federated MLLM Low-Rank Adaptation (LoRA) fine-tuning. CARE-FL formulates client participation as a sequential decision process and employs Q-value decomposition to address the large combinatorial joint action space through scalable client-level long-term utility estimation. These utilities are learned online using a modified Double Deep Q-Learning (DDQL) scheme, while constraint-aware $ε$-greedy execution selects feasible client subsets under per-round latency and bandwidth constraints. Complementing client selection, an adaptive aggregation mechanism further controls potentially unstable global updates and places greater weight on the previous model when needed. Experiments on the CrisisMMD disaster-response task in emulated heterogeneous wireless edge environments show that CARE-FL achieves higher and more stable test accuracy than the compared client-selection baselines across different system settings, while satisfying the imposed latency and bandwidth constraints.",
-      "reason": "近 30 天；关键词：cs.DC, efficient, latency。Domain-specific adaptation of Multimodal Large Language Models (MLLMs) in privacy-sensitive edge environments requires federated f...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "efficient",
         "latency",
         "llm",
-        "lora",
-        "multimodal"
+        "quantization",
+        "throughput"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-04T08:48:41Z",
-      "url": "https://arxiv.org/abs/2611.06169",
-      "pdfUrl": "https://arxiv.org/pdf/2611.06169v1"
+      "source": "Meta/arXiv",
+      "publishedAt": "2026-11-05T17:42:06Z",
+      "url": "https://arxiv.org/abs/2611.08363",
+      "pdfUrl": "https://arxiv.org/pdf/2611.08363v1"
     },
     {
-      "id": "arxiv-2611.06084",
-      "title": "Shallow Encoding Emits Deep Memories",
+      "id": "arxiv-2611.08290",
+      "title": "AutoCompress: Automated Hardware-Guided Model Compression",
       "authors": [
-        "Mingyuan Ma",
-        "Yangmin Li",
-        "Harris Nover",
-        "Zheyu Fu",
-        "Po-Han Huang",
-        "Alex Settle",
-        "Ashwin Nanjappa"
+        "Sheldon Liang",
+        "Ali Taghibakhshi",
+        "Saurav Muralidharan",
+        "Sharath Turuvekere Sreenivas",
+        "Ashwath Aithal",
+        "Pavlo Molchanov",
+        "Nima Tajbakhsh"
       ],
-      "summary": "Hybrid language models interleave a few softmax-attention layers with many linear-attention or state-space layers, so every layer keeps a memory of earlier tokens: a key-value cache or a fixed-size recurrent state. Serving them spends more compute and high-bandwidth memory on these memories than the output requires. The prefill runs every layer for every prompt token, and every decode step loads and stores whole recurrent states, which on Qwen3.8-Flash-Next take as many bytes per request as the attention cache of thousands of tokens. We find two properties of trained hybrids that locate this excess. First, writes are easier than reads: writing a deep layer's memory of a token needs little of the deep computation that predicting the next token needs. Trained copies of the deep layers' write paths, which we call emitters, therefore write a prompt's deep memories from the residual stream of a shallower anchor layer, and all prompt tokens but the last run as few as 63% of the layers. Second, recurrent states have a state sink: most of their energy lies in a rank-one term along a fixed direction of each head, and the rest is a low-rank working memory. SEED builds on both: it makes the prefill shallow in depth and the decode state shallow in representation. Each recurrent state is stored as its sink plus low-rank factors, which the Gated DeltaNet, Kimi Delta Attention and Mamba-2 updates extend exactly; we prove that the open-loop error of the periodic compressions back to low rank is bounded independently of their number. SEED keeps the original weights frozen, compresses no attention cache, and runs all layers for every generated token. On six checkpoints of five production hybrids of 30B to over 300B parameters, it is nearly lossless on eleven official exams. Served with SGLang on NVIDIA GB300 GPUs on an agentic-coding trace, it raises the per-GPU throughput of Qwen3.8-Flash-Next 1.2-1.4x.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, energy。Hybrid language models interleave a few softmax-attention layers with many linear-attention or state-space layers, so every layer...",
+      "summary": "LLM pruning must preserve quality while meeting hardware- and workload-specific constraints on latency, throughput, and memory. Existing pruning workflows often target parameter counts, requiring practitioners to manually select model sizes that meet latency, throughput, and GPU memory limits. However, parameter count alone does not predict these metrics, which depend on the model architecture, workload, hardware, and serving engine. We introduce AutoCompress, a hardware-guided compression framework that directly incorporates such constraints into differentiable architecture search. AutoCompress jointly optimizes global and per-layer structure to produce heterogeneous architectures, guided by serving-engine cost models validated against end-to-end latency, throughput, and memory measurements. We evaluate AutoCompress on long-context local coding, batched datacenter serving, and latency-sensitive in-game interaction. Compared to the state-of-the-art Minitron pruning framework, AutoCompress improves average accuracy across eight benchmarks by 6.57, 2.35, and 0.57 percentage points on RTX 5070, RTX 5080, and H100, respectively. AutoCompress also compresses Nemotron 3.5 Super from 120B to 74B parameters for single-B200 BF16 serving at 128K context, retaining 95% of its mean benchmark score.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, latency。LLM pruning must preserve quality while meeting hardware- and workload-specific constraints on latency, throughput, and memory. Ex...",
       "area": "LLM 推理优化",
       "tags": [
         "nvidia",
         "cs.LG",
-        "energy",
-        "prefill",
-        "production",
+        "latency",
+        "llm",
         "serving",
         "throughput"
       ],
       "signal": 99,
       "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-11-04T07:26:32Z",
-      "url": "https://arxiv.org/abs/2611.06084",
-      "pdfUrl": "https://arxiv.org/pdf/2611.06084v1"
+      "publishedAt": "2026-11-05T16:53:48Z",
+      "url": "https://arxiv.org/abs/2611.08290",
+      "pdfUrl": "https://arxiv.org/pdf/2611.08290v1"
     },
     {
-      "id": "arxiv-2611.05997",
-      "title": "From Waste to Discovery: Recycling High-Scored Unexposed Candidates in Taobao Feed Recommendation",
+      "id": "arxiv-2611.08133",
+      "title": "Beyond K/V Caches: Cross-Model State Handoff in Hybrid Linear-Attention LLMs",
       "authors": [
-        "Ge Fan",
-        "Kai Meng",
-        "Huiping Chu",
-        "Yuning Jiang",
-        "Han Zhu",
-        "Bo Zheng"
+        "Jiacheng Cai",
+        "Tao Zhang",
+        "Siqi Liang",
+        "Yun Dai",
+        "Ziqian Zeng"
       ],
-      "summary": "Helping users discover new interests is vital to the long-term health of industrial recommender systems, yet the usual remedy, boosting exposure of under-explored (discovery) content, often backfires in production. We report URED (Unexposed Recycling for Efficient Discovery), a training-free recall-stage system serving Taobao feed recommendation at Alibaba for over six months to tens of millions of daily active users. It rests on a production-validated insight: naive boosting fails because it injects cold, information-poor candidates that rankers systematically over-estimate, buying no discovery gain while risking engagement. Items scored highly but never exposed (signals industrial pipelines routinely discard) form a pool that is both relevant and reliably predictable. Over a 30-day horizon URED aggregates them and re-injects at recall time through a lightweight pipeline spanning offline storage, distributed aggregation, and low-latency online serving, adding under 1% latency via a single O(1) lookup per request with no model retraining. Online A/B tests show +3.47% discovered categories and +8.47% content richness with engagement preserved: completion video views rise significantly (+2.62%) and total views move positive (+0.36%, not significant). Ablations confirm both design pillars are necessary: a one-day window collapses the discovery gain to +0.55% (not significant), and random injection without score filtering yields no gain while trending negative on engagement (-0.17%). Across production recall channels, URED reaches 13.9x the platform-average discovery rate (6.3x the strongest nearline baseline) at engagement quality on par with the platform average. We share deployment details and lessons for practitioners facing the exploration-exploitation dilemma under tight resource constraints.",
-      "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.AI, efficient。Helping users discover new interests is vital to the long-term health of industrial recommender systems, yet the usual remedy, boo...",
-      "area": "推荐算法",
-      "tags": [
-        "alibaba",
-        "cs.AI",
-        "efficient",
-        "industrial",
-        "latency",
-        "lora",
-        "online-a/b"
-      ],
-      "signal": 99,
-      "source": "Alibaba/arXiv",
-      "publishedAt": "2026-11-04T05:45:30Z",
-      "url": "https://arxiv.org/abs/2611.05997",
-      "pdfUrl": "https://arxiv.org/pdf/2611.05997v1"
-    },
-    {
-      "id": "arxiv-2611.05991",
-      "title": "A Controlled Experimental Evaluation of Configuration and Cache Architecture in LLM Serving Engines",
-      "authors": [
-        "Muhammad Faizan Anwar",
-        "Sina Keshvadi"
-      ],
-      "summary": "Multi-agent LLM applications repeat most of their prompt tokens across requests, and serving engines reuse the cached state of shared prefixes. vLLM and SGLang reuse it at different granularities, and benchmarks of their default deployments report large performance gaps, usually credited to the cache. Such comparisons rarely control for other configuration differences. One of them, whether a long prompt is prefilled in chunks, is set by each engine's defaults from the hardware and the release, and it confounds the comparison. We built a reproducible testbed on Kubernetes and a seeded multi-agent workload generator, and compared the two engines under vendor defaults and with chunked prefill matched. SGLang's configuration is the same in both arms, which makes it an internal control across independently provisioned deployments. Under defaults, vLLM's median time to first token is up to 64x SGLang's. Matching one setting removes 78% of the capacity gap where that gap is largest and 30 to 67% of the latency gap. Near saturation the remaining latency gap reflects queue growth. A fluid queue model driven only by a 4.4% throughput shortfall reproduces it, and shows that such a gap scales with the length of the benchmark run. What survives matching is a tail-latency advantage of 2.4 to 6.4x at equal throughput, consistent with cache-aware ordering of waiting requests. We derive six recommendations for comparing serving engines.",
-      "reason": "近 30 天；关键词：cs.DC, latency, llm。Multi-agent LLM applications repeat most of their prompt tokens across requests, and serving engines reuse the cached state of sha...",
+      "summary": "Production deployments often use different models to balance cost and quality through cascading, routing, and switching models during long conversations. Context accumulates across turns. Each switch requires the target to repeat prefill over this context. Existing methods transfer full-attention (FA) K/V caches across models. Hybrid linear-attention models also retain recurrent states (REC) and convolution histories (Conv). The interaction between Conv and REC complicates cross-model state transfer. Conv perturbations can change keys and values in recurrent layers and alter REC updates. Conv histories are overwritten, but changes in REC can still affect later outputs. More accurate REC reconstruction need not improve continuation. Building on this, we propose Hybrid State Transfer (HST) for all three state types. It uses structured REC maps and preserves history order during Conv alignment. We calibrate the adapters using the frozen target's outputs during continuation. FA cache map updates are merged offline. Across five benchmarks, Qwen3.5 4B$\\rightarrow$27B and 9B$\\rightarrow$27B achieve mean task retentions of 89.88% and 94.11%, respectively. With source caches already available, separate timing on synthetic 16K inputs yields handoff body speedups of $21.66\\times$ and $21.91\\times$.",
+      "reason": "近 30 天；关键词：cs.CL, alignment, llm。Production deployments often use different models to balance cost and quality through cascading, routing, and switching models dur...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.DC",
-        "latency",
+        "cs.CL",
+        "alignment",
         "llm",
         "prefill",
-        "recommendation",
-        "serving",
-        "throughput"
+        "production"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-04T05:37:14Z",
-      "url": "https://arxiv.org/abs/2611.05991",
-      "pdfUrl": "https://arxiv.org/pdf/2611.05991v1"
+      "publishedAt": "2026-11-05T15:00:50Z",
+      "url": "https://arxiv.org/abs/2611.08133",
+      "pdfUrl": "https://arxiv.org/pdf/2611.08133v1"
     },
     {
-      "id": "arxiv-2611.05927",
-      "title": "Modality-Aware Expert Pruning for MoE-Based Multimodal Large Language Models",
+      "id": "arxiv-2611.07593",
+      "title": "TACT-KV: Tri-Axis Cosine Transform for Compressing Volumetric KV Caches in Medical VLMs",
       "authors": [
-        "Donggeun Kim"
+        "Chongyu Qu",
+        "Ritchie Zhao",
+        "Yufan He",
+        "Dong Yang",
+        "Zhengyi Lu",
+        "Junchao Zhu",
+        "Tianyuan Yao",
+        "Juming Xiong",
+        "Junlin Guo",
+        "Yanfan Zhu",
+        "Yuechen Yang",
+        "Daguang Xu",
+        "Bennett Allan Landman",
+        "Yucheng Tang",
+        "Yuankai Huo"
       ],
-      "summary": "Mixture-of-Experts (MoE) enables multimodal large language models (MLLMs) to scale capacity efficiently, but expert parameters dominate memory even though only a few experts are activated per token: they account for over 90% of model size in modern MoE-MLLMs (e.g., 54 GB out of about 58 GB in BF16 for InternVL3.5-30B-A3B and Qwen3-VL-30B-A3B). Expert pruning has emerged as an effective compression strategy, but existing methods aggregate importance uniformly across tokens, ignoring that the same expert may serve different roles for vision versus language processing. To address this, we propose MAEP (Modality-Aware Expert Pruning), a training-free framework that decomposes expert importance by modality in a single forward pass. MAEP introduces (1) Delta-H Output ($ΔH$), a redistribution-aware metric measuring the MoE output change when an expert is removed, and (2) low-attention vision tokens as a vision-side pruning signal that is dataset-stable: its expert-importance ranking remains stable across different datasets. Text-side importance serves as a preservation signal while vision-side importance serves as a pruning signal, and experts are ranked globally across layers. Experiments on three MoE-based MLLMs across multimodal and text benchmarks show that MAEP outperforms modality-agnostic baselines on the majority of multimodal benchmarks while remaining competitive on text-only tasks, reducing the BF16 expert weight footprint by about 27 GB (about 47% of total memory) so that the full weight footprint of an approximately 58 GB model fits within a single 40 GB GPU. Code is available at https://github.com/nota-github/MAEP.",
-      "reason": "近 30 天；关键词：cs.CV, dataset, efficient。Mixture-of-Experts (MoE) enables multimodal large language models (MLLMs) to scale capacity efficiently, but expert parameters dom...",
+      "summary": "Vision-language models (VLMs) applied to 3D medical scans face a structural memory wall. A single CT or MRI volume produces tens of thousands of vision tokens, and the resulting key-value (KV) cache scales linearly with both batch and context. Existing KV compression methods operate on the cache's feature or token statistics, or apply 1D and 2D transforms, leaving the three-axis spatial structure in the cache unexploited. We propose TACT-KV (Tri-Axis Cosine Transform), a calibration-free KV compression method that exploits strong spatial correlations in visual KV states along all three anatomical axes of 3D scans. This correlation concentrates the KV cache energy under a frequency-domain transform. TACT-KV applies a separable 3D discrete cosine transform to the KV cache, allocates a per-layer bit budget across frequency bins via reverse water-filling (more bits to high-energy components), and quantizes each bin with a fixed scalar codebook. We derive a close-form relation: the distortion reduction from adaptive bit allocation is dominated by the spectral concentration of the transformed cache. Across six medical VLMs and two 3D CT benchmarks, TACT-KV achieves the lowest 1-bit prediction-flip rate on eleven of twelve model and dataset pairs in our main comparison. The same advantage reproduces on four general-purpose VLMs evaluated on video tasks, indicating that the benefit of exploiting three-axis structure generalizes beyond medical imaging. At equal high-bandwidth memory (HBM), TACT-KV scales the decoding batch size on a single GPU by up to $8\\times$.",
+      "reason": "近 30 天；关键词：cs.CV, dataset, energy。Vision-language models (VLMs) applied to 3D medical scans face a structural memory wall. A single CT or MRI volume produces tens o...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.CV",
         "dataset",
-        "efficient",
-        "llm",
-        "multimodal",
-        "ranking"
+        "energy",
+        "kv-cache"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-04T04:16:48Z",
-      "url": "https://arxiv.org/abs/2611.05927",
-      "pdfUrl": "https://arxiv.org/pdf/2611.05927v1"
+      "publishedAt": "2026-11-05T07:43:29Z",
+      "url": "https://arxiv.org/abs/2611.07593",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07593v1"
     },
     {
-      "id": "arxiv-2611.05799",
-      "title": "Item Representations Matter: Bridging Hard Semantic IDs and Soft Prototype Mixtures for Generative Retrieval",
+      "id": "arxiv-2611.07570",
+      "title": "ACSeL: Adaptive Configuration Search for Hardware-Constrained LLM Inference",
       "authors": [
-        "Vicente Balmaseda",
-        "Dongqi Fu",
-        "Jiarui Feng",
-        "Ren chen",
-        "Hanqing Zeng",
-        "Tianxin Wei",
-        "Yinglong Xia",
-        "Tianbao Yang",
-        "Hong Li"
+        "Bokun Wang",
+        "Hung-Yueh Chiang",
+        "Diana Marculescu"
       ],
-      "summary": "Modern recommender systems rely on generative retrieval techniques to predict the next item either as discrete codes or as a continuous vector. On the one hand, Semantic IDs (SIDs) give discrete models shared parameters and pretrained semantic structure, but discretizing items into hard codes discards some information from the original content embeddings. On the other hand, continuous models avoid quantization, yet typically use flat item lookup tables with no explicit parameter tying across items. We ask whether a continuous recommender can introduce shared structure without making it a discrete bottleneck. We propose CAP-Mix, a flow recommender that represents each item as a soft mixture of shared prototypes plus an item-specific vector. The assignments, prototypes, and item vectors are trained jointly, and the soft representation is retained at inference. Pretrained information is optional: SID responsibilities can serve as a prior over assignments, while a full content embedding can initialize the item-specific vector without changing the initial flat table. In matched comparisons on three datasets, CAP-Mix improves over a flat table on the two sparse Amazon datasets and yields a small gain on Steam when trained without pretrained information. Given only an offline SID, it outperforms a hard table built from the same tokenizer by 4.45-14.90% in HR@5. Given the full content embedding, it matches or improves a strong flat table while hard assignments regress on the sparse Amazon datasets. Overall, averaged across six benchmarks, CAP-Mix improves HR@5 and NDCG@5 by 6.9% and 13.6% relative to the best evaluated baseline for each dataset and metric, while delivering 1.4-161x the inference throughput of the discrete baselines in our experiments.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Modern recommender systems rely on generative retrieval techniques to predict the next item either as discrete codes or as a conti...",
+      "summary": "Serving large language models (LLMs) under tight memory and latency service-level objectives (SLOs), including on edge devices, requires jointly selecting the model size, batch size, quantization algorithm, and mixed-precision quantization recipes. Exhaustive search over this combinatorially large space is infeasible. Unlike data-center serving, which often prioritizes throughput or generation speed, resource-constrained deployments typically set memory and latency budgets as constraints and then seek the configuration with the highest generation quality among feasible ones. To this end, we propose ACSeL, a framework that identifies configurations predicted to satisfy deployment constraints while achieving high predicted generation quality. To enable efficient quality estimation, we use Relative Model Quality Degradation (RMQD), a proxy based on the divergence between the candidate and reference models' next-token distributions over a small calibration corpus. Across the evaluated model sizes and precisions, RMQD is inexpensive to evaluate and strongly correlated with downstream benchmark performance. ACSeL combines (i) a lightweight quality surrogate that predicts RMQD directly from a configuration; (ii) Few-shot Median Calibration (FMC), which calibrates operator-profile-based latency estimates using a small number of end-to-end profiles; and (iii) a structured search algorithm BandPareto for exploring layerwise mixed-precision configurations. Experiments on an NVIDIA RTX A6000 workstation and an NVIDIA Jetson Thor edge platform show that FMC substantially improves deployment feasibility, while BandPareto + FMC achieves the highest feasibility and the lowest RMQD gaps to the best measured configurations in the evaluation set.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, efficient。Serving large language models (LLMs) under tight memory and latency service-level objectives (SLOs), including on edge devices, re...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.LG",
+        "efficient",
+        "inference",
+        "latency",
+        "llm",
+        "pareto"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-11-05T07:19:53Z",
+      "url": "https://arxiv.org/abs/2611.07570",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07570v1"
+    },
+    {
+      "id": "arxiv-2611.07453",
+      "title": "Latency-Aware Adaptive Best-of-$N$",
+      "authors": [
+        "Alon Jacobson",
+        "Qian Xie",
+        "Peter I. Frazier"
+      ],
+      "summary": "Test-time compute (TTC) improves language model responses by spending additional computation at inference time, and the right amount of compute depends on the prompt. Adaptive TTC methods allocate compute based on signals of response quality such as observed rewards, often by stopping once the signal exceeds a fixed threshold, and generally measure cost by the number of generations or tokens. But in online serving, latency is also a cost: it grows with server load, so a method using a fixed threshold spends too little compute when generation is fast and too much when it is slow. For Best-of-$N$ sampling, a widely used TTC method, we propose a two-stage adaptive algorithm that draws an initial batch, then uses the observed rewards and the batch's latency to decide whether to draw a second batch and at what size by comparing expected improvement against predicted cost: it draws one when the first batch's best reward is below a threshold that decreases with the first batch's latency, without explicitly measuring server load. We map each reward to its value under the cumulative distribution function (CDF) of the prompt's reward distribution, so the same tradeoff parameters can be reused across tasks; a regression fitted offline on other prompts predicts a distribution for the CDF value of the first batch's best reward, giving the expected improvement in closed form. We evaluate the method by simulation on a preference-based alignment benchmark, measuring generations-equivalent cost: generations plus latency, converted to generations. The method reaches Best-of-$N$'s reward at lower generations-equivalent cost, and conditioning on the measured first-batch latency saves at least as much of that cost as fixed-threshold (latency-unaware) baselines, and more when latency is highly variable, when it grows with batch size, and when the second batch's latency is highly predictable from the first's.",
+      "reason": "近 30 天；关键词：cs.CL, alignment, inference。Test-time compute (TTC) improves language model responses by spending additional computation at inference time, and the right amou...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "alignment",
+        "inference",
+        "latency",
+        "serving",
+        "slo"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-05T04:56:16Z",
+      "url": "https://arxiv.org/abs/2611.07453",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07453v1"
+    },
+    {
+      "id": "arxiv-2611.07425",
+      "title": "BRIDGE: Bridging the Semantic Quantization Gap for Generative Recommendation",
+      "authors": [
+        "Yatong Xiao",
+        "Mingjie Sun",
+        "Peng Wang",
+        "Wenjin Wu",
+        "Peng Jiang"
+      ],
+      "summary": "Generative recommendation retrieves items by autoregressively generating Semantic IDs(SIDs), where an RQ-VAE quantizes each item into a hierarchical SID sequence that the decoder generates level by level. We identify an overlooked bottleneck in this paradigm: the Semantic Quantization Gap(SQG). Quantization derives SIDs from rich continuous signals, including codebook centroids, local neighborhood geometry, and level-wise entropy. However, the decoder receives only discrete identifiers and loses the semantic structure that shaped them. This mismatch manifests in three ways: a grounding gap, where the decoder lacks semantic anchors when target-side information is limited; a neighborhood gap, where token-level supervision discards inter-item similarity and exacerbates exposure bias; and a difficulty gap, where computation is allocated uniformly despite generation difficulty diminishing with depth. To bridge the SQG, we propose BRIDGE. Codebook-grounded latent reasoning injects frozen quantizer centroids as semantic anchors before SID generation. Privileged EMA self-distillation transfers neighborhood-aware knowledge from a teacher to an on-policy student, preserving inter-item geometry while mitigating exposure bias. Effort-aware recurrence allocates more computation to the challenging early levels and progressively reduces it with depth. Across three Amazon benchmarks, BRIDGE improves Recall@10 and NDCG@10 by 10.9% and 9.7% on average over the strongest baseline (up to 12.6% and 10.7%). In a one-week online A/B experiment on a large-scale e-commerce advertising platform with 5% traffic, BRIDGE improves eCPM by 0.65%.",
+      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, advertising。Generative recommendation retrieves items by autoregressively generating Semantic IDs(SIDs), where an RQ-VAE quantizes each item i...",
       "area": "推荐算法",
       "tags": [
         "amazon",
         "cs.IR",
-        "dataset",
-        "inference",
+        "advertising",
+        "generative-recommendation",
+        "online-a/b",
         "quantization",
-        "recommender",
-        "retrieval"
+        "recommendation"
       ],
       "signal": 99,
       "source": "Amazon/arXiv",
-      "publishedAt": "2026-11-04T01:14:01Z",
-      "url": "https://arxiv.org/abs/2611.05799",
-      "pdfUrl": "https://arxiv.org/pdf/2611.05799v1"
+      "publishedAt": "2026-11-05T04:20:01Z",
+      "url": "https://arxiv.org/abs/2611.07425",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07425v1"
     },
     {
-      "id": "arxiv-2611.05748",
-      "title": "Energy-Efficient Reinforcement Learning for Large Language Models",
+      "id": "arxiv-2611.07393",
+      "title": "CacheGraft: Enhancing Retrieval-Augmented Generation via Latent-Space Document Enrichment",
       "authors": [
-        "Rahul Sharma",
-        "Nitin Vegesna",
-        "Yanxin Zhang"
+        "Vihan Lakshman",
+        "Peter Baile Chen",
+        "Zhuohan Gu",
+        "Michael Cafarella"
       ],
-      "summary": "Reinforcement learning for language models alternates between generating responses and training the policy. These stages place different demands on GPUs, creating opportunities to reduce clock frequency with little loss in throughput. Selecting frequencies online is difficult because response lengths change and frequency trials themselves consume time and energy. We present EE-RL (energy-efficient RL), an online controller that selects separate frequencies for generation and training during RL execution. It compares candidate settings with a prediction of the default GPU governor on the same token workload, and keeps the most energy-efficient setting that meets a throughput threshold. The controller then monitors throughput and energy and adjusts frequencies as the workload changes. Fixed-frequency sweeps on H100 and GB200 show GPU energy savings of up to 28.2% per valid training token across synchronous and asynchronous execution, while largely preserving throughput. EE-RL turns this headroom into online savings, reducing GPU energy per valid training token by up to 16.9% at a modest throughput cost.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, efficient。Reinforcement learning for language models alternates between generating responses and training the policy. These stages place dif...",
+      "summary": "Recent work in machine learning has demonstrated that transformer-based language model agents can communicate state not only through text, but also directly in latent space via key-value (KV) caches. In this paper, we argue that such cache-to-cache translation can provide utility beyond the original motivating application of real-time agent communication and can instead be utilized for retrieval-augmented generation (RAG). Building on the Cache-to-Cache (C2C) fusion framework, our proposed system CacheGraft encodes each corpus passage offline into a fused KV cache representation between a larger sharer model (4B parameters in our experiments) and a smaller receiver model (0.6B parameters) such that this cache can be injected into the receiver at query time with no need for the larger model. Across five QA benchmarks and two independent locally-run judges, CacheGraft improves answer quality over the text-only receiver baseline in 29 out of 30 comparisons, of which 17 of the 30 are statistically significant. Notably, these gains are zero-shot with respect to the fuser, which was never trained on retrieval data. These initial results suggest that latent-space document enrichment may be a promising avenue for enhancing the performance of RAG systems, particularly in compute-constrained settings where it is only feasible to deploy a small model at inference time.",
+      "reason": "近 30 天；关键词：cs.IR, inference, kv-cache。Recent work in machine learning has demonstrated that transformer-based language model agents can communicate state not only throu...",
       "area": "LLM 推理优化",
       "tags": [
-        "nvidia",
-        "cs.DC",
-        "efficient",
-        "energy",
-        "serving",
-        "throughput"
+        "cs.IR",
+        "inference",
+        "kv-cache",
+        "retrieval"
       ],
       "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-11-03T23:37:53Z",
-      "url": "https://arxiv.org/abs/2611.05748",
-      "pdfUrl": "https://arxiv.org/pdf/2611.05748v1"
+      "source": "arXiv",
+      "publishedAt": "2026-11-05T03:43:22Z",
+      "url": "https://arxiv.org/abs/2611.07393",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07393v1"
     },
     {
-      "id": "arxiv-2611.05724",
-      "title": "Give the Drafter a Second Chance to Guess: Parallel Reconsideration for Speculative Decoding",
+      "id": "arxiv-2611.07256",
+      "title": "TriAttention: Unified Sparse Mixed-Precision Attention for Long-Context LLM Inference",
       "authors": [
-        "Hoang Anh Duy Le",
-        "Huibing Dong",
-        "Alireza Khadem",
-        "Ziteng Sun",
-        "Xiang Song",
-        "Yizheng Huang",
-        "Soroush Radpour",
-        "Anshumali Shrivastava",
-        "Ye He"
+        "Hanzhi Zhang",
+        "Qiao Zhang",
+        "Qinglei Cao",
+        "Heng Fan",
+        "Yan Huang",
+        "Kewei Sha",
+        "Yunhe Feng"
       ],
-      "summary": "Speculative decoding accelerates large language model inference with a small drafter, whose per-guess acceptance rate determines the achievable speedup. Feature-level drafters share a design choice: every token, easy or hard, is drafted under a single forward pass. Many of the tokens the target rejects are ones the drafter is itself unsure about yet the target answers decisively. To address this, we introduce Parallel Reconsideration: guided by its own uncertainty, the drafter reconsiders its hesitant guesses with extra passes that run in parallel with the one-pass draft, adding negligible latency. A co-designed training recipe and serving-time drafting algorithm append these reconsidered guesses to the original draft tree as refined candidates. Across models and benchmarks, on average, Parallel Reconsideration improves over the baselines by 5.3% to 10.2% on acceptance length and by 3.5% to 9.2% on speedup.",
-      "reason": "近 30 天；关键词：cs.LG, inference, latency。Speculative decoding accelerates large language model inference with a small drafter, whose per-guess acceptance rate determines t...",
+      "summary": "Sparsity and quantization reduce the cost of attention by skipping interactions and lowering the precision of those retained. However, useful interactions differ in their precision requirements: some tolerate low-precision scores while remaining sensitive to removal. We therefore introduce TriAttention, which assigns query-key (QK) tiles to skipping, 4-bit, or 8-bit computation, using 4-bit to retain quantization-tolerant interactions at lower cost. To represent compactly, we encode each head's computation regions with two diagonal-distance boundaries, keeping policy storage independent of context length. Offline calibration then evaluates candidate boundary pairs using normalized projected-output errors and complete-tile execution costs. Using these measurements, a model-wide allocator selects each head's boundaries to minimize calibration error under a shared computation budget. During prefill, the selected boundaries generate precision-grouped traversals for a fused kernel that skips omitted tiles and combines contributions from both QK precisions into one normalized attention output. The quantized keys and values prepared during prefill are then reused in a compressed key-value (KV) cache for decoding, reducing repeated reads of prompt data. Experiments show that TriAttention achieves end-to-end generation speedups of up to 7.88x over the Torch attention and 2.65x over the BF16 baseline. Meanwhile, TriAttention maintains quality comparable to the original models on general-purpose and long-context tasks. These results show how a compact retention-and-precision policy translates local sensitivities into attention computation and repeated KV-cache access. The implementation is https://github.com/HanzhiZhang-Ulrica/TriAttention.",
+      "reason": "近 30 天；关键词：cs.LG, inference, llm。Sparsity and quantization reduce the cost of attention by skipping interactions and lowering the precision of those retained. Howe...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
         "inference",
-        "latency",
-        "serving",
-        "speculative"
+        "llm",
+        "prefill",
+        "quantization"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-03T22:52:34Z",
-      "url": "https://arxiv.org/abs/2611.05724",
-      "pdfUrl": "https://arxiv.org/pdf/2611.05724v1"
+      "publishedAt": "2026-11-05T00:14:13Z",
+      "url": "https://arxiv.org/abs/2611.07256",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07256v1"
+    },
+    {
+      "id": "arxiv-2611.07217",
+      "title": "TileQuant: Tile as the Precision-Allocation Unit for LLM Mixed-Precision Post-Training Quantization",
+      "authors": [
+        "Hanzhi Zhang",
+        "Qiao Zhang",
+        "Qinglei Cao",
+        "Heng Fan",
+        "Yan Huang",
+        "Kewei Sha",
+        "Yunhe Feng"
+      ],
+      "summary": "Post-training quantization (PTQ) reduces large language model (LLM) deployment costs, but preserving quality requires accounting for uneven weight sensitivity. Uniform PTQ uses one weight bit-width, importance-aware PTQ adjusts scales or reconstructs weights within that width, and column-wise mixed precision retains selected columns at higher precision. However, sensitivity varies within columns, so whole-column retention also protects less sensitive weights, while runtime outlier detection adds decoding overhead. We therefore introduce TileQuant, a training-free framework that assigns precision to hardware-aligned 2D weight tiles. Offline calibration provides input-activation-aware scoring from forward statistics for lower calibration cost and gradient-informed scoring from loss sensitivity for stronger quality preservation. Within each projection's retention budget, the highest-scoring tiles remain at 16-bit and the rest use 8-bit. The resulting map guides reconstruction into compact weight buffers, which the kernel reuses for native integer and 16-bit computation with local accumulation to reduce memory traffic. Experiments show that TileQuant reaches 2.66x the original model's generation throughput. Across language modeling, reasoning, long-context retrieval, and question answering, it preserves quality and surpasses quantized and original models on multiple tasks. These results support selecting precision units that capture local sensitivity while enabling efficient hardware execution. The implementation is: https://github.com/HanzhiZhang-Ulrica/TileQuant",
+      "reason": "近 30 天；关键词：cs.LG, efficient, llm。Post-training quantization (PTQ) reduces large language model (LLM) deployment costs, but preserving quality requires accounting f...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "efficient",
+        "llm",
+        "quantization",
+        "retrieval",
+        "serving",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-04T23:09:34Z",
+      "url": "https://arxiv.org/abs/2611.07217",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07217v1"
     }
   ]
 }
