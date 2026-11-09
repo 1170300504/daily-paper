@@ -1,267 +1,224 @@
 {
-  "generatedAt": "2026-11-08T08:57:43.697526+08:00",
+  "generatedAt": "2026-11-09T09:17:16.799374+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2611.07211",
-      "title": "Not All Loops Cost the Same: Phase-Dependent Depth for Serving Looped Transformers",
+      "id": "arxiv-2611.08362",
+      "title": "SpecCTMC: Exact Speculative Simulation of Diffusion Language Model Continuous-Time Markov Chains",
       "authors": [
-        "Zhixu Du",
-        "Yuhan Cheng",
-        "Hai \"Helen\" Li",
-        "Yiran Chen"
+        "Siva Rajesh Kasa",
+        "Yasong Dai",
+        "Sumit Negi",
+        "Hongdong Li"
       ],
-      "summary": "Looped transformers scale inference-time reasoning by repeatedly reusing a shared core, increasing computation without increasing parameter count. Serving prefilling and decoding with a uniform loop budget couples their costs. We present LoopDuet, a phase-dependent depth and training-free serving approach that selects the two budgets jointly while preserving decoding depth at prefilling boundaries. Our vLLM implementation gathers tokens requiring further recurrence into compact batches, turning the selected allocation into executable savings with existing weights and attention kernels. At runtime, a queue-age controller adjusts prefilling depth to retain quality as demand changes. Experiments on the full HotpotQA dataset with one A100-80GB demonstrate two benefits of this flexibility. First, separate phase budgets improve the quality--throughput trade-off: Huginn delivers 19\\% more throughput than the fastest tested uniform setting meeting the same accuracy criterion, while a higher-throughput operating point gains 6.04 EM points over uniform depth eight at 97\\% of its throughput. Second, the same execution mechanism retains more quality under load: on two evaluated OLMo arrival traces, adaptive prefilling gains 0.92--1.35 EM points over the most accurate tested fixed-depth controls at the same 100\\% attainment of a one-second time-to-first-token target. Together, these results establish LoopDuet as a practical way to turn flexible model computation into higher serving capacity and better quality under load.",
-      "reason": "近 30 天；关键词：cs.DC, dataset, inference。Looped transformers scale inference-time reasoning by repeatedly reusing a shared core, increasing computation without increasing...",
+      "summary": "Masked diffusion language models offer parallel text generation, but independently sampling multiple tokens can disrupt their dependencies and change the output distribution. Exact continuous-time sampling avoids this approximation, yet typically requires one sequential model evaluation per token. We introduce SpecCTMC, a training-free speculative sampler that reduces this sequential bottleneck without a separate draft model. SpecCTMC proposes successive token updates using previously computed model predictions, evaluates their intermediate states in parallel, and applies an exact acceptance-and-correction procedure. We prove that SpecCTMC preserves the joint distribution of event times, generation order, and token values of the underlying continuous-time Markov chain. It therefore introduces neither time-discretization error nor additional factorization error from parallel decoding. Experiments on LLaDA-8B-Instruct and Dream-v0-Instruct-7B across five benchmarks demonstrate 1.73-4.38x fewer sequential model evaluations than direct continuous-time sampling, while preserving the reference sampling distribution. Our code is available at: https://github.com/kasakh/specctmc",
+      "reason": "近 30 天；关键词：cs.CL, serving, speculative。Masked diffusion language models offer parallel text generation, but independently sampling multiple tokens can disrupt their depe...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.DC",
-        "dataset",
-        "inference",
-        "llm",
-        "prefill",
+        "cs.CL",
         "serving",
-        "throughput"
+        "speculative"
       ],
-      "signal": 99,
+      "signal": 93,
       "source": "arXiv",
-      "publishedAt": "2026-11-04T22:59:51Z",
-      "url": "https://arxiv.org/abs/2611.07211",
-      "pdfUrl": "https://arxiv.org/pdf/2611.07211v1"
+      "publishedAt": "2026-11-05T17:41:20Z",
+      "url": "https://arxiv.org/abs/2611.08362",
+      "pdfUrl": "https://arxiv.org/pdf/2611.08362v1"
     },
     {
-      "id": "arxiv-2611.07198",
-      "title": "Capability Gain from ISA to Shared Execution on AMD MI300A and MI250X",
+      "id": "arxiv-2611.07232",
+      "title": "Recursive Sparse Attention: Million-Token Length Extrapolation at Logarithmic Cost",
       "authors": [
-        "Aaron Jarmusch",
-        "Sunita Chandrasekaran"
-      ],
-      "summary": "Each new GPU generation is showcased by its peak instruction rates, yet users hardly ever run instructions directly: they reach the hardware's performance through vendor libraries, applications and devices shared with other jobs. How much of a theoretical speedup survives these layers is rarely measured, so a team deciding whether to move to a new generation, or to adopt FP8 or 2:4 sparsity, lacks adequate guidance. AMD's MI300A (CDNA3) adds new FP8 matrix instructions and 2:4 structured-sparse instructions that the predecessor, the MI250X (CDNA2), does not have. We analyze this theoretical speedup gap on AMD's MI300A (CDNA3) against the MI250X (CDNA2) by defining a new metric, capability gain. Capability gain is the fraction of a feature's instruction-level speedup that it keeps at a higher level, such as a library, an application or a shared device. We trace it from ISA microbenchmarks through hipBLASLt and hipSPARSELt to LLM inference and mixed-precision HPL, and onto a device shared by up to eight concurrent streams. FP8 keeps most of its speedup through the library, completing an $8192^3$ GEMM \\genCapPkgEndToEndGainEightK{} faster than the MI250X with FP16, but unfused quantization turns it into a per-layer slowdown in an LLM, and 2:4 sparsity keeps at most about half of its speedup in hipSPARSELt. Under queue sharing, FP8's GEMM capability gain rises above 1. How fairly streams share the device depends on the number of hardware queues, not on the numeric precision, yet shared LLM serving gains nothing from FP8.",
-      "reason": "近 30 天；关键词：cs.DC, inference, llm。Each new GPU generation is showcased by its peak instruction rates, yet users hardly ever run instructions directly: they reach th...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "inference",
-        "llm",
-        "quantization",
-        "serving",
-        "slo"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-04T22:41:10Z",
-      "url": "https://arxiv.org/abs/2611.07198",
-      "pdfUrl": "https://arxiv.org/pdf/2611.07198v1"
-    },
-    {
-      "id": "arxiv-2611.07149",
-      "title": "FastAFD: When Does Attention-FFN Disaggregation Pay on Rack-Scale NVLink?",
-      "authors": [
-        "Yichao Fu",
-        "Yuxuan Zhang",
-        "Minshen Zhang",
         "Ruitian Wang",
-        "Junda Chen",
+        "Xinyu Yang",
+        "Minshen Zhang",
         "Hao Zhang"
       ],
-      "summary": "Attention-FFN disaggregation (AFD) separates attention from the experts of a mixture-of-experts (MoE) model and has been reported to raise decode throughput over colocated serving. Whether this advantage holds on rack-scale NVLink systems such as GB200 NVL72 remains unclear: prior results were obtained on other hardware, against narrower colocated baselines, or with analytical models, whereas production engines serve large MoE models on these systems with wide expert parallelism (wide EP). We build and tune FastAFD, an AFD engine for GB200 NVL72 that overlaps the MoE of one microbatch with the attention of the other, and compare it against the best vLLM wide EP setting. Experiments show that AFD has a throughput advantage of up to 1.17x over wide EP on Qwen3 and 1.16x on Qwen3.5, and matches it on MiniMax-M2.5. We derive an analytical model that predicts AFD throughput within 3% using only profiles of colocated vLLM, telling whether switching to AFD would pay off before deploying it. The model yields a concise insight: AFD's speedup factors into a batch gain (larger batches, since attention GPUs hold no expert weights), an overlap gain (shorter steps, since the MoE runs on the expert GPUs behind attention), and a disaggregation cost (the GPUs given to experts). AFD has the advantage when the two gains outweigh the cost. This view explains which models benefit from AFD, and shows that speculative decoding helps light-expert models most, where the enlarged overlap gain outweighs the larger disaggregation cost and adds a further 8% to AFD's advantage over wide EP. Looking ahead, serving the experts on accelerators that keep their weights in on-chip SRAM, such as the Groq LPX accelerators paired with Vera Rubin NVL72, would remove most of the disaggregation cost, raising the ideal speedup to 2.48x with speculative decoding. FastAFD is open source at https://github.com/hao-ai-lab/FastAFD.",
-      "reason": "近 30 天；关键词：cs.DC, llm, production。Attention-FFN disaggregation (AFD) separates attention from the experts of a mixture-of-experts (MoE) model and has been reported...",
+      "summary": "At context lengths of about 1M tokens, dense attention is costly in prefill and decoding, and training typically relies on long documents, which become scarcer as the target length increases. Most sparse attention methods score all preceding blocks or tokens, so their selection cost per query is $O(L)$ at context length $L$; hierarchical selection reduces it to $O(\\log L)$, but prior trainable hierarchical methods report accuracy only within their training length. We propose RecSA (Recursive Sparse Attention), which builds a tree over the KV cache in which each node summarizes its subtree with one key and one mean-pooled value. The keys come from one pooler per layer, shared by all levels and distilled from dense attention. Each level above the tokens selects at most $k$ candidates, so each query has $O(\\log L)$ selection cost and reads $O(\\log L)$ entries; the summaries of unselected candidates share one softmax with the exact tokens. Each entry's RoPE position is its index among the candidates of its level, so at any length every relative distance stays within the range seen during training. Initialized from Qwen3-4B and trained on 0.62B tokens at the original model's 32K training length, RecSA outperforms all baselines on RULER at every length from 131K to 2M; at 1M, it scores 60.5, compared with 40.0 for the best baseline, Dense + DCA. With our optimized kernels, RecSA is faster than dense attention in end-to-end prefill and decoding from 64K to 2M; at 524K on one H200 GPU, it accelerates prefill by 3.2x and decoding by 3.8x.",
+      "reason": "近 30 天；关键词：cs.CL, kv-cache, prefill。At context lengths of about 1M tokens, dense attention is costly in prefill and decoding, and training typically relies on long do...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.DC",
-        "llm",
-        "production",
-        "serving",
-        "speculative",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-04T21:21:57Z",
-      "url": "https://arxiv.org/abs/2611.07149",
-      "pdfUrl": "https://arxiv.org/pdf/2611.07149v1"
-    },
-    {
-      "id": "arxiv-2611.07025",
-      "title": "LowRAM: Low-Rank Keys and Amortised Values for Composable KV Cache Compression at Test-Time",
-      "authors": [
-        "Teresa Delgado",
-        "Hugo Hazard",
-        "Martin Benfeghoul",
-        "Jun Wang",
-        "Zafeirios Fountas"
-      ],
-      "summary": "Autoregressive decoding relies on the KV cache, whose memory footprint grows linearly with context length and caps batch size and throughput. Existing post-training methods exploit redundancy across tokens, layers, and feature dimensions, or lower numerical precision. We identify a complementary axis: within each attention head, values are largely predictable from their corresponding keys. We exploit this with value cache amortisation, which fits a lightweight per-head predictor at test time and stores residuals only for the tokens it reconstructs worst, giving $4\\times$ near-lossless value compression. The predictor can be initialised by meta-learning for substantially reduced prefill overhead, or fitted from scratch in settings that allow a one-off cost, such as multi-query inference. We pair value amortisation with cross-layer low-rank key compression to produce LowRAM, an asymmetric compression pipeline that stays close to lossless across three model families. By reconstructing only a selected subset of KV pairs at each decoding step, LowRAM can keep decoding overhead minimal and achieve up to $5\\times$ higher peak decode throughput at $4\\times$ compression. LowRAM further composes with quantisation and eviction, reaching $26.9\\times$ compression at $94.5\\%$ of baseline performance on long contexts. These results show that treating keys and values as structurally distinct enables efficient, aggressive, and composable KV cache compression.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, inference。Autoregressive decoding relies on the KV cache, whose memory footprint grows linearly with context length and caps batch size and...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "efficient",
-        "inference",
-        "kv-cache",
-        "prefill",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-04T19:00:06Z",
-      "url": "https://arxiv.org/abs/2611.07025",
-      "pdfUrl": "https://arxiv.org/pdf/2611.07025v1"
-    },
-    {
-      "id": "arxiv-2611.06984",
-      "title": "Resource-Efficient Reinforcement Learning Post-Training through Elastic Expert Parallelism",
-      "authors": [
-        "Jia Wei",
-        "Ziyi Qiu",
-        "Yi Xu",
-        "Xuehai Qian"
-      ],
-      "summary": "Reinforcement learning post-training improves the capabilities of large language models, but generating training responses is a major computational bottleneck. In mixture-of-experts models, workers that finish their assigned responses may remain occupied because their experts are still needed by workers processing longer responses. Consequently, approximately one-third of occupied worker time in the baseline occurs after local response generation finishes. Here we present FlexFloor, a system that enables earlier resource release during synchronous response generation while preserving the expert computation required by ongoing responses. FlexFloor jointly adapts response scheduling and the active group of workers. It uses historical response lengths and memory constraints to guide batching and prompt placement, then progressively releases workers while maintaining expert availability and correct communication. Compared with the verl baseline, FlexFloor generates approximately 65.40% more response tokens per unit of occupied computing time and increases response generation throughput by 52.74%, with little observed variation in rollout reward. By making reinforcement learning post-training more efficient, FlexFloor supports faster development and iterative improvement of large language models and AI agents.",
-      "reason": "近 30 天；关键词：cs.AI, batching, efficient。Reinforcement learning post-training improves the capabilities of large language models, but generating training responses is a ma...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.AI",
-        "batching",
-        "efficient",
-        "serving",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-04T15:36:14Z",
-      "url": "https://arxiv.org/abs/2611.06984",
-      "pdfUrl": "https://arxiv.org/pdf/2611.06984v1"
-    },
-    {
-      "id": "arxiv-2611.06977",
-      "title": "BlockLock: Reproducible LLM Inference with Fixed Batch Geometry",
-      "authors": [
-        "Xiuyuan Qi",
-        "Pedro Reviriego",
-        "Javier Conde",
-        "Shanshan Liu"
-      ],
-      "summary": "Reproducible LLM inference requires that a request produces the same output regardless of the other requests in the batch. Existing solutions pay for this in different ways: batch-invariant kernels constrain every operator, and isolating prefill with fixed-shape decode ({our CoRun-style baseline}) gives up shared prefill compute and pads decode. We present BlockLock, which keeps shared batched prefill and pins only the numerical path of the protected request: it fixes the geometry that the request sees, with {two modes: BlockLock-Rows uses fixed-width rows and retains batched decode of all requests; BlockLock-Pack uses terminal-anchored packing with an isolated dummy segment, then extracts the protected request's KV state for target-only decode. Under a stated per-deployment contract, both modes preserve the target's output bitwise when its companions change.} Across five {dense} models (Qwen3-8B/14B, Llama-3.1-8B-Instruct, and Gemma-3-4B/12B-IT) and three single-GPU deployments (NVIDIA A6000, A100, and H100), we evaluate our approach on both tinyBenchmarks and BFCL{; we also include initial tensor-parallel experiments on two NVIDIA A6000 GPUs. Both modes preserve target sequences and Top20-logit bits in the reported tests.} At equal delivered work, {BlockLock-Rows} reduces latency by 53.5--55.0\\% and improves throughput by 115.2--122.2\\% relative to vLLM Batch-Invariant; compared with batch-invariant kernels, it needs no custom kernel implementations and constrains only the protected requests.",
-      "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.AI。Reproducible LLM inference requires that a request produces the same output regardless of the other requests in the batch. Existin...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "nvidia",
-        "cs.AI",
-        "inference",
-        "latency",
-        "llm",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "Meta/NVIDIA/arXiv",
-      "publishedAt": "2026-11-04T13:40:05Z",
-      "url": "https://arxiv.org/abs/2611.06977",
-      "pdfUrl": "https://arxiv.org/pdf/2611.06977v1"
-    },
-    {
-      "id": "arxiv-2611.07976",
-      "title": "QRAE: Query-Relevant Attention Entropy for Context Compression in DeepSearch Agents",
-      "authors": [
-        "Yingjie Tan",
-        "Haiquan Qiu",
-        "Quanming Yao",
-        "Manyi Zhong",
-        "Xianzhi Yu",
-        "Yaqing Wang"
-      ],
-      "summary": "DeepSearch LLM agents repeatedly search and carry retrieved sources into subsequent reasoning steps. This expanding context increases token consumption and latency, although many results do not contribute to later reasoning. We propose Query-Relevant Attention Entropy (QRAE), an online context compression method that uses sparse evidence-assessment heads to decide which intact retrieved chunks should persist across reasoning steps. It scores bounded candidate batches through paired prefills: a query-free control suppresses shared attention responses, while normalized entropy measures the breadth of the positive response within each chunk. High-scoring chunks enter a persistent evidence whitelist and are included in the reasoning context. Uncertain chunks remain outside the reasoning context but are retained in a candidate cache, where they can be retrieved for later reevaluation. QRAE requires neither an additional generative compression pass nor modification of the attention operator. Across multiple DeepSearch benchmarks and reasoning models, QRAE improves task success by an average of 2.35 percentage points and reduces end-to-end latency and reported token usage by an average of 30% and 45%, respectively. These benefits generalize to a model with nearly 100B parameters.",
-      "reason": "近 30 天；关键词：cs.LG, latency, llm。DeepSearch LLM agents repeatedly search and carry retrieved sources into subsequent reasoning steps. This expanding context increa...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "latency",
-        "llm",
-        "prefill"
-      ],
-      "signal": 97,
-      "source": "arXiv",
-      "publishedAt": "2026-11-05T13:08:43Z",
-      "url": "https://arxiv.org/abs/2611.07976",
-      "pdfUrl": "https://arxiv.org/pdf/2611.07976v1"
-    },
-    {
-      "id": "arxiv-2611.07805",
-      "title": "Decodability Is Not Validity: Evaluating Nuisance Sensitivity in Language Model Concept Probes",
-      "authors": [
-        "Ayal Klein"
-      ],
-      "summary": "Two concept probes can be equally accurate at predicting a concept from a language model's hidden states while their scores contain different mixtures of the target concept and a correlated nuisance attribute. In four target--nuisance settings (two aspect sentiments in CEBaB; occupation and gender in BiasBios; Amazon review sentiment with negation, and with first-person framing), two LLMs, and a population of concept extractors, we compare decodability with discriminant evidence: the score's dependence on the nuisance at fixed target, and its response to input edits intended to change only the nuisance, filtered by two LLM judges and compared against placebo edits. Under correlated training data, extractors that are statistically equivalent in held-out AUROC differ up to several-fold in nuisance sensitivity in three of the four settings, and decodability is not a reliable proxy for it: their rank correlation changes sign across settings. The effect follows the probe's training data, not the nuisance's natural association with the target: first-person framing, unrelated to sentiment in natural reviews, is absorbed at least as much as negation, which co-occurs with negative sentiment, and decorrelated training removes the systematic effect. Selecting extractors with nuisance-aware development diagnostics, which need nuisance labels but no counterfactuals, lowers counterfactual nuisance sensitivity wherever the default choice is sensitive, at a small accuracy cost. Concept measurements should be validated, not just decoded.",
-      "reason": "近 30 天；公司信号：Amazon；关键词：amazon, cs.CL, llm。Two concept probes can be equally accurate at predicting a concept from a language model's hidden states while their scores contai...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "amazon",
         "cs.CL",
+        "kv-cache",
+        "prefill"
+      ],
+      "signal": 93,
+      "source": "arXiv",
+      "publishedAt": "2026-11-04T23:36:45Z",
+      "url": "https://arxiv.org/abs/2611.07232",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07232v1"
+    },
+    {
+      "id": "arxiv-2611.07605",
+      "title": "The Gating Mechanism of KV Cache Eviction",
+      "authors": [
+        "Hao Gu",
+        "Xintong Yang",
+        "Zhiwei Li",
+        "Lei Zhu",
+        "Jian Yang",
+        "Qiyuan Zhu",
+        "Dezhi Li",
+        "Jingyuan Zhang",
+        "Zhizhuo Kou",
+        "Hao Wang",
+        "Bei Liu",
+        "Jiacheng Liu",
+        "Sirui Han"
+      ],
+      "summary": "KV cache eviction must decide which entries carry information that the rest of the cache can no longer supply. A natural way to estimate this is a learnable gate: give each cached entry a gate on its attention weight and train the gate on the model's own objective. The gate belongs inside the normalizing softmax, where suppressing one entry hands its mass to the others rather than discarding it. That same normalizer absorbs any per-query constant, so a constant gate cancels and reproduces the frozen model exactly. Trained on the language-modeling loss the gate stays near a constant score while its loss falls throughout: optimization succeeds, but a frozen backbone was fit for dense attention, so its loss prefers the no-op, and a near-constant score ranks nothing. The no-op is not a floor the gate improves from but what its objective asks for. A second obstacle survives once the gate moves, since the same gradient charges the gate for errors the frozen model already makes, which no reweighting of positions separates out. Much of the machinery in learnable eviction, from sparsity penalties to relaxations of the discrete decision, works around the first obstacle rather than removing it; both are removed by putting dense attention beyond the gate's reach and making the dense model's predictions its target. Under these two conditions capacity is never the missing ingredient: neither a larger scorer, nor explicit access to the past, nor a trainable backbone helps. The same holds for what eviction unavoidably discards, which is recovered by parameter-free centroids read inside the same softmax far better than by any memory read outside it, since the mass they must return is a share of that normalizer and available nowhere else. At 75\\% KV cache compression, this gate reaches 90.14 on RULER at 8K and 46.03 on LongBench with Qwen3-8B, 3.72 and 1.36 points below full-cache inference.",
+      "reason": "近 30 天；关键词：cs.CL, inference, kv-cache。KV cache eviction must decide which entries carry information that the rest of the cache can no longer supply. A natural way to es...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "inference",
+        "kv-cache"
+      ],
+      "signal": 92,
+      "source": "arXiv",
+      "publishedAt": "2026-11-05T07:53:37Z",
+      "url": "https://arxiv.org/abs/2611.07605",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07605v1"
+    },
+    {
+      "id": "arxiv-2611.06639",
+      "title": "Replicability, Reproducibility, and Robustness in Political and Social Science Research with Large Language Models",
+      "authors": [
+        "Joan C. Timoneda",
+        "Sebastián Vallejo Vera"
+      ],
+      "summary": "This chapter addresses the central reproducibility problem of research with large language models. LLM output is probabilistic and varies across models and versions, which can have significant effects on downstream statistical results. The chapter distinguishes between replicability, reproducibility, and robustness, and proposes a probabilistic standard based on the distribution of results, not identical outputs. It introduces a standardized prompt script, tests within-model variation for encoders and decoders, and develops error-structure analysis to diagnose where models err and whether their errors align. Using three datasets, the chapter shows that measurement choice can reverse the sign of downstream regression coefficients. Existing design-based corrections with gold-labeled subsamples restore validity, but come at the cost of estimate precision. The main contribution of the chapter is a stacked ensemble of open-weight models that improves precision in the correction step while retaining estimate validity.",
+      "reason": "近 30 天；关键词：cs.CL, dataset, efficient。This chapter addresses the central reproducibility problem of research with large language models. LLM output is probabilistic and...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "dataset",
+        "efficient",
         "llm"
       ],
-      "signal": 97,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-11-05T10:47:17Z",
-      "url": "https://arxiv.org/abs/2611.07805",
-      "pdfUrl": "https://arxiv.org/pdf/2611.07805v1"
-    },
-    {
-      "id": "arxiv-2611.07105",
-      "title": "NUMA-Torch: Compiler-Driven NUMA-Aware LLM Prefill on Multi-Socket CPUs",
-      "authors": [
-        "Thisara Rathnayaka Weerakoon",
-        "Ishan Dewpura",
-        "Niman Ransindu",
-        "Shavin Anjitha",
-        "Tharindu R. Patabandi",
-        "Sanath Jayasena"
-      ],
-      "summary": "For sufficiently large transformer-based Large Language Models (LLMs), whose parameters cannot be retained in on-chip caches, prefill throughput on multi-socket CPUs is often limited by sustainable DRAM bandwidth rather than peak floating-point throughput. In the standard PyTorch compilation (i.e., TorchInductor) path, model weights are allocated without considering the Non-Uniform Memory Access (NUMA) topology: specifically, the affinity between memory banks and compute cores is disregarded. This causes a substantial fraction of weight accesses to traverse the inter-socket interconnect, severely degrading the effective memory bandwidth available to each socket. We address this bottleneck through a compiler-level solution that makes TorchInductor NUMA-aware. Treating each NUMA socket as an independent tensor-parallel partition, we introduce NUMA-aware Tensor Parallelism (NUMA-TP). This approach transparently shards weights across sockets and schedules compute kernels such that thread pools and memory allocations remain strictly local to their respective sockets using CPU affinity. We evaluate the approach on GPT-2 (117M, 345M, 762M) and BERT (Small, Large), which exercise standard multi-head attention and MLP, as well as Gemma 3 270M, which combines Multi-Query Attention with a GeGLU-gated MLP. By strictly enforcing data locality, our approach successfully mitigates cross-socket traffic, achieving prefill speedups of up to 2.63x on a dual-socket Haswell platform, up to 1.87x on a dual-socket Cascade Lake platform, and up to 2.27x on a four-socket Haswell-EX platform.",
-      "reason": "近 30 天；关键词：cs.DC, llm, prefill。For sufficiently large transformer-based Large Language Models (LLMs), whose parameters cannot be retained in on-chip caches, pref...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "llm",
-        "prefill",
-        "throughput"
-      ],
-      "signal": 97,
+      "signal": 92,
       "source": "arXiv",
-      "publishedAt": "2026-11-04T20:17:40Z",
-      "url": "https://arxiv.org/abs/2611.07105",
-      "pdfUrl": "https://arxiv.org/pdf/2611.07105v1"
+      "publishedAt": "2026-11-04T15:20:03Z",
+      "url": "https://arxiv.org/abs/2611.06639",
+      "pdfUrl": "https://arxiv.org/pdf/2611.06639v1"
     },
     {
-      "id": "arxiv-2611.06976",
-      "title": "On the Opportunities and Challenges of Prefill-to-Autoregressive Cross-Model Transfer",
+      "id": "arxiv-2611.06854",
+      "title": "Visual Token Routing: Learning to keep tokens that matter",
       "authors": [
-        "Zhenyi Shen",
-        "Junru Lu",
-        "Wei Liu",
-        "Jiangnan Ye",
-        "Jiazheng Li",
-        "Di Yin",
-        "Xing Sun",
-        "Tameem Adel",
-        "Yali Du",
-        "Lin Gui",
-        "Yulan He"
+        "Pranjal Aggarwal",
+        "Sean Welleck"
       ],
-      "summary": "Prefill-to-Autoregressive Cross-model Transfer (PACT), a form of latent communication between language models, combines a larger model's prompt representations with a smaller model's efficient generation, offering a promising way to balance capability and inference cost. However, existing systems provide limited support for independently evaluating large-small model collaboration, and improved task performance alone does not establish whether the receiver benefits from the sender's information. We introduce PLatour, an open-source PACT framework that connects frozen models through lightweight, zero-initialized linear bridges trained directly with task rewards and supports hybrid-attention architectures. PLatour significantly outperforms open-source baselines on generation tasks and surpasses Mostik's reported results on shared mathematics and coding benchmarks using a substantially smaller sender. However, controlled experiments show that the gains on some tasks can be reproduced by uninformative sender signals, self-communication, or receiver-only training. We find that trainable bridges can act as parameter-efficient adaptation mechanisms without exploiting useful sender information. We therefore propose PACT-Check to quantify how much of a trained PACT system's gain genuinely comes from communication. Finally, we discuss the opportunities and challenges of PACT systems. Code is available at https://github.com/zhenyi4/platour.",
-      "reason": "近 30 天；关键词：cs.CL, efficient, inference。Prefill-to-Autoregressive Cross-model Transfer (PACT), a form of latent communication between language models, combines a larger m...",
+      "summary": "Computer-use agents (CUAs) have recently achieved superhuman performance on several long-horizon benchmarks. However, their computational cost limits their use in long-horizon tasks and real-time domains such as video games. A key bottleneck is representing each screenshot as thousands of visual tokens, which accumulate into long contexts as agents reason over extended interaction histories. We observe that most of these visual tokens are either semantically irrelevant to the agent's next action or temporally redundant across screenshots. Building on this observation, we introduce Visual Token Routing (VTR), a joint training framework for learning sparse visual representations that preserve the information needed for action prediction. In VTR, we train the vision-language model together with a lightweight spatio-temporal router that examines each image region in the current and previous screenshots and decides whether its visual token enters the language model. We optimize the router using an adaptive loss to keep the number of visual tokens as small as possible while minimizing performance degradation. With just 2,000 training steps, VTR matches the performance of the full-resolution model on OSWorld, CUA-World, and video game action prediction, while using 2.5-5.8x fewer visual tokens. These savings reduce inference cost by up to 3.3x and speed up prefill by up to 2.9x. VTR also outperforms lowering the image resolution and other baselines for dropping tokens, by up to 12.8 points on OSWorld. Overall, VTR enables computer-use agents to process only the visual tokens they need, allowing them to be used in long-horizon tasks and real-time domains at a fraction of the computational cost. Code and models are available at https://pranjal2041.github.io/vtr",
+      "reason": "近 30 天；关键词：cs.CV, inference, prefill。Computer-use agents (CUAs) have recently achieved superhuman performance on several long-horizon benchmarks. However, their comput...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL",
-        "efficient",
+        "cs.CV",
         "inference",
         "prefill"
       ],
-      "signal": 97,
+      "signal": 89,
       "source": "arXiv",
-      "publishedAt": "2026-11-04T13:33:47Z",
-      "url": "https://arxiv.org/abs/2611.06976",
-      "pdfUrl": "https://arxiv.org/pdf/2611.06976v1"
+      "publishedAt": "2026-11-04T18:10:33Z",
+      "url": "https://arxiv.org/abs/2611.06854",
+      "pdfUrl": "https://arxiv.org/pdf/2611.06854v1"
+    },
+    {
+      "id": "arxiv-2611.07134",
+      "title": "Matriarchy Classics: A Computational Approach to Swap Only Gendered Words in Classic Novels",
+      "authors": [
+        "Rachel Lea Draelos"
+      ],
+      "summary": "This paper proposes a trustworthy computational method to gender-swap public domain novels, with programmatic guarantees that only gendered words are inverted and all other words are left unchanged. This may seem like a simple task, but both large language models and naive rule-based methods fail to complete it. The proposed method includes a custom whitespace-preserving tokenizer, gender-swap mappings across plural and possessive forms, pronoun handling, and a character renaming strategy. It shortens the time required to gender-swap a novel from weeks of manual labor to minutes. The method is demonstrated on two public-domain novels. Pride and Prejudice is transported to matriarchal Regency England, where inheritance flows through daughters, mothers rule the household, and a frantic Mr. Bennet is determined to secure advantageous marriages for his sons. The Great Gatsby pivots to a matriarchal Jazz Age where newly-rich Ms. Gatsbee throws lavish parties in the hopes of reuniting with her lost love, David, who is now married to the violent Thelma Buchanan. Gender-swapped novels could serve as useful tools to investigate the gender biases of readers, authors, societies, and AI systems.",
+      "reason": "近 30 天；关键词：cs.CL, serving。This paper proposes a trustworthy computational method to gender-swap public domain novels, with programmatic guarantees that only...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "serving"
+      ],
+      "signal": 82,
+      "source": "arXiv",
+      "publishedAt": "2026-11-04T21:03:10Z",
+      "url": "https://arxiv.org/abs/2611.07134",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07134v1"
+    },
+    {
+      "id": "arxiv-2611.07783",
+      "title": "PBPO: Prefix-Block Policy Optimization for Diffusion Language Models",
+      "authors": [
+        "Katherine Tieu",
+        "Dongqi Fu",
+        "Si Zhang",
+        "Hanqing Zeng",
+        "Tianxin Wei",
+        "Chenglin Wei",
+        "Yinglong Xia",
+        "Hong Li",
+        "Jingrui He"
+      ],
+      "summary": "Diffusion Large Language Models (dLLMs) commonly decode responses by proceeding autoregressively across blocks while iteratively denoising multiple tokens within each block. This structure makes block-level policy optimization a natural adaptation of autoregressive policy optimization. However, the exact likelihood of a completed block is intractable because it marginalizes over the intermediate states and reveal orders of the denoising process. To realize the block-level formulation, we construct a prefix-block state and use a single model evaluation to define a factorized one-step surrogate for the block likelihood. The resulting block surrogate ratio is a product of its token surrogate ratios, allowing variation at individual positions to propagate across the entire block before clipping. We therefore introduce Prefix-Block Policy Optimization (PBPO), which preserves block-level conditioning but applies surrogate importance weighting and clipping separately to each token. PBPO further diversifies repeated updates by resampling corrupted views of the prompt and revealed prefix, a design motivated by masked-dLLM pre-training. Under our analysis assumptions, block-product weighting amplifies the variance of gradient contributions relative to token-local weighting. Across two LLaDA-family initializations, six benchmarks, and three generation lengths, PBPO achieves competitive performance against existing dLLM RL methods.",
+      "reason": "近 30 天；关键词：cs.LG, llm。Diffusion Large Language Models (dLLMs) commonly decode responses by proceeding autoregressively across blocks while iteratively d...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "llm"
+      ],
+      "signal": 77,
+      "source": "arXiv",
+      "publishedAt": "2026-11-05T10:20:41Z",
+      "url": "https://arxiv.org/abs/2611.07783",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07783v1"
+    },
+    {
+      "id": "arxiv-2611.07736",
+      "title": "Extending Reasoning in Typed Decision Models via Looping",
+      "authors": [
+        "David Berghaus",
+        "Arber Zela",
+        "Behzad Shomali",
+        "Markus Frey",
+        "Mehdi Ali",
+        "Rafet Sifa",
+        "Volkan Cevher"
+      ],
+      "summary": "Typed decision models choose among a fixed set of answer options in a single forward pass, so unlike generative language models they cannot spend more test-time compute on hard inputs by generating more tokens. Looping a block of layers offers this compute in latent space without adding parameters, but prior work found no gain from loops retrofitted into conventionally pretrained models. We show that such loops help when trained together with the decision model. Our method, RELOAD (retrofitted loops for adaptive decisions), fine-tunes a pretrained encoder or decoder with a damped loop over its middle block and a lightweight controller picks the number of passes adaptively for each input. Across six models from 0.4B to 4B parameters, looping improves both accuracy and calibration, mostly on problems that need longer chains of reasoning than any seen in training, where encoders gain up to 23 points. Neither matched training compute nor more data closes this gap, and separate layers for each pass come close only with nearly twice the parameters. The controller keeps most of the gain at about three quarters of the compute.",
+      "reason": "近 30 天；关键词：cs.CL。Typed decision models choose among a fixed set of answer options in a single forward pass, so unlike generative language models th...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL"
+      ],
+      "signal": 70,
+      "source": "arXiv",
+      "publishedAt": "2026-11-05T09:46:17Z",
+      "url": "https://arxiv.org/abs/2611.07736",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07736v1"
+    },
+    {
+      "id": "arxiv-2611.06835",
+      "title": "LooM: Loop-Invariant Memory for Causal Encoder-Decoder Language Models",
+      "authors": [
+        "Lele Yang",
+        "Muxi Diao",
+        "Zhonghao Yan",
+        "Jiankang Chen",
+        "Bin Wen",
+        "Tingting Gao",
+        "Wentao Zhang",
+        "Kongming Liang",
+        "Zhanyu Ma",
+        "Weiran Xu"
+      ],
+      "summary": "Looped Transformers increase effective depth by re-executing shared layers, but three limitations hinder their adoption: memory grows with the loop count, compute can only be adjusted in whole-block steps, and the loop count is hard to change after training. We propose LooM (Loop-invariant Memory), which addresses each in turn. In a causal encoder-decoder (CED), LooM loops only the decoder layers after the first, which read a global memory written once per token, and each of them publishes the key-value (KV) entry for a token only on its first visit, so the cache does not grow with the loop count. These layers loop independently, providing every budget from 3 to 21 layer executions per token, and one model trained on randomly sampled budgets covers all of them without a router. With enough loops, LooM outperforms a single-pass baseline trained on the same data on language modeling, zero-shot accuracy and long-context perplexity, while using the same cache size. Our analysis further shows that the training budget distribution decides what extra depth buys. These results suggest that a CED is a natural place to loop: memory is written once, and depth becomes a budget chosen at deployment.",
+      "reason": "近 30 天；关键词：cs.CL。Looped Transformers increase effective depth by re-executing shared layers, but three limitations hinder their adoption: memory gr...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL"
+      ],
+      "signal": 70,
+      "source": "arXiv",
+      "publishedAt": "2026-11-04T17:52:11Z",
+      "url": "https://arxiv.org/abs/2611.06835",
+      "pdfUrl": "https://arxiv.org/pdf/2611.06835v1"
     }
   ]
 }
