@@ -1,7 +1,271 @@
 {
-  "generatedAt": "2026-11-13T10:15:29.075713+08:00",
+  "generatedAt": "2026-11-14T09:53:46.795799+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-11-14",
+      "generatedAt": "2026-11-14T09:53:46.795799+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2611.17226",
+          "title": "Sheaf-Inspired Structured Scoring Extensions of LightGCN for Collaborative Filtering",
+          "authors": [
+            "Ksenia Belkovskaya",
+            "Timur Lidzhiev",
+            "Maria Stebliy",
+            "Alexander Tarakanov"
+          ],
+          "summary": "Graph-based collaborative filtering learns user and item representations by propagating embeddings over a user--item interaction graph. We investigate a modular, sheaf-inspired scoring extension placed on top of a three-layer LightGCN backbone. The motivation comes from cellular sheaves, where local vector spaces are related by linear restriction maps; here, this idea motivates structured, pair-dependent transformations of user and item embeddings rather than a change to graph propagation. We compare the identity inner-product scorer, diagonal, rank-one low-rank, and full matrix residual scorers, and a parameter-matched residual MLP baseline (\\texttt{mlp\\_full}) on Amazon-Book, Gowalla, MovieLens-1M, and Yelp2018. We report ranking quality and catalog coverage at cutoffs 10 and 20. The selected structured variants show modest, dataset-dependent changes in ranking quality and sometimes substantial changes in coverage. Our method is inspired by sheaf geometry but does not construct a cellular sheaf or implement sheaf-Laplacian diffusion; the experiments therefore do not establish a causal benefit from sheaf geometry itself.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Graph-based collaborative filtering learns user and item representations by propagating embeddings over a user--item interaction g...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "dataset",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-11-12T18:20:22Z",
+          "url": "https://arxiv.org/abs/2611.17226",
+          "pdfUrl": "https://arxiv.org/pdf/2611.17226v1"
+        },
+        {
+          "id": "arxiv-2611.17108",
+          "title": "LazyWeights: Decode-on-Demand Edge LLMs",
+          "authors": [
+            "Arnab Sanyal",
+            "Gourav Datta",
+            "Sandeep P. Chinchali"
+          ],
+          "summary": "Memory decides which LLMs an edge device runs, and how fast: capacity on a $4$ GB Jetson Nano, bandwidth on an $8$ GB Jetson Orin Nano Super. Deployed formats (GPTQ, AWQ, $\\texttt{llama.cpp}$'s K- and I-quants) spend equal bits on every integer code of a matrix, although the codes are far from uniform. $\\texttt{LazyWeights}$ keeps these formats but tunes GPTQ so the codes compress, Huffman-codes them losslessly in interleaved lanes, and decodes them on demand in a small unit between DRAM and L2, so GPU kernels run unchanged and DRAM moves only coded bytes. At $1\\%$ and $3.5\\%$ perplexity budgets, coded Phi-3-mini, Mistral-7B and SmolLM-1.7B are $5.7-31.4\\%$ smaller than the best $\\texttt{llama.cpp}$ format. A bit-exact $0.21$ mm$^2$ ASIC decoder unit ($1$ GHz, $7$ nm) cuts Orin latency and energy per token by up to $36\\%$ and $38\\%$ ($54\\%$ and $44\\%$ with prompt-lookup speculation). On the Nano, $\\texttt{LazyWeights}$ needs $58-64\\%$ less time and $53-57\\%$ less energy per token than CPU $\\texttt{llama.cpp}$, and runs a streamed Mistral-7B 6.6$\\times$ faster at $3.89$ bits per weight. A Huffman decoder beats an rANS decoder in rate and area at equal throughput; the ASIC decoder unit runs bit-exact on a Zynq UltraScale+ FPGA (AMD ZCU102).",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, deployed。Memory decides which LLMs an edge device runs, and how fast: capacity on a $4$ GB Jetson Nano, bandwidth on an $8$ GB Jetson Orin...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "deployed",
+            "energy",
+            "latency",
+            "llm",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-11-12T17:03:40Z",
+          "url": "https://arxiv.org/abs/2611.17108",
+          "pdfUrl": "https://arxiv.org/pdf/2611.17108v1"
+        },
+        {
+          "id": "arxiv-2611.17097",
+          "title": "Broadcast, Don't Replicate: Eliminating Weight HBM in Datacenter LLM Serving",
+          "authors": [
+            "Hannah Atmer",
+            "Yuan Yao",
+            "Thiemo Voigt",
+            "Stefanos Kaxiras"
+          ],
+          "summary": "Large language model (LLM) inference at datacenter scale is fundamentally bottlenecked by memory capacity and bandwidth limits. Because model weights are read-only and identical across instances, conventional architectures that replicate these parameters across the local DRAM of tens of thousands of accelerators incur massive capital expenditures, significant static power dissipation, and redundant memory-fetch energy. A recent proposal to use optical fiber loops as delay-line memory alleviates these issues, but its recirculating loop must hold the whole model: loop length grows with model size, slack is fixed when the ring is built, and the layouts that serve modern Mixture of Experts (MoE) models efficiently do not fit in it. We propose Optical Broadcast Memory (OBM), an open-ended hierarchical Tap-and-Amplify fiber architecture that generalizes and replaces the optical ring paradigm. A centralized memory server continuously broadcasts weights to distributed inference nodes that passively tap the data stream using receive-only co-packaged optics, delivering parameters directly to compute units without intermediate buffering. To overcome the limitations of continuous weight streaming, we use dynamically-sized slack to accommodate large and variable context lengths. We show how removing the restrictions of the optical ring allows OBM to efficiently serve MoE models. Evaluated at a datacenter scale of 80,000 accelerators, OBM eliminates petabytes of HBM while being competitive or better in throughput and energy per token than an HBM-based system.",
+          "reason": "近 30 天；关键词：cs.AR, efficient, energy。Large language model (LLM) inference at datacenter scale is fundamentally bottlenecked by memory capacity and bandwidth limits. Be...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AR",
+            "efficient",
+            "energy",
+            "inference",
+            "llm",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-12T16:58:07Z",
+          "url": "https://arxiv.org/abs/2611.17097",
+          "pdfUrl": "https://arxiv.org/pdf/2611.17097v1"
+        },
+        {
+          "id": "arxiv-2611.16795",
+          "title": "KuaiRecV2: Benchmarking Large-Scale Continual Learning for Diversified and Multi-task Recommendation",
+          "authors": [
+            "Chenxu Li",
+            "Shuchang Liu",
+            "Hantao Shu",
+            "Wei Yuan",
+            "Zhe Xu",
+            "Guoqing Hu",
+            "Yan Wang",
+            "Biao Yang",
+            "Xiang Li",
+            "Cheng Ling",
+            "Fan Yang",
+            "Yongqi Liu",
+            "Lantao Hu",
+            "Han Li",
+            "Kaiqiao Zhan",
+            "Kun Gai",
+            "An Zhang",
+            "Xiang Wang"
+          ],
+          "summary": "Recommender systems, which retrieve items of interest to users based on their interaction histories, have recently witnessed several key technological advancements, benefiting from the semantic representation space and model-data scaling. Nevertheless, practitioners and researchers have frequently encountered critical inconsistencies between simple offline evaluations and complex online results, and this gap still exists in the era of large models. In this work, we address several key factors that contribute to this inconsistency: 1) the \\textit{large-scale continual learning challenge} that assumes a practical demand to maintain long-term model effectiveness under dynamic item pools and distributional shifts; 2) the \\textit{combinatorial diversity challenge} that requires the generation strategy to solve the accuracy-diversity trade-off in both the finer token level and the holistic item level; and 3) the \\textit{multi-task reward balancing challenge}, which is particularly critical for modern generative models that can accurately model the sequence distribution but are less controllable for the multi-task demands. To address these challenges and further pave the way for the development of more realistic recommendation solutions, we introduce KuaiRecV2, a deliberately constructed benchmark with industrial-level datasets from Kuaishou. Specifically, we provide a large-scale interaction dataset with million-scale multi-modal item information and long-term interaction records across 30 days, with a dynamic video candidate pool. Additionally, we provide a rigorous benchmark that evaluates retrieval accuracy, diversity, and multi-task performance in one rubric system, where an effective advancement occurs if and only if the new method improves all metrics. The code is available at https://github.com/cxli2333/KuaiRecV2",
+          "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, dataset。Recommender systems, which retrieve items of interest to users based on their interaction histories, have recently witnessed sever...",
+          "area": "推荐算法",
+          "tags": [
+            "kuaishou",
+            "cs.IR",
+            "dataset",
+            "industrial",
+            "recommendation",
+            "recommender",
+            "retrieval"
+          ],
+          "signal": 99,
+          "source": "Kuaishou/arXiv",
+          "publishedAt": "2026-11-12T13:39:12Z",
+          "url": "https://arxiv.org/abs/2611.16795",
+          "pdfUrl": "https://arxiv.org/pdf/2611.16795v1"
+        },
+        {
+          "id": "arxiv-2611.16714",
+          "title": "Towards Green Text Generation: Memory-Based Speculative Decoding",
+          "authors": [
+            "Antal van den Bosch"
+          ],
+          "summary": "Speculative decoding accelerates text generation with large language models by letting a cheap draft model propose tokens that a large verifier checks in a single forward pass. We introduce Olifant, a draft model built on a memory-based classifier. It predicts the next token from a four-token window in under 0.3 ms on CPU, requiring no GPU, no backpropagation, and no accelerator memory. We measure throughput and energy under two verifier regimes on consumer hardware. Without a KV cache, drafting is nearly free: a domain-matched Olifant model reaches 38.1% acceptance on EU legal text, delivering 2.43x throughput and 2.51x lower energy per token than the neural verifier model alone. With a KV-cached verifier, itself a ~10x energy saver, drafting costs matter: a TinyLlama draft model halves throughput and triples energy despite high acceptance, whereas Olifant still yields 1.25x throughput and the lowest energy in the study (93 J per 100 tokens, 14x below the uncached baseline). We further show that KV caching decouples time from energy: verification of longer drafts raises power draw, shifting the energy-optimal draft length below the speed-optimal one. Speculative decoding is not dead in the age of fast verifiers, provided drafting is nearly free.",
+          "reason": "近 30 天；关键词：cs.CL, energy, kv-cache。Speculative decoding accelerates text generation with large language models by letting a cheap draft model propose tokens that a l...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CL",
+            "energy",
+            "kv-cache",
+            "speculative",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-12T12:32:14Z",
+          "url": "https://arxiv.org/abs/2611.16714",
+          "pdfUrl": "https://arxiv.org/pdf/2611.16714v1"
+        },
+        {
+          "id": "arxiv-2611.16375",
+          "title": "Recursive State-Augmented Language Models: Persistent Latent-State Adaptation of Pretrained Language Models",
+          "authors": [
+            "Omer Haq"
+          ],
+          "summary": "Language models rely on finite token contexts, limiting access to earlier interactions. We introduce Recursive State-Augmented Language Models (Recursive SALM), a framework in which a persistent latent state evolves with each observation and generates adaptations of a pretrained language model. A modular read-transition-write architecture separates observation encoding, latent dynamics, and predictor adaptation. We develop deterministic and stochastic formulations. The experiments evaluate only deterministic SALM with frozen GPT-2 small and exclude earlier evidence from its decoder context. On a four-turn hypothesis-inference task, latent-gated LoRA reaches 89.1% accuracy, comparable to 88.0% for a trained full-context LoRA baseline, with earlier evidence available solely through a 64-dimensional state. Zeroing or shuffling the state substantially reduces accuracy. In a two-turn task with codewords unseen in training, several interfaces improve candidate ranking over chance, but rarely generate the exact codeword under the evaluated training schedule. These experiments show that persistent latent-conditioned adaptation can support sequential inference when earlier evidence is absent from the decoder context.",
+          "reason": "近 30 天；关键词：cs.LG, inference, lora。Language models rely on finite token contexts, limiting access to earlier interactions. We introduce Recursive State-Augmented Lan...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "lora",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-12T06:42:54Z",
+          "url": "https://arxiv.org/abs/2611.16375",
+          "pdfUrl": "https://arxiv.org/pdf/2611.16375v1"
+        },
+        {
+          "id": "arxiv-2611.16219",
+          "title": "GC-MoE on SM120: Overlapping Expert-Parallel Token Dispatch with Warp-Level FP8xFP4 Block-Scaled MMA on Consumer Blackwell",
+          "authors": [
+            "Yong Li",
+            "Haoyu Wang",
+            "Kan Liu",
+            "Tao Lan"
+          ],
+          "summary": "Expert-parallel Mixture-of-Experts decoding is latency bound: each layer serializes a token exchange, a grouped GEMM over routed experts, and a combine, while only a few tokens per rank are in flight. Prior GC-MoE fused these phases into one persistent, Green-Context-partitioned CUDA Graph on Hopper (SM90) and datacenter Blackwell (SM100). This paper rebuilds the operator for SM120 (compute capability 12.0, e.g. RTX PRO 5000) over PCIe. SM120 exposes block-scaled tensor cores only through warp-level mma.sync.aligned.kind::mxf8f6f4: no tensor memory, no two-CTA MMA, no cluster multicast. We rebuild the kernel around a swap-AB warp-level block-scaled MMA with FP4 weights in the register A operand and FP8 activations in B, plus SM120-specific mechanisms: scale-byte selection through MMA immediates, a compact-weights path, an adaptive token-tile geometry, an expert-granular streaming dispatch with a batched bulk-pull engine and a 64-bit deduplicating pull cache, full-width BF16 returns drained by resident relay copiers over a position-major arena, and shared experts folded into the compute role. On 8xRTX PRO 5000 over PCIe the operator is 1.522x and 1.387x faster than the FlashInfer CuTe DSL W4A8 MegaMoE and the Cake MegaMoE across 18 decode points (18/18 wins each), and 1.388x faster than Cake with shared experts fused; all 94 numerical cases and 752 per-rank checks pass, at cross-operator cosine similarity of at least 0.9999997.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, latency。Expert-parallel Mixture-of-Experts decoding is latency bound: each layer serializes a token exchange, a grouped GEMM over routed e...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.DC",
+            "latency"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-11-12T03:10:15Z",
+          "url": "https://arxiv.org/abs/2611.16219",
+          "pdfUrl": "https://arxiv.org/pdf/2611.16219v1"
+        },
+        {
+          "id": "arxiv-2611.15671",
+          "title": "The Noise Floor of a Quantization Comparison: Engine, restart, batch and kernel drift, measured against 8-bit and 4-bit effects in two decision models",
+          "authors": [
+            "Aleks Blagojevich",
+            "Trevor Sunderland"
+          ],
+          "summary": "A quantized model is usually judged by comparing it with its BF16 original, but that comparison changes more than the weights. It often changes the serving engine, it always runs on a different server instance, it may change how requests are batched, and on some stacks the library selects a different kernel depending only on which packages import. We measure each of these sources on the same 2,400 public decisions for two of Cloudflare's decision models, Clef-flash (9B) and Clef (27B), on an NVIDIA GB10, and state every quantization effect as the excess over them. Sources that are not quantization move between 0 and 0.92% of decisions. llama.cpp restarts are bit-identical on every record for both models. vLLM restarts flip 0, 5 and 20 decisions at BF16, FP8 and NVFP4 on Clef-flash and 4, 0 and 22 on Clef; a third instance of Clef's quantized builds (exploratory) leaves FP8 at 0 and puts NVFP4 at 4 to 22, depending on which two instances are compared. An engine change at BF16 flips 6 to 16, a batch-size change 8 to 15, and the Gated DeltaNet kernel transformers selects unasked 10 to 14. Quantization inside one engine moves more: for Clef-flash and Clef, 0.88% and 1.04% at Q8_0, 2.12% and 1.62% at FP8, 5.79% and 3.50% at Q4_K_M, and 5.79% and 5.67% at NVFP4. On both models, every 4-bit interval excludes every non-quantization source. Two of our five pre-registered predictions failed, and the same two fail when the tests are rerun on the 27B: FP8 is not inside restart noise, and changing engine moves fewer decisions than 8-bit quantization does. Accuracy hides most of this. Over the full 31,275 public questions, Clef's Q4_K_M build moves accuracy by a net six questions (-0.02 points [-0.20, +0.16]) while 436 of its decisions get worse (exploratory), and NVFP4 costs Clef-flash 0.95 points and Clef 0.65. We release the code, quantization recipes, per-record outputs and the pre-registration.",
+          "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.LG。A quantized model is usually judged by comparing it with its BF16 original, but that comparison changes more than the weights. It...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "nvidia",
+            "cs.LG",
+            "llm",
+            "lora",
+            "quantization",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Meta/NVIDIA/arXiv",
+          "publishedAt": "2026-11-11T16:15:08Z",
+          "url": "https://arxiv.org/abs/2611.15671",
+          "pdfUrl": "https://arxiv.org/pdf/2611.15671v1"
+        },
+        {
+          "id": "arxiv-2611.15569",
+          "title": "TraceKV: Policy-Preserving Low-Rank KV Cache Compression for Reasoning Vision-Language Models",
+          "authors": [
+            "Ke Li",
+            "Zishan Shao",
+            "Yiran Chen"
+          ],
+          "summary": "Reasoning vision-language models (VLMs) impose substantial KV cache demands from both large multimodal contexts and growing reasoning traces. Low-rank KV compression has emerged as a promising paradigm that stores low-dimensional latents of KV states and can be combined with quantization. However, existing low-rank methods often induce growing predictive policy drift from the dense model when compressing reasoning KV states, resulting in reasoning failures. We identify two key causes of this degradation: calibration-state mismatch between static contexts and on-policy reasoning states, and unequal error sensitivity across KV states. To address these challenges, we propose TraceKV, a training-free low-rank KV compression framework that unifies on-policy calibration, sensitivity-aware SVD, and global rank allocation under a single policy-preserving principle, substantially reducing policy-KL divergence during reasoning. Experiments across multiple VLMs and visual reasoning benchmarks demonstrate superior accuracy--memory trade-offs, achieving near-lossless reasoning accuracy with 5.64$\\times$ KV cache compression when combined with quantization. Optimized low-rank attention kernels further deliver up to 1.83$\\times$ end-to-end decoding speedup. Code will be available at https://github.com/AK-DREAM/TraceKV.",
+          "reason": "近 30 天；关键词：cs.CV, kv-cache, multimodal。Reasoning vision-language models (VLMs) impose substantial KV cache demands from both large multimodal contexts and growing reason...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CV",
+            "kv-cache",
+            "multimodal",
+            "quantization",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-11T14:54:19Z",
+          "url": "https://arxiv.org/abs/2611.15569",
+          "pdfUrl": "https://arxiv.org/pdf/2611.15569v1"
+        },
+        {
+          "id": "arxiv-2611.15372",
+          "title": "LLMRunner: Closed Workload Model Performance Testing Framework for LLM Servings",
+          "authors": [
+            "Arush Upadhyaya",
+            "Debadatta Mishra"
+          ],
+          "summary": "Performance testing large language model (LLM) serving engines is a crucial requirement considering the criticality of the infrastructure for deploying conversational AI at scale. Most of the benchmarking tools used to carryout performance evaluation of LLM serving do not capture realistic workload orchestration unlike closed workload performance testing infrastructure used in other domains such as web and database engines. For example, state-of-the-art LLM benchmarks for performance testing model traffic as streams of independent single-turn and stand-alone requests omitting the end-user behavior such as think-time between conversational turns. We present LLMRunner, a performance tester for LLM serving that addresses this gap by providing a framework to generate realistic load consisting of multi-turn conversations with configurable end-user parameters such as number of users in the workload loop, think-time distributions etc. Moreover, LLMRunner provides declarative matrix-sweep experiment plans, integrated GPU and KV-cache monitoring, and an automated artifact collection and plotting subsystem. We use LLMRunner to comparatively analyze the performance of LLM serving when NVIDIA CUDA Unified Virtual Memory (UVM) is used as a drop-in replacement memory allocator for the Key-Value cache (KV-Cache). Our test demonstrates that UVM incurs no measurable throughput or latency penalty compared to the baseline memory allocation technique for non-oversubscription scenarios.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.PF, latency。Performance testing large language model (LLM) serving engines is a crucial requirement considering the criticality of the infrast...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.PF",
+            "latency",
+            "llm",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-11-11T11:52:20Z",
+          "url": "https://arxiv.org/abs/2611.15372",
+          "pdfUrl": "https://arxiv.org/pdf/2611.15372v1"
+        }
+      ]
+    },
     {
       "date": "2026-11-13",
       "generatedAt": "2026-11-13T10:15:29.075713+08:00",
@@ -21077,266 +21341,6 @@
           "publishedAt": "2026-07-25T09:32:55Z",
           "url": "https://arxiv.org/abs/2607.23120",
           "pdfUrl": "https://arxiv.org/pdf/2607.23120v1"
-        }
-      ]
-    },
-    {
-      "date": "2026-07-28",
-      "generatedAt": "2026-07-28T06:50:38.183016+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2607.22529",
-          "title": "Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills",
-          "authors": [
-            "Siyuan Huang",
-            "Pengyu Cheng",
-            "Haotian Liu",
-            "Tao Chen",
-            "Yihao Liu",
-            "Jingwei Ni",
-            "Shijie Zhou",
-            "Ziyi Yang",
-            "Gangwei Jiang",
-            "Mengyu Zhou",
-            "Yu Cheng",
-            "Xiaoxi Jiang",
-            "Guanjun Jiang"
-          ],
-          "summary": "LLM training is shifting from manual design and annotation to interaction-driven self-evolution. However, existing self-evolutionary methods face a fundamental dilemma between task diversity and verification reliability: environment-bound methods obtain precise feedback but confine learning to narrow domains, while open-ended self-generation broadens the task space but lacks reliable verification, allowing misleading rewards to pollute the training loop. We identify agent skills as a powerful middle ground to reconcile this tension: each skill ensures deep, verifiable execution in a specific scenario, while dynamic routing across skills maintains open-ended task variety. Leveraging this insight, we introduce Skill Self-Play (Skill-SP), a co-evolutionary framework comprising a proposer, a solver, and a dynamic skill controller. Orchestrated via a reinforcement learning loop, these components co-evolve in a continuous self-play loop: the proposer generates challenging tasks conditioned on dynamically sampled skills; the solver explores candidate solutions to push its capability boundaries; and the skill controller collects execution feedback to update and expand the skill library. This interactive co-evolution effectively bridges the gap between structured verification and open-ended exploration. Empirical evaluations on tool-use and reasoning benchmarks demonstrate that Skill-SP, serving as a robust evolution engine, consistently pushes the performance ceiling of competent backbones while catalyzing striking turnarounds for initially misaligned models. Our code is available at https://github.com/Qwen-Applications/skill-self-play.",
-          "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.CL, llm。LLM training is shifting from manual design and annotation to interaction-driven self-evolution. However, existing self-evolutiona...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "alibaba",
-            "cs.CL",
-            "llm",
-            "lora",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "Alibaba/arXiv",
-          "publishedAt": "2026-07-24T17:59:22Z",
-          "url": "https://arxiv.org/abs/2607.22529",
-          "pdfUrl": "https://arxiv.org/pdf/2607.22529v1"
-        },
-        {
-          "id": "arxiv-2607.22518",
-          "title": "PinEqualizer: Full Funnel Content Exploration and Debiasing System at Pinterest",
-          "authors": [
-            "Olafur Gudmundsson",
-            "Bo Zhao",
-            "Huayi Liao",
-            "Anna Kiyantseva",
-            "Sai Xiao",
-            "Heath Vinicombe",
-            "Mostafa Keikha",
-            "Luke DeLuccia",
-            "Zihao Chen",
-            "Junpeng Hou",
-            "Weijie Jiang",
-            "Bhawna Juneja",
-            "Andreanne Lemay",
-            "Wei-Ting Lin",
-            "Keyvan Moghadam",
-            "Jiaxing Qu",
-            "Zhiqing Rao",
-            "Zhihua Zhang"
-          ],
-          "summary": "In this paper, we propose a new solution for addressing the content cold-start problem in industry-scale search and recommender systems. Compared to prior approaches, we have made the following new contributions: 1) our solution spans the entire multi-stage funnel and generalizes well for both search and recommendation surfaces, 2) our solution reduces bias favoring existing content, allowing more accurate model prediction across content types and reducing short-term tradeoffs associated with high volumes of explicit content exploration, 3) our solution is evaluated with a scalable measurement framework that enables fast short-term experimentation while validating long-term impact. We have iteratively built and successfully deployed this new system at Pinterest in the past two years and observed significant improvements in fresh content exploration, overall user engagement, and content ecosystem health.",
-          "reason": "近 30 天；公司信号：Pinterest；推荐/排序/广告方向；关键词：pinterest, cs.IR, deployed。In this paper, we propose a new solution for addressing the content cold-start problem in industry-scale search and recommender sy...",
-          "area": "推荐算法",
-          "tags": [
-            "pinterest",
-            "cs.IR",
-            "deployed",
-            "lora",
-            "recommendation",
-            "recommender"
-          ],
-          "signal": 99,
-          "source": "Pinterest/arXiv",
-          "publishedAt": "2026-07-24T17:41:28Z",
-          "url": "https://arxiv.org/abs/2607.22518",
-          "pdfUrl": "https://arxiv.org/pdf/2607.22518v1"
-        },
-        {
-          "id": "arxiv-2607.22432",
-          "title": "TileSight: A First-Principles Tile-Centric Analytical GPU Performance Model from Cores to Clusters",
-          "authors": [
-            "Zhiwen Mo",
-            "Yu Cheng",
-            "Lei Wang",
-            "Zhengju Tang",
-            "Lei Xu",
-            "Guoyu Li",
-            "Yuqi Dong",
-            "Lingxiao Ma",
-            "Yuqing Xia",
-            "Jilong Xue",
-            "Fan Yang",
-            "Luo Mai",
-            "Zhi Yang",
-            "Wayne Luk",
-            "Hongxiang Fan"
-          ],
-          "summary": "Recent GPU programming frameworks such as Triton, TileLang, and CUDA Tile adopt tiles as first-class primitives, making tile-centric programming the prevailing approach for high-performance GPU kernels. Performance-analysis tooling has not followed: programmers still rely on coarse roofline bounds, opaque ML predictors, or post-hoc profilers to understand kernel execution. This gap is acute for modern AI workloads, where kernel fusion and distributed inference depend on tensor cores, CUDA cores, cache hierarchies, memory pipelines, and inter-GPU networks. We present TileSight, a tile-centric performance-modeling tool that elevates the tile from a programming primitive to an analysis primitive. Within a GPU core, TileSight models compute-memory pipeline overlap; across cores, it models the cache hierarchy; across GPUs, it models inter-node communication. All layers share the tile abstraction: the intra-tile layer expresses work as a resource vector spanning network, memory, and compute pipelines; the inter-tile layer schedules dependent and ordered actions to expose legal overlap and infers multi-level cache hit rates from tile reuse distance; and the cross-device layer maps remote tensor accesses to placements and routes them through an alpha-beta stage cost. On A100, H200, B200, and B6000, TileSight predicts single-GPU kernel latency with 12.35% pooled mean absolute percentage error (MAPE), outperforming state-of-the-art baselines and transferring better across architectures. Its L2 cache-hit-rate predictions are within roughly one percentage point of measurements on every GPU. At up to 32 GPUs, TileSight achieves 16.18% weighted MAPE (wMAPE) on fused distributed kernels and 13.52% wMAPE on end-to-end vLLM serving. In optimization, TileSight selects tile configurations competitive with strong vendor and expert baselines. TileSight will be open-sourced upon publication.",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, inference。Recent GPU programming frameworks such as Triton, TileLang, and CUDA Tile adopt tiles as first-class primitives, making tile-centr...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.DC",
-            "inference",
-            "latency",
-            "llm",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-24T15:50:23Z",
-          "url": "https://arxiv.org/abs/2607.22432",
-          "pdfUrl": "https://arxiv.org/pdf/2607.22432v1"
-        },
-        {
-          "id": "arxiv-2607.22389",
-          "title": "HiKV: Hierarchical Importance-Aware KV Cache with Hardware Acceleration for LLM Decoding",
-          "authors": [
-            "Chao Fang",
-            "Jun Yin",
-            "Man Shi",
-            "Marian Verhelst"
-          ],
-          "summary": "With the rapid adoption of long-context large language models (LLMs), the continuously growing KV cache during decoding has become the critical memory bottleneck. To tackle this challenge, we propose HiKV, a novel algorithm-hardware co-design that exploits KV cache redundancy through hierarchical importance awareness. Algorithmically, HiKV compresses the KV cache at two granularities: Stage I evicts unimportant tokens within a fixed budget, and Stage II further loads only the significant elements of each retained token, reaching compression ratios unattainable at a single granularity. Architecturally, we develop a dedicated accelerator centered on a reconfigurable importance sorter that switches between the distinct sorting datapaths each stage requires, unifying the two-stage acceleration in one circuit with minimal overhead. Evaluated on representative LLMs, HiKV achieves up to 7.95x speedup and 90% energy reduction in the attention computation over the vanilla KV cache baseline within negligible 1% accuracy loss. Under iso-accuracy constraints, HiKV outperforms state-of-the-art importance-based methods by achieving an additional 1.82~4.87x reduction in external memory accesses. These benefits are enabled by specialized hardware components that add only 8% to the system area.",
-          "reason": "近 30 天；关键词：cs.AR, energy, kv-cache。With the rapid adoption of long-context large language models (LLMs), the continuously growing KV cache during decoding has become...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.AR",
-            "energy",
-            "kv-cache",
-            "llm"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-24T15:15:10Z",
-          "url": "https://arxiv.org/abs/2607.22389",
-          "pdfUrl": "https://arxiv.org/pdf/2607.22389v1"
-        },
-        {
-          "id": "arxiv-2607.21985",
-          "title": "Unified Static-Dynamic Pruning for Efficient LLM Inference",
-          "authors": [
-            "Jinhyeok Kim",
-            "Yejoon Lee",
-            "Jaeyoung Do"
-          ],
-          "summary": "The increasing deployment of large language models (LLMs) has magnified the computational and memory bottlenecks of autoregressive decoding, where low compute intensity and bandwidth-bound kernels dominate inference cost. Weight pruning offers a promising remedy, but existing methods remain confined to either static pruning (SP), which permanently removes redundant weights but lacks adaptivity, or dynamic pruning (DP), which adapts to input sparsity but introduces runtime irregularity. This paper presents SPDP, a unified sparse-inference framework that integrates unstructured SP with input-adaptive DP for efficient LLM inference on GPUs. SPDP co-designs a new Tiled-Column-wise Bitmap Compressed (Tiled-CBC) format and two complementary GPU kernels: (1) a CUDA-core spMspV kernel featuring Hybrid Activation-aware Dynamic Shared-Memory Bitmap Decoding (HAD-SMBD) for fine-grained, runtime activation skipping, and (2) a Tensor-Core SpMM kernel optimized for prefill computation. This joint format-kernel design harmonizes static and dynamic sparsity, maintaining bandwidth-efficient memory access and high compute intensity under both phases of LLM inference. Comprehensive evaluations on inference-optimized GPUs demonstrate that SPDP achieves 1.24x-1.37x average speedup (up to 2.51x) over state-of-the- art sparse frameworks such as SpInfer, while matching. perplexity with up to 25% higher sparsity. SPDP advances the inference efficiency-quality Pareto frontier, showing that unified static-dynamic pruning can deliver substantial throughput and performance-per-watt improvements in large-scale LLM serving",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, efficient。The increasing deployment of large language models (LLMs) has magnified the computational and memory bottlenecks of autoregressive...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.DC",
-            "efficient",
-            "inference",
-            "llm",
-            "pareto",
-            "prefill"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-24T05:19:41Z",
-          "url": "https://arxiv.org/abs/2607.21985",
-          "pdfUrl": "https://arxiv.org/pdf/2607.21985v1"
-        },
-        {
-          "id": "arxiv-2607.22242",
-          "title": "Agentic CPU-GPU Scheduling for Heterogeneous AI Workloads",
-          "authors": [
-            "Tianxi Lu",
-            "Sherief Reda"
-          ],
-          "summary": "Agentic AI systems compose heterogeneous tool workloads on shared GPU/CPU infrastructure, yet existing frameworks assign all GPU-capable tools to the GPU by default. We profile 19 AI tools across GPU and CPU and find that 11 are GPU-preferred, 4 are ambiguous, 1 is CPU-preferred due to PCIe transfer dominance, and 3 are device-neutral, establishing that blanket GPU-first scheduling is suboptimal. We formulate device scheduling as assigning each tool to one of three options: immediate GPU execution, queued GPU execution, or CPU offload, under a VRAM budget, and identify two runtime factors that cause end-to-end latency to diverge from static profiles: GPU utilization contention and VRAM capacity contention. We present an agentic scheduler that pairs an LLM agent with an algorithmic runtime monitor, where the monitor expands what the LLM can observe via running averages, symmetric reprobing, swap reprobing, and exploration hints, without ever prescribing which mapping to adopt. Across 13 scenarios spanning serial execution, parallel contention, and memory-constrained execution, the agentic scheduler reaches the brute-force optimal mapping in all 13 scenarios, matching the best classical baseline on mapping accuracy while avoiding bandit-style exploration over complete mappings, and outperforming HEFT, StarPU, and the all-GPU policy while requiring zero offline training.",
-          "reason": "近 30 天；关键词：cs.DC, latency, llm。Agentic AI systems compose heterogeneous tool workloads on shared GPU/CPU infrastructure, yet existing frameworks assign all GPU-c...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.DC",
-            "latency",
-            "llm",
-            "lora"
-          ],
-          "signal": 96,
-          "source": "arXiv",
-          "publishedAt": "2026-07-24T12:18:36Z",
-          "url": "https://arxiv.org/abs/2607.22242",
-          "pdfUrl": "https://arxiv.org/pdf/2607.22242v1"
-        },
-        {
-          "id": "arxiv-2607.21927",
-          "title": "RIS-Kernel: A Model-Agnostic Architecture for Long-Context LLM Inference via Sparse Attention",
-          "authors": [
-            "Anderson R. Santos"
-          ],
-          "summary": "Full self-attention in large language models scales as O(N^2), which limits long-context document analysis to 65,536 tokens and requires costly GPU clusters. The Reduced Interaction Sampling (RIS) inference engine addresses this constraint as a model-agnostic architecture. Without modifying weights, RIS reduces self-attention complexity to O(N log N) using sparse stochastic geometry that fits within commodity memory limits. We validate RIS on Qwen2-1.5B-Instruct across two regimes. In controlled evaluations at 32,768 tokens (where native dense attention serves as the upper bound), RIS-Stochastic at 1% density and 70 ensemble seeds achieves 75.00% accuracy, outperforming the native dense baseline (71.88%), while RIS-Stochastic at 5% density and 10 seeds matches it (71.88%). This demonstrates that sparse attention acts as a regularizer: low density (1%) over multiple seeds filters out sequence-level noise, whereas higher density (5%) reintroduces distractor noise. Under the tightest budget, RIS-Structural reaches 68.75% accuracy at 1% density with just 10 seeds, recovering 75% of the contextual gap relative to the zero-context floor (59.38%). At 65,536 tokens, where dense attention triggers out-of-memory faults, RIS yields retrieval gains of up to 14.06 percentage points over the zero-context floor (51.56%), which is confirmed as marginally significant under McNemar's paired test (p = 0.078 < 0.10). All evaluations run on commodity, unaccelerated CPU servers (16-128 GB of RAM), demonstrating that long-context LLM inference is feasible on standard academic hardware without GPU acceleration.",
-          "reason": "近 30 天；关键词：cs.LG, inference, llm。Full self-attention in large language models scales as O(N^2), which limits long-context document analysis to 65,536 tokens and re...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "inference",
-            "llm",
-            "retrieval"
-          ],
-          "signal": 93,
-          "source": "arXiv",
-          "publishedAt": "2026-07-24T03:00:02Z",
-          "url": "https://arxiv.org/abs/2607.21927",
-          "pdfUrl": "https://arxiv.org/pdf/2607.21927v1"
-        },
-        {
-          "id": "arxiv-2607.21670",
-          "title": "Ordered Action Tokens for Visuomotor Policy Learning",
-          "authors": [
-            "Chaoqi Liu",
-            "Yue Zhao",
-            "Haonan Chen",
-            "Xiaoshen Han",
-            "Jiawei Gao",
-            "Ehsan Adeli",
-            "Yilun Du"
-          ],
-          "summary": "Action tokenization maps continuous robot action chunks to discrete tokens and has become an important interface for modern visuomotor policies. Existing approaches either rely on analytical discretization methods that produce prohibitively long token sequences or learned latent tokenizers that lack structure, limiting their compatibility with downstream policies. In this work, we identify three desiderata for action tokenization - high compression, total decodability, and an ordered token space - and introduce Ordered Action Tokenization (OAT), a learned action tokenizer that satisfies all three. OAT discretizes action chunks into an ordered sequence of tokens using a transformer with registers, finite scalar quantization, and ordering-inducing training mechanisms. By training each token prefix to decode into a valid action chunk, OAT places coarse control information in early tokens and uses later tokens to refine residual detail, yielding an anytime tradeoff between inference cost and action fidelity. We validate OAT in two prevailing uses of action tokens: autoregressive policies that generate tokens for control, and token co-training policies that use token losses to shape the vision-language model context consumed by a flow-based action expert. Across three policy backbones and more than 60 tasks spanning five simulation benchmarks and real-world settings, OAT consistently delivers strong policy performance while offering significantly greater flexibility at inference time.",
-          "reason": "近 30 天；关键词：cs.RO, inference, quantization。Action tokenization maps continuous robot action chunks to discrete tokens and has become an important interface for modern visuom...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.RO",
-            "inference",
-            "quantization"
-          ],
-          "signal": 90,
-          "source": "arXiv",
-          "publishedAt": "2026-07-23T07:04:51Z",
-          "url": "https://arxiv.org/abs/2607.21670",
-          "pdfUrl": "https://arxiv.org/pdf/2607.21670v1"
-        },
-        {
-          "id": "arxiv-2607.22300",
-          "title": "Biomedical Machine Translation for Low-Resource Arabic-Script Languages via Cross-Lingual Transfer and LoRA Adapter Merging",
-          "authors": [
-            "Abdullah Alabdullah",
-            "Arash Eslamighayour",
-            "Sarp Harbalioglu",
-            "Lifeng Han"
-          ],
-          "summary": "We present a systematic study of healthcare-domain cross-lingual transfer to address the scarcity of biomedical NMT resources for Arabic-script languages. We use Arabic and Persian as higher-resource pivots to improve translation for \\textbf{four severely low-resource} targets: Dari (Afghan Persian, a standardised variety of Persian), Pashto, Sorani Kurdish (Central Kurdish, a major standardized variety of Kurdish), and Urdu (closely related to Hindi). Using LoRA fine-tuning on small decoder-only LLMs, we train \\textit{domain-specific pivot adapters} and evaluate \\textbf{three transfer strategies}: few-shot in-context learning, minimal supervised adaptation, and, to the best of our knowledge, for the first time in this setting, zero-data LoRA adapter merging. Supervised adaptation with just 500 sentences achieves near pivot-language quality for Dari (CHrF++ 41.01) and meaningful gains for Urdu (28.88), while adapter merging reaches within 3.5 CHrF++ of supervised adaptation for Dari at zero additional cost. Pashto and Sorani Kurdish remain insufficient for high-stakes clinical deployment exposing the limits of cross-lingual transfer when structural distance from the pivots is too great. LoRA adapter merging works surprisingly well for closely related languages, even without target-language biomedical data.",
-          "reason": "近 30 天；关键词：cs.CL, llm, lora。We present a systematic study of healthcare-domain cross-lingual transfer to address the scarcity of biomedical NMT resources for...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "llm",
-            "lora"
-          ],
-          "signal": 86,
-          "source": "arXiv",
-          "publishedAt": "2026-07-24T13:44:50Z",
-          "url": "https://arxiv.org/abs/2607.22300",
-          "pdfUrl": "https://arxiv.org/pdf/2607.22300v1"
         }
       ]
     }

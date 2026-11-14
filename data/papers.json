@@ -1,272 +1,263 @@
 {
-  "generatedAt": "2026-11-13T10:15:29.075713+08:00",
+  "generatedAt": "2026-11-14T09:53:46.795799+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2611.14935",
-      "title": "Do Large Language Models Show Racial and Sex Bias in Pain Management? A Counterfactual Audit of GPT, Claude, Gemini, Llama, DeepSeek and Qwen",
+      "id": "arxiv-2611.17226",
+      "title": "Sheaf-Inspired Structured Scoring Extensions of LightGCN for Collaborative Filtering",
       "authors": [
-        "Richard J. Young",
-        "Alice M. Matthews"
+        "Ksenia Belkovskaya",
+        "Timur Lidzhiev",
+        "Maria Stebliy",
+        "Alexander Tarakanov"
       ],
-      "summary": "Racial and ethnic minority patients receive less pain treatment than non-Hispanic White patients, and large language models (LLMs) used as medical AI could reproduce that bias. Prior audits tested a few proprietary models, stated race explicitly and rarely measured the models' own response instability. In exploratory, non-preregistered analyses, Study 1 had four open-weight LLMs assess six acute-pain vignettes in every combination of four races and two sexes, with identity stated or cued only by a name (two names per group), comparing each identity with a White male reference on the same case and sampling seed. In Study 2, 24 configurations of 17 models, including OpenAI's GPT-4.1 mini and gpt-oss, Anthropic's Claude Haiku 4.5, Google's Gemini 2.5 Flash, Meta's Llama, DeepSeek and Qwen, with reasoning on and off and at two precisions, answered the same vignettes and the 50 clinician-written Q-Pain cases. In this single-prompt, JSON-constrained task, no difference survived correction in Study 1, none of 1,386 comparisons survived the false discovery rate in Study 2, and every pain-severity difference was equivalent to zero within one point on a 0-10 scale (within a quarter point for 237 of 238 Q-Pain comparisons). Opioid decisions were bounded less precisely (Study 1 could not exclude differences of about 20 percentage points), so they show no detected difference, not proof of none. The few differences surviving correction within a model favoured Black patients. Models differed far more from one another and across their own settings than between patients (the reference patient received the high opioid dose in 6% to 93% of responses), although serving software, provider and prompt format also differed. Fairness audits of clinical AI should use several names per group, pair comparisons on the seed, report the noise floor and test each deployed configuration.",
-      "reason": "近 30 天；公司信号：Alibaba, Anthropic, Google；关键词：alibaba, anthropic, google。Racial and ethnic minority patients receive less pain treatment than non-Hispanic White patients, and large language models (LLMs)...",
-      "area": "LLM 推理优化",
+      "summary": "Graph-based collaborative filtering learns user and item representations by propagating embeddings over a user--item interaction graph. We investigate a modular, sheaf-inspired scoring extension placed on top of a three-layer LightGCN backbone. The motivation comes from cellular sheaves, where local vector spaces are related by linear restriction maps; here, this idea motivates structured, pair-dependent transformations of user and item embeddings rather than a change to graph propagation. We compare the identity inner-product scorer, diagonal, rank-one low-rank, and full matrix residual scorers, and a parameter-matched residual MLP baseline (\\texttt{mlp\\_full}) on Amazon-Book, Gowalla, MovieLens-1M, and Yelp2018. We report ranking quality and catalog coverage at cutoffs 10 and 20. The selected structured variants show modest, dataset-dependent changes in ranking quality and sometimes substantial changes in coverage. Our method is inspired by sheaf geometry but does not construct a cellular sheaf or implement sheaf-Laplacian diffusion; the experiments therefore do not establish a causal benefit from sheaf geometry itself.",
+      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Graph-based collaborative filtering learns user and item representations by propagating embeddings over a user--item interaction g...",
+      "area": "推荐算法",
       "tags": [
-        "alibaba",
-        "anthropic",
-        "google",
-        "meta",
-        "openai",
-        "cs.CL",
-        "deployed"
+        "amazon",
+        "cs.IR",
+        "dataset",
+        "ranking"
       ],
       "signal": 99,
-      "source": "Alibaba/Anthropic/arXiv",
-      "publishedAt": "2026-11-11T02:35:53Z",
-      "url": "https://arxiv.org/abs/2611.14935",
-      "pdfUrl": "https://arxiv.org/pdf/2611.14935v1"
+      "source": "Amazon/arXiv",
+      "publishedAt": "2026-11-12T18:20:22Z",
+      "url": "https://arxiv.org/abs/2611.17226",
+      "pdfUrl": "https://arxiv.org/pdf/2611.17226v1"
     },
     {
-      "id": "arxiv-2611.14904",
-      "title": "SubGPU Pipelining: Intra-GPU Fine-Grained Spatial Parallelism for LLM Inference",
+      "id": "arxiv-2611.17108",
+      "title": "LazyWeights: Decode-on-Demand Edge LLMs",
       "authors": [
-        "Muralidhar Andoorveedu",
-        "Marius Juston",
-        "Tingkai Liu",
-        "Sanjay Patel"
+        "Arnab Sanyal",
+        "Gourav Datta",
+        "Sandeep P. Chinchali"
       ],
-      "summary": "Large language model (LLM) decode is dominated by short, predominantly memory-bound kernels that make bursty use of on-chip execution resources and memory bandwidth. This paper introduces SubGPU Pipelining, a fine-grained, intra-GPU spatial execution model that cuts an operator graph into ordered contiguous segments, binds those segments to spatial stages backed by disjoint streaming-multiprocessor (SM) pools, and streams microbatches through the resulting schedule. Selecting the graph cuts, segment-to-stage binding, per-stage SM allocation, and microbatch size is a coupled optimization problem: each choice changes the overlap pattern, shared-resource contention, cache state, and execution times of the others. We evaluate SubGPU Pipelining through both simulation and silicon experiment using the GPT-OSS 120B workload with 32-GPU B200 deployment settings. The analytical shared-resource simulator searches across SubGPU pipeline structures and batch sizes to map the per-user/per-GPU throughput Pareto frontier. At matched per-GPU throughput, the modeled SubGPU frontier provides up to 2.2x higher per-user throughput than temporal execution, and at matched per-user throughput it provides up to 1.9x higher per-GPU throughput. To test physical feasibility and further validate the simulation results, silicon experiments are performed, using one B200 GPU to emulate a 32-GPU B200 deployment. The experiment evaluates one selected two-stage pipeline configuration at global batch 2,048 using CUDA Green Contexts and TensorRT-LLM kernels. Results show that SubGPU Pipelining improves mean DRAM read-plus-write throughput from 71.8% to 83.6% of peak, and reduces the 36-layer decoder iteration time by 10.33%.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, inference。Large language model (LLM) decode is dominated by short, predominantly memory-bound kernels that make bursty use of on-chip execut...",
+      "summary": "Memory decides which LLMs an edge device runs, and how fast: capacity on a $4$ GB Jetson Nano, bandwidth on an $8$ GB Jetson Orin Nano Super. Deployed formats (GPTQ, AWQ, $\\texttt{llama.cpp}$'s K- and I-quants) spend equal bits on every integer code of a matrix, although the codes are far from uniform. $\\texttt{LazyWeights}$ keeps these formats but tunes GPTQ so the codes compress, Huffman-codes them losslessly in interleaved lanes, and decodes them on demand in a small unit between DRAM and L2, so GPU kernels run unchanged and DRAM moves only coded bytes. At $1\\%$ and $3.5\\%$ perplexity budgets, coded Phi-3-mini, Mistral-7B and SmolLM-1.7B are $5.7-31.4\\%$ smaller than the best $\\texttt{llama.cpp}$ format. A bit-exact $0.21$ mm$^2$ ASIC decoder unit ($1$ GHz, $7$ nm) cuts Orin latency and energy per token by up to $36\\%$ and $38\\%$ ($54\\%$ and $44\\%$ with prompt-lookup speculation). On the Nano, $\\texttt{LazyWeights}$ needs $58-64\\%$ less time and $53-57\\%$ less energy per token than CPU $\\texttt{llama.cpp}$, and runs a streamed Mistral-7B 6.6$\\times$ faster at $3.89$ bits per weight. A Huffman decoder beats an rANS decoder in rate and area at equal throughput; the ASIC decoder unit runs bit-exact on a Zynq UltraScale+ FPGA (AMD ZCU102).",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, deployed。Memory decides which LLMs an edge device runs, and how fast: capacity on a $4$ GB Jetson Nano, bandwidth on an $8$ GB Jetson Orin...",
       "area": "LLM 推理优化",
       "tags": [
-        "nvidia",
-        "cs.DC",
-        "inference",
+        "meta",
+        "cs.LG",
+        "deployed",
+        "energy",
+        "latency",
         "llm",
-        "pareto",
         "throughput"
       ],
       "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-11-11T01:51:44Z",
-      "url": "https://arxiv.org/abs/2611.14904",
-      "pdfUrl": "https://arxiv.org/pdf/2611.14904v1"
-    },
-    {
-      "id": "arxiv-2611.14848",
-      "title": "Tideway: Phase-Aware Tiered Memory Management for MoE Inference on Consumer Devices",
-      "authors": [
-        "Yifei Wang",
-        "Tsun-yu Yang",
-        "Yechen Xu",
-        "Hancheng Ye",
-        "Qinsi Wang",
-        "Baijun Zhou",
-        "Tingjun Chen",
-        "Hai \"Helen\" Li",
-        "Danyang Zhuo",
-        "Yiran Chen"
-      ],
-      "summary": "Large language model (LLM) agents are rapidly becoming a dominant paradigm for AI applications. Recently, there is a growing demand to deploy large-scale Mixture-of-Experts (MoE) models locally on consumer PCs to balance data privacy, API costs, and inference efficiency. However, unlike datacenter servers with abundant DRAM, consumer devices are tightly constrained in both GPU VRAM and host RAM, forcing massive MoE weights to spill across VRAM, host RAM, and SSD. Under such spilling, we observe that existing systems fail to fully utilize this memory hierarchy, treating the tiers as independent caches and thrashing in inference. We present TIDEWAY, a system for efficient inference of large MoE models on memory-constrained consumer devices. Our core insight is to manage host RAM and GPU VRAM as a unified memory pool. Within this pool, TIDEWAY couples phase-aware memory layouts, which adapt to the distinct access patterns of prefill and decode, with an execution engine that optimizes CUDA Graph execution under expert paging. Our evaluations on representative consumer hardware with frontier MoE models demonstrate that TIDEWAY significantly outperforms state-of-the-art systems. On average, TIDEWAY achieves speedups of 1.97x in end-to-end latency and 2.40x in Time-to-First-Token (TTFT), along with 1.61x higher decode throughput against the fastest baseline. Our source code is publicly available at https://github.com/Afterglow231/Tideway .",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.OS, efficient。Large language model (LLM) agents are rapidly becoming a dominant paradigm for AI applications. Recently, there is a growing deman...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
-        "cs.OS",
-        "efficient",
-        "inference",
-        "latency",
-        "llm",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-11-10T23:58:36Z",
-      "url": "https://arxiv.org/abs/2611.14848",
-      "pdfUrl": "https://arxiv.org/pdf/2611.14848v1"
-    },
-    {
-      "id": "arxiv-2611.14844",
-      "title": "AutoAssumption: Searching over Assumptions Discovers ML-Systems Algorithms",
-      "authors": [
-        "Igor Sadalski",
-        "Minghao Guo",
-        "Benjamin Jones",
-        "Wojciech Matusik"
-      ],
-      "summary": "Many advances in ML systems came from breaking an assumption that earlier methods took for granted: speculative decoding dropped the assumption that a model needs one forward pass per token. Yet algorithms rarely state their assumptions, so experts and discovery harnesses search over programs, where one edit changes several design choices and gains are difficult to attribute. Searching over the assumptions themselves remains largely unexplored. Writing algorithms as proofs makes their assumptions explicit and turns algorithm design into a search over a small, structured space that an LLM can explore and a proof checker can audit. We formalize 89 algorithms from KV-cache eviction, weight pruning and speculative decoding as proof graphs with explicit assumptions, checked in Lean. Our harness, AutoAssumption, relaxes one assumption of a published method, re-derives and re-proves it, and generates its code. In KV-cache eviction and weight pruning, this search improved on every published algorithm we ran and produced state-of-the-art algorithms. The eviction algorithm has the highest RULER-4K score of the published methods we ran, and the pruning algorithm the lowest perplexity of thirteen on four LLaMA models. At equal budget, the harness scores within a point of OpenEvolve, an open-source implementation of AlphaEvolve, with a lower standard deviation across repeats. Future work will formalize more fields and combine them through the principal assumptions they share.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.AI, llm。Many advances in ML systems came from breaking an assumption that earlier methods took for granted: speculative decoding dropped t...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "cs.AI",
-        "llm",
-        "speculative"
-      ],
-      "signal": 99,
       "source": "Meta/arXiv",
-      "publishedAt": "2026-11-10T23:54:02Z",
-      "url": "https://arxiv.org/abs/2611.14844",
-      "pdfUrl": "https://arxiv.org/pdf/2611.14844v1"
+      "publishedAt": "2026-11-12T17:03:40Z",
+      "url": "https://arxiv.org/abs/2611.17108",
+      "pdfUrl": "https://arxiv.org/pdf/2611.17108v1"
     },
     {
-      "id": "arxiv-2611.14838",
-      "title": "Sophon: A Procedural Diagnostic for Spatial Reasoning in Vision-Language Models",
+      "id": "arxiv-2611.17097",
+      "title": "Broadcast, Don't Replicate: Eliminating Weight HBM in Datacenter LLM Serving",
       "authors": [
-        "J. Zach Gazak",
-        "Ryan Swindle",
-        "Justin Fletcher"
+        "Hannah Atmer",
+        "Yuan Yao",
+        "Thiemo Voigt",
+        "Stefanos Kaxiras"
       ],
-      "summary": "Open-weight Vision-Language Models (VLMs) score 85-94% on spatial benchmarks (BLINK Spatial, What's Up CLEVR) yet collapse to chance on simple geometric questions when object, scene, and texture priors are stripped away. We introduce and open-source Sophon, a procedurally generated diagnostic of paired colored point-cloud stimuli across three coordinate systems (1D linear, 2D Cartesian, 2D polar) and four question types (binary, categorical, comparative, quantitative). Across four open architectures (LLaVA-NeXT, LLaVA-OneVision, Qwen2.5-VL, Idefics3), accuracy clusters at 47-52% while frontier models (Opus 4.6, Gemini 2.5 Pro, GPT-5.4) clear 77-83% and humans reach 84-94%. We use linear probes and low-rank adaptation (LoRA) to trace the open-weight failures. Probes of the vision encoder (ViT) and language decoder (LLM) recover Sophon spatial information at 83-85% and 80-86% accuracy, respectively, and the language tower's reasoning circuit answers text-only controls (point clouds as sets of coordinates) at +40 pp over visual stimuli. Language tower per-layer attention attribution localizes visual integration to mid-stack layers. At readout, models elevate the correct answer-set tokens but select among them randomly. We localize the mechanism by tuning individual and grouped components across every architecture's stack, including the vision tower (ViT workspace and reader), the projector, and the language tower (LLM workspace and reader). These experiments demonstrate that this mid-stack workspace holds circuitry capable of organizing the spatial signal so that the frozen reader can decode it. LoRA fine-tuning adjusts that circuitry such that 7B-class VLMs answer Sophon spatial reasoning questions at frontier aggregate accuracy. This work suggests that these models do not have a capability gap for spatial reasoning but suffer from a routing bottleneck that targeted fine-tuning repairs.",
-      "reason": "近 30 天；公司信号：Google；关键词：google, cs.CV, llm。Open-weight Vision-Language Models (VLMs) score 85-94% on spatial benchmarks (BLINK Spatial, What's Up CLEVR) yet collapse to chan...",
+      "summary": "Large language model (LLM) inference at datacenter scale is fundamentally bottlenecked by memory capacity and bandwidth limits. Because model weights are read-only and identical across instances, conventional architectures that replicate these parameters across the local DRAM of tens of thousands of accelerators incur massive capital expenditures, significant static power dissipation, and redundant memory-fetch energy. A recent proposal to use optical fiber loops as delay-line memory alleviates these issues, but its recirculating loop must hold the whole model: loop length grows with model size, slack is fixed when the ring is built, and the layouts that serve modern Mixture of Experts (MoE) models efficiently do not fit in it. We propose Optical Broadcast Memory (OBM), an open-ended hierarchical Tap-and-Amplify fiber architecture that generalizes and replaces the optical ring paradigm. A centralized memory server continuously broadcasts weights to distributed inference nodes that passively tap the data stream using receive-only co-packaged optics, delivering parameters directly to compute units without intermediate buffering. To overcome the limitations of continuous weight streaming, we use dynamically-sized slack to accommodate large and variable context lengths. We show how removing the restrictions of the optical ring allows OBM to efficiently serve MoE models. Evaluated at a datacenter scale of 80,000 accelerators, OBM eliminates petabytes of HBM while being competitive or better in throughput and energy per token than an HBM-based system.",
+      "reason": "近 30 天；关键词：cs.AR, efficient, energy。Large language model (LLM) inference at datacenter scale is fundamentally bottlenecked by memory capacity and bandwidth limits. Be...",
       "area": "LLM 推理优化",
       "tags": [
-        "google",
-        "cs.CV",
+        "cs.AR",
+        "efficient",
+        "energy",
+        "inference",
         "llm",
-        "lora"
-      ],
-      "signal": 99,
-      "source": "Google/arXiv",
-      "publishedAt": "2026-11-10T23:40:14Z",
-      "url": "https://arxiv.org/abs/2611.14838",
-      "pdfUrl": "https://arxiv.org/pdf/2611.14838v1"
-    },
-    {
-      "id": "arxiv-2611.13607",
-      "title": "One Byte, One Token: Byteifying a 27B Hybrid-Attention LLM with Self-Generated Data",
-      "authors": [
-        "Liwei Zhang",
-        "ZhiMing Tong"
-      ],
-      "summary": "Byte-level BPE fragments Chinese text (for Qwen3.8 on Chinese Wikipedia, 3.84 bytes per token on average; 64% of tokens are single characters) and hides spelling from the model. We ask whether an already-trained 27B subword model can be converted directly into a pure byte-level model (one byte, one token), without a patching structure or a local encoder, while keeping most of its ability. Starting from Qwen3.8-27B (48 Gated DeltaNet layers + 16 full-attention layers), we shrink the vocabulary from 248,320 to 384 entries (the 256 byte symbols already in the BPE vocabulary plus special ids), leave every other weight untouched, and continue training in a two-stage curriculum (encoding first, then reading) on 4.77 GB of supervised bytes: all dialogue/behavioral supervision is generated on-policy by the original model itself (character dictionary, word dictionary, general dialogue, coding sessions), and knowledge reading uses encyclopedia text (54% of supervised bytes). Training takes 178.6 h on 8xH200. On the same GPU and serving stack, the byte model's gap to the original falls within the paired bootstrap interval on MATH-500, HumanEval+, MMLU-Pro and non-thinking GSM8K, and it loses 4-6 points on C-Eval, thinking-mode GSM8K and non-thinking IFEval. Without thinking it leads on every character-level task (CUTE 75.2 -> 84.0, EXECUTE-zho 81.6 -> 93.9, our Chinese character suite 54.4 -> 64.0), but lookup knowledge about Chinese characters such as pronunciation and stroke count drops, and thinking does not recover it. The cost is throughput: per-step speed is identical, but each step yields 3-5x less output; Chinese characters per second is about 1/4 of the original, and prefill at 64K bytes is 6.5x slower. We also document four byte-model failure modes (greedy runaway, sampling breaking UTF-8, ineffective penalty terms on a small vocabulary, repetition) and their fixes.",
-      "reason": "近 30 天；关键词：cs.CL, llm, prefill。Byte-level BPE fragments Chinese text (for Qwen3.8 on Chinese Wikipedia, 3.84 bytes per token on average; 64% of tokens are single...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "llm",
-        "prefill",
         "serving",
-        "slo",
         "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-10T05:33:41Z",
-      "url": "https://arxiv.org/abs/2611.13607",
-      "pdfUrl": "https://arxiv.org/pdf/2611.13607v1"
+      "publishedAt": "2026-11-12T16:58:07Z",
+      "url": "https://arxiv.org/abs/2611.17097",
+      "pdfUrl": "https://arxiv.org/pdf/2611.17097v1"
     },
     {
-      "id": "arxiv-2611.13578",
-      "title": "POEM: Output-Relative Block-Sparse Attention for Long-Context Prefilling",
+      "id": "arxiv-2611.16795",
+      "title": "KuaiRecV2: Benchmarking Large-Scale Continual Learning for Diversified and Multi-task Recommendation",
       "authors": [
-        "Haoyi Wu",
-        "Yunkai Dang",
-        "Wanyu Zhang",
-        "Lei Wang",
-        "Wenbin Li"
+        "Chenxu Li",
+        "Shuchang Liu",
+        "Hantao Shu",
+        "Wei Yuan",
+        "Zhe Xu",
+        "Guoqing Hu",
+        "Yan Wang",
+        "Biao Yang",
+        "Xiang Li",
+        "Cheng Ling",
+        "Fan Yang",
+        "Yongqi Liu",
+        "Lantao Hu",
+        "Han Li",
+        "Kaiqiao Zhan",
+        "Kun Gai",
+        "An Zhang",
+        "Xiang Wang"
       ],
-      "summary": "Large language models (LLMs) have shown strong capabilities across diverse applications, making both safety and utility essential for reliable deployment. Jailbreak attacks use diverse forms of adversarial prompting to bypass alignment safeguards and induce LLMs to generate harmful responses. Some representation-based defenses regulate internal activations using predefined steering directions or learned safety regions. However, adapting intervention to each input without a predefined representational target while limiting over-refusal remains a challenge. In this paper, we propose Target-free Entropy-guided Residual Modulation (TERM), an inference-time defense that uses prompt-calibrated attention entropy deviations to guide adaptive modulation of the model's own residual updates. Attention patterns vary across prompts and decoding steps, making raw entropy values difficult to interpret as a consistent signal for intervention. We therefore calibrate attention entropy against each prompt's own prefill baseline to establish an input-specific reference for reducing unnecessary intervention on benign requests. Adaptive scale normalization and temporal accumulation then account for differences in deviation scale and persistence to determine intervention strength. The resulting signal controls bounded scaling of the model's own residual updates, without relying on a predefined safety direction. We compare our method with seven defenses on seven jailbreak attacks and two over-refusal benchmarks across Llama, Qwen, and Gemma models, including Qwen3 models from 0.6B to 32B. Results show our method improves jailbreak robustness while maintaining low over-refusal on benign safety-sensitive requests with modest inference overhead.",
-      "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.CR。Large language models (LLMs) have shown strong capabilities across diverse applications, making both safety and utility essential...",
-      "area": "LLM 推理优化",
+      "summary": "Recommender systems, which retrieve items of interest to users based on their interaction histories, have recently witnessed several key technological advancements, benefiting from the semantic representation space and model-data scaling. Nevertheless, practitioners and researchers have frequently encountered critical inconsistencies between simple offline evaluations and complex online results, and this gap still exists in the era of large models. In this work, we address several key factors that contribute to this inconsistency: 1) the \\textit{large-scale continual learning challenge} that assumes a practical demand to maintain long-term model effectiveness under dynamic item pools and distributional shifts; 2) the \\textit{combinatorial diversity challenge} that requires the generation strategy to solve the accuracy-diversity trade-off in both the finer token level and the holistic item level; and 3) the \\textit{multi-task reward balancing challenge}, which is particularly critical for modern generative models that can accurately model the sequence distribution but are less controllable for the multi-task demands. To address these challenges and further pave the way for the development of more realistic recommendation solutions, we introduce KuaiRecV2, a deliberately constructed benchmark with industrial-level datasets from Kuaishou. Specifically, we provide a large-scale interaction dataset with million-scale multi-modal item information and long-term interaction records across 30 days, with a dynamic video candidate pool. Additionally, we provide a rigorous benchmark that evaluates retrieval accuracy, diversity, and multi-task performance in one rubric system, where an effective advancement occurs if and only if the new method improves all metrics. The code is available at https://github.com/cxli2333/KuaiRecV2",
+      "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, dataset。Recommender systems, which retrieve items of interest to users based on their interaction histories, have recently witnessed sever...",
+      "area": "推荐算法",
       "tags": [
-        "alibaba",
-        "meta",
-        "cs.CR",
-        "alignment",
-        "inference",
-        "llm",
-        "prefill"
+        "kuaishou",
+        "cs.IR",
+        "dataset",
+        "industrial",
+        "recommendation",
+        "recommender",
+        "retrieval"
       ],
       "signal": 99,
-      "source": "Alibaba/Meta/arXiv",
-      "publishedAt": "2026-11-10T04:52:58Z",
-      "url": "https://arxiv.org/abs/2611.13578",
-      "pdfUrl": "https://arxiv.org/pdf/2611.13578v1"
+      "source": "Kuaishou/arXiv",
+      "publishedAt": "2026-11-12T13:39:12Z",
+      "url": "https://arxiv.org/abs/2611.16795",
+      "pdfUrl": "https://arxiv.org/pdf/2611.16795v1"
     },
     {
-      "id": "arxiv-2611.13577",
-      "title": "TERM: Target-Free Jailbreak Defense via Entropy-Guided Residual Modulation",
+      "id": "arxiv-2611.16714",
+      "title": "Towards Green Text Generation: Memory-Based Speculative Decoding",
       "authors": [
-        "Yunkai Dang",
-        "Wanyu Zhang",
-        "Meiyi Zhu",
-        "Qi Fan",
-        "Tianyu Ding",
-        "Wenbin Li"
+        "Antal van den Bosch"
       ],
-      "summary": "Large language models (LLMs) have shown strong capabilities across diverse applications, making both safety and utility essential for reliable deployment. Jailbreak attacks use diverse forms of adversarial prompting to bypass alignment safeguards and induce LLMs to generate harmful responses. Some representation-based defenses regulate internal activations using predefined steering directions or learned safety regions. However, adapting intervention to each input without a predefined representational target while limiting over-refusal remains a challenge. In this paper, we propose Target-free Entropy-guided Residual Modulation (TERM), an inference-time defense that uses prompt-calibrated attention entropy deviations to guide adaptive modulation of the model's own residual updates. Attention patterns vary across prompts and decoding steps, making raw entropy values difficult to interpret as a consistent signal for intervention. We therefore calibrate attention entropy against each prompt's own prefill baseline to establish an input-specific reference for reducing unnecessary intervention on benign requests. Adaptive scale normalization and temporal accumulation then account for differences in deviation scale and persistence to determine intervention strength. The resulting signal controls bounded scaling of the model's own residual updates, without relying on a predefined safety direction. We compare our method with seven defenses on seven jailbreak attacks and two over-refusal benchmarks across Llama, Qwen, and Gemma models, including Qwen3 models from 0.6B to 32B. Results show our method improves jailbreak robustness while maintaining low over-refusal on benign safety-sensitive requests with modest inference overhead.",
-      "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.CR。Large language models (LLMs) have shown strong capabilities across diverse applications, making both safety and utility essential...",
+      "summary": "Speculative decoding accelerates text generation with large language models by letting a cheap draft model propose tokens that a large verifier checks in a single forward pass. We introduce Olifant, a draft model built on a memory-based classifier. It predicts the next token from a four-token window in under 0.3 ms on CPU, requiring no GPU, no backpropagation, and no accelerator memory. We measure throughput and energy under two verifier regimes on consumer hardware. Without a KV cache, drafting is nearly free: a domain-matched Olifant model reaches 38.1% acceptance on EU legal text, delivering 2.43x throughput and 2.51x lower energy per token than the neural verifier model alone. With a KV-cached verifier, itself a ~10x energy saver, drafting costs matter: a TinyLlama draft model halves throughput and triples energy despite high acceptance, whereas Olifant still yields 1.25x throughput and the lowest energy in the study (93 J per 100 tokens, 14x below the uncached baseline). We further show that KV caching decouples time from energy: verification of longer drafts raises power draw, shifting the energy-optimal draft length below the speed-optimal one. Speculative decoding is not dead in the age of fast verifiers, provided drafting is nearly free.",
+      "reason": "近 30 天；关键词：cs.CL, energy, kv-cache。Speculative decoding accelerates text generation with large language models by letting a cheap draft model propose tokens that a l...",
       "area": "LLM 推理优化",
       "tags": [
-        "alibaba",
-        "meta",
-        "cs.CR",
-        "alignment",
-        "inference",
-        "llm",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "Alibaba/Meta/arXiv",
-      "publishedAt": "2026-11-10T04:52:10Z",
-      "url": "https://arxiv.org/abs/2611.13577",
-      "pdfUrl": "https://arxiv.org/pdf/2611.13577v1"
-    },
-    {
-      "id": "arxiv-2611.13509",
-      "title": "Mobile AI Factory: Building Specialized Language Models for Your Mobile Device",
-      "authors": [
-        "Evan Li",
-        "Krishna Deshpande",
-        "Wen Cheng",
-        "Shyamnath Gollakota"
-      ],
-      "summary": "Small language models (SLMs) running on mobile devices can keep user data private and work without connectivity. But they perform well only when fine-tuned for the target task and sized for the target device, a process that today requires repeated expert tuning. We present {\\it Mobile AI Factory}, an agentic system that builds a fine-tuned, quantized SLM for a given task and phone. Given a task specification and a target phone, an orchestrator LLM chooses whether to tune hyperparameters, mine real data, or generate synthetic examples, while fixed rules roll back changes that hurt accuracy. The factory searches from small to large models across base models and quantizations, adapts its accuracy goal as it searches, and uses real measurements of the target phone across inference engines and backends. We evaluate Mobile AI Factory on ten tasks and four Android phones. On an unseen testset, its on-device models outperform two five-shot frontier models on five tasks, by up to 0.34, and match them on three more. Its search comes within 0.03 of exhaustively training all 27 model variants on an entity extraction task, while using 19$\\times$ less GPU time. Phone measurements also matter: the best configuration changes across phones. Without phone measurements, Claude Opus 5.5, given the full hardware and model specifications, misses the app's requirements in 25\\% of easy and moderate cases and in 60\\% of hard ones. Code is available at: https://github.com/evanly-gh/SLM_Factory.",
-      "reason": "近 30 天；公司信号：Anthropic；关键词：anthropic, cs.CL, inference。Small language models (SLMs) running on mobile devices can keep user data private and work without connectivity. But they perform...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "anthropic",
         "cs.CL",
-        "inference",
-        "llm",
-        "quantization"
-      ],
-      "signal": 99,
-      "source": "Anthropic/arXiv",
-      "publishedAt": "2026-11-10T03:29:29Z",
-      "url": "https://arxiv.org/abs/2611.13509",
-      "pdfUrl": "https://arxiv.org/pdf/2611.13509v1"
-    },
-    {
-      "id": "arxiv-2611.13442",
-      "title": "ForeSpark: Joint Draft and Verification Budget Scheduling for Parallel Speculative Decoding",
-      "authors": [
-        "Jaeyong Song",
-        "Daniel Wang",
-        "Pratyush Patel",
-        "Jonny Kong",
-        "Preyas Shah",
-        "Shobhit Kanaujia"
-      ],
-      "summary": "Parallel drafters accelerate LLM decoding by proposing a whole block of draft tokens in a single forward pass, making them attractive for LLM serving. Recent systems optimize goodput (i.e., accepted tokens per second) because rejected drafts steal compute from other requests. However, these systems control only how many tokens are verified, so every request still drafts a full block. At high serving load, we find that drafting consumes up to 40% of step time, of which a majority is discarded because it is never verified. Yet, draft-length control from autoregressive drafters does not carry over, because a parallel drafter commits to its length before its single pass. Moreover, draft and verification lengths are coupled across the batch, so they must be selected jointly for every request while keeping the decision computationally cheap at every step. In this paper, we propose work-conserving speculation (WCS), a design that jointly allocates draft and verification budgets per request in LLM serving, and present ForeSpark as its prototype. ForeSpark realizes WCS with (i) a context-aware pre-draft estimator that predicts acceptance for every candidate length from the target model's context features, (ii) a lightweight joint draft-verify scheduler that selects both lengths through a global sort, and (iii) a post-draft budget distribution that spends verification on the most promising tokens. Implemented on vLLM, ForeSpark improves throughput by up to 1.77x over the state-of-the-art DSpark and by 2.49x over autoregressive decoding at a matched per-request generation rate, without changing the output distribution. It also tolerates higher load, sustaining up to 1.51x the request rate of DSpark under latency service level objectives (SLOs).",
-      "reason": "近 30 天；关键词：cs.DC, latency, llm。Parallel drafters accelerate LLM decoding by proposing a whole block of draft tokens in a single forward pass, making them attract...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "latency",
-        "llm",
-        "serving",
-        "slo",
+        "energy",
+        "kv-cache",
         "speculative",
         "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-10T01:37:38Z",
-      "url": "https://arxiv.org/abs/2611.13442",
-      "pdfUrl": "https://arxiv.org/pdf/2611.13442v1"
+      "publishedAt": "2026-11-12T12:32:14Z",
+      "url": "https://arxiv.org/abs/2611.16714",
+      "pdfUrl": "https://arxiv.org/pdf/2611.16714v1"
+    },
+    {
+      "id": "arxiv-2611.16375",
+      "title": "Recursive State-Augmented Language Models: Persistent Latent-State Adaptation of Pretrained Language Models",
+      "authors": [
+        "Omer Haq"
+      ],
+      "summary": "Language models rely on finite token contexts, limiting access to earlier interactions. We introduce Recursive State-Augmented Language Models (Recursive SALM), a framework in which a persistent latent state evolves with each observation and generates adaptations of a pretrained language model. A modular read-transition-write architecture separates observation encoding, latent dynamics, and predictor adaptation. We develop deterministic and stochastic formulations. The experiments evaluate only deterministic SALM with frozen GPT-2 small and exclude earlier evidence from its decoder context. On a four-turn hypothesis-inference task, latent-gated LoRA reaches 89.1% accuracy, comparable to 88.0% for a trained full-context LoRA baseline, with earlier evidence available solely through a 64-dimensional state. Zeroing or shuffling the state substantially reduces accuracy. In a two-turn task with codewords unseen in training, several interfaces improve candidate ranking over chance, but rarely generate the exact codeword under the evaluated training schedule. These experiments show that persistent latent-conditioned adaptation can support sequential inference when earlier evidence is absent from the decoder context.",
+      "reason": "近 30 天；关键词：cs.LG, inference, lora。Language models rely on finite token contexts, limiting access to earlier interactions. We introduce Recursive State-Augmented Lan...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "lora",
+        "ranking"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-12T06:42:54Z",
+      "url": "https://arxiv.org/abs/2611.16375",
+      "pdfUrl": "https://arxiv.org/pdf/2611.16375v1"
+    },
+    {
+      "id": "arxiv-2611.16219",
+      "title": "GC-MoE on SM120: Overlapping Expert-Parallel Token Dispatch with Warp-Level FP8xFP4 Block-Scaled MMA on Consumer Blackwell",
+      "authors": [
+        "Yong Li",
+        "Haoyu Wang",
+        "Kan Liu",
+        "Tao Lan"
+      ],
+      "summary": "Expert-parallel Mixture-of-Experts decoding is latency bound: each layer serializes a token exchange, a grouped GEMM over routed experts, and a combine, while only a few tokens per rank are in flight. Prior GC-MoE fused these phases into one persistent, Green-Context-partitioned CUDA Graph on Hopper (SM90) and datacenter Blackwell (SM100). This paper rebuilds the operator for SM120 (compute capability 12.0, e.g. RTX PRO 5000) over PCIe. SM120 exposes block-scaled tensor cores only through warp-level mma.sync.aligned.kind::mxf8f6f4: no tensor memory, no two-CTA MMA, no cluster multicast. We rebuild the kernel around a swap-AB warp-level block-scaled MMA with FP4 weights in the register A operand and FP8 activations in B, plus SM120-specific mechanisms: scale-byte selection through MMA immediates, a compact-weights path, an adaptive token-tile geometry, an expert-granular streaming dispatch with a batched bulk-pull engine and a 64-bit deduplicating pull cache, full-width BF16 returns drained by resident relay copiers over a position-major arena, and shared experts folded into the compute role. On 8xRTX PRO 5000 over PCIe the operator is 1.522x and 1.387x faster than the FlashInfer CuTe DSL W4A8 MegaMoE and the Cake MegaMoE across 18 decode points (18/18 wins each), and 1.388x faster than Cake with shared experts fused; all 94 numerical cases and 752 per-rank checks pass, at cross-operator cosine similarity of at least 0.9999997.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, latency。Expert-parallel Mixture-of-Experts decoding is latency bound: each layer serializes a token exchange, a grouped GEMM over routed e...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.DC",
+        "latency"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-11-12T03:10:15Z",
+      "url": "https://arxiv.org/abs/2611.16219",
+      "pdfUrl": "https://arxiv.org/pdf/2611.16219v1"
+    },
+    {
+      "id": "arxiv-2611.15671",
+      "title": "The Noise Floor of a Quantization Comparison: Engine, restart, batch and kernel drift, measured against 8-bit and 4-bit effects in two decision models",
+      "authors": [
+        "Aleks Blagojevich",
+        "Trevor Sunderland"
+      ],
+      "summary": "A quantized model is usually judged by comparing it with its BF16 original, but that comparison changes more than the weights. It often changes the serving engine, it always runs on a different server instance, it may change how requests are batched, and on some stacks the library selects a different kernel depending only on which packages import. We measure each of these sources on the same 2,400 public decisions for two of Cloudflare's decision models, Clef-flash (9B) and Clef (27B), on an NVIDIA GB10, and state every quantization effect as the excess over them. Sources that are not quantization move between 0 and 0.92% of decisions. llama.cpp restarts are bit-identical on every record for both models. vLLM restarts flip 0, 5 and 20 decisions at BF16, FP8 and NVFP4 on Clef-flash and 4, 0 and 22 on Clef; a third instance of Clef's quantized builds (exploratory) leaves FP8 at 0 and puts NVFP4 at 4 to 22, depending on which two instances are compared. An engine change at BF16 flips 6 to 16, a batch-size change 8 to 15, and the Gated DeltaNet kernel transformers selects unasked 10 to 14. Quantization inside one engine moves more: for Clef-flash and Clef, 0.88% and 1.04% at Q8_0, 2.12% and 1.62% at FP8, 5.79% and 3.50% at Q4_K_M, and 5.79% and 5.67% at NVFP4. On both models, every 4-bit interval excludes every non-quantization source. Two of our five pre-registered predictions failed, and the same two fail when the tests are rerun on the 27B: FP8 is not inside restart noise, and changing engine moves fewer decisions than 8-bit quantization does. Accuracy hides most of this. Over the full 31,275 public questions, Clef's Q4_K_M build moves accuracy by a net six questions (-0.02 points [-0.20, +0.16]) while 436 of its decisions get worse (exploratory), and NVFP4 costs Clef-flash 0.95 points and Clef 0.65. We release the code, quantization recipes, per-record outputs and the pre-registration.",
+      "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.LG。A quantized model is usually judged by comparing it with its BF16 original, but that comparison changes more than the weights. It...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "meta",
+        "nvidia",
+        "cs.LG",
+        "llm",
+        "lora",
+        "quantization",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "Meta/NVIDIA/arXiv",
+      "publishedAt": "2026-11-11T16:15:08Z",
+      "url": "https://arxiv.org/abs/2611.15671",
+      "pdfUrl": "https://arxiv.org/pdf/2611.15671v1"
+    },
+    {
+      "id": "arxiv-2611.15569",
+      "title": "TraceKV: Policy-Preserving Low-Rank KV Cache Compression for Reasoning Vision-Language Models",
+      "authors": [
+        "Ke Li",
+        "Zishan Shao",
+        "Yiran Chen"
+      ],
+      "summary": "Reasoning vision-language models (VLMs) impose substantial KV cache demands from both large multimodal contexts and growing reasoning traces. Low-rank KV compression has emerged as a promising paradigm that stores low-dimensional latents of KV states and can be combined with quantization. However, existing low-rank methods often induce growing predictive policy drift from the dense model when compressing reasoning KV states, resulting in reasoning failures. We identify two key causes of this degradation: calibration-state mismatch between static contexts and on-policy reasoning states, and unequal error sensitivity across KV states. To address these challenges, we propose TraceKV, a training-free low-rank KV compression framework that unifies on-policy calibration, sensitivity-aware SVD, and global rank allocation under a single policy-preserving principle, substantially reducing policy-KL divergence during reasoning. Experiments across multiple VLMs and visual reasoning benchmarks demonstrate superior accuracy--memory trade-offs, achieving near-lossless reasoning accuracy with 5.64$\\times$ KV cache compression when combined with quantization. Optimized low-rank attention kernels further deliver up to 1.83$\\times$ end-to-end decoding speedup. Code will be available at https://github.com/AK-DREAM/TraceKV.",
+      "reason": "近 30 天；关键词：cs.CV, kv-cache, multimodal。Reasoning vision-language models (VLMs) impose substantial KV cache demands from both large multimodal contexts and growing reason...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CV",
+        "kv-cache",
+        "multimodal",
+        "quantization",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-11T14:54:19Z",
+      "url": "https://arxiv.org/abs/2611.15569",
+      "pdfUrl": "https://arxiv.org/pdf/2611.15569v1"
+    },
+    {
+      "id": "arxiv-2611.15372",
+      "title": "LLMRunner: Closed Workload Model Performance Testing Framework for LLM Servings",
+      "authors": [
+        "Arush Upadhyaya",
+        "Debadatta Mishra"
+      ],
+      "summary": "Performance testing large language model (LLM) serving engines is a crucial requirement considering the criticality of the infrastructure for deploying conversational AI at scale. Most of the benchmarking tools used to carryout performance evaluation of LLM serving do not capture realistic workload orchestration unlike closed workload performance testing infrastructure used in other domains such as web and database engines. For example, state-of-the-art LLM benchmarks for performance testing model traffic as streams of independent single-turn and stand-alone requests omitting the end-user behavior such as think-time between conversational turns. We present LLMRunner, a performance tester for LLM serving that addresses this gap by providing a framework to generate realistic load consisting of multi-turn conversations with configurable end-user parameters such as number of users in the workload loop, think-time distributions etc. Moreover, LLMRunner provides declarative matrix-sweep experiment plans, integrated GPU and KV-cache monitoring, and an automated artifact collection and plotting subsystem. We use LLMRunner to comparatively analyze the performance of LLM serving when NVIDIA CUDA Unified Virtual Memory (UVM) is used as a drop-in replacement memory allocator for the Key-Value cache (KV-Cache). Our test demonstrates that UVM incurs no measurable throughput or latency penalty compared to the baseline memory allocation technique for non-oversubscription scenarios.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.PF, latency。Performance testing large language model (LLM) serving engines is a crucial requirement considering the criticality of the infrast...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.PF",
+        "latency",
+        "llm",
+        "serving",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-11-11T11:52:20Z",
+      "url": "https://arxiv.org/abs/2611.15372",
+      "pdfUrl": "https://arxiv.org/pdf/2611.15372v1"
     }
   ]
 }
