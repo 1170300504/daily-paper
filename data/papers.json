@@ -1,262 +1,278 @@
 {
-  "generatedAt": "2026-11-15T09:25:31.423671+08:00",
+  "generatedAt": "2026-11-17T12:13:47.420289+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2611.15130",
-      "title": "Read Once, Answer Many: Parallel Prompting for Shared-Context LLM Inference",
+      "id": "arxiv-2611.20174",
+      "title": "Weights & Caches: LLMs Can Program Tabular Foundation Models",
       "authors": [
-        "Zekun Zhao",
-        "Jeffrey Flanigan"
+        "Shi Bin Hoo",
+        "Magnus Buehler",
+        "Omar Swelam",
+        "Frank Hutter",
+        "Lennart Purucker"
       ],
-      "summary": "LLM workloads sometimes ask many independent questions about the same long document, as in document QA, data labeling and LLM-based evaluation. Prefix caching removes the redundant prefill shared by these queries, but each decode step still reads the document's key-value (KV) cache once per question, so decoding is bound by memory bandwidth and scales with the number of questions. We present Parallel Prompting, which decodes P questions as P independent streams of a single request all at once, fixing this issue. In our method, every step reads the shared document once for all P streams, and a stream-id attention mask, evaluated inside the attention kernel, keeps each answer conditioned only on the document and its own question. We implement Parallel Prompting in SGLang by adding about 80 lines to three existing files and a small engine package; the mask needs no dense tensor, and every decode step has a fixed shape that is captured as a CUDA graph. With CodeLlama-7B, 8k-16k-token documents and 64-256 questions per document, Parallel Prompting is 3.7x faster than stock SGLang with its FlashInfer backend on an A100 and 5.9-6.0x faster on an RTX A6000, on two SGLang releases, including the most recent release. Timed on identical inputs, it is faster than stock SGLang in all 144 runs (2 GPUs x 2 releases x 6 workloads x 6 input sets). Code: https://github.com/jlab-nlp/parallel-prompting",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, inference。LLM workloads sometimes ask many independent questions about the same long document, as in document QA, data labeling and LLM-base...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
-        "cs.CL",
-        "inference",
-        "llm",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-11-11T07:15:18Z",
-      "url": "https://arxiv.org/abs/2611.15130",
-      "pdfUrl": "https://arxiv.org/pdf/2611.15130v1"
-    },
-    {
-      "id": "arxiv-2611.15126",
-      "title": "Recompute or Restore? Host-Tier KV for Multi-Model Agent Workflows on a Static-Graph NPU Serving Stack",
-      "authors": [
-        "Sungwon Woo",
-        "Seyeon Kim"
-      ],
-      "summary": "Agent workflows issue dependent model calls that share long context prefixes, so serving them efficiently depends on reusing the key-value (KV) cache of those prefixes. On accelerators that compile model graphs ahead of time, however, the device KV budget is fixed, and prefixes evicted under load must be recomputed. Restoring them from host memory avoids this recomputation, but the transfer occupies the same engine thread as prefill and decode, so its benefit is not guaranteed. In this paper, we study when restoring beats recomputing on a commercial static-graph neural processing unit (NPU) stack (Rebellions ATOM+, vllm-rbln 0.10.2) that serves a Qwen3-8B planner on two cards and a Qwen3-0.6B executor on one. We first show that repeated prefill dominates planner work when default serving collapses: 89.5% of the executed planner prompt tokens had been materialized before. We then build a synchronous host-DRAM tier on the runtime's public KV copy calls, together with a scheduler-aware event model whose predictions are frozen before each test cohort. Experimental results show that the host tier raises workflow service-level objective (SLO) attainment from 22.8% to 100% and from 9.4% to 99.8% in the two tested overload conditions, and endpoint confirmation on two new seeds supports conservative load gains of 11.8% (chain) and 18.2% (fork), while mixed and bursty workloads remain seed-sensitive. The frozen model predicts median and 99th-percentile (P99) latency within its 15% tolerance in all 24 common-load conditions, including the 16-18% P99 increase that the tier causes for fork workflows, but it misorders three policy contrasts and overestimates the benefit of a cheaper store path (11% predicted against 3.1% measured). The trade-off therefore depends on runtime scheduling and transfer cost as well as cache capacity.",
-      "reason": "近 30 天；关键词：cs.DC, efficient, latency。Agent workflows issue dependent model calls that share long context prefixes, so serving them efficiently depends on reusing the k...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "efficient",
-        "latency",
-        "llm",
-        "prefill",
-        "serving",
-        "slo"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-11T07:12:45Z",
-      "url": "https://arxiv.org/abs/2611.15126",
-      "pdfUrl": "https://arxiv.org/pdf/2611.15126v1"
-    },
-    {
-      "id": "arxiv-2611.16301",
-      "title": "LoCoJAX: Host-Local Coordination for Small-Model RL on TPUs",
-      "authors": [
-        "Loki Chen",
-        "Gregory B. Rehm",
-        "Yang Song",
-        "Hongye Xie",
-        "Ming Lei",
-        "Chongyang Bai",
-        "Bob Kamma",
-        "Mingfu Liang",
-        "Kavosh Asadi",
-        "Yufei Li",
-        "Xi Liu",
-        "Jay Xu",
-        "Rui Liu",
-        "Maziar Sanjabi",
-        "Luke Simon",
-        "Hamed Firooz"
-      ],
-      "summary": "Reinforcement learning (RL) increasingly targets small language models, and executing these workloads efficiently across multiple accelerators requires effective coordination. On TPUs, Pathways-based RL uses a single controller to coordinate computation across hosts. This execution model is effective for large models, but its coordination computational costs are harder to amortize when small models repeatedly invoke short computations. To characterize these computational costs, we sweep dense models from 0.6B to 405B parameters on TPU v7x under a decode-heavy workload and measure how host and network computational overhead vary with model size. At 0.6B, host orchestration occupies 36% of step time and network communication 2%, whereas for large models, estimated network computational costs dominate the non-compute time. Motivated by these findings, we present Local Coordination JAX (LoCoJAX), which implements local rollout and reward processing on each TPU host with synchronous global training. In controlled comparisons against a tuned and optimized Pathways baseline on Qwen3-0.6B across three workloads and 8-64 TPU v7x chips, its colocated mode (LoCoJAX-CO) is 1.3-3.6x faster per step; on GSM8K, it completes a step faster on 8 chips than Pathways does on 64. Finally, a Ray-managed disaggregated mode (LoCoJAX-DA) overlaps rollout and training on separate hosts, and placement experiments establish when this overlap compensates for dividing devices and transferring weights: only when rollout dominates the step and receives most of the hosts. On NuminaMath-CoT at 256 chips, giving rollout 75% of hosts cuts step time by about 15% compared with LoCoJAX-CO.",
-      "reason": "近 30 天；公司信号：Google；关键词：google, cs.LG, efficient。Reinforcement learning (RL) increasingly targets small language models, and executing these workloads efficiently across multiple...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "google",
-        "cs.LG",
-        "efficient"
-      ],
-      "signal": 98,
-      "source": "Google/arXiv",
-      "publishedAt": "2026-11-12T04:56:54Z",
-      "url": "https://arxiv.org/abs/2611.16301",
-      "pdfUrl": "https://arxiv.org/pdf/2611.16301v1"
-    },
-    {
-      "id": "arxiv-2611.16260",
-      "title": "Low Language Transfer Speech-to-Text",
-      "authors": [
-        "Husein Zolkepli"
-      ],
-      "summary": "A multilingual speech recogniser has heard much speech in its own languages. We ask how much of that it brings to a language it was never trained on, when it is fine-tuned on the little that language has. We score 28 open multilingual models untouched on Low-Language-TTS, 50 low-resource languages in 11 writing systems, and fine-tune 24 of them on at most 1,000 clips a language, 82 hours in all, with a dev set choosing every epoch. Fine-tuning lowers every model's macro character error rate (CER), by 16.6 to 53.1 points, to 9.5 at best, and a word language model takes three CTC models 1.2 to 1.4 points lower; WER is still 34.4 at best. On the 12 languages that no model lists, every model starts at 46 or worse and the best ends at 11.7. The same architectures from random weights stay 60 points or more behind, so the gain is transfer, and an encoder left untouched already gives a Whisper or Qwen decoder most of what it needs. It is the language, not the corpus: on FLEURS recordings that ours do not share, the median model keeps 79% of its gain. It costs the languages the models knew, 5.7 points of CER on English, Spanish, French and German in the median model. Low-rank adapters on 4% of the weights come within 1.1 points of tuning everything, and on 2 of 3 models forget less. Seq2seq and language-model decoders are done within three to five epochs, while a new CTC head is still improving at twenty or thirty. Data beats epochs: 25 clips a language take Qwen3-ASR 0.6B from 60.9 to 39.3, and at equal clips presented, ten times the data is worth 9.7 points. A model that first learned forty of the languages learns the other ten no faster. On a public Malay benchmark, untouched Whisper large-v3 scores 8.9 when it detects the language and 14.9 when told the clip is Malay, because it then translates the English that speakers mix in; trained on the Scicom telephony dataset it scores 6.0.",
-      "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.CL, dataset。A multilingual speech recogniser has heard much speech in its own languages. We ask how much of that it brings to a language it wa...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "alibaba",
-        "cs.CL",
-        "dataset"
-      ],
-      "signal": 97,
-      "source": "Alibaba/arXiv",
-      "publishedAt": "2026-11-12T04:00:10Z",
-      "url": "https://arxiv.org/abs/2611.16260",
-      "pdfUrl": "https://arxiv.org/pdf/2611.16260v1"
-    },
-    {
-      "id": "arxiv-2611.14990",
-      "title": "EASTAR: Event-Anchored Semantic and Task-Adaptive Region Representation Learning",
-      "authors": [
-        "Peng Liang",
-        "Genan Dai",
-        "Bowen Zhang"
-      ],
-      "summary": "Urban region representation learning supports a wide range of urban analytics tasks by encoding regional functions and interactions, with human mobility serving as a central signal because it directly captures inter-region interactions. However, most mobility-based methods learn from aggregated origin-destination matrices, where trips driven by different activity purposes are mixed into purpose-agnostic interaction patterns. Although static urban attributes such as POIs and land use can enrich region-level semantics, they do not explicitly ground mobility interactions in activity-purpose signals. As a result, downstream adaptation is often performed over entangled embeddings, making it difficult to select task-relevant functional semantics. To address these limitations, we propose EASTAR, an event-anchored and task-adaptive framework for urban region representation learning. EASTAR treats offline activity events as sparse semantic anchors and uses them to factorize aggregated mobility representations into multiple purpose-related semantic channels. It further introduces free channels to capture latent mobility patterns not covered by event data and a global channel to preserve overall spatial structure. To adapt the learned channel space to different downstream objectives, EASTAR designs a task-adaptive prompt router that initializes task-channel relevance from LLM-derived priors and refines the routing weights through downstream supervision. Experiments on two real-world urban datasets across four prediction tasks show that EASTAR consistently outperforms representative baselines, achieving up to 39.15% reduction in MAE. Ablation and interpretability analyses further demonstrate the effectiveness of event anchoring, semantic channel construction, and task-adaptive routing.",
-      "reason": "近 30 天；关键词：cs.LG, dataset, llm。Urban region representation learning supports a wide range of urban analytics tasks by encoding regional functions and interaction...",
+      "summary": "Neural networks are typically programmed through optimization, rather than by explicitly specifying their computations. Recent work on weight-space programming suggests that large language models (LLMs) can instead reason about and manipulate neural-network weights directly. In this work, we show that LLMs can directly program statistical computations in tabular foundation models (TFMs), whose parameters enable inference across different datasets. We investigate three complementary settings using GPT-6 Astra, without gradient-based optimization. First, Astra directly programs nanoTabPFN from zero-initialized weights, achieving a mean ROC AUC of 0.849 across 20 TabArena datasets, compared to 0.876 for a pretrained baseline. Second, Astra diagnoses and repairs a signed-product regression failure in pretrained TabPFN-3.5, restoring near-perfect predictions on held-out synthetic datasets while preserving performance on TabArena-Lite, with only a 0.08% average relative increase in error. Third, it writes KV-cache-editing programs that steer TabPFN-3.5's predictions on unseen synthetic datasets, demonstrating transformations such as reversing linear trends and converting sine waves into approximate square waves, without modifying model weights. Together, our findings suggest that LLM-driven programming could complement gradient-based optimization across TFMs' development and usage, while offering a new way to investigate and intervene in their internal computations.",
+      "reason": "近 30 天；关键词：cs.LG, dataset, inference。Neural networks are typically programmed through optimization, rather than by explicitly specifying their computations. Recent wor...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
         "dataset",
+        "inference",
         "llm",
         "serving"
       ],
-      "signal": 96,
+      "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-11T03:44:05Z",
-      "url": "https://arxiv.org/abs/2611.14990",
-      "pdfUrl": "https://arxiv.org/pdf/2611.14990v1"
+      "publishedAt": "2026-11-15T18:25:19Z",
+      "url": "https://arxiv.org/abs/2611.20174",
+      "pdfUrl": "https://arxiv.org/pdf/2611.20174v1"
     },
     {
-      "id": "arxiv-2611.14356",
-      "title": "EngineAgent: Agentizing On-Device LLM Inference Engines with Inference Stack Hierarchy Awareness and Hardware Abilities",
+      "id": "arxiv-2611.20106",
+      "title": "Making Preemption Productive in Long-Output LLM Serving",
       "authors": [
-        "Zhengxiang Huang",
-        "Yujie Sun",
-        "Shengheng Chen",
-        "Zhaode Wang",
-        "Chaoyue Niu",
-        "Zeyu Zhao",
-        "Chengfei Lv",
-        "Fan Wu",
-        "Guihai Chen"
+        "Ziji Shi",
+        "Xinyi Wan",
+        "Chaoyi Ruan",
+        "Guangxing Huang",
+        "Min Lin",
+        "Jialin Li"
       ],
-      "summary": "Rapidly evolving LLM architectures and heterogeneous mobile hardware make supporting new models in on-device inference engines a recurring and costly system challenge. Each model may require coordinated changes across conversion, graph construction, operators, and hardware backends. Existing coding agents often miss these cross-layer dependencies and struggle to diagnose failures across host--device execution paths. We present EngineAgent, an agentic system for automating on-device LLM model enablement. Its key insight is to separate reusable engine and hardware knowledge from model-specific implementation. Before enablement, EngineAgent constructs a hierarchy-aware engine index that captures engine abstraction layers and cross-layer dependencies, and pre-validates backend-specific build, execution, and debugging workflows using already supported models. For each new model, a builder uses this knowledge to coordinate cross-layer changes, while an auditor checks implementation completeness and drives iterative debugging through device-side validation. Across 12 tasks spanning three mobile LLMs and four engine--backend pairs on CPUs, GPUs, and NPUs, EngineAgent achieves 75% end-to-end success with either of two underlying LLMs, versus 33.3% for the strongest coding-agent baseline. Success requires compilation, on-device execution, and output-logit agreement with reference implementations. EngineAgent also reduces average per-task time and model-API cost relative to baselines using the same underlying LLMs.",
-      "reason": "近 30 天；关键词：cs.OS, conversion, inference。Rapidly evolving LLM architectures and heterogeneous mobile hardware make supporting new models in on-device inference engines a r...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.OS",
-        "conversion",
-        "inference",
-        "llm"
-      ],
-      "signal": 95,
-      "source": "arXiv",
-      "publishedAt": "2026-11-10T17:16:47Z",
-      "url": "https://arxiv.org/abs/2611.14356",
-      "pdfUrl": "https://arxiv.org/pdf/2611.14356v1"
-    },
-    {
-      "id": "arxiv-2611.16661",
-      "title": "Reducing Batch Makespan for LLM Agent Workloads through Inference-Environment Coordination",
-      "authors": [
-        "Wei Feng",
-        "Meiling Chen",
-        "Boxiao Chen",
-        "Lu Liu",
-        "Bin Zi",
-        "Libin Ye",
-        "Xingyu Lu",
-        "Lei Xu",
-        "Jun Zhou"
-      ],
-      "summary": "Efficient batch execution of agent tasks is critical to LLM training and development workflows, including benchmark evaluation, synthetic-data generation, and RL rollouts. Since these tasks alternate between LLM inference and environment interaction, we present coordinated optimizations to reduce batch makespan, the time required to complete all tasks in a batch. For hybrid LLMs, a workload-based resource model guides GPU-memory allocation between key-value (KV) cache and recurrent state and provides a reference sample concurrency to exploit parallelism while limiting recomputation. Trajectory-aware routing and scheduling promote cache reuse while balancing worker load. Under constrained environment capacity, we decouple sample admission from environment execution and introduce Chain-Advancing Action Scheduling (CAAS), which prioritizes long chains using observed progress to shorten the batch tail. Controlled replay combines actual inference with recorded environment responses and durations for ablations of individual optimizations. Live evaluations with Ling-3.0-Flash and Ling-3.1-Flash on the BFCL, SWE-bench Multilingual, WideSearch, and MCP-Atlas benchmarks demonstrate makespan reductions of 10.4% to 65.0%, while evaluation scores remain aligned. Furthermore, these methods have been successfully applied to training and evaluation workflows for the Ling-3.x model series, accelerating the model-development cycle.",
-      "reason": "近 30 天；关键词：cs.DC, efficient, inference。Efficient batch execution of agent tasks is critical to LLM training and development workflows, including benchmark evaluation, sy...",
+      "summary": "Reasoning LLMs generate long outputs whose key--value (KV) caches occupy GPU memory for minutes. When memory fills, the server preempts requests, and a preempted request can repeatedly lose and recover its state while producing little new output. We call this behavior KV thrashing. In certain cases, existing systems leave more than a fifth of requests stalled for over a minute. Because preemption cannot be avoided without delaying admission, we ask how to make it productive. We present Stint, a serving system that preserves a preempted request's work, bounds how long it waits, and gives it fresh output after it returns. Stint stores fixed-length KV snapshots in a contiguity-first CPU pool with an exact-extent allocator, and moves them with fused K/V gather/scatter kernels and double buffering. Age-based readmission brings stalled requests back, and protection gives them a turn of fresh decoding before another preemption. Remaining-length estimates from decoding hidden states guide victim selection. On olympiad-math replays with Qwen3-32B on H200 GPUs, no request pauses for more than 50 seconds under Stint and p99 time per output token falls by 50.7\\% relative to recomputation in the same engine. The replay as a whole finishes 10.7\\% sooner (12.0\\% higher throughput), because the requests that baselines starve no longer finish last.",
+      "reason": "近 30 天；关键词：cs.DC, llm, serving。Reasoning LLMs generate long outputs whose key--value (KV) caches occupy GPU memory for minutes. When memory fills, the server pre...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.DC",
-        "efficient",
-        "inference",
-        "llm"
+        "llm",
+        "serving",
+        "throughput"
       ],
-      "signal": 94,
+      "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-12T11:38:21Z",
-      "url": "https://arxiv.org/abs/2611.16661",
-      "pdfUrl": "https://arxiv.org/pdf/2611.16661v1"
+      "publishedAt": "2026-11-15T16:32:44Z",
+      "url": "https://arxiv.org/abs/2611.20106",
+      "pdfUrl": "https://arxiv.org/pdf/2611.20106v1"
     },
     {
-      "id": "arxiv-2611.17068",
-      "title": "Discovering Effective Agent Memory Designs through Program Evolution",
+      "id": "arxiv-2611.20095",
+      "title": "High-Throughput Serving of Nemotron 3.5 Transcribe with Regime-Aware Megakernels and Kernel Fusion",
       "authors": [
-        "Xinheng Ding",
-        "Seyyed Saeid Cheshmi",
-        "Ziyang Zhang",
-        "Tairan Chen",
-        "Wenya Xie",
-        "Yu Hou",
-        "Rui Zhang",
-        "Zirui Liu"
+        "Aditya Chatterjee",
+        "Sanjay Singh Chauhan",
+        "Mayank Jain",
+        "Arushi Dhingra",
+        "Sahin Chowdhury",
+        "Rahul Mittal"
       ],
-      "summary": "Program evolution provides a promising approach to discover agent memory designs and study the choices underlying their effectiveness. We introduce MAPE, a framework that evolves whole memory programs from minimal seeds through a standardized lifecycle interface and an iterative diagnosis-proposal loop. Experiments on LoCoMo and LongMemEval yield an absolute accuracy gain of up to 12% over manually designed baselines at 35% of the serving cost, with further evaluations supporting transfer across serving backbones and benchmarks. Empirical analyses and ablations identify and validate two recurring design patterns: retaining raw conversations as retrievable evidence preserves details omitted from extracted memories, while composing retrieved evidence according to query intent helps the answering model use it effectively. Transplanting the composition module into five existing memory systems improves accuracy across all five. Beyond these patterns, the search objective shapes where computation goes: optimizing serving cost alongside accuracy shifts computation from LLM-based memory construction to selective processing at query time while retaining competitive accuracy. Together, these findings offer empirical lessons for agent memory design. Code is available at https://github.com/ash-ding/MAPE.",
-      "reason": "近 30 天；关键词：cs.CL, llm, serving。Program evolution provides a promising approach to discover agent memory designs and study the choices underlying their effectiven...",
+      "summary": "Nemotron 3.5 Transcribe ranks first among open-weight models on the Hugging Face Open ASR leaderboards. Serving it efficiently takes more than fast operators: continuous batching changes the amount and mix of work at every iteration, and the best fusion granularity changes with it. We present a serving engine that, for every pass, chooses between persistent megakernels and chains of fused kernels at crossovers measured offline. On an H100 SXM GPU, throughput of our accuracy-preserving serving peaks at 4,345x real time, 1.39x the peak of tuned vLLM, and is up to 4.39x faster at low concurrency; on B200 it peaks at 6,367x, 1.64x vLLM at the highest concurrency we measured. Word error rate (WER) is 1.91 to 1.93% against 1.88 to 1.93% for vLLM. Within a 400 ms budget for p95 end-to-end completion time, it serves 8x as many concurrent requests. Choosing per pass beats either level alone: 23% higher throughput than always using megakernels at 128 concurrent requests, and 9% higher than always using fused kernels at 8. Opt-in switches, including greedy MoE layer skipping, add 13 to 16% throughput on B200 for offline jobs that can accept higher WER.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.PF, batching。Nemotron 3.5 Transcribe ranks first among open-weight models on the Hugging Face Open ASR leaderboards. Serving it efficiently tak...",
       "area": "LLM 推理优化",
       "tags": [
+        "nvidia",
+        "cs.PF",
+        "batching",
+        "efficient",
+        "llm",
+        "serving",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-11-15T16:14:14Z",
+      "url": "https://arxiv.org/abs/2611.20095",
+      "pdfUrl": "https://arxiv.org/pdf/2611.20095v1"
+    },
+    {
+      "id": "arxiv-2611.19823",
+      "title": "EfficientSkill: Learning Skills for Token-Efficient Multi-Turn Agents",
+      "authors": [
+        "Deep Shah",
+        "Sanket Badhe",
+        "Nehal Kathrotia",
+        "Priyanka Tiwari"
+      ],
+      "summary": "Reflective skill optimizers improve multi-turn LLM agents by revising instructions from failed and successful rollouts, yet accumulating edge-case rules bloats prompts, inflates token use, and pushes agents into long, error-prone loops. We introduce EfficientSkill, a two-step framework that first discovers a reliable skill without token penalties, and then warm-starts accuracy-guarded pruning from that skill to compress instructions, bound agent turns, and offload reusable code into workspace utilities with zero implementation prompt cost. Across four frontier, mid-tier, and open-weight models on MATH-500, ALFWorld, and SpreadsheetBench, EfficientSkill cuts output tokens over unconstrained EvoSkill on 11 of 12 configurations (by up to 80%) while raising mean accuracy on every benchmark, including +14.3 and +17.5 percentage-point gains on SpreadsheetBench with Gemini 3.8 Flash and Grok 4.1 Fast by replacing stalled loops with compact workflows. By shrinking both generated tokens and replayed history, EfficientSkill lowers total token usage and serving cost across every evaluated configuration, with or without full-prefix KV caching.",
+      "reason": "近 30 天；公司信号：Google；关键词：google, cs.CL, efficient。Reflective skill optimizers improve multi-turn LLM agents by revising instructions from failed and successful rollouts, yet accumu...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "google",
         "cs.CL",
+        "efficient",
         "llm",
         "serving"
       ],
-      "signal": 89,
-      "source": "arXiv",
-      "publishedAt": "2026-11-12T16:42:04Z",
-      "url": "https://arxiv.org/abs/2611.17068",
-      "pdfUrl": "https://arxiv.org/pdf/2611.17068v1"
+      "signal": 99,
+      "source": "Google/arXiv",
+      "publishedAt": "2026-11-15T06:06:27Z",
+      "url": "https://arxiv.org/abs/2611.19823",
+      "pdfUrl": "https://arxiv.org/pdf/2611.19823v1"
     },
     {
-      "id": "arxiv-2611.16736",
-      "title": "On the Difficulty of Sequence-Level Supervised Learning for Autoregressive Language Models",
+      "id": "arxiv-2611.19800",
+      "title": "Multi-Branch Transformer",
       "authors": [
-        "Mathieu Blondel",
-        "Michaël E. Sander",
-        "Germain Vivier-Ardisson",
-        "Tianlin Liu",
-        "Vincent Roulet"
+        "Gaotang Li",
+        "Lingjie Chen",
+        "Chunyuan Deng",
+        "Zhiwei Xu",
+        "Hongzheng Chen",
+        "Christopher De Sa",
+        "Jingrui He",
+        "Yingheng Wang",
+        "Hanghang Tong"
       ],
-      "summary": "During the supervised learning phase, autoregressive language models are typically trained by minimizing the negative log-likelihood of the training data, which decomposes as a sum of token-level cross-entropies via teacher forcing. This objective is simple and efficient but potentially suffers from so-called exposure bias: a mismatch between the way the model is trained and the way it is used at inference time. Can we instead design sequence-level loss functions that incorporate inference-time decoding procedures, such as greedy decoding or autoregressive sampling? We show that two natural attempts lead to loss functions that are fundamentally flawed: unbounded below. We further show that these two flawed loss functions are intimately connected: using autoregressive Gumbel tricks, the sampling based loss is the expected greedy loss under Gumbel perturbations. Since the pathology stems from the dependence of the decoded sequence on the model parameters, we analyze the update direction obtained by applying a stop gradient on the sampling procedure, leading to a moment matching direction. While it is not the gradient of any loss function, we prove that it defines a valid descent direction in function space for the autoregressive negative log-likelihood. Despite these theoretical insights, the moment matching direction suffers from high variance. We conclude that teacher forcing may well be ``all you need'' for supervised learning of autoregressive models.",
-      "reason": "近 30 天；关键词：cs.LG, efficient, inference。During the supervised learning phase, autoregressive language models are typically trained by minimizing the negative log-likeliho...",
+      "summary": "Transformer language models are commonly scaled by making their blocks wider or stacking them deeper. In this work, we explore a complementary path: branching, the parallel composition of full Transformer blocks. We introduce the Multi-Branch Transformer (MBT), which processes the input through shared initial layers, executes independently parameterized branches of sequential blocks in parallel, and fuses their outputs before shared final layers. At comparable training compute, we study three MBT variants: Wide-Shallow preserves block width, Narrow-Deep preserves sequential depth, and Balanced interpolates between them. In controlled pretraining experiments at four mixture-of-experts scales (0.8B to 2.1B total parameters), 2-branch Wide-Shallow MBTs consistently outperform sequential Transformers under matched parameter and training-compute budgets. Balanced MBTs improve further and retain comparable quality as the number of branches increases. To improve inference efficiency at long contexts, we introduce Joint-KV, which constructs a shared KV cache from branch representations at each depth. Our final recipe combines Balanced MBTs with Joint-KV, supported by an inference engine that exploits branch grouping and shared-cache reuse. Fitted scaling curves indicate that standard Transformers require up to 1.26x as much training body compute to match our final models' validation loss. These models reduce full-model KV-cache storage by up to 34% and deliver up to 51.4% higher decoding throughput on a single H200 GPU. Ablation studies show that branching yields gains beyond changes in width and depth, enables an effective KV-sharing strategy (Joint-KV), remains robust across fusion functions, and performs best in the middle layers. These findings show that branching offers a practical path for scaling language models toward both better modeling quality and faster inference.",
+      "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。Transformer language models are commonly scaled by making their blocks wider or stacking them deeper. In this work, we explore a c...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.LG",
-        "efficient",
-        "inference"
+        "inference",
+        "kv-cache",
+        "throughput"
       ],
-      "signal": 87,
+      "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-12T12:51:08Z",
-      "url": "https://arxiv.org/abs/2611.16736",
-      "pdfUrl": "https://arxiv.org/pdf/2611.16736v1"
+      "publishedAt": "2026-11-15T05:20:54Z",
+      "url": "https://arxiv.org/abs/2611.19800",
+      "pdfUrl": "https://arxiv.org/pdf/2611.19800v1"
     },
     {
-      "id": "arxiv-2611.15029",
-      "title": "Mask-Pattern Position Augmentation: Training-Free Long-Context Extrapolation for Diffusion LLMs",
+      "id": "arxiv-2611.19455",
+      "title": "Text Speeding Itself Up: Recency and Restraint in Session-Local Drafting",
       "authors": [
-        "Gaurav Sarkar",
-        "Syed Affan Daimi"
+        "Antal van den Bosch"
       ],
-      "summary": "Diffusion large language models (dLLMs) generate by iteratively unmasking tokens with bidirectional attention, but rotary position embeddings (RoPE) still confine them to a fixed pretraining window. Existing training-free extrapolation, notably LongLLaDA, copies NTK-based RoPE scaling from autoregressive (AR) models and applies one static, length-only transform at every position and denoising step. That transplant ignores a signal unique to dLLMs: the evolving mask pattern of the partially decoded sequence. We propose Mask-Pattern Position Augmentation (MPPA). MPPA linearly interpolates indices into the pretrained window, then adds a per-position, per-step offset from cumulative mask density. The offset restores rotary phase resolution that interpolation collapses, and it shrinks as tokens are committed, so late steps see near-clean interpolated geometry. On LLaDA-8B-Instruct at twice its 4096-token window, MPPA reduces perplexity from 19.51 under standard decoding to 3.12 at 8192 tokens, below the in-window figure, with 100% passkey retrieval and unchanged needle-in-a-haystack accuracy. These preliminary $2\\times$ results motivate mask-conditioned position engineering as a diffusion-native path to long-context generation.",
-      "reason": "近 30 天；关键词：cs.LG, llm, retrieval。Diffusion large language models (dLLMs) generate by iteratively unmasking tokens with bidirectional attention, but rotary position...",
+      "summary": "Speculative decoding lets a cheap draft model propose tokens that a large language model verifies in a single forward pass. When the verifier keeps a KV cache, verification is cheap and drafting must be nearly free. Session-local drafters, which predict from the prompt and the text generated so far, meet that bar without training. We compare a recency-weighted, backing-off, confidence-gated session memory against prompt lookup decoding in its reference form, which copies from the earliest earlier match, and in a variant that copies from the most recent one, with paired per-prompt bootstrap intervals throughout. On general, medical, and legal text with a Mistral-7B verifier, recency accounts for the speed: most-recent lookup gains up to 0.09 in speedup over earliest-match lookup on 500-token generations, and session memory's weighting and backoff add nothing measurable on top, at 30 to 40 times the drafting cost. Energy tells a different story. On medical and legal text, unselective drafters are 14% faster than plain decoding yet use as much energy per token, while drafters that abstain on weak evidence save 3 to 4 joules per 100 tokens; a three-token minimum match length on prompt lookup matches the confidence-gated session memory. Outputs are token-identical to greedy decoding in 94% of generations, with every divergence at a numerical near-tie. Under a repetition penalty, long-generation speedups shrink from 1.4-1.7x to 1.1-1.2x, but recency still helps and the length floor is the only drafter that saves energy in both domains.",
+      "reason": "近 30 天；关键词：cs.CL, energy, kv-cache。Speculative decoding lets a cheap draft model propose tokens that a large language model verifies in a single forward pass. When t...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.LG",
+        "cs.CL",
+        "energy",
+        "kv-cache",
+        "speculative"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-14T15:23:04Z",
+      "url": "https://arxiv.org/abs/2611.19455",
+      "pdfUrl": "https://arxiv.org/pdf/2611.19455v1"
+    },
+    {
+      "id": "arxiv-2611.19074",
+      "title": "TokenFormer V2: Breaking the Resolution-Complexity Dilemma in Unified Recommendation",
+      "authors": [
+        "Kaihui Wu",
+        "Guoming Li",
+        "Liang Guo",
+        "Yifeng Zhou",
+        "Yuehong Hu",
+        "Junwei Pan",
+        "Zhixiang Feng",
+        "Chengguo Yin",
+        "Wenqi Fan",
+        "Haijie Gu",
+        "Jie Jiang"
+      ],
+      "summary": "Industrial recommendation faces a resolution--complexity dilemma: dense interactions make detailed modeling of long behavior histories expensive, while compact history summaries restrict the evidence available to prediction. A unified backbone must preserve rich behavioral details within strict serving budgets. We introduce \\textbf{TokenFormer V2}, a unified architecture that explicitly decouples \\emph{representation resolution} from \\emph{interaction density}. Its group-wise token layout jointly encodes behavior segments with non-sequential context, expands interaction ranges via hierarchical group merging, and coordinates distributed groups through \\emph{NS Fusion} and \\emph{Global Sync} modules. Through this \\emph{local--global decomposition} paradigm, computation is concentrated on structured interactions while preserving fine-grained evidence, ensuring that every encoded event remains directly accessible to the \\emph{Full-Resolution Readout} module. On the Tencent Advertising Algorithm Competition 2026 (TAAC 2026) benchmark, TokenFormer V2 achieves top-ranking accuracy among unified recommendation baselines while using \\textbf{5.1$\\times$ fewer FLOPs} than leading baselines, sustaining its advantage across long histories and imbalanced behavior domains. Furthermore, in billion-parameter evaluations on WeChat Channels advertising, it consistently outperforms state-of-the-art industrial baselines, yielding up to a \\textbf{+0.07 pp} overall AUC gain. In live online A/B testing against the production model, TokenFormer V2 delivers a statistically significant \\textbf{2.33\\% increase in GMV}. These results establish TokenFormer V2 as a battle-tested blueprint for scalable, full-resolution behavior modeling in industrial recommendation.",
+      "reason": "近 30 天；公司信号：Tencent；推荐/排序/广告方向；关键词：tencent, cs.IR, advertising。Industrial recommendation faces a resolution--complexity dilemma: dense interactions make detailed modeling of long behavior histo...",
+      "area": "推荐算法",
+      "tags": [
+        "tencent",
+        "cs.IR",
+        "advertising",
+        "industrial",
+        "online-a/b",
+        "production",
+        "ranking"
+      ],
+      "signal": 99,
+      "source": "Tencent/arXiv",
+      "publishedAt": "2026-11-14T01:24:46Z",
+      "url": "https://arxiv.org/abs/2611.19074",
+      "pdfUrl": "https://arxiv.org/pdf/2611.19074v1"
+    },
+    {
+      "id": "arxiv-2611.19061",
+      "title": "Large Language Models for AI Infrastructure",
+      "authors": [
+        "Bolin Shen",
+        "Shaoyi Huang",
+        "Yushun Dong"
+      ],
+      "summary": "Large language models (LLMs) are increasingly used to design, optimize, and operate the infrastructure behind AI training and serving, yet the literature remains fragmented across hardware design, machine learning systems, electronic design automation, and high-performance computing. We present a comprehensive survey of LLM-assisted AI infrastructure across its lifecycle, from accelerator design and kernel engineering to compilation, deployment, operations, data management, and energy optimization. We organize the literature by the primary resource the LLM manages: artifact-centric methods for computational artifacts, operational-centric methods for deployment context and system state, and resource-centric methods for data and energy. These categories span the lifecycle and cover AI-specific concerns such as distributed-training configuration, inference serving, GPU-cluster scheduling, and data loading. Building on this taxonomy, we conduct a cross-study quantitative synthesis of reported results. Because studies adopt heterogeneous benchmarks, baselines, hardware, and metrics, we compare methods only where evaluation conditions permit and align results along common dimensions: functional correctness, execution performance, throughput, resource and energy consumption, operational outcomes, and optimization cost, keeping each result's native metric, baseline, and setting rather than collapsing them into a single score. This comparison reveals where LLM-driven methods yield consistent gains, how reported gains in workload orchestration depend on the evaluation environment, from simulators to real clusters and production, and where evidence is still lacking. Together, the taxonomy, lifecycle perspective, and quantitative evaluation provide an evidence-grounded reference for LLM-driven engineering of AI infrastructure.",
+      "reason": "近 30 天；关键词：cs.AI, energy, inference。Large language models (LLMs) are increasingly used to design, optimize, and operate the infrastructure behind AI training and serv...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.AI",
+        "energy",
+        "inference",
         "llm",
-        "retrieval"
+        "production",
+        "serving",
+        "throughput"
       ],
-      "signal": 84,
+      "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-11T04:48:10Z",
-      "url": "https://arxiv.org/abs/2611.15029",
-      "pdfUrl": "https://arxiv.org/pdf/2611.15029v1"
+      "publishedAt": "2026-11-14T01:12:36Z",
+      "url": "https://arxiv.org/abs/2611.19061",
+      "pdfUrl": "https://arxiv.org/pdf/2611.19061v1"
+    },
+    {
+      "id": "arxiv-2611.18974",
+      "title": "Bilateral Log-Linear Attention",
+      "authors": [
+        "Kazi Ashik Islam",
+        "Guojing Cong"
+      ],
+      "summary": "Sequence models represent past context at different resolutions, using token-level keys and values, fixed-size recurrent states, or hierarchies of compressed summaries. Full attention supports strong associative recall but requires quadratic work during training and prefill and a linearly growing key-value cache during inference. Linear attention and state-space models reduce these costs through fixed-size recurrent memory, but this compression can limit recall. Log-linear attention offers a middle ground by maintaining logarithmically many state matrices. However, its hierarchy favors finer resolution near the current query while compressing earlier context into coarser summaries. To complement this allocation of resolution, we introduce bilateral log-linear attention, which pairs the existing hierarchy with a second hierarchy anchored at the sequence origin. By combining their reads, the two branches provide finer access to both early and recent context while remaining causal. We derive recurrent and chunkwise parallel formulations for the added branch, preserving log-linear training and prefill work, logarithmic decoding work per token, and logarithmic persistent state storage at fixed feature dimensions and chunk size. In multi-query associative recall, this design raises mean overall test accuracy from 76.37% to 96.12% over forward log-linear attention across multiple training seeds. For pretrained language models under approximate parameter matching, it raises the mean score on six selected RULER needle-in-a-haystack tasks from 26.97% to 50.03% at a context length of 6144 tokens. In the same setting, bilateral attention also outperforms forward log-linear attention on seven of eight downstream retrieval tasks, including question answering and information extraction.",
+      "reason": "近 30 天；关键词：cs.LG, inference, prefill。Sequence models represent past context at different resolutions, using token-level keys and values, fixed-size recurrent states, o...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "prefill",
+        "retrieval",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-13T22:07:20Z",
+      "url": "https://arxiv.org/abs/2611.18974",
+      "pdfUrl": "https://arxiv.org/pdf/2611.18974v1"
+    },
+    {
+      "id": "arxiv-2611.18972",
+      "title": "NVFP4-MLA: Unified FP4 KV-Cache Storage and Attention Computation for Multi-Head Latent Attention",
+      "authors": [
+        "Chao Ni",
+        "Qi Zhang",
+        "Xiao Wang",
+        "Zongfei Jing",
+        "Mingyang Hao",
+        "Binghan Chen",
+        "Kefeng Duan",
+        "Yu-Jung Chen",
+        "Mengdi Wang",
+        "Tijmen Blankevoort",
+        "Jun Yang"
+      ],
+      "summary": "Long-context reasoning and agentic workloads make key-value (KV) cache capacity and attention computation the dominant costs of serving frontier large language models. We present NVFP4-MLA, the first design to push both KV-cache storage and attention computation of multi-head latent attention (MLA) to FP4. NVFP4-MLA co-designs the quantization algorithm with the attention kernel and the cache system. Selective residual compensation preserves model accuracy by adding NVFP4 residuals only to the quantization-sensitive channels. Two-dimensional quantization blocks make the shared latent cache compatible with the different reduction directions of the two attention batched matrix multiplications (BMMs), removing requantization between them. On DeepSeek-R1 and Kimi-K3, NVFP4-MLA matches BF16 MLA average accuracy across nine benchmarks while compressing the MLA KV cache by 3.20x and 3.05x relative to BF16 MLA. On NVIDIA Rubin GPUs, NVFP4-MLA speeds up the attention kernel over FP8 MLA by up to 2.82x on DeepSeek-R1 and 2.71x on Kimi-K3, and lowers p90 time to first token in agentic multi-turn serving by up to 3.5x and 2.1x, respectively. In disaggregated DeepSeek-R1 serving, it also raises per-GPU throughput by up to 2.30x.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, kv-cache。Long-context reasoning and agentic workloads make key-value (KV) cache capacity and attention computation the dominant costs of se...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.DC",
+        "kv-cache",
+        "quantization",
+        "serving",
+        "throughput"
+      ],
+      "signal": 99,
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-11-13T22:00:49Z",
+      "url": "https://arxiv.org/abs/2611.18972",
+      "pdfUrl": "https://arxiv.org/pdf/2611.18972v1"
     }
   ]
 }
