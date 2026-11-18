@@ -1,7 +1,293 @@
 {
-  "generatedAt": "2026-11-17T12:13:47.420289+08:00",
+  "generatedAt": "2026-11-18T11:13:42.501698+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-11-18",
+      "generatedAt": "2026-11-18T11:13:42.501698+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2611.22410",
+          "title": "More Than a Score: Reinforcement Learning with Verbalized Feedback for Generative Recommendation",
+          "authors": [
+            "Zipeng Chen",
+            "Xinyu Lin",
+            "Yuliang Sun",
+            "Sheng Zhang",
+            "Zeyu Wang",
+            "Xiaowen Shi",
+            "Junwei Pan",
+            "Chengguo Yin"
+          ],
+          "summary": "Large language models (LLMs) are increasingly used for generative recommendation, where recommended items are generated directly from users' interaction histories. To further improve recommendation quality, reinforcement learning (RL) has been applied to align these models with recommendation objectives. However, existing RL methods rely on scalar rewards to implicitly guide exploration. These rewards do not specify which aspects of a candidate conflict with the user's preferences or how the next candidate should differ. To address this gap, we propose VerRec, a verbalized feedback-guided RL framework for generative recommendation. Specifically, a user simulator generates personalized verbalized feedback based on the user's historical preferences and the candidate item profile. The policy uses this feedback to produce refined recommendations. Original and refined candidates form an expanded group and are jointly optimized with group relative policy optimization. The user simulator is only required during training and is removed at inference time. Experiments on three Amazon review datasets with two generative recommendation backbones demonstrate that VerRec improves recommendation accuracy and ranking quality. Further analyses show that verbalized guidance encourages exploration of more diverse candidates and helps the policy discover more rewarding recommendations during training.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Large language models (LLMs) are increasingly used for generative recommendation, where recommended items are generated directly f...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "dataset",
+            "generative-recommendation",
+            "inference",
+            "llm",
+            "lora"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-11-17T08:47:30Z",
+          "url": "https://arxiv.org/abs/2611.22410",
+          "pdfUrl": "https://arxiv.org/pdf/2611.22410v1"
+        },
+        {
+          "id": "arxiv-2611.22334",
+          "title": "BQ-LoRA: Binary-Quantized Low-Rank Adapters as Implicit Regularizers for Parameter-Efficient Fine-Tuning",
+          "authors": [
+            "Juyoung Park",
+            "Heejun Lee"
+          ],
+          "summary": "Parameter-efficient fine-tuning of quantized large language models is dominated by QLoRA, which combines 4-bit weight quantization with FP16 low-rank adapters. We ask whether the FP16 adapter precision is necessary. Replacing it with a single binary bit per adapter parameter, combined with a learned per-layer scale $s$ and a Scaled Straight-Through Estimator, reduces adapter storage by 13-16x. We introduce two variants -- NormScale, which binarizes under a norm-preserving scale with a clipped STE, and LearnThresh, which makes the binarization threshold learnable -- unified under a framework we call BQ-LoRA. Our main theoretical contribution is a tight characterization of the BQ-LoRA hypothesis class: it has bounded entrywise norm, a typical-set spectral norm bound that is $Θ(r)$ times sharper than the worst case, a full-rank, near-isotropic update, and consequently a Rademacher complexity that yields an explicit $\\tilde{O}(s_{\\max}α\\sqrt{d_{out}/(rn)})$ generalization bound. FP16 LoRA has no comparable a priori norm or isotropy control. On Qwen2.5 (1.5B-72B), BQ-LoRA exceeds QLoRA's benchmark averages at every scale by 0.8-3.5 points; on LLaMA-2 (7B/70B) it remains competitive at the same storage reduction but does not uniformly lead the strongest FP16-adapter baselines (LoftQ at 7B, QLoRA at 70B). On Qwen2.5-7B the binary adapter preserves the 4-bit base WikiText-2 PPL within 0.06 (9.86 vs. 9.80) while QLoRA worsens it by 0.59. The reduction applies to inference-time adapter storage and serving; training memory matches QLoRA and step time rises by under 4%. We translate the storage saving into a deployment study, BQ-SGMV, by extending Punica's SGMV kernel with a binary inner-product primitive: the same A100-80GB holds 15.6x more adapters in HBM, and our research prototype eliminates cache misses under a skewed synthetic workload.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, efficient。Parameter-efficient fine-tuning of quantized large language models is dominated by QLoRA, which combines 4-bit weight quantization...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "efficient",
+            "inference",
+            "lora",
+            "quantization",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-11-17T07:33:56Z",
+          "url": "https://arxiv.org/abs/2611.22334",
+          "pdfUrl": "https://arxiv.org/pdf/2611.22334v1"
+        },
+        {
+          "id": "arxiv-2611.22296",
+          "title": "SpecSearch: Towards Hardware-Aware Efficient Speculative Decoding",
+          "authors": [
+            "Selin Yildirim",
+            "Ali Zeyrek",
+            "Deming Chen"
+          ],
+          "summary": "Speculative decoding (SD) accelerates large language model (LLM) inference, but its optimal configuration depends jointly on workload characteristics, GPU hardware, and available memory. For example, on the RTX~5090, the state-of-the-art speculative drafter DFlash achieves $3.50\\times$ the throughput of autoregressive (AR) decoding at low concurrency, but only $0.76\\times$ at high concurrency with short outputs. We present SpecSearch, a hardware-aware search engine that jointly optimizes decoding strategy, draft length, and precision across workload--GPU pairs. Its analytical cost model captures memory and compute constraints to identify feasible configurations and narrow the search space for throughput optimization. Guided by this model, calibration measurements are collected from multiple GPUs. Using the measurements, a Jev-based predictor learns to select high-throughput decoding configurations on held-out GPUs without requiring deployment-GPU calibration. The predictor is parameter-efficiently trained on calibration data, while adapting a frozen Qwen3-4B using LoRA adapters and a linear correction layer. Across NVIDIA RTX~5090, H100, L40 and AMD MI300X GPUs, SpecSearch with full calibration achieves an average of $2.01\\times$ the throughput of AR and $1.36\\times$ the throughput of SD, both served by vLLM. The proposed Jev-based predictor closely matches this search performance with $1.30\\times$ throughput improvement over SD with vLLM, while eliminating the need for held-out GPU calibration. Additionally, it retains $97.36\\%$ of the throughput achieved by SpecSearch that utilizes full calibration.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.AI, efficient。Speculative decoding (SD) accelerates large language model (LLM) inference, but its optimal configuration depends jointly on workl...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.AI",
+            "efficient",
+            "inference",
+            "llm",
+            "lora",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-11-17T06:53:30Z",
+          "url": "https://arxiv.org/abs/2611.22296",
+          "pdfUrl": "https://arxiv.org/pdf/2611.22296v1"
+        },
+        {
+          "id": "arxiv-2611.22280",
+          "title": "XM-Sparse: High-Throughput Sparse-Attention LLM Serving over Scale-up Memory Pools",
+          "authors": [
+            "Yijun Sun",
+            "Xudong Liao",
+            "Zhuobin Huang",
+            "Kai Chen",
+            "Nikita Lazarev",
+            "Zhizhen Zhong"
+          ],
+          "summary": "Sparse attention has been increasingly adopted by production LLMs for long-context inference, yet serving systems must still retain the full KV history, making GPU HBM capacity a key limit on serving concurrency. Existing systems offload the KV cache to host memory, but suffer from the limited bandwidth of PCIe and the limited capacity of host memory. Emerging scale-up memory pools (e.g., X-Mem) relieve both limits and open new opportunities for sparse-attention offloading. In this paper, we first conduct an in-depth analysis and reveal that, even with scale-up memory pools, decode throughput remains bounded by HBM capacity, as hot KV buffers and the fully resident indexer key (K-index) cache occupy substantial HBM. Moreover, the two caches exhibit distinct access patterns. Based on these insights, we present XM-Sparse, the first sparse-attention offloading system over scale-up memory expansion. The core idea of XM-Sparse is to offload both caches aggressively while matching each with an I/O mechanism tailored to its access pattern. Specifically, for dynamically selected KV entries, XM-Sparse fuses TMA-based retrieval with attention in a tile-level pipeline to hide on-demand retrieval latency. For predictable K-index accesses, it prefetches pages via SM-efficient GPU-initiated DMA and coordinates prefetching with latency-critical operations to avoid interfering with decoding. We have implemented XM-Sparse atop SGLang, and our experiments on DeepSeek-V3.2 and GLM-5.3 with an emulated scale-up memory pool show that XM-Sparse delivers up to 4.98$\\times$ and 4.52$\\times$ higher decode throughput than PCIe-based ECHO and HiSparse, respectively, and up to 1.34$\\times$ over a naive integration on the same platform, across 16K-1M contexts.",
+          "reason": "近 30 天；关键词：cs.DC, efficient, inference。Sparse attention has been increasingly adopted by production LLMs for long-context inference, yet serving systems must still retai...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "efficient",
+            "inference",
+            "kv-cache",
+            "latency",
+            "llm",
+            "production"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-17T06:32:15Z",
+          "url": "https://arxiv.org/abs/2611.22280",
+          "pdfUrl": "https://arxiv.org/pdf/2611.22280v1"
+        },
+        {
+          "id": "arxiv-2611.22215",
+          "title": "Communicate the Change: Efficient Expert Parallelism via Activation Compression",
+          "authors": [
+            "Fengyuan Liu",
+            "Jay Gala",
+            "Siva Reddy",
+            "Dzmitry Bahdanau"
+          ],
+          "summary": "Scaling has driven the success of large language models (LLM), with sparse mixture-of-experts (MoE) architectures enabling greater parameter capacity without a proportional increase in computation. At large scales, MoE models rely on expert parallelism to distribute experts across devices. Each MoE layer requires two synchronous collective communication steps during inference: dispatching hidden states to the activated experts and combining the resulting expert outputs. As compute throughput has outpaced interconnect bandwidth, these synchronous collectives have become a major bottleneck to MoE scaling and efficiency. We address this challenge with EchoMoE, a lightweight architecture modification that retrofits existing MoE models, requiring approximately 8,500x fewer training tokens than full pretraining. Motivated by the observation that transformer blocks update the residual stream incrementally, we use a hidden state from an earlier layer as a reference and communicate only the compressed difference between it and the current state, rather than communicating each hidden state in full. EchoMoE periodically refreshes these reference states and transmits only the compressed differences synchronously, reducing the traffic on latency-critical paths without significant computational overhead. EchoMoE reduces inter-node communication volume by 58% and improves throughput by 22.6%, while preserving average performance within 3.8 percentage points across 18 benchmarks. EchoMoE further improves inference throughput by up to 2.38x over bandwidth-constrained Ethernet, paving the way for wide-area distributed inference. EchoMoE also tolerates quantization of the communicated representations without measurable quality loss. We release an efficient implementation for applying EchoMoE to pretrained MoE models, together with an inference integration for vLLM.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Scaling has driven the success of large language models (LLM), with sparse mixture-of-experts (MoE) architectures enabling greater...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "inference",
+            "latency",
+            "llm",
+            "quantization",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-17T04:52:41Z",
+          "url": "https://arxiv.org/abs/2611.22215",
+          "pdfUrl": "https://arxiv.org/pdf/2611.22215v1"
+        },
+        {
+          "id": "arxiv-2611.22206",
+          "title": "TAILROLL: Tail-Aware Rollout Acceleration for RL-Based LLM Post-Training",
+          "authors": [
+            "Niloofar Gholipour",
+            "Marcos Assuncao",
+            "Timothy Yu",
+            "Gursimran Singh",
+            "Rajkumar Buyya",
+            "Julien Gascon-Samson",
+            "Zhenan Fan",
+            "Yong Zhang"
+          ],
+          "summary": "RL post-training of large language models (LLMs) is bottlenecked by rollout: heavy-tailed responses leave engines idle as each step waits for the longest response. Asynchronous training masks, but does not eliminate, idle time. We distinguish imbalance waste (uneven placement and decode contention) from straggler waste (waiting for the longest response). Tail length, not average load, often sets the step bound. We propose TAILROLL, an online scheduler integrated into an open-source RL framework. It combines stateless in-flight migration and sufficiency-gated termination. Migration moves decoding requests between engines at chunk boundaries and resumes them with one re-prefill under a freeness-based, cost-aware tail-balancing policy. Termination stops a response when its GRPO group has enough completed samples for advantage estimation, masking its partial output from the training loss. Across ten configurations, TAILROLL reduces rollout bubble ratio by 21% to 74% and cross-engine KV-cache imbalance by 44% to 79%. In end-to-end RL training, it cuts rollout time by 24% to 34%, full step time by 21% to 22% on long-CoT RL, and p95 request latency by 28% to 37%, while raising generation throughput by up to 33% with comparable or higher final reward.",
+          "reason": "近 30 天；关键词：cs.DC, latency, llm。RL post-training of large language models (LLMs) is bottlenecked by rollout: heavy-tailed responses leave engines idle as each ste...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "latency",
+            "llm",
+            "prefill",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-17T04:44:20Z",
+          "url": "https://arxiv.org/abs/2611.22206",
+          "pdfUrl": "https://arxiv.org/pdf/2611.22206v1"
+        },
+        {
+          "id": "arxiv-2611.22128",
+          "title": "TempQuant: Learning Adaptive Temperatures for Quantized Language Models",
+          "authors": [
+            "Mukund Athmaram",
+            "Liang Ma",
+            "Manoj Rao"
+          ],
+          "summary": "Large language models are increasingly deployed at low precision, yet quantization can degrade their performance. We study how quantization interacts with decoding settings such as the sampling temperature and top-p by examining how it distorts the model's next-token probabilities. Measuring entropy during generation across deployed temperatures, we find that quantization warms the model on average, and that temperature matters much more for the performance of a quantized model than for its full-precision counterpart. Because quantization and temperature both shape the next-token distribution, we investigate how much the sampling settings can undo what quantization changes, through our method TempQuant, which learns the quantized model's temperature and top-p to bring its next-token probabilities closer to the full-precision model's. We learn these settings at two granularities. The first is a single global setting per requested temperature, which finds nearly the same temperatures that tuning on labeled answers would, without any labels. Model cards typically recommend sampling a quantized model with the same settings as its full-precision counterpart, while we find that different settings can substantially improve its accuracy. On 3-bit Qwen3-4B, for example, global TempQuant raises MATH accuracy from 34% under the configuration recommended for Qwen's quantized releases to 51%. The second sets the temperature and top-p for every token, motivated by our finding that tokens whose rankings flip under quantization tend to need warming, while tokens whose rankings are preserved tend to need cooling. When quantization degrades accuracy substantially, TempQuant recovers much of it, and when degradation is lighter, it still brings the quantized model's behavior closer to the full-precision model's.",
+          "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.LG, deployed。Large language models are increasingly deployed at low precision, yet quantization can degrade their performance. We study how qua...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "alibaba",
+            "cs.LG",
+            "deployed",
+            "quantization",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-11-17T03:11:36Z",
+          "url": "https://arxiv.org/abs/2611.22128",
+          "pdfUrl": "https://arxiv.org/pdf/2611.22128v1"
+        },
+        {
+          "id": "arxiv-2611.22086",
+          "title": "HyCoInfer: Cloud-Edge Collaborative Inference for Large Language Models on Heterogeneous GPU-FPGA Architectures",
+          "authors": [
+            "Zewen Huang",
+            "Xiangwen Zhuge",
+            "Yingkun Hu",
+            "Zheng Yang",
+            "Qiang Ma"
+          ],
+          "summary": "Large language model (LLM) serving relies predominantly on cloud GPUs, yet autoregressive decoding is memory-bound and often leaves their arithmetic units underutilized. Edge FPGAs offer attractive decoding efficiency, but are ill suited to sustaining a high-concurrency serving workload alone. This paper presents HyCoInfer, a heterogeneous cloud-edge serving system that assigns prefill to cloud GPUs and distributes decoding across cloud GPUs and edge FPGAs. The design addresses three barriers to practical offloading: capacity balancing across heterogeneous accelerators, the large KV cache crossing a constrained wide-area link, and the latency added by heterogeneous execution. HyCoInfer incorporates FPGA decode capacity into GPU prefill/decode role partitioning and places requests according to queue load, prompt length, and network state. It further combines layer-wise pipelined transfer, decoder-side precomputation, and bandwidth-adaptive KV cache compression based on residual vector quantization. We implement HyCoInfer using two NVIDIA V100 GPUs and an AMD Xilinx Alveo U280 and evaluate it over 100-1000 Mbps links. At 500 Mbps, HyCoInfer delivers up to 4.11 times the request goodput of cloud-only vLLM and reduces mean end-to-end latency by up to 61.1%. Across different network conditions and workloads, the system improves overall serving capacity, with the largest gains on communication-intensive tasks, and reduces per-request energy.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.OS, energy。Large language model (LLM) serving relies predominantly on cloud GPUs, yet autoregressive decoding is memory-bound and often leave...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.OS",
+            "energy",
+            "inference",
+            "kv-cache",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-11-17T02:14:54Z",
+          "url": "https://arxiv.org/abs/2611.22086",
+          "pdfUrl": "https://arxiv.org/pdf/2611.22086v1"
+        },
+        {
+          "id": "arxiv-2611.22019",
+          "title": "Computed Permutation Trellis Coding: Near-Optimal Quantization from Two Multiplications and a 64-Byte Table",
+          "authors": [
+            "Muhammed Fatih Balın"
+          ],
+          "summary": "We propose Computed Permutation Trellis Coding (CPTC), a low-bit quantization format for tensors written once and read many times. Formats that round each value on its own, such as INT4 and FP4, waste a large part of their bits against the information-theoretic ideal. Trellis codes recover this loss by encoding values jointly, but prior decoders either need a large lookup table for their best quality or compute values with a hash that restricts what they can decode. CPTC's decoder multiplies its state by two coefficients and adds the top bits of the products to index a 64-byte table. Because that sum is not uniformly distributed, the rarely used ends of a small table can hold values far out in the tails. One decoder serves every bit width from 1 to 6, reproduces the standard integer and floating-point formats exactly, and comes within 0.07 bits of the ideal at 4 bits. It matches a random-permutation trellis code whose table is thousands of times larger, and exceeds every QTIP codebook. In LLM weight quantization without fine-tuning, CPTC has the lowest KL divergence to the unquantized model at every tested bit width on Llama 3.1 8B and 70B Instruct against QTIP's codebooks (by up to 27%). The decoder has been built into the AWS Trainium 4 AI accelerator, where it runs at the throughput of the native FP4 and FP8 formats for a negligible fraction of the systolic array's area. Fused encoding kernels quantize an 8B model's linear layers in under two minutes on one GPU and, in cycle-level simulation, on one Trainium 4 chip.",
+          "reason": "近 30 天；公司信号：Amazon, Meta；关键词：amazon, meta, cs.IT。We propose Computed Permutation Trellis Coding (CPTC), a low-bit quantization format for tensors written once and read many times....",
+          "area": "LLM 推理优化",
+          "tags": [
+            "amazon",
+            "meta",
+            "cs.IT",
+            "efficient",
+            "llm",
+            "quantization",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "Amazon/Meta/arXiv",
+          "publishedAt": "2026-11-17T00:17:01Z",
+          "url": "https://arxiv.org/abs/2611.22019",
+          "pdfUrl": "https://arxiv.org/pdf/2611.22019v1"
+        },
+        {
+          "id": "arxiv-2611.21441",
+          "title": "Learning to Reason with Predictive Gains for Generative Recommendation",
+          "authors": [
+            "Zhuoyang Li",
+            "Teng Shi",
+            "Jiakai Tang",
+            "Weijie Yu",
+            "Guofu Xie",
+            "Xiao Zhang",
+            "Lei Kou",
+            "Yang Yu",
+            "Lei Shen",
+            "Xin Chen",
+            "Bing Wang",
+            "Xiaoyi Zeng",
+            "Jun Xu"
+          ],
+          "summary": "Reasoning-enhanced generative recommendation (GR) has attracted increasing attention for leveraging the reasoning capabilities of large language models (LLMs) to improve next-item prediction. However, existing methods primarily optimize reasoning through Group Relative Policy Optimization (GRPO) with rule-based rewards determined by final recommendation performance, which faces two key limitations: (i) unmeasured predictive contributions within reasoning, where the predictive contributions of individual reasoning steps are not directly reflected in optimization signals, and (ii) weakly discriminative learning signals within groups, where different reasoning trajectories within the group often receive indistinguishable rewards, limiting effective policy optimization. In this paper, we propose GainReason, a simple yet effective training framework that optimizes reasoning through Predictive Gain (PG). Specifically, PG measures changes in target Semantic ID (SID) log-likelihood induced by individual reasoning sentences, providing contribution-aware and discriminative rewards. We further theoretically establish the alignment between expected PG and the recommendation ranking objective. Building on this signal, we develop PG-based Reasoning Optimization (PGRO) to optimize reasoning generation with sentence-level rewards, supported by a custom causal attention mechanism for efficient PG computation. Additionally, an auxiliary PG-based Reasoning Utilization (PGRU) task adaptively strengthens reasoning-conditioned prediction to complement PGRO. Extensive experiments on three public benchmarks demonstrate that GainReason consistently outperforms competitive baselines and achieves substantial performance gains from reasoning.",
+          "reason": "近 30 天；公司信号：Microsoft；推荐/排序/广告方向；关键词：microsoft, cs.AI, alignment。Reasoning-enhanced generative recommendation (GR) has attracted increasing attention for leveraging the reasoning capabilities of...",
+          "area": "推荐算法",
+          "tags": [
+            "microsoft",
+            "cs.AI",
+            "alignment",
+            "efficient",
+            "generative-recommendation",
+            "llm",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "Microsoft/arXiv",
+          "publishedAt": "2026-11-16T17:28:45Z",
+          "url": "https://arxiv.org/abs/2611.21441",
+          "pdfUrl": "https://arxiv.org/pdf/2611.21441v1"
+        }
+      ]
+    },
     {
       "date": "2026-11-17",
       "generatedAt": "2026-11-17T12:13:47.420289+08:00",
@@ -20959,334 +21245,6 @@
           "publishedAt": "2026-07-29T21:29:00Z",
           "url": "https://arxiv.org/abs/2607.27475",
           "pdfUrl": "https://arxiv.org/pdf/2607.27475v1"
-        }
-      ]
-    },
-    {
-      "date": "2026-07-31",
-      "generatedAt": "2026-07-31T06:55:11.023435+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2607.27187",
-          "title": "A Photonic-CXL Memory Appliance for Scalable KV Cache Management in LLM Inference",
-          "authors": [
-            "Jing Ding",
-            "Yash Nishant",
-            "Chandrish Ambati",
-            "Jyothsna Kamati",
-            "Trung Diep"
-          ],
-          "summary": "LLM inference at scale faces a memory wall. The KV cache demands tens of terabytes at hundreds of gigabytes per second, yet no current memory tier delivers both at once. Characterization across multi-generation GPU systems with various LLaMA models shows host memory retrieval achieves up to 100x speedup over re-computation but supports only tens of concurrent long-context users. Electrical CXL pooling theoretically bridges this gap, but switch latency, cable reach limits, and power-scaling issues prevent practical TB-scale deployments. We present the Marvell Photonic Fabric Memory Appliance, a photonic-CXL hybrid architecture replacing electrical switches with a passive fiber shuffle to deliver 32 TB shared memory across 16 hosts via a switch-free full- crossbar topology. Emulation results demonstrate over 50 percent latency reduction versus electrical CXL pools. Simulation results show that the PF Memory Appliance eliminates cache eviction cliffs by improving time-to-first-token by 6.6x for multi-turn conversations workloads.",
-          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.PF, inference。LLM inference at scale faces a memory wall. The KV cache demands tens of terabytes at hundreds of gigabytes per second, yet no cur...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "meta",
-            "cs.PF",
-            "inference",
-            "kv-cache",
-            "latency",
-            "llm",
-            "retrieval"
-          ],
-          "signal": 99,
-          "source": "Meta/arXiv",
-          "publishedAt": "2026-07-29T17:55:38Z",
-          "url": "https://arxiv.org/abs/2607.27187",
-          "pdfUrl": "https://arxiv.org/pdf/2607.27187v1"
-        },
-        {
-          "id": "arxiv-2607.27155",
-          "title": "OmegaUse-OfficeVal: Benchmarking LLM Agents on Long-Horizon Office-Suite Tasks with Economic Grounding",
-          "authors": [
-            "Jingbo Zhou",
-            "Yusai Zhao",
-            "Qi Bao",
-            "Jingjia Cao",
-            "Zhenghai Chen",
-            "Chang Gao",
-            "Kaiqi Guo",
-            "Muxin Guo",
-            "Mingxuan Li",
-            "Xinjiang Lu",
-            "Yanru Ma",
-            "Yixiong Xiao",
-            "Zenghui Zhang",
-            "Le Zhang",
-            "Hua Wu"
-          ],
-          "summary": "Large language model (LLM) agents are increasingly expected to assist users in completing tasks. However, existing benchmarks provide limited support for evaluating whether agents can carry out office-suite workflows at a reasonable cost. We introduce OmegaUse-OfficeVal, a benchmark for evaluating LLM agents on long-horizon office-suite tasks with task-level economic grounding. The benchmark comprises 100 tasks derived from office-suite requests proposed by practitioners and adapted through a privacy-preserving process. On average, these tasks require 2.32 hours of human labor to complete. An important feature of the benchmark is that each task is paired with two economic signals: human labor time and task price proxy. These signals enable direct comparisons between human costs and LLM inference costs, as well as value-weighted evaluation. To support stable evaluation, we develop code-based verifiers from fine-grained rubrics. We evaluate several frontier LLMs together with a human baseline. Although all evaluated LLMs are substantially cheaper and faster than human workers, they have not yet approached human-level deliverable quality. The code and dataset are fully open-sourced, and more information is available on our project website: https://omegause-officeval.github.io.",
-          "reason": "近 30 天；关键词：cs.AI, dataset, inference。Large language model (LLM) agents are increasingly expected to assist users in completing tasks. However, existing benchmarks prov...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.AI",
-            "dataset",
-            "inference",
-            "llm",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-29T17:33:47Z",
-          "url": "https://arxiv.org/abs/2607.27155",
-          "pdfUrl": "https://arxiv.org/pdf/2607.27155v1"
-        },
-        {
-          "id": "arxiv-2607.27090",
-          "title": "InferScale: GPU-Native KV Injection for Personalized LLM Serving",
-          "authors": [
-            "Peter Li",
-            "Prashant Pandey"
-          ],
-          "summary": "Large language models are increasingly deployed with persistent personalized context, such as accumulated memory profiles or long conversation histories, that is shared across a user's many requests. Production memory systems (e.g., Mem0, MemGPT, and Zep) retrieve a relevant subset of this memory and inject it into the prompt, forcing the serving engine to repeatedly prefill the same content. As the retrieval budget grows, time-to-first-token (TTFT) increases even though the underlying memory is reused across requests. We present InferScale, a GPU-native LLM memory system that replaces repeated prompt prefilling with reusable KV state. InferScale precomputes each memory fact's KV representation, stores it alongside a semantic embedding on the GPU, retrieves relevant facts at serving time, and injects their KV directly into vLLM's paged cache. To support dynamically assembled memories under rotary position embeddings, we introduce Chunked RoPE, which stores keys before rotation and applies their serving-time positions during injection. However, encoding memory facts independently omits the cross-fact context available during joint prefilling. We mitigate this with Context-Window Encoding, which encodes each memory fact together with a small window of preceding conversation context while caching only the target fact's KV. InferScale is implemented through vLLM's KV-connector interface, requiring neither engine modifications nor model fine-tuning. Across three open-weight models on LoCoMo, InferScale keeps TTFT nearly constant as the retrieval budget increases: at k=50 it reduces TTFT by 72-79% (3.6-4.8x), achieves 60.3% accuracy versus 63.3% for Mem0 without serving-time recomputation, and delivers 3.7-4.5x the throughput under concurrent load. Reusable KV state thus decouples memory-conditioned serving latency from retrieved-context size while preserving application quality.",
-          "reason": "近 30 天；关键词：cs.DC, deployed, latency。Large language models are increasingly deployed with persistent personalized context, such as accumulated memory profiles or long...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.DC",
-            "deployed",
-            "latency",
-            "llm",
-            "prefill",
-            "production",
-            "retrieval"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-29T16:18:22Z",
-          "url": "https://arxiv.org/abs/2607.27090",
-          "pdfUrl": "https://arxiv.org/pdf/2607.27090v1"
-        },
-        {
-          "id": "arxiv-2607.26893",
-          "title": "Beyond Action Imitation: Learning a Decision-Aware User Simulator for Online Advertising",
-          "authors": [
-            "Zipeng Chen",
-            "Jiaer Zheng",
-            "Xiangyang Xu",
-            "Xinyu Lin",
-            "Zhaobin Wang",
-            "Zhaohui Liu",
-            "Qianjin Xiang",
-            "Xiaoyu Zhao",
-            "Zhuozhen Yu",
-            "Guangshuo Wang",
-            "Daxing Chen",
-            "Junwei Pan",
-            "Zhangbin Zhu",
-            "Chengguo Yin",
-            "Hao Chen",
-            "Tat-Seng Chua",
-            "Haijie Gu",
-            "Jie Jiang"
-          ],
-          "summary": "Recent advances in LLM-based user simulation have shown promise for offline evaluation of recommendation and advertising systems. However, existing simulators typically infer user preferences from single-domain interaction histories and are primarily optimized to reproduce observable actions such as clicks. Consequently, they capture only a partial view of user preferences, while action-only prediction easily induces model shortcuts and limits both the fidelity and diagnostic value of simulation. To address these challenges, we propose DASH, a decision-aware user simulator that jointly generates thinking traces and predicts behavioral actions from heterogeneous cross-domain histories. DASH first introduces a Context Engineering stage that folds heterogeneous cross-domain histories into decision-relevant context, together with prompt optimization for effective reasoning over the folded context. To train a user simulator, DASH distills thinking trajectories from strong LLMs as SFT data, and further tailors a rubric-based reward model that evaluates thinking traces along form, content, and logic for RL training. Combined with the action reward, these signals jointly improve action prediction and thinking quality. Extensive experiments on real-world Tencent advertising data spanning five heterogeneous content domains demonstrate the effectiveness, efficiency, fidelity, and diagnostic value of DASH.",
-          "reason": "近 30 天；公司信号：Tencent；推荐/排序/广告方向；关键词：tencent, cs.IR, advertising。Recent advances in LLM-based user simulation have shown promise for offline evaluation of recommendation and advertising systems....",
-          "area": "推荐算法",
-          "tags": [
-            "tencent",
-            "cs.IR",
-            "advertising",
-            "llm",
-            "recommendation"
-          ],
-          "signal": 99,
-          "source": "Tencent/arXiv",
-          "publishedAt": "2026-07-29T13:25:30Z",
-          "url": "https://arxiv.org/abs/2607.26893",
-          "pdfUrl": "https://arxiv.org/pdf/2607.26893v1"
-        },
-        {
-          "id": "arxiv-2607.26891",
-          "title": "DIRECT: Direct Decoding for Efficient and Aligned Sequence Labeling with Large Language Models",
-          "authors": [
-            "Yilei Wang",
-            "Jiaxin Gan",
-            "Kexuan Zhang",
-            "Ling Li",
-            "Wentao Zhang",
-            "Peichao Lai"
-          ],
-          "summary": "Sequence labeling is a fine-grained information extraction task, yet existing large language model-based approaches suffer from insufficient domain alignment and low inference efficiency. To address these issues, we propose DIRECT, a framework that addresses these issues through training-time optimization and inference-time rectification. Specifically, DIRECT performs Direct Preference Optimization (DPO) after supervised fine-tuning to strengthen task alignment with human preferences, and introduces a controlled decoding process that enforces fixed output formats and restricts predictions to candidate sets. To further improve efficiency, a template-filling mechanism requires the model to generate only label tokens while reusing prefixed content through the KV Cache, thus reducing redundant computation. Experimental results on eight datasets demonstrate that DIRECT achieves significant improvements in both performance and efficiency compared to existing methods.",
-          "reason": "近 30 天；关键词：cs.CL, alignment, dataset。Sequence labeling is a fine-grained information extraction task, yet existing large language model-based approaches suffer from in...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CL",
-            "alignment",
-            "dataset",
-            "efficient",
-            "inference",
-            "kv-cache"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-29T13:23:30Z",
-          "url": "https://arxiv.org/abs/2607.26891",
-          "pdfUrl": "https://arxiv.org/pdf/2607.26891v1"
-        },
-        {
-          "id": "arxiv-2607.26828",
-          "title": "Budget-Aware LLM Discovery via Cost-Calibrated Frontier Utility",
-          "authors": [
-            "Yansen Zhang",
-            "Yilu Liu",
-            "Tianyu Liu",
-            "Jiamin Chen",
-            "Xiaokun Zhang",
-            "Kai Xie",
-            "Xue Liu",
-            "Chen Ma",
-            "Yiyan Qi"
-          ],
-          "summary": "Large language models increasingly support scientific and algorithmic discovery through inference-time search over evaluated candidates. Existing adaptive discovery controllers assign credit based only on score progress, even though prompt length, retries, and guidance calls cause search actions to incur different token costs. We prove that cost-blind credit can forfeit all but a vanishing fraction of attainable quality as frontiers multiply and costs diverge. Under a fixed search-side token budget, the controller must decide which frontier is improving and whether its gain justifies the realized cost before the budget is exhausted. We introduce \\textbf{CostAda}, a cost-calibrated adaptive controller built around \\emph{cost-calibrated frontier utility}. The utility values frontier progress relative to realized action cost and conditions that credit on the remaining budget. CostAda uses this signal to control local exploration intensity, frontier allocation, and budgeted tactic intervention. Cost and remaining budget therefore shape the search rather than serving only as accounting variables or a stopping rule. CostAda reaches the strongest baseline's full-budget quality with at most half the budget on twelve of sixteen benchmark--backbone pairs while achieving the strongest mean final quality on all eight benchmarks under GLM-5 and GPT-5.4.",
-          "reason": "近 30 天；关键词：cs.LG, inference, llm。Large language models increasingly support scientific and algorithmic discovery through inference-time search over evaluated candi...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "inference",
-            "llm",
-            "lora",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-29T12:21:28Z",
-          "url": "https://arxiv.org/abs/2607.26828",
-          "pdfUrl": "https://arxiv.org/pdf/2607.26828v1"
-        },
-        {
-          "id": "arxiv-2607.26571",
-          "title": "From Tokens to Watt-hours: Analytical Energy Estimation for LLM Inference on Modern GPUs",
-          "authors": [
-            "Tina Vartziotis",
-            "Rodopi Kosteli",
-            "Elli Vartziotis",
-            "George Dasoulas",
-            "Michael Keckeisen",
-            "Konstantinos Skianis",
-            "Sotirios Kotsopoulos",
-            "Francesca Dominici"
-          ],
-          "summary": "The operational energy consumption of large language model (LLM) inference is becoming an increasingly important component of the environmental footprint of deployed AI systems. However, direct measurement of inference energy often requires hardware telemetry, power instrumentation, or infrastructure-specific monitoring, limiting its applicability in comparative studies, early-stage system design, and sustainability reporting. This report presents an analytically structured, empirically calibrated, GPU-level methodology for estimating LLM inference energy on NVIDIA H100-class accelerators without direct runtime measurement. The proposed estimator combines parameter-scaled transformer FLOP accounting, calibrated memory-traffic factors, and hardware-specific energy coefficients for FP16/BF16 tensor-core computation and high-bandwidth-memory movement. It explicitly separates prompt prefill from autoregressive decoding, enabling energy estimates for input tokens, output tokens, and complete inference requests. The methodology further decomposes total energy into compute, parameter-access, key-value-cache write, and attention-read components, allowing the scaling behavior with model size, context length, and generated-token count to be analyzed. The resulting estimates are not intended to replace physical power measurements; rather, they provide transparent, reproducible, and assumption-explicit approximations suitable for model comparison, green-coding analysis, and design-time evaluation of LLM inference workloads.",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.LG, deployed。The operational energy consumption of large language model (LLM) inference is becoming an increasingly important component of the...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.LG",
-            "deployed",
-            "efficient",
-            "energy",
-            "inference",
-            "llm"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-29T07:50:55Z",
-          "url": "https://arxiv.org/abs/2607.26571",
-          "pdfUrl": "https://arxiv.org/pdf/2607.26571v1"
-        },
-        {
-          "id": "arxiv-2607.26491",
-          "title": "LLMET: Enabling Cross-Layer Evaluation of Emerging M3D Memories for Energy-Efficient LLM Serving",
-          "authors": [
-            "Ming-Yen Lee",
-            "Hanchen Yang",
-            "Faaiq Waqar",
-            "Harsono Simka",
-            "Tushar Krishna",
-            "Muhammed Ahosan Ul Karim",
-            "Shimeng Yu"
-          ],
-          "summary": "The energy consumption of Large Language Model (LLM) serving is becoming a major system challenge as deployment scales, driven by hardware power and thermal constraints and rising electricity costs. A key contributor to chip energy dissipation is data movement between limited on-chip cache and off-chip High Bandwidth Memory (HBM). Meanwhile, emerging memory technologies such as monolithic 3D (M3D) integration of cache memories at the Back-End-Of-Line (BEOL) of logic chips enable larger and denser on-chip memories, creating new opportunities to reduce costly off-chip traffic. However, it remains unclear whether continuously scaling on-chip memory using emerging technologies can effectively improve the energy efficiency of LLM serving. To address this gap, we develop LLMET (LLM with Emerging Technology), a validated cross-layer simulation framework, and conduct a comprehensive study on the impact of large-capacity on-chip memory technologies across a broad range of models, applications and platforms. Utilizing M3D technology to expand the L2 cache from 40MB to 1GB yields a 44% reduction in chip energy during the Llama3.1-70B prefill phase with a 16K context window, based on LLMET simulation on a dual NVIDIA A100 GPU setup. On the 8x NVIDIA B200-like platform, extending the L2 cache from 128MB to 4GB saves the prefill energy by up to 24%. For the edge platform and workloads, the decode energy saving reaches 30% when increasing the 8MB cache size to 256MB. These results highlight the promise of ultra-large on-chip memories for energy-efficient LLM serving systems.",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.AR, efficient。The energy consumption of Large Language Model (LLM) serving is becoming a major system challenge as deployment scales, driven by...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.AR",
-            "efficient",
-            "energy",
-            "llm",
-            "prefill",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-29T05:37:31Z",
-          "url": "https://arxiv.org/abs/2607.26491",
-          "pdfUrl": "https://arxiv.org/pdf/2607.26491v1"
-        },
-        {
-          "id": "arxiv-2607.26427",
-          "title": "PSG: Pair-Space Generation for Efficient Generative Reranking",
-          "authors": [
-            "Chao Feng",
-            "Li Ma",
-            "Xiancheng Gao",
-            "Chenghao Zhang",
-            "Yuanhao Pu",
-            "Xiang Li"
-          ],
-          "summary": "Modern recommender systems adopt Generator-Evaluator (G-E) for list-wise reranking: a generator produces sequences from candidates and an evaluator scores them at sequence-level to filter out the optimal one for exposure. Auto-Regressive(AR), working as the backbone for generative recommendation, suffers two limitations. First, its complexity grows linearly with list length, forcing the system to generate fewer lists under rigorous latency constraints and thus limiting exploration. Second, teacher-forcing creates a train-test mismatch; cumulative errors worsen with length and degrade quality. To address these problems, we propose Pair-Space Generation (PSG), a reformulation that elevates the generation atom from individual items to ordered item pairs. Given $n$ candidate items, PSG operates over pair vocabulary of size $n(n-1)$ per request, generates only $L/2$ tokens. Pair token representations are produced on-the-fly by a pretrained pair-token representation module optimized over large scale exposure logs, eliminating the data sparsity that would otherwise plague a quadratic sized vocabulary. We establish three theoretical guarantees: (i) PSG is bijective with item-space generation and induces an equivalent family of sequence distributions, thus incurring no loss of expressiveness; (ii) generation in pair-token space achieves approximately a $2\\times$ to $4\\times$ speedup theoretically under moderate settings and $1.83\\times$ in the real industrial environmental settings; and (iii) under outcome-only rewards, the worst-case suboptimality of PSG is bounded by $O((L/2)^2 \\barε)$, representing a nearly $4\\times$ improvement over item-space generation. Beyond benchmark-based validation, PSG has also been deployed on Kuaishou, delivering a 0.178\\% lift in per-user stay time on the platform, which serves over 400 million daily active users.",
-          "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, deployed。Modern recommender systems adopt Generator-Evaluator (G-E) for list-wise reranking: a generator produces sequences from candidates...",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "cs.IR",
-            "deployed",
-            "efficient",
-            "generative-recommendation",
-            "industrial",
-            "latency"
-          ],
-          "signal": 99,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-07-29T03:14:09Z",
-          "url": "https://arxiv.org/abs/2607.26427",
-          "pdfUrl": "https://arxiv.org/pdf/2607.26427v1"
-        },
-        {
-          "id": "arxiv-2607.25110",
-          "title": "Memory Layer: Train the In-Model Cache for Recommendation Models",
-          "authors": [
-            "Liangyuan Na",
-            "Gufan Yin",
-            "Yixin Bao",
-            "Xianjie Chen",
-            "Justin Lin",
-            "Ziheng huang",
-            "Xinyuan Zhang",
-            "Wen Zhang",
-            "Hao Lin",
-            "Xiaoheng Mao",
-            "Shuo Tang",
-            "Min Yu",
-            "Lei Chen",
-            "Chao yang",
-            "Ziliang Zhao",
-            "Mengjiao Zhou",
-            "Zheng Qi",
-            "Dmitry Barablin",
-            "Chuo-Yun Yang",
-            "Kaustubh Vartak",
-            "Tingting Zhang",
-            "Arun Kumar Singh"
-          ],
-          "summary": "Early ranking stages in recommendation systems precompute item embeddings and cache them in-model for scoring within strict latency constraints. Because this cache exists only at serving time, outside the training loop, training and serving use different item representations, a structural discrepancy that limits quality and adds operational fragility. We show that co-designing the training and serving paths removes this representation discrepancy at its source. We introduce the memory layer, an in-model key-value embedding cache co-trained with the model: the item tower writes embeddings during training and the model reads them at serving, one source of truth for item representations by construction. Always-on embeddings cover items not yet cached, so every item receives a prediction, and the design consolidates three separate trainer-to-predictor update paths into a single self-contained pipeline. Deployed in production on Instagram Reels, the memory layer raises prediction coverage from 96% to 100%, improves embedding freshness from $O(5\\text{ min})$ to $O(20\\text{ s})$, and narrows the training-serving Normalized Entropy (NE) gap by up to 86%, yielding over $2\\times$ recall for the freshest content and a 5-6% cold start engagement lift. Because embeddings are produced during training, the system needs no separate bulk-evaluation or publish-time recomputation, cutting training-and-publish computational cost by 30% at neutral serving computational cost.",
-          "reason": "近 30 天；公司信号：Meta；推荐/排序/广告方向；关键词：meta, cs.IR, deployed。Early ranking stages in recommendation systems precompute item embeddings and cache them in-model for scoring within strict latenc...",
-          "area": "推荐算法",
-          "tags": [
-            "meta",
-            "cs.IR",
-            "deployed",
-            "latency",
-            "production",
-            "ranking",
-            "recommendation"
-          ],
-          "signal": 99,
-          "source": "Meta/arXiv",
-          "publishedAt": "2026-07-27T22:15:13Z",
-          "url": "https://arxiv.org/abs/2607.25110",
-          "pdfUrl": "https://arxiv.org/pdf/2607.25110v1"
         }
       ]
     }
