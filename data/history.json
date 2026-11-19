@@ -1,7 +1,274 @@
 {
-  "generatedAt": "2026-11-18T11:13:42.501698+08:00",
+  "generatedAt": "2026-11-19T10:52:27.003594+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-11-19",
+      "generatedAt": "2026-11-19T10:52:27.003594+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2611.23835",
+          "title": "NarrowSpec: Draft Hidden Width Need Not Match the Target in Speculative Decoding",
+          "authors": [
+            "Alagappan Valliappan",
+            "Ankit More",
+            "Dheevatsa Mudigere",
+            "Jatin Mitra"
+          ],
+          "summary": "Speculative decoding is widely used to speed up generation in large language models (LLMs), with a small draft model proposing tokens that one forward pass of the target model verifies. Draft models that read the target's hidden states, such as DFlash and EAGLE-3, typically inherit the target's hidden width. We show that the draft's whole residual stream can run at half or a quarter of that width while largely preserving acceptance. For DFlash, which borrows the target's vocabulary projection, the trained output adapter folds into it, giving one narrower projection with logits unchanged up to floating-point rounding. We test two drafter families, DFlash and EAGLE-3, on two targets, Qwen3-8B (NVFP4) and GPT-OSS-20B (MXFP4), in SGLang on a B200 and a DGX Spark (GB10). At batch size 1 and temperature 0, narrowing the draft to half or a quarter width speeds up end-to-end decoding by 1.06-1.12x on B200 and 1.13-1.44x on GB10. The speedup holds at larger batch sizes. From batch 32 to the largest batch each GPU fits, narrowing reaches up to 1.21x on both GPUs, and no narrow draft is slower than full width.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, llm。Speculative decoding is widely used to speed up generation in large language models (LLMs), with a small draft model proposing tok...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.CL",
+            "llm",
+            "serving",
+            "slo",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-11-18T04:40:10Z",
+          "url": "https://arxiv.org/abs/2611.23835",
+          "pdfUrl": "https://arxiv.org/pdf/2611.23835v1"
+        },
+        {
+          "id": "arxiv-2611.23695",
+          "title": "MoMoVL: Modality-Aware Adaptive Compression for On-Device Sparsely-Activated Vision-Language Models",
+          "authors": [
+            "Dongkeun Lee",
+            "Wonjun Lee"
+          ],
+          "summary": "The rise of the agentic web has been accompanied by growing demand for on-device Vision-Language Models (VLMs) that perform diverse cross-modal web tasks with enhanced privacy and reduced latency. Mixture-of-Experts (MoE) models are widely adopted in modern VLMs for compute-efficient scalability, yet their multi-expert architecture poses deployment challenges due to substantial memory demands. Mixed-precision quantization is an effective compression technique that reduces bit-widths while adapting to the heterogeneous hardware budgets of edge devices, particularly well-suited for MoE due to its inherent structural sparsity, which causes imbalanced importance among experts. While prior work has applied quantization for efficient MoE inference at the edge, we point out that in MoE-based VLMs, the modality-specific characteristics of visual and text tokens further impact expert quantization. To address this issue, we present MoMoVL, a modality-aware adaptive compression framework for MoE-based VLMs that brings vision-language inference within reach of on-device resource budgets. Motivated by our empirical findings on modality-induced disparities across experts, MoMoVL jointly exploits the per-expert activation profile and per-modality quantization sensitivity to guide bit-width assignment. Experimental results show that MoMoVL improves the accuracy-compression trade-off relative to state-of-the-art mixed-precision baselines and reduces memory footprint by up to 15.44% with a modest drop in accuracy over its uniform-precision baseline. Our code and data are publicly available at https://github.com/sco-edge/MoMoVL.",
+          "reason": "近 30 天；关键词：cs.CV, efficient, inference。The rise of the agentic web has been accompanied by growing demand for on-device Vision-Language Models (VLMs) that perform divers...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CV",
+            "efficient",
+            "inference",
+            "latency",
+            "quantization"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-18T01:36:56Z",
+          "url": "https://arxiv.org/abs/2611.23695",
+          "pdfUrl": "https://arxiv.org/pdf/2611.23695v1"
+        },
+        {
+          "id": "arxiv-2611.23657",
+          "title": "Same Model, Different People: Numerical Execution Contracts and the Reproducibility of Fairness Audits",
+          "authors": [
+            "Erzheng Zhang",
+            "Agnes Chu"
+          ],
+          "summary": "Fairness audits treat a trained model as a fixed decision function, but the arithmetic that evaluates it is part of that function. This study holds the model, records, threshold and audit code fixed and varies the numerical execution contract in two tiers. Tier 1 changes only how products and sums are computed, with the serialized weights byte-identical, and is the causal test of arithmetic. Tier 2 runs reduced-precision deployment configurations (BF16 compute, FP8 and 8-bit weights), which can also round weights and change engines and kernels, so its effects belong to the configuration. It audits three tabular model families and two open-weight language models (4B and 24B parameters) on four public tasks, including hospital readmission, on CPUs and GPUs from NVIDIA, AMD and Apple. Tier 1 changed decisions near the threshold, and which ones depended on the GPU and its software stack, but no verdict under the prespecified, unweighted tests. Tier 2 configurations changed more decisions and some diagnostic verdicts, but no four-fifths verdict. Serving the 24B model with vLLM FP8 selected 54% of people rather than 45% and passed an employment-status audit by sex that its strict FP32 reference failed: its demographic-parity and equalized-odds gaps fell from 0.0567 and 0.0515 to 0.0417 and 0.0394, against a diagnostic tolerance of 0.05. At the reference's selection count FP8 failed demographic parity, and no reading gave its equalized-odds change a paired interval excluding zero. The declared audit depends on the configuration; FP8 is not shown to be fairer. At the frozen thresholds, every pass-fail verdict a configuration changed had a sampling interval containing its criterion. It proposes an audit stability protocol in which the auditor declares contracts, groups, weights and tests before scoring and records each verdict's range over them apart from its sampling uncertainty.",
+          "reason": "近 30 天；公司信号：Apple, NVIDIA；关键词：apple, nvidia, cs.CY。Fairness audits treat a trained model as a fixed decision function, but the arithmetic that evaluates it is part of that function....",
+          "area": "LLM 推理优化",
+          "tags": [
+            "apple",
+            "nvidia",
+            "cs.CY",
+            "llm",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Apple/NVIDIA/arXiv",
+          "publishedAt": "2026-11-18T00:26:37Z",
+          "url": "https://arxiv.org/abs/2611.23657",
+          "pdfUrl": "https://arxiv.org/pdf/2611.23657v1"
+        },
+        {
+          "id": "arxiv-2611.23570",
+          "title": "Safe to Omit, Worth Omitting? Keeping the Answer and Cutting Latency When an LLM Agent Skips Another's Message",
+          "authors": [
+            "Xinyang Li",
+            "Chih-Hsuan Yang",
+            "Xiaolong Ma",
+            "Anjir Ahmed Chowdhury",
+            "Vikram Vasudevan",
+            "Rajeev Thakur",
+            "Feng Yan"
+          ],
+          "summary": "In multi-agent systems, a receiver agent often waits for a helper agent's message (text or its latent KV cache), which can improve performance but adds latency. We study when a receiver agent can skip the message safely (the final answer rarely changes) and beneficially (the time saved exceeds the cost of deciding). Our mechanism reads the receiver agent's confidence without the message and uses a finite-sample test to certify a threshold at which, with high probability, at most 5% of skipped answers change; if none passes, the system keeps communicating. We test it on OpenBookQA, ARC-Challenge, and MMLU-Pro with three Qwen model pairs, on cross-family agents, and on SQuAD and GSM8K. Four insights emerge. First, oracle headroom is weak evidence that messages help: control inputs without answer-specific content, matched to change answers as often as real messages, reproduce a median 76% of the oracle's gain. Second, whether a message can be skipped depends on how often and how predictably it alters the answer, not on its accuracy; every certified KV-cache path is less accurate than the receiver agent alone. Third, where text messages help, skipping keeps most of their gain: on unseen questions in the four such settings, the policies skip 59 to 80% and keep an estimated 76 to 95% of the gain. In two prospective tests with all rules fixed in advance, our mechanism skips a three-agent system's verifier on 39.9% of sealed questions, keeping 12.55 of its 12.80-point gain, and a 32B helper on 68.4% of held-out questions, keeping its whole gain. Fourth, safety does not determine efficiency: at batch size one, skipping text saves hundreds of milliseconds per query and skipping KV cache far less. Certification extends to SQuAD but not to GSM8K. In eleven tests on unseen questions, every certified policy we could test kept its change rate's 95% upper bound below 5% under our answer parsers.",
+          "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.LG, kv-cache。In multi-agent systems, a receiver agent often waits for a helper agent's message (text or its latent KV cache), which can improve...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "alibaba",
+            "cs.LG",
+            "kv-cache",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-11-17T22:16:11Z",
+          "url": "https://arxiv.org/abs/2611.23570",
+          "pdfUrl": "https://arxiv.org/pdf/2611.23570v1"
+        },
+        {
+          "id": "arxiv-2611.23558",
+          "title": "Towards Fair Resource Sharing in Agentic LLM Serving",
+          "authors": [
+            "Sehyeon Lee",
+            "Yuchen Xia",
+            "Zhaoyang Hong",
+            "Jinrui Hu",
+            "Anuradha Pandey",
+            "Evan Zhao",
+            "Ankita Nayak",
+            "Nishil Talati"
+          ],
+          "summary": "As LLM agents increasingly execute complex, multi-step tasks on shared inference infrastructure, resource contention across the end-to-end LLM serving stack causes severe and uneven slowdowns across agents. Existing agentic serving systems primarily optimize throughput and latency, with comparatively limited attention to fairness among concurrent agents. Although fairness has been studied in conventional LLM serving at the token and request levels, these approaches do not fully capture cumulative delays and stateful resource dependencies across successive LLM calls within an agent. Moreover, interference spans request routing, runtime scheduling, and hardware resources, making agent-level fairness challenging to define and optimize across an end-to-end serving stack. This paper presents a cross-layer framework to define agent-level fairness, attribute sources of unfairness, and optimize fairness while preserving throughput. To account for agents with widely varying execution demands, we build a theoretical foundation to define fairness using slowdown relative to standalone execution. Our empirical analysis reveals that routing, runtime scheduling, and hardware contention jointly determine fairness, with performance-oriented policies often leading to prolonged queuing delays. To optimize fairness, we introduce Duru, which monitors each agent's slowdown and uses this signal to guide admission and scheduling decisions across the router and runtime. Duru further alleviates starvation through admission exceptions and integrates slowdown-driven autoscaling to adhere to Service-Level Objectives (SLOs). Our evaluation across various benchmarks and hardware platforms shows that Duru reduces 99th-percentile normalized slowdown by a geometric mean of 44.4% (up to 79.5%) while delivering 91.8-127.4% of the state-of-the-art system's throughput.",
+          "reason": "近 30 天；关键词：cs.OS, inference, latency。As LLM agents increasingly execute complex, multi-step tasks on shared inference infrastructure, resource contention across the en...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.OS",
+            "inference",
+            "latency",
+            "llm",
+            "serving",
+            "slo",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-17T22:07:16Z",
+          "url": "https://arxiv.org/abs/2611.23558",
+          "pdfUrl": "https://arxiv.org/pdf/2611.23558v1"
+        },
+        {
+          "id": "arxiv-2611.23508",
+          "title": "BOS Summary: The First Token Matters",
+          "authors": [
+            "Hui Zhu",
+            "Saleh Zare Zade",
+            "Rafi Ibn Sultan",
+            "Deng Pan",
+            "Arun Ross",
+            "Dongxiao Zhu"
+          ],
+          "summary": "Large vision-language models (LVLMs) and language models (LLMs) often exhibit attention sinks, whereby particular positions, such as the beginning-of-sequence (BOS) token, receive a disproportionate share of attention. Under standard causal masking, however, the BOS query attends only to itself, so the representation that later tokens repeatedly access carries no information about the input. We introduce BOS Summary, a training-free inference-time method that repurposes this persistent pathway to carry input context. At a single transformer layer during prefill, BOS Summary relaxes the causal constraint for the BOS query row alone, letting BOS aggregate all visual and textual input tokens into a self-derived context representation while every other token retains standard causal attention. The enriched representation then remains accessible to the model throughout decoding, with no additional parameters, auxiliary modules, or decoding-time overhead. Across multiple VLM and LLM families and eight multimodal and text-only benchmarks, BOS Summary improves over direct and Chain-of-Thought prompting and outperforms recent sink-intervention methods on multi-step reasoning tasks. A mechanistic analysis shows that making BOS input-specific also weakens its sink dominance and redistributes attention toward content-bearing prompt tokens, indicating that changing what a sink carries reshapes how later layers allocate attention.",
+          "reason": "近 30 天；关键词：cs.AI, inference, llm。Large vision-language models (LVLMs) and language models (LLMs) often exhibit attention sinks, whereby particular positions, such...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AI",
+            "inference",
+            "llm",
+            "multimodal",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-17T21:01:03Z",
+          "url": "https://arxiv.org/abs/2611.23508",
+          "pdfUrl": "https://arxiv.org/pdf/2611.23508v1"
+        },
+        {
+          "id": "arxiv-2611.23428",
+          "title": "When Does Subspace Direction Matter for LoRA? Regime Analysis of the Magnitude Principle in Few-Shot Adaptation",
+          "authors": [
+            "Nischal Subedi",
+            "Cencheng Shen",
+            "Peng Zhao"
+          ],
+          "summary": "We show that the importance of a LoRA adapter's initial input-subspace direction is regime-dependent, and we characterize this dependence in theory and experiment. This refines the recent view that spectral initializers help through update magnitude alone. Direction matters most when labeled data are scarce relative to the representation dimension and the activation subspace used for initialization captures supervised task structure. In this regime, the adapter's row span remains sensitive to its starting point, making task-aligned initialization especially useful. A spiked-covariance perturbation analysis characterizes the finite-sample stability of the estimated subspace. A first-step analysis of LoRA training explains why the subspace's alignment with the task matters and motivates an alignment coefficient $ρ$ that closely tracks gains across classification tasks. We test this account with PivotLoRA, which initializes adapters from activation PCA at prediction-relevant positions and applies one output-preserving orthogonal pivot early in training. In few-shot BERT-base classification, PivotLoRA achieves the best average rank among 13 methods and improves over vanilla LoRA in 29 of 30 settings, even though it starts from a smaller input-factor initialization norm. Additional classification experiments extend the evaluation to 7B and 8B Llama decoders. Classification gains diminish with more labeled data, consistent with the proposed regime dependence. A targeted extension to completion-only reasoning also shows improvements on GSM8K and StrategyQA. These findings identify conditions under which initialization direction matters, with subspace-task alignment offering a low-cost diagnostic before training for classification.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, alignment。We show that the importance of a LoRA adapter's initial input-subspace direction is regime-dependent, and we characterize this dep...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "alignment",
+            "efficient",
+            "lora",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-11-17T19:30:56Z",
+          "url": "https://arxiv.org/abs/2611.23428",
+          "pdfUrl": "https://arxiv.org/pdf/2611.23428v1"
+        },
+        {
+          "id": "arxiv-2611.23388",
+          "title": "QDA: Closed-Loop LLM Quantization Design with Agents",
+          "authors": [
+            "Xingyang Li",
+            "Tianlang Zhao",
+            "Song Han",
+            "Ligeng Zhu"
+          ],
+          "summary": "Post-training quantization is the standard way to serve large language models at low cost. However, the best quantization recipe differs across models and precisions. As a result, experts must redesign it for every new model, which is time-consuming and often sub-optimal. Fortunately, an LLM agent can take over this design by refining the recipe over rounds of building and evaluating candidates, so that more rounds lead to better recipes. However, evaluating one quantized reasoning model takes tens of GPU-hours, and combining methods from different codebases means porting each to the new architecture by hand. We present QDA, a system in which an agent designs the recipe for each model and precision. To make evaluation fast, QDA scores each candidate in minutes by its output KL divergence from the original model on reasoning traces that the agent never sees, and checks promising ones with long generations to catch failures such as repetition loops. To make building fast, QDA provides a library of public PTQ methods that are compatible with one another and with new model architectures. Across four reasoning models, QDA improves accuracy over the strongest public recipe by 0.9, 1.4 and 2.2 percentage points on average at W4A16, W4A8 and W3A16, using 64 GPU-hours per search. On the 320B-parameter MoE model GLM-5.3-Flash at NVFP4 W4A4, it recovers 98.3% of the FP8 model's accuracy, against 96.9% for the best vendor checkpoint. Every QDA checkpoint also runs on existing serving kernels with no inference overhead. We will release the library, the evaluator and the harness.",
+          "reason": "近 30 天；关键词：cs.LG, inference, llm。Post-training quantization is the standard way to serve large language models at low cost. However, the best quantization recipe d...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "inference",
+            "llm",
+            "quantization",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-17T19:00:09Z",
+          "url": "https://arxiv.org/abs/2611.23388",
+          "pdfUrl": "https://arxiv.org/pdf/2611.23388v1"
+        },
+        {
+          "id": "arxiv-2611.22756",
+          "title": "Learning Cross-Domain Media Similarity from Amazon Reviews",
+          "authors": [
+            "Gabrielly Xavier dos Santos",
+            "Lucas Dias Cler",
+            "Luciana Fujii Pontello",
+            "Olga Goussevskaia"
+          ],
+          "summary": "Collaborative filtering is a basic foundation of many recommendation algorithms. It works by analyzing a user's history and then suggesting items similar to those in that history. This method typically relies on user data to compute item similarity, data that is widely available to commercial systems but is usually sparse or inaccessible for independent systems and research, especially across multiple media domains. In this work, we propose a method to generalize similarity information between items using supervised learning. As input to our model, we use semantic and temporal features extracted from Amazon product reviews, which are publicly available. As the training target, we use item (product) co-occurrence in the reviewing history of Amazon customers. We evaluate the quality of the predicted similarities across two media domains: books and movies. Experimental results demonstrate the robustness of our methodology, yielding positive outcomes in zero-shot cross-domain transfer tasks. Furthermore, feature attribution analysis reveals a structural shift in how feature groups are utilized across setups: intra-domain models rely heavily on linguistic semantics, whereas cross-domain environments pivot toward behavioral popularity cues. Incorporating even limited target-domain context during training bridges this domain sparsity gap, significantly enhancing framework generalization.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, recommendation。Collaborative filtering is a basic foundation of many recommendation algorithms. It works by analyzing a user's history and then s...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "recommendation"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-11-17T13:24:45Z",
+          "url": "https://arxiv.org/abs/2611.22756",
+          "pdfUrl": "https://arxiv.org/pdf/2611.22756v1"
+        },
+        {
+          "id": "arxiv-2611.23339",
+          "title": "Optimize the Cob, Then the Kernel: Optimizing Beam Search for Generative Recommendation Inference",
+          "authors": [
+            "Shing Wai Pun",
+            "Kai Wu",
+            "Pengfei Xia",
+            "Hui Zang",
+            "Wei Guo",
+            "Yong Liu"
+          ],
+          "summary": "Generative recommendation (GR) inference differs substantially from conventional LLM serving, featuring long input sequences, wide beam search, and only a few fixed output tokens. Existing LLM serving engines such as vLLM process beams as batched independent sequences, causing redundant KV cache accesses over the shared prompt prefix. Furthermore, vLLM executes each beam search generation step as a separate engine invocation, incurring host-side beam processing overhead between decoding steps and substantial runtime KV block management in PagedAttention. Using Tree Attention, we concatenate beams along the sequence dimension to eliminate redundant KV accesses, and further optimize execution through pre-generated partial-attention masks, static KV cache allocation, loop-unrolled generation dispatch, TorchAir graph compilation, automatic operator fusion, and vocabulary-constrained decoding. Without the use of custom kernels, our approach reduces end-to-end latency by up to 25x over vLLM on Ascend NPUs, and achieves generation latency comparable to a SOTA solution using custom kernels, showing that the generation pipeline should be optimized holistically before resorting to custom kernel development.",
+          "reason": "近 30 天；公司信号：Huawei；推荐/排序/广告方向；关键词：huawei, cs.LG, generative-recommendation。Generative recommendation (GR) inference differs substantially from conventional LLM serving, featuring long input sequences, wide...",
+          "area": "推荐算法",
+          "tags": [
+            "huawei",
+            "cs.LG",
+            "generative-recommendation",
+            "inference",
+            "kv-cache",
+            "latency",
+            "llm"
+          ],
+          "signal": 99,
+          "source": "Huawei/arXiv",
+          "publishedAt": "2026-11-17T07:14:52Z",
+          "url": "https://arxiv.org/abs/2611.23339",
+          "pdfUrl": "https://arxiv.org/pdf/2611.23339v1"
+        }
+      ]
+    },
     {
       "date": "2026-11-18",
       "generatedAt": "2026-11-18T11:13:42.501698+08:00",
@@ -20947,304 +21214,6 @@
           "publishedAt": "2026-07-29T09:02:32Z",
           "url": "https://arxiv.org/abs/2607.27265",
           "pdfUrl": "https://arxiv.org/pdf/2607.27265v1"
-        }
-      ]
-    },
-    {
-      "date": "2026-08-01",
-      "generatedAt": "2026-08-01T06:50:25.238317+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2607.28627",
-          "title": "ReToken: One Token to Improve Vision-Language Models for Visual Retrieval",
-          "authors": [
-            "Yao Xiao",
-            "Reuben Tan",
-            "Zhen Zhu",
-            "Yuqun Wu",
-            "Jianfeng Gao",
-            "Derek Hoiem"
-          ],
-          "summary": "Long visual context poses a challenge for vision-language models: performance degrades as the number of distractors grows, and processing all tokens at once is computationally infeasible under GPU memory constraints. We present ReToken, a single learnable embedding trained as an explicit retrieval target that selects a sparse set of query-relevant visual tokens from a pre-filled visual KV cache. Trained on only a small image-QA dataset, ReToken yields consistent gains across image and video benchmarks: on Visual Haystacks it improves Qwen3VL-8B by 13.4 points and InternVL3.5 by 12.4 points (>20% relative), and on LVBench it transfers zero-shot to long video for an 8.0-point gain with Qwen3VL-8B. Thanks to its lightweight design, both training and long-video inference fit on a single H100. Code is available at: https://github.com/avaxiao/ReToken",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CV, dataset。Long visual context poses a challenge for vision-language models: performance degrades as the number of distractors grows, and pro...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.CV",
-            "dataset",
-            "inference",
-            "kv-cache",
-            "retrieval"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-30T17:59:56Z",
-          "url": "https://arxiv.org/abs/2607.28627",
-          "pdfUrl": "https://arxiv.org/pdf/2607.28627v1"
-        },
-        {
-          "id": "arxiv-2607.28495",
-          "title": "Stage-Replay Divergence Follows the KV Cache: Fixed-Prefix Precision Controls and Bidirectional Cache Transplantation",
-          "authors": [
-            "Alexander Boesgaard Lorup"
-          ],
-          "summary": "Stage-replay diagnostics reconstruct intermediate token prefixes and treat fresh-prefill continuation as continuation from the decoder state that originally reached the prefix. We audit that assumption at a whole reasoning-stage boundary in a Qwen2.5-derived system. A matched 200-item experiment compares retained live cache with one-shot prefill of identical integer tokens and places an exact replica on both sides. In BF16, replicas remain exact while the constructions differ on 166 suffixes and 20 correctness labels; the accuracy difference is only one point (paired 95% CI [-3.5, +5.5]). A fixed-prefix 2x2 holds all 200 token states constant while crossing construction and precision. The BF16 disagreements recur, whereas FP32 produces no decoded disagreement (95% Wilson upper bound 1.88%). A prospective bridge makes token-by-token incremental and retained live caches bit-exact on 12/12 rows; an all-200 saved-ledger audit reproduces every retained trajectory and comparison fingerprint. Bidirectional transplantation of all 48 key/value layers makes every tested divergent continuation follow its cache donor, both on a selected set at the primary checkpoint (24/24) and an outcome-blind replication at a later checkpoint (43/43). Exact-token replay can therefore be repeatable without preserving live-state fidelity. On the tested states, boundary K/V cache is a causally sufficient carrier of the divergent trajectory, while numerical precision moderates its behavioral expression.",
-          "reason": "近 30 天；关键词：cs.LG, kv-cache, prefill。Stage-replay diagnostics reconstruct intermediate token prefixes and treat fresh-prefill continuation as continuation from the dec...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "kv-cache",
-            "prefill",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-30T16:41:40Z",
-          "url": "https://arxiv.org/abs/2607.28495",
-          "pdfUrl": "https://arxiv.org/pdf/2607.28495v1"
-        },
-        {
-          "id": "arxiv-2607.28418",
-          "title": "WIDE: Boosting Adaptive LLM Inference via Token-level Dynamic Width Pruning",
-          "authors": [
-            "Haozhe Hu",
-            "Hao Wu",
-            "Peiran Yin",
-            "Chao Han",
-            "Yunpu Ma",
-            "Xiaoyu Shen"
-          ],
-          "summary": "Pruning is a promising approach for improving the efficiency of LLMs. Existing static structured pruning methods are hardware-friendly and can deliver practical throughput gains, but their input-agnostic computation allocation often causes substantial accuracy degradation under aggressive sparsity. Recent dynamic sparsity methods improve quality retention by adapting computation to individual inputs, yet they remain largely limited to coarse-grained structural decisions and their practical acceleration under real-world inference scenarios remains challenging. To address these challenges, we present WIDE, the first end-to-end differentiable token-level dynamic width pruning framework designed for both prefill and decode scenarios. WIDE enables fine-grained computation allocation by allowing each token to dynamically select attention-head groups and FFN-channel groups, extending dynamic pruning beyond layer-level decisions to neuron-block-level granularity. Through a two-stage training pipeline, WIDE learns effective token-wise sparse execution patterns and achieves substantially better quality retention than existing approaches. To make such fine-grained dynamic pruning practical, we further propose a pruning--kernel co-design framework that decomposes dynamic sparsity acceleration into mask reordering, hardware-agnostic block-level skipping, and hardware-dependent intra-block skipping, enabling efficient execution across different granularities. At 50% sparsity, WIDE provides 55.1% performance boost when compared to the state-of-the-art dynamic depth pruning under calibration-only settings. Under prefill and decoding inference workloads, WIDE achieves close-to-theoretical kernel-level speedups of up to 1.98x for prefill and 4.95x for decoding, as well as 1.68x and 1.55x end-to-end acceleration. Our code is available at https://github.com/EIT-NLP/LLM-Pruning/tree/main/WIDE.",
-          "reason": "近 30 天；关键词：cs.AI, efficient, inference。Pruning is a promising approach for improving the efficiency of LLMs. Existing static structured pruning methods are hardware-frie...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.AI",
-            "efficient",
-            "inference",
-            "llm",
-            "prefill",
-            "throughput"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-30T16:01:03Z",
-          "url": "https://arxiv.org/abs/2607.28418",
-          "pdfUrl": "https://arxiv.org/pdf/2607.28418v1"
-        },
-        {
-          "id": "arxiv-2607.28263",
-          "title": "Understanding Is Done Early: A Depth Division of Labor in Large Language Models and Its Use for Unbounded-Context Memory",
-          "authors": [
-            "Hanzuo Liu",
-            "Xuan Qi",
-            "Chunyu Liu",
-            "Haotian Zhong",
-            "Yulong Wang",
-            "Rayying",
-            "Key",
-            "Alex Lamb",
-            "Mingyu Gao"
-          ],
-          "summary": "Transformer depth is not used uniformly: lower and middle layers build semantic representations, while upper layers increasingly specialize them for prediction. We turn this division of labor into CoMem (Comprehension Memory), which writes each context chunk only through an intermediate layer, retrieves a fixed number of cached residual states, and recomputes the query-conditioned upper layers over the resulting pack. For a fixed retrieval budget, model-side read compute and memory are independent of stored-context length. We evaluate a continued-trained Qwen3-8B base LM under a unified chat-template-free protocol. The backbone is frozen; the flagship trains only a rank-32 self-distillation LoRA on plain PG19, and we report an adapter-free arm separately. CoMem reaches 97.05 on RULER and 38.27 on LoCoMo versus 34.59 for full-context KV-Direct; the dialogue-memory advantage survives conversation-cluster resampling and an independent judge. Results on additional long-context and long-document tasks expose both the benefits of bounded retrieval and its in-window compression tax. Controlled depth sweeps show that deeper caching lowers per-query recomputation but incurs a fidelity loss that self-distillation substantially repairs. In a separate adapter-free efficiency control on an NVIDIA H20 at 128k, CoMem uses 18.26 GB rather than 89.36 GB and achieves a 7.83x prefill speedup. These results show that long-context memory can be organized along the layer axis, not only the token axis.",
-          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, lora。Transformer depth is not used uniformly: lower and middle layers build semantic representations, while upper layers increasingly s...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "nvidia",
-            "cs.CL",
-            "lora",
-            "prefill",
-            "retrieval"
-          ],
-          "signal": 99,
-          "source": "NVIDIA/arXiv",
-          "publishedAt": "2026-07-30T14:19:11Z",
-          "url": "https://arxiv.org/abs/2607.28263",
-          "pdfUrl": "https://arxiv.org/pdf/2607.28263v1"
-        },
-        {
-          "id": "arxiv-2607.28150",
-          "title": "SmartGen: Seamless Disaggregated LLM Inference with Selective KV Cache Transfer",
-          "authors": [
-            "Xuchuan Luo",
-            "Jiacheng Shen",
-            "Xin Wang",
-            "Yangfan Zhou"
-          ],
-          "summary": "Disaggregating the prefill and decoding stages of large language model (LLM) inference into two separate sets of nodes is widely adopted in today's LLM serving systems. However, such an architecture poses significant challenges for self-hosted LLM deployments on rented cloud instances, since transferring enormous key-value (KV) caches between disaggregated nodes can easily saturate the limited inter-node network bandwidth. In this paper, we propose to mitigate the network bottleneck by selectively transferring essential KV cache entries across the two stages. There are two challenges to achieve selective KV cache transfer, i.e., accurate KV selection during the prefill stage, and efficient KV fetching during the decoding stage. To address these challenges, we design SmartGen, a KV cache transfer engine that allows seamless disaggregated LLM inference with three data transfer paths. Specifically, we leverage 1) a profile-based proactive transfer path to identify and push essential KV cache entries to the decoding node during the prefill stage, 2) a parallel on-demand transfer path to simultaneously fetch remote and local KV cache entries during the decoding stage, and 3) a speculative transfer path to finally deliver all KV caches to the decoding node. Experimental results show that SmartGen reduces time-to-second-token by up to 4.3x compared with the typical full KV cache transfer approach while offering comparable subsequent decoding performance and accuracy.",
-          "reason": "近 30 天；关键词：cs.DC, efficient, inference。Disaggregating the prefill and decoding stages of large language model (LLM) inference into two separate sets of nodes is widely a...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.DC",
-            "efficient",
-            "inference",
-            "kv-cache",
-            "llm",
-            "prefill",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-07-30T12:56:05Z",
-          "url": "https://arxiv.org/abs/2607.28150",
-          "pdfUrl": "https://arxiv.org/pdf/2607.28150v1"
-        },
-        {
-          "id": "arxiv-2607.28070",
-          "title": "CCFormer: Efficient Cross-Field Interaction and Hierarchical Sequence Compression for Industrial Recommendation at Tencent",
-          "authors": [
-            "Yunlong Wang",
-            "Huizhe Zhang",
-            "Haonan Hu",
-            "Yudong Li",
-            "Bing Wen",
-            "Jianchao Tu",
-            "Chengxiang Zhuo",
-            "Zang Li"
-          ],
-          "summary": "Recent studies in industrial recommendation systems have demonstrated that sequential recommendation models built upon self-attention can benefit from predictable scaling laws by increasing sequence length and model capacity. However, practical recommender systems impose strict latency and resource constraints, making it challenging to balance computational overhead with fine-grained feature interaction. In this paper, we propose CCFormer, an efficient Transformer backbone that unifies cross-field feature interaction and compressed long-sequence modeling for industrial recommendation. Specifically, CCFormer combines feature-field separated cross attention with long-sequence subspace token mixing to exploit long-term preference signals across heterogeneous feature domains. A hierarchical sequence compression strategy with progressively expanded receptive fields enables efficient long-sequence modeling with reduced information loss. Extensive experiments on two public benchmarks and a large-scale industrial dataset demonstrate that CCFormer consistently outperforms state-of-the-art baselines. Online A/B tests in a video recommendation scenario and an advertising ranking scenario at Tencent further validate its industrial practicality, yielding a 3.57% CTR gain and a 1.71% advertising revenue lift, respectively, while accelerating model training by 2.21x over the strong HSTU baseline. CCFormer has been fully deployed in Tencent's production recommendation system, serving the main traffic of both scenarios.",
-          "reason": "近 30 天；公司信号：Microsoft, Tencent；推荐/排序/广告方向；关键词：microsoft, tencent, cs.IR。Recent studies in industrial recommendation systems have demonstrated that sequential recommendation models built upon self-attent...",
-          "area": "推荐算法",
-          "tags": [
-            "microsoft",
-            "tencent",
-            "cs.IR",
-            "advertising",
-            "dataset",
-            "deployed",
-            "efficient"
-          ],
-          "signal": 99,
-          "source": "Microsoft/Tencent/arXiv",
-          "publishedAt": "2026-07-30T11:45:31Z",
-          "url": "https://arxiv.org/abs/2607.28070",
-          "pdfUrl": "https://arxiv.org/pdf/2607.28070v1"
-        },
-        {
-          "id": "arxiv-2607.27944",
-          "title": "Interpretable Representation via LLM-Driven Generative Disentanglement for Local-Life Service Recommendation",
-          "authors": [
-            "Long Zhang",
-            "Hao Jiang",
-            "Sheng Yu",
-            "Fei Pan",
-            "Peng Jiang",
-            "Kun Gai"
-          ],
-          "summary": "While large language models (LLMs) have advanced ID-based recommendation through Semantic ID (SID) modeling, existing SID generation frameworks largely follow a single-representation-then-quantization paradigm. This design faces two bottlenecks: semantic entanglement mixes heterogeneous attributes, such as geography, brand, and category, causing information loss during quantization, low-quality SIDs, and severe collisions; moreover, black-box representation learning provides neither explicit attribute semantics nor clear geographic or semantic meanings for SID positions. These limitations weaken both retrieval reliability and the ability to diagnose or control SID generation. We propose Interpretable Representation via LLM-Driven Generative Disentanglement for Local-Life Service Recommendation (LGRID). LGRID introduces a generative disentanglement paradigm through an Encode -> Disentangle -> Align -> Quantize pipeline. It first uses joint LLM encoding to preserve cross-attribute geographic-semantic dependencies, rather than encoding fields independently. A Structured Disentangled Block then routes hidden states into attribute-aligned slots for geographic and semantic factors. Synergistic Alignment Learning makes these slots both generatively decodable and discriminative for retrieval, while Dual-Stream Residual Quantization separately discretizes the two streams into compact SIDs with explicit attribute correspondence. This design yields interpretable SIDs with positions grounded in item attributes and local-service semantics. Experiments on Kuaishou and Foursquare show that LGRID consistently outperforms strong SID baselines, achieving up to a 5.44 percent relative AUC gain. It also achieves over 99 percent attribute-decoding accuracy for coarse geographic fields and reduces the full-SID collision rate to 39.9 percent, compared with 97.0 percent for LGSID.",
-          "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.IR, alignment。While large language models (LLMs) have advanced ID-based recommendation through Semantic ID (SID) modeling, existing SID generati...",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "cs.IR",
-            "alignment",
-            "llm",
-            "quantization",
-            "recommendation",
-            "retrieval"
-          ],
-          "signal": 99,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-07-30T09:52:18Z",
-          "url": "https://arxiv.org/abs/2607.27944",
-          "pdfUrl": "https://arxiv.org/pdf/2607.27944v1"
-        },
-        {
-          "id": "arxiv-2607.27647",
-          "title": "LoopMemGR: From Behavior Logs to Evolving Memory for Generative Recommendation",
-          "authors": [
-            "Hui Qian",
-            "Changfa Wu",
-            "Chang Liu",
-            "Binbin Cao",
-            "Jian Wu",
-            "Yuliang Yan",
-            "Han Zhu",
-            "Bo Zheng"
-          ],
-          "summary": "Generative recommendation formulates next-item prediction as conditional autoregressive generation over discrete Semantic IDs, enabling end-to-end recommendation over large-scale item spaces. However, most existing methods follow a history-as-context paradigm that repeatedly reconstructs user preference from behavior history while discarding system-side recommendation decisions after each request. This creates an asymmetric memory: the system remembers what the user has done, but not what it has previously recommended or learned from the resulting feedback. Consequently, useful preference-validation signals, potential negative evidence, and historical exploration information cannot be directly reused across requests. To address these limitations, we propose LoopMemGR, a closed-loop recommendation experience memory framework for generative recommendation. In addition to the conventional behavior log, LoopMemGR maintains a recommendation experience log that records past recommendation--feedback trajectories. It extracts request-relevant evidence through three complementary views: the recency view captures short-term interaction dynamics, the frequency view summarizes recurring recommendation patterns, and the global view distills transferable regularities shared across users. These signals are compressed into a fixed number of experience tokens to condition the generative backbone under a bounded input budget. Extensive experiments on an industrial Taobao dataset demonstrate the effectiveness of closed-loop experience accumulation and multi-view experience extraction.",
-          "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, dataset。Generative recommendation formulates next-item prediction as conditional autoregressive generation over discrete Semantic IDs, ena...",
-          "area": "推荐算法",
-          "tags": [
-            "alibaba",
-            "cs.IR",
-            "dataset",
-            "generative-recommendation",
-            "industrial",
-            "lora",
-            "recommendation"
-          ],
-          "signal": 99,
-          "source": "Alibaba/arXiv",
-          "publishedAt": "2026-07-30T03:59:00Z",
-          "url": "https://arxiv.org/abs/2607.27647",
-          "pdfUrl": "https://arxiv.org/pdf/2607.27647v1"
-        },
-        {
-          "id": "arxiv-2607.27577",
-          "title": "Heterogeneous Ranking in Industrial-Scale Recommender Systems: A Case Study",
-          "authors": [
-            "Di Bai",
-            "Jintao Liu",
-            "Zhenwei Tang",
-            "Peifan Wu",
-            "Nada Al-Thawr",
-            "Luoshu Wang"
-          ],
-          "summary": "Heterogeneous recommendation feeds present complex challenges that extend beyond those found in highly homogeneous environments (e.g., music-only or video-only closed-ecosystem platforms). In Google Discover, a unified feed integrates diverse content sourced from the decentralized open web, including web articles, long-form and short-form videos, user-generated content (UGC), and beyond. Different content types exhibit distinct feature densities and user interaction patterns. Building a unified ranking model that sustains high performance across such heterogeneity, while avoiding negative transfer or majority bias, remains a significant industrial challenge. This paper presents an end-to-end case study on the industrial-scale multi-task ranking of heterogeneous feeds, grounded in real-world deployment. We introduce HA-MoE, a heterogeneity-adaptive multi-gated mixture-of-experts architecture that incorporates explicit heterogeneity context into both gating networks and expert representations. This approach enables effective specialization without significantly increasing operational overhead. To support reliable deployment, we introduce LENS, a lightweight observability framework that provides interpretable diagnostics of expert specialization and tracks this functional heterogeneity across continuous retraining. We evaluate our method using Dual-Level AUC (DL-AUC), a heterogeneity-aware evaluation metric that combines global ranking performance with cross-segment ranking correctness. Offline evaluations on a large-scale industrial dataset demonstrate consistent improvements over baseline models. Furthermore, online A/B testing confirms gains in feed activity and exploration metrics. Together, offline and online results validate the effectiveness of our approach for managing heterogeneity in industrial-scale recommender systems.",
-          "reason": "近 30 天；公司信号：Google；推荐/排序/广告方向；关键词：google, cs.IR, dataset。Heterogeneous recommendation feeds present complex challenges that extend beyond those found in highly homogeneous environments (e...",
-          "area": "推荐算法",
-          "tags": [
-            "google",
-            "cs.IR",
-            "dataset",
-            "industrial",
-            "lora",
-            "online-a/b",
-            "ranking"
-          ],
-          "signal": 99,
-          "source": "Google/arXiv",
-          "publishedAt": "2026-07-30T01:41:42Z",
-          "url": "https://arxiv.org/abs/2607.27577",
-          "pdfUrl": "https://arxiv.org/pdf/2607.27577v1"
-        },
-        {
-          "id": "arxiv-2607.27475",
-          "title": "OneShot: Index-in-Ranking with Neural Scoring for Large-Scale Retrieval",
-          "authors": [
-            "Ziwei Li",
-            "Shuyao Li",
-            "Xufeng Cai",
-            "Xue Zou",
-            "Yiming Ma",
-            "Huiting Lu",
-            "Wujie Yan",
-            "Zhichen Zhao",
-            "Yang Lu",
-            "Zhe Wang",
-            "Rui Luo",
-            "Zhengyu Su",
-            "Dan Zhang",
-            "Ji Liu"
-          ],
-          "summary": "In modern recommendation systems, retrieval serves as a primary stage responsible for filtering billions of candidate items down to thousands prior to refined ranking. To make this massive search effective and efficient, the system relies on ranking accuracy and indexing efficiency. However, these two objectives are traditionally misaligned: while the former optimizes for the alignment between ranking predictions and user behavior, the latter optimizes for a structural grouping of item representations which enables fast search among billions of candidates. Thus, despite extensive efforts to scale up interaction modeling for retrieval, they remain fundamentally limited by the structural misalignment between the ranking objectives and the proximity-learned index. In this work, we address this long-standing dichotomy by proposing a new holistic retrieval framework, OneShot. It is an end-to-end, in-model index learning framework that natively aligns index learning with ranking objectives. Using this joint learning as a structural foundation, OneShot pushes the boundaries of retrieval expressiveness by scaling interaction modeling with neural scoring beyond the persistent dot-product bottleneck. OneShot is fully deployed in Instagram's industrial short-video recommendation system, driving significant wins in user daily sessions, engagement, and time-spent. Additionally, OneShot achieves a $20\\%$ recall gain at the operational ranking volume and a 10x efficiency improvement at an equivalent recall level.",
-          "reason": "近 30 天；公司信号：Meta；推荐/排序/广告方向；关键词：meta, cs.IR, alignment。In modern recommendation systems, retrieval serves as a primary stage responsible for filtering billions of candidate items down t...",
-          "area": "推荐算法",
-          "tags": [
-            "meta",
-            "cs.IR",
-            "alignment",
-            "deployed",
-            "efficient",
-            "industrial",
-            "ranking"
-          ],
-          "signal": 99,
-          "source": "Meta/arXiv",
-          "publishedAt": "2026-07-29T21:29:00Z",
-          "url": "https://arxiv.org/abs/2607.27475",
-          "pdfUrl": "https://arxiv.org/pdf/2607.27475v1"
         }
       ]
     }
