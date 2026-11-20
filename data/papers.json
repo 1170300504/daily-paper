@@ -1,266 +1,300 @@
 {
-  "generatedAt": "2026-11-19T10:52:27.003594+08:00",
+  "generatedAt": "2026-11-20T10:44:09.611765+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2611.23835",
-      "title": "NarrowSpec: Draft Hidden Width Need Not Match the Target in Speculative Decoding",
+      "id": "arxiv-2611.25433",
+      "title": "RoCoKV: Accelerating LLM Inference Serving through Uncertainty and Redundancy Aware KV Cache Compression",
       "authors": [
-        "Alagappan Valliappan",
-        "Ankit More",
-        "Dheevatsa Mudigere",
-        "Jatin Mitra"
+        "Payman Behnam",
+        "Elaheh Sobhani",
+        "Saad Amin",
+        "Yahya Hassan",
+        "Daniyal Khan",
+        "Biswadeep Chakraborty",
+        "Tanish Patwa",
+        "Souvik Kundu",
+        "Alexey Tumanov"
       ],
-      "summary": "Speculative decoding is widely used to speed up generation in large language models (LLMs), with a small draft model proposing tokens that one forward pass of the target model verifies. Draft models that read the target's hidden states, such as DFlash and EAGLE-3, typically inherit the target's hidden width. We show that the draft's whole residual stream can run at half or a quarter of that width while largely preserving acceptance. For DFlash, which borrows the target's vocabulary projection, the trained output adapter folds into it, giving one narrower projection with logits unchanged up to floating-point rounding. We test two drafter families, DFlash and EAGLE-3, on two targets, Qwen3-8B (NVFP4) and GPT-OSS-20B (MXFP4), in SGLang on a B200 and a DGX Spark (GB10). At batch size 1 and temperature 0, narrowing the draft to half or a quarter width speeds up end-to-end decoding by 1.06-1.12x on B200 and 1.13-1.44x on GB10. The speedup holds at larger batch sizes. From batch 32 to the largest batch each GPU fits, narrowing reaches up to 1.21x on both GPUs, and no narrow draft is slower than full width.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, llm。Speculative decoding is widely used to speed up generation in large language models (LLMs), with a small draft model proposing tok...",
+      "summary": "KV cache compression is critical for large reasoning models, where most of the cost comes from long generated reasoning traces rather than the input prompt. These traces often contain redundant and low-utility tokens due to looping, self-verification, and corrections. However, such tokens may still receive high attention scores, making it difficult to remove them without harming the reasoning process. We propose RoCoKV, a KV cache compression method designed for large reasoning models. RoCoKV introduces two key components. First, uncertainty-guided adaptive pruning adjusts the compression strength based on the model's confidence, allocating more memory during uncertain phases and applying stronger pruning when the model is confident. Second, redundancy-aware token selection reduces the impact of tokens that are highly similar to recent reasoning content, encouraging the model to retain more informative and diverse tokens. Beyond the algorithm, we co-design RoCoKV with the serving stack: we develop fused three-phase CUDA decode kernels and integrate them into vLLM as a drop-in plugin that preserves its paged KV layout and CUDA graph capture, turning algorithmic savings into real end-to-end speedups. Extensive experiments across three reasoning benchmarks and two reasoning models demonstrate that RoCoKV consistently improves reasoning accuracy under constrained KV cache budgets, achieving higher accuracy compared to state-of-the-art KV cache compression methods. For DeepSeek-R1-Distill-Llama-8B in vLLM, RoCoKV achieves a 1.27X speedup and 38% higher throughput on AIME25, the most challenging evaluated reasoning benchmark, and a 1.43X speedup and 45% higher throughput on the long synthetic benchmark, compared with Full-KV.",
+      "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.CL。KV cache compression is critical for large reasoning models, where most of the cost comes from long generated reasoning traces rat...",
       "area": "LLM 推理优化",
       "tags": [
+        "meta",
         "nvidia",
         "cs.CL",
-        "llm",
-        "serving",
-        "slo",
-        "speculative"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-11-18T04:40:10Z",
-      "url": "https://arxiv.org/abs/2611.23835",
-      "pdfUrl": "https://arxiv.org/pdf/2611.23835v1"
-    },
-    {
-      "id": "arxiv-2611.23695",
-      "title": "MoMoVL: Modality-Aware Adaptive Compression for On-Device Sparsely-Activated Vision-Language Models",
-      "authors": [
-        "Dongkeun Lee",
-        "Wonjun Lee"
-      ],
-      "summary": "The rise of the agentic web has been accompanied by growing demand for on-device Vision-Language Models (VLMs) that perform diverse cross-modal web tasks with enhanced privacy and reduced latency. Mixture-of-Experts (MoE) models are widely adopted in modern VLMs for compute-efficient scalability, yet their multi-expert architecture poses deployment challenges due to substantial memory demands. Mixed-precision quantization is an effective compression technique that reduces bit-widths while adapting to the heterogeneous hardware budgets of edge devices, particularly well-suited for MoE due to its inherent structural sparsity, which causes imbalanced importance among experts. While prior work has applied quantization for efficient MoE inference at the edge, we point out that in MoE-based VLMs, the modality-specific characteristics of visual and text tokens further impact expert quantization. To address this issue, we present MoMoVL, a modality-aware adaptive compression framework for MoE-based VLMs that brings vision-language inference within reach of on-device resource budgets. Motivated by our empirical findings on modality-induced disparities across experts, MoMoVL jointly exploits the per-expert activation profile and per-modality quantization sensitivity to guide bit-width assignment. Experimental results show that MoMoVL improves the accuracy-compression trade-off relative to state-of-the-art mixed-precision baselines and reduces memory footprint by up to 15.44% with a modest drop in accuracy over its uniform-precision baseline. Our code and data are publicly available at https://github.com/sco-edge/MoMoVL.",
-      "reason": "近 30 天；关键词：cs.CV, efficient, inference。The rise of the agentic web has been accompanied by growing demand for on-device Vision-Language Models (VLMs) that perform divers...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CV",
-        "efficient",
         "inference",
-        "latency",
-        "quantization"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-18T01:36:56Z",
-      "url": "https://arxiv.org/abs/2611.23695",
-      "pdfUrl": "https://arxiv.org/pdf/2611.23695v1"
-    },
-    {
-      "id": "arxiv-2611.23657",
-      "title": "Same Model, Different People: Numerical Execution Contracts and the Reproducibility of Fairness Audits",
-      "authors": [
-        "Erzheng Zhang",
-        "Agnes Chu"
-      ],
-      "summary": "Fairness audits treat a trained model as a fixed decision function, but the arithmetic that evaluates it is part of that function. This study holds the model, records, threshold and audit code fixed and varies the numerical execution contract in two tiers. Tier 1 changes only how products and sums are computed, with the serialized weights byte-identical, and is the causal test of arithmetic. Tier 2 runs reduced-precision deployment configurations (BF16 compute, FP8 and 8-bit weights), which can also round weights and change engines and kernels, so its effects belong to the configuration. It audits three tabular model families and two open-weight language models (4B and 24B parameters) on four public tasks, including hospital readmission, on CPUs and GPUs from NVIDIA, AMD and Apple. Tier 1 changed decisions near the threshold, and which ones depended on the GPU and its software stack, but no verdict under the prespecified, unweighted tests. Tier 2 configurations changed more decisions and some diagnostic verdicts, but no four-fifths verdict. Serving the 24B model with vLLM FP8 selected 54% of people rather than 45% and passed an employment-status audit by sex that its strict FP32 reference failed: its demographic-parity and equalized-odds gaps fell from 0.0567 and 0.0515 to 0.0417 and 0.0394, against a diagnostic tolerance of 0.05. At the reference's selection count FP8 failed demographic parity, and no reading gave its equalized-odds change a paired interval excluding zero. The declared audit depends on the configuration; FP8 is not shown to be fairer. At the frozen thresholds, every pass-fail verdict a configuration changed had a sampling interval containing its criterion. It proposes an audit stability protocol in which the auditor declares contracts, groups, weights and tests before scoring and records each verdict's range over them apart from its sampling uncertainty.",
-      "reason": "近 30 天；公司信号：Apple, NVIDIA；关键词：apple, nvidia, cs.CY。Fairness audits treat a trained model as a fixed decision function, but the arithmetic that evaluates it is part of that function....",
-      "area": "LLM 推理优化",
-      "tags": [
-        "apple",
-        "nvidia",
-        "cs.CY",
+        "kv-cache",
         "llm",
         "serving"
       ],
       "signal": 99,
-      "source": "Apple/NVIDIA/arXiv",
-      "publishedAt": "2026-11-18T00:26:37Z",
-      "url": "https://arxiv.org/abs/2611.23657",
-      "pdfUrl": "https://arxiv.org/pdf/2611.23657v1"
+      "source": "Meta/NVIDIA/arXiv",
+      "publishedAt": "2026-11-19T03:16:18Z",
+      "url": "https://arxiv.org/abs/2611.25433",
+      "pdfUrl": "https://arxiv.org/pdf/2611.25433v1"
     },
     {
-      "id": "arxiv-2611.23570",
-      "title": "Safe to Omit, Worth Omitting? Keeping the Answer and Cutting Latency When an LLM Agent Skips Another's Message",
+      "id": "arxiv-2611.25289",
+      "title": "LLMs Are Already Confidence-Aware Zero-Shot Classifiers",
       "authors": [
-        "Xinyang Li",
-        "Chih-Hsuan Yang",
-        "Xiaolong Ma",
-        "Anjir Ahmed Chowdhury",
-        "Vikram Vasudevan",
-        "Rajeev Thakur",
-        "Feng Yan"
+        "Owen Cook",
+        "Xingyi Song"
       ],
-      "summary": "In multi-agent systems, a receiver agent often waits for a helper agent's message (text or its latent KV cache), which can improve performance but adds latency. We study when a receiver agent can skip the message safely (the final answer rarely changes) and beneficially (the time saved exceeds the cost of deciding). Our mechanism reads the receiver agent's confidence without the message and uses a finite-sample test to certify a threshold at which, with high probability, at most 5% of skipped answers change; if none passes, the system keeps communicating. We test it on OpenBookQA, ARC-Challenge, and MMLU-Pro with three Qwen model pairs, on cross-family agents, and on SQuAD and GSM8K. Four insights emerge. First, oracle headroom is weak evidence that messages help: control inputs without answer-specific content, matched to change answers as often as real messages, reproduce a median 76% of the oracle's gain. Second, whether a message can be skipped depends on how often and how predictably it alters the answer, not on its accuracy; every certified KV-cache path is less accurate than the receiver agent alone. Third, where text messages help, skipping keeps most of their gain: on unseen questions in the four such settings, the policies skip 59 to 80% and keep an estimated 76 to 95% of the gain. In two prospective tests with all rules fixed in advance, our mechanism skips a three-agent system's verifier on 39.9% of sealed questions, keeping 12.55 of its 12.80-point gain, and a 32B helper on 68.4% of held-out questions, keeping its whole gain. Fourth, safety does not determine efficiency: at batch size one, skipping text saves hundreds of milliseconds per query and skipping KV cache far less. Certification extends to SQuAD but not to GSM8K. In eleven tests on unseen questions, every certified policy we could test kept its change rate's 95% upper bound below 5% under our answer parsers.",
-      "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.LG, kv-cache。In multi-agent systems, a receiver agent often waits for a helper agent's message (text or its latent KV cache), which can improve...",
+      "summary": "Zero-shot large language models (LLMs) are increasingly used as text classifiers, but their labels are only useful when we know to what extent we can trust them. We compare black-box methods (verbalised confidence and sampling) with white-box methods that read token probabilities (P(True), and multiple logit-scoring methods using constrained generation). We evaluate eleven open-weight LLMs (1B-32B parameters) on five classification datasets with 3 to 151 labels, measuring classification performance (accuracy, F1-macro), discrimination (AUROC), and calibration (ECE and Brier score). The choice of confidence method rarely impacts accuracy significantly, but logit-based scoring methods lead to much better discrimination (AUROC 0.74-0.77) than black-box methods (AUROC 0.57-0.66). Replacing labels with single-token identifiers preserves discrimination but costs 3-6 accuracy points on average. We also introduce decision-only scoring, which only scores positions where labels diverge in the prefix tree (trie). It reduces decode steps by 88-96% on the three largest label sets and performs comparably to full-label scoring. The best open-weight model-method configurations (Gemma 4 31B and Qwen 3.5 9B) are competitive with the commercial Jev 1.13.0 classifier.",
+      "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.CL, dataset。Zero-shot large language models (LLMs) are increasingly used as text classifiers, but their labels are only useful when we know to...",
       "area": "LLM 推理优化",
       "tags": [
         "alibaba",
-        "cs.LG",
-        "kv-cache",
-        "latency",
+        "cs.CL",
+        "dataset",
         "llm"
       ],
       "signal": 99,
       "source": "Alibaba/arXiv",
-      "publishedAt": "2026-11-17T22:16:11Z",
-      "url": "https://arxiv.org/abs/2611.23570",
-      "pdfUrl": "https://arxiv.org/pdf/2611.23570v1"
+      "publishedAt": "2026-11-18T23:33:16Z",
+      "url": "https://arxiv.org/abs/2611.25289",
+      "pdfUrl": "https://arxiv.org/pdf/2611.25289v1"
     },
     {
-      "id": "arxiv-2611.23558",
-      "title": "Towards Fair Resource Sharing in Agentic LLM Serving",
+      "id": "arxiv-2611.25112",
+      "title": "TripleKV: Predict, Prefetch, Protect -- KV Cache Management for AI Agents",
       "authors": [
-        "Sehyeon Lee",
-        "Yuchen Xia",
-        "Zhaoyang Hong",
-        "Jinrui Hu",
-        "Anuradha Pandey",
-        "Evan Zhao",
-        "Ankita Nayak",
-        "Nishil Talati"
+        "Shashwat Jaiswal",
+        "Chloe Alverti",
+        "Mengmei Ye",
+        "Chen Wang",
+        "Hubertus Franke",
+        "Fan Lai",
+        "Tianyin Xu",
+        "Josep Torrellas"
       ],
-      "summary": "As LLM agents increasingly execute complex, multi-step tasks on shared inference infrastructure, resource contention across the end-to-end LLM serving stack causes severe and uneven slowdowns across agents. Existing agentic serving systems primarily optimize throughput and latency, with comparatively limited attention to fairness among concurrent agents. Although fairness has been studied in conventional LLM serving at the token and request levels, these approaches do not fully capture cumulative delays and stateful resource dependencies across successive LLM calls within an agent. Moreover, interference spans request routing, runtime scheduling, and hardware resources, making agent-level fairness challenging to define and optimize across an end-to-end serving stack. This paper presents a cross-layer framework to define agent-level fairness, attribute sources of unfairness, and optimize fairness while preserving throughput. To account for agents with widely varying execution demands, we build a theoretical foundation to define fairness using slowdown relative to standalone execution. Our empirical analysis reveals that routing, runtime scheduling, and hardware contention jointly determine fairness, with performance-oriented policies often leading to prolonged queuing delays. To optimize fairness, we introduce Duru, which monitors each agent's slowdown and uses this signal to guide admission and scheduling decisions across the router and runtime. Duru further alleviates starvation through admission exceptions and integrates slowdown-driven autoscaling to adhere to Service-Level Objectives (SLOs). Our evaluation across various benchmarks and hardware platforms shows that Duru reduces 99th-percentile normalized slowdown by a geometric mean of 44.4% (up to 79.5%) while delivering 91.8-127.4% of the state-of-the-art system's throughput.",
-      "reason": "近 30 天；关键词：cs.OS, inference, latency。As LLM agents increasingly execute complex, multi-step tasks on shared inference infrastructure, resource contention across the en...",
+      "summary": "LLM agents alternate between inference and tool execution, repeatedly reusing their growing context across calls. Under high concurrency, their combined key-value (KV) cache working set can reach hundreds of GiB, far exceeding GPU memory capacity. As idle KV cache blocks are evicted to slower storage tiers, returning agents incur expensive retrievals that stall inference. To address this problem, we present \\emph{TripleKV}, a three-tier KV cache management system that hides the delays of these retrievals. %exploits tool execution to hide these delays. In agentic workloads, the KV blocks needed by the next inference request are known in advance; only the time of their reuse is uncertain. TripleKV uses a tool-aware latency predictor to estimate when each tool call will complete and prefetches the required KV blocks from SSD into host DRAM ahead of time. Unlike GPU prefetching, this avoids reserving scarce GPU memory and interfering with concurrent inference requests. To further improve DRAM utilization, TripleKV eliminates duplication of GPU-resident blocks in DRAM, and introduces a victim-cache mechanism that refills blocks from SSD upon their eviction from GPU memory. Across data, web, and coding agents, TripleKV reduces the fraction of requests requiring critical-path SSD reads from 45--76\\% to under 10\\%. It also reduces P95 time to first token (TTFT) by up to 49\\% compared with vLLM extended with DRAM and SSD KV-cache tiers, and achieves 1.5-7$\\times$ lower P95 TTFT than recent agent-aware systems.",
+      "reason": "近 30 天；关键词：cs.DC, inference, kv-cache。LLM agents alternate between inference and tool execution, repeatedly reusing their growing context across calls. Under high concu...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.OS",
+        "cs.DC",
+        "inference",
+        "kv-cache",
+        "latency",
+        "llm",
+        "retrieval",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-18T19:50:23Z",
+      "url": "https://arxiv.org/abs/2611.25112",
+      "pdfUrl": "https://arxiv.org/pdf/2611.25112v1"
+    },
+    {
+      "id": "arxiv-2611.25091",
+      "title": "Berth: SLO-Preserving GPU Sharing Without New Preemption",
+      "authors": [
+        "Mohammadali Khodabandehlou",
+        "Mahdi Alizadeh",
+        "Lei Gao",
+        "Murali Annavaram",
+        "Bhaskar Krishnamachari"
+      ],
+      "summary": "Inference services keep GPUs reserved for their worst-case load, and most of that capacity sits idle. Filling it with best-effort work such as training is the obvious remedy, and latency is why it rarely happens: on a shared GPU, a request that must finish within milliseconds finds the best-effort job's kernels running or queued ahead of it. Spatial sharing cannot evict them, temporal sharing gives the request only its turn, and hardware partitioning protects it by idling what it does not use. Systems that keep both the SLO and the utilization have reached inside the stack (rewriting kernels, patching the driver, instrumenting the framework), which the operator of a closed GPU stack cannot do. This paper argues that reaching inside is unnecessary. The time-slicer built into commodity GPUs already preempts a running kernel within a fraction of a millisecond and switches the moment a context runs out of work; what it lacks is priority, and priority can be created from outside by controlling what the best-effort context has to run. Berth is a user-space system built on this observation: a preloaded shim feeds the best-effort job to the GPU only when no request needs it (feed control), a declared deadline reference extends the rule to continuous-batching LLM engines, and a shortened best-effort time slice, set without privileges, bounds what a long kernel can cost. Berth changes no application, framework, kernel or driver. Across 31 scenario points with MLPerf SLOs and 13 baselines, Berth meets SLOs within a few percentage points of running alone, above every baseline, with 2.7-3.5x the best-effort throughput of the strongest ones; beside LLM serving, it meets per-token targets for nearly every request while training keeps running. Sharing a closed GPU under SLOs needs no new preemption mechanism, only control over what the existing one sees.",
+      "reason": "近 30 天；关键词：cs.DC, batching, deadline。Inference services keep GPUs reserved for their worst-case load, and most of that capacity sits idle. Filling it with best-effort...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.DC",
+        "batching",
+        "deadline",
         "inference",
         "latency",
         "llm",
-        "serving",
-        "slo",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-18T19:29:56Z",
+      "url": "https://arxiv.org/abs/2611.25091",
+      "pdfUrl": "https://arxiv.org/pdf/2611.25091v1"
+    },
+    {
+      "id": "arxiv-2611.24891",
+      "title": "Cap-and-Track: Optimizing LLM Inference Request Dispatch Across Shifting Capacity",
+      "authors": [
+        "Benjamin Novotny",
+        "Doug Szeto",
+        "Chang Wang",
+        "Shicheng Chen",
+        "George Zhihua Yuan",
+        "Bob Kamma",
+        "Michael Ge",
+        "John Xin Zhou",
+        "Andrea Olgiati"
+      ],
+      "summary": "A fixed dispatch rate for LLM inference becomes stale as serving fleets resize and request sizes change. Generative output length is unknown at admission, and shared provider pools can lose capacity. We present Cap-and-Track, a design for asynchronous inference across provider capacity and internal GPUs. Meta's traffic shaper implements Cap-and-Track for post and live-video understanding. Refusals signal the backend's current admission ceiling. Durable priority queues hold excess work outside execution, including refused requests for retry. Cap is a fail-fast admission check at the saturated resource that refuses work before a long wait. Using only those refusals, the Track dispatcher probes upward and backs off. It follows the ceiling without output-length prediction or a fleet-level rate to retune. In a concurrent same-traffic production A/B, the shaper ran per-replica Cap plus Track. It served a classifier on 43% fewer H100s than its queued, fixed-rate precursor, though lower-priority work waited longer at backfill peaks. In steady-capacity real-engine replay, Track ran within 1% of the goodput of a fixed rate tuned above measured capacity, with about a quarter of that rate's refusal share. The shaper carries more than 300 million online requests and hundreds of terabytes of media a day. During a backfill, it handled 1.1 billion requests in its busiest 24 hours. Lessons include keeping queues inside inference engines just long enough to fill batches, steering dispatch by capacity refusals alone, keeping dispatch stateful, and sizing fleets by how long low-priority work can wait.",
+      "reason": "近 30 天；关键词：cs.LG, inference, llm。A fixed dispatch rate for LLM inference becomes stale as serving fleets resize and request sizes change. Generative output length...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "llm",
+        "production",
+        "serving"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-18T18:34:10Z",
+      "url": "https://arxiv.org/abs/2611.24891",
+      "pdfUrl": "https://arxiv.org/pdf/2611.24891v1"
+    },
+    {
+      "id": "arxiv-2611.24619",
+      "title": "GateWatch: Low-Overhead LLM Monitoring with Boolean Circuits",
+      "authors": [
+        "Firas Spanioli",
+        "Yaniv David"
+      ],
+      "summary": "As large language models (LLMs) and LLM-based agents are increasingly deployed, monitoring their behavior becomes important for detecting unsafe or unintended actions. Activation probes offer an efficient approach, but existing methods face trade-offs between accuracy, interpretability, and computational overhead. Probes on raw activations lack interpretable inputs, whereas sparse autoencoder (SAE) probes use interpretable features but often rely on additive classifiers and large SAE encoders, limiting interpretability and increasing memory overhead. We introduce GateWatch, a compact, interpretable classifier that expresses its entire decision rule as an explicit Boolean logic over a small number of binarized SAE features. We explore three approaches to constructing these circuits under a specified gate budget. For efficient deployment, GateWatchServe computes only selected SAE features, enables streaming of their binary values across layers during inference, and evaluates multiple GateWatch classifiers in parallel using compact lookup tables. Across 24 tasks on Gemma-2-9B, GateWatch achieves 80.49% mean test accuracy using only 3.8 SAE features and 3.5 logic gates per probe on average, just 1.17 percentage points below full 16K-feature SAE probes, while matching or outperforming them on 10 tasks and reducing probe memory by 99.98%. Inside vLLM, 1,000 concurrent multi-layer, multi-token GateWatch classifiers retain 97-98% of baseline throughput and 99.8% of KV-cache capacity.",
+      "reason": "近 30 天；关键词：cs.AI, deployed, efficient。As large language models (LLMs) and LLM-based agents are increasingly deployed, monitoring their behavior becomes important for de...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.AI",
+        "deployed",
+        "efficient",
+        "inference",
+        "llm",
         "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-17T22:07:16Z",
-      "url": "https://arxiv.org/abs/2611.23558",
-      "pdfUrl": "https://arxiv.org/pdf/2611.23558v1"
+      "publishedAt": "2026-11-18T15:37:04Z",
+      "url": "https://arxiv.org/abs/2611.24619",
+      "pdfUrl": "https://arxiv.org/pdf/2611.24619v1"
     },
     {
-      "id": "arxiv-2611.23508",
-      "title": "BOS Summary: The First Token Matters",
+      "id": "arxiv-2611.24496",
+      "title": "Harvesting Expert-Parallel Bubbles for Fine-Tuning",
       "authors": [
-        "Hui Zhu",
-        "Saleh Zare Zade",
-        "Rafi Ibn Sultan",
-        "Deng Pan",
-        "Arun Ross",
-        "Dongxiao Zhu"
+        "Oana Balmau",
+        "Saurav Banka",
+        "Jiaxuan Chen",
+        "Anne-Marie Kermarrec",
+        "Ramya Narasimha Prabhu",
+        "Rafael Pires",
+        "Mathis Randl",
+        "Martijn de Vos"
       ],
-      "summary": "Large vision-language models (LVLMs) and language models (LLMs) often exhibit attention sinks, whereby particular positions, such as the beginning-of-sequence (BOS) token, receive a disproportionate share of attention. Under standard causal masking, however, the BOS query attends only to itself, so the representation that later tokens repeatedly access carries no information about the input. We introduce BOS Summary, a training-free inference-time method that repurposes this persistent pathway to carry input context. At a single transformer layer during prefill, BOS Summary relaxes the causal constraint for the BOS query row alone, letting BOS aggregate all visual and textual input tokens into a self-derived context representation while every other token retains standard causal attention. The enriched representation then remains accessible to the model throughout decoding, with no additional parameters, auxiliary modules, or decoding-time overhead. Across multiple VLM and LLM families and eight multimodal and text-only benchmarks, BOS Summary improves over direct and Chain-of-Thought prompting and outperforms recent sink-intervention methods on multi-step reasoning tasks. A mechanistic analysis shows that making BOS input-specific also weakens its sink dominance and redistributes attention toward content-bearing prompt tokens, indicating that changing what a sink carries reshapes how later layers allocate attention.",
-      "reason": "近 30 天；关键词：cs.AI, inference, llm。Large vision-language models (LVLMs) and language models (LLMs) often exhibit attention sinks, whereby particular positions, such...",
+      "summary": "GPUs are expensive, yet latency-critical large language model (LLM) inference leaves part of them idle. Colocation reclaims this capacity by running best-effort work, such as fine-tuning, alongside serving. Many leading LLMs now use a Mixture-of-Experts (MoE) architecture, which adds a new source of idle time. Under expert parallelism, MoE experts are spread across GPUs, and because the router sends uneven numbers of tokens to each GPU, lightly loaded GPUs wait for the most loaded one. Even after applying load balancing solutions, such bubbles still take 8--13% of prefill time. We present BubbleTea, the first colocation system that leverages expert-parallel bubbles for fine-tuning. Unlike existing colocation systems, which make one scheduling decision for all GPUs per forward pass, BubbleTea predicts each GPU's bubble at every layer from the router's token assignment, and fills it with short chunks of fine-tuning work that reuse the weights already loaded for serving. We also introduce compiler passes that automatically derive these chunks from the served LLM as-is, without porting each model architecture to a separate training engine. Our evaluation on three MoE models, served on four A100 GPUs, shows that fine-tuning throughput with BubbleTea is 1.9--6.2$\\times$ faster than with LLMStation, a state-of-the-art colocation system. BubbleTea keeps p90 inference latency within 10% of serving alone in 50 of 63 workloads, compared to 44 for LLMStation. On bursty production traces, BubbleTea trains 3.3$\\times$ faster than LLMStation and 14$\\times$ faster than a stock trainer colocated under CUDA MPS, with p90 inference latency staying within 7% of serving alone.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.OS, inference。GPUs are expensive, yet latency-critical large language model (LLM) inference leaves part of them idle. Colocation reclaims this c...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.AI",
+        "nvidia",
+        "cs.OS",
         "inference",
+        "latency",
         "llm",
-        "multimodal",
-        "prefill"
+        "prefill",
+        "production"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-17T21:01:03Z",
-      "url": "https://arxiv.org/abs/2611.23508",
-      "pdfUrl": "https://arxiv.org/pdf/2611.23508v1"
+      "source": "NVIDIA/arXiv",
+      "publishedAt": "2026-11-18T14:24:23Z",
+      "url": "https://arxiv.org/abs/2611.24496",
+      "pdfUrl": "https://arxiv.org/pdf/2611.24496v1"
     },
     {
-      "id": "arxiv-2611.23428",
-      "title": "When Does Subspace Direction Matter for LoRA? Regime Analysis of the Magnitude Principle in Few-Shot Adaptation",
+      "id": "arxiv-2611.24437",
+      "title": "Dissecting an Unexplored SASS Control-Code Field: Barrier Exemption and Programmable Warp Priority",
       "authors": [
-        "Nischal Subedi",
-        "Cencheng Shen",
-        "Peng Zhao"
+        "Ziwen Wang",
+        "Qi Luo",
+        "Kunlin Li",
+        "Changxi Liu",
+        "Dongsheng Wang",
+        "Yun Chen"
       ],
-      "summary": "We show that the importance of a LoRA adapter's initial input-subspace direction is regime-dependent, and we characterize this dependence in theory and experiment. This refines the recent view that spectral initializers help through update magnitude alone. Direction matters most when labeled data are scarce relative to the representation dimension and the activation subspace used for initialization captures supervised task structure. In this regime, the adapter's row span remains sensitive to its starting point, making task-aligned initialization especially useful. A spiked-covariance perturbation analysis characterizes the finite-sample stability of the estimated subspace. A first-step analysis of LoRA training explains why the subspace's alignment with the task matters and motivates an alignment coefficient $ρ$ that closely tracks gains across classification tasks. We test this account with PivotLoRA, which initializes adapters from activation PCA at prediction-relevant positions and applies one output-preserving orthogonal pivot early in training. In few-shot BERT-base classification, PivotLoRA achieves the best average rank among 13 methods and improves over vanilla LoRA in 29 of 30 settings, even though it starts from a smaller input-factor initialization norm. Additional classification experiments extend the evaluation to 7B and 8B Llama decoders. Classification gains diminish with more labeled data, consistent with the proposed regime dependence. A targeted extension to completion-only reasoning also shows improvements on GSM8K and StrategyQA. These findings identify conditions under which initialization direction matters, with subspace-task alignment offering a low-cost diagnostic before training for classification.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, alignment。We show that the importance of a LoRA adapter's initial input-subspace direction is regime-dependent, and we characterize this dep...",
+      "summary": "Every instruction in NVIDIA's native GPU ISA (SASS) carries a control code that guides hardware scheduling, and prior work has decoded its known fields to optimize GPU kernels. However, one control-code field remains unexplored: it appears over 500000 times in NVIDIA's closed-source libraries such as cuBLAS and cuDNN, yet nvcc never emits it when compiling user programs. This paper presents the first systematic study of this control-code field across GPU architectures from Volta to Blackwell. Using instruction-level microbenchmarks, we show that the field controls two independent hardware mechanisms: barrier exemption (EXEMPT), which allows instructions blocked by a pending barrier to issue early during the barrier wait, and programmable warp priority (START, TILE, and END), which moves warps across three priority levels in the hardware scheduler. We identify the conditions under which each mechanism improves GPU kernel performance and implement a post-compilation binary optimizer that places these marks directly in compiled binaries without modifying source code or the compiler. Evaluated across six GPUs spanning four architectures, our optimizations speed up representative kernels by up to 31.9%, and the optimizer accelerates production kernels in llama.cpp and vLLM by up to 5.4% and end-to-end LLM inference by up to 3.6%.",
+      "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.AR。Every instruction in NVIDIA's native GPU ISA (SASS) carries a control code that guides hardware scheduling, and prior work has dec...",
       "area": "LLM 推理优化",
       "tags": [
         "meta",
-        "cs.LG",
-        "alignment",
-        "efficient",
-        "lora",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-11-17T19:30:56Z",
-      "url": "https://arxiv.org/abs/2611.23428",
-      "pdfUrl": "https://arxiv.org/pdf/2611.23428v1"
-    },
-    {
-      "id": "arxiv-2611.23388",
-      "title": "QDA: Closed-Loop LLM Quantization Design with Agents",
-      "authors": [
-        "Xingyang Li",
-        "Tianlang Zhao",
-        "Song Han",
-        "Ligeng Zhu"
-      ],
-      "summary": "Post-training quantization is the standard way to serve large language models at low cost. However, the best quantization recipe differs across models and precisions. As a result, experts must redesign it for every new model, which is time-consuming and often sub-optimal. Fortunately, an LLM agent can take over this design by refining the recipe over rounds of building and evaluating candidates, so that more rounds lead to better recipes. However, evaluating one quantized reasoning model takes tens of GPU-hours, and combining methods from different codebases means porting each to the new architecture by hand. We present QDA, a system in which an agent designs the recipe for each model and precision. To make evaluation fast, QDA scores each candidate in minutes by its output KL divergence from the original model on reasoning traces that the agent never sees, and checks promising ones with long generations to catch failures such as repetition loops. To make building fast, QDA provides a library of public PTQ methods that are compatible with one another and with new model architectures. Across four reasoning models, QDA improves accuracy over the strongest public recipe by 0.9, 1.4 and 2.2 percentage points on average at W4A16, W4A8 and W3A16, using 64 GPU-hours per search. On the 320B-parameter MoE model GLM-5.3-Flash at NVFP4 W4A4, it recovers 98.3% of the FP8 model's accuracy, against 96.9% for the best vendor checkpoint. Every QDA checkpoint also runs on existing serving kernels with no inference overhead. We will release the library, the evaluator and the harness.",
-      "reason": "近 30 天；关键词：cs.LG, inference, llm。Post-training quantization is the standard way to serve large language models at low cost. However, the best quantization recipe d...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
+        "nvidia",
+        "cs.AR",
         "inference",
         "llm",
-        "quantization",
-        "serving"
+        "production"
+      ],
+      "signal": 99,
+      "source": "Meta/NVIDIA/arXiv",
+      "publishedAt": "2026-11-18T13:53:40Z",
+      "url": "https://arxiv.org/abs/2611.24437",
+      "pdfUrl": "https://arxiv.org/pdf/2611.24437v1"
+    },
+    {
+      "id": "arxiv-2611.24301",
+      "title": "LoopCache: Accelerating Long-Context Self-Speculative Decoding for Looped Transformers",
+      "authors": [
+        "Zizhuo Fu",
+        "Haochen Huang",
+        "Shengxuan Qiu",
+        "Linye Wei",
+        "Ziyu Tang",
+        "Runsheng Wang",
+        "Meng Li"
+      ],
+      "summary": "Looped Transformers achieve large effective depth with compact models by repeatedly applying a weight-shared block across R recurrent steps, each maintaining a loop-specific key-value (KV) cache. To accelerate sequential loop execution, recent wave-style self-speculative methods like WaveFront Decoding (WFD) and LoopSpec pipeline draft and target tokens across loops in a single step. However, they face two critical limitations. First, they draft only at fixed loops and ignore intermediate prediction changes, wasting computation on stale trajectories. Second, batching tokens from different loops loads up to Rx the KV cache per step, severely amplifying memory traffic in long-context scenarios. To address these challenges, we propose LoopCache, an efficient self-speculative decoding framework for long-context Looped Transformers. Based on the correlation between prediction switches and output confidence, LoopCache introduces confidence-guided dynamic draft updating to refine drafts in flight across all intermediate loops. Furthermore, LoopCache employs a cyclic loop KV cache strategy that rotates through loop-specific KV caches, restricting per-step KV traffic to a single loop while batching tokens at the nearest matching cycle for lossless verification. By also selectively retaining independent KV caches for a few loop-sensitive shallow layers, LoopCache improves acceptance rates with negligible overhead. Experiments show that LoopCache achieves average 10.25x and 14.56x speedup over WFD and LoopSpec.",
+      "reason": "近 30 天；关键词：cs.CL, batching, efficient。Looped Transformers achieve large effective depth with compact models by repeatedly applying a weight-shared block across R recurr...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL",
+        "batching",
+        "efficient",
+        "kv-cache",
+        "speculative"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-17T19:00:09Z",
-      "url": "https://arxiv.org/abs/2611.23388",
-      "pdfUrl": "https://arxiv.org/pdf/2611.23388v1"
+      "publishedAt": "2026-11-18T12:11:43Z",
+      "url": "https://arxiv.org/abs/2611.24301",
+      "pdfUrl": "https://arxiv.org/pdf/2611.24301v1"
     },
     {
-      "id": "arxiv-2611.22756",
-      "title": "Learning Cross-Domain Media Similarity from Amazon Reviews",
+      "id": "arxiv-2611.24006",
+      "title": "MARS Technical Report",
       "authors": [
-        "Gabrielly Xavier dos Santos",
-        "Lucas Dias Cler",
-        "Luciana Fujii Pontello",
-        "Olga Goussevskaia"
+        "Tong Liu",
+        "Chaoqun Hou",
+        "Longxiang Xiong",
+        "Junhong Lou",
+        "Jiaqi Zheng",
+        "Qixin Li",
+        "Zixin Zhao",
+        "Yong Duan",
+        "Xiannian Hu",
+        "Fengze Jiang",
+        "Yu Zhu",
+        "Cheng Guo",
+        "Xinyuan Qi",
+        "Zi Zhuang",
+        "Ping Liu",
+        "Lv Shao",
+        "Zongwei Wang"
       ],
-      "summary": "Collaborative filtering is a basic foundation of many recommendation algorithms. It works by analyzing a user's history and then suggesting items similar to those in that history. This method typically relies on user data to compute item similarity, data that is widely available to commercial systems but is usually sparse or inaccessible for independent systems and research, especially across multiple media domains. In this work, we propose a method to generalize similarity information between items using supervised learning. As input to our model, we use semantic and temporal features extracted from Amazon product reviews, which are publicly available. As the training target, we use item (product) co-occurrence in the reviewing history of Amazon customers. We evaluate the quality of the predicted similarities across two media domains: books and movies. Experimental results demonstrate the robustness of our methodology, yielding positive outcomes in zero-shot cross-domain transfer tasks. Furthermore, feature attribution analysis reveals a structural shift in how feature groups are utilized across setups: intra-domain models rely heavily on linguistic semantics, whereas cross-domain environments pivot toward behavioral popularity cues. Incorporating even limited target-domain context during training bridges this domain sparsity gap, significantly enhancing framework generalization.",
-      "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, recommendation。Collaborative filtering is a basic foundation of many recommendation algorithms. It works by analyzing a user's history and then s...",
+      "summary": "Modern industrial recommender systems use multi-stage cascades--retrieval, pre-ranking, ranking, and re-ranking--to narrow millions of candidates to a personalized list. While each stage deploys sophisticated models, pipeline-level decisions on channel activation, quotas, model selection, and score fusion remain engineer-tuned and user-agnostic within each scenario. This report presents MARS (Multi-stage Agentic Recommendation System), extending personalization from individual-stage predictions to full pipeline orchestration. A near-line agent built on fine-tuned Qwen3-0.6B generates per-user configurations--a seven-dimensional action covering pipeline mode, retrieval quotas, model selection, fusion weights, and reranker settings--from a constrained action space. Configurations are validated, cached, and consumed asynchronously; the cascade never waits for LLM inference. Schema checks, fallbacks, and a kill switch ensure serving safety. The policy is trained in three stages: Confidence-aware SFT distills schema-valid generation from a teacher model; Format-Anchored Preference Optimization (FAPO) learns action preferences via ActionMask with posterior weighting; Group Relative Policy Optimization (GRPO) refines the policy through Sandbox replay with a frozen reward model, without exposing exploratory actions to live traffic. Two-week A/B tests across five Taobao scenarios with over ten million daily users show positive gains on all key metrics. The largest reach +5.22% V2P and +7.34% GMV, with positive CTR lifts on both click surfaces. About 20% of requests use a lightweight Minimal mode, and deployment shows 12 ms lower mean serving latency versus production.",
+      "reason": "近 30 天；公司信号：Alibaba；推荐/排序/广告方向；关键词：alibaba, cs.IR, inference。Modern industrial recommender systems use multi-stage cascades--retrieval, pre-ranking, ranking, and re-ranking--to narrow million...",
       "area": "推荐算法",
       "tags": [
-        "amazon",
+        "alibaba",
         "cs.IR",
-        "recommendation"
-      ],
-      "signal": 99,
-      "source": "Amazon/arXiv",
-      "publishedAt": "2026-11-17T13:24:45Z",
-      "url": "https://arxiv.org/abs/2611.22756",
-      "pdfUrl": "https://arxiv.org/pdf/2611.22756v1"
-    },
-    {
-      "id": "arxiv-2611.23339",
-      "title": "Optimize the Cob, Then the Kernel: Optimizing Beam Search for Generative Recommendation Inference",
-      "authors": [
-        "Shing Wai Pun",
-        "Kai Wu",
-        "Pengfei Xia",
-        "Hui Zang",
-        "Wei Guo",
-        "Yong Liu"
-      ],
-      "summary": "Generative recommendation (GR) inference differs substantially from conventional LLM serving, featuring long input sequences, wide beam search, and only a few fixed output tokens. Existing LLM serving engines such as vLLM process beams as batched independent sequences, causing redundant KV cache accesses over the shared prompt prefix. Furthermore, vLLM executes each beam search generation step as a separate engine invocation, incurring host-side beam processing overhead between decoding steps and substantial runtime KV block management in PagedAttention. Using Tree Attention, we concatenate beams along the sequence dimension to eliminate redundant KV accesses, and further optimize execution through pre-generated partial-attention masks, static KV cache allocation, loop-unrolled generation dispatch, TorchAir graph compilation, automatic operator fusion, and vocabulary-constrained decoding. Without the use of custom kernels, our approach reduces end-to-end latency by up to 25x over vLLM on Ascend NPUs, and achieves generation latency comparable to a SOTA solution using custom kernels, showing that the generation pipeline should be optimized holistically before resorting to custom kernel development.",
-      "reason": "近 30 天；公司信号：Huawei；推荐/排序/广告方向；关键词：huawei, cs.LG, generative-recommendation。Generative recommendation (GR) inference differs substantially from conventional LLM serving, featuring long input sequences, wide...",
-      "area": "推荐算法",
-      "tags": [
-        "huawei",
-        "cs.LG",
-        "generative-recommendation",
         "inference",
-        "kv-cache",
+        "industrial",
         "latency",
-        "llm"
+        "llm",
+        "lora"
       ],
       "signal": 99,
-      "source": "Huawei/arXiv",
-      "publishedAt": "2026-11-17T07:14:52Z",
-      "url": "https://arxiv.org/abs/2611.23339",
-      "pdfUrl": "https://arxiv.org/pdf/2611.23339v1"
+      "source": "Alibaba/arXiv",
+      "publishedAt": "2026-11-18T07:56:58Z",
+      "url": "https://arxiv.org/abs/2611.24006",
+      "pdfUrl": "https://arxiv.org/pdf/2611.24006v1"
     }
   ]
 }
