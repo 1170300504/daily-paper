@@ -1,249 +1,194 @@
 {
-  "generatedAt": "2026-11-22T09:46:28.967508+08:00",
+  "generatedAt": "2026-11-23T10:03:20.933066+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2611.25976",
-      "title": "Energy estimates of open-weight large language models across stated food weights: a dose-response evaluation",
+      "id": "arxiv-2611.27092",
+      "title": "PLoQ: A Prompt-Specific Low-Rank Basis for 4-bit Quantization of LLM Activations",
       "authors": [
-        "Donato Riccio",
-        "Fabrizio Maturo",
-        "Iulia Brezeanu"
+        "Faraz Tahmasebi",
+        "Michael Pellauer",
+        "Hyoukjun Kwon",
+        "Sitao Huang"
       ],
-      "summary": "We tested whether energy estimates of open-weight large language models (LLMs) scale proportionally with an exactly stated food weight, and whether computing energy density times weight removes the error. Under a prespecified protocol, seven open-weight LLMs estimated the energy of 168 randomly drawn foods from the USDA Food and Nutrient Database for Dietary Studies at nine stated weights, from 0.25 to 4 times the default amount. The primary outcome was the elasticity of the estimate with respect to weight (1: proportional scaling). A two-step estimate multiplied each model's own stated energy density by the weight in code. All seven models compressed their estimates, with elasticities from 0.548 to 0.979 (every 95% CI below 1); four compressed severely (0.548 to 0.709). These four overestimated a quarter of the default amount by 47% to 130% and underestimated four times it by 20% to 34%. Supplying the density restored near-proportional scaling in three of the four, and the two-step estimate cut the typical error factor at these extremes from 1.47-2.43 to 1.20-1.38. Compression persisted at full precision and grew in five of seven models under a plain question. The models hold the energy densities needed for proportional scaling and answer near a typical serving, reproducing the flat-slope syndrome of dietary recall. Accuracy at usual portions does not reveal it. Food-logging tools should compute the energy of weighed entries as density times weight, and evaluations should test fixed foods across stated weights.",
-      "reason": "近 30 天；关键词：cs.CL, energy, llm。We tested whether energy estimates of open-weight large language models (LLMs) scale proportionally with an exactly stated food we...",
+      "summary": "Low-bit activation quantization of large language models remains challenging, as a small number of dominant directions dictate the quantization range. State-of-the-art methods isolate these directions in a high-precision subspace through transformations calibrated offline and folded into the weights, which fixes the subspace for all prompts, leaving each prompt's few unique directions unprotected, and rules it out wherever no weight can absorb the transformation. We present PLoQ, a prompt-adaptive low-rank decomposition that extracts the dominant activation components before quantization, quantizes them separately, and restores them within the layer's GEMM, without modifying the weights. The low-rank component's basis is estimated from each prompt during prefill and reused throughout decoding. At the same bit width as state-of-the-art mixed-precision quantization (4-bit weights, activations and K/V cache with an eighth of the channels at 8 bits, about 4.2 bits per activation on average), PLoQ outperforms it on all six Llama and Qwen models from 1B to 70B parameters, at up to 8k tokens (16k on two of them), recovering up to 46% of the perplexity that the state of the art still loses to 4-bit activations. On Llama-3.1-8B at 8k tokens it adds only 4% to prefill and 8% to decoding.",
+      "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.LG。Low-bit activation quantization of large language models remains challenging, as a small number of dominant directions dictate the...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.CL",
+        "alibaba",
+        "meta",
+        "cs.LG",
+        "llm",
+        "prefill",
+        "quantization"
+      ],
+      "signal": 99,
+      "source": "Alibaba/Meta/arXiv",
+      "publishedAt": "2026-11-20T04:07:37Z",
+      "url": "https://arxiv.org/abs/2611.27092",
+      "pdfUrl": "https://arxiv.org/pdf/2611.27092v1"
+    },
+    {
+      "id": "arxiv-2611.26980",
+      "title": "Contexture: Runtime Context Eviction for High-Throughput Agent Serving",
+      "authors": [
+        "Colin Hong",
+        "Bryan Shan",
+        "Wei Siong Pang",
+        "Chengzhi Lu",
+        "Xu Guo",
+        "Nitin Shivaraman",
+        "Tao Luo",
+        "Esha Choukse",
+        "Kisson Lin",
+        "Dmitrii Ustiugov"
+      ],
+      "summary": "LLM agents such as Hermes, OpenClaw, and Codex repeatedly resend growing execution histories, increasing shared GPU key-value (KV) cache demand in high-bandwidth memory (HBM). We show that shared KV capacity limits agent-serving throughput. Existing context-reduction methods lack global cache-state visibility, while runtime KV managers lack tool-execution information. Tracing tokens to their originating tool operations reveals that later operations supersede earlier outputs and associated turns, identifying 64% of recorded final-history tokens as removal candidates. We present Contexture, a harness- and model-agnostic architecture for runtime context eviction. Contexture separates the harness's full conversation history from the model's execution context, reducing subsequent requests' KV demand without modifying harness logic or model execution. It combines tool-execution information with global visibility into shared KV pressure and prefix residency: supersession identifies removal candidates, while runtime state determines when removal justifies sacrificing cached computation. This coordination reduces memory demand and decode KV traffic while limiting re-prefill interference with concurrent decoding, without additional model calls or training. Across two models, two harnesses, and two benchmarks, Contexture improves throughput under SLO by 20-73% over the best of no eviction, harness compaction, AgentDiet, and Continuum, and by 7-63% over observation masking in five of eight configurations, and reduces GPU energy per completed session by up to 11%. It also raises throughput under SLO by 23% over LMCache alone on H100. Live-agent experiments show a mean accuracy improvement of 1.4 percentage points over unloaded no eviction, with a worst-case loss of 3.7 points, while observation masking loses 3-28 points.",
+      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.DC, energy。LLM agents such as Hermes, OpenClaw, and Codex repeatedly resend growing execution histories, increasing shared GPU key-value (KV)...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "nvidia",
+        "cs.DC",
         "energy",
         "llm",
+        "prefill",
         "serving",
         "slo"
       ],
       "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-19T12:00:23Z",
-      "url": "https://arxiv.org/abs/2611.25976",
-      "pdfUrl": "https://arxiv.org/pdf/2611.25976v1"
-    },
-    {
-      "id": "arxiv-2611.25938",
-      "title": "DTS: Delta-Based Tile Scoring for Efficient Long-Context Sparse Attention",
-      "authors": [
-        "Emre Uğur",
-        "Jiawen Qi",
-        "Qinyu Chen"
-      ],
-      "summary": "Large language models (LLMs) increasingly need to process long documents and codebases, making long-context attention a major prefill bottleneck. Block sparse attention reduces computation by skipping unimportant blocks of the attention matrix, but scoring blocks accurately can itself be expensive. We propose Delta-Based Tile Scoring (DTS), a training-free, content-adaptive tile scoring method for sparse block attention. DTS selects query and key anchors according to local vector changes, using fewer representatives in redundant regions while retaining more detail in heterogeneous regions. To accelerate anchor selection, parallel delta packing partitions the query and key sequences into tile-aligned chunks and performs bounded local scans over these chunks concurrently. The selected tiles are then computed using the original query, key, and value vectors. On LLaMA-3.1-8B-Instruct, DTS keeps average RULER and LongBench scores within 0.10 percentage points of full attention, with RULER evaluated up to 128K tokens. At 128K tokens, DTS reduces measured scoring-pipeline latency by 38% compared with XAttention. On four NVIDIA H100 GPUs, it achieves a 3.3$\\times$ prefill speedup over a PyTorch full-attention baseline using FlashAttention-2 at 512K tokens.",
-      "reason": "近 30 天；公司信号：Meta, NVIDIA；关键词：meta, nvidia, cs.LG。Large language models (LLMs) increasingly need to process long documents and codebases, making long-context attention a major pref...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "nvidia",
-        "cs.LG",
-        "efficient",
-        "latency",
-        "llm",
-        "prefill"
-      ],
-      "signal": 99,
-      "source": "Meta/NVIDIA/arXiv",
-      "publishedAt": "2026-11-19T11:23:22Z",
-      "url": "https://arxiv.org/abs/2611.25938",
-      "pdfUrl": "https://arxiv.org/pdf/2611.25938v1"
-    },
-    {
-      "id": "arxiv-2611.25813",
-      "title": "Efficient and Robust Drafting with Multi-Token Prediction",
-      "authors": [
-        "Filippo Galgani",
-        "Ziwei Ji",
-        "Omri Homburger",
-        "Ganesh Jawahar",
-        "Michelle Ramanovich",
-        "Ivan Korotkov",
-        "Luciano Martins",
-        "Utku Evci",
-        "Edouard Yvinec",
-        "Pooja Consul",
-        "Vivek Kumar",
-        "Tal Schuster"
-      ],
-      "summary": "Speculative decoding has emerged as a critical technique for accelerating Large Language Model (LLM) inference by decoupling generation into a drafting phase and a parallel verification phase. A crucial challenge is therefore designing a drafter that is both lightweight and accurate enough to approximate the predictions of the target model. We present a highly optimized Multi-Token Prediction (MTP) architecture that extends existing backbone LLMs to efficiently produce high-quality drafts. Built around a single shared drafting head, our approach features three core architectural optimizations: target activation injection to anchor semantic planning, zero-copy KV-cache cross-attention to bypass prefill compute and reduce memory overhead, and an efficient clustered vocabulary projection to reduce the cost of full-vocabulary decoding. Testing these improvements with the Gemma 4 model family, our G-MTP shows out-of-the-box speedups for both large server-side setups (up to 3.1$\\times$) and smaller models targeting memory-constrained on-device environments (up to 2.3$\\times$ on H100 and up to 2.2$\\times$ on a smartphone GPU). In addition, we present parameter-efficient fine-tuning recipes for G-MTP that keep the drafter aligned with the backbone LLM under domain shift, requiring up to 1.83$\\times$ fewer target forward passes than tuning only the backbone.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CL, efficient。Speculative decoding has emerged as a critical technique for accelerating Large Language Model (LLM) inference by decoupling gener...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
-        "cs.CL",
-        "efficient",
-        "inference",
-        "llm",
-        "prefill",
-        "speculative"
-      ],
-      "signal": 99,
       "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-11-19T09:33:39Z",
-      "url": "https://arxiv.org/abs/2611.25813",
-      "pdfUrl": "https://arxiv.org/pdf/2611.25813v1"
+      "publishedAt": "2026-11-20T01:55:52Z",
+      "url": "https://arxiv.org/abs/2611.26980",
+      "pdfUrl": "https://arxiv.org/pdf/2611.26980v1"
     },
     {
-      "id": "arxiv-2611.25643",
-      "title": "TRAC: Efficient Diffusion Language Models for Machine Translation via Length-Aware Decoding",
+      "id": "arxiv-2611.26975",
+      "title": "Run One, Get Two: Near-Free Streaming Safety Checks for Local LLMs",
       "authors": [
-        "Tianyuan Li",
-        "Xihan Yang",
-        "Chenglong Wang",
-        "Yuzhang Wu",
-        "Jingbo Zhu",
-        "Tong Xiao"
+        "Soheil Zibakhsh",
+        "Pedram Aghazadeh",
+        "Farinaz Koushanfar"
       ],
-      "summary": "Machine translation with large language models requires both high translation quality and low generation latency. Accelerating translation while preserving quality is therefore essential for practical deployment. Diffusion large language models (dLLMs) can generate tokens at arbitrary target positions through iterative denoising, offering a new paradigm for parallel translation beyond sequential autoregressive decoding. However, existing methods still incur redundant computation: fixed target generation lengths waste computation on unused positions, while confidence-only commitment delays medium-confidence tokens whose predictions have largely stabilized. To address these issues, we propose TRAC, a training-free adaptive decoding method for diffusion machine translation. TRAC adapts the target generation length using source length and translation direction, with a conservative fallback to the maximum length for empty or unusually short outputs. It preserves high-confidence commitment while identifying temporally stable medium-confidence tokens for early commitment using cross-step top-1 persistence and approximate Jensen-Shannon divergence over Top-$K$ distributions. On bidirectional Chinese-English translation across FLORES-200, WMT23, and NTREX-128, TRAC reduces model forward calls by 24.9% to 36.8% and achieves sentence-level generation speedups of 1.91 to 2.19 times over Fast-dLLM, with only a 0.02-point decrease in macro-average COMET. These results demonstrate that adaptive generation lengths and stability-aware token commitment improve the efficiency of diffusion machine translation.",
-      "reason": "近 30 天；关键词：cs.CL, efficient, latency。Machine translation with large language models requires both high translation quality and low generation latency. Accelerating tra...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "efficient",
-        "latency",
-        "llm",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-19T07:28:16Z",
-      "url": "https://arxiv.org/abs/2611.25643",
-      "pdfUrl": "https://arxiv.org/pdf/2611.25643v1"
-    },
-    {
-      "id": "arxiv-2611.25538",
-      "title": "Towards Autoregressive Neural Network Parameter Generation",
-      "authors": [
-        "Bedionita Soro",
-        "Bruno Andreis",
-        "Song Chong",
-        "Sung Ju Hwang"
-      ],
-      "summary": "Large Language Models (LLMs) have recently established a new paradigm in machine learning, demonstrating exceptional zero-shot generalization and complex reasoning capabilities. Concurrently, neural network parameter generation has emerged as a promising avenue for rapid task adaptation and model synthesis. Existing weight generation techniques, however, struggle to jointly learn the distribution of diverse models, to encode heterogeneous architectures within a single generator, and to generalize out of distribution. We therefore ask whether pretrained parameters can be encoded into a discrete domain so that the zero-shot generalization LLMs exhibit in text generation can be transferred to weight generation. Following this view, we propose an LLM-inspired approach, Instruction-Guided Parameter Generation (IGPG), that formulates network parameter generation as an autoregressive modeling problem. We first quantize pretrained weights with a VQ-VAE, then train a prefix-conditioned autoregressive generator over the resulting tokens. At inference, the generated weight tokens are mapped back to parameter space by the VQ-VAE decoder. We evaluate the framework across in-distribution generation, cross-dataset transfer, and cross-architecture settings. The proposed method achieves competitive performance in in-distribution generation and provides useful parameter initializations for held-out datasets and architectural configurations, improving downstream performance over random initialization after adaptation. These results suggest that discrete autoregressive modeling provides a promising framework for learning and transferring structure across collections of pretrained neural network parameters.",
-      "reason": "近 30 天；关键词：cs.LG, dataset, inference。Large Language Models (LLMs) have recently established a new paradigm in machine learning, demonstrating exceptional zero-shot gen...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "dataset",
-        "inference",
-        "llm"
-      ],
-      "signal": 93,
-      "source": "arXiv",
-      "publishedAt": "2026-11-19T05:39:20Z",
-      "url": "https://arxiv.org/abs/2611.25538",
-      "pdfUrl": "https://arxiv.org/pdf/2611.25538v1"
-    },
-    {
-      "id": "arxiv-2611.25717",
-      "title": "VR-SparseQuant: Accurate FP4 Quantization with 2:4 Sparsity on Vera Rubin",
-      "authors": [
-        "Samir Khaki",
-        "Wei-Chen Wang",
-        "Song Han",
-        "Ryan Hanrui Wang"
-      ],
-      "summary": "In recent years, GPUs have incorporated increasingly specialized support for low-precision computation, from Hopper's FP8 to Blackwell's FP4 Tensor Cores. Precision formats have evolved alongside this hardware, from MXFP4 and NVFP4 on Blackwell to E2M1 FP4 with direct UE5M3 block scaling on Vera Rubin, which we term as $\\boldsymbol{VRFP4}$. These advances help serve larger language models at lower cost, but four-bit activation quantization can substantially degrade model quality. We introduce VR-SparseQuant, which uses Vera Rubin's elementwise 2:4 sparsity to recover accuracy while retaining native FP4 execution. By allowing two sparse streams to overlap, we use the same FP4 value budget as dense quantization to refine activations with larger errors. Offline scale-ratio calibration avoids runtime search, while a shared-weight GEMM accumulates both streams efficiently. On Nemotron-3-Nano-30B-A3B, VR-SparseQuant reduces WikiText-2 perplexity from $\\boldsymbol{6.85}$ to $\\boldsymbol{5.57}$ versus dense RTN W4A4. Including activation preparation, our native Rubin kernels for VRFP4 achieve up to $\\boldsymbol{3.1\\times}$ GEMM and $\\boldsymbol{2.7\\times}$ MoE speedup over BF16. To the best of our knowledge, this is the first study of adaptive activation quantization using Vera Rubin's elementwise 2:4 structured sparse FP4 instructions.",
-      "reason": "近 30 天；关键词：cs.CL, efficient, quantization。In recent years, GPUs have incorporated increasingly specialized support for low-precision computation, from Hopper's FP8 to Black...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "efficient",
-        "quantization"
-      ],
-      "signal": 89,
-      "source": "arXiv",
-      "publishedAt": "2026-11-19T08:29:39Z",
-      "url": "https://arxiv.org/abs/2611.25717",
-      "pdfUrl": "https://arxiv.org/pdf/2611.25717v1"
-    },
-    {
-      "id": "arxiv-2611.25597",
-      "title": "Decision-Focused Reinforcement Learning for LLM Post-Training",
-      "authors": [
-        "Haotian Zhai",
-        "Leqi Liu"
-      ],
-      "summary": "Large language models (LLMs) have shown promise as predictors across various tasks, benefiting from their ability to use information from unstructured context. However, when predictions serve as parameters of downstream optimization problems, higher prediction accuracy does not necessarily translate into lower decision costs. We propose decision-focused reinforcement learning (DFRL), a framework for post-training LLMs to predict optimization parameters using negative downstream decision regret as reward. DFRL trains LLM predictors to minimize the costs of the decisions induced by their predictions, without requiring downstream convexity or differentiability, and integrates readily into existing RL post-training frameworks. To address expensive reward evaluation, we develop two approaches. Heuristic warm-starting uses inexpensive approximate rewards during an initial phase before switching to refinement with exact rewards. Reward correction combines inexpensive estimates with randomized exact evaluations, preserving the expected policy gradient while reducing the expected number of exact solves per update. Experiments on three synthetic optimization problems demonstrate improvements over prediction-loss baselines, while a larger knapsack experiment shows faster early improvement under short training budgets. On inventory planning with H&M transactions and product descriptions, our best configuration, in which the LLM reasons before predicting, reduces regret by 31.4% relative to the SFT baseline and 12.4% relative to the strongest evaluated conventional forecasting baseline.",
-      "reason": "近 30 天；关键词：cs.LG, llm, serving。Large language models (LLMs) have shown promise as predictors across various tasks, benefiting from their ability to use informati...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "llm",
-        "serving"
-      ],
-      "signal": 89,
-      "source": "arXiv",
-      "publishedAt": "2026-11-19T06:44:35Z",
-      "url": "https://arxiv.org/abs/2611.25597",
-      "pdfUrl": "https://arxiv.org/pdf/2611.25597v1"
-    },
-    {
-      "id": "arxiv-2611.25452",
-      "title": "FamilySpace: From Emergent Chemical Semantics to Controllable Crystal Generation",
-      "authors": [
-        "Haowei Hua",
-        "Irwin King",
-        "Wanyu Lin"
-      ],
-      "summary": "Latent crystal generative models typically combine a variational autoencoder (VAE) for learning atom-wise representations with a flow model that transports a simple source distribution to the learned latent distribution. However, previous studies have mainly focused on the quality of generated crystals, leaving the structure and generative utility of the atom-wise latent space largely unexplored. In this work, we show that even a vanilla crystal VAE implicitly organizes atom-wise latent representations according to elemental families, with different families occupying largely separated regions of the latent space. We term this phenomenon emergent chemical semantics. This structure suggests that sampling from a family-specific latent region can bias the decoder toward atoms from the corresponding elemental family. Building on this insight, we propose FamilySpace, a framework for controlling the elemental-family composition of generated crystals. FamilySpace assigns each elemental family a distinct source component, forming a family-indexed multi-source distribution, and trains a flow model using source-target pairs matched by family. In inference, a user-specified family template selects the source component for each atom-wise representation, enabling direct control over the family composition of generated crystals. Experiments on MP-20 and MPTS-52 show that FamilySpace achieves competitive crystal-generation performance while matching prescribed elemental-family compositions. Moreover, selected family templates increase the fraction of generated crystals predicted to be stable or metastable, demonstrating that latent-space composition control can support targeted exploration of promising chemical regions without additional optimization techniques such as reinforcement learning. Code is available at https://github.com/hhw11/FamilySpace",
-      "reason": "近 30 天；关键词：cs.LG, inference, lora。Latent crystal generative models typically combine a variational autoencoder (VAE) for learning atom-wise representations with a f...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "inference",
-        "lora"
-      ],
-      "signal": 88,
-      "source": "arXiv",
-      "publishedAt": "2026-11-19T03:32:41Z",
-      "url": "https://arxiv.org/abs/2611.25452",
-      "pdfUrl": "https://arxiv.org/pdf/2611.25452v1"
-    },
-    {
-      "id": "arxiv-2611.25170",
-      "title": "Before the Choice: An Evidential Framework for Studying Prospective Representations in Language Models",
-      "authors": [
-        "Sion Israel Sion"
-      ],
-      "summary": "An observable decision reveals the selected action but does not determine which alternatives were internally represented. Drawing on prospection research and hippocampal forward-sweep observations, we develop Before the Choice, an evidence-oriented framework distinguishing future-directed content, prospective computation, and causal guidance. The framework organizes four experimental contrasts and makes their alternative explanations explicit. Its first test case concerns unchosen trajectories in deterministic symbolic environments. A preregistered low-rank probe evaluated once on a sealed TEST did not meet its criterion (paired accuracy 0.020 versus 0.195 for a text-and-observed-choice baseline; 293 admissible pairs). Exploratory H1b exposed a reconstruction-by-elimination problem: identifying the chosen candidate can determine the unchosen target. In H1c, matched worlds varied an unchosen continuation while keeping candidate keys bitwise invariant. With specified positive controls passed, decoding in the late-key condition remained at 0.521 (p = 0.18; 141 contributing families). These observations do not identify prospective simulation or establish an absence of prospective representations. They illustrate why identifiability, sensitivity, and a dependence-aware null model must constrain inferences from decodability. PREM is proposed as an organizational framework and is not validated by these results. We offer it as a methodological contribution to empirical AI welfare research, which will require such evidential distinctions. Code and protocol records: https://github.com/besionisrael/before-choice",
-      "reason": "近 30 天；关键词：cs.SE, inference, lora。An observable decision reveals the selected action but does not determine which alternatives were internally represented. Drawing...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.SE",
-        "inference",
-        "lora"
-      ],
-      "signal": 88,
-      "source": "arXiv",
-      "publishedAt": "2026-11-18T20:51:27Z",
-      "url": "https://arxiv.org/abs/2611.25170",
-      "pdfUrl": "https://arxiv.org/pdf/2611.25170v1"
-    },
-    {
-      "id": "arxiv-2611.26590",
-      "title": "Probing the \"Conscious\" Mind: Selective Access and Global Workspace in Vision-Language Models",
-      "authors": [
-        "Jiahao Huang",
-        "Jun Wang"
-      ],
-      "summary": "Vision-language models (VLMs) integrate visual and textual information, but their outputs do not reveal internal concept representations. Global workspace theory (GWT) proposes that information is selected from parallel brain processes, integrated in a shared workspace, and made available to specialised processes. We introduce the Multimodal Concept Lens (MC-Lens), a multimodal Jacobian lens, to study these functions in VLM concept processing. Its vision encoder and language decoder lenses map intermediate states to a shared semantic space defined by the decoder's output vocabulary to compare concept accessibility across modalities. MC-Lens supports internal concept interventions to examine the role of accessed concepts in downstream computation. (i) Accessibility and selective access. Multimodal concept information is readable in intermediate states and selectively accessible as tasks require. We extend \"readout carriers\" from one name token to a token set to better capture and express concept information and support counterfactual experiments. (ii) Concepts in downstream computation. Counterfactual experiments show that accessed concept information participates in downstream computation and reasoning. (iii) Development of cross-modal alignment and selective access. We develop two J-space metrics tracking the development of cross-modal concept alignment more clearly than hidden state cosine in controlled VLM training. The experiment also shows that reliable selective access develops later than concept accessibility. (iv) Shared functions across models. Across VLM families and sizes, we find shared patterns of concept accessibility, query-dependent selectivity and cross-task intervention effects despite differences in internal organisation. These findings offer an experimental basis to study GWT in multimodal artificial systems and how it can guide cross-modal alignment improvements.",
-      "reason": "近 30 天；关键词：cs.AI, alignment, multimodal。Vision-language models (VLMs) integrate visual and textual information, but their outputs do not reveal internal concept represent...",
+      "summary": "Local LLM assistants decode for one user at a time, so decoding is bound by memory bandwidth and leaves compute idle. Streaming safety checks today trade accuracy against cost. A dedicated guard model is accurate but nearly doubles the latency per token, while a hidden-state probe is cheap but less accurate. We present ToRA, an adapter that runs a second model as an extra row in the generator's decode step, sharing its weights and KV cache. Dual-row kernels read each weight once for both rows. On Qwen3-0.6B, ToRA matches or beats a dedicated streaming guard, with higher F1 on 12 of 17 benchmarks. It detects 11.8 points more unsafe responses than the probe at a similar cost, under 4% added latency per token.",
+      "reason": "近 30 天；关键词：cs.AI, kv-cache, latency。Local LLM assistants decode for one user at a time, so decoding is bound by memory bandwidth and leaves compute idle. Streaming sa...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.AI",
-        "alignment",
-        "multimodal"
+        "kv-cache",
+        "latency",
+        "llm"
+      ],
+      "signal": 99,
+      "source": "arXiv",
+      "publishedAt": "2026-11-20T01:53:11Z",
+      "url": "https://arxiv.org/abs/2611.26975",
+      "pdfUrl": "https://arxiv.org/pdf/2611.26975v1"
+    },
+    {
+      "id": "arxiv-2611.26363",
+      "title": "HiSA: Sparsifying the Hidden Dimension of RoPE Attention in LLMs",
+      "authors": [
+        "Ambroise Borbely",
+        "Mathieu Salzmann",
+        "Olivier Verscheure"
+      ],
+      "summary": "Attention in large language models (LLMs) scores every query against every key with a full dot product. We investigate whether this dot product must be computed completely for attention to be effective. We propose Hidden Sparse Attention (HiSA), which keeps the query and key projections intact but only computes a partial dot product, following a static, parameter-free rule set by the token positions: attention becomes sparse in the hidden (feature) dimension, an axis much less explored than token sparsity, rather than over tokens as in almost all sparse attention methods. Based on the structure of rotary position embeddings (RoPE), we decompose keys and queries into parts which can be omitted when computing attention. By training LLMs from scratch with HiSA, we find that this partial dot product does not hurt but improves performance compared with the complete product while computing only about a third of the query-key products. During inference HiSA improves decoding speed and shrinks memory footprint. We also extend HiSA to FlashAttention-3 kernels for training and inference. Finally, we motivate our approach by showing that dense attention learns to suppress the attention score parts that HiSA drops. Code is available at https://github.com/ambroise-b/hisa.",
+      "reason": "近 30 天；关键词：cs.LG, inference, llm。Attention in large language models (LLMs) scores every query against every key with a full dot product. We investigate whether thi...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "llm"
       ],
       "signal": 86,
       "source": "arXiv",
-      "publishedAt": "2026-11-19T18:46:50Z",
-      "url": "https://arxiv.org/abs/2611.26590",
-      "pdfUrl": "https://arxiv.org/pdf/2611.26590v1"
+      "publishedAt": "2026-11-19T16:31:46Z",
+      "url": "https://arxiv.org/abs/2611.26363",
+      "pdfUrl": "https://arxiv.org/pdf/2611.26363v1"
+    },
+    {
+      "id": "arxiv-2611.25895",
+      "title": "One Schedule Does Not Fit All: Adaptive Inference Schedules for Diffusion Language Models",
+      "authors": [
+        "Rabimba Karanjai",
+        "Linsey Pang",
+        "Hemanth Hegadehalli Madhavarao",
+        "Richard Williamson",
+        "Uma Kona",
+        "Prakhar Mehrotra"
+      ],
+      "summary": "Diffusion language models typically use a fixed denoising schedule across workloads. We show that the cheapest schedule that preserves quality depends on the task, model, and sampler. We propose Task-Calibrated Denoising Allocation (TCDA), a deployment rule with an explicit error guarantee. Given candidate samplers, paired calibration data, a utility tolerance, and guardrails against degeneration, TCDA uses simultaneous one-sided bootstrap bounds to certify which candidates meet both the utility and guardrail criteria. It deploys the cheapest certified candidate or falls back to the full schedule. The probability of deploying an infeasible schedule is asymptotically at most alpha. Candidates include early prefix decoding, state-reusing continuation, reduced time grids, and confidence-threshold decoding. Across seven datasets and two model families, TCDA certifies reductions in denoiser evaluations by factors of 3.4 on XSum and 2.0 on WMT14 for ELF-B; 8.0 on WMT14 and 4.1 on GSM8K for LLaDA-8B; and 1.33 on OpenWebText for both ELF-M and ELF-L. A validation protocol fixed before generation confirmed every selection on fresh seeds. Across 500 calibration splits, false certification remained below 2% in every setting at a nominal level of 5%. Certified schedules vary across tasks and model scales. Trajectory measurements suggest that when decoded tokens commit is more informative for schedule selection than the remaining latent discretization error. We also find that the ELF reference sampler draws its time grid at random, so reproducible schedule comparisons for unconditional generation require fixing the grid.",
+      "reason": "近 30 天；关键词：cs.AI, dataset, inference。Diffusion language models typically use a fixed denoising schedule across workloads. We show that the cheapest schedule that prese...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.AI",
+        "dataset",
+        "inference"
+      ],
+      "signal": 86,
+      "source": "arXiv",
+      "publishedAt": "2026-11-19T10:47:26Z",
+      "url": "https://arxiv.org/abs/2611.25895",
+      "pdfUrl": "https://arxiv.org/pdf/2611.25895v1"
+    },
+    {
+      "id": "arxiv-2611.25896",
+      "title": "The Price of an Explanation: What Demanding Verifiable Artifacts Costs, and What It Buys Back",
+      "authors": [
+        "Edgar A. Duéñez-Guzmán",
+        "Eduardo Dueñez",
+        "Edgar Said Hernandez Sanchez",
+        "Suzanne Sadedin"
+      ],
+      "summary": "Generative models produce many candidate solutions but provide no intrinsic signal by which to rank them. One mitigation is to demand a \\emph{verifiable artifact}: a program that can be executed against the available evidence. A common concern is that requiring executable verification incurs costs in both solution quality and computational budget. We measure these two costs on the $120$-task ARC-AGI-2 evaluation set. Demanding a verifiable artifact from an LLM reduced the score from $93$ to $68$ of $120$ tasks ($77\\%$ to $57\\%$). Of those $25$ tasks, $21$ were reached by no program-producing configuration we ran, at any budget, by sampling or by search; yet for $27$ of the $28$ tasks that only the answer-only arm solved, some program arm held a program that reproduced every demonstration and still failed the test. The bottleneck is obtaining an explanation that \\emph{generalizes}, not finding one. A short evolutionary search over two already-sampled programs, at no additional model cost, beats best-of-$2$ sampled code by $9.2 \\pm 1.4$ tasks, and over a single sampled program beats $1$-shot sampling by $9.9 \\pm 1.3$. Moreover, because a program can be checked against the training examples, any program-producing protocol can terminate early once a task is explained: under the same stopping rule, best-of-$n$ sampling declines up to $38\\%$ of its budget and the evolved arm up to $49\\%$, whereas an answer-only baseline cannot terminate early. Applying the same methodology to decoder synthesis for quantum error correction yields interpretable decoders evaluated against a certified panel of published decoders on held-out exam shots.",
+      "reason": "近 30 天；关键词：cs.AI, llm。Generative models produce many candidate solutions but provide no intrinsic signal by which to rank them. One mitigation is to dem...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.AI",
+        "llm"
+      ],
+      "signal": 77,
+      "source": "arXiv",
+      "publishedAt": "2026-11-19T10:48:00Z",
+      "url": "https://arxiv.org/abs/2611.25896",
+      "pdfUrl": "https://arxiv.org/pdf/2611.25896v1"
+    },
+    {
+      "id": "arxiv-2611.27083",
+      "title": "How Far Does Lossless Re-tokenization Move an RLVR Update?",
+      "authors": [
+        "Zhe Dong",
+        "Fang Qin"
+      ],
+      "summary": "Language models assign different probabilities to token sequences that decode to the same string. In reinforcement learning from verifiable rewards (RLVR), a trainer that re-encodes sampled text may train on a different token sequence with the same reward. We ask how far this moves a training update, and whether the movement has a consistent direction. From one checkpoint, we compare updates on the same rollouts, canonical and with selected tokens split into two pieces, against an update on a different batch. On Qwen2.5-0.5B with three-digit addition, splitting about one token in 25 moves the update 0.556 times as far as replacing the batch. The ratio rises with the fraction split in four models and depends on which tokens are split; within a checkpoint, the displacements share a direction across batches. In a tabular model with one table per tokenization and a single sampled string, we prove that whenever two strings below an unsampled prefix differ in probability, only the zero full-gradient step agrees across tokenizations, however it is weighted. In an audit that decodes and re-encodes resampled rollouts, re-encoding touches up to 5.2% of rollouts but at most 0.08% of tokens, far below the split fractions we test. Training on fixed rollouts, the canonical arm finishes ahead in 14 of 18 pre-registered pairs; the interval for the mean accuracy difference includes zero over all pairs and excludes it only under the registered exclusion rule, which favours the canonical arm.",
+      "reason": "近 30 天；关键词：cs.CL。Language models assign different probabilities to token sequences that decode to the same string. In reinforcement learning from v...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL"
+      ],
+      "signal": 70,
+      "source": "arXiv",
+      "publishedAt": "2026-11-20T03:53:22Z",
+      "url": "https://arxiv.org/abs/2611.27083",
+      "pdfUrl": "https://arxiv.org/pdf/2611.27083v1"
+    },
+    {
+      "id": "arxiv-2611.26584",
+      "title": "Represented but misread: Post-training changes how language models read out what they represent",
+      "authors": [
+        "Jochen Laubrock"
+      ],
+      "summary": "Does post-training change what a language model represents, or how this representation is read out into an answer? We compared linear probes with the models' own answers, analyzed with signal detection theory, in six open-weight base models and their post-trained versions. For judgments of whether German texts were written by a human or an AI, probes and word n-gram classifiers separated the classes well, but the answers did not and often ordered the texts inversely. Post-training lowered the sensitivity of the answers on average ($Δd' = -0.34$ across model families; -0.29 across three prompts). It also changed the use of a stated base rate: Base models shifted their log-odds by less than the stated change in prior odds, most post-trained models by more. In two models with stage-wise checkpoints, the change occurred during supervised fine-tuning, model stitching implicated the early layers, and from mid-depth on internal states at positions after the text, not those of the text, transferred the change between checkpoints. Our corpora cannot be shared, so we add a case reproducible from public data, the truth of negated statements. Here, post-training acted in the opposite direction: Probes decoded truth at or near ceiling in every model, the answers of several base models did not use it, and post-training repaired them; by mid-depth the repair resided at the positions after the statement; below it, the representation of the statement contributed, strongly in one of four models. In a training study, adding 2,000 correctly labeled authorship judgments of news texts to otherwise identical fine-tuning data improved the answers on our newspaper and textbook corpora and inverted them on the chats, where they followed a news-trained probe of the base model. Post-training thus changed how a judgment is read out of what a model represents, and a small training signal can set its direction.",
+      "reason": "近 30 天；关键词：cs.CL。Does post-training change what a language model represents, or how this representation is read out into an answer? We compared lin...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL"
+      ],
+      "signal": 70,
+      "source": "arXiv",
+      "publishedAt": "2026-11-19T18:43:56Z",
+      "url": "https://arxiv.org/abs/2611.26584",
+      "pdfUrl": "https://arxiv.org/pdf/2611.26584v1"
     }
   ]
 }
