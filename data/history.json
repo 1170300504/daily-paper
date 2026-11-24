@@ -1,7 +1,278 @@
 {
-  "generatedAt": "2026-11-23T10:03:20.933066+08:00",
+  "generatedAt": "2026-11-24T13:40:16.730330+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-11-24",
+      "generatedAt": "2026-11-24T13:40:16.730330+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2611.30130",
+          "title": "When Does Optical Context Compression Pay Off? A Decode-Aware Cost Analysis of Reasoning VLMs",
+          "authors": [
+            "Ziqing Ge"
+          ],
+          "summary": "Rendering long text as images lets a vision-language model (VLM) read a document with fewer input tokens, and evaluations often count mainly these prefill tokens. We show that for reasoning models this accounting is incomplete. Across five models and two long-context benchmarks, reading the rendered document makes the model think longer: decode length grows by 1.5-3.5x on the four general-purpose VLMs tested, and under typical output pricing this decode tax makes image input more expensive than text for two of the five models on QuALITY. Unrecoverable information loss is not sufficient to explain the tax at moderate compression: Qwen's OCR of the same images recovers 98.7% of words, and feeding Kimi-K3 its own transcription as text restores text-mode reasoning length and accuracy. Whether compression pays off reduces to an exchange rate, (1-1/c)/(r-1), that must exceed the workload's price-weighted ratio of output to input tokens; this accounting decomposition shows why Kimi-K3 and DeepSeek-V4.1-Flash can benefit and Qwen and GLM cannot. None of the training-free signals we test predicts the tax before generation. As a practical heuristic, an image-first policy that sends only inputs with a per-input compression ratio of at least 1.6 to images and falls back to text once image-mode reasoning costs as much as the input's prefill saving cuts the bill by 6-14% on Kimi-K3 and DeepSeek-V4.1-Flash at an accuracy cost of 0.3-1.2 points; on QuALITY, asking for a reasoning budget on both paths is a stronger lever.",
+          "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.AI, prefill。Rendering long text as images lets a vision-language model (VLM) read a document with fewer input tokens, and evaluations often co...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "alibaba",
+            "cs.AI",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "Alibaba/arXiv",
+          "publishedAt": "2026-11-23T06:40:44Z",
+          "url": "https://arxiv.org/abs/2611.30130",
+          "pdfUrl": "https://arxiv.org/pdf/2611.30130v1"
+        },
+        {
+          "id": "arxiv-2611.30083",
+          "title": "MotionServe: Efficient Multi-Robot Serving by Exploiting Robot Execution Slack",
+          "authors": [
+            "Zikang Wen",
+            "Yuning Zhang",
+            "Dong Yuan"
+          ],
+          "summary": "As robotic arms undertake diverse manipulation tasks, a deployment may need to serve many task-specific vision-language-action (VLA) policies concurrently. Dedicating a GPU to each robot is costly, motivating shared-GPU inference. Low-rank adaptation (LoRA) allows compatible policies to share a frozen backbone with lightweight policy-specific adapters, reducing model-weight memory and enabling cross-policy batching. However, robot inference must keep pace with physical execution. With action chunking, robots continue executing buffered actions while awaiting new predictions, and the remaining buffered time provides each robot's execution slack for serving its next request. Once this slack is exhausted, the robot stalls until new actions arrive, interrupting task progress. Observing earlier preserves more slack but can lead to disruptive replanning and lower task success, whereas delaying dispatch to form larger batches can improve GPU efficiency but consumes slack and risks stalls. To balance these competing demands, we present MotionServe, a shared-GPU serving system that coordinates robot observation timing with server-side batch formation. MotionExec selects observation triggers based on motion structure in predicted action chunks, allowing inference to overlap with remaining buffered execution. SlackBatch combines the resulting per-robot execution budgets with estimated outstanding GPU work to determine when to wait, which requests to batch, and when to dispatch them. We evaluate X-VLA on LIBERO and SimplerEnv's WidowX tasks and OpenVLA-OFT on LIBERO, with up to 96 simulated robots sharing one NVIDIA H200 GPU. At 96 robots, MotionServe reduces mean stall per episode by 43.4% and 32.6% and improves task success by 8.98 and 2.30 percentage points, respectively, over each model's lowest-stall baseline. Backbone sharing also reduces weight memory for 96 policies by 97.6% and 91.1%.",
+          "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.RO, batching。As robotic arms undertake diverse manipulation tasks, a deployment may need to serve many task-specific vision-language-action (VL...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "nvidia",
+            "cs.RO",
+            "batching",
+            "efficient",
+            "inference",
+            "lora",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "NVIDIA/arXiv",
+          "publishedAt": "2026-11-23T05:43:31Z",
+          "url": "https://arxiv.org/abs/2611.30083",
+          "pdfUrl": "https://arxiv.org/pdf/2611.30083v1"
+        },
+        {
+          "id": "arxiv-2611.30027",
+          "title": "Fast 4-bit KV-Cache Decoding on Hopper GPUs: Why Existing Kernels Are Slow and How to Fix Them",
+          "authors": [
+            "Jian Zhang"
+          ],
+          "summary": "A 4-bit KV cache reads about half the bytes of FP8, but Hopper GPUs have no FP4 hardware and little instruction-issue capacity per byte of memory bandwidth, so 4-bit values must be decoded in software. On H200, vLLM's NVFP4 KV path (FlashInfer's decode) reaches 10-20% of memory bandwidth and is up to 1.7x slower than FP8. NVBit instruction counts show two causes: the kernels behind vLLM's 4-bit paths (FlashInfer NVFP4, Triton UltraQuant) execute 2-6x Hopper's issue budget per byte and serialize loading, decoding and matrix multiplies. Our Hopper-native decode kernel overlaps a TMA producer warp with two compute warpgroups, lays the cache out at write time so decoded values feed the tensor cores from registers, and swaps the matrix operands so small query groups need no padding. On H200 it reaches 67-75% of peak bandwidth at batch 32-128 and at all 11 shapes is 1.12-1.49x faster than the faster of XQA and FlashAttention-4's proposed native FP8. Inside vLLM, with an accuracy recipe (K mean removal and rotation, 4 BF16 sink tokens, BF16 layer 0), it decodes 1.12-1.64x faster per step on Llama-3.1-8B than vLLM's FlashInfer FP8 path at batch 8 and above (1.04-1.24x over FlashAttention-4's FP8), is level at batch 1, and holds 1.63x as many tokens. On one H200 under a reasoning-like request stream, the highest rate at which 99% of requests meet the latency targets is 1.23-1.32x FP8's on Llama-3.1-8B and 1.67-2.20x on Qwen2.5-72B, as the cache becomes the limit; prefill-heavy streams are worse (7% slower prefill). On five 7B-32B models, repeated runs show no significant accuracy difference from BF16 KV. In Qwen2-family models, whose reasoning variants collapse under FP8 KV, layer 0's key mean is almost entirely the key-projection bias identified by prior work, seen through RoPE and computable from the weights alone; keeping that layer in BF16 restores FP8 KV and, with K mean removal, 4-bit KV.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, kv-cache。A 4-bit KV cache reads about half the bytes of FP8, but Hopper GPUs have no FP4 hardware and little instruction-issue capacity per...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.LG",
+            "kv-cache",
+            "latency",
+            "llm",
+            "prefill",
+            "slo"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-11-23T04:29:01Z",
+          "url": "https://arxiv.org/abs/2611.30027",
+          "pdfUrl": "https://arxiv.org/pdf/2611.30027v1"
+        },
+        {
+          "id": "arxiv-2611.29663",
+          "title": "Exact on Paper: Which LLM Serving Shortcuts Flip Graded Answers, Measured Against the Noise of Reordering the Same Requests",
+          "authors": [
+            "Sharven Rane"
+          ],
+          "summary": "Teams enable serving features such as prefix caching, chunked prefill and speculative decoding after checking that benchmark accuracy is unchanged, because the engine documents them as exact. Accuracy is an aggregate, so a feature can hold it while flipping which requests are answered correctly. We serve one 4B instruction model in vLLM under nine single feature configurations and five replicas of a reference configuration, grade 3,380 requests from five benchmarks in every run, and compare each candidate with a restart floor (fresh process) and a scheduling floor (same requests in a different order). With default kernels every configuration keeps accuracy within one point, and the seven exact features flip the graded outcome of 1.47% (95% CI 1.13 to 1.85) to 1.78% (1.39 to 2.20) of requests, none above the scheduling floor of 1.72%, while the FP8 KV cache flips 3.36% (2.80 to 3.96), as many as FP8 weights. With batch invariant kernels all seven exact features, speculative decoding included, reproduce the reference text on every request, while the FP8 KV cache still flips 3.91% (3.28 to 4.53) of graded outcomes. A gate that compares against a single replica pair rejected an unchanged configuration, so we recommend certifying a serving change under batch invariant kernels, where the floor is zero, or against a scheduling floor measured from at least three replicas.",
+          "reason": "近 30 天；关键词：cs.LG, kv-cache, llm。Teams enable serving features such as prefix caching, chunked prefill and speculative decoding after checking that benchmark accur...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "kv-cache",
+            "llm",
+            "prefill",
+            "serving",
+            "speculative"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-22T18:06:09Z",
+          "url": "https://arxiv.org/abs/2611.29663",
+          "pdfUrl": "https://arxiv.org/pdf/2611.29663v1"
+        },
+        {
+          "id": "arxiv-2611.29613",
+          "title": "Weight Coding: Evolving Web-Scale Recommenders through Direct Weight Edits with LLM Agents",
+          "authors": [
+            "Junpeng Hou",
+            "Jiaxing Qu",
+            "Derek Cheng",
+            "Jaewon Yang",
+            "Abhinav Naikawadi",
+            "Karthik Subbian"
+          ],
+          "summary": "Web-scale recommender models evolve primarily through retraining or fine-tuning. We propose \\emph{weight coding}, a methodology for model evolution through direct, executable weight edits. A large language model (LLM) agent inspects model structure and parameters, formulates hypotheses, and implements edits using evaluation feedback. The loop progresses from localized changes to targeted searches and composition, allowing edited components to adapt to one another. A cached engine enables rapid forward evaluation without backpropagation. On Pinterest's 147M-parameter Image Search two-tower retriever, weight coding improves held-out recall@10 of production model by up to 15.0 percentage points (+24\\% relative) with few edits in about 1/4 GPU hours of a full post-training finetune, while a common launch only improves around 1\\%. After reinitializing the entire 13.6M-parameter interaction module randomly while retaining the surrounding trained model, searching 2,448 mixing and normalization parameters yields 9.8 points above production. Offline gains span the full funnel including dense retrieval, generative retrieval and ranking, with up to 1.37B learnable parameters and different edits for each architecture. Steering edits provide explicit control of model performance over segments like freshness and product. Weight coding requires no serving change and online A/B tests increase saves per user from the edited retrieval source by 8.4\\% to 10.7\\%, aligned with the target business objectives. Our results establish weight coding as a practical and useful tool for model development and and behavioral control in a real web-scale production system, with potential to extend to both pre-training and post-training stages across the funnel.",
+          "reason": "近 30 天；公司信号：Pinterest；推荐/排序/广告方向；关键词：pinterest, cs.IR, llm。Web-scale recommender models evolve primarily through retraining or fine-tuning. We propose \\emph{weight coding}, a methodology fo...",
+          "area": "推荐算法",
+          "tags": [
+            "pinterest",
+            "cs.IR",
+            "llm",
+            "online-a/b",
+            "production",
+            "ranking",
+            "recommender"
+          ],
+          "signal": 99,
+          "source": "Pinterest/arXiv",
+          "publishedAt": "2026-11-22T17:11:38Z",
+          "url": "https://arxiv.org/abs/2611.29613",
+          "pdfUrl": "https://arxiv.org/pdf/2611.29613v1"
+        },
+        {
+          "id": "arxiv-2611.29590",
+          "title": "KernelShift: Benchmarking Kernel Optimization Across Evolving Hardware",
+          "authors": [
+            "Shuaiwei Huang",
+            "Weihua Du",
+            "Allen Wu",
+            "Ivan Fox",
+            "Manupa Karunaratne",
+            "Yiming Yang",
+            "Sean Welleck"
+          ],
+          "summary": "Efficient AI computation depends on hardware that evolves over time, shifting the strategies needed to implement performant code. For CPU kernels, a key evolving factor is the set of available architectural extensions, which expose specialized hardware instructions that change the techniques used to optimize kernels. We study how effectively coding agents use these new, potentially unfamiliar extensions to write fast code. We introduce KernelShift, a benchmarking pipeline and a set of environments for evaluating coding agents in kernel optimization across evolving CPU architectures. Its agent-assisted, human-verified pipeline turns code repositories into benchmark instances, and its environments let agents optimize code with feedback from the target hardware. Using this pipeline, we construct 99 kernels from real-world, actively developed repositories (ncnn, llama.cpp, Arm SIMD Loops, and KleidiAI), including inference workloads derived from real model executions. KernelShift supports incorporating new kernels and hardware configurations as libraries and processors evolve. We evaluate agents with proprietary and open-weight models across progressively newer architectural extensions (Arm Neon, SVE, SVE2, and SME2), examining how performance changes as hardware evolves. On established extensions, agents beat the auto-vectorized compiler everywhere (2.4-19.8x) and exceed general-purpose libraries such as ncnn (getting up to 2.74x over its Neon kernels), but fall behind Arm's hand-tuned KleidiAI kernels (0.70x). In end-to-end inference of two LLMs, agent-written kernels achieve a 1.3-1.6x prefill speedup over llama.cpp's fast path. However, current agents do not yet reliably adapt to new extensions that require unfamiliar programming models, such as SME2's matrix tiles.",
+          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, efficient。Efficient AI computation depends on hardware that evolves over time, shifting the strategies needed to implement performant code....",
+          "area": "LLM 推理优化",
+          "tags": [
+            "meta",
+            "cs.CL",
+            "efficient",
+            "inference",
+            "llm",
+            "prefill"
+          ],
+          "signal": 99,
+          "source": "Meta/arXiv",
+          "publishedAt": "2026-11-22T16:25:24Z",
+          "url": "https://arxiv.org/abs/2611.29590",
+          "pdfUrl": "https://arxiv.org/pdf/2611.29590v1"
+        },
+        {
+          "id": "arxiv-2611.29280",
+          "title": "QASparse: Query-Adaptive Sparse Attention with Tailored Budgets and Tokens",
+          "authors": [
+            "Zhiyuan Chen",
+            "Zihao Yang",
+            "Quanjiang Li",
+            "Haijiang Li",
+            "Jiancheng Pan",
+            "Qichao Zhao",
+            "Zihan Dong",
+            "Qiushi Shi",
+            "Jinshi Liu"
+          ],
+          "summary": "Long-sequence inference in large language models is constrained by the high cost of prefilling, where dense attention scales quadratically with context length. Exploiting similarity across attention heads offers a way to reduce redundant computation. Prior approaches in this direction have relied on localized query observations to determine head-level computation reuse or budget allocation. However, inter-head similarity does not imply uniform query requirements, leaving adaptation to varying budget needs and selection preferences across query regions a key challenge. We introduce QASparse, a Query-Adaptive Sparse attention mechanism with hardware-efficient execution. QASparse preserves the efficiency of shared cross-head importance estimation while adapting computational budgets and token selections to query requirements, and it executes these dynamic sparse decisions through dedicated kernels. Its query adaptivity stems from two complementary innovations: Local Budget Regression models local variations in computational demand along query positions to estimate budgets for different query regions and attention heads; Boundary Voting lets queries within each head vote over candidates near the selection cutoff using actual query/key scores, refining the retained set while preserving the initial selection size. To reduce the execution overhead of dynamic budgets, we further design length-specialized selection kernels that efficiently support query-adaptive sparse patterns across context lengths. Together, these designs efficiently combine shared estimation with local decisions while adapting both how much attention is computed and which interactions are retained. Experimental results demonstrate improved benchmark scores and faster prefill attention computation compared with existing sparse attention baselines.",
+          "reason": "近 30 天；关键词：cs.LG, efficient, inference。Long-sequence inference in large language models is constrained by the high cost of prefilling, where dense attention scales quadr...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.LG",
+            "efficient",
+            "inference",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-22T06:57:46Z",
+          "url": "https://arxiv.org/abs/2611.29280",
+          "pdfUrl": "https://arxiv.org/pdf/2611.29280v1"
+        },
+        {
+          "id": "arxiv-2611.29255",
+          "title": "NoeVera: Can Knowledge Guide Experiments and Experiments Refine Knowledge?",
+          "authors": [
+            "Pinaki Prasad Guha Neogi",
+            "Spyros Mastorakis",
+            "Ankur Mallick",
+            "Saravan Rajmohan",
+            "Victor Rühle"
+          ],
+          "summary": "With the growing demand for large language model (LLM) services, optimizing LLM serving systems is becoming increasingly complex, and the bottleneck is no longer predicting how a given configuration will perform. The harder problem is deciding what to investigate: which mechanisms matter for a workload, which configurations are worth testing, and what evidence a decision still needs. In this work, we present NoeVera, an agentic Second Brain that goes beyond just one-shot retrieval by turning papers, code, benchmarks, and experimental results into a persistent, provenance-preserving knowledge base with three planes: source evidence, reusable synthesis, and agent memory. Decision-aware retrieval assembles compact evidence packs, role-specific agents reason over them and invoke a simulator (Vidur or GAUSS) whenever quantitative support is needed, and every finding is written back as a scoped evidence record, so knowledge guides experiments and experiments refine knowledge. In configuration search over four serving scenarios, NoeVera comes within 5% of the optimum in a median of 6-7 simulator calls, versus 9 for Bayesian optimization and 15 for a knowledge-free agent with the same tools; on A100 GPUs, its representative configurations deliver ~1.30x vLLM-default throughput and meet every scenario's latency objective. When reused, provenance-preserving evidence records over-generalize on only 8% of applicability traps, versus 28% for a general-purpose agent memory. On the held-out 48-task split of a 72-task benchmark, NoeVera scores 29% higher than an equally equipped agent and 36% higher than its single-call retrieval counterpart (0.80 vs. 0.62 and 0.59), and even when baselines receive NoeVera's own prompts, a statistically significant part of its evidence-evolution advantage remains.",
+          "reason": "近 30 天；关键词：cs.AI, latency, llm。With the growing demand for large language model (LLM) services, optimizing LLM serving systems is becoming increasingly complex,...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.AI",
+            "latency",
+            "llm",
+            "retrieval",
+            "serving",
+            "throughput"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-22T05:49:43Z",
+          "url": "https://arxiv.org/abs/2611.29255",
+          "pdfUrl": "https://arxiv.org/pdf/2611.29255v1"
+        },
+        {
+          "id": "arxiv-2611.29104",
+          "title": "When Does Decomposition Help? Empirical Study on Workload-Architecture Affinity in LLM Inference Serving",
+          "authors": [
+            "Jihui Yang",
+            "Wentai Wu",
+            "Jiahua Huang",
+            "Weiwei Lin",
+            "Ligang He",
+            "Linghong Tsang"
+          ],
+          "summary": "Large language model (LLM) inference can be organized as independent monolithic replicas, tensor- or pipeline-parallel serving groups, or disaggregated prefill and decode services. Although decomposition is often presented as a route to higher efficiency, its benefit depends on workload shape, model fit, and whether phase-specific resources can be independently scaled. Existing comparisons frequently change several of these factors at once. We isolate the architectural effect by evaluating five SGLang serving organizations under the same four-A100-40GB hardware envelope, pinned Qwen3-8B model, software stack, prompts, and arrival schedules. Our evaluation contains 150 audited conditions over short-chat, decode-heavy, and 32K prefill-heavy workloads. Four independent one-GPU replicas achieve the lowest end-to-end latency for short chat and long output and are the only architecture stable in every condition. Pipeline parallelism reduces 32K time to first token by 58-59% at non-stress rates, while hybrid pipeline-based disaggregation achieves the best 32K end-to-end latency at 0.4 requests/s. In contrast, B's single-VM static TP2+TP2 split, without independent phase scaling, does not improve tested latency over replication and collapses at higher 32K load. These results reveal a workload-architecture affinity: pipeline decomposition favors prefill-heavy computation, whereas replication favors decode-heavy and concurrent traffic. More broadly, decomposition is not a monotonic optimization; its value depends on matching parallelism granularity to the dominant phase and preserving queue stability.",
+          "reason": "近 30 天；关键词：cs.DC, inference, latency。Large language model (LLM) inference can be organized as independent monolithic replicas, tensor- or pipeline-parallel serving gro...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.DC",
+            "inference",
+            "latency",
+            "llm",
+            "prefill",
+            "serving"
+          ],
+          "signal": 99,
+          "source": "arXiv",
+          "publishedAt": "2026-11-22T00:00:01Z",
+          "url": "https://arxiv.org/abs/2611.29104",
+          "pdfUrl": "https://arxiv.org/pdf/2611.29104v1"
+        },
+        {
+          "id": "arxiv-2611.28379",
+          "title": "Beyond Relevance: An Empirical Study of Multimodal LLMs for Diversity-Aware Recommendation Reranking",
+          "authors": [
+            "Chengkai Liu",
+            "Yan Fu",
+            "Huiyuan Chen",
+            "Sheikh Sarwar",
+            "Qilin Qi"
+          ],
+          "summary": "Large language models (LLMs) have emerged as promising rerankers for recommendation, yet most existing approaches rely on textual item descriptions and primarily focus on relevance. In visually oriented domains such as video streaming, item images provide complementary signals that may also inform recommendation diversity. This raises two questions: when does visual information improve recommendation quality, and can multimodal LLMs (MLLMs) enhance relevance and diversity simultaneously? We investigate these questions through a training-free, diversity-aware multimodal reranking framework that jointly incorporates item images, textual metadata, and user interaction histories. We conduct an empirical study across three public Amazon Review datasets and an industrial Amazon Prime Video dataset, using both open-source and proprietary MLLMs. Our results reveal substantial domain-dependent effects: adding visual information yields up to 121.9% relative improvement in NDCG@5 on Prime Video, while producing limited or inconsistent gains on product recommendation datasets. Furthermore, MLLM-based reranking improves both relevance and category-diversity-sensitive ranking quality over a sequential recommendation baseline, achieving up to 71.0% improvement in NDCG@5 and 14.1% in $α$-NDCG@5 on Prime Video. These findings highlight the conditional value of visual information and the potential of training-free MLLMs for relevance- and diversity-aware recommendation reranking.",
+          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, dataset。Large language models (LLMs) have emerged as promising rerankers for recommendation, yet most existing approaches rely on textual...",
+          "area": "推荐算法",
+          "tags": [
+            "amazon",
+            "cs.IR",
+            "dataset",
+            "industrial",
+            "llm",
+            "multimodal",
+            "ranking"
+          ],
+          "signal": 99,
+          "source": "Amazon/arXiv",
+          "publishedAt": "2026-11-20T22:37:29Z",
+          "url": "https://arxiv.org/abs/2611.28379",
+          "pdfUrl": "https://arxiv.org/pdf/2611.28379v1"
+        }
+      ]
+    },
     {
       "date": "2026-11-23",
       "generatedAt": "2026-11-23T10:03:20.933066+08:00",
@@ -21035,284 +21306,6 @@
           "publishedAt": "2026-08-04T19:18:41Z",
           "url": "https://arxiv.org/abs/2608.04160",
           "pdfUrl": "https://arxiv.org/pdf/2608.04160v1"
-        }
-      ]
-    },
-    {
-      "date": "2026-08-06",
-      "generatedAt": "2026-08-06T06:48:14.316803+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": [
-        {
-          "id": "arxiv-2608.04010",
-          "title": "ParVL: Parallel Scaling and Expandable Compute Allocation for Multimodal LLMs",
-          "authors": [
-            "Yang Yang",
-            "Qinyu Zhao",
-            "Mouxiang Chen",
-            "Xiaohui Li",
-            "Lixin Gu",
-            "Wenhai Wang",
-            "Hongjie Zhang",
-            "Wenwei Zhang"
-          ],
-          "summary": "Existing scaling strategies for Multimodal Large Language Models (MLLMs) typically expand either model parameters or sequential inference computation, incurring substantial memory or latency overhead. More importantly, most existing methods fail to alter the rigid, fixed computation allocation between the Vision Transformer and the Large Language Model components, limiting task-specific optimization. To address this, we introduce the Parallel Vision-Language (ParVL) scaling framework for MLLMs, which scales parallel computation by reusing the existing ViT and LLM backbone parameters across multiple vision and language branches. This framework raises a central question: given a fixed backbone parameter budget, how should additional shared-backbone computation be allocated between the vision and language modalities? We instantiate each parallel computational stream with branch-specific prefix parameters over a shared backbone, and train the entire model end-to-end via full-parameter supervised fine-tuning on roughly 13B tokens. We systematically study the computation-allocation trade-off between the ViT encoder and LLM decoder. ParVL improves overall multimodal performance over same-recipe single-branch baselines, and the best evaluated vision--language allocation varies across tasks. Code is available at https://github.com/YangYangGirl/ParVL.",
-          "reason": "近 30 天；关键词：cs.CV, inference, latency。Existing scaling strategies for Multimodal Large Language Models (MLLMs) typically expand either model parameters or sequential in...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.CV",
-            "inference",
-            "latency",
-            "llm",
-            "multimodal"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-08-04T17:59:58Z",
-          "url": "https://arxiv.org/abs/2608.04010",
-          "pdfUrl": "https://arxiv.org/pdf/2608.04010v1"
-        },
-        {
-          "id": "arxiv-2608.03899",
-          "title": "ATLAS: Learning to Recommend Across Unseen Domains",
-          "authors": [
-            "Pervez Shaik",
-            "Prosenjit Biswas",
-            "Abhinav Thorat",
-            "Ravi Kolla",
-            "Niranjan Pedanekar"
-          ],
-          "summary": "Recommender systems remain domain-bound: a model trained on one interaction environment typically requires retraining or target-domain adaptation before it can operate on a new catalogue. A recommender trained on movies cannot be directly deployed to recommend groceries or video games. Existing approaches mitigate this by transferring restricted forms of recommendation knowledge, adapting to the target domain, or leveraging large language models (LLMs) for transferable representations. We instead ask whether recommendation-specific knowledge learned solely from multiple heterogeneous domains can generalize to entirely unseen domains without target-domain adaptation or language-model pretraining. We introduce ATLAS, a multi-source recommendation domain generalization framework that learns a shared, domain-invariant user-item representation from disjoint source domains, enabling zero-shot recommendation on unseen domains. ATLAS combines a Gromov-Wasserstein alignment that preserves how users relate to one another across domains, an adversarial objective that makes item representations indistinguishable across domains, and residual vector quantization (RVQ) codebooks that compress user and item embeddings into a discrete latent space, capturing hierarchical interaction patterns while suppressing domain-specific variation. Trained on five Amazon domains and applied directly to ten unseen domains, ATLAS outperforms state-of-the-art sequential, graph-based, cross-domain, quantization-based, and LLM-based baselines on most unseen domains, with an average relative gain in HitRate of 24%. Ablations and representation analyses validate each component, and we identify a pronounced source-domain diversity effect: increasing source heterogeneity substantially improves zero-shot transfer. ATLAS establishes recommendation domain generalization as a promising paradigm for zero-shot recommendation.",
-          "reason": "近 30 天；公司信号：Amazon；推荐/排序/广告方向；关键词：amazon, cs.IR, alignment。Recommender systems remain domain-bound: a model trained on one interaction environment typically requires retraining or target-do...",
-          "area": "推荐算法",
-          "tags": [
-            "amazon",
-            "cs.IR",
-            "alignment",
-            "deployed",
-            "llm",
-            "quantization",
-            "recommendation"
-          ],
-          "signal": 99,
-          "source": "Amazon/arXiv",
-          "publishedAt": "2026-08-04T16:29:02Z",
-          "url": "https://arxiv.org/abs/2608.03899",
-          "pdfUrl": "https://arxiv.org/pdf/2608.03899v1"
-        },
-        {
-          "id": "arxiv-2608.03893",
-          "title": "Cross-Model KV Cache Transfer in LLM Families: A Closed-Form Linear Mapping for Prefill Reuse",
-          "authors": [
-            "Taekyung Heo",
-            "Rasoul Shafipour",
-            "Ritchie Zhao",
-            "Maximilian Golub",
-            "Mohammad Mahdi Kamani",
-            "Ritika Borkar",
-            "Makesh Tarun Chandran",
-            "Pantea Zardoshti",
-            "Bita Darvish Rouhani"
-          ],
-          "summary": "Production deployments often swap between different-sized models in a family for cost-quality cascading, mid-conversation switching, and routing, and each swap forces the receiver to repay the prefill from scratch. We propose cross-model KV cache transfer, where the receiver reuses the source's KV cache, skipping prefill. We find that cross-model KV has substantial linear structure across matched-KV pairs, where source and target share KV head count and per-head dimension. On Qwen3 14B->32B, one source layer explains 56% of variance in the target's keys and 32% in values, rising to 79% and 65% with multiple source layers. Building on this, we design a closed-form ridge mapper that operates per head and proceeds in three steps. First, for each target layer we select the top-k most predictive source layers and concatenate their KV as input. Second, we strip RoPE from the keys before mapping, so the fit is position-free and reusable across context lengths. Third, we fit ridge regression on a small calibration set of 500 FineWeb-Edu sequences of 1,024 tokens each. Surprisingly, across six pairs in three families, this linear mapper retains 73-98% of the receiver's standalone-prefill accuracy on four pairs, while two degrade sharply. A nonlinear MLP recovers up to +37 pp HellaSwag retention on the failures. The mapper runs 2.7-25x faster than re-prefill and remains stable across multi-turn handoff, making cross-model KV cache transfer practical.",
-          "reason": "近 30 天；关键词：cs.LG, kv-cache, llm。Production deployments often swap between different-sized models in a family for cost-quality cascading, mid-conversation switchin...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "kv-cache",
-            "llm",
-            "prefill",
-            "production"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-08-04T16:26:47Z",
-          "url": "https://arxiv.org/abs/2608.03893",
-          "pdfUrl": "https://arxiv.org/pdf/2608.03893v1"
-        },
-        {
-          "id": "arxiv-2608.03854",
-          "title": "Quantization Effects on Biomedical LLM Reliability",
-          "authors": [
-            "Anton Rasmussen",
-            "Hong Qin"
-          ],
-          "summary": "When decoder language models are used as classifiers, predicted class probabilities depend on implementation choices, including the prompt template, verbalizer (label-to-token mapping), and scoring rule, that are rarely treated as experimental variables. We present a controlled evaluation of three Mistral-7B variants (Base, BioMistral, and Instruct) on PubMed RCT sentence classification (n=2000) under FP16, INT8, and INT4 precision using four answer-text prompt templates. Our primary finding is that the probability extraction protocol dominates apparent calibration. Switching from summed to mean token log-likelihood scoring reverses the calibration ranking between models: BioMistral average expected calibration error increases from 0.097 to 0.289, whereas Instruct decreases from 0.237 to 0.096, while accuracy changes by less than 1 percentage point for the specialized models but 4-6 percentage points for the base model. Prompt template choice produces accuracy differences of 7-24 percentage points, comparable to or larger than model-level effects. On one template, BioMistral outperforms Instruct although the overall mean favors Instruct by only 1.3 percentage points. For BioMistral and Instruct, INT8 quantization changes accuracy and F1 by only 1-2 percentage points relative to FP16, whereas the base model shows larger INT8 effects on some templates (up to +4.2 percentage points). INT4 produces heterogeneous but non-catastrophic effects. Temperature scaling reduces expected calibration error under summed scoring for both models but only for that scoring rule. A fine-tuned PubMedBERT reference achieves 82.7% accuracy but uses about 176000 labeled training examples, precluding direct comparison. These results demonstrate that prompt template design and scoring normalization are first-order experimental decisions when evaluating decoder language model calibration.",
-          "reason": "近 30 天；关键词：cs.LG, llm, quantization。When decoder language models are used as classifiers, predicted class probabilities depend on implementation choices, including th...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "llm",
-            "quantization",
-            "ranking"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-08-04T15:57:21Z",
-          "url": "https://arxiv.org/abs/2608.03854",
-          "pdfUrl": "https://arxiv.org/pdf/2608.03854v1"
-        },
-        {
-          "id": "arxiv-2608.03836",
-          "title": "Resume Means Resume: A Machine-Checked Conformance Contract for Checkpoint, Interrupt, and Resume Semantics in Workflow Persistence Layers",
-          "authors": [
-            "Sajjad Khan"
-          ],
-          "summary": "A framework that persists execution state so a run can be interrupted, survive a crash, and continue must decide what a resume means for effects that already fired. Five widely deployed agent workflow frameworks answer differently, none exposes a machine-checkable contract, and behavior violates even the fragments they state. The RESUME CONTRACT states six properties over the persistence API (prefix continuation, effect exactly-once, fork determinism, checkpoint validity, consume-once, recovery determinism), plus fork-intent and liveness obligations. A TLA+ model checks a reference semantics exhaustively, unchanged at scaled bounds (7.4 million states); a 39-cell fault matrix yields the separating models independence requires, and consume-once splits, its consumption clause independent of all six others. A deterministic, LLM-free harness measures them at pinned releases. LangGraph 1.2.9 durably records a second resume value and never consults it, persists schema-invalid state silently, and re-executes durably recorded work after a real SIGKILL: exactly-once across interrupts, at-least-once across crashes, on one API. CrewAI 1.15.2 re-executes completed effect-bearing methods against its written claim; pydantic-graph 1.x cannot resume after a mid-node crash; no two probed frameworks share a conformance profile. Consume-once holds sequentially and fails under concurrent delivery: k processes resuming one parked interrupt fire the gated effect k times, saturation 1.0 in 36 of 40 cells, and the failure crosses hosts. REMIT, a reference sequencer whose Verus-verified recovery core is line-identical to the shipped executable, repairs the fork and validity cells. The cross-process cell is repaired at the read path, and that repair ships: an opt-in gate claims consumption in the shared store, serving one racer and refusing the rest before any node executes.",
-          "reason": "近 30 天；关键词：cs.LG, deployed, llm。A framework that persists execution state so a run can be interrupted, survive a crash, and continue must decide what a resume mea...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.LG",
-            "deployed",
-            "llm",
-            "serving"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-08-04T15:45:31Z",
-          "url": "https://arxiv.org/abs/2608.03836",
-          "pdfUrl": "https://arxiv.org/pdf/2608.03836v1"
-        },
-        {
-          "id": "arxiv-2608.03741",
-          "title": "When Does Disaggregation Pay? Simulating Prefill--Decode--Attention--FFN Specialization for Agentic LLM Inference",
-          "authors": [
-            "Przemyslaw Forys",
-            "Haoran Wu",
-            "Can Xiao",
-            "Jiayi Nie",
-            "Tony Liu",
-            "Rika Antonova",
-            "Timothy Jones",
-            "Robert Mullins",
-            "Wayne Luk",
-            "Aaron Zhao",
-            "George A. Constantinides"
-          ],
-          "summary": "Agentic inference now dominates the LLM inference landscape, requiring LLMs to actively engage in multi-turn interactions with tool-calling capabilities. This introduces a more complex workload for the underlying inference system: serving stages such as prefill and decode exhibit substantially different behaviors and demand distinct compute and memory-bandwidth capabilities. As a result, a single homogeneous GPU system now struggles to support agentic inference, motivating an industry shift toward heterogeneous systems with disaggregated serving capabilities, such as the emerging Vera-Rubin platform with GPUs and Groq LPUs. However, the question of what the optimal hardware should look like for each component in a heterogeneous system remains underexplored. To this end, we propose a novel simulation framework for disaggregated serving, termed \\textbf{HeteroPanacea}, that enables system-level simulation across three dimensions: 1) disaggregated quantization, 2) automated intra- and inter-device parallelization scheduling, and 3) PDAF (prefill-decode-attention-FFN) NPU architectural heterogeneity. By combining these three axes, we provide a cross-stack simulation framework for future heterogeneous agentic serving systems. We confirm the benefit of Prefill Decode disaggregation, simulating increased serving throughput by up to 75\\% compared to traditional serving with current GPUs and demonstrate 4 way Prefill Decode Attention FFN disaggregation is the most consistent for increasing throughput across different models, assuming custom NPUs. We also investigate the relationship between model architecture and gain from disaggregation by running a set of ablation studies.",
-          "reason": "近 30 天；关键词：cs.DC, inference, llm。Agentic inference now dominates the LLM inference landscape, requiring LLMs to actively engage in multi-turn interactions with too...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "cs.DC",
-            "inference",
-            "llm",
-            "prefill",
-            "quantization",
-            "serving",
-            "throughput"
-          ],
-          "signal": 99,
-          "source": "arXiv",
-          "publishedAt": "2026-08-04T14:35:25Z",
-          "url": "https://arxiv.org/abs/2608.03741",
-          "pdfUrl": "https://arxiv.org/pdf/2608.03741v1"
-        },
-        {
-          "id": "arxiv-2608.03579",
-          "title": "Pin Once, Swap Light: Subspace-Aligned Centroid-Residual Training for Efficient Ultra-LoRA Serving",
-          "authors": [
-            "Xiang Li",
-            "Pengcheng Wang",
-            "Huazheng Wang",
-            "Saurabh Bagchi"
-          ],
-          "summary": "Modern multi-tenant Low-Rank Adapters (LoRAs) serving systems concurrently host tens to hundreds of LoRA adapters. Though powerful, this introduces a critical system dilemma between serving efficiency and task performance: higher-rank adapters generally achieve better downstream task performance, but their GPU VRAM footprint and Host-to-Device PCIe swapping overhead severely constrain scalability. Conversely, ultra-low-rank adapters ($r \\le 2$) minimize both VRAM footprint and PCIe transfer overhead, but suffer from downstream task performance degradation. To solve this problem, we propose Subspace-Aligned LoRA Training (SALT), a serving efficiency-aware hierarchical fine-tuning framework. Our solution operates in three phases. First, a provider jointly trains high-capacity domain centroids on public data within the domain using a novel alignment regularizer that coheres in-domain task subspaces into a unified basis. Next, users fine-tune ultra-low-rank task residual adapters on private data atop those frozen centroids. Finally, during inference, the provider pins the centroid in GPU VRAM and dynamically swaps in each user's task residual on demand. Across LLMs of varying scales, SALT recovers high-rank accuracy using $r \\le 2$ residuals, achieving up to 18.5% absolute accuracy gains over state-of-the-art compression baselines and reducing per-adapter memory by up to 16x. When integrated into vLLM, SALT improves serving throughput by up to 51% under PCIe bandwidth pressure and 28% under GPU VRAM constraints for Llama-3.2-3B.",
-          "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, alignment。Modern multi-tenant Low-Rank Adapters (LoRAs) serving systems concurrently host tens to hundreds of LoRA adapters. Though powerful...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "meta",
-            "cs.LG",
-            "alignment",
-            "efficient",
-            "inference",
-            "llm",
-            "lora"
-          ],
-          "signal": 99,
-          "source": "Meta/arXiv",
-          "publishedAt": "2026-08-04T12:34:35Z",
-          "url": "https://arxiv.org/abs/2608.03579",
-          "pdfUrl": "https://arxiv.org/pdf/2608.03579v1"
-        },
-        {
-          "id": "arxiv-2608.03228",
-          "title": "SAKI: Score-Aware Low-Rank Key Indexing for Long-Context KV Retrieval",
-          "authors": [
-            "Lin Zhang"
-          ],
-          "summary": "Existing low rank KV cache methods preserve either model weights or key variance, neither of which directly reflects the attention scores used during inference. We derive the expected attention score distortion caused by rank r key compression and show that it yields a covariance weighted low rank objective. Under a margin condition, controlling this distortion also improves top k recall. The optimal rank r solution has a closed form asymmetric factorization obtained from the SVD of the covariance weighted query key operator. This motivates SAKI, a training free KV cache index that directly preserves attention scores rather than key reconstruction quality. Across LLaMA 3.1 8B, Qwen 2.5 7B, Mistral 7B v0.1, and Llama 3.2 3B, SAKI outperforms key PCA at every tested rank. At rank 32, it removes 13 to 30 percent of PCA's remaining top 64 recall error, including improvements from 0.748 to 0.799 on LLaMA 3.1 8B and from 0.786 to 0.850 on Qwen 2.5 7B. It improves 68 to 89 percent of attention heads per model, with the largest gains in deeper layers. Predicted score MSE reductions closely match empirical measurements, with a Pearson correlation of 0.997, while ablation studies confirm that the gains arise from optimizing the attention score objective rather than covariance weighting alone. Analysis of the scoring operator further explains why weight only, invariant subspace, and key reconstruction methods can be suboptimal.",
-          "reason": "近 30 天；公司信号：Alibaba, Meta；关键词：alibaba, meta, cs.LG。Existing low rank KV cache methods preserve either model weights or key variance, neither of which directly reflects the attention...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "alibaba",
-            "meta",
-            "cs.LG",
-            "inference",
-            "kv-cache",
-            "retrieval"
-          ],
-          "signal": 99,
-          "source": "Alibaba/Meta/arXiv",
-          "publishedAt": "2026-08-04T06:59:29Z",
-          "url": "https://arxiv.org/abs/2608.03228",
-          "pdfUrl": "https://arxiv.org/pdf/2608.03228v1"
-        },
-        {
-          "id": "arxiv-2608.03150",
-          "title": "UniGD: A Unified Generative-Discriminative Framework for Industrial Retrieval",
-          "authors": [
-            "Shujie Ji",
-            "Yawei Kong",
-            "Yilin Zhao",
-            "Li Wang",
-            "Xialong Liu",
-            "Peng Jiang"
-          ],
-          "summary": "Generative retrieval (GR) is a promising paradigm for industrial search advertising, yet its deployment is constrained by strict relevance and latency requirements. Existing systems cascade GR with an independent relevance model, decoupling the generative likelihood objective from query-ad relevance discrimination, which compromises effectiveness and increases serving costs. We propose a Unified Generative-Discriminative framework (UniGD) that integrates retrieval and relevance scoring within a single model. To mitigate gradient interference in joint optimization, UniGD introduces Conflict-Aware Gradient Enhancement (CAGE) to adaptively coordinate the two objectives. UniGD further designs a Codebook-Anchored Representation Module (CAM) that anchors item representations to frozen hierarchical codebooks distilled from a multimodal pretrained model, thereby endowing them with rich and generalizable semantic priors. For heterogeneous short-video, product, and live-stream ads, UniGD proposes Heterogeneous Ad-material Modeling (HAM), which captures cross-type semantic commonality over a shared backbone while preserving type-specific modeling capacity. Online AB tests on Kuaishou search advertising platform show that UniGD raises ad revenue by 5.78%, reduces inference latency by 33%, and improves discriminative relevance estimation. On NQ320K and MS300K, UniGD improves Recall@10 over the strongest reproduced GR baseline by 8.44% and 3.19%, respectively.",
-          "reason": "近 30 天；公司信号：Kuaishou；推荐/排序/广告方向；关键词：kuaishou, cs.AI, advertising。Generative retrieval (GR) is a promising paradigm for industrial search advertising, yet its deployment is constrained by strict r...",
-          "area": "推荐算法",
-          "tags": [
-            "kuaishou",
-            "cs.AI",
-            "advertising",
-            "inference",
-            "industrial",
-            "latency",
-            "multimodal"
-          ],
-          "signal": 99,
-          "source": "Kuaishou/arXiv",
-          "publishedAt": "2026-08-04T05:29:02Z",
-          "url": "https://arxiv.org/abs/2608.03150",
-          "pdfUrl": "https://arxiv.org/pdf/2608.03150v1"
-        },
-        {
-          "id": "arxiv-2608.03063",
-          "title": "SeqLLM: Augmenting LLMs with Behavioral-Sequence Modeling for High-Stakes Decisions at WeChat Pay",
-          "authors": [
-            "Guilin Li",
-            "Jiaxing Zhang",
-            "Matthias Hwai Yong Tan",
-            "Bo Wang",
-            "Weiran Huang"
-          ],
-          "summary": "Merchant risk control at large payment platforms screens tens of millions of merchants daily, where false positives harm legitimate merchants and false negatives leave harmful activity undetected. The hardest cases require jointly understanding a merchant's textual profile and long behavioral sequence. Large language models (LLMs) excel at text but cannot natively model such sequences, while adapting them often causes catastrophic forgetting. We present SeqLLM, a framework that adds behavioral-sequence modeling to a pretrained LLM while preserving its language ability. SeqLLM combines three components: a compact discrete vocabulary that represents behavioral events as native tokens; a lightweight projector, trained with a two-stage alignment curriculum, that grounds these tokens in the LLM's semantic space; and prefix-guided capability injection, which acquires sequence-modeling ability through task-prefixed supervised fine-tuning rather than continual pre-training. SeqLLM is deployed at WeChat Pay, screening millions of merchants daily. Against the production DeepSeek-based LLM baseline, it raises screening precision from 92.0% to 97.5%. Its pretrained behavior-token embeddings also improve Precision@Top-0.01% by 26.8 percentage points in a production fraud detector serving billion-scale transaction traffic. Beyond payments, SeqLLM achieves state-of-the-art results on public recommendation benchmarks. On MovieLens and Amazon, it surpasses the strong User-LLM baseline by up to 32% relative Recall@5 while retaining markedly stronger language ability. On RecIF, it improves Pass@32 by 14.2% over the full OneRec-8B pipeline using only one-fifth of its GPU-days.",
-          "reason": "近 30 天；公司信号：Amazon, Tencent；关键词：amazon, tencent, cs.CL。Merchant risk control at large payment platforms screens tens of millions of merchants daily, where false positives harm legitimat...",
-          "area": "LLM 推理优化",
-          "tags": [
-            "amazon",
-            "tencent",
-            "cs.CL",
-            "alignment",
-            "deployed",
-            "llm",
-            "production"
-          ],
-          "signal": 99,
-          "source": "Amazon/Tencent/arXiv",
-          "publishedAt": "2026-08-04T03:23:12Z",
-          "url": "https://arxiv.org/abs/2608.03063",
-          "pdfUrl": "https://arxiv.org/pdf/2608.03063v1"
         }
       ]
     }
