@@ -1,256 +1,249 @@
 {
-  "generatedAt": "2026-11-26T11:50:13.884990+08:00",
+  "generatedAt": "2026-11-27T11:51:53.276897+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2611.34273",
-      "title": "Libtt: A Compiler and Runtime for Tenstorrent Processors",
+      "id": "arxiv-2611.34615",
+      "title": "PipeAxes: Decoupling Compute and Communication Granularities for Pipeline-Parallel LLM Serving",
       "authors": [
-        "Philipp Moritz",
-        "Sarah Dong"
+        "Xiaoqiang Guo",
+        "Yifan Lin",
+        "Yang Liu",
+        "Jianan Zhang",
+        "Yingqi Peng",
+        "Jiamei Lv",
+        "Yi Gao",
+        "Wei Dong"
       ],
-      "summary": "Libtt brings the PyTorch and JAX ecosystem to Tenstorrent hardware. It implements PJRT, the interface through which XLA-based frameworks drive Google's TPUs, so JAX runs on it directly, PyTorch runs through TorchTPU, and software written for TPUs carries over with no changes except replacing custom kernels. Built on Tenstorrent's open-source compiler and runtime, libtt ships the entire stack, from the compiler to the multi-chip runtime, as a single shared library. It contains extensive fixes to the upstream Tenstorrent software to make existing PyTorch and JAX code work out of the box, and extensive new compiler optimizations to make it fast. It passes most of the JAX and TorchTPU test suites and runs SGLang, TorchTitan, and Miles, covering serving, fine-tuning, and reinforcement learning.",
-      "reason": "近 30 天；公司信号：Google；关键词：google, cs.DC, serving。Libtt brings the PyTorch and JAX ecosystem to Tenstorrent hardware. It implements PJRT, the interface through which XLA-based fram...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "google",
-        "cs.DC",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "Google/arXiv",
-      "publishedAt": "2026-11-25T12:34:38Z",
-      "url": "https://arxiv.org/abs/2611.34273",
-      "pdfUrl": "https://arxiv.org/pdf/2611.34273v1"
-    },
-    {
-      "id": "arxiv-2611.34010",
-      "title": "Asymmetric Speculative Decoding: Unlocking In-Context Learning in Draft Models",
-      "authors": [
-        "Guang Huang",
-        "Zeyi Wen"
-      ],
-      "summary": "Speculative decoding addresses Large Language Model (LLM) inference latency by first drafting and then verifying in parallel. Yet practical speedups fall far short of theoretical bounds, especially on reasoning tasks. We identify the root cause as task isomorphism: existing methods provide identical prompts to both models, forcing the draft model to solve problems beyond its capacity. This produces high rejection rates that eliminate parallelization gains. We discover that acceptance rates increase monotonically during generation, revealing a latent in-context learning (ICL) effect wherein the draft model progressively aligns with the target distribution by learning from verified tokens. Controlled experiments with varying context window sizes confirm this improvement stems from ICL-driven alignment rather than token difficulty. Motivated by this finding, we propose Asymmetric Speculative Decoding (AsymSpec), a training-free framework that decouples the prompts provided to draft and target models. By supplying the draft model with task-relevant example solutions, we reformulate its objective from reasoning to simulation, amplifying the ICL effect from the first token. We prove AsymSpec produces exact samples and converges exponentially to the target distribution. Across reasoning, code generation, and summarization tasks, AsymSpec achieves 2.29$\\times$ to 4.95$\\times$ speedup over autoregressive decoding, outperforming standard speculative decoding without model retraining.",
-      "reason": "近 30 天；关键词：cs.DC, alignment, inference。Speculative decoding addresses Large Language Model (LLM) inference latency by first drafting and then verifying in parallel. Yet...",
+      "summary": "Pipeline parallelism can serve long-context language models on PCIe servers and across heterogeneous GPU clusters. Existing engines split prefill into token chunks to limit decode stalls. The chunk size also sets the GPU batch width and the size of activation transfers between stages. Small chunks reload model weights more often. Large chunks can keep the GPU and the link busy long enough to delay interactive requests. PipeAxes runs wide prefill batches a few layers at a time so decodes can run between slices. A fused Triton Hadamard-INT4 codec compresses activations, which travel in independently sized row groups over parallel TCP sockets. The scheduler uses latency slack to choose batch width, slice depth, and row-group size. We evaluated PipeAxes in 97 replays covering 5,016 requests on A800, RTX 4090, and RTX 3090 GPUs. All 74 requests met their latency targets during a tenfold bandwidth swing. In a four-stage mixture-of-experts pipeline, PipeAxes served requests within their latency targets at 23.3x the rate of calibrated Revisit-PP and 4.44x the rate of Fixed-4096 with Express. In a mixed 64K-context workload, p95 time to first token for short requests fell from 129.8 s with native vLLM to 512 ms. With INT4 transport, MMLU accuracy rose by 0.06 percentage points and GSM8K accuracy fell by 0.46 percentage points relative to BF16.",
+      "reason": "近 30 天；关键词：cs.DC, latency, llm。Pipeline parallelism can serve long-context language models on PCIe servers and across heterogeneous GPU clusters. Existing engine...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.DC",
-        "alignment",
-        "inference",
-        "latency",
-        "llm",
-        "speculative"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-25T08:57:57Z",
-      "url": "https://arxiv.org/abs/2611.34010",
-      "pdfUrl": "https://arxiv.org/pdf/2611.34010v1"
-    },
-    {
-      "id": "arxiv-2611.33741",
-      "title": "FlashProve-Next: Verifiable Inference for Production LLM APIs",
-      "authors": [
-        "Liang Song"
-      ],
-      "summary": "Clients of closed-weight LLM APIs cannot verify whether a provider ran the advertised model, precision, hidden prompt, and reasoning budget. Existing approaches either trust hardware or third parties, or re-prove every layer of an integer surrogate at high cost while diverging from native floating-point serving. FlashProve-Next produces verifiable, zero-knowledge-masked proofs for individual LLM API responses without modifying native serving (bf16/fp8/mxfp4, random sampling, FlashAttention, CUDA graphs, batching, prefix caching) and without disclosing weights, hidden prompts, hidden reasoning, or activations (dense profiles fix coarse geometry; cross-architecture hiding is deferred). A non-depleting Reed-Solomon weight commitment model_id opens inside proofs via hidden column openings, while local per-operator rounding contracts remove integer surrogates and the refusal-bit leak. Cost-weighted spot-checking supports non-interactive public verification (NI-315, $\\varepsilon \\le 2^{-40}$, $Q \\le 2^{64}$) and external-seed C_pre mode (ExtSeed-153, $\\varepsilon \\le 2^{-20}$, $Q_{\\rm samp} \\le 2^{30}$). Twenty-eight Lean 4 modules (696 declarations, zero sorry, standard axioms only) mechanize round-by-round soundness, bucketed sampling, $\\mathbb{F}_{p^3}$ constrained-mask binding, causal masking, six IR gadgets, and executable FPN2 verifiers. Five-model Blackwell calibration gives zero false rejections across 1.85M GEMM/MoE blocks and 1.96M non-GEMM rows. Our zero-Phase-2 folded backend (folded ZK simulator open) proves Qwen3-0.6B ExtSeed-153 (1.47B cells, 8 MiB) in 450.2 s GPU (10.76 s CPU) at unique-decoding $Q=128$, passes a 14/14 cheating matrix, and scales to 36-layer Qwen3-4B (dev $4+2$) and live vLLM Qwen3-30B-A3B-FP8 Relation 6 (1.49 s prove, 23.4 ms Rust verify, public weight tiles). Rust fpn-verify checks 8 MiB FPN2 Relation 2 proofs in 10.1 ms on CPU.",
-      "reason": "近 30 天；公司信号：NVIDIA；关键词：nvidia, cs.CR, batching。Clients of closed-weight LLM APIs cannot verify whether a provider ran the advertised model, precision, hidden prompt, and reasoni...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "nvidia",
-        "cs.CR",
-        "batching",
-        "inference",
-        "llm",
-        "production",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "NVIDIA/arXiv",
-      "publishedAt": "2026-11-25T04:01:37Z",
-      "url": "https://arxiv.org/abs/2611.33741",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33741v1"
-    },
-    {
-      "id": "arxiv-2611.33625",
-      "title": "State Space Attention: Learning Context-Dependent Memory Retention",
-      "authors": [
-        "Ege Çakar",
-        "Cengiz Pehlevan"
-      ],
-      "summary": "Standard attention's key-value cache grows linearly with context length. Bounding it raises the question of what a sequence model should retain for long-context reasoning. We argue this choice should be learned, and introduce State Space Attention (SSA), which learns to keep a bounded set of past representations and reads them with standard attention. A learned scorer rescores every chunk against newly arriving context and the rest of memory. A fixed-context Transformer is then the special case that always keeps the most recent tokens. We train the scorer and reader jointly, either moving gradually from a differentiable soft weighting of memories to hard retention, or with hard retention from the start. To produce signal for the scorer, we generate supervised samples during training, a technique we call recovery. We compare SSA with recurrent models, bounded-memory attention methods, and full-attention Transformers across retrieval, variable tracking, multi-hop reasoning, and language modeling. On our retrieval and reasoning benchmarks, SSA matches or comes within a few points of full attention on most tasks, far outperforms a Transformer with the same readable budget on every long-context retrieval task we evaluate, and matches or outperforms one with about 4 times that budget, while using constant inference memory. The largest remaining gap to full attention at small language model scale is on RULER. SSA makes a fixed number of tokens useful over a longer context, and since it reads memory with standard attention, we propose that it can be stacked with KV cache eviction methods. We also pretrain and post-train 400M-parameter models and measure how SSA's training and inference costs scale with context length and model size. Together, these experiments examine the capabilities and limitations of learned memory retention for long-context sequence modeling.",
-      "reason": "近 30 天；关键词：cs.LG, inference, kv-cache。Standard attention's key-value cache grows linearly with context length. Bounding it raises the question of what a sequence model...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "inference",
-        "kv-cache",
-        "retrieval"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-25T01:56:07Z",
-      "url": "https://arxiv.org/abs/2611.33625",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33625v1"
-    },
-    {
-      "id": "arxiv-2611.33542",
-      "title": "RankCast: Phase-Aware Rank Balancing in MoE Serving",
-      "authors": [
-        "Kaidi Fu",
-        "Xu-Hao Lu",
-        "Pingwei Sun",
-        "Jianchao Tan",
-        "Yuchen Xie",
-        "Xunliang Cai"
-      ],
-      "summary": "Modern large language model (LLM) inference increasingly adopts disaggregated architectures that separate Prefill (P) and Decode (D) phases. Meanwhile, Expert Parallelism (EP) has been widely adopted in large Mixture-of-Experts (MoE) model serving. However, load imbalance still slows down MoE inference because each layer must wait for the busiest EP rank. The main source of latency differs between prefill and decode. Prefill is compute-bound, and its MoE layers' latency is determined by the maximum token count of the busiest rank. At the same time, under moderate batch sizes, Decode is memory-bound, so the latency is dominated by the maximum active-expert count across ranks. To solve both problems under a unified framework, we present RankCast, a system that reduces rank-level maximum token counts during prefill and active-expert counts during decode. For every token, RankCast preserves the predicted Top-p experts and chooses the remaining k-p from its Top-L candidates (L > k). In prefill, RankCast yields a price per rank that steers flexible assignments to less loaded ranks. In decode, RankCast closes experts on the busiest ranks while preserving the constraints for each token. Both paths are implemented and tested in the state-of-the-art inference frameworks SGLang and DeepEP. We overlap RankCast's kernels with model execution and reuse the existing DeepEP communication channel for metadata transmission. On Qwen3-235B-A22B with EP=8 and Qwen3.5-397B-A17B with EP=16, RankCast removes over 75% of the busiest rank's excess prefill load, improves prefill input throughput by up to 19%, and reduces decode time per output token by up to 10%. The quality cost is below one percentage point.",
-      "reason": "近 30 天；关键词：cs.DC, inference, latency。Modern large language model (LLM) inference increasingly adopts disaggregated architectures that separate Prefill (P) and Decode (...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.DC",
-        "inference",
         "latency",
         "llm",
         "prefill",
-        "serving",
-        "slo"
+        "serving"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-24T23:37:38Z",
-      "url": "https://arxiv.org/abs/2611.33542",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33542v1"
+      "publishedAt": "2026-11-25T16:03:12Z",
+      "url": "https://arxiv.org/abs/2611.34615",
+      "pdfUrl": "https://arxiv.org/pdf/2611.34615v1"
     },
     {
-      "id": "arxiv-2611.33124",
-      "title": "SAG-Mem-1.0 Technical Report",
+      "id": "arxiv-2611.34492",
+      "title": "FlyingStart: Learned Cross-Token Warm Starts for Fixed-Point Decoding in Recurrent-Depth Language Models",
       "authors": [
-        "Yuchao Wu",
-        "XingCheng Liang",
-        "Xuanze Wang",
-        "Yini Huang",
-        "Yue Wu"
+        "Runguo Li",
+        "Dezhen Lu",
+        "Zixiang Ni"
       ],
-      "summary": "Long-term conversational memory requires retrieving complementary facts scattered across dialogue sessions, including intermediate evidence with limited similarity to the original question. Existing approaches often rely on derived memory representations or persistent relational structures, introducing construction costs and potentially losing source details. We present SAG-Mem, a conversational memory framework that preserves complete dialogue messages in non-overlapping chunks and discovers complementary evidence through query-time lexical expansion. Memory construction requires no model inference, using a lexical index without LLM-based extraction, summarization, or semantic relation construction. At query time, BM25 retrieves initial candidates, an evidence evaluator identifies useful chunks, and lexical cues from selected evidence guide an additional retrieval round. Retrieved dialogue is further annotated with calendar interpretations of supported relative-time expressions, preserving the original wording and temporal granularity. We also introduce SAG-Mem-Lite, an alternative configuration that replaces evidence scoring with embedding-based candidate scoring, achieving lower operational cost than Full Context and all memory-based baselines across both benchmarks with low query latency. On LoCoMo and LongMemEval, SAG-Mem achieves overall scores of 83.08 and 80.20, respectively, the highest among the evaluated methods on both benchmarks. On LongMemEval, it exceeds the strongest compared baseline by 7.20 points. SAG-Mem-Lite achieves scores of 77.09 and 77.20, respectively. These results support dialogue preservation and evidence-guided retrieval expansion as an effective design for long-term conversational memory.",
-      "reason": "近 30 天；关键词：cs.CL, inference, latency。Long-term conversational memory requires retrieving complementary facts scattered across dialogue sessions, including intermediate...",
+      "summary": "Recurrent-depth language models generate each token by iterating a shared block of layers until its hidden state converges. Inference methods for these models decide when to stop the iteration, yet every token still starts from random noise and pays the full cost of converging. We show that where the iteration starts is a second, independent lever. A token's fixed point is predictable from the state at which the previous token stopped, after a learned change of coordinates, and we introduce FlyingStart, a linear warm start that is fitted in closed form on the frozen model and costs under 5% of one loop. The iteration and its stopping rule are unchanged, so the exit criterion certifies the same distance to the fixed point from any start: a better start removes loops at unchanged accuracy. On Huginn-0125, FlyingStart matches the accuracy of the strongest training-free baseline with 14--19% fewer decoding layers, raises batched throughput by 16--18% in two serving engines, and adds a further 10--14% on top of self-speculative decoding. A contraction analysis predicts the number of loops saved on all four models we study, including one where the prediction was recorded before any evaluation, and token by token on Huginn, and it identifies when a warm start pays off: the saving grows with the number of loops a model needs to converge.",
+      "reason": "近 30 天；关键词：cs.CL, inference, serving。Recurrent-depth language models generate each token by iterating a shared block of layers until its hidden state converges. Infere...",
       "area": "LLM 推理优化",
       "tags": [
         "cs.CL",
         "inference",
-        "latency",
-        "llm",
-        "retrieval",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-24T18:51:29Z",
-      "url": "https://arxiv.org/abs/2611.33124",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33124v1"
-    },
-    {
-      "id": "arxiv-2611.33111",
-      "title": "Draft Calibration for Speculative Decoding: Accelerating LLM Serving by Matching Draft and Target Distributions",
-      "authors": [
-        "Yuxing Liu",
-        "Wei Zuo",
-        "Walid Krichene",
-        "Tong Zhang",
-        "Li Zhang"
-      ],
-      "summary": "Speculative decoding accelerates large language model (LLM) inference by employing a lightweight draft model to propose draft tokens and allowing the target model to verify the new tokens in parallel to improve inference-time compute utilization. The speedup relies on the acceptance probability of draft tokens in target verification, which is directly related to the gap $\\|p-q\\|_1$ between the target distribution $p$ and the draft distribution $q$. In this paper, we study draft calibration of speculative decoding to improve the speedup of speculative decoding, where we employ post-hoc methods to calibrate the draft distribution to mitigate the distribution gap. We observe that though current community open-source draft models may learn the top candidate token correctly, they are generally underconfident compared to the target model, suggesting a consistent distribution mismatch. To mitigate the effect of this mismatch on the acceptance rate of the draft models, we try various post-hoc calibration methods, including standard temperature scaling and token-wise calibration. Our results suggest that a standard temperature scaling applied to the draft distribution improves the acceptance length by up to approximately 10\\% with almost no additional cost across different tasks. Throughput analysis further verifies that this improvement in serving efficiency. Analysis of more general calibration methods reveals further potential room for improvement.",
-      "reason": "近 30 天；关键词：cs.LG, inference, llm。Speculative decoding accelerates large language model (LLM) inference by employing a lightweight draft model to propose draft toke...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "inference",
-        "llm",
         "serving",
         "speculative",
         "throughput"
       ],
       "signal": 99,
       "source": "arXiv",
-      "publishedAt": "2026-11-24T18:41:59Z",
-      "url": "https://arxiv.org/abs/2611.33111",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33111v1"
+      "publishedAt": "2026-11-25T14:51:50Z",
+      "url": "https://arxiv.org/abs/2611.34492",
+      "pdfUrl": "https://arxiv.org/pdf/2611.34492v1"
     },
     {
-      "id": "arxiv-2611.33080",
-      "title": "Shifter Quantization: Compact Representations for Native Integer Computation",
+      "id": "arxiv-2611.34402",
+      "title": "Any-Rate: Half-Bit Multi-Precision LLM Quantization with Coded Bit-Planes",
       "authors": [
-        "Yufeng Huang"
+        "Hoonki Lee",
+        "Haechan Shin",
+        "Hyuntaek Jung",
+        "Yeonu Choi",
+        "Sangyeob Kim"
       ],
-      "summary": "Groupwise quantization is used in LLM quantization to improve accuracy at low bit widths, but grouping weights keeps standard integer MMA from spanning the full dot product for efficient GPU inference. We develop a new quantization method, Shifter Quantization (SQ), that reconstructs native-width integer operands by appending and shifting shared bits. To further extend the efficiency, we develop a special variant of SQ, Shifter Integer (SHI), to use INT4 kernels. We show that SQ and SHI formats perform better than standard groupwise quantization in quality, as measured by projection error and KL divergence, and in inference speed, as measured during decoding and prefill. For low precision like 2-bit quantization, SQ2 and SHI2 achieve 2.71-3.77x the 4,096-token prefill throughput of llama.cpp on a Q2_K checkpoint and reduce WikiText-2 KL by 6.6-7.8%. For mid precision like 4-bit quantization, SQ4 achieves 1.43-2.47x the prefill throughput of NInfer's groupwise-integer baselines across the tested models and prompt lengths, with 24-40% lower KL than the NInfer baselines. For high precision like 8-bit quantization, SQ8 achieves 27.4% higher batch-one prefill throughput and 72.7% lower KL than vLLM's online FP8.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.LG, efficient。Groupwise quantization is used in LLM quantization to improve accuracy at low bit widths, but grouping weights keeps standard inte...",
+      "summary": "Nested multi-precision quantization derives multiple precisions from a single checkpoint by reading only the leading bits of each weight, which makes it attractive for on-device deployment under varying memory and energy budgets. However, existing methods offer only integer bits, leaving large accuracy gaps between adjacent precisions and severe degradation at 2 bits. To address this, we propose Any-Rate, which serves 2-8 bits from one checkpoint, in half-bit steps over 2-4 bits. Any-Rate restricts some bit-planes to extended Hamming codewords in 8-weight blocks (0.5 bits per weight), shares one LUT per row across precisions, and encodes all precisions jointly with a separate target for each, reducing the loss from sharing bit-planes. Across four LLMs, Any-Rate achieves state-of-the-art accuracy among multi-precision methods at 2 and 3 bits, keeping 69% of FP16 accuracy at 2 bits, and is within one point of the best at 4 bits. It decodes about as fast as existing kernels, and an LPDDR energy model estimates up to 27% less energy at equal accuracy. Code is available at https://github.com/hoonki2002/Any-Rate.",
+      "reason": "近 30 天；关键词：cs.LG, energy, llm。Nested multi-precision quantization derives multiple precisions from a single checkpoint by reading only the leading bits of each...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "energy",
+        "llm",
+        "quantization"
+      ],
+      "signal": 97,
+      "source": "arXiv",
+      "publishedAt": "2026-11-25T14:01:05Z",
+      "url": "https://arxiv.org/abs/2611.34402",
+      "pdfUrl": "https://arxiv.org/pdf/2611.34402v1"
+    },
+    {
+      "id": "arxiv-2611.33093",
+      "title": "AIChipBench: Benchmarking LLM Agents for Automated AI Accelerator Design",
+      "authors": [
+        "Guangyuan Wang",
+        "Chengran Li",
+        "Minchen Luo",
+        "Jichen Feng",
+        "Mengdi Wang",
+        "Yifan Zhang"
+      ],
+      "summary": "A language-model decoder carries state between decoding steps, and in hardware a wrong state update can leave the current token correct and corrupt the output several tokens later, so a design can pass output tests and still be wrong. AIChipBench asks what LLM coding agents need to build such hardware correctly. Agents implement quantized Qwen3.5, Gemma 3, Gemma 4, and Llama 3.2 decoders in synthesizable register-transfer-level (RTL) code against an executable integer reference that specifies the outputs and the stored state at every decoding step. They debug against public tests under fixed budgets; their frozen designs are graded on held-out token sequences, resets, memory stalls, and synthesis, and a second track asks them to speed up a correct design at nearly fixed area. Across 9,136 attempts by four coding agents, the difficulty lies in stored state. Feedback that points to the first state mismatch raises acceptance over output-only feedback in all 12 agent--task cells of a matched study, by 25.0 to 46.9 percentage points, and halves the agent-hours per accepted design. Regraded on new sequences and conditions, 45 of 69 accepted designs fail within the 32 steps their tests required. More than a third of attempts to speed up a correct design end without one. An overall score ranks Sol 5.6 and Fable 5.1 above Astra 6 and Opus 5.5, and both halves of the instances give this order in all 200 random splits. Hardware agents therefore need debugging feedback that exposes stored state, and their benchmarks need final tests well beyond the development cases.",
+      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, llm。A language-model decoder carries state between decoding steps, and in hardware a wrong state update can leave the current token co...",
       "area": "LLM 推理优化",
       "tags": [
         "meta",
-        "cs.LG",
-        "efficient",
-        "inference",
-        "llm",
-        "prefill",
-        "quantization"
+        "cs.CL",
+        "llm"
       ],
-      "signal": 99,
+      "signal": 97,
       "source": "Meta/arXiv",
-      "publishedAt": "2026-11-24T18:14:52Z",
-      "url": "https://arxiv.org/abs/2611.33080",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33080v2"
+      "publishedAt": "2026-11-24T18:28:41Z",
+      "url": "https://arxiv.org/abs/2611.33093",
+      "pdfUrl": "https://arxiv.org/pdf/2611.33093v1"
     },
     {
-      "id": "arxiv-2611.33048",
-      "title": "Latent Merger: Latent-Space Composition of Hypernetwork-Generated LoRAs",
+      "id": "arxiv-2611.33005",
+      "title": "Leto: Utility-Centric Agent Memory",
       "authors": [
-        "Yanlai Yang",
-        "Minki Kang",
-        "Divyam Madaan",
-        "Sung Ju Hwang",
-        "Mengye Ren"
+        "Shuguang Chen",
+        "Salman Paracha"
       ],
-      "summary": "Recent work proposes hypernetworks that convert a document into a low-rank parameter update (LoRA) in a single forward pass, enabling fast injection of new knowledge into a frozen LLM. However, storing separate LoRA adapters for each document can be unsustainable in streaming settings. In this paper, we study the problem of composing hypernetwork-generated LoRAs using two representative systems, Doc-to-LoRA and SHINE. We show that hypernetwork-generated LoRAs have a geometry sharply different from directly fine-tuned LoRAs. They exhibit greater spectral concentration and stronger cross-document alignment than next-token prediction and QA fine-tuned adapters, which are diffuse and nearly orthogonal across documents. Guided by this observation, we propose latent-space LoRA merging. We compose the intermediate hypernetwork latents and then decode the merged latent through the frozen LoRA-generation head. We show that latent-space merging techniques consistently improve over weight-space and factor-space baselines while preserving a single fixed-rank adapter. These results support latent-space composition as a promising mechanism for combining hypernetwork-generated LoRAs under a fixed output-rank budget.",
-      "reason": "近 30 天；关键词：cs.LG, alignment, llm。Recent work proposes hypernetworks that convert a document into a low-rank parameter update (LoRA) in a single forward pass, enabl...",
+      "summary": "Large language model (LLM) agents rely on external memory to retain and reuse information across interactions. Existing memory systems treat memory as a record of the past and evaluate it by fidelity to the conversation. However, the value of memory lies in whether it improves the agent's response. A memory system decides what to memorize and what to serve before that response exists, and fidelity checks neither decision against it. Faithful memory can therefore fail to improve the response. We instead view memory as a prediction problem and present \\textbf{\\emph{\\leto{}}}, a memory system for LLM agents that focuses on the utility of memory to the future rather than on its fidelity to the past. Because future requests are unknown, \\emph{\\leto{}} preserves access to conversation details through memory indexing, allowing information to remain available through its sources. When a request arrives, memory replay draws on this index to anticipate and supply the context the agent needs beyond what the request explicitly states. The utility of the served context remains uncertain until the response is generated, motivating a utility loop that uses response outcomes to refine future memory selection. We evaluate our system against six memory systems on five benchmarks across three scenarios. In personalization, it outperforms the strongest compared memory system by 16.3 percentage points in accuracy on PrefEval and by 3.1 points in task completion on PERMA. For long-horizon tasks, it achieves the best overall performance on MemoryArena averaged over five environments with a gain that increases with the chain depth. In long-context understanding, it is on par with retrieval over the raw history while serving fewer context tokens.",
+      "reason": "近 30 天；关键词：cs.CL, llm, retrieval。Large language model (LLM) agents rely on external memory to retain and reuse information across interactions. Existing memory sys...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.LG",
-        "alignment",
+        "cs.CL",
         "llm",
-        "lora",
+        "retrieval",
         "serving"
       ],
-      "signal": 99,
+      "signal": 96,
       "source": "arXiv",
-      "publishedAt": "2026-11-24T17:54:58Z",
-      "url": "https://arxiv.org/abs/2611.33048",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33048v1"
+      "publishedAt": "2026-11-24T17:30:06Z",
+      "url": "https://arxiv.org/abs/2611.33005",
+      "pdfUrl": "https://arxiv.org/pdf/2611.33005v1"
     },
     {
-      "id": "arxiv-2611.33004",
-      "title": "LEGOSpec: A Composable and Efficient Framework for Speculative Draft Design and Training",
+      "id": "arxiv-2611.34821",
+      "title": "LoopTitan: What Does Parameter Revisit Buy a Mixture-of-Experts?",
       "authors": [
-        "Hanzhen Wang",
-        "Jiaming Xu",
-        "Guohao Dai"
+        "Zichen Tian",
+        "Yudong Lu",
+        "Xuansheng Wu",
+        "Na Zou",
+        "Xia Hu",
+        "Guanchu Wang",
+        "Qianru Sun"
       ],
-      "summary": "Speculative decoding accelerates large language model (LLM) generation using a lightweight draft. Existing methods evaluate complete recipes under different training configurations, leaving component effects, interactions, and composition benefits unclear. Therefore, we present LEGOSpec, a composable framework for speculative draft design and training. LEGOSpec decomposes draft models into Context, Backbone, Proposal, and Objective components that share a unified training infrastructure. Using LEGOSpec, we systematically vary components and evaluate selected combinations under matched training conditions to isolate their effects and interactions. These experiments reveal three findings: (1) Different workloads favor different backbones, depending on context length and memory budget, with within-block dependency modeling particularly important for long contexts. (2) Proposal design must balance acceptance and latency. (3) The training objective should match token distributions locally and optimize acceptance length across the block. These findings guide workload-aware configurations and DFlux, a balanced general-purpose draft combining a convolution-equipped SWA--GQA hybrid backbone, Residual Corrector, and hierarchical supervision. Across Qwen and Gemma models, DFlux improves acceptance length over the strongest baseline by up to 13.7% on regular benchmarks and 34.7% on long-context workloads. To support efficient training, LEGOSpec integrates metadata-aware scheduling and asynchronous execution, increasing training throughput by up to 79% and accelerating offline supervision preparation by up to $3.11\\times$ over SpecForge.",
-      "reason": "近 30 天；公司信号：Alibaba；关键词：alibaba, cs.LG, efficient。Speculative decoding accelerates large language model (LLM) generation using a lightweight draft. Existing methods evaluate comple...",
+      "summary": "Looped Mixture-of-Experts (MoE) architectures revisit layer parameters across depths. This design increases effective depth without adding parameters. Recent looped MoE studies report substantial gains over the standard MoE at matched budgets (parameters, FLOPs and KV cache). However, the reported gains still confound parameter revisit with other design choices, e.g., network shape and residual scale. We ask, what does parameter revisit itself buy? Using matched non-revisit controls, we find that parameter revisit itself buys almost nothing. We argue that revisit only offers a freedom an MoE already has, i.e., trading experts for depth (more layers, fewer experts each) at fixed parameters. First, at matched budgets, we decompose the state-of-the-art looped recipe, with revisit last. A non-revisit control retains all the gain. Most comes from network shape, and the rest from residual scale. We prove this scale acts as a lower learning rate on revisited layers. This helps under AdamW's uneven layer step sizes, but disappears under Muon, which keeps them nearly equal. Second, beyond matched budgets, we evaluate revisit by adding compute at fixed parameters. One extra visit gains more than doubling the experts. Yet without revisit, a deeper standard MoE at equal parameters and compute obtains 90.2% of that gain under Muon. Overall, gains come from network shape, the optimizer and added compute, which a standard MoE can adopt. Accordingly, we propose LoopTitan-Base as a stronger MoE baseline. Under Muon, it matches the strongest looped recipe without revisit or residual scale. We open-source LoopTitan and release 17 pretrained models (including LoopTitan-Base and the control). Our experiment record is public as GitHub issues, with predictions pre-registered and the full exploration history kept. This is our Phase 1 technical report, laying the foundation for follow-up studies.",
+      "reason": "近 30 天；关键词：cs.LG, kv-cache, lora。Looped Mixture-of-Experts (MoE) architectures revisit layer parameters across depths. This design increases effective depth withou...",
       "area": "LLM 推理优化",
       "tags": [
-        "alibaba",
         "cs.LG",
-        "efficient",
-        "latency",
-        "llm",
-        "speculative",
-        "throughput"
+        "kv-cache",
+        "lora"
       ],
-      "signal": 99,
-      "source": "Alibaba/arXiv",
-      "publishedAt": "2026-11-24T17:29:40Z",
-      "url": "https://arxiv.org/abs/2611.33004",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33004v1"
+      "signal": 92,
+      "source": "arXiv",
+      "publishedAt": "2026-11-25T18:04:31Z",
+      "url": "https://arxiv.org/abs/2611.34821",
+      "pdfUrl": "https://arxiv.org/pdf/2611.34821v1"
+    },
+    {
+      "id": "arxiv-2611.33896",
+      "title": "Looped Models are Fast Multi-Token Predictors",
+      "authors": [
+        "Ayhan Suleymanzade",
+        "Sean McLeish",
+        "Sehoon Kim",
+        "Jinwoo Kim",
+        "Antoine Bosselut"
+      ],
+      "summary": "Looped language models can adapt computation for predicting a token without a proportional rescaling in unique model parameters by adjusting the number of loops. This property has been used for self-speculative decoding, taking shallow loops as fast drafters and deep loops as verifiers, which is effective since drafting still uses full parameters. In this paper, we show that shallow loops can be also predictive of several future tokens and leverage this to drastically accelerate the inference of looped language models. To that end, we present Floodgates, a simple self-speculative decoding method that appends a block of mask tokens as a suffix and learns via low-rank adaptation to draft these tokens in parallel. Across seven models, five benchmarks, a range of batch sizes, and both greedy and sampled decoding, Floodgates is the fastest lossless decoding method in most cases, attaining up to 7.5x acceleration. Through analysis, we show that this speedup is enabled by all-depth training of looped models, with the shallow drafter's ability to leverage full-depth computation by conditioning on deep prefix cache evaluated during verification.",
+      "reason": "近 30 天；关键词：cs.LG, inference, speculative。Looped language models can adapt computation for predicting a token without a proportional rescaling in unique model parameters by...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "speculative"
+      ],
+      "signal": 90,
+      "source": "arXiv",
+      "publishedAt": "2026-11-25T07:16:56Z",
+      "url": "https://arxiv.org/abs/2611.33896",
+      "pdfUrl": "https://arxiv.org/pdf/2611.33896v1"
+    },
+    {
+      "id": "arxiv-2611.34923",
+      "title": "Mixture-of-Loops Transformer",
+      "authors": [
+        "Lianghui Zhu",
+        "Shijie Wang",
+        "Xinggang Wang",
+        "Jinze Bai",
+        "Bo Wang",
+        "Xiang Bai"
+      ],
+      "summary": "Looped Transformers boost expressivity by reusing shared layers across loops, yet at the cost of efficiency. Pushing their expressivity-efficiency frontier requires rethinking the core mechanism connecting adjacent loops: What should be passed as a Transformer loops? We introduce Mixture-of-Loops Transformer (MoLT), whose Mixture-of-Loops Attention (MoLA) uses keys and values (KV) as memory for selective reuse across depths and loops. Under loop residual, MoLT-R retains the residual stream and reads local KV across loops for expressivity. Under loop KV, MoLT-KV instead restarts from embeddings and reads current-loop local KV with preceding-loop memory KV at earlier positions for efficiency. MoLT-KV eliminates same-position cross-loop dependence and, paired with loop forcing for parallel training, unlocks single-traversal Mixture-of-Loops (MoL) decoding beyond the training loop horizon. To balance efficiency and quality, we introduce U-shaped MoLT (U-MoLT), which separates memory construction from prediction readout and skips unused decoder traversals without changing predictions. In 400B-token pretraining, U-MoLT outperforms OLMo3 across 700M/1.5B dense and 3B MoE models, achieving 1.7x validation cross-entropy (CE) token efficiency at 700M while improving 3B MoE 10-domain perplexity by 0.75 and 10-task accuracy by 2.1 percentage points. In 100B-token continued pretraining of Qwen3.5-0.8B-Base, our U-MoLT adaptation lowers CE on all 11 domains over the matched baseline with 1.4x mean token efficiency. At inference, U-MoLT with MoL-Hybrid-2 matches non-looped OLMo3 latency at 996.6 vs. 1,000.6 ms on S-size (~113M) models. Code is available at https://github.com/hustvl/MoLT",
+      "reason": "近 30 天；关键词：cs.LG, inference, latency。Looped Transformers boost expressivity by reusing shared layers across loops, yet at the cost of efficiency. Pushing their express...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.LG",
+        "inference",
+        "latency"
+      ],
+      "signal": 89,
+      "source": "arXiv",
+      "publishedAt": "2026-11-25T18:58:53Z",
+      "url": "https://arxiv.org/abs/2611.34923",
+      "pdfUrl": "https://arxiv.org/pdf/2611.34923v1"
+    },
+    {
+      "id": "arxiv-2611.33242",
+      "title": "CypherMAS: Benchmarking Routing Reliability in LLM-Based Multi-Agent Systems",
+      "authors": [
+        "Danil Kostromin",
+        "Andrey Sakhovskiy",
+        "Semen Budennyy"
+      ],
+      "summary": "Multi-agent systems (MAS) built on large language models (LLMs) distribute reasoning across specialized agents that must exchange messages and invoke tools reliably. Existing evaluations typically couple communication with open domain tasks, making it difficult to determine whether a failure arises from reasoning, malformed tool use, lost messages, or forgotten requests. Prior benchmarks do not isolate communication execution or measure routing redundancy against a known optimal path. We introduce CypherMAS, a synthetic benchmark that isolates communication and routing in fixed multi-agent graphs. Agents in chain, star, bipartite, or ring graphs route cyphered messages to remote peers holding the matching decoders; since the optimal route is known, redundant LLM calls can be measured and routing failures may be easily tracked. Across eleven open-weight models from 4B to 753B, small models fail at routing and tool use, dense models above 27B degrade with diameter, and successful runs exceed minimum LLM calls. These findings identify communication reliability as a distinct scaling bottleneck for multi-agent systems and provide a controlled diagnostic for complex multi-agent systems. The source code is freely available: https://github.com/Andoree/CypherMAS.",
+      "reason": "近 30 天；关键词：cs.MA, llm。Multi-agent systems (MAS) built on large language models (LLMs) distribute reasoning across specialized agents that must exchange...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.MA",
+        "llm"
+      ],
+      "signal": 77,
+      "source": "arXiv",
+      "publishedAt": "2026-11-24T14:39:07Z",
+      "url": "https://arxiv.org/abs/2611.33242",
+      "pdfUrl": "https://arxiv.org/pdf/2611.33242v1"
+    },
+    {
+      "id": "arxiv-2611.33823",
+      "title": "Pitfalls of Dependency-Ready Decoding for Masked Diffusion Language Models",
+      "authors": [
+        "Lina Berrayana",
+        "Christopher Malon",
+        "Yoichi Ishibashi",
+        "Taichi Aida",
+        "Masafumi Oyamada"
+      ],
+      "summary": "Masked diffusion models (MDMs) have shown strong performance on structured reasoning tasks such as Sudoku, Trip Planning, and Countdown. MDMs introduce a freedom in the order in which tokens may be unmasked, and to exercise this freedom for good accuracy, early decoding strategies relied on signals of confidence or the downstream impact of decoding a token. However, simple examples seem to illustrate that resolving a token's dependencies before unmasking it should be important. Therefore, we examine whether this principle, which we call dependency-ready decoding, would contribute to better accuracy, from a practical and a theoretical perspective. We examine a recent decoder that implements dependency-readiness through attention, and generally find that when it performs better than confidence-based or future utility baselines, its decoding order collapses to left-to-right decoding. For theoretical analysis, we establish a definition of dependency without resorting to attention, measured by an information-theoretic score of how much revealing a single masked token (or a set) would shift the model's prediction for another. We prove that when the margin is large relative to this score, no such revelation can change the top prediction, so in this regime Maximum-Margin decoding already commits dependency-ready tokens. These findings leave only a narrow scope for future dependency-ready decoders: their potential benefit is limited to positions with margins smaller than the information-theoretic sensitivity, and reliance on attention should be questioned.",
+      "reason": "近 30 天；关键词：cs.CL。Masked diffusion models (MDMs) have shown strong performance on structured reasoning tasks such as Sudoku, Trip Planning, and Coun...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CL"
+      ],
+      "signal": 70,
+      "source": "arXiv",
+      "publishedAt": "2026-11-25T05:51:49Z",
+      "url": "https://arxiv.org/abs/2611.33823",
+      "pdfUrl": "https://arxiv.org/pdf/2611.33823v1"
     }
   ]
 }
