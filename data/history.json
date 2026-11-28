@@ -1,7 +1,58 @@
 {
-  "generatedAt": "2026-11-27T11:51:53.276897+08:00",
+  "generatedAt": "2026-11-28T11:37:58.756031+08:00",
   "source": "curated industry radar + arXiv API",
   "history": [
+    {
+      "date": "2026-11-28",
+      "generatedAt": "2026-11-28T11:37:58.756031+08:00",
+      "source": "curated industry radar + arXiv API",
+      "papers": [
+        {
+          "id": "arxiv-2611.33588",
+          "title": "SEEL: Towards End-to-End 3D Sign Generation with Language Models",
+          "authors": [
+            "Ronglai Zuo",
+            "Fei Ni",
+            "Junpeng Jing",
+            "Rolandos Alexandros Potamias",
+            "Jiankang Deng",
+            "Stefanos Zafeiriou"
+          ],
+          "summary": "3D sign language generation aims to produce signing motion from written text. Motivated by the linguistic nature of sign language, recent methods combine a motion tokenizer with a language model to predict motion tokens from text. However, both components are optimized through a two-stage pipeline with mismatched objectives: the tokenizer minimizes reconstruction error in isolation, while the generator learns from rigid one-hot reference tokens. A straightforward end-to-end extension bridges discrete token selection with straight-through estimators (STE), suffering from biased gradients and codebook collapse. To address these limitations, we propose SEEL, an end-to-end framework that aligns tokenization and generation with motion quality through two complementary mechanisms. First, to overcome rigid one-hot supervision, reconstruction-aware generation decodes candidate tokens in context and converts their 3D motion errors into soft targets, guiding the generator with physical motion quality. Second, to propagate generation feedback without STE, generation-aware tokenization passes continuous codebook expectations through the frozen generator, routing generated-motion gradients to the tokenizer to prevent codebook collapse. Combining both mechanisms enables the tokenizer and generator to co-evolve, achieving state-of-the-art performance on CSL-Daily, How2Sign, and Phoenix-2014T. Code and models will be released to facilitate future research.",
+          "reason": "近 30 天；关键词：cs.CV。3D sign language generation aims to produce signing motion from written text. Motivated by the linguistic nature of sign language,...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CV"
+          ],
+          "signal": 70,
+          "source": "arXiv",
+          "publishedAt": "2026-11-25T00:58:28Z",
+          "url": "https://arxiv.org/abs/2611.33588",
+          "pdfUrl": "https://arxiv.org/pdf/2611.33588v1"
+        },
+        {
+          "id": "arxiv-2611.33135",
+          "title": "BriConstrain: Geometrically Constrained Decoding for Autoregressive Brick Assembly Generation",
+          "authors": [
+            "Nadav Magar",
+            "Amir Hertz",
+            "Ariel Shamir",
+            "Or Patashnik"
+          ],
+          "summary": "Language models can generate LEGO$^\\circledR$ assemblies from text, but their builds often contain parts that collide or attach to nothing. The usual approach of rejecting and resampling invalid placements discards decoded tokens without guaranteeing a valid build. We present BriConstrain, a constrained decoding method that restricts a pretrained language model's next-token probabilities before sampling, steering it towards valid placements. Because the validity of a brick placement depends on the non-predetermined build state, it cannot be compiled into a fixed grammar and must be checked dynamically. However, checking the validity of a brick before sampling is challenging as the space of valid placements is combinatorially large and cannot be enumerated exhaustively. Our key idea is to narrow the search space by constraining how parts attach rather than which parts attach to each other. Concretely, given the model's predictions of the currently placed part, and the previously placed parent it wants to connect to, we constrain the model's choice of how they attach. This allows us to span the space of part attachments, using a precomputed geometric oracle, and to effectively filter out colliding options. With valid attachment candidates in hand, we bias the model's next-token distribution towards the remaining valid candidates. We evaluate our method on two LEGO$^\\circledR$ formats and models: BrickNet, which annotates connectivity explicitly, and our proposed Implicit Connectivity LDraw Format (ICLF), which uses numeric values for placements and leaves connectivity implicit. Our method raises collision-free builds from 31% to 91% on BrickNet and from 15% to 65% on ICLF, and outperforms rejection sampling on both formats at about 60% of its decoding cost.",
+          "reason": "近 30 天；关键词：cs.CV。Language models can generate LEGO$^\\circledR$ assemblies from text, but their builds often contain parts that collide or attach to...",
+          "area": "LLM 推理优化",
+          "tags": [
+            "cs.CV"
+          ],
+          "signal": 70,
+          "source": "arXiv",
+          "publishedAt": "2026-11-24T18:54:38Z",
+          "url": "https://arxiv.org/abs/2611.33135",
+          "pdfUrl": "https://arxiv.org/pdf/2611.33135v1"
+        }
+      ]
+    },
     {
       "date": "2026-11-27",
       "generatedAt": "2026-11-27T11:51:53.276897+08:00",
@@ -21309,12 +21360,6 @@
           "pdfUrl": "https://arxiv.org/pdf/2608.06628v1"
         }
       ]
-    },
-    {
-      "date": "2026-08-10",
-      "generatedAt": "2026-08-10T06:18:45.045541+08:00",
-      "source": "curated industry radar + arXiv API",
-      "papers": []
     }
   ]
 }

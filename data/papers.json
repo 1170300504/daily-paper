@@ -1,249 +1,50 @@
 {
-  "generatedAt": "2026-11-27T11:51:53.276897+08:00",
+  "generatedAt": "2026-11-28T11:37:58.756031+08:00",
   "source": "curated industry radar + arXiv API",
   "papers": [
     {
-      "id": "arxiv-2611.34615",
-      "title": "PipeAxes: Decoupling Compute and Communication Granularities for Pipeline-Parallel LLM Serving",
+      "id": "arxiv-2611.33588",
+      "title": "SEEL: Towards End-to-End 3D Sign Generation with Language Models",
       "authors": [
-        "Xiaoqiang Guo",
-        "Yifan Lin",
-        "Yang Liu",
-        "Jianan Zhang",
-        "Yingqi Peng",
-        "Jiamei Lv",
-        "Yi Gao",
-        "Wei Dong"
+        "Ronglai Zuo",
+        "Fei Ni",
+        "Junpeng Jing",
+        "Rolandos Alexandros Potamias",
+        "Jiankang Deng",
+        "Stefanos Zafeiriou"
       ],
-      "summary": "Pipeline parallelism can serve long-context language models on PCIe servers and across heterogeneous GPU clusters. Existing engines split prefill into token chunks to limit decode stalls. The chunk size also sets the GPU batch width and the size of activation transfers between stages. Small chunks reload model weights more often. Large chunks can keep the GPU and the link busy long enough to delay interactive requests. PipeAxes runs wide prefill batches a few layers at a time so decodes can run between slices. A fused Triton Hadamard-INT4 codec compresses activations, which travel in independently sized row groups over parallel TCP sockets. The scheduler uses latency slack to choose batch width, slice depth, and row-group size. We evaluated PipeAxes in 97 replays covering 5,016 requests on A800, RTX 4090, and RTX 3090 GPUs. All 74 requests met their latency targets during a tenfold bandwidth swing. In a four-stage mixture-of-experts pipeline, PipeAxes served requests within their latency targets at 23.3x the rate of calibrated Revisit-PP and 4.44x the rate of Fixed-4096 with Express. In a mixed 64K-context workload, p95 time to first token for short requests fell from 129.8 s with native vLLM to 512 ms. With INT4 transport, MMLU accuracy rose by 0.06 percentage points and GSM8K accuracy fell by 0.46 percentage points relative to BF16.",
-      "reason": "近 30 天；关键词：cs.DC, latency, llm。Pipeline parallelism can serve long-context language models on PCIe servers and across heterogeneous GPU clusters. Existing engine...",
+      "summary": "3D sign language generation aims to produce signing motion from written text. Motivated by the linguistic nature of sign language, recent methods combine a motion tokenizer with a language model to predict motion tokens from text. However, both components are optimized through a two-stage pipeline with mismatched objectives: the tokenizer minimizes reconstruction error in isolation, while the generator learns from rigid one-hot reference tokens. A straightforward end-to-end extension bridges discrete token selection with straight-through estimators (STE), suffering from biased gradients and codebook collapse. To address these limitations, we propose SEEL, an end-to-end framework that aligns tokenization and generation with motion quality through two complementary mechanisms. First, to overcome rigid one-hot supervision, reconstruction-aware generation decodes candidate tokens in context and converts their 3D motion errors into soft targets, guiding the generator with physical motion quality. Second, to propagate generation feedback without STE, generation-aware tokenization passes continuous codebook expectations through the frozen generator, routing generated-motion gradients to the tokenizer to prevent codebook collapse. Combining both mechanisms enables the tokenizer and generator to co-evolve, achieving state-of-the-art performance on CSL-Daily, How2Sign, and Phoenix-2014T. Code and models will be released to facilitate future research.",
+      "reason": "近 30 天；关键词：cs.CV。3D sign language generation aims to produce signing motion from written text. Motivated by the linguistic nature of sign language,...",
       "area": "LLM 推理优化",
       "tags": [
-        "cs.DC",
-        "latency",
-        "llm",
-        "prefill",
-        "serving"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-25T16:03:12Z",
-      "url": "https://arxiv.org/abs/2611.34615",
-      "pdfUrl": "https://arxiv.org/pdf/2611.34615v1"
-    },
-    {
-      "id": "arxiv-2611.34492",
-      "title": "FlyingStart: Learned Cross-Token Warm Starts for Fixed-Point Decoding in Recurrent-Depth Language Models",
-      "authors": [
-        "Runguo Li",
-        "Dezhen Lu",
-        "Zixiang Ni"
-      ],
-      "summary": "Recurrent-depth language models generate each token by iterating a shared block of layers until its hidden state converges. Inference methods for these models decide when to stop the iteration, yet every token still starts from random noise and pays the full cost of converging. We show that where the iteration starts is a second, independent lever. A token's fixed point is predictable from the state at which the previous token stopped, after a learned change of coordinates, and we introduce FlyingStart, a linear warm start that is fitted in closed form on the frozen model and costs under 5% of one loop. The iteration and its stopping rule are unchanged, so the exit criterion certifies the same distance to the fixed point from any start: a better start removes loops at unchanged accuracy. On Huginn-0125, FlyingStart matches the accuracy of the strongest training-free baseline with 14--19% fewer decoding layers, raises batched throughput by 16--18% in two serving engines, and adds a further 10--14% on top of self-speculative decoding. A contraction analysis predicts the number of loops saved on all four models we study, including one where the prediction was recorded before any evaluation, and token by token on Huginn, and it identifies when a warm start pays off: the saving grows with the number of loops a model needs to converge.",
-      "reason": "近 30 天；关键词：cs.CL, inference, serving。Recurrent-depth language models generate each token by iterating a shared block of layers until its hidden state converges. Infere...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "inference",
-        "serving",
-        "speculative",
-        "throughput"
-      ],
-      "signal": 99,
-      "source": "arXiv",
-      "publishedAt": "2026-11-25T14:51:50Z",
-      "url": "https://arxiv.org/abs/2611.34492",
-      "pdfUrl": "https://arxiv.org/pdf/2611.34492v1"
-    },
-    {
-      "id": "arxiv-2611.34402",
-      "title": "Any-Rate: Half-Bit Multi-Precision LLM Quantization with Coded Bit-Planes",
-      "authors": [
-        "Hoonki Lee",
-        "Haechan Shin",
-        "Hyuntaek Jung",
-        "Yeonu Choi",
-        "Sangyeob Kim"
-      ],
-      "summary": "Nested multi-precision quantization derives multiple precisions from a single checkpoint by reading only the leading bits of each weight, which makes it attractive for on-device deployment under varying memory and energy budgets. However, existing methods offer only integer bits, leaving large accuracy gaps between adjacent precisions and severe degradation at 2 bits. To address this, we propose Any-Rate, which serves 2-8 bits from one checkpoint, in half-bit steps over 2-4 bits. Any-Rate restricts some bit-planes to extended Hamming codewords in 8-weight blocks (0.5 bits per weight), shares one LUT per row across precisions, and encodes all precisions jointly with a separate target for each, reducing the loss from sharing bit-planes. Across four LLMs, Any-Rate achieves state-of-the-art accuracy among multi-precision methods at 2 and 3 bits, keeping 69% of FP16 accuracy at 2 bits, and is within one point of the best at 4 bits. It decodes about as fast as existing kernels, and an LPDDR energy model estimates up to 27% less energy at equal accuracy. Code is available at https://github.com/hoonki2002/Any-Rate.",
-      "reason": "近 30 天；关键词：cs.LG, energy, llm。Nested multi-precision quantization derives multiple precisions from a single checkpoint by reading only the leading bits of each...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "energy",
-        "llm",
-        "quantization"
-      ],
-      "signal": 97,
-      "source": "arXiv",
-      "publishedAt": "2026-11-25T14:01:05Z",
-      "url": "https://arxiv.org/abs/2611.34402",
-      "pdfUrl": "https://arxiv.org/pdf/2611.34402v1"
-    },
-    {
-      "id": "arxiv-2611.33093",
-      "title": "AIChipBench: Benchmarking LLM Agents for Automated AI Accelerator Design",
-      "authors": [
-        "Guangyuan Wang",
-        "Chengran Li",
-        "Minchen Luo",
-        "Jichen Feng",
-        "Mengdi Wang",
-        "Yifan Zhang"
-      ],
-      "summary": "A language-model decoder carries state between decoding steps, and in hardware a wrong state update can leave the current token correct and corrupt the output several tokens later, so a design can pass output tests and still be wrong. AIChipBench asks what LLM coding agents need to build such hardware correctly. Agents implement quantized Qwen3.5, Gemma 3, Gemma 4, and Llama 3.2 decoders in synthesizable register-transfer-level (RTL) code against an executable integer reference that specifies the outputs and the stored state at every decoding step. They debug against public tests under fixed budgets; their frozen designs are graded on held-out token sequences, resets, memory stalls, and synthesis, and a second track asks them to speed up a correct design at nearly fixed area. Across 9,136 attempts by four coding agents, the difficulty lies in stored state. Feedback that points to the first state mismatch raises acceptance over output-only feedback in all 12 agent--task cells of a matched study, by 25.0 to 46.9 percentage points, and halves the agent-hours per accepted design. Regraded on new sequences and conditions, 45 of 69 accepted designs fail within the 32 steps their tests required. More than a third of attempts to speed up a correct design end without one. An overall score ranks Sol 5.6 and Fable 5.1 above Astra 6 and Opus 5.5, and both halves of the instances give this order in all 200 random splits. Hardware agents therefore need debugging feedback that exposes stored state, and their benchmarks need final tests well beyond the development cases.",
-      "reason": "近 30 天；公司信号：Meta；关键词：meta, cs.CL, llm。A language-model decoder carries state between decoding steps, and in hardware a wrong state update can leave the current token co...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "meta",
-        "cs.CL",
-        "llm"
-      ],
-      "signal": 97,
-      "source": "Meta/arXiv",
-      "publishedAt": "2026-11-24T18:28:41Z",
-      "url": "https://arxiv.org/abs/2611.33093",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33093v1"
-    },
-    {
-      "id": "arxiv-2611.33005",
-      "title": "Leto: Utility-Centric Agent Memory",
-      "authors": [
-        "Shuguang Chen",
-        "Salman Paracha"
-      ],
-      "summary": "Large language model (LLM) agents rely on external memory to retain and reuse information across interactions. Existing memory systems treat memory as a record of the past and evaluate it by fidelity to the conversation. However, the value of memory lies in whether it improves the agent's response. A memory system decides what to memorize and what to serve before that response exists, and fidelity checks neither decision against it. Faithful memory can therefore fail to improve the response. We instead view memory as a prediction problem and present \\textbf{\\emph{\\leto{}}}, a memory system for LLM agents that focuses on the utility of memory to the future rather than on its fidelity to the past. Because future requests are unknown, \\emph{\\leto{}} preserves access to conversation details through memory indexing, allowing information to remain available through its sources. When a request arrives, memory replay draws on this index to anticipate and supply the context the agent needs beyond what the request explicitly states. The utility of the served context remains uncertain until the response is generated, motivating a utility loop that uses response outcomes to refine future memory selection. We evaluate our system against six memory systems on five benchmarks across three scenarios. In personalization, it outperforms the strongest compared memory system by 16.3 percentage points in accuracy on PrefEval and by 3.1 points in task completion on PERMA. For long-horizon tasks, it achieves the best overall performance on MemoryArena averaged over five environments with a gain that increases with the chain depth. In long-context understanding, it is on par with retrieval over the raw history while serving fewer context tokens.",
-      "reason": "近 30 天；关键词：cs.CL, llm, retrieval。Large language model (LLM) agents rely on external memory to retain and reuse information across interactions. Existing memory sys...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL",
-        "llm",
-        "retrieval",
-        "serving"
-      ],
-      "signal": 96,
-      "source": "arXiv",
-      "publishedAt": "2026-11-24T17:30:06Z",
-      "url": "https://arxiv.org/abs/2611.33005",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33005v1"
-    },
-    {
-      "id": "arxiv-2611.34821",
-      "title": "LoopTitan: What Does Parameter Revisit Buy a Mixture-of-Experts?",
-      "authors": [
-        "Zichen Tian",
-        "Yudong Lu",
-        "Xuansheng Wu",
-        "Na Zou",
-        "Xia Hu",
-        "Guanchu Wang",
-        "Qianru Sun"
-      ],
-      "summary": "Looped Mixture-of-Experts (MoE) architectures revisit layer parameters across depths. This design increases effective depth without adding parameters. Recent looped MoE studies report substantial gains over the standard MoE at matched budgets (parameters, FLOPs and KV cache). However, the reported gains still confound parameter revisit with other design choices, e.g., network shape and residual scale. We ask, what does parameter revisit itself buy? Using matched non-revisit controls, we find that parameter revisit itself buys almost nothing. We argue that revisit only offers a freedom an MoE already has, i.e., trading experts for depth (more layers, fewer experts each) at fixed parameters. First, at matched budgets, we decompose the state-of-the-art looped recipe, with revisit last. A non-revisit control retains all the gain. Most comes from network shape, and the rest from residual scale. We prove this scale acts as a lower learning rate on revisited layers. This helps under AdamW's uneven layer step sizes, but disappears under Muon, which keeps them nearly equal. Second, beyond matched budgets, we evaluate revisit by adding compute at fixed parameters. One extra visit gains more than doubling the experts. Yet without revisit, a deeper standard MoE at equal parameters and compute obtains 90.2% of that gain under Muon. Overall, gains come from network shape, the optimizer and added compute, which a standard MoE can adopt. Accordingly, we propose LoopTitan-Base as a stronger MoE baseline. Under Muon, it matches the strongest looped recipe without revisit or residual scale. We open-source LoopTitan and release 17 pretrained models (including LoopTitan-Base and the control). Our experiment record is public as GitHub issues, with predictions pre-registered and the full exploration history kept. This is our Phase 1 technical report, laying the foundation for follow-up studies.",
-      "reason": "近 30 天；关键词：cs.LG, kv-cache, lora。Looped Mixture-of-Experts (MoE) architectures revisit layer parameters across depths. This design increases effective depth withou...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "kv-cache",
-        "lora"
-      ],
-      "signal": 92,
-      "source": "arXiv",
-      "publishedAt": "2026-11-25T18:04:31Z",
-      "url": "https://arxiv.org/abs/2611.34821",
-      "pdfUrl": "https://arxiv.org/pdf/2611.34821v1"
-    },
-    {
-      "id": "arxiv-2611.33896",
-      "title": "Looped Models are Fast Multi-Token Predictors",
-      "authors": [
-        "Ayhan Suleymanzade",
-        "Sean McLeish",
-        "Sehoon Kim",
-        "Jinwoo Kim",
-        "Antoine Bosselut"
-      ],
-      "summary": "Looped language models can adapt computation for predicting a token without a proportional rescaling in unique model parameters by adjusting the number of loops. This property has been used for self-speculative decoding, taking shallow loops as fast drafters and deep loops as verifiers, which is effective since drafting still uses full parameters. In this paper, we show that shallow loops can be also predictive of several future tokens and leverage this to drastically accelerate the inference of looped language models. To that end, we present Floodgates, a simple self-speculative decoding method that appends a block of mask tokens as a suffix and learns via low-rank adaptation to draft these tokens in parallel. Across seven models, five benchmarks, a range of batch sizes, and both greedy and sampled decoding, Floodgates is the fastest lossless decoding method in most cases, attaining up to 7.5x acceleration. Through analysis, we show that this speedup is enabled by all-depth training of looped models, with the shallow drafter's ability to leverage full-depth computation by conditioning on deep prefix cache evaluated during verification.",
-      "reason": "近 30 天；关键词：cs.LG, inference, speculative。Looped language models can adapt computation for predicting a token without a proportional rescaling in unique model parameters by...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "inference",
-        "speculative"
-      ],
-      "signal": 90,
-      "source": "arXiv",
-      "publishedAt": "2026-11-25T07:16:56Z",
-      "url": "https://arxiv.org/abs/2611.33896",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33896v1"
-    },
-    {
-      "id": "arxiv-2611.34923",
-      "title": "Mixture-of-Loops Transformer",
-      "authors": [
-        "Lianghui Zhu",
-        "Shijie Wang",
-        "Xinggang Wang",
-        "Jinze Bai",
-        "Bo Wang",
-        "Xiang Bai"
-      ],
-      "summary": "Looped Transformers boost expressivity by reusing shared layers across loops, yet at the cost of efficiency. Pushing their expressivity-efficiency frontier requires rethinking the core mechanism connecting adjacent loops: What should be passed as a Transformer loops? We introduce Mixture-of-Loops Transformer (MoLT), whose Mixture-of-Loops Attention (MoLA) uses keys and values (KV) as memory for selective reuse across depths and loops. Under loop residual, MoLT-R retains the residual stream and reads local KV across loops for expressivity. Under loop KV, MoLT-KV instead restarts from embeddings and reads current-loop local KV with preceding-loop memory KV at earlier positions for efficiency. MoLT-KV eliminates same-position cross-loop dependence and, paired with loop forcing for parallel training, unlocks single-traversal Mixture-of-Loops (MoL) decoding beyond the training loop horizon. To balance efficiency and quality, we introduce U-shaped MoLT (U-MoLT), which separates memory construction from prediction readout and skips unused decoder traversals without changing predictions. In 400B-token pretraining, U-MoLT outperforms OLMo3 across 700M/1.5B dense and 3B MoE models, achieving 1.7x validation cross-entropy (CE) token efficiency at 700M while improving 3B MoE 10-domain perplexity by 0.75 and 10-task accuracy by 2.1 percentage points. In 100B-token continued pretraining of Qwen3.5-0.8B-Base, our U-MoLT adaptation lowers CE on all 11 domains over the matched baseline with 1.4x mean token efficiency. At inference, U-MoLT with MoL-Hybrid-2 matches non-looped OLMo3 latency at 996.6 vs. 1,000.6 ms on S-size (~113M) models. Code is available at https://github.com/hustvl/MoLT",
-      "reason": "近 30 天；关键词：cs.LG, inference, latency。Looped Transformers boost expressivity by reusing shared layers across loops, yet at the cost of efficiency. Pushing their express...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.LG",
-        "inference",
-        "latency"
-      ],
-      "signal": 89,
-      "source": "arXiv",
-      "publishedAt": "2026-11-25T18:58:53Z",
-      "url": "https://arxiv.org/abs/2611.34923",
-      "pdfUrl": "https://arxiv.org/pdf/2611.34923v1"
-    },
-    {
-      "id": "arxiv-2611.33242",
-      "title": "CypherMAS: Benchmarking Routing Reliability in LLM-Based Multi-Agent Systems",
-      "authors": [
-        "Danil Kostromin",
-        "Andrey Sakhovskiy",
-        "Semen Budennyy"
-      ],
-      "summary": "Multi-agent systems (MAS) built on large language models (LLMs) distribute reasoning across specialized agents that must exchange messages and invoke tools reliably. Existing evaluations typically couple communication with open domain tasks, making it difficult to determine whether a failure arises from reasoning, malformed tool use, lost messages, or forgotten requests. Prior benchmarks do not isolate communication execution or measure routing redundancy against a known optimal path. We introduce CypherMAS, a synthetic benchmark that isolates communication and routing in fixed multi-agent graphs. Agents in chain, star, bipartite, or ring graphs route cyphered messages to remote peers holding the matching decoders; since the optimal route is known, redundant LLM calls can be measured and routing failures may be easily tracked. Across eleven open-weight models from 4B to 753B, small models fail at routing and tool use, dense models above 27B degrade with diameter, and successful runs exceed minimum LLM calls. These findings identify communication reliability as a distinct scaling bottleneck for multi-agent systems and provide a controlled diagnostic for complex multi-agent systems. The source code is freely available: https://github.com/Andoree/CypherMAS.",
-      "reason": "近 30 天；关键词：cs.MA, llm。Multi-agent systems (MAS) built on large language models (LLMs) distribute reasoning across specialized agents that must exchange...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.MA",
-        "llm"
-      ],
-      "signal": 77,
-      "source": "arXiv",
-      "publishedAt": "2026-11-24T14:39:07Z",
-      "url": "https://arxiv.org/abs/2611.33242",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33242v1"
-    },
-    {
-      "id": "arxiv-2611.33823",
-      "title": "Pitfalls of Dependency-Ready Decoding for Masked Diffusion Language Models",
-      "authors": [
-        "Lina Berrayana",
-        "Christopher Malon",
-        "Yoichi Ishibashi",
-        "Taichi Aida",
-        "Masafumi Oyamada"
-      ],
-      "summary": "Masked diffusion models (MDMs) have shown strong performance on structured reasoning tasks such as Sudoku, Trip Planning, and Countdown. MDMs introduce a freedom in the order in which tokens may be unmasked, and to exercise this freedom for good accuracy, early decoding strategies relied on signals of confidence or the downstream impact of decoding a token. However, simple examples seem to illustrate that resolving a token's dependencies before unmasking it should be important. Therefore, we examine whether this principle, which we call dependency-ready decoding, would contribute to better accuracy, from a practical and a theoretical perspective. We examine a recent decoder that implements dependency-readiness through attention, and generally find that when it performs better than confidence-based or future utility baselines, its decoding order collapses to left-to-right decoding. For theoretical analysis, we establish a definition of dependency without resorting to attention, measured by an information-theoretic score of how much revealing a single masked token (or a set) would shift the model's prediction for another. We prove that when the margin is large relative to this score, no such revelation can change the top prediction, so in this regime Maximum-Margin decoding already commits dependency-ready tokens. These findings leave only a narrow scope for future dependency-ready decoders: their potential benefit is limited to positions with margins smaller than the information-theoretic sensitivity, and reliance on attention should be questioned.",
-      "reason": "近 30 天；关键词：cs.CL。Masked diffusion models (MDMs) have shown strong performance on structured reasoning tasks such as Sudoku, Trip Planning, and Coun...",
-      "area": "LLM 推理优化",
-      "tags": [
-        "cs.CL"
+        "cs.CV"
       ],
       "signal": 70,
       "source": "arXiv",
-      "publishedAt": "2026-11-25T05:51:49Z",
-      "url": "https://arxiv.org/abs/2611.33823",
-      "pdfUrl": "https://arxiv.org/pdf/2611.33823v1"
+      "publishedAt": "2026-11-25T00:58:28Z",
+      "url": "https://arxiv.org/abs/2611.33588",
+      "pdfUrl": "https://arxiv.org/pdf/2611.33588v1"
+    },
+    {
+      "id": "arxiv-2611.33135",
+      "title": "BriConstrain: Geometrically Constrained Decoding for Autoregressive Brick Assembly Generation",
+      "authors": [
+        "Nadav Magar",
+        "Amir Hertz",
+        "Ariel Shamir",
+        "Or Patashnik"
+      ],
+      "summary": "Language models can generate LEGO$^\\circledR$ assemblies from text, but their builds often contain parts that collide or attach to nothing. The usual approach of rejecting and resampling invalid placements discards decoded tokens without guaranteeing a valid build. We present BriConstrain, a constrained decoding method that restricts a pretrained language model's next-token probabilities before sampling, steering it towards valid placements. Because the validity of a brick placement depends on the non-predetermined build state, it cannot be compiled into a fixed grammar and must be checked dynamically. However, checking the validity of a brick before sampling is challenging as the space of valid placements is combinatorially large and cannot be enumerated exhaustively. Our key idea is to narrow the search space by constraining how parts attach rather than which parts attach to each other. Concretely, given the model's predictions of the currently placed part, and the previously placed parent it wants to connect to, we constrain the model's choice of how they attach. This allows us to span the space of part attachments, using a precomputed geometric oracle, and to effectively filter out colliding options. With valid attachment candidates in hand, we bias the model's next-token distribution towards the remaining valid candidates. We evaluate our method on two LEGO$^\\circledR$ formats and models: BrickNet, which annotates connectivity explicitly, and our proposed Implicit Connectivity LDraw Format (ICLF), which uses numeric values for placements and leaves connectivity implicit. Our method raises collision-free builds from 31% to 91% on BrickNet and from 15% to 65% on ICLF, and outperforms rejection sampling on both formats at about 60% of its decoding cost.",
+      "reason": "近 30 天；关键词：cs.CV。Language models can generate LEGO$^\\circledR$ assemblies from text, but their builds often contain parts that collide or attach to...",
+      "area": "LLM 推理优化",
+      "tags": [
+        "cs.CV"
+      ],
+      "signal": 70,
+      "source": "arXiv",
+      "publishedAt": "2026-11-24T18:54:38Z",
+      "url": "https://arxiv.org/abs/2611.33135",
+      "pdfUrl": "https://arxiv.org/pdf/2611.33135v1"
     }
   ]
 }
